@@ -1,0 +1,52 @@
+<button mat-icon-button [matMenuTriggerFor]="masterMenu" matTooltip="Add card to page">
+  <mat-icon class="masterButton">add_circle_outline</mat-icon>
+</button>
+<mat-menu #masterMenu="matMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="textbox()">
+      <mat-icon>add_comment</mat-icon>
+      <span>Add blank annotation</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="conceptSelectorMenu">
+      <mat-icon>add_to_photos</mat-icon>
+      <span>Add chart</span>
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #conceptSelectorMenu="matMenu" [style.padding]="0">
+  <ng-template matMenuContent>
+    <button mat-menu-item [matMenuTriggerFor]="menu">
+      Search for a concept
+    </button>
+    <mat-menu #menu="matMenu" (closed)="autocompleteTrigger.closePanel()" class="autoMenu">
+      <!-- Autocomplete search bar -->
+      <form class="conceptForm">
+        <mat-form-field class="conceptFormField">
+          <input matInput placeholder="Search for a concept" aria-label="Search for a concept" [matAutocomplete]="auto"
+            [formControl]="conceptCtrl" (click)="$event.stopPropagation()">
+          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->
+          <mat-icon matPrefix>search</mat-icon>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOption($event)">
+            <mat-option *ngFor="let concept of filteredConcepts | async" [value]="concept.label">
+              <app-data-selector-element [resourceCodesForCard]="concept" [conceptGroupKey]="concept.displayGrouping"></app-data-selector-element>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </mat-menu>
+    <ng-container *ngFor="let entry of displayGroupings">
+      <button mat-menu-item [matMenuTriggerFor]="subConceptSelectorMenu" class="mainConceptSelector"
+        [style.border-left-color]="entry[0].color.hsl().string()">
+        {{entry[0].label}}
+      </button>
+      <mat-menu #subConceptSelectorMenu="matMenu">
+        <ng-template matMenuContent>
+          <button *ngFor="let resourceCodesForCard of entry[1]" (click)="addConceptCard(resourceCodesForCard.label)"
+            class="conceptSelector" mat-menu-item>
+            <app-data-selector-element [resourceCodesForCard]="resourceCodesForCard" [conceptGroupKey]="entry[0]"></app-data-selector-element>
+          </button>
+        </ng-template>
+      </mat-menu>
+    </ng-container>
+  </ng-template>
+</mat-menu>

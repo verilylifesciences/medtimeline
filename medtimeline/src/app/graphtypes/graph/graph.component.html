@@ -1,0 +1,10 @@
+<div id="{{chartDivId}}"></div>
+<div class="legend">
+  <div class="legendItem" *ngFor="let displayGroup of uniqueDisplayGroups" (mouseover)="focusOnDisplayGroup(displayGroup)"
+    (mouseout)="resetChart(displayGroup)" (click)="toggleDisplayGroup(displayGroup)">
+    <span [style.background-color]="displayGroup.color.hsl().string()">
+    </span>
+    {{displayGroup.label}}
+  </div>
+</div>
+<table id="c3-tooltip" class="c3-tooltip"></table>

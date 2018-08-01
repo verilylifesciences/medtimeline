@@ -1,0 +1,33 @@
+<!-- This component is a card that holds a label, one or more graphs graph, and a dragging handle. -->
+<!-- Left border matches up with the clinical concept group color. -->
+<div class="chartBorder" [style.border-left-color]="this.color.hsl().string()">
+  <mat-card [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="this.renderContainedGraphs()">
+    <div fxFlex fxShrink="0" fxGrow="0">
+      <!-- Show grabbers to indicate dragging. -->
+      <mat-icon>
+        drag_indicator
+      </mat-icon>
+    </div>
+    <div class="checkbox" fxFlex fxShrink="0" fxGrow="0">
+      <mat-checkbox [(ngModel)]="isChecked" (change)="checkboxChange($event)"></mat-checkbox>
+    </div>
+    <div fxFlex fxShrink="0" fxGrow="0" class="label">{{label + unitsLabel}}</div>
+    <div fxFlex fxLayout="column">
+      <div fxFlex *ngFor="let axis of card.axes" fxShrink="0" fxGrow="0">
+        <!-- Show a spinner while the promises are being resolved. -->
+        <mat-spinner *ngIf="!axis.isResolved" [diameter]="30"></mat-spinner>
+        <ng-container *ngIf="axis.isResolved" [ngSwitch]="axis.chartType">
+          <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange"></app-linegraph>
+          <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange"></app-scatterplot>
+          <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.data" [dateRange]="this.dateRange">
+          </app-stepgraph>
+          <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.data" [dateRange]="this.dateRange"></app-microbio-graph>
+        </ng-container>
+      </div>
+    </div>
+    <div fxFlex fxShrink="0" fxGrow="0">
+      <mat-icon class="removeCardButton" (click)="removeCard()">clear</mat-icon>
+    </div>
+
+  </mat-card>
+</div>

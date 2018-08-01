@@ -1,0 +1,17 @@
+<div class="configurationCard {{resourceCodesForCard.dataAvailable ? 'enableDragging': 'disableDragging'}}"
+  [style.border-left-color]="resourceCodesForCard.dataAvailable ? conceptGroupKey.color.hsl().string(): 'rgb(197, 185, 172)'">
+  <!-- BOSTON_WARM_GRAY -->
+  <mat-list-item>
+    <div class="listItem">
+      <div>
+        <div class="label">
+          {{resourceCodesForCard.label}}
+        </div>
+        <div class="tinytext" *ngIf="!resourceCodesForCard.dataAvailable">
+          No data between
+          {{appTimeIntervalString}}
+        </div>
+      </div>
+    </div>
+  </mat-list-item>
+</div>

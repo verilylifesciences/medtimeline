@@ -1,0 +1,10 @@
+<div class="datePicker" fxLayout="row" fxLayoutGap="10px" class="mat-h2">
+  <input type="hidden" ngxDaterangepickerMd [(ngModel)]="selected" [minDate]="earliestAvailableDate" [maxDate]="latestAvailableDate"
+    [linkedCalendars]="true" [isInvalidDate]="filterDates" (datesUpdated)="datesUpdated($event)" />
+  <button mat-raised-button type="button" class="ngx-daterangepicker-action" (click)="open($event)">
+    <mat-icon>date_range</mat-icon>
+  </button>
+  <div *ngIf="pickerDirective.picker.startDate && pickerDirective.picker.endDate">{{pickerDirective.picker.startDate.format('MM/DD/YYYY')
+    + '-' +
+    pickerDirective.picker.endDate.format('MM/DD/YYYY')}}</div>
+</div>

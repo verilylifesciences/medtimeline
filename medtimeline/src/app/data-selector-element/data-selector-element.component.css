@@ -1,0 +1,35 @@
+.configurationCard {
+  background-color: transparent;
+  border-left-style: solid;
+  border-left-width: 5px;
+  height: 30px !important;
+  margin: 3px;
+  margin-bottom: 7px;
+  padding: 3px;
+}
+
+
+.disableDragging {
+  color: gray;
+  cursor: not-allowed;
+  padding-top: 4px;
+}
+
+.listItem {
+  display: flex;
+  height: fit-content;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0px !important;
+}
+
+.label {
+  height: fit-content;
+  line-height: 15px;
+}
+
+.tinytext {
+  font-size: 12px;
+  line-height: 15px;
+}

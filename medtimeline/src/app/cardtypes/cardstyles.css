@@ -1,0 +1,154 @@
+::ng-deep .c3-region {
+  fill: hsl(150, 50%, 50%);
+  stroke: hsl(150, 50%, 70%);;
+  stroke-dasharray: 1px;
+}
+
+.label {
+  /* Lock down to 150 pixel width. */
+  display: inline-block;
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
+  word-wrap: break-word;
+  padding-bottom: 5px;
+}
+
+.chartBorder {
+  border-left-style: solid;
+  border-left-width: 10px;
+}
+
+.mat-card {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-left: 0px;
+  cursor: grab;
+  transition: box-shadow .1s;
+}
+
+.mat-card:hover {
+  background-color: rgb(248, 248, 248);
+  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);
+}
+
+::ng-deep .c3 {
+  cursor: default !important;
+}
+
+.c3-tooltip > tbody > tr > th {
+  background-color: rgb(197, 185, 172); /* Boston Warm Gray */
+}
+
+::ng-deep .c3-circle {
+  opacity: 1 !important;
+}
+
+/* This ensures that the step graph lines do not show circles for individual data points, except for the end points of each line segment. */
+::ng-deep .stepgraph .c3-circles:not([class *="endpoint"]) {
+  display: none;
+}
+
+/* This is styling for a stepgraphcard's circles on the end points of line segments. */
+::ng-deep .stepgraph [class *= "endpoint"] {
+  stroke: black;
+  opacity: 1;
+  stroke-width: 3;
+}
+
+::ng-deep .stepgraph .c3-line {
+  stroke-width: 2px;
+}
+
+::ng-deep .stepgraph [class*="tooltip"] {
+  width: 210px;
+}
+
+.legend {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.legend span {
+  display: inline-block;
+  margin-left: 7px;
+  margin-right: 7px;
+  padding: 5px;
+}
+
+.legendItem {
+  display: inline-block;
+}
+
+::ng-deep .c3-axis-y text :not(.c3-axis-y-label) {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+::ng-deep .c3-axis-x text {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 13px;
+}
+
+.mat-icon {
+  color: rgb(218, 218, 218);
+  transition: color .3s;
+}
+
+::ng-deep .c3 svg {
+  /* font-size: 12px; */
+  font-family:  monospace;
+}
+
+::ng-deep .c3-legend-item {
+  font-family: "Roboto", sans-serif !important;
+}
+
+.checkbox {
+  padding-bottom: 7px;
+  margin-right: 15px;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: rgb(218, 218, 218);
+  transition: border-color .3s;
+}
+
+::ng-deep .mat-card:hover .mat-checkbox-frame {
+  border-color: grey;
+}
+
+.mat-card:hover .mat-icon {
+  color: grey;
+}
+
+::ng-deep .checkbox:hover .mat-checkbox-frame {
+  border-color: black;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: black !important;
+}
+
+::ng-deep .mat-ripple-element {
+  background: rgba(175, 172, 172, 0.705) !important;
+}
+
+.removeCardButton {
+  display: inline-flex;
+  margin-right: 0px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* We remove visibility for the remove card button when the user is not hovering over the card. */
+.mat-card:not(:hover) .removeCardButton {
+  visibility: collapse;
+}
+
+::ng-deep .noData {
+  opacity: 1 !important;
+}

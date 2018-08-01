@@ -1,0 +1,43 @@
+/* Default Angular Material prebuilt theme. */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+/* Added for ng2-dragula support, see https://github.com/valor-software/ng2-dragula */
+/* in-flight clone */
+.gu-mirror {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  margin: 0 !important;
+  opacity: 1 !important;
+  pointer-events: none;
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* high-performance display:none; helper */
+.gu-hide {
+  left: -9999px !important;
+}
+
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+  -ms-user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  cursor: grabbing !important;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+  opacity: 0.2;
+}
+
+
+body {
+  background-color: rgb(65, 182, 230); /* Boston Sky */
+  margin: 0px;
+}

@@ -1,0 +1,124 @@
+.graphDrawer {
+  background-color: rgb(65, 182, 230); /* Boston Sky */
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  min-height: 100%;
+}
+
+.mat-expansion-panel {
+  background-color: inherit;
+  margin-top: 25px;
+}
+
+.header {
+  background-color: white;
+  padding-top: 20px;
+}
+
+.snapshot {
+  display: inline-block;
+}
+
+.timeline {
+  display: inline-block;
+}
+
+.instructionText {
+  text-align: center;
+  display: none;
+  font: 12px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.instructionBorder {
+  outline-style: dashed;
+  outline-width: 3px;
+  outline-color: white;
+  outline-offset: 10px;
+}
+
+.draggable {
+  min-height: 1000px;
+}
+
+::ng-deep .masterCheckbox:hover .mat-checkbox-frame {
+  border-color: black;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background  {
+  background-color: black !important;
+}
+
+.masterCheckbox {
+  margin-left: 34px;
+  margin-right: 15px;
+  padding-bottom: 15px;
+}
+
+::ng-deep .masterCheckbox .mat-checkbox-frame {
+  border-color: rgb(190, 189, 189) !important;
+  transition: border-color .3s;
+}
+
+/* Disable selecting/highlighting on the page. */
+.fullPage {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Chrome and Opera */
+}
+
+.divider {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* TODO(b/122541394): Rename to apply to all graph types. */
+.loincCodeGraphs {
+  margin-bottom: 7px;
+}
+
+.addCardInPlace {
+  opacity: 0;
+  transition: opacity .3s;
+  padding-bottom: 5px;
+}
+
+.dashedLineAddCardLeft {
+  border: 3px dashed white;
+  border-top: white;
+  display: inline-block;
+  width: 25px;
+}
+
+.dashedLineAddCardRight {
+  border: 3px dashed white;
+  border-top: white;
+  display: inline-block;
+  width: calc(100% - 70px);;
+}
+
+::ng-deep .addCardInPlace .mat-icon-button {
+  width: 25px;
+  height: 25px;
+}
+
+::ng-deep .gu-mirror .chartBorder {
+  opacity: 1 !important;
+  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36) !important;
+}
+
+::ng-deep .addCardInPlace .mat-button-ripple.mat-ripple{
+  margin-top: 5px;
+}
+.addCardInPlace:hover {
+  opacity: 1;
+}
+
+
+::ng-deep .addCardInPlace .masterButton {
+  color: white !important;
+}

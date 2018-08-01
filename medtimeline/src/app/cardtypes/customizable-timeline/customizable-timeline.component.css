@@ -1,0 +1,70 @@
+::ng-deep [class*="timeline"] .c3-xgrid-focus {
+  visibility: visible !important;
+}
+
+.timelineLabel {
+  /* This margin allows for the label of the CustomizableTimeline to be at the same x-position as the other labels, accounting for space usually taken by checkboxes & dragger icons. */
+  margin-left: 40px;
+  /* Lock down to 150 pixel width. */
+  display: inline-block;
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
+  word-wrap: break-word;
+  cursor: default;
+  padding-bottom: 5px;
+}
+
+::ng-deep .timeline .c3 {
+  cursor: pointer !important;
+}
+
+::ng-deep [class*="tooltip-custom"] {
+  position: absolute;
+  display: block;
+  font-size: 11px;
+  border-style: solid;
+  padding: 3px;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 3px;
+  min-height: 25px;
+  width: 180px;
+  max-height: 100px;
+  background-color: white;
+  overflow: auto;
+  color: white;
+}
+
+::ng-deep [class*="tooltip-title-custom"] {
+  margin: 0px;
+  font-size: small;
+  text-align: center;
+  max-width: 100px;
+  display: inline-block;
+  min-width: 100px;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
+
+::ng-deep [class*="tooltip-details-custom"] {
+  display: none;
+  overflow: auto;
+  text-align: center;
+  overflow-wrap: break-word;
+  max-width: 100px;
+}
+
+::ng-deep [id*="expand"] {
+  visibility: hidden;
+  vertical-align: text-top;
+}
+
+::ng-deep [id*="delete"] {
+  visibility: hidden;
+  vertical-align: text-top;
+}
+::ng-deep [id*="edit"] {
+  visibility: hidden;
+  margin-top: 8px;
+}

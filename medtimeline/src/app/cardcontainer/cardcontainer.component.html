@@ -1,0 +1,44 @@
+<div class="header" fxLayout="row" fxFlexAlign="space-around center">
+  <app-timeline-controller (changeDateRange)="changeDateRange($event)" class="timeline"></app-timeline-controller>
+  <!--Push the buttons to the right and left sides.-->
+  <div fxFlex></div>
+  <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
+</div>
+<div fxLayout="column" class="graphDrawer" id="{{CARDHOLDER}}">
+  <app-customizable-timeline [dateRange]="dateRange" [id]="id"></app-customizable-timeline>
+  <mat-divider class="divider"></mat-divider>
+  <div style="display:flex; justify-content: space-between;">
+    <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->
+    <div style="display:flex">
+      <div class="masterCheckbox">
+        <mat-checkbox [(ngModel)]="allChecked" [(indeterminate)]="someChecked" (change)="allChange($event)"></mat-checkbox>
+      </div>
+      <div *ngIf="allChecked || someChecked">
+        <mat-icon style="cursor: pointer;" (click)="removeCheckedCards()">clear</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="addCardInPlace">
+    <hr class="dashedLineAddCardLeft" />
+    <app-data-selector-menu style="display: inline-block;" (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
+    <hr class="dashedLineAddCardRight" />
+  </div>
+  <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
+    <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="loincCodeGraphs">
+      <ng-container [ngSwitch]="element.concept === 'textbox'">
+        <div align="right" *ngSwitchCase="true">
+          <app-textboxcard [id]="element.id" (checkedEvent)="updateCheckedConcepts($event)" (deleteEvent)="removeDisplayedCard($event)"></app-textboxcard>
+        </div>
+        <app-multigraphcard *ngSwitchCase="false" [resourceCodeGroups]="element.concept" [dateRange]="dateRange" [id]="element.id"
+          (checkedEvent)="updateCheckedConcepts($event)" (deleteEvent)="removeDisplayedCard($event)">
+        </app-multigraphcard>
+      </ng-container>
+      <div class="addCardInPlace">
+        <hr class="dashedLineAddCardLeft" />
+        <app-data-selector-menu style="display: inline-block;" (addCard)="addConceptCard($event, element.id)"
+          (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
+        <hr class="dashedLineAddCardRight" />
+      </div>
+    </div>
+  </div>
+</div>

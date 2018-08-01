@@ -1,0 +1,31 @@
+.stepContent {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding-bottom: 0px !important;
+}
+
+.stepperButtons {
+  float: right;
+}
+
+.stepperButtons button {
+  margin-right: 5px;
+}
+
+::ng-deep .mat-dialog-container {
+  max-height: -webkit-fill-available !important;
+}
+
+img {
+  width: 100%;
+}
+
+.divider {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  border-top-width: 5px !important;
+}

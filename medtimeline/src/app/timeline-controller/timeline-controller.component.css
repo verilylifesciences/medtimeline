@@ -1,0 +1,32 @@
+.datePicker {
+  background-color: white;
+  padding-top: 20px;
+}
+
+.mat-form-field {
+  width: 40%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+/* This style applies to dates between the start and end date */
+::ng-deep .middleDateRange {
+  background: #e8edf9 !important;
+}
+
+/* This style applies to the end date if we're looking at the start calendar
+or the start date if we're looking at the end date calendar */
+::ng-deep .secondaryRangeEndpoint {
+  background: #6e7ca0 !important; /* BOSTON_BAY */
+  border: none !important;
+}
+
+/*
+This style applies to the currently-selected date for whatever picker you're
+looking at.
+*/
+::ng-deep .mat-calendar-body-selected {
+  background-color: #003087; /* BOSTON_BLUE */
+  border-color: cornflowerblue;
+  border-width: 3px !important;
+}

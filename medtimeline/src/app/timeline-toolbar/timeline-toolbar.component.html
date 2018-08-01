@@ -1,0 +1,12 @@
+<div style="float: right; margin-top: 30px; margin-right: 15px">
+  <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="textbox()"></app-data-selector-menu>
+  <button mat-icon-button [matMenuTriggerFor]="optionsMenu" matTooltip="More options">
+    <mat-icon class="masterButton">more_vert</mat-icon>
+  </button>
+  <mat-menu #optionsMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item (click)="snapshot()">Save snapshot</button>
+  </mat-menu>
+  <button mat-icon-button matTooltip="Launch Tutorial">
+    <mat-icon class="masterButton" (click)="openHelpDialog()">help_outline</mat-icon>
+  </button>
+</div>
