@@ -41,8 +41,8 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
-/* TODO(b/122541394): Rename to apply to all graph types. */
-.loincCodeGraphs {
+
+.displayedConcept {
   margin-bottom: 7px;
 }
 

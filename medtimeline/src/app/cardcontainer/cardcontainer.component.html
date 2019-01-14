@@ -24,7 +24,7 @@
     <hr class="dashedLineAddCardRight" />
   </div>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
-    <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="loincCodeGraphs">
+    <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
       <ng-container [ngSwitch]="element.concept === 'textbox'">
         <div align="right" *ngSwitchCase="true">
           <app-textboxcard [id]="element.id" (checkedEvent)="updateCheckedConcepts($event)" (deleteEvent)="removeDisplayedCard($event)"></app-textboxcard>

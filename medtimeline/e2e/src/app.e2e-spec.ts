@@ -101,13 +101,13 @@ describe('workspace-project App', () => {
     let secondCardOriginalText;
     page.navigateTo()
         .then(t => {
-          const graphs = element.all(by.css('.loincCodeGraphs'));
-          const firstCard = graphs.get(0);
-          const thirdCard = graphs.get(2);
+          const graphs = element.all(by.css('.displayedConcept'));
+          const firstCard = graphs.get(1);
+          const thirdCard = graphs.get(3);
           firstCard.element(by.css('.label'))
               .getText()
               .then(text => firstCardOriginalText = text);
-          graphs.get(1)
+          graphs.get(2)
               .element(by.css('.label'))
               .getText()
               .then(text => secondCardOriginalText = text);
@@ -119,9 +119,9 @@ describe('workspace-project App', () => {
               .perform();
         })
         .then(t => {
-          const graphs = element.all(by.css('.loincCodeGraphs'));
-          const firstUpdated = graphs.get(0);
-          const secondUpdated = graphs.get(1);
+          const graphs = element.all(by.css('.displayedConcept'));
+          const firstUpdated = graphs.get(1);
+          const secondUpdated = graphs.get(2);
           firstUpdated.element(by.css('.label'))
               .getText()
               .then(x => expect(x).toEqual(secondCardOriginalText));
