@@ -62,14 +62,33 @@ export class CustomizableGraphComponent extends
     // anywhere on the chart.
     chart.internal.main.on('mousemove', function() {
       const coordinates = d3.mouse(this);
+      // Remove all other timestamps
+      d3.select('.c3-xgrid-focus').selectAll('text').remove();
       const focusEl = d3.select('line.c3-xgrid-focus');
       focusEl.attr('x1', coordinates[0]);
       focusEl.attr('x2', coordinates[0]);
+      const timestamp =
+          DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
+      // See time on hover
+      d3.select('g.c3-xgrid-focus')
+          .append('text')
+          .attr('text-anchor', 'end')
+          .attr('transform', 'rotate(-90)')
+          .attr('x', 0)
+          .attr('y', coordinates[0])
+          .attr('dx', -4)
+          .attr('dy', -5)
+          .style('opacity', 1)
+          .text(
+              timestamp.toLocal().toLocaleString() + ' ' +
+              timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
     });
     // Clear gridlines when not hovering over the chart.
     chart.internal.main.on('mouseout', function() {
       // clear all x-axis gridlines.
       chart.xgrids([]);
+      // Remove all other timestamps
+      d3.select('.c3-xgrid-focus').selectAll('text').remove();
     });
     // Logic to add a point when clicking on the chart.
     chart.internal.main.on('click', function() {
