@@ -13,41 +13,46 @@ import {DateTime} from 'luxon';
  * This base class contains useful helper methods used while making a custom
  * tooltip for a c3 chart, including adding a row to the table, resetting the
  * table, and adding a header.
+ *
+ * This is functionally a static class, but Typescript doesn't allow for
+ * abstract static functions. We make all tooltip classes inherit from Tooltip
+ * so that they must implement the getTooltip function.
+ *
+ * @param T The type of data that the tooltip is derived from.
  */
-export abstract class Tooltip {
-  static readonly tooltipStyleName = 'c3-tooltip-name--';
-
-  tooltipText: string;
-  sanitizer: DomSanitizer;
-  readonly timestamp: DateTime;
-
-  constructor(sanitizer: DomSanitizer, timestamp: DateTime) {
-    this.sanitizer = sanitizer;
-    this.timestamp = timestamp;
+export abstract class Tooltip<T> {
+  static createNewTable(): HTMLTableElement {
+    const table: HTMLTableElement = document.createElement('table');
+    table.setAttribute('class', 'c3-tooltip');
+    return table;
   }
 
-  addTimeHeader(timestamp: DateTime, table: HTMLTableElement, colSpan = 2) {
-    this.addHeader(this.formatTimestamp(timestamp), table, colSpan);
+  static addTimeHeader(
+      timestamp: DateTime, table: HTMLTableElement, sanitizer: DomSanitizer,
+      colSpan = 2) {
+    Tooltip.addHeader(
+        Tooltip.formatTimestamp(timestamp), table, sanitizer, colSpan);
   }
 
-  formatTimestamp(timestamp: DateTime) {
+  static formatTimestamp(timestamp: DateTime) {
     return timestamp.toLocaleString() + ' ' +
-        timestamp.toLocaleString(DateTime.TIME_24_SIMPLE);
+        timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE);
   }
 
-  addHeader(content: string, table: HTMLTableElement, colSpan = 2) {
+  static addHeader(
+      content: string, table: HTMLTableElement, sanitizer: DomSanitizer,
+      colSpan = 2) {
     // Header row
     const row = table.insertRow();
     const headerCell = document.createElement('th');
     row.appendChild(headerCell);
     headerCell.colSpan = colSpan;
-    headerCell.innerHTML =
-        this.sanitizer.sanitize(SecurityContext.HTML, content);
+    headerCell.innerHTML = sanitizer.sanitize(SecurityContext.HTML, content);
   }
 
-  addRow(table: HTMLTableElement, styleName: string, cellText: string[]) {
+  static addRow(
+      table: HTMLTableElement, cellText: string[], sanitizer: DomSanitizer) {
     const row = table.insertRow();
-    row.className = styleName;
     for (let i = 0; i < cellText.length; i++) {
       const cell1 = row.insertCell();
       if (i === 0) {
@@ -55,34 +60,12 @@ export abstract class Tooltip {
       } else {
         cell1.className = 'value';
       }
-      cell1.innerHTML =
-          this.sanitizer.sanitize(SecurityContext.HTML, cellText[i]);
+      cell1.innerHTML = sanitizer.sanitize(SecurityContext.HTML, cellText[i]);
     }
   }
 
-  resetTableVisiblity(table: HTMLTableElement) {
-    table.hidden = false;
-    const renderedString = table.outerHTML;
-    table.hidden = true;
-    this.tooltipText = renderedString;
-  }
-
-  clearTable(): HTMLTableElement {
-    const table = document.getElementById('c3-tooltip') as HTMLTableElement;
-    while (table.firstChild) {
-      table.removeChild(table.firstChild);
-    }
-    return table;
-  }
-
-  getTooltipName(uniqueId?: string) {
-    return Tooltip.tooltipStyleName +
-        this.sanitizer.sanitize(SecurityContext.HTML, uniqueId);
-  }
-
-  abstract getTooltip(): string;
+  abstract getTooltip(inputValue: T, sanitizer: DomSanitizer): string;
 }
-
 
 /*
  * This class makes an annotation for a particular timestamp with custom notes.
@@ -110,9 +93,7 @@ export class CustomizableGraphAnnotation {
 
   // The color for this annotation and associated point.
   color: Color;
-  constructor(
-      title: string = '', description: string = '',
-      color: Color = Color.rgb('black')) {
+  constructor(title = '', description = '', color: Color = Color.rgb('black')) {
     this.title = title;
     this.description = description;
     this.color = color;
@@ -166,7 +147,7 @@ export class CustomizableGraphAnnotation {
     tooltipContainer.style('left', (Number(xCoordinate) + yAxisXCoord) + 'px')
         .style('bottom', yCoordinate + 'px')
         .style('background-color', this.color);
-    tooltipTitle.on('click', function() {
+    tooltipTitle.on('click', () => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
       if (self.showDetails) {
@@ -175,7 +156,7 @@ export class CustomizableGraphAnnotation {
         self.showDetailsToggle(millis, false, tooltipContainer.node());
       }
     });
-    expandIcon.on('click', function() {
+    expandIcon.on('click', () => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
       if (self.showDetails) {
@@ -186,7 +167,7 @@ export class CustomizableGraphAnnotation {
     });
     tooltipContainer
         .on('mouseover',
-            function() {
+            () => {
               // Only show icons when hovering over the tooltip.
               expandIcon.style('visibility', 'visible');
               deleteIcon.style('visibility', 'visible');
@@ -202,7 +183,7 @@ export class CustomizableGraphAnnotation {
               const parent = this.parentNode;
               parent.appendChild(this);
             })
-        .on('mouseout', function() {
+        .on('mouseout', () => {
           expandIcon.style('visibility', 'hidden');
           deleteIcon.style('visibility', 'hidden');
           editIcon.style('visibility', 'hidden');

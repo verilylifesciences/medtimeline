@@ -5,10 +5,11 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime} from 'luxon';
+import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/diagnostic-report';
 import {makeDiagnosticReports} from 'src/app/test_utils';
 
 import {MicrobioTooltip} from './microbio-tooltips';
+import {Tooltip} from './tooltip';
 
 describe('MicrobioTooltip', () => {
   beforeEach(async(() => {
@@ -16,34 +17,34 @@ describe('MicrobioTooltip', () => {
   }));
 
   it('should create', () => {
-    const tooltip = new MicrobioTooltip(
-        makeDiagnosticReports()[0], DateTime.fromJSDate(new Date('2012-08-03')),
+    const tooltip = new MicrobioTooltip().getTooltip(
+        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0], 'Stool'),
         TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
   });
 
   it('should generate tooltip text', () => {
-    const tooltip = new MicrobioTooltip(
-        makeDiagnosticReports()[0], DateTime.fromJSDate(new Date('2012-08-03')),
-        TestBed.get(DomSanitizer));
-    const tooltipText = tooltip.getTooltip();
+    const annotated =
+        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0], 'Stool');
+    const tooltipText =
+        new MicrobioTooltip().getTooltip(annotated, TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();
     // Angular generates a numerical idenitifer for each table and this
     // regular expression strips it from the HTML check.
-    expect(tooltipText.replace(/c\d*=""/g, ''))
+    expect(tooltipText)
         .toEqual(
-            '<table _ngcontent-c101=""'.replace(/c\d*=""/g, '') +
-            ' class="c3-tooltip" ' +
-            'id="c3-tooltip"><tbody><tr><th colspan="2">8/2/2012 20:00</th></tr>' +
-            '<tr class="c3-tooltip-name--id">' +
+            '<table class="c3-tooltip"><tbody>' +
+            '<tr><th colspan="2">' +
+            Tooltip.formatTimestamp(annotated.timestamp) + '</th></tr>' +
+            '<tr>' +
             '<td class="name">Status</td>' +
             '<td class="value">Final</td></tr>' +
-            '<tr class="c3-tooltip-name--id"><td></td></tr>' +
+            '<tr><td></td></tr>' +
             '<tr><th colspan="2">Results Contained</th></tr>' +
-            '<tr class="c3-tooltip-name--id">' +
+            '<tr>' +
             '<td class="name">Ova and Parasite Exam</td>' +
             '<td class="value">Negative or Flora</td></tr>' +
-            '<tr class="c3-tooltip-name--id">' +
+            '<tr>' +
             '<td class="name">Salmonella and Shigella Culture</td>' +
             '<td class="value">Check result</td></tr></tbody></table>');
   });

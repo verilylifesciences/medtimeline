@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
 import {Color} from 'color';
 import {Interval} from 'luxon';
 import {DisplayGrouping} from 'src/app/clinicalconcepts/display-grouping';
@@ -72,7 +73,8 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
 
   readonly userEditable = false;
 
-  constructor(private fhirService: FhirService) {
+  constructor(
+      private fhirService: FhirService, private sanitizer: DomSanitizer) {
     super();
   }
 
@@ -83,7 +85,7 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
   private initializeData() {
     this.card = new Card(
         this.fhirService, this.resourceCodeGroups.resourceCodeGroups,
-        this.dateRange);
+        this.dateRange, this.sanitizer);
     if (this.resourceCodeGroups) {
       this.label = this.resourceCodeGroups.label;
       this.color = this.resourceCodeGroups.displayGrouping.fill;

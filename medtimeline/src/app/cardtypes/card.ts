@@ -3,7 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
+
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {FhirService} from '../fhir.service';
@@ -44,7 +46,7 @@ export class Card {
    */
   constructor(
       fhirService: FhirService, resourceCodeGroups: ResourceCodeGroup[],
-      dateRange: Interval) {
+      dateRange: Interval, sanitizer: DomSanitizer) {
     if (!resourceCodeGroups) {
       throw Error('Resource codes are undefined.');
     }
@@ -61,7 +63,8 @@ export class Card {
 
     this.dateRange = dateRange;
     for (const resourceGroup of resourceCodeGroups) {
-      this.axes.push(new Axis(fhirService, resourceGroup, dateRange));
+      this.axes.push(
+          new Axis(fhirService, resourceGroup, dateRange, sanitizer));
     }
   }
 }

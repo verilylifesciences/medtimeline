@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
@@ -15,6 +16,7 @@ import {MedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medicati
 import {FhirService} from '../fhir.service';
 import {GraphData} from '../graphdatatypes/graphdata';
 import {LineGraphData} from '../graphdatatypes/linegraphdata';
+import {MicrobioGraphData} from '../graphdatatypes/microbiographdata';
 import {StepGraphData} from '../graphdatatypes/stepgraphdata';
 
 import {ChartType} from './graph/graph.component';
@@ -68,7 +70,7 @@ export class Axis {
    */
   constructor(
       private fhirService: FhirService, resourceGroup: ResourceCodeGroup,
-      dateRange: Interval) {
+      dateRange: Interval, private sanitizer: DomSanitizer) {
     this.dateRange = dateRange;
     this.chartType = resourceGroup.chartType;
     this.displayConcept = resourceGroup.displayGrouping;
@@ -127,7 +129,7 @@ export class Axis {
               if (obsSetList.length > 0 &&
                   obsSetList.every(obsSet => obsSet.allQualitative)) {
                 return LineGraphData.fromObservationSetListDiscrete(
-                    this.displayConcept.label, obsSetList);
+                    this.displayConcept.label, obsSetList, this.sanitizer);
               } else if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
                 return LineGraphData.fromObservationSetList(
                     this.displayConcept.label, obsSetList);
@@ -154,14 +156,15 @@ export class Axis {
       Promise<StepGraphData> {
     return rxNorms.getResourceFromFhir(this.dateRange).then(medOrderSets => {
       return StepGraphData.fromMedicationOrderSetList(
-          medOrderSets.map(x => x.orders), this.dateRange);
+          medOrderSets.map(x => x.orders), this.dateRange, this.sanitizer);
     });
   }
 
   getStepGraphDataForMB(bchCodes: BCHMicrobioCodeGroup):
       Promise<StepGraphData> {
     return bchCodes.getResourceFromFhir(this.dateRange).then(diagReports => {
-      return StepGraphData.fromDiagnosticReports(diagReports, bchCodes.label);
+      return MicrobioGraphData.fromDiagnosticReports(
+          diagReports, bchCodes.label, this.sanitizer);
     });
   }
 
@@ -183,7 +186,7 @@ export class Axis {
         })
         .then(orders => {
           return LineGraphData.fromMedicationOrderSet(
-              new MedicationOrderSet(orders), this.dateRange);
+              new MedicationOrderSet(orders), this.dateRange, this.sanitizer);
         });
   }
 }

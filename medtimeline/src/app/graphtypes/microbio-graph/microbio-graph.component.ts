@@ -10,6 +10,7 @@ import {DateTime} from 'luxon';
 import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 'src/app/clinicalconcepts/display-grouping';
 import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 import {CHECK_RESULT_CODE, NEG_CODE, NEGFLORA_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
+import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';
@@ -26,33 +27,16 @@ import {MicrobioTooltip} from '../tooltips/microbio-tooltips';
   }]
 })
 export class MicrobioGraphComponent extends StepGraphComponent {
-  constructor(private microbioSanitizer: DomSanitizer) {
-    super(microbioSanitizer);
+  constructor(sanitizer: DomSanitizer) {
+    super(sanitizer);
   }
-
 
   /**
    * @returns the c3.ChartConfiguration object to generate the c3 chart.
    * @override
    */
   generateChart(): c3.ChartConfiguration {
-    const self = this;
     const graph = super.generateChart();
-    graph.tooltip = {
-      contents: (d, defaultTitleFormat, defaultValueFormat, color) => {
-        for (const value of d) {
-          const reportId = value.id.substr(0, value.id.indexOf('-'));
-          const report: any = self.data.idMap.get(reportId);
-          if (report) {
-            return new MicrobioTooltip(
-                       report, DateTime.fromJSDate(value.x),
-                       this.microbioSanitizer)
-                .getTooltip();
-          }
-        }
-        return null;
-      }
-    };
     graph.data.type = 'scatter';
     graph.point = {r: 5};
     return graph;

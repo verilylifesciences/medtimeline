@@ -3,7 +3,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
 import {Observation} from '../../fhir-data-classes/observation';
@@ -13,24 +12,13 @@ import {Tooltip} from './tooltip';
  * qualitative, values rather than quantitative results. The list of
  * Observations should all have the same timestamp.
  */
-export class DiscreteObservationTooltip extends Tooltip {
-  readonly observations: Observation[];
-  constructor(observations: Observation[], sanitizer: DomSanitizer) {
-    super(sanitizer, observations[0].timestamp);
-    this.observations = observations;
-  }
-
-  getTooltip(): string {
-    if (!this.tooltipText) {
-      const table = this.clearTable();
-      const styleName = this.getTooltipName(
-          this.sanitizer.sanitize(SecurityContext.HTML, this.timestamp));
-      this.addTimeHeader(this.timestamp, table);
-      for (const obs of this.observations) {
-        this.addRow(table, styleName, [obs.label, obs.result]);
-      }
-      this.resetTableVisiblity(table);
+export class DiscreteObservationTooltip extends Tooltip<Observation[]> {
+  getTooltip(observations: Observation[], sanitizer: DomSanitizer): string {
+    const table = Tooltip.createNewTable();
+    Tooltip.addTimeHeader(observations[0].timestamp, table, sanitizer);
+    for (const obs of observations) {
+      Tooltip.addRow(table, [obs.label, obs.result], sanitizer);
     }
-    return this.tooltipText;
+    return table.outerHTML;
   }
 }

@@ -3,6 +3,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DateTime} from 'luxon';
+
 import {FhirResourceType} from '../../constants';
 
 import {Observation} from './observation';
@@ -84,5 +86,25 @@ export class DiagnosticReport {
     }
 
     this.status = statusToEnumMap.get(json.status);
+  }
+}
+
+/**
+ * A diagnostic report with the timestamp for a specific culture type extended.
+ */
+export class AnnotatedDiagnosticReport {
+  readonly timestamp: DateTime;
+  readonly report: DiagnosticReport;
+
+  constructor(report: DiagnosticReport, cultureType: string) {
+    // Get the timestamp from the collection time of the specimen.
+    const specimen = report.specimens.find(s => (s.type === cultureType));
+    if (specimen) {
+      this.timestamp = specimen.collectedDateTime ?
+          specimen.collectedDateTime :
+          (specimen.collectedPeriod ? specimen.collectedPeriod.start :
+                                      undefined);
+    }
+    this.report = report;
   }
 }

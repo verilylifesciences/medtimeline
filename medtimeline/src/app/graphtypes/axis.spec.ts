@@ -57,7 +57,7 @@ describe('Axis', () => {
           new ResourceCodeGroup(
               fhirServiceStub, 'lbl', resourceCodeList,
               new DisplayGrouping('concept', 'red'), ChartType.LINE),
-          dateRange);
+          dateRange, this.domSanitizer);
     };
     expect(constructor).toThrowError();
   });
@@ -78,7 +78,8 @@ describe('Axis', () => {
            graphType);
 
        const constructor = () => {
-         const axis = new Axis(fhirServiceStub, resourceCodeGroup, dateRange);
+         const axis = new Axis(
+             fhirServiceStub, resourceCodeGroup, dateRange, this.domSanitizer);
        };
        expect(constructor).toThrowError();
      });

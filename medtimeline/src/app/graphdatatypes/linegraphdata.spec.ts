@@ -3,9 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {TestBed} from '@angular/core/testing';
+import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
+import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
@@ -15,7 +17,7 @@ import {makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../t
 import {LineGraphData} from './linegraphdata';
 
 describe('LineGraphData', () => {
-  it('LinegraphData.fromObservationSetList should have one LabeledSeries for' +
+  it('fromObservationSetList should have one LabeledSeries for' +
          'each ObservationSet passed in',
      () => {
        const obsSet = new ObservationSet([
@@ -33,7 +35,7 @@ describe('LineGraphData', () => {
        expect(lgData.series.length).toBe(3);
      });
 
-  it('LinegraphData.fromObservationSetList should set y axis display so that' +
+  it('fromObservationSetList should set y axis display so that' +
          'all the points are visible',
      () => {
        const obsSet1 = new ObservationSet([
@@ -60,7 +62,7 @@ describe('LineGraphData', () => {
        expect(lgData.yAxisDisplayBounds).toEqual([-10, 100]);
      });
 
-  it('LinegraphData.fromMedicationOrderSet should have one data series' +
+  it('fromMedicationOrderSet should have one data series' +
          ' for all the orders',
      () => {
        const order1 = makeMedicationOrder();
@@ -95,7 +97,8 @@ describe('LineGraphData', () => {
        const lgData = LineGraphData.fromMedicationOrderSet(
            medOrderSet,
            Interval.fromDateTimes(
-               DateTime.utc(1988, 3, 22), DateTime.utc(1988, 3, 28)));
+               DateTime.utc(1988, 3, 22), DateTime.utc(1988, 3, 28)),
+           TestBed.get(DomSanitizer));
 
        expect(lgData.series.length).toBe(1);
 
@@ -110,7 +113,7 @@ describe('LineGraphData', () => {
        expect(series.yValues).toEqual([95, 100, 105, 110]);
      });
 
-  it('LinegraphData.fromObservationSetListDiscrete should calculate one' +
+  it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
        const obsSet1 = new ObservationSet(
@@ -122,34 +125,9 @@ describe('LineGraphData', () => {
                'blue', DateTime.utc(1988, 3, 23)))]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
-       const lgData =
-           LineGraphData.fromObservationSetListDiscrete('lbl', obsSetList);
+       const lgData = LineGraphData.fromObservationSetListDiscrete(
+           'lbl', obsSetList, TestBed.get(DomSanitizer));
 
        expect(lgData.series.length).toEqual(1);
-     });
-
-  it('LinegraphData.fromObservationSetListDiscrete should calculate tooltip' +
-         'categories correctly.',
-     () => {
-       const obsSet1 = new ObservationSet(
-           [new Observation(makeSampleDiscreteObservationJson(
-               'yellow', DateTime.utc(1988, 3, 23)))]);
-
-       const obsSet2 = new ObservationSet(
-           [new Observation(makeSampleDiscreteObservationJson(
-               'blue', DateTime.utc(1988, 3, 23)))]);
-       const obsSetList = new Array(obsSet1, obsSet2);
-
-       const lgData =
-           LineGraphData.fromObservationSetListDiscrete('lbl', obsSetList);
-
-       expect(lgData.tooltipCategories).toBeDefined();
-       // There was one date in the list of ObservationSets, which
-       // corresponds to one entry in the tooltip.
-       const values = Array.from(lgData.tooltipCategories.values());
-       expect(values.length).toEqual(1);
-       // The above tooltip entry would have two rows, each corresponding
-       // to one Observation.
-       expect(values[0].length).toEqual(2);
      });
 });

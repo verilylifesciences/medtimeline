@@ -41,7 +41,32 @@ export class GraphData {
        * associated with particular series. We use this to make a custom legend
        * for the graph.
        */
-      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>) {
+      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
+      /**
+       * A map to provide tooltips.
+       * This is a bit complicated. c3's API lets you specify a function call
+       * that will provide the HTML content for any given point's tooltip.
+       * As a parameter, it passes in one or more data points:
+       * https://c3js.org/reference.html#tooltip-contents
+       * so when the tooltip is rendered, all you have is the plotted
+       * information. As far as I can tell, that data structure is undocumented.
+       * Upon inspection, the data point includes which series it belongs to,
+       * the x value, and the y value, so if you want to render a custom
+       * tooltip, you have to be able to derive all the information you need
+       * from those values.
+       * tooltipMap, alongside tooltipKeyFn, helps with this process.
+       * If you call tooltipKeyFn on the data object passed into the c3 contents
+       * function, it should yield the key into tooltipMap that will let you
+       * look up the appropriate tooltip for that data point. If tooltipKeyFn
+       * is unset, then we fall back to the default lookup, which is by x-value.
+       */
+      readonly tooltipMap?: Map<string, string>,
+      /**
+       * See documentation on tooltipMap for more detail. tooltipKeyFn
+       * takes in a graph data point and returns the key into tooltipMap that
+       * provides the tooltip for that data point.
+       */
+      readonly tooltipKeyFn?: (graphData: any) => string) {
     this.c3DisplayConfiguration =
         this.generateColumnMapping(seriesToDisplayGroup);
   }

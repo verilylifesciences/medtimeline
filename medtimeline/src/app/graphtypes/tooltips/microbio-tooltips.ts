@@ -3,11 +3,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime} from 'luxon';
-import {DiagnosticReport, DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
-import {Observation} from 'src/app/fhir-data-classes/observation';
+import {AnnotatedDiagnosticReport, DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 
 import {Tooltip} from '../tooltips/tooltip';
 
@@ -16,36 +13,24 @@ import {Tooltip} from '../tooltips/tooltip';
  * charted from the same report. It lists the time of the report, the report
  * status, as well as all results contained in the report.
  */
-export class MicrobioTooltip extends Tooltip {
-  status: string;
-  id: string;
-  results: Observation[];
+export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
+  getTooltip(
+      annotatedReport: AnnotatedDiagnosticReport,
+      sanitizer: DomSanitizer): string {
+    const status = DiagnosticReportStatus[annotatedReport.report.status];
+    const results = annotatedReport.report.results;
+    const timestamp = annotatedReport.timestamp;
 
-  constructor(
-      report: DiagnosticReport, time: DateTime, sanitizer: DomSanitizer) {
-    super(sanitizer, time);
-    this.status = DiagnosticReportStatus[report.status];
-    this.id = report.id;
-    this.results = report.results;
-  }
-
-  getTooltip(): string {
-    if (!this.tooltipText) {
-      const table = this.clearTable();
-      const styleName = 'c3-tooltip-name--' +
-          this.sanitizer.sanitize(SecurityContext.HTML, this.id);
-      this.addTimeHeader(this.timestamp, table);
-      this.addRow(table, styleName, ['Status', this.status]);
-      const spacerRow = table.insertRow();
-      spacerRow.className = styleName;
-      const cell1 = spacerRow.insertCell();
-      this.addHeader('Results Contained', table);
-      for (const result of this.results) {
-        this.addRow(
-            table, styleName, [result.display, result.interpretation.display]);
-      }
-      this.resetTableVisiblity(table);
+    const table = Tooltip.createNewTable();
+    Tooltip.addTimeHeader(timestamp, table, sanitizer);
+    Tooltip.addRow(table, ['Status', status], sanitizer);
+    const spacerRow = table.insertRow();
+    spacerRow.insertCell();
+    Tooltip.addHeader('Results Contained', table, sanitizer);
+    for (const result of results) {
+      Tooltip.addRow(
+          table, [result.display, result.interpretation.display], sanitizer);
     }
-    return this.tooltipText;
+    return table.outerHTML;
   }
 }

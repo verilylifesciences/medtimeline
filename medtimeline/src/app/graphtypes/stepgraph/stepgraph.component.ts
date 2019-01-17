@@ -9,6 +9,7 @@ import * as c3 from 'c3';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
 import {getDataColors} from 'src/app/theme/bch_colors';
+import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {MedicationTooltip} from '../../graphtypes/tooltips/medication-tooltips';
@@ -24,9 +25,10 @@ import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
   ]
 })
 
-export class StepGraphComponent extends GraphComponent<StepGraphData> {
-  constructor(private sanitizer: DomSanitizer) {
-    super();
+export class StepGraphComponent extends
+    GraphComponent<StepGraphData|MicrobioGraphData> {
+  constructor(readonly sanitizer: DomSanitizer) {
+    super(sanitizer);
   }
 
   /**
@@ -101,24 +103,6 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
     // Don't draw lines between endpoints.
     graph.data.types = types;
     graph.grid = {y: {show: true}};
-    // We add our custom HTML to the graph's tooltip so that, when hovering over
-    // an endpoint for a MedicationOrder, we display the first and last
-    // MedicationAdministrations for that order, as well as the medication
-    // itself.
-    const self = this;
-    graph.tooltip = {
-      contents: (d, defaultTitleFormat, defaultValueFormat, color) => {
-        for (const value of d) {
-          if (value.id.includes('endpoint')) {
-            const id = value.id.replace('endpoint', '');
-            const order: any = self.data.idMap.get(id);
-            return new MedicationTooltip(order, self.sanitizer).getTooltip();
-          }
-        }
-        // We do not display a tooltip if not hovering over an endpoint.
-        return null;
-      }
-    };
     return graph;
   }
 }

@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
@@ -71,7 +72,7 @@ describe('StepGraphComponent', () => {
           const medOrderSet = new MedicationOrderSet(
               [earliestMedicationOrder, latestMedicationOrder]);
           component.data = StepGraphData.fromMedicationOrderSetList(
-              [medOrderSet], dateRange);
+              [medOrderSet], dateRange, TestBed.get(DomSanitizer));
           component.dateRange = dateRange;
           const generatedChart = component.generateChart();
           const endpoints = generatedChart.data.columns.filter((element) => {
@@ -127,7 +128,7 @@ describe('StepGraphComponent', () => {
           const medOrderSet = new MedicationOrderSet(
               [earliestMedicationOrder, latestMedicationOrder]);
           component.data = StepGraphData.fromMedicationOrderSetList(
-              [medOrderSet], dateRange);
+              [medOrderSet], dateRange, TestBed.get(DomSanitizer));
           component.dateRange = dateRange;
           component.data.yAxisMap.set(10, 'vancomycinlonglonglong');
           expect(component.yAxisTickDisplayValues.toString())

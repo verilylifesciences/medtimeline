@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DomSanitizer} from '@angular/platform-browser';
 import {Color} from 'd3';
 import {Interval} from 'luxon';
 
@@ -10,6 +11,8 @@ import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
+import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
+import {DiscreteObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {getDataColors} from '../theme/bch_colors';
 
 import {GraphData} from './graphdata';
@@ -34,13 +37,9 @@ export class LineGraphData extends GraphData {
        * the purposes of color and legends
        */
       seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
-      /**
-       * The tooltip categories for this linegraph. If populated, holds a map
-       * from a string representation of a Date to an array of all discrete
-       * result Observations at that time.
-       */
-      readonly tooltipCategories?: Map<number, Observation[]>) {
-    super(series, seriesToDisplayGroup);
+      tooltipMap?: Map<string, string>,
+      tooltipKeyFn?: (key: string) => string) {
+    super(series, seriesToDisplayGroup, tooltipMap, tooltipKeyFn);
   }
 
   /**
@@ -92,8 +91,25 @@ export class LineGraphData extends GraphData {
    *     different units.
    */
   static fromMedicationOrderSet(
-      medicationOrderSet: MedicationOrderSet,
-      dateRange: Interval): LineGraphData {
+      medicationOrderSet: MedicationOrderSet, dateRange: Interval,
+      sanitizer: DomSanitizer): LineGraphData {
+    const tooltipMap = new Map<string, string>();
+    for (const order of medicationOrderSet.resourceList) {
+      for (const admin of order.administrationsForOrder.resourceList) {
+        const timestamp =
+            admin.medAdministration.timestamp.toMillis().toString();
+        // The key for this tooltip is the administration's timestamp.
+        // There may be multiple data points associated with the timestamp
+        // so we stack the administrations on top of one another in that case.
+        const tooltipText = new MedicationAdministrationTooltip().getTooltip(
+            [admin], sanitizer);
+        if (tooltipMap.get(timestamp)) {
+          tooltipMap.set(timestamp, tooltipMap.get(timestamp) + tooltipText);
+        } else {
+          tooltipMap.set(timestamp, tooltipText);
+        }
+      }
+    }
     const singleSeries =
         LabeledSeries.fromMedicationOrderSet(medicationOrderSet, dateRange);
     const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
@@ -104,7 +120,7 @@ export class LineGraphData extends GraphData {
     return new LineGraphData(
         medicationOrderSet.label, [singleSeries],
         [medicationOrderSet.minDose, medicationOrderSet.maxDose],
-        medicationOrderSet.unit, seriesToDisplayGrouping);
+        medicationOrderSet.unit, seriesToDisplayGrouping, tooltipMap);
   }
 
   /**
@@ -119,7 +135,8 @@ export class LineGraphData extends GraphData {
    * @throws Error if the observations in observationGroup have different units.
    */
   static fromObservationSetListDiscrete(
-      label: string, observationGroup: ObservationSet[]): LineGraphData {
+      label: string, observationGroup: ObservationSet[],
+      sanitizer: DomSanitizer): LineGraphData {
     // For ObservationSets with discrete categories, we display a scatterplot
     // with one series, with most information in the tooltip.
     const yValue = 10;
@@ -129,18 +146,24 @@ export class LineGraphData extends GraphData {
     seriesToDisplayGroup.set(
         lblSeries, new DisplayGrouping(lblSeries.label, getDataColors()[0]));
 
-    const tooltipCategories = new Map<number, Observation[]>();
+    const tooltipMap = new Map<string, string>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
-        if (tooltipCategories.has(obs.timestamp.toMillis())) {
-          tooltipCategories.get(obs.timestamp.toMillis()).push(obs);
+        const tsString = obs.timestamp.toMillis().toString();
+        const tooltipText =
+            new DiscreteObservationTooltip().getTooltip([obs], sanitizer);
+        // The key for this tooltip is the observation's timestamp.
+        // There may be multiple data points associated with the timestamp
+        // so we stack the tooltips on top of one another in that case.
+        if (tooltipMap.has(tsString)) {
+          tooltipMap.set(tsString, tooltipMap.get(tsString) + tooltipText);
         } else {
-          tooltipCategories.set(obs.timestamp.toMillis(), [obs]);
+          tooltipMap.set(tsString, tooltipText);
         }
       }
     }
     return new LineGraphData(
         label, [lblSeries], [0, yValue], undefined,  // Units
-        seriesToDisplayGroup, tooltipCategories);
+        seriesToDisplayGroup, tooltipMap);
   }
 }

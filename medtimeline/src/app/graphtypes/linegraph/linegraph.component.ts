@@ -21,8 +21,8 @@ import {DiscreteObservationTooltip} from '../tooltips/observation-tooltips';
   ]
 })
 export class LineGraphComponent extends GraphComponent<LineGraphData> {
-  constructor(private sanitizer: DomSanitizer) {
-    super();
+  constructor(readonly sanitizer: DomSanitizer) {
+    super(sanitizer);
   }
   /**
    * @returns the c3.ChartConfiguration object to generate the c3 chart.
@@ -80,42 +80,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         !GraphComponent.dataPointsInRange(this.data.series, this.dateRange);
 
     const self = this;
-    if (this.data.tooltipCategories) {
-      // We customize the tooltip if the Observation results for the data are
-      // discrete results.
-      // We also do not show y-axis values.
-      graph.tooltip = {
-        contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
-          for (const value of d) {
-            const timestamp = DateTime.fromJSDate(value.x).toMillis();
-            return new DiscreteObservationTooltip(
-                       self.data.tooltipCategories.get(timestamp),
-                       self.sanitizer)
-                .getTooltip();
-          }
-          // We do not display a custom tooltip if there are no discrete
-          // Observations.
-          return null;
-        }
-      };
-      graph.axis.y = {
-        tick: {
-          format: function(d) {
-            return '';
-          },
-          count: 1
-        }
-      };
-    } else {
-      graph.tooltip = {
-        format: {
-          value: function(value, ratio, id, index) {
-            return (value + ' ' + self.data.unit);
-          }
-        }
-      };
-    }
-
     // If tick values aren't set, calculate the values.
     if (!graph.axis.y.tick.values) {
       graph.axis.y.tick.values = this.findYAxisValues(
