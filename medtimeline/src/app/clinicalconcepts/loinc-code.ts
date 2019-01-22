@@ -69,10 +69,10 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
                 }
               }
             }
-            // We turn each value in the map into an ObservationSet.
-            for (const value of Array.from(mapObs.values())) {
-              obsSetList.push(new ObservationSet(value));
-            }
+          }
+          // We turn each value in the map into an ObservationSet.
+          for (const value of Array.from(mapObs.values())) {
+            obsSetList.push(new ObservationSet(value));
           }
           return Promise.resolve(obsSetList);
         });
