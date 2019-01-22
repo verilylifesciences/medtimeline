@@ -5,7 +5,7 @@
   <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
 </div>
 <div fxLayout="column" class="graphDrawer" id="{{CARDHOLDER}}">
-  <app-customizable-timeline [dateRange]="dateRange" [id]="id"></app-customizable-timeline>
+  <app-customizable-timeline [dateRange]="dateRange"></app-customizable-timeline>
   <mat-divider class="divider"></mat-divider>
   <div style="display:flex; justify-content: space-between;">
     <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->

@@ -116,7 +116,7 @@ export class CustomizableTimelineDialogComponent {
   }
 
   // Finds incomplete fields that are required and disables saving.
-  private findIncompleteFields() {
+  findIncompleteFields() {
     return !this.userTitle || this.dateFormControl.hasError('required') ||
         this.timeFormControl.hasError('required');
   }

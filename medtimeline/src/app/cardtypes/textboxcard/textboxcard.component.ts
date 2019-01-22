@@ -29,17 +29,17 @@ export class TextboxcardComponent extends DraggablecardComponent {
   }
 
   // Remove the focus from the text area.
-  private unfocus() {
+  unfocus() {
     this.textAreaElement.nativeElement.blur();
   }
 
   // Show the save button.
-  private showSave() {
+  showSave() {
     document.getElementById('save' + this.id).style.visibility = 'visible';
   }
 
   // Hide the save button.
-  private hideSave() {
+  hideSave() {
     document.getElementById('save' + this.id).style.visibility = 'hidden';
   }
 }

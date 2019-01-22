@@ -118,7 +118,7 @@ export class CardcontainerComponent {
   }
 
   // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.
-  private snapshot() {
+  snapshot() {
     this.fhirService.saveStaticNote(
         document.getElementsByClassName('graphDrawer')[0].innerHTML,
         DateTime.fromJSDate(new Date()).toISO());
@@ -143,7 +143,7 @@ export class CardcontainerComponent {
 
   // This method is called when the "master" checkbox toggles to/from an "all
   // selected" state. It updates the list of checked concepts displayed.
-  private allChange($event) {
+  allChange($event) {
     this.checkedConcepts.clear();
     if ($event.checked) {
       // This case is when the user wants to select all cards
@@ -242,7 +242,7 @@ export class CardcontainerComponent {
    * @param id The id of the card below which to add the new concept.
    */
 
-  private addConceptCard(label: string, id?: string) {
+  addConceptCard(label: string, id?: string) {
     const graphCardValue =
         this.originalConcepts.find(obj => (obj.label === label));
     // Insert the card at the top of the page

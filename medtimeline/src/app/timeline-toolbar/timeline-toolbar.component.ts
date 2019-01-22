@@ -22,8 +22,7 @@ export class TimelineToolbarComponent {
   @Output() addTextbox = new EventEmitter<null>();
 
   constructor(
-      private resourceCodeManager: ResourceCodeManager,
-      private dialog: MatDialog) {
+      resourceCodeManager: ResourceCodeManager, private dialog: MatDialog) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     this.displayGroupings = Array.from(displayGroups.entries());
   }
@@ -31,22 +30,22 @@ export class TimelineToolbarComponent {
   // Listens for an event indicating that the user has selected to add the
   // concept card from the top toolbar. The label for the card is sent as an
   // event to CardContainer.
-  private addConceptCard(label: string) {
+  addConceptCard(label: string) {
     this.addCard.emit(label);
   }
 
   // Emits an event indicating to CardContainer to save a snapshot of the page.
-  private snapshot() {
+  snapshot() {
     this.saveSnapshot.emit();
   }
 
   // Emits an event indicating to CardContainer to add a blank textbox at the
   // top of the page.
-  private textbox() {
+  textbox() {
     this.addTextbox.emit();
   }
 
-  private openHelpDialog() {
+  openHelpDialog() {
     const dialogRef = this.dialog.open(HelpDialogComponent);
   }
 }

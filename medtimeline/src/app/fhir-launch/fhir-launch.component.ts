@@ -22,7 +22,7 @@ declare var FHIR: any;
 })
 
 export class FhirLaunchComponent implements OnInit {
-  private error = false;
+  error = false;
 
   private scope: string = [
     'launch', 'patient/Observation.read', 'patient/Patient.read',

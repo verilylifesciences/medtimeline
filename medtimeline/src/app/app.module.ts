@@ -83,7 +83,8 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     FormsModule, ReactiveFormsModule, MatMenuModule, MatTooltipModule,
     FlexLayoutModule.withConfig({useColumnBasisZero: false}),
     AngularResizedEventModule, MatTabsModule, MatDialogModule, MatStepperModule,
-    MatSnackBarModule, SidebarModule.forRoot(), NgxDaterangepickerMd.forRoot(),
+    MatSnackBarModule, SidebarModule.forRoot(),
+    NgxDaterangepickerMd.forRoot({}),
     /* On their end, it's locked down so that the only acceptable redirect
     URL is localhost:8000/. So, we have to do a different path for
     authentication. */
