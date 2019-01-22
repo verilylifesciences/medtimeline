@@ -144,7 +144,7 @@ export abstract class GraphComponent<T extends GraphData> implements
 
     const colorsMap = {};
     for (const key of Object.keys(this.data.c3DisplayConfiguration.columnMap)) {
-      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.has(
+      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(
               key)) {
         const lookupColor: Color =
             this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
@@ -155,9 +155,8 @@ export abstract class GraphComponent<T extends GraphData> implements
 
     const xAxisConfig: c3.XAxisConfiguration = {
       type: 'timeseries',
-      min: daysInRange[0].toJSDate(),
-      max: daysInRange[daysInRange.length - 1].toJSDate(),
-      // TODO(b/111990521): does FHIR give localized time or UTC?
+      min: this.dateRange.start.toJSDate(),
+      max: this.dateRange.end.toJSDate(),
       localtime: true,
       tick: {
         // To reduce ambiguity we include the hour as well.

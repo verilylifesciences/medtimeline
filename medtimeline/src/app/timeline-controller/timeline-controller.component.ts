@@ -70,9 +70,12 @@ export class TimelineControllerComponent implements OnInit {
                 // Make the default selection the latest encounter. It's safe to
                 // not pin this to a date boundary since there should be no data
                 // points that fall outside the time range of the encounter.
+                // We set the time of the dates of the encounter to be 00:00.
                 this.datesUpdated({
-                  startDate: moment.utc(latestEncounter.start.toJSDate()),
-                  endDate: moment.utc(latestEncounter.end.toJSDate())
+                  startDate: moment.utc(
+                      latestEncounter.start.toJSDate().setHours(0, 0, 0, 0)),
+                  endDate: moment.utc(
+                      latestEncounter.end.toJSDate().setHours(0, 0, 0, 0))
                 });
 
                 // Set the minimum date to select to be the beginning of the
@@ -127,8 +130,8 @@ export class TimelineControllerComponent implements OnInit {
     if (rangeIn.startDate.isBefore(rangeIn.endDate)) {
       this.selected = rangeIn;
       const interval = Interval.fromDateTimes(
-          DateTime.fromJSDate(rangeIn.startDate.toDate()),
-          DateTime.fromJSDate(rangeIn.endDate.toDate()));
+          DateTime.fromJSDate(rangeIn.startDate.toDate()).toUTC(),
+          DateTime.fromJSDate(rangeIn.endDate.toDate()).toUTC());
       this.changeDateRange.emit(interval);
     }
   }

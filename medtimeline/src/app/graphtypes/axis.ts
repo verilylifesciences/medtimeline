@@ -60,9 +60,6 @@ export class Axis {
    */
   isResolved = false;
 
-  // TODO(b/118874488): A majority of the code below is copied from
-  // multigraphcard and should be removed from multigraphcard once all
-  // restructuring is done.
   /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.

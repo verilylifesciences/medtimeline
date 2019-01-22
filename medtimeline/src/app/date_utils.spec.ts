@@ -39,10 +39,13 @@ describe('date_utils', () => {
        ]);
 
        expect(days).toEqual([
-         DateTime.local(1995, 7, 13), DateTime.local(1995, 7, 14),
-         DateTime.local(1995, 7, 15), DateTime.local(1995, 7, 16),
-         DateTime.local(1995, 7, 21), DateTime.local(1995, 7, 22),
-         DateTime.local(1995, 7, 23)
+         DateTime.local(1995, 7, 13).toUTC(),
+         DateTime.local(1995, 7, 14).toUTC(),
+         DateTime.local(1995, 7, 15).toUTC(),
+         DateTime.local(1995, 7, 16).toUTC(),
+         DateTime.local(1995, 7, 21).toUTC(),
+         DateTime.local(1995, 7, 22).toUTC(),
+         DateTime.local(1995, 7, 23).toUTC()
        ]);
      });
 
@@ -55,8 +58,8 @@ describe('date_utils', () => {
     ]);
 
     expect(days).toEqual([
-      DateTime.local(1995, 7, 21), DateTime.local(1995, 7, 22),
-      DateTime.local(1995, 7, 23), DateTime.local(1995, 7, 24)
+      DateTime.local(1995, 7, 21).toUTC(), DateTime.local(1995, 7, 22).toUTC(),
+      DateTime.local(1995, 7, 23).toUTC(), DateTime.local(1995, 7, 24).toUTC()
     ]);
   });
 });

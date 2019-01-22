@@ -21,8 +21,10 @@ export class MedicationTooltip extends Tooltip {
     super(sanitizer, undefined);
     this.medication = order.label;
 
-    this.firstDose = this.formatTimestamp(order.firstAdministration.timestamp);
-    this.lastDose = this.formatTimestamp(order.lastAdmininistration.timestamp);
+    this.firstDose =
+        this.formatTimestamp(order.firstAdministration.timestamp.toLocal());
+    this.lastDose =
+        this.formatTimestamp(order.lastAdmininistration.timestamp.toLocal());
   }
 
   getTooltip(): string {

@@ -98,8 +98,8 @@ describe('GraphComponent', () => {
     const generatedChart = component.generateBasicChart({});
 
     expect(generatedChart.axis.x.tick.values).toEqual([
-      DateTime.utc(1990, 7, 13), DateTime.utc(1990, 7, 14),
-      DateTime.utc(1990, 7, 15), DateTime.utc(1990, 7, 16)
+      DateTime.local(1990, 7, 13), DateTime.local(1990, 7, 14),
+      DateTime.local(1990, 7, 15), DateTime.local(1990, 7, 16)
     ].map(x => Number(x)));
   });
 

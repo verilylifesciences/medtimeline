@@ -43,6 +43,12 @@ describe('MedicationTooltip', () => {
     const tooltip = new MedicationTooltip(order, TestBed.get(DomSanitizer));
     const tooltipText = tooltip.getTooltip();
     expect(tooltipText).toBeDefined();
+    const firstAdminTime = order.firstAdministration.timestamp.toLocal();
+    const firstTimeString = firstAdminTime.toLocaleString() + ' ' +
+        firstAdminTime.toLocaleString(DateTime.TIME_24_SIMPLE);
+    const lastAdminTime = order.lastAdmininistration.timestamp.toLocal();
+    const lastTimeString = lastAdminTime.toLocaleString() + ' ' +
+        lastAdminTime.toLocaleString(DateTime.TIME_24_SIMPLE);
     // Angular generates a numerical idenitifer for each table and this
     // regular expression strips it from the HTML check.
     expect(tooltipText.replace(/c\d*=""/g, ''))
@@ -52,9 +58,10 @@ describe('MedicationTooltip', () => {
             '<tbody><tr><th colspan="2">vancomycin</th></tr>' +
             '<tr class="c3-tooltip-name--vancomycin">' +
             '<td class="name">First Dose</td>' +
-            '<td class="value">8/3/2012 00:00</td></tr>' +
+            '<td class="value">' + firstTimeString + '</td></tr>' +
             '<tr class="c3-tooltip-name--vancomycin">' +
             '<td class="name">Last Dose</td>' +
-            '<td class="value">8/5/2012 00:00</td></tr></tbody></table>');
+            '<td class="value">' + lastTimeString +
+            '</td></tr></tbody></table>');
   });
 });

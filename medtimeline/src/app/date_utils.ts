@@ -6,21 +6,23 @@
 import {DateTime, Duration, Interval} from 'luxon';
 /**
  * For this the given date range, returns a DateTime for each day in the time
- * range as a list in chronological order--possibly plus one extra day on
- * the end.
- * The first DateTime in the list will be at or prior to the first item in
- * timeRange, and the last DateTime in the list will be at or after the
- * second item in timeRange, so that all data points in timeRange will be
- * enclosed by the days listed in the returned array.
+ * range (converting to local time first) as a list in chronological
+ * order--possibly plus one extra day on the end. The first DateTime in the list
+ * will be at or prior to the first item in timeRange, and the last DateTime in
+ * the list will be at or after the second item in timeRange, so that all data
+ * points in timeRange will be enclosed by the days listed in the returned
+ * array.
  *
  * @returns A list of the days in chronological order within the time range.
  */
 export function getDaysInRange(dateRange: Interval): DateTime[] {
   const days: DateTime[] = [];
-  const startDate: DateTime = dateRange.start.startOf('day');
+  const intervalLocal = Interval.fromDateTimes(
+      dateRange.start.toLocal(), dateRange.end.toLocal());
+  const startDate: DateTime = intervalLocal.start.startOf('day');
   const dayCount =
-      Duration.fromMillis(dateRange.end.toMillis() - startDate.toMillis()).as(
-          'days');
+      Duration.fromMillis(intervalLocal.end.toMillis() - startDate.toMillis())
+          .as('days');
 
   for (let i = 0; i <= dayCount; i++) {
     days.push(startDate.plus({days: i}));
@@ -28,10 +30,9 @@ export function getDaysInRange(dateRange: Interval): DateTime[] {
 
   // If the timestamp of the last day in the range is not 00:00, then we
   // want to include that day in the listed range.
-  if (dateRange.end.startOf('day').toISO() !== dateRange.end.toISO()) {
+  if (intervalLocal.end.startOf('day').toISO() !== intervalLocal.end.toISO()) {
     days.push(startDate.plus({days: dayCount + 1}));
   }
-
   return days;
 }
 
@@ -47,7 +48,7 @@ export function getDaysForIntervalSet(intervals: Interval[]): DateTime[] {
   const days: DateTime[] = [];
   const allIntervals = Interval.merge(intervals);
   for (const interval of allIntervals) {
-    getDaysInRange(interval).forEach(x => days.push(x));
+    getDaysInRange(interval).forEach(x => days.push(x.toUTC()));
   }
   return days.sort();
 }

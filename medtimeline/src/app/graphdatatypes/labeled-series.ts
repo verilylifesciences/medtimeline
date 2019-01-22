@@ -213,7 +213,10 @@ export class LabeledSeries {
           order.firstAdministration.timestamp,
           this.getYPositionForMed(order.firstAdministration, fixedYPosition)
         ]);
-      } else if (fixedYPosition) {
+      } else if (
+          fixedYPosition &&
+          (order.lastAdmininistration.timestamp.toMillis() >
+           dateRange.start.toMillis())) {
         // Only add a point for continuity if we have a fixed y position.
         coordinates.push([dateRange.start, fixedYPosition]);
       }
@@ -222,7 +225,10 @@ export class LabeledSeries {
           order.lastAdmininistration.timestamp,
           this.getYPositionForMed(order.lastAdmininistration, fixedYPosition)
         ]);
-      } else if (fixedYPosition) {
+      } else if (
+          fixedYPosition &&
+          order.firstAdministration.timestamp.toMillis() <
+              dateRange.end.toMillis()) {
         // Only add a point for continuity if we have a fixed y position.
         coordinates.push([dateRange.end, fixedYPosition]);
       }
