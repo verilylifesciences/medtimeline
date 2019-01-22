@@ -124,8 +124,6 @@ describe('StepGraphComponent', () => {
               [medOrderSet], dateRange);
           component.dateRange = dateRange;
           component.data.yAxisMap.set(10, 'vancomycinlonglonglong');
-          const generatedChart = component.generateChart();
-          expect(component.needToWrap).toBeTruthy();
           expect(component.yAxisTickDisplayValues.toString())
               .toEqual('vancomycinlonglonglong');
         });

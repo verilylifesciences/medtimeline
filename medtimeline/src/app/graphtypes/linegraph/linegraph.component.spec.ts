@@ -70,21 +70,6 @@ describe('LineGraphComponent', () => {
     expect(generatedChart.axis.y.tick.values.length).toEqual(5);
     expect(generatedChart.axis.y.tick.values.toString())
         .toEqual('10,12.5,15,17.5,20');
-    expect(component.needToWrap).toBeFalsy();
-  });
-
-  it('should calculate whether tick labels need to be wrapped', () => {
-    fixture.detectChanges();
-    const obsSet2 = new ObservationSet([
-      new Observation(
-          makeSampleObservationJson(1500000000000, DateTime.utc(1995, 7, 21))),
-      new Observation(
-          makeSampleObservationJson(2000000000000, DateTime.utc(1995, 7, 22)))
-    ]);
-    component.data = LineGraphData.fromObservationSetList(
-        'testgraph', new Array(obsSet2, obsSet2));
-    const generatedChart = component.generateChart();
-    expect(component.needToWrap).toBeTruthy();
   });
 
   it('region plotted for normal values when there is only one series', () => {
