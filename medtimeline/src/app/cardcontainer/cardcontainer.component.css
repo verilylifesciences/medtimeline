@@ -84,7 +84,8 @@
 .addCardInPlace {
   opacity: 0;
   transition: opacity .3s;
-  padding-bottom: 5px;
+  padding-top: 6px;
+  height: 20px;
 }
 
 .dashedLineAddCardLeft {
@@ -103,7 +104,8 @@
 
 ::ng-deep .addCardInPlace .mat-icon-button {
   width: 25px;
-  height: 25px;
+  line-height: 30px !important;
+  height: 30px !important;
 }
 
 ::ng-deep .gu-mirror .chartBorder {
@@ -118,6 +120,13 @@
   opacity: 1;
 }
 
+::ng-deep .masterButton {
+  font-size: 30px;
+  color:rgba(0,0,0,.54);
+  height: 30px;
+  width: 30px;
+  margin-bottom: 11px;
+}
 
 ::ng-deep .addCardInPlace .masterButton {
   color: white !important;

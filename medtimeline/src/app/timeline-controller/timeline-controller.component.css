@@ -30,3 +30,7 @@ looking at.
   border-color: cornflowerblue;
   border-width: 3px !important;
 }
+
+::ng-deep .mat-h2 {
+  margin-bottom: 0px !important;
+}
