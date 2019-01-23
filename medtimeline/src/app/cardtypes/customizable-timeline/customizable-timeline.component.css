@@ -40,10 +40,11 @@
   margin: 0px;
   font-size: small;
   text-align: center;
-  max-width: 100px;
+  max-width: 120px;
   display: inline-block;
-  min-width: 100px;
+  min-width: 120px;
   overflow: auto;
+  margin-top: 10px;
   overflow-wrap: break-word;
 }
 
@@ -52,7 +53,7 @@
   overflow: auto;
   text-align: center;
   overflow-wrap: break-word;
-  max-width: 100px;
+  max-width: 120px;
 }
 
 ::ng-deep [id*="expand"] {

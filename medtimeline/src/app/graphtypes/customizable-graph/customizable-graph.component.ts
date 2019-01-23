@@ -252,12 +252,10 @@ export class CustomizableGraphComponent extends
           let userSelectedDate = DateTime.fromJSDate(result.date);
           if (userSelectedDate.toMillis() !== millis) {
             // Update the data point if the date is changed by user.
-            // If the updated date already has an annotation, modify the time
-            // by + 1 millisecond.
-            if (self.data.annotations.has(userSelectedDate.toMillis())) {
-              userSelectedDate =
-                  DateTime.fromMillis(userSelectedDate.toMillis() + 1);
-            }
+            // TODO(b/122371627):  Use UUIDs instead of timestamps to track
+            // annotations.
+            userSelectedDate = DateTime.fromMillis(
+                self.updateTime(userSelectedDate.toMillis()));
             // The annotation is removed from the previous time and added to the
             // updated time.
             self.data.removePointFromSeries(DateTime.fromMillis(millis));
@@ -322,7 +320,13 @@ export class CustomizableGraphComponent extends
 
     const graph = this.generateBasicChart(yAxisConfig);
 
-    graph.grid = {y: {lines: [{value: 0, text: 'Add point'}]}};
+    graph.grid = {
+      y: {
+        lines: [
+          {value: 0, text: 'Click anywhere above the x-axis to add a point.'}
+        ]
+      }
+    };
     graph.axis.x.height = 50;
     graph.data.type = 'scatter';
     graph.zoom = {enabled: false};

@@ -153,3 +153,8 @@
 ::ng-deep .noData {
   opacity: 1 !important;
 }
+
+::ng-deep .c3-ygrid-line text {
+  font-size: 13px !important;
+  fill: black;
+}

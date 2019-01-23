@@ -59,6 +59,7 @@ export class CustomizableData extends GraphData {
     this.series[0].xValues.push(date);
     this.series[0].yValues.push(yValue);
     this.annotations.set(date.toMillis(), annotation);
+    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }
 
   /**
@@ -72,5 +73,6 @@ export class CustomizableData extends GraphData {
     this.series[0].xValues.splice(index, 1);
     this.series[0].yValues.splice(index, 1);
     this.annotations.delete(date.toMillis());
+    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }
 }

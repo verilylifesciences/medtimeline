@@ -51,8 +51,8 @@ export class GraphData {
    * chart.
    * @param data The GraphData to use while making the columns and column map.
    */
-  private generateColumnMapping(seriesToDisplayGroup:
-                                    Map<LabeledSeries, DisplayGrouping>):
+  generateColumnMapping(seriesToDisplayGroup:
+                            Map<LabeledSeries, DisplayGrouping>):
       DisplayConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
     const allColumns: any[][] = [];

@@ -122,7 +122,7 @@ export class CustomizableGraphAnnotation {
     const self = this;
     this.showDetails = false;
     const xAxisYCoord = '100px';
-    const yAxisXCoord = 100;
+    const yAxisXCoord = 70;
     // Find the points for where to draw the new annotation & connector, which
     // are on different scales.
     const yCoordinate = this.findBestYCoordinates(xCoordinate);
