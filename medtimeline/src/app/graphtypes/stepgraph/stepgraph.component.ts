@@ -34,9 +34,7 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
    */
   generateChart(): c3.ChartConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
-    const columnGenerated = GraphComponent.generateColumnMapping(this.data);
-    const allColumns = columnGenerated[0];
-    const columnMap = columnGenerated[1];
+    const config = GraphComponent.generateColumnMapping(this.data);
     const chartColors = {};
     const types: {[key: string]: string} = {};
 
@@ -47,11 +45,11 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
     }
     for (const endpointSeries of this.data.endpointSeries) {
       const endpointSeriesId = endpointSeries.label;
-      allColumns.push(new Array<string|DateTime>('x_' + endpointSeriesId)
-                          .concat(endpointSeries.xValues));
-      allColumns.push(new Array<string|number>(endpointSeriesId)
-                          .concat(endpointSeries.yValues));
-      columnMap[endpointSeriesId] = 'x_' + endpointSeriesId;
+      config.allColumns.push(new Array<string|DateTime>('x_' + endpointSeriesId)
+                                 .concat(endpointSeries.xValues));
+      config.allColumns.push(new Array<string|number>(endpointSeriesId)
+                                 .concat(endpointSeries.yValues));
+      config.columnMap[endpointSeriesId] = 'x_' + endpointSeriesId;
       types[endpointSeriesId] = 'scatter';
       chartColors[endpointSeriesId] = Color.rgb(0, 0, 0);
     }
@@ -85,8 +83,8 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
       },
     };
 
-    const graph =
-        this.generateBasicChart(columnMap, allColumns, false, yAxisConfig);
+    const graph = this.generateBasicChart(
+        config.columnMap, config.allColumns, false, yAxisConfig);
     if (this.data.seriesToDisplayGroup) {
       this.setCustomLegend(this.data.seriesToDisplayGroup);
     }

@@ -27,6 +27,26 @@ const BASE_CHART_HEIGHT_PX = 150;
 // The maximum characters for a y-axis tick label.
 export const Y_AXIS_TICK_MAX = 12;
 
+export class DisplayConfiguration {
+  constructor(
+      /**
+       * These columns feed in to c3 as data. Each item in allColumns is
+       * an array of data. The first entry is the series label and the following
+       * entries are the data for that series.
+       */
+
+      readonly allColumns: any[],
+      /**
+       * The keys of this map are the name of the y-series as stored in
+       * allColumns, and the values are their corresponding x-series names.
+       */
+      readonly columnMap: {},
+      /**
+       * Maps y-series names (keys) to DisplayGroupings.
+       */
+      readonly ySeriesLabelToDisplayGroup: Map<string, DisplayGrouping>) {};
+}
+
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
  */
@@ -79,7 +99,7 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
    * chart.
    * @param data The GraphData to use while making the columns and column map.
    */
-  static generateColumnMapping(data: GraphData): any {
+  static generateColumnMapping(data: GraphData): DisplayConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
     const allColumns: any[][] = [];
     const columnMap = {};
@@ -100,7 +120,10 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
           ['empty', 0]);
       columnMap['empty'] = 'x_empty';
     }
-    return [allColumns, columnMap];
+    return new DisplayConfiguration(
+        allColumns, columnMap,
+        // TODO: Legend information goes here in a follow-up PR.
+        new Map());
   }
 
   /*

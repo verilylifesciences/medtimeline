@@ -141,10 +141,8 @@ export class CustomizableGraphComponent extends
   // re-rendered completely.
   private loadNewData() {
     // Give labels to each series and make a map of x-values to y-values.
-    const columnGenerated = GraphComponent.generateColumnMapping(this.data);
-    const allColumns = columnGenerated[0];
-    const columnMap = columnGenerated[1];
-    this.chart.load({columns: allColumns});
+    const configuration = GraphComponent.generateColumnMapping(this.data);
+    this.chart.load({columns: configuration.allColumns});
   }
 
   // If the selected date already has an annotation, modify the time
