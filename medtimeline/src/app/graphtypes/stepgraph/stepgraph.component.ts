@@ -8,6 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
+import {getDataColors} from 'src/app/theme/bch_colors';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {MedicationTooltip} from '../../graphtypes/tooltips/medication-tooltips';
@@ -34,26 +35,31 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
    */
   generateChart(): c3.ChartConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
-    const config = GraphComponent.generateColumnMapping(this.data);
     const chartColors = {};
     const types: {[key: string]: string} = {};
 
     // Populate the stepgraphcard with data according to c3 format.
     for (const series of this.data.series) {
       const label = series.label;
-      chartColors[label] = series.concept.color;
+      if (series.concept) {
+        chartColors[label] = series.concept.color;
+      } else {
+        chartColors[label] = getDataColors()[0];
+      }
     }
     for (const endpointSeries of this.data.endpointSeries) {
       const endpointSeriesId = endpointSeries.label;
-      config.allColumns.push(new Array<string|DateTime>('x_' + endpointSeriesId)
-                                 .concat(endpointSeries.xValues));
-      config.allColumns.push(new Array<string|number>(endpointSeriesId)
-                                 .concat(endpointSeries.yValues));
-      config.columnMap[endpointSeriesId] = 'x_' + endpointSeriesId;
+      this.data.c3DisplayConfiguration.allColumns.push(
+          new Array<string|DateTime>('x_' + endpointSeriesId)
+              .concat(endpointSeries.xValues));
+      this.data.c3DisplayConfiguration.allColumns.push(
+          new Array<string|number>(endpointSeriesId)
+              .concat(endpointSeries.yValues));
+      this.data.c3DisplayConfiguration.columnMap[endpointSeriesId] =
+          'x_' + endpointSeriesId;
       types[endpointSeriesId] = 'scatter';
       chartColors[endpointSeriesId] = Color.rgb(0, 0, 0);
     }
-
 
     // The y-axis configuration for this chart maps each tick on the y-axis,
     // initially numbers, to discrete labels representing each Medication's
@@ -83,8 +89,7 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
       },
     };
 
-    const graph = this.generateBasicChart(
-        config.columnMap, config.allColumns, false, yAxisConfig);
+    const graph = this.generateBasicChart(yAxisConfig);
 
     // Check if there are any data points in the time range.
     this.noDataPointsInDateRange =

@@ -6,6 +6,7 @@
 import {AfterViewInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
+import {Color} from 'd3';
 import {DateTime, Interval} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
@@ -13,7 +14,6 @@ import {v4 as uuid} from 'uuid';
 
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
 import {getDaysInRange} from '../../date_utils';
-import * as Colors from '../../theme/bch_colors';
 
 export enum ChartType {
   SCATTER,
@@ -26,26 +26,6 @@ const BASE_CHART_HEIGHT_PX = 150;
 
 // The maximum characters for a y-axis tick label.
 export const Y_AXIS_TICK_MAX = 12;
-
-export class DisplayConfiguration {
-  constructor(
-      /**
-       * These columns feed in to c3 as data. Each item in allColumns is
-       * an array of data. The first entry is the series label and the following
-       * entries are the data for that series.
-       */
-
-      readonly allColumns: any[],
-      /**
-       * The keys of this map are the name of the y-series as stored in
-       * allColumns, and the values are their corresponding x-series names.
-       */
-      readonly columnMap: {},
-      /**
-       * Maps y-series names (keys) to DisplayGroupings.
-       */
-      readonly ySeriesLabelToDisplayGroup: Map<string, DisplayGrouping>) {};
-}
 
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
@@ -89,46 +69,6 @@ export abstract class GraphComponent<T extends GraphData> implements
     // Replace the dashes in the UUID to meet HTML requirements.
     const re = /\-/gi;
     this.chartDivId = 'chart' + chartId.replace(re, '');
-  }
-
-
-  /*
-   * Sets up the column map and list of columns to use while generating the c3
-   * chart.
-   * @param data The GraphData to use while making the columns and column map.
-   */
-  static generateColumnMapping(data: GraphData): DisplayConfiguration {
-    // Give labels to each series and make a map of x-values to y-values.
-    const allColumns: any[][] = [];
-    const columnMap = {};
-    const ySeriesLabelToDisplayGroup = new Map<string, DisplayGrouping>();
-    for (const s of data.series) {
-      allColumns.push(
-          new Array<string|DateTime>('x_' + s.label).concat(s.xValues));
-      allColumns.push(new Array<string|number>(s.label).concat(s.yValues));
-      columnMap[s.label] = 'x_' + s.label;
-
-      // If there's legend information present, set it in the configuration.
-      if (data.seriesToDisplayGroup) {
-        ySeriesLabelToDisplayGroup.set(
-            s.label, data.seriesToDisplayGroup.get(s));
-      }
-    }
-    // If there is no data, we add a "dummy" data point to still display the
-    // x-axis.
-    if (allColumns.length < 1) {
-      // Add a data point to still show the x-axis.
-      // This date is the earliest possible date: Tuesday, April 20th, 271,821
-      // BCE.
-      allColumns.push(
-          ['x_empty', DateTime.fromJSDate(new Date(-8640000000000000))],
-          ['empty', 0]);
-      columnMap['empty'] = 'x_empty';
-    }
-    return new DisplayConfiguration(
-        allColumns, columnMap,
-        // TODO: Legend information goes here in a follow-up PR.
-        new Map());
   }
 
   /*
@@ -179,19 +119,15 @@ export abstract class GraphComponent<T extends GraphData> implements
   }
 
   /**
-   * @param columnMap A map of x-values to y-values.
-   * @param allColumns A list of series in the chart.
-   * @param chartHeight The height in pixels of the chart.
-   * @param legend Whether or not to display a legend.
+   * @param configuration Holds configuration information for the data that
+   *     belongs in this chart.
    * @param yAxisConfig Custom y-axis configurations.
    * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
    * @returns A generalized c3.ChartConfig for the data passed in. See the
    * type definition at:
    * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
    */
-  generateBasicChart(
-      columnMap: {}, allColumns: any[][], legend = true, yAxisConfig = {},
-      maxXTicks = 10): c3.ChartConfiguration {
+  generateBasicChart(yAxisConfig = {}, maxXTicks = 10): c3.ChartConfiguration {
     const daysInRange = getDaysInRange(this.dateRange);
     let ticks = new Array<DateTime>();
     if (daysInRange.length <= maxXTicks) {
@@ -203,6 +139,17 @@ export abstract class GraphComponent<T extends GraphData> implements
       while (date <= this.dateRange.end) {
         date = date.plus({days: iteration});
         ticks.push(date);
+      }
+    }
+
+    const colorsMap = {};
+    for (const key of Object.keys(this.data.c3DisplayConfiguration.columnMap)) {
+      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.has(
+              key)) {
+        const lookupColor: Color =
+            this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
+                .color;
+        colorsMap[key] = lookupColor.toString();
       }
     }
 
@@ -222,11 +169,6 @@ export abstract class GraphComponent<T extends GraphData> implements
     };
     // If there's more than one series we'll need a legend so make the
     // graph a bit taller.
-    let chartHeight = BASE_CHART_HEIGHT_PX;
-    if (legend) {
-      chartHeight += 20;
-    }
-
     let chartTypeString = 'line';
     if (this.chartType === ChartType.SCATTER) {
       chartTypeString = 'scatter';
@@ -237,17 +179,15 @@ export abstract class GraphComponent<T extends GraphData> implements
     const self = this;
     const graph = {
       bindto: '#' + this.chartDivId,
-      size: {height: chartHeight},
+      size: {height: BASE_CHART_HEIGHT_PX},
       data: {
-        columns: allColumns,
-        xs: columnMap,
+        columns: this.data.c3DisplayConfiguration.allColumns,
+        xs: this.data.c3DisplayConfiguration.columnMap,
         type: chartTypeString,
-      },
-      color: {
-        pattern: [Colors.BOSTON_BLUE, Colors.BOSTON_YELLOW, Colors.BOSTON_PINK]
+        colors: colorsMap,
       },
       axis: {x: xAxisConfig, y: yAxisConfig},
-      legend: {show: legend, position: 'bottom'},
+      legend: {show: false},  // There's always a custom legend
       line: {connectNull: false},
       onrendered: function() {
         self.boldDates();
@@ -255,9 +195,8 @@ export abstract class GraphComponent<T extends GraphData> implements
       },
     };
 
-    if (this.data && this.data.seriesToDisplayGroup) {
-      this.setCustomLegend();
-    }
+    this.setCustomLegend(
+        this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
     return graph;
   }
 
@@ -289,16 +228,15 @@ export abstract class GraphComponent<T extends GraphData> implements
    *   series names and values of the ClinicalConcepts they should correspond
    *   to in a legend.
    */
-  setCustomLegend() {
+  setCustomLegend(seriesToDisplayGroup: Map<string, DisplayGrouping>) {
     if (!this.customLegendSet) {
-      for (const [series, displayGroup] of Array.from(
-               this.data.seriesToDisplayGroup.entries())) {
-        const label = series.label;
+      for (const [seriesLbl, displayGroup] of Array.from(
+               seriesToDisplayGroup.entries())) {
         if (!this.displayGroupToSeries.has(displayGroup)) {
-          this.displayGroupToSeries.set(displayGroup, new Array(label));
+          this.displayGroupToSeries.set(displayGroup, new Array(seriesLbl));
         } else {
           const appendedArray =
-              this.displayGroupToSeries.get(displayGroup).concat(label);
+              this.displayGroupToSeries.get(displayGroup).concat(seriesLbl);
           this.displayGroupToSeries.set(displayGroup, appendedArray);
         }
       }

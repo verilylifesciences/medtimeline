@@ -50,11 +50,20 @@ describe('StepGraphData', () => {
 
              const data = StepGraphData.fromMedicationOrderSetList(
                  [medOrderSet], dateRange);
-             const adminSeries = data.series;
+             const allSeries = data.series;
              const endpointSeries = data.endpointSeries;
-             expect(adminSeries.length).toEqual(1);
-             expect(adminSeries[0].xValues[0].toString()).toEqual(admin1Time);
-             expect(adminSeries[0].xValues[1].toString()).toEqual(admin2Time);
+             // The adminSeries holds both the adminSeries and the
+             // endpointSeries; it's redundantly stored due to the constraints
+             // of inheritance from graphData and all the stuff that's needed
+             // to make things like custom legends work.
+             expect(allSeries.length).toEqual(2);
+             // for the administration series
+             expect(allSeries[0].xValues[0].toString()).toEqual(admin1Time);
+             expect(allSeries[0].xValues[1].toString()).toEqual(admin2Time);
+             // for the end point series
+             expect(allSeries[1].xValues[0].toString()).toEqual(admin1Time);
+             expect(allSeries[1].xValues[1].toString()).toEqual(admin2Time);
+
              expect(endpointSeries.length).toEqual(1);
              expect(endpointSeries[0].xValues[0].toString())
                  .toEqual(admin1Time);
@@ -83,13 +92,16 @@ describe('StepGraphData', () => {
            });
      });
 
-  it('StepGraphData.fromDiagnosticReports should correctly calculate a LabeledSeries for each DiagnosticReport.',
+  it('StepGraphData.fromDiagnosticReports should correctly calculate a' +
+         ' LabeledSeries for each DiagnosticReport.',
      () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata =
            StepGraphData.fromDiagnosticReports(diagnosticReports, 'Stool');
+       // One series per diagnostic report status/result combination.
+       expect(stepgraphdata.series.length).toEqual(3);
+       // All of them are endpoint series.
        expect(stepgraphdata.endpointSeries.length).toEqual(3);
-       expect(stepgraphdata.series.length).toEqual(0);
      });
 
   it('StepGraphData.fromDiagnosticReports should correctly calculate y axis map',
@@ -102,7 +114,8 @@ describe('StepGraphData', () => {
            .toEqual('Salmonella and Shigella Culture');
      });
 
-  it('StepGraphData.fromDiagnosticReports should correctly calculate time and position for each Diagnostic Report Observation',
+  it('StepGraphData.fromDiagnosticReports should correctly calculate ' +
+         'time and position for each Diagnostic Report Observation',
      () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata =

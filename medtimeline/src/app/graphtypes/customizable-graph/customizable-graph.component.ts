@@ -140,9 +140,7 @@ export class CustomizableGraphComponent extends
   // This function loads the data into the chart without needing the chart to be
   // re-rendered completely.
   private loadNewData() {
-    // Give labels to each series and make a map of x-values to y-values.
-    const configuration = GraphComponent.generateColumnMapping(this.data);
-    this.chart.load({columns: configuration.allColumns});
+    this.chart.load({columns: this.data.c3DisplayConfiguration.allColumns});
   }
 
   // If the selected date already has an annotation, modify the time
@@ -304,8 +302,6 @@ export class CustomizableGraphComponent extends
    */
   generateChart(): c3.ChartConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
-    const configuration = GraphComponent.generateColumnMapping(this.data);
-
     const yAxisConfig: c3.YAxisConfiguration = {
       min: 0,
       max: 5,
@@ -324,9 +320,7 @@ export class CustomizableGraphComponent extends
       }
     };
 
-    const graph = this.generateBasicChart(
-        configuration.columnMap, configuration.allColumns,
-        false /* no legend */, yAxisConfig);
+    const graph = this.generateBasicChart(yAxisConfig);
 
     graph.grid = {y: {lines: [{value: 0, text: 'Add point'}]}};
     graph.axis.x.height = 50;

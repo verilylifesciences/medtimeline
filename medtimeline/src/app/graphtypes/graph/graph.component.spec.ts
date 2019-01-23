@@ -5,14 +5,27 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
-import {GraphData} from 'src/app/graphdatatypes/graphdata';
+import {DisplayConfiguration, GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 
 import {GraphComponent} from './graph.component';
 
 class StubGraphComponent extends GraphComponent<any> {
+  constructor() {
+    super();
+    this.data = new GraphData([], new Map());
+    this.data.c3DisplayConfiguration = new DisplayConfiguration(
+        [
+          [
+            'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
+            DateTime.utc(1995, 7, 22).toISO()
+          ],
+          ['Vanc Pk', 15, 20]
+        ],
+        {'Vanc Pk': 'x_Vanc Pk'}, new Map());
+  }
   generateChart() {
-    return this.generateBasicChart({}, []);
+    return this.generateBasicChart();
   }
 }
 
@@ -36,14 +49,7 @@ describe('GraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
-    const generatedChart =
-        component.generateBasicChart({'Vanc Pk': 'x_Vanc Pk'}, [
-          [
-            'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
-            DateTime.utc(1995, 7, 22).toISO()
-          ],
-          ['Vanc Pk', 15, 20]
-        ]);
+    const generatedChart = component.generateBasicChart();
 
     expect(generatedChart['data']['xs']['Vanc Pk']).toEqual('x_Vanc Pk');
 
@@ -68,20 +74,13 @@ describe('GraphComponent', () => {
         }
       }
     };
-    const generatedChart = component.generateBasicChart({}, [], true, yConfig);
+    const generatedChart = component.generateBasicChart(yConfig);
 
     expect(generatedChart['axis']['y']).toEqual(yConfig);
   });
 
   it('regions displayed on y-axis', () => {
-    let generatedChart =
-        component.generateBasicChart({'Vanc Pk': 'x_Vanc Pk'}, [
-          [
-            'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
-            DateTime.utc(1995, 7, 22).toISO()
-          ],
-          ['Vanc Pk', 15, 20]
-        ]);
+    let generatedChart = component.generateBasicChart();
 
     generatedChart = component.addYRegionOnChart(generatedChart, [11, 101]);
 
@@ -96,7 +95,7 @@ describe('GraphComponent', () => {
     component.dateRange = Interval.fromDateTimes(
         DateTime.utc(1990, 7, 13, 12), DateTime.utc(1990, 7, 15, 12));
 
-    const generatedChart = component.generateBasicChart({}, []);
+    const generatedChart = component.generateBasicChart({});
 
     expect(generatedChart.axis.x.tick.values).toEqual([
       DateTime.utc(1990, 7, 13), DateTime.utc(1990, 7, 14),
@@ -110,7 +109,7 @@ describe('GraphComponent', () => {
     component.dateRange = Interval.fromDateTimes(
         DateTime.local(1964, 3, 22, 12), DateTime.local(1964, 3, 22, 20));
 
-    const generatedChart = component.generateBasicChart({}, []);
+    const generatedChart = component.generateBasicChart({});
 
     expect(generatedChart.axis.x.tick.values).toEqual([
       DateTime.local(1964, 3, 22), DateTime.local(1964, 3, 23)
@@ -124,7 +123,7 @@ describe('GraphComponent', () => {
        component.dateRange = Interval.fromDateTimes(
            DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
 
-       const generatedChart = component.generateBasicChart({}, []);
+       const generatedChart = component.generateBasicChart();
 
        expect(generatedChart.axis.x.tick.values).toEqual([
          DateTime.local(1995, 7, 21), DateTime.local(1995, 7, 22),
@@ -136,11 +135,11 @@ describe('GraphComponent', () => {
     const testComponent = new StubGraphComponent();
     component.dateRange = Interval.fromDateTimes(
         DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
-    const config =
-        StubGraphComponent.generateColumnMapping(new GraphData([], new Map()));
+    const data = new GraphData([], new Map());
     const millis = -8640000000000000;
-    expect(config.allColumns[0][1].toMillis()).toEqual(millis);
-    expect(config.allColumns[1][1]).toEqual(0);
+    expect(data.c3DisplayConfiguration.allColumns[0][1].toMillis())
+        .toEqual(millis);
+    expect(data.c3DisplayConfiguration.allColumns[1][1]).toEqual(0);
   });
 
 

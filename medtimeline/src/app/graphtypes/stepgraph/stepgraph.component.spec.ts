@@ -4,7 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatCardModule} from '@angular/material/card';
 import {DateTime, Interval} from 'luxon';
 
 import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
@@ -84,12 +83,19 @@ describe('StepGraphComponent', () => {
           // visible on the chart are 9/12 and 9/14, since they are in the time
           // range.
           // We should get two endpoints series--one for each order.
-          expect(endpoints.length).toEqual(2);
+          // But, the series should appear twice becaues of how we
+          // hold it two places in the graph data.
+          // TODO(b/123303337): Fix duplication of series in stepgraph data.
+          expect(endpoints.length).toEqual(4);
           // The first one should contain the first order's final endpoint.
           expect(endpoints[0][1].toString())
               .toEqual('2018-09-12T11:00:00.000Z');
           // The second one should contain the second order's first endpoint.
           expect(endpoints[1][1].toString())
+              .toEqual('2018-09-14T11:00:00.000Z');
+          expect(endpoints[2][1].toString())
+              .toEqual('2018-09-12T11:00:00.000Z');
+          expect(endpoints[3][1].toString())
               .toEqual('2018-09-14T11:00:00.000Z');
           done();
         });

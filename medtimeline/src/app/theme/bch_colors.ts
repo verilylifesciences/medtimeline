@@ -68,6 +68,7 @@ export function getTypeColors(backgroundColor: Color): Color[] {
  */
 export function getDataColors(): Color[] {
   return [
-    BOSTON_YELLOW, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_PINK, BOSTON_PURPLE
+    BOSTON_BLUE, BOSTON_YELLOW, BOSTON_GREEN, BOSTON_PINK, BOSTON_PURPLE,
+    BOSTON_INDIGO
   ];
 }

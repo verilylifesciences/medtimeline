@@ -3,10 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {Color} from 'd3';
 import {Interval} from 'luxon';
+
+import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
+import {getDataColors} from '../theme/bch_colors';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
@@ -16,32 +20,27 @@ import {LabeledSeries} from './labeled-series';
  * one or more LabeledSeries.
  */
 export class LineGraphData extends GraphData {
-  /** The label for the graph. */
-  readonly label: string;
-
-  /** The display bounds of the y-axis. */
-  readonly yAxisDisplayBounds: [number, number];
-
-  /** The unit for the y-axis of the graph. */
-  readonly unit: string;
-
-  /**
-   * The tooltip categories for this linegraph. If populated, holds a map from
-   * a string representation of a Date to an array of all discrete result
-   * Observations at that time.
-   */
-  // TODO(b/118130752): Move tooltip configuration to display.
-  readonly tooltipCategories = new Map<number, Observation[]>();
-
   private constructor(
-      label: string, series: LabeledSeries[],
-      yAxisDisplayBounds: [number, number], unit?: string,
-      tooltipCategories?: Map<number, Observation[]>) {
-    super(series, undefined);
-    this.label = label;
-    this.yAxisDisplayBounds = yAxisDisplayBounds;
-    this.unit = unit;
-    this.tooltipCategories = tooltipCategories;
+      /** The label for the graph. */
+      readonly label: string,
+      /** The LabeledSeries that are a part of this line graph. */
+      series: LabeledSeries[],
+      /** The display bounds of the y-axis. */
+      readonly yAxisDisplayBounds: [number, number],
+      /** The unit for the y-axis of the graph. */
+      readonly unit: string,
+      /**
+       * The LabeledSeries mapped to which DisplayGrouping they fall under for
+       * the purposes of color and legends
+       */
+      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
+      /**
+       * The tooltip categories for this linegraph. If populated, holds a map
+       * from a string representation of a Date to an array of all discrete
+       * result Observations at that time.
+       */
+      readonly tooltipCategories?: Map<number, Observation[]>) {
+    super(series, seriesToDisplayGroup);
   }
 
   /**
@@ -53,6 +52,10 @@ export class LineGraphData extends GraphData {
    */
   static fromObservationSetList(
       label: string, observationGroup: ObservationSet[]): LineGraphData {
+    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
+    let seriesIdx = 0;
+    const dataColors: Color[] = getDataColors();
+
     let minY: number = Number.MAX_VALUE;
     let maxY: number = Number.MIN_VALUE;
 
@@ -60,6 +63,11 @@ export class LineGraphData extends GraphData {
     for (const obsSet of observationGroup) {
       const lblSeries = LabeledSeries.fromObservationSet(obsSet);
       series.push(lblSeries);
+      seriesToDisplayGrouping.set(
+          lblSeries,
+          new DisplayGrouping(lblSeries.label, dataColors[seriesIdx]));
+
+      seriesIdx = (seriesIdx + 1) % dataColors.length;
 
       /* Find the minimum and maximum y values for all the series. */
       minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
@@ -71,9 +79,9 @@ export class LineGraphData extends GraphData {
     if (allUnits.size > 1) {
       throw Error('Observations have different units.');
     }
-
     return new LineGraphData(
-        label, series, [minY, maxY], allUnits.values().next().value);
+        label, series, [minY, maxY], allUnits.values().next().value,
+        seriesToDisplayGrouping);
   }
 
   /*
@@ -86,11 +94,17 @@ export class LineGraphData extends GraphData {
   static fromMedicationOrderSet(
       medicationOrderSet: MedicationOrderSet,
       dateRange: Interval): LineGraphData {
+    const singleSeries =
+        LabeledSeries.fromMedicationOrderSet(medicationOrderSet, dateRange);
+    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>()
+    seriesToDisplayGrouping.set(
+        singleSeries,
+        new DisplayGrouping(singleSeries.label, getDataColors()[0]));
+
     return new LineGraphData(
-        medicationOrderSet.label,
-        [LabeledSeries.fromMedicationOrderSet(medicationOrderSet, dateRange)],
+        medicationOrderSet.label, [singleSeries],
         [medicationOrderSet.minDose, medicationOrderSet.maxDose],
-        medicationOrderSet.unit);
+        medicationOrderSet.unit, seriesToDisplayGrouping);
   }
 
   /**
@@ -109,11 +123,13 @@ export class LineGraphData extends GraphData {
     // For ObservationSets with discrete categories, we display a scatterplot
     // with one series, with most information in the tooltip.
     const yValue = 10;
-    const series: LabeledSeries[] = [];
     const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
         observationGroup, yValue, label);
+    const seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
+    seriesToDisplayGroup.set(
+        lblSeries, new DisplayGrouping(lblSeries.label, getDataColors()[0]));
+
     const tooltipCategories = new Map<number, Observation[]>();
-    series.push(lblSeries);
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
         if (tooltipCategories.has(obs.timestamp.toMillis())) {
@@ -124,7 +140,7 @@ export class LineGraphData extends GraphData {
       }
     }
     return new LineGraphData(
-        label, series, [0, yValue], undefined,  // Units
-        tooltipCategories);
+        label, [lblSeries], [0, yValue], undefined,  // Units
+        seriesToDisplayGroup, tooltipCategories);
   }
 }

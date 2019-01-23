@@ -119,13 +119,13 @@ export class ResourceCodeManager {
   ];
 
   private static readonly gentMonitoring = [
-    new LOINCCode('35668-3', labResult, 'Gent', false),
+    new LOINCCode('35668-3', labResult, 'Gent Level', false),
     new LOINCCode('3663-2', labResult, 'Gent Pk', false),
     new LOINCCode('3665-7', labResult, 'Gent Tr', false)
   ];
 
   private static readonly vancMonitoring = [
-    new LOINCCode('20578-1', labResult, 'Vanc', true),
+    new LOINCCode('20578-1', labResult, 'Vanc Level', true),
     new LOINCCode('4092-3', labResult, 'Vanc Tr', true),
     new LOINCCode('4090-7', labResult, 'Vanc Pk', true)
   ];

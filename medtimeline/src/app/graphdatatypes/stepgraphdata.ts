@@ -51,7 +51,7 @@ export class StepGraphData extends GraphData {
       yAxisMap: Map<number, string>,
       seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
       idMap?: Map<string, MedicationOrder|DiagnosticReport>) {
-    super(dataSeries, seriesToDisplayGroup);
+    super(dataSeries.concat(endpointSeries), seriesToDisplayGroup);
     this.endpointSeries = endpointSeries;
     this.yAxisMap = yAxisMap;
     this.idMap = idMap;
@@ -152,24 +152,14 @@ export class StepGraphData extends GraphData {
             (specimen.collectedPeriod ? specimen.collectedPeriod.start :
                                         undefined);
         idMap.set(report.id, report);
-        const docStatus = report.status;
         for (const series of LabeledSeries.fromDiagnosticReport(
                  report, collectedTime, yAxisMap)) {
-          if (series.label.includes(CHECK_RESULT_CODE)) {
-            if (docStatus === DiagnosticReportStatus.Preliminary) {
-              seriesToDisplayGroup.set(series, posPrelimMB);
-            } else if (docStatus === DiagnosticReportStatus.Final) {
-              seriesToDisplayGroup.set(series, posFinalMB);
-            }
-          } else if (
-              series.label.includes(NEGFLORA_CODE) ||
-              series.label.includes(NEG_CODE)) {
-            if (docStatus === DiagnosticReportStatus.Preliminary) {
-              seriesToDisplayGroup.set(series, negPrelimMB);
-            } else if (docStatus === DiagnosticReportStatus.Final) {
-              seriesToDisplayGroup.set(series, negFinalMB);
-            }
-          }
+          seriesToDisplayGroup.set(
+              series,
+              StepGraphData.getDisplayGroupFromResult(
+                  report.status,
+                  series.label.includes(NEGFLORA_CODE) ||
+                      series.label.includes(NEG_CODE)));
           points.push(series);
         }
       }
@@ -178,5 +168,26 @@ export class StepGraphData extends GraphData {
     return new StepGraphData(
         [],  // No series representing "lines" on this chart
         points, yAxisMap, seriesToDisplayGroup, idMap);
+  }
+
+  /**
+   * Returns the correct display grouping for a diagnostic report.
+   * @param status The DiagnosticReport's status.
+   * @param isPositive Whether the report appears to be positive.
+   * @returns The correct display grouping for the report.
+   */
+  private static getDisplayGroupFromResult(
+      status: DiagnosticReportStatus, isNegative: boolean): DisplayGrouping {
+    if (isNegative) {
+      if (status === DiagnosticReportStatus.Preliminary) {
+        return negPrelimMB;
+      } else if (status === DiagnosticReportStatus.Final) {
+        return negFinalMB;
+      }
+    } else if (status === DiagnosticReportStatus.Preliminary) {
+      return posPrelimMB;
+    } else if (status === DiagnosticReportStatus.Final) {
+      return posFinalMB;
+    }
   }
 }

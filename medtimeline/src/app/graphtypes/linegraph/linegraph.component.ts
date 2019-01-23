@@ -30,8 +30,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    */
   generateChart(): c3.ChartConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
-    const config = GraphComponent.generateColumnMapping(this.data);
-
     let min;
     let max;
     if (this.data.yAxisDisplayBounds[0] > this.data.yAxisDisplayBounds[1]) {
@@ -62,9 +60,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       label: this.data.unit
     };
 
-    let graph = this.generateBasicChart(
-        config.columnMap, config.allColumns,
-        Object.keys(config.columnMap).length !== 1, yAxisConfig);
+    let graph = this.generateBasicChart(yAxisConfig);
 
     // Some things are only valid if there are y-axis normal bounds. We
     // also only show normal bounds if there's one data series on the
