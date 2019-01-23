@@ -222,7 +222,8 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
       legend: {show: legend, position: 'bottom'},
       line: {connectNull: false},
       onrendered: function() {
-        self.onRendered();
+        self.boldDates();
+        self.onRendered(this);
       },
     };
     return graph;
@@ -290,7 +291,7 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
 
   /**
    * Inserts wrapped y-axis tick labels.
-   * TODO(b/123229731): Include this method in chart.onrendered.
+   * TODO(b/123229731): Include this method in chart.onRendered
    */
   wrapYAxisLabels() {
     if (this.yAxisTickDisplayValues) {
@@ -342,11 +343,10 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
   }
 
   /**
-   * Called every time the graph is rendered.
+   * Called every time the graph is rendered. If subclass graphs want to do
+   * something special upon rendering, they can override this function.
    */
-  onRendered() {
-    this.boldDates();
-  }
+  onRendered(graphObject): void {}
 
   /**
    * Bolds the date portion of each x-axis tick label.

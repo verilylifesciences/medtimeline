@@ -18,6 +18,7 @@ import {makeSampleDiscreteObservationJson} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
 
+
 describe('LabeledSeries', () => {
   const firstAdministration = '2018-09-12T11:00:00.000Z';
   const lastAdministration = '2018-09-14T11:00:00.000Z';
@@ -218,7 +219,7 @@ describe('LabeledSeries', () => {
        const series = LabeledSeries.fromDiagnosticReport(
            diagnosticReport, DateTime.fromJSDate(new Date()), yAxisMap);
        expect(series.length).toEqual(2);
-       expect(series[0].label).toEqual('id-' + NEGFLORA_CODE);
-       expect(series[1].label).toEqual('id-' + CHECK_RESULT_CODE);
+       expect(series[0].label).toEqual('id-NEGORFLORA-Final');
+       expect(series[1].label).toEqual('id-CHECKRESULT-Final');
      });
 });

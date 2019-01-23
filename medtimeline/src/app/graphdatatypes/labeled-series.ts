@@ -275,7 +275,10 @@ export class LabeledSeries {
     // Make a LabeledSeries for each interpretation.
     for (const interpretation of Array.from(interpretationMap.keys())) {
       series.push(new LabeledSeries(
-          report.id + '-' + interpretation,
+          // Encode the status and interpretation into the series name so that
+          // we can use d3 later on to filter the data points and display them
+          // with the correct styling.
+          report.id + '-' + interpretation + '-' + report.status,
           interpretationMap.get(interpretation)));
     }
     return series;

@@ -14,16 +14,16 @@ import {Specimen} from './specimen';
  * https://www.hl7.org/fhir/valueset-diagnostic-report-status.html
  */
 export enum DiagnosticReportStatus {
-  Registered,
-  Partial,
-  Preliminary,
-  Final,
-  Amended,
-  Corrected,
-  Appended,
-  Cancelled,
-  EnteredInError,
-  Unknown
+  Registered = 'Registered',
+  Partial = 'Partial',
+  Preliminary = 'Preliminary',
+  Final = 'Final',
+  Amended = 'Amended',
+  Corrected = 'Corrected',
+  Appended = 'Appended',
+  Cancelled = 'Cancelled',
+  EnteredInError = 'Enteredinerror',
+  Unknown = 'Unknown'
 }
 
 const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
