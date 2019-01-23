@@ -136,7 +136,8 @@ describe('GraphComponent', () => {
     const testComponent = new StubGraphComponent();
     component.dateRange = Interval.fromDateTimes(
         DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
-    const config = StubGraphComponent.generateColumnMapping(new GraphData([]));
+    const config =
+        StubGraphComponent.generateColumnMapping(new GraphData([], new Map()));
     const millis = -8640000000000000;
     expect(config.allColumns[0][1].toMillis()).toEqual(millis);
     expect(config.allColumns[1][1]).toEqual(0);

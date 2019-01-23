@@ -50,7 +50,8 @@ export class DisplayConfiguration {
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
  */
-export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
+export abstract class GraphComponent<T extends GraphData> implements
+    OnChanges, AfterViewInit {
   // Over which time interval the card should display data
   @Input() dateRange: Interval;
   @Input() data: T;
@@ -83,8 +84,6 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
   // displayed.
   yAxisTickDisplayValues: string[];
 
-
-
   constructor() {
     // Generate a unique ID for this chart.
     const chartId = uuid();
@@ -103,11 +102,18 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
     // Give labels to each series and make a map of x-values to y-values.
     const allColumns: any[][] = [];
     const columnMap = {};
+    const ySeriesLabelToDisplayGroup = new Map<string, DisplayGrouping>();
     for (const s of data.series) {
       allColumns.push(
           new Array<string|DateTime>('x_' + s.label).concat(s.xValues));
       allColumns.push(new Array<string|number>(s.label).concat(s.yValues));
       columnMap[s.label] = 'x_' + s.label;
+
+      // If there's legend information present, set it in the configuration.
+      if (data.seriesToDisplayGroup) {
+        ySeriesLabelToDisplayGroup.set(
+            s.label, data.seriesToDisplayGroup.get(s));
+      }
     }
     // If there is no data, we add a "dummy" data point to still display the
     // x-axis.
@@ -249,6 +255,10 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
         self.onRendered(this);
       },
     };
+
+    if (this.data && this.data.seriesToDisplayGroup) {
+      this.setCustomLegend();
+    }
     return graph;
   }
 
@@ -280,10 +290,10 @@ export abstract class GraphComponent<T> implements OnChanges, AfterViewInit {
    *   series names and values of the ClinicalConcepts they should correspond
    *   to in a legend.
    */
-  setCustomLegend(customLegendMap: Map<LabeledSeries, DisplayGrouping>) {
+  setCustomLegend() {
     if (!this.customLegendSet) {
       for (const [series, displayGroup] of Array.from(
-               customLegendMap.entries())) {
+               this.data.seriesToDisplayGroup.entries())) {
         const label = series.label;
         if (!this.displayGroupToSeries.has(displayGroup)) {
           this.displayGroupToSeries.set(displayGroup, new Array(label));

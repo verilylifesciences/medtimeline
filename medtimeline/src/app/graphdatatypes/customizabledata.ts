@@ -15,21 +15,18 @@ import {LabeledSeries} from './labeled-series';
  * points.
  */
 export class CustomizableData extends GraphData {
-  /**
-   * The annotations for this customizable graph. If populated, holds a
-   * map from a number representation of a Date to CustomizableGraphAnnotation
-   * for the corresponding point.
-   */
-  annotations: Map<number, CustomizableGraphAnnotation> =
-      new Map<number, CustomizableGraphAnnotation>();
-
   /** The display bounds of the y-axis. */
   readonly yAxisDisplayBounds: [number, number];
 
   private constructor(
       series: LabeledSeries,
-      annotations: Map<number, CustomizableGraphAnnotation>) {
-    super([series]);
+      /**
+       * The annotations for this customizable graph. If populated, holds a
+       * map from a number representation of a Date to
+       * CustomizableGraphAnnotation for the corresponding point.
+       */
+      readonly annotations: Map<number, CustomizableGraphAnnotation>) {
+    super([series], undefined /* no legend info */);
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
   }

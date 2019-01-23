@@ -29,13 +29,6 @@ export class StepGraphData extends GraphData {
   readonly endpointSeries: LabeledSeries[];
 
   /**
-   * The DisplayGroups (for example, lab results, vital signs, medications)
-   * associated with particular series. We use this to make a custom legend
-   * for the graph.
-   */
-  readonly seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
-
-  /**
    * Maps a series' ID to its corresponding MedicationOrder or DiagnosticReport.
    */
   readonly idMap = new Map<string, MedicationOrder|DiagnosticReport>();
@@ -56,12 +49,11 @@ export class StepGraphData extends GraphData {
   private constructor(
       dataSeries: LabeledSeries[], endpointSeries: LabeledSeries[],
       yAxisMap: Map<number, string>,
-      seriesToDisplayGroup?: Map<LabeledSeries, DisplayGrouping>,
+      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
       idMap?: Map<string, MedicationOrder|DiagnosticReport>) {
-    super(dataSeries);
+    super(dataSeries, seriesToDisplayGroup);
     this.endpointSeries = endpointSeries;
     this.yAxisMap = yAxisMap;
-    this.seriesToDisplayGroup = seriesToDisplayGroup;
     this.idMap = idMap;
   }
 

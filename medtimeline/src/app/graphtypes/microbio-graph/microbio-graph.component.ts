@@ -99,16 +99,6 @@ export class MicrobioGraphComponent extends StepGraphComponent {
         .style('stroke', negPrelimMB.color.toString());
   }
 
-  regenerateChart() {
-    super.regenerateChart();
-
-    if (this.data) {
-      if (this.data.seriesToDisplayGroup) {
-        this.setCustomLegend(this.data.seriesToDisplayGroup);
-      }
-    }
-  }
-
   // Toggle the display of various points on the chart, and style various points
   // based on report status. This method is called after the user clicks on a
   // particular displayGroup in the legend.

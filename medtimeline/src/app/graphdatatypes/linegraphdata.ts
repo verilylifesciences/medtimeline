@@ -37,7 +37,7 @@ export class LineGraphData extends GraphData {
       label: string, series: LabeledSeries[],
       yAxisDisplayBounds: [number, number], unit?: string,
       tooltipCategories?: Map<number, Observation[]>) {
-    super(series);
+    super(series, undefined);
     this.label = label;
     this.yAxisDisplayBounds = yAxisDisplayBounds;
     this.unit = unit;

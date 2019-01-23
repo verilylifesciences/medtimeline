@@ -85,10 +85,6 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
 
     const graph = this.generateBasicChart(
         config.columnMap, config.allColumns, false, yAxisConfig);
-    if (this.data.seriesToDisplayGroup) {
-      this.setCustomLegend(this.data.seriesToDisplayGroup);
-    }
-
 
     // Check if there are any data points in the time range.
     this.noDataPointsInDateRange =
