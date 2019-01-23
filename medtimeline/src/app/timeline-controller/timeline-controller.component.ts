@@ -51,6 +51,9 @@ export class TimelineControllerComponent implements OnInit {
     endDate: moment.utc(DateTime.utc())
   };
 
+  /** The list of encounters to display as available ranges to select. */
+  ranges = {};
+
   constructor(private renderer: Renderer2, private fhirService: FhirService) {}
 
   ngOnInit() {
@@ -83,6 +86,22 @@ export class TimelineControllerComponent implements OnInit {
                 this.daysCoveredByAnEncounter = new Set<string>(
                     getDaysForIntervalSet(encounters.map(x => x.period))
                         .map(x => x.toISO().slice(0, 10)));
+
+                // We manually update the ranges stored in the daterangepicker
+                // so that the list of encounters is displayed.
+                for (const encounter of encounters) {
+                  const start = moment.utc(encounter.period.start.toJSDate());
+                  const end = moment.utc(encounter.period.end.toJSDate());
+                  const label = start.format('MM/DD/YYYY') + '-' +
+                      end.format('MM/DD/YYYY');
+
+                  this.pickerDirective.ranges[label] = [start, end];
+                  this.pickerDirective.picker.ranges[label] = [start, end];
+                  this.ranges[label] = [start, end];
+                  this.pickerDirective.picker.rangesArray.push(label);
+                }
+              } else {
+                this.datesUpdated(this.defaultDateRange);
               }
             },
             reject => {
@@ -105,12 +124,13 @@ export class TimelineControllerComponent implements OnInit {
     if (!rangeIn.startDate || !rangeIn.endDate || !this.selected) {
       return;
     }
-
-    this.selected = rangeIn;
-    const interval = Interval.fromDateTimes(
-        DateTime.fromJSDate(rangeIn.startDate.toDate()),
-        DateTime.fromJSDate(rangeIn.endDate.toDate()));
-    this.changeDateRange.emit(interval);
+    if (rangeIn.startDate.isBefore(rangeIn.endDate)) {
+      this.selected = rangeIn;
+      const interval = Interval.fromDateTimes(
+          DateTime.fromJSDate(rangeIn.startDate.toDate()),
+          DateTime.fromJSDate(rangeIn.endDate.toDate()));
+      this.changeDateRange.emit(interval);
+    }
   }
 
   open(e) {

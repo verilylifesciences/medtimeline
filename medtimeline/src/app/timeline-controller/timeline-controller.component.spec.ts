@@ -20,6 +20,16 @@ import {StubFhirService} from '../test_utils';
 
 import {TimelineControllerComponent} from './timeline-controller.component';
 
+const encounters = [
+  new Encounter({
+    identifier: 'encounter1',
+    period: {start: '1988-03-23T00:11:00.000Z', end: '1988-03-28T00:23:00.000Z'}
+  }),
+  new Encounter({
+    identifier: 'encounter2',
+    period: {start: '1987-05-13T00:00:00.000Z', end: '1987-05-20T00:00:00.000Z'}
+  })
+];
 // TODO(b/121206822): better coverage for various encounter scenarios
 describe('TimelineControllerComponent with encounters', () => {
   let component: TimelineControllerComponent;
@@ -27,22 +37,7 @@ describe('TimelineControllerComponent with encounters', () => {
 
   class StubFhirServiceWithEncounters extends StubFhirService {
     getEncountersForPatient(dateRange: Interval) {
-      return Promise.resolve([
-        new Encounter({
-          identifier: 'encounter1',
-          period: {
-            start: '1988-03-23T00:11:00.000Z',
-            end: '1988-03-28T00:23:00.000Z'
-          }
-        }),
-        new Encounter({
-          identifier: 'encounter2',
-          period: {
-            start: '1987-05-13T00:00:00.000Z',
-            end: '1987-05-20T00:00:00.000Z'
-          }
-        })
-      ]);
+      return Promise.resolve(encounters);
     }
   }
 
@@ -105,6 +100,23 @@ describe('TimelineControllerComponent with encounters', () => {
       done();
     });
   });
+  it('should correctly set ranges as the list of encounters',
+     (done: DoneFn) => {
+       fixture.whenStable().then(x => {
+         for (const encounter of encounters) {
+           const label = moment.utc(encounter.period.start.toJSDate())
+                             .format('MM/DD/YYYY') +
+               '-' +
+               moment.utc(encounter.period.end.toJSDate()).format('MM/DD/YYYY');
+           expect(component.ranges[label]).toBeDefined();
+           expect(component.ranges[label][0].valueOf())
+               .toEqual(encounter.period.start.toMillis());
+           expect(component.ranges[label][1].valueOf())
+               .toEqual(encounter.period.end.toMillis());
+         }
+         done();
+       });
+     });
 });
 
 describe('TimelineControllerComponent without encounters', () => {
