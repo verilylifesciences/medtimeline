@@ -304,9 +304,7 @@ export class CustomizableGraphComponent extends
    */
   generateChart(): c3.ChartConfiguration {
     // Give labels to each series and make a map of x-values to y-values.
-    const columnGenerated = GraphComponent.generateColumnMapping(this.data);
-    const allColumns = columnGenerated[0];
-    const columnMap = columnGenerated[1];
+    const configuration = GraphComponent.generateColumnMapping(this.data);
 
     const yAxisConfig: c3.YAxisConfiguration = {
       min: 0,
@@ -327,8 +325,8 @@ export class CustomizableGraphComponent extends
     };
 
     const graph = this.generateBasicChart(
-        columnMap, allColumns, Object.keys(columnMap).length !== 1,
-        yAxisConfig);
+        configuration.columnMap, configuration.allColumns,
+        false /* no legend */, yAxisConfig);
 
     graph.grid = {y: {lines: [{value: 0, text: 'Add point'}]}};
     graph.axis.x.height = 50;

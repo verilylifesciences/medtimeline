@@ -15,6 +15,7 @@ import {DiscreteObservationTooltip} from '../tooltips/observation-tooltips';
 @Component({
   selector: 'app-linegraph',
   templateUrl: '../graph/graph.component.html',
+  styleUrls: ['../../cardtypes/cardstyles.css'],
   providers: [
     {provide: GraphComponent, useExisting: forwardRef(() => LineGraphComponent)}
   ]

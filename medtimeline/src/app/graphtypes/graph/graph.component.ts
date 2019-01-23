@@ -70,7 +70,6 @@ export abstract class GraphComponent<T extends GraphData> implements
   // seriesTodisplayGroup. We need to hold them in separate maps for more
   // efficient access during legend interaction.
   readonly displayGroupToSeries = new Map<DisplayGrouping, string[]>();
-  uniqueDisplayGroups: DisplayGrouping[];
 
   // Indicating whether are not there are any data points for the current time
   // interval.
@@ -303,7 +302,6 @@ export abstract class GraphComponent<T extends GraphData> implements
           this.displayGroupToSeries.set(displayGroup, appendedArray);
         }
       }
-      this.uniqueDisplayGroups = Array.from(this.displayGroupToSeries.keys());
       this.customLegendSet = true;
     }
   }
@@ -314,12 +312,6 @@ export abstract class GraphComponent<T extends GraphData> implements
 
   resetChart(displayGroup: DisplayGrouping) {
     this.chart.revert();
-  }
-
-  toggleDisplayGroup(displayGroup: DisplayGrouping) {
-    this.chart.toggle(this.displayGroupToSeries.get(displayGroup));
-    // Bring back the wrapped y axis labels.
-    this.wrapYAxisLabels();
   }
 
   /**

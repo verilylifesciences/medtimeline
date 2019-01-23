@@ -26,7 +26,7 @@ export class CustomizableData extends GraphData {
        * CustomizableGraphAnnotation for the corresponding point.
        */
       readonly annotations: Map<number, CustomizableGraphAnnotation>) {
-    super([series], undefined /* no legend info */);
+    super([series], new Map());
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
   }

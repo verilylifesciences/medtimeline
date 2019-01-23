@@ -66,21 +66,29 @@
 }
 
 .legend {
-  font-family: "Roboto", sans-serif !important;
-  font-size: 12px;
   cursor: pointer;
-  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 13px;
+  margin-bottom:10px;
+  text-align: left;
+  vertical-align: center;
 }
 
+/* This is the color swatch for the legends.*/
 .legend span {
-  display: inline-block;
-  margin-left: 7px;
+  height: 7px;
+  margin-left: 35px;
   margin-right: 7px;
+  margin-top: 3px;
   padding: 5px;
+  vertical-align: center;
+  width: 7px;
 }
 
-.legendItem {
-  display: inline-block;
+.legendLabel {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 13px;
+  margin-left: 30px;
 }
 
 ::ng-deep .c3-axis-y text :not(.c3-axis-y-label) {
@@ -96,15 +104,6 @@
 .mat-icon {
   color: rgb(218, 218, 218);
   transition: color .3s;
-}
-
-::ng-deep .c3 svg {
-  /* font-size: 12px; */
-  font-family:  monospace;
-}
-
-::ng-deep .c3-legend-item {
-  font-family: "Roboto", sans-serif !important;
 }
 
 .checkbox {

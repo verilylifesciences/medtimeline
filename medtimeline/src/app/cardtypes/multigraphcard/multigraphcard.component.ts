@@ -6,6 +6,7 @@
 import {Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import {Color} from 'color';
 import {Interval} from 'luxon';
+import {DisplayGrouping} from 'src/app/clinicalconcepts/display-grouping';
 import {ResourceCodesForCard} from 'src/app/clinicalconcepts/resource-code-manager';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
@@ -66,6 +67,9 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
   private resizeTimer;
   private readonly RESIZE_WAIT = 250;
 
+  // Holds the display groups for the legend.
+  uniqueDisplayGroups = new Array<DisplayGrouping>();
+
   constructor(private fhirService: FhirService) {
     super();
   }
@@ -100,6 +104,7 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
   // so they snap to the correct size.
   renderContainedGraphs() {
     const self = this;
+    const unique = new Set<DisplayGrouping>();
     if (this.containedGraphs) {
       // Wait until the resize is "done" to re-render each graph. This reduces
       // choppy, computationally expensive re-renders as elements resize.
@@ -107,7 +112,11 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
       this.resizeTimer = setTimeout(() => {
         self.containedGraphs.forEach(graph => {
           graph.regenerateChart();
+          Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
+            unique.add(group);
+          });
         });
+        this.uniqueDisplayGroups = Array.from(unique.keys());
       }, this.RESIZE_WAIT);
     }
   }
@@ -131,5 +140,17 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
             return '';
           }
         });
+  }
+
+  focusOnDisplayGroup(displayGroup: DisplayGrouping) {
+    this.containedGraphs.forEach(graph => {
+      graph.focusOnDisplayGroup(displayGroup);
+    });
+  }
+
+  resetChart(displayGroup: DisplayGrouping) {
+    this.containedGraphs.forEach(graph => {
+      graph.resetChart(displayGroup);
+    });
   }
 }

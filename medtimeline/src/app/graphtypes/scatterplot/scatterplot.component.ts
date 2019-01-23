@@ -13,6 +13,7 @@ import {LineGraphComponent} from '../linegraph/linegraph.component';
 @Component({
   selector: 'app-scatterplot',
   templateUrl: '../graph/graph.component.html',
+  styleUrls: ['../../cardtypes/cardstyles.css'],
   providers: [{
     provide: GraphComponent,
     useExisting: forwardRef(() => ScatterplotComponent)
