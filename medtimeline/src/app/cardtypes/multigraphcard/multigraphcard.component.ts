@@ -70,6 +70,8 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
   // Holds the display groups for the legend.
   uniqueDisplayGroups = new Array<DisplayGrouping>();
 
+  readonly userEditable = false;
+
   constructor(private fhirService: FhirService) {
     super();
   }

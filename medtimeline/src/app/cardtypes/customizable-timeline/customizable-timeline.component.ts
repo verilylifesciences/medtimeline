@@ -14,7 +14,7 @@ import {CustomizableGraphAnnotation} from 'src/app/graphtypes/tooltips/tooltip';
 @Component({
   selector: 'app-customizable-timeline',
   templateUrl: './customizable-timeline.component.html',
-  styleUrls: ['./customizable-timeline.component.css']
+  styleUrls: ['./customizable-timeline.component.css', '../cardstyles.css']
 })
 
 // TODO(b/120783502): Create class that both CustomizableTimeline and

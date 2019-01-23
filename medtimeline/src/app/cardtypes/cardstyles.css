@@ -14,18 +14,20 @@
   padding-bottom: 5px;
 }
 
-.chartBorder {
-  border-left-style: solid;
-  border-left-width: 10px;
-}
-
 .mat-card {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  cursor: grab;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   padding-right: 20px;
   padding-left: 0px;
-  cursor: grab;
   transition: box-shadow .1s;
+}
+
+.mat-icon {
+  color:rgb(110, 124, 160);
+  margin:2px;
 }
 
 .mat-card:hover {

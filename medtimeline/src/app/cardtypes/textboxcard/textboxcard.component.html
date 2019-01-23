@@ -1,5 +1,8 @@
 <mat-card [attr.id]="id" fxLayout="row" fxLayoutAlign="none center">
-  <div fxFlex fxShrink="0" fxGrow="0" style="margin-left: 10px;">
+  <div fxFlex fxFlexAlign="stretch" fxShrink='0' fxGrow='0' [style.background-color]="'rgb(197, 185, 172)'">
+    <mat-icon matTooltip="You can edit this card">edit</mat-icon>
+  </div>
+  <div fxFlex style="margin-left: 10px;">
     <!-- Show grabbers to indicate dragging. -->
     <mat-icon>
       drag_indicator
