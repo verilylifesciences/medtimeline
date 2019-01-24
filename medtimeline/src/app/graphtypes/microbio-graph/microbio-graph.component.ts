@@ -70,13 +70,13 @@ export class MicrobioGraphComponent extends StepGraphComponent {
             .filter((d) => {
               return d.id.includes(CHECK_RESULT_CODE);
             })
-            .style('fill', posFinalMB.color.toString());
+            .style('fill', posFinalMB.fill.toString());
     const negCircles: d3.Selection<any, any, any, any> =
         graphObject.getCircles()
             .filter((d) => {
               return !d.id.includes(CHECK_RESULT_CODE);
             })
-            .style('fill', negFinalMB.color.toString());
+            .style('fill', negFinalMB.fill.toString());
 
     // Make prelim circles transparent-filled.
     const prelimCircles: d3.Selection<any, any, any, any> =
@@ -91,12 +91,12 @@ export class MicrobioGraphComponent extends StepGraphComponent {
         .filter((d) => {
           return d.id.includes(CHECK_RESULT_CODE);
         })
-        .style('stroke', posPrelimMB.color.toString());
+        .style('stroke', posPrelimMB.outline.toString());
     prelimCircles
         .filter((d) => {
           return !d.id.includes(CHECK_RESULT_CODE);
         })
-        .style('stroke', negPrelimMB.color.toString());
+        .style('stroke', negPrelimMB.outline.toString());
   }
 
   // Toggle the display of various points on the chart, and style various points

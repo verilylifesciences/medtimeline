@@ -86,7 +86,7 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
         this.dateRange);
     if (this.resourceCodeGroups) {
       this.label = this.resourceCodeGroups.label;
-      this.color = this.resourceCodeGroups.displayGrouping.color;
+      this.color = this.resourceCodeGroups.displayGrouping.fill;
       this.getLabelText().then(lblText => {
         this.unitsLabel = lblText;
       });

@@ -87,6 +87,10 @@
   width: 7px;
 }
 
+.legendItem {
+  border-style: solid !important;
+}
+
 .legendLabel {
   font-family: "Roboto", sans-serif !important;
   font-size: 13px;

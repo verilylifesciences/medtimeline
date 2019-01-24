@@ -96,7 +96,7 @@ export class LineGraphData extends GraphData {
       dateRange: Interval): LineGraphData {
     const singleSeries =
         LabeledSeries.fromMedicationOrderSet(medicationOrderSet, dateRange);
-    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>()
+    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
     seriesToDisplayGrouping.set(
         singleSeries,
         new DisplayGrouping(singleSeries.label, getDataColors()[0]));

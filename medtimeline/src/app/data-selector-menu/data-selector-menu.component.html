@@ -36,7 +36,7 @@
     </mat-menu>
     <ng-container *ngFor="let entry of displayGroupings">
       <button mat-menu-item [matMenuTriggerFor]="subConceptSelectorMenu" class="mainConceptSelector"
-        [style.border-left-color]="entry[0].color.hsl().string()">
+        [style.border-left-color]="entry[0].fill.hsl().string()">
         {{entry[0].label}}
       </button>
       <mat-menu #subConceptSelectorMenu="matMenu">

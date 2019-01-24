@@ -42,7 +42,7 @@ export class StepGraphComponent extends GraphComponent<StepGraphData> {
     for (const series of this.data.series) {
       const label = series.label;
       if (series.concept) {
-        chartColors[label] = series.concept.color;
+        chartColors[label] = series.concept.fill;
       } else {
         chartColors[label] = getDataColors()[0];
       }

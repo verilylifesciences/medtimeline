@@ -148,7 +148,7 @@ export abstract class GraphComponent<T extends GraphData> implements
               key)) {
         const lookupColor: Color =
             this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
-                .color;
+                .fill;
         colorsMap[key] = lookupColor.toString();
       }
     }

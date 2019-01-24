@@ -20,7 +20,7 @@
         <div class="legendLabel">Legend</div>
         <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups" (mouseover)="focusOnDisplayGroup(displayGroup, $event)"
           (mouseout)="resetChart(displayGroup, $event)">
-          <span [style.background-color]="displayGroup.color.hsl().string()">
+          <span class="legendItem" [style.background-color]="displayGroup.fill.hsl().string()" [style.border]="displayGroup.outline.hsl().string()">
           </span>
           <div fxFlex>{{displayGroup.label}}</div>
         </div>

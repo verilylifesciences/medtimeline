@@ -16,9 +16,10 @@ export const ALL_DISPLAY_GROUPS_MAP = new Map<string, DisplayGrouping>();
  */
 export class DisplayGrouping {
   static colorIdx = 0;
-  color: Color;
+  fill: Color;
+  outline: Color;
 
-  constructor(readonly label: string, color?: Color) {
+  constructor(readonly label: string, color?: Color, outline?: Color) {
     if (ALL_DISPLAY_GROUPS_MAP.has(label)) {
       return ALL_DISPLAY_GROUPS_MAP.get(label);
     }
@@ -29,7 +30,8 @@ export class DisplayGrouping {
       DisplayGrouping.colorIdx =
           (DisplayGrouping.colorIdx + 1) % BCHColors.getDataColors().length;
     }
-    this.color = tempColor;
+    this.fill = tempColor;
+    this.outline = outline ? outline : tempColor;
     ALL_DISPLAY_GROUPS_MAP.set(label, this);
   }
 }
@@ -48,10 +50,10 @@ export const microbio =
     new DisplayGrouping('Microbiology', BCHColors.BOSTON_PINK);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
-export const posPrelimMB =
-    new DisplayGrouping('Check Result Preliminary', BCHColors.BOSTON_RED);
-export const negPrelimMB =
-    new DisplayGrouping('Negative Preliminary', BCHColors.BOSTON_BLUE);
+export const posPrelimMB = new DisplayGrouping(
+    'Check Result Preliminary', Color.rgb(255, 255, 255), BCHColors.BOSTON_RED);
+export const negPrelimMB = new DisplayGrouping(
+    'Negative Preliminary', Color.rgb(255, 255, 255), BCHColors.BOSTON_BLUE);
 export const posFinalMB =
     new DisplayGrouping('Check Result Final', BCHColors.BOSTON_RED);
 export const negFinalMB =
