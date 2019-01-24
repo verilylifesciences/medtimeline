@@ -1,0 +1,85 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Used http://mcg.mbitson.com to generate the material palette.
+
+// BOSTON_BLUE
+$bch-primary: (
+  50 : #e0e6f1,
+  100 : #b3c1db,
+  200 : #8098c3,
+  300 : #4d6eab,
+  400 : #264f99,
+  500 : #003087,
+  600 : #002b7f,
+  700 : #002474,
+  800 : #001e6a,
+  900 : #001357,
+  A100 : #8998ff,
+  A200 : #566bff,
+  A400 : #233fff,
+  A700 : #0928ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #ffffff,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+// BOSTON_LAVENDER
+$bch-secondary: (
+  50 : #f1e9f3,
+  100 : #ddc8e0,
+  200 : #c6a3cc,
+  300 : #af7eb8,
+  400 : #9d63a8,
+  500 : #8c4799,
+  600 : #844091,
+  700 : #793786,
+  800 : #6f2f7c,
+  900 : #5c206b,
+  A100 : #edaaff,
+  A200 : #e377ff,
+  A400 : #d844ff,
+  A700 : #d32aff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #ffffff,
+  )
+);
+
+
+
+
+$bch-app-primary: mat-palette($bch-primary);
+$bch-app-accent:  mat-palette($bch-secondary);
+
+$bch-app-warn:    mat-palette($mat-red);
+
+$bch-app-theme: mat-light-theme($bch-app-primary, $bch-app-accent, $bch-app-warn);
+
+@include angular-material-theme($bch-app-theme);

@@ -130,14 +130,6 @@
   color: grey;
 }
 
-::ng-deep .checkbox:hover .mat-checkbox-frame {
-  border-color: black;
-}
-
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-  background-color: black !important;
-}
-
 ::ng-deep .mat-ripple-element {
   background: rgba(175, 172, 172, 0.705) !important;
 }

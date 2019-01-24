@@ -1,5 +1,5 @@
 /* Default Angular Material prebuilt theme. */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./bch-material-theme.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 /* Added for ng2-dragula support, see https://github.com/valor-software/ng2-dragula */
@@ -38,6 +38,5 @@
 
 
 body {
-  background-color: rgb(65, 182, 230); /* Boston Sky */
   margin: 0px;
 }

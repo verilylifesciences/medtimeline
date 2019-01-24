@@ -120,7 +120,7 @@ export class CardcontainerComponent {
   // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.
   snapshot() {
     this.fhirService.saveStaticNote(
-        document.getElementsByClassName('graphDrawer')[0].innerHTML,
+        document.getElementsByClassName('cardContainer')[0].innerHTML,
         DateTime.fromJSDate(new Date()).toISO());
   }
 

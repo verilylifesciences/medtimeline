@@ -1,26 +1,26 @@
-<div class="header" fxLayout="row" fxFlexAlign="space-around center">
+<mat-toolbar color="primary">
   <app-timeline-controller (changeDateRange)="changeDateRange($event)" class="timeline"></app-timeline-controller>
   <!--Push the buttons to the right and left sides.-->
   <div fxFlex></div>
   <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
-</div>
-<div fxLayout="column" class="graphDrawer" id="{{CARDHOLDER}}">
+</mat-toolbar>
+<div fxLayout="column" class="cardContainer" id="{{CARDHOLDER}}">
   <app-customizable-timeline [dateRange]="dateRange"></app-customizable-timeline>
   <mat-divider class="divider"></mat-divider>
-  <div style="display:flex; justify-content: space-between;">
+  <div class="multicardActions">
     <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->
-    <div style="display:flex">
+    <div class="checkboxActions">
       <div class="masterCheckbox">
         <mat-checkbox [(ngModel)]="allChecked" [(indeterminate)]="someChecked" (change)="allChange($event)" matTooltip="Select all"></mat-checkbox>
       </div>
       <div *ngIf="allChecked || someChecked">
-        <mat-icon style="cursor: pointer;" (click)="removeCheckedCards()" matTooltip="Remove selected cards">clear</mat-icon>
+        <mat-icon class="removeChecked" (click)="removeCheckedCards()" matTooltip="Remove selected cards">clear</mat-icon>
       </div>
     </div>
   </div>
   <div class="addCardInPlace">
     <hr class="dashedLineAddCardLeft" />
-    <app-data-selector-menu style="display: inline-block;" (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
+    <app-data-selector-menu class="dataSelector" (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
     <hr class="dashedLineAddCardRight" />
   </div>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
@@ -35,8 +35,7 @@
       </ng-container>
       <div class="addCardInPlace">
         <hr class="dashedLineAddCardLeft" />
-        <app-data-selector-menu style="display: inline-block;" (addCard)="addConceptCard($event, element.id)"
-          (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
+        <app-data-selector-menu class="dataSelector" (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
         <hr class="dashedLineAddCardRight" />
       </div>
     </div>

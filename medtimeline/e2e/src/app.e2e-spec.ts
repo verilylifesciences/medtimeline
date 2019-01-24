@@ -51,10 +51,10 @@ describe('workspace-project App', () => {
            .then(sideNavCategories => {
              // Check the graph components displayed to see if the labels
              // match.
-             const graphDrawer = element(by.css('.graphDrawer'));
+             const cardContainer = element(by.css('.cardContainer'));
              // Have to search by class and not by 'app-multigraphcard' because
              // the step graph chart does not have a label.
-             graphDrawer.all(by.css('loincCodeGraphs'))
+             cardContainer.all(by.css('loincCodeGraphs'))
                  .each(function(el, index) {
                    const label = el.element(by.css('.label'));
                    label.getText().then(text => {

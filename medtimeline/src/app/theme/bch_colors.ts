@@ -32,7 +32,8 @@ export const BOSTON_WARM_GRAY = Color.rgb(197, 185, 172);
 export const BOSTON_RED = Color.rgb(246, 50, 62);
 
 // Color to indicate a selected item.
-export const SELECTED = Color('#e0e6eb');
+// Material-light version of secondary color (BOSTON_LAVENDER).
+export const SELECTED = Color('#d7c3db');
 
 // Rules for which text colors can be used for which backgrounds
 const DO_NOT_USE_WHITE_TYPE = [BOSTON_YELLOW, BOSTON_MORNING, Color.WHITE];

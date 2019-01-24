@@ -9,7 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatTooltipModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -83,7 +83,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     FormsModule, ReactiveFormsModule, MatMenuModule, MatTooltipModule,
     FlexLayoutModule.withConfig({useColumnBasisZero: false}),
     AngularResizedEventModule, MatTabsModule, MatDialogModule, MatStepperModule,
-    MatSnackBarModule, SidebarModule.forRoot(),
+    MatToolbarModule, MatSnackBarModule, SidebarModule.forRoot(),
     NgxDaterangepickerMd.forRoot({}),
     /* On their end, it's locked down so that the only acceptable redirect
     URL is localhost:8000/. So, we have to do a different path for

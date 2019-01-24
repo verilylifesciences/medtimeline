@@ -1,9 +1,15 @@
-.graphDrawer {
-  background-color: rgb(65, 182, 230); /* Boston Sky */
+.cardContainer {
+  background-color: #4a59b8;
   display: flex;
   padding: 15px;
   width: 100%;
   min-height: 100%;
+  /* Disable selecting/highlighting on the page. */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Chrome and Opera */
 }
 
 .mat-expansion-panel {
@@ -16,44 +22,12 @@
   padding-top: 20px;
 }
 
-.snapshot {
-  display: inline-block;
-}
-
 .timeline {
   display: inline-block;
 }
 
-.instructionText {
-  text-align: center;
-  display: none;
-  font: 12px;
-  font-family: "Roboto", sans-serif;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.instructionBorder {
-  outline-style: dashed;
-  outline-width: 3px;
-  outline-color: white;
-  outline-offset: 10px;
-}
-
-.draggable {
-  min-height: 1000px;
-}
-
-::ng-deep .masterCheckbox:hover .mat-checkbox-frame {
-  border-color: black;
-}
-
-::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background  {
-  background-color: black !important;
-}
-
 .masterCheckbox {
-  margin-left: 34px;
+  margin-left: 55px;
   margin-right: 15px;
   padding-bottom: 15px;
 }
@@ -61,15 +35,6 @@
 ::ng-deep .masterCheckbox .mat-checkbox-frame {
   border-color: rgb(190, 189, 189) !important;
   transition: border-color .3s;
-}
-
-/* Disable selecting/highlighting on the page. */
-.fullPage {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-     -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Chrome and Opera */
 }
 
 .divider {
@@ -86,26 +51,31 @@
   transition: opacity .3s;
   padding-top: 6px;
   height: 20px;
+  margin-bottom: 8px;
 }
 
 .dashedLineAddCardLeft {
   border: 3px dashed white;
   border-top: white;
   display: inline-block;
-  width: 25px;
+  width: 45px;
 }
 
 .dashedLineAddCardRight {
   border: 3px dashed white;
   border-top: white;
   display: inline-block;
-  width: calc(100% - 70px);;
+  width: calc(100% - 90px);;
 }
 
 ::ng-deep .addCardInPlace .mat-icon-button {
   width: 25px;
   line-height: 30px !important;
   height: 30px !important;
+}
+
+::ng-deep .addCardInPlace .mat-icon {
+  padding-bottom: 10px;
 }
 
 ::ng-deep .gu-mirror .chartBorder {
@@ -120,14 +90,27 @@
   opacity: 1;
 }
 
-::ng-deep .masterButton {
+::ng-deep .toolbarButton {
   font-size: 30px;
-  color:rgba(0,0,0,.54);
+  color:white;
   height: 30px;
   width: 30px;
-  margin-bottom: 11px;
 }
 
-::ng-deep .addCardInPlace .masterButton {
-  color: white !important;
+.multicardActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkboxActions {
+  display: flex;
+}
+
+.removeChecked {
+  cursor: pointer;
+  color: white;
+}
+
+.dataSelector {
+  display: inline-block;
 }
