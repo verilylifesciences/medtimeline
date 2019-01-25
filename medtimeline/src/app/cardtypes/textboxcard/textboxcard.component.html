@@ -21,6 +21,6 @@
     <mat-icon [id]="'save' + id" matSuffix (click)="unfocus()" style="visibility: hidden;">check</mat-icon>
   </div>
   <div fxFlex fxShrink="0" fxGrow="0">
-    <mat-icon class="removeCardButton" (click)="removeCard()">clear</mat-icon>
+    <mat-icon class="removeCardButton" (click)="removeCard()" matTooltip="Remove this card">clear</mat-icon>
   </div>
 </mat-card>

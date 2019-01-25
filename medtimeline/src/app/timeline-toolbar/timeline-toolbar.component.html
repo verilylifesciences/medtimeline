@@ -4,7 +4,8 @@
     <mat-icon class="masterButton">more_vert</mat-icon>
   </button>
   <mat-menu #optionsMenu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item (click)="snapshot()">Save snapshot</button>
+    <button mat-menu-item (click)="snapshot()" matTooltip="Save a static image of this page to a PowerChart clinical note">Save
+      snapshot</button>
   </mat-menu>
   <button mat-icon-button matTooltip="Launch Tutorial">
     <mat-icon class="masterButton" (click)="openHelpDialog()">help_outline</mat-icon>

@@ -11,10 +11,10 @@
     <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->
     <div style="display:flex">
       <div class="masterCheckbox">
-        <mat-checkbox [(ngModel)]="allChecked" [(indeterminate)]="someChecked" (change)="allChange($event)"></mat-checkbox>
+        <mat-checkbox [(ngModel)]="allChecked" [(indeterminate)]="someChecked" (change)="allChange($event)" matTooltip="Select all"></mat-checkbox>
       </div>
       <div *ngIf="allChecked || someChecked">
-        <mat-icon style="cursor: pointer;" (click)="removeCheckedCards()">clear</mat-icon>
+        <mat-icon style="cursor: pointer;" (click)="removeCheckedCards()" matTooltip="Remove selected cards">clear</mat-icon>
       </div>
     </div>
   </div>
