@@ -7,6 +7,7 @@
       <mat-icon>add_comment</mat-icon>
       <span>Add blank annotation</span>
     </button>
+    <mat-divider></mat-divider>
     <button mat-menu-item [matMenuTriggerFor]="conceptSelectorMenu">
       <mat-icon>add_to_photos</mat-icon>
       <span>Add chart</span>
@@ -18,6 +19,7 @@
     <button mat-menu-item [matMenuTriggerFor]="menu">
       Search for a concept
     </button>
+    <mat-divider></mat-divider>
     <mat-menu #menu="matMenu" (closed)="autocompleteTrigger.closePanel()" class="autoMenu">
       <!-- Autocomplete search bar -->
       <form class="conceptForm">
@@ -29,6 +31,7 @@
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOption($event)">
             <mat-option *ngFor="let concept of filteredConcepts | async" [value]="concept.label">
               <app-data-selector-element [resourceCodesForCard]="concept" [conceptGroupKey]="concept.displayGrouping"></app-data-selector-element>
+              <mat-divider></mat-divider>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -39,11 +42,13 @@
         [style.border-left-color]="entry[0].fill.hsl().string()">
         {{entry[0].label}}
       </button>
+      <mat-divider></mat-divider>
       <mat-menu #subConceptSelectorMenu="matMenu">
         <ng-template matMenuContent>
           <button *ngFor="let resourceCodesForCard of entry[1]" (click)="addConceptCard(resourceCodesForCard.label)"
             class="conceptSelector" mat-menu-item>
             <app-data-selector-element [resourceCodesForCard]="resourceCodesForCard" [conceptGroupKey]="entry[0]"></app-data-selector-element>
+            <mat-divider></mat-divider>
           </button>
         </ng-template>
       </mat-menu>

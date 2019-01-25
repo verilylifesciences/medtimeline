@@ -1,5 +1,7 @@
 .conceptSelector {
   padding-left: 0px !important;
+  padding-right: 0px !important;
+  min-width: 200px;
 }
 
 .mainConceptSelector {
@@ -9,6 +11,14 @@
 
 ::ng-deep .mat-menu-item  {
   line-height: 20px !important;
+}
+
+::ng-deep .mat-list-item-content {
+  margin-top: 8px;
+}
+
+::ng-deep .mat-autocomplete-panel .mat-list-item-content {
+  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/
 }
 
 ::ng-deep .mat-option {
@@ -28,4 +38,8 @@
 
 .conceptFormField {
   width: 100%;
+}
+
+::ng-deep .mat-menu-content {
+  padding: 0px !important;
 }
