@@ -135,8 +135,4 @@ export class TimelineControllerComponent implements OnInit {
       this.changeDateRange.emit(interval);
     }
   }
-
-  open(e) {
-    this.pickerDirective.open();
-  }
 }

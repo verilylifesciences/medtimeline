@@ -18,9 +18,10 @@
   padding: 0px !important;
 }
 
-/* Ensure that the circular button containing the date picker icon is the appropriate size and color. */
-::ng-deep .mat-mini-fab {
-  height: 30px !important;
-  width: 30px !important;
-  background-color: white !important;
+::ng-deep .mat-h2 {
+  margin-bottom: 0px !important;
+}
+
+::ng-deep td.available{
+  color: black;
 }

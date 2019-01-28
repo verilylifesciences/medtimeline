@@ -72,3 +72,11 @@
 .customizableTimeline {
   padding: 15px;
 }
+
+::ng-deep .addCardInPlace .masterButton {
+  color: white !important;
+}
+
+::ng-deep .mat-toolbar-single-row {
+  white-space: unset !important;
+}
