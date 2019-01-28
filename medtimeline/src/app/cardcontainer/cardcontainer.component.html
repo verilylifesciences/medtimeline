@@ -1,12 +1,15 @@
-<mat-toolbar color="primary">
-  <app-timeline-controller (changeDateRange)="changeDateRange($event)" class="timeline"></app-timeline-controller>
-  <!--Push the buttons to the right and left sides.-->
-  <div fxFlex></div>
-  <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
-</mat-toolbar>
+<div class="pinned">
+  <mat-toolbar color="primary" class="toolbar">
+    <app-timeline-controller (changeDateRange)="changeDateRange($event)" class="timeline"></app-timeline-controller>
+    <!--Push the buttons to the right and left sides.-->
+    <div fxFlex></div>
+    <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
+  </mat-toolbar>
+  <div class="customizableTimeline">
+    <app-customizable-timeline [dateRange]="dateRange"></app-customizable-timeline>
+  </div>
+</div>
 <div fxLayout="column" class="cardContainer" id="{{CARDHOLDER}}">
-  <app-customizable-timeline [dateRange]="dateRange"></app-customizable-timeline>
-  <mat-divider class="divider"></mat-divider>
   <div class="multicardActions">
     <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->
     <div class="checkboxActions">

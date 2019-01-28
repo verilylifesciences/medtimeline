@@ -1,6 +1,6 @@
 <!-- This component is a card that holds a label, one or more graphs graph, and a dragging handle. -->
 <!-- Left border matches up with the clinical concept group color. -->
-<div fxFlex fxLayout="row">
+<div fxFlex fxLayout="row" class="row">
   <mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="this.renderContainedGraphs()">
     <div fxFlex fxFlexAlign="stretch" fxShrink='0' fxGrow='0' [style.background-color]="this.color.hsl().string()">
       <mat-icon matTooltip="This card is view-only">visibility</mat-icon>

@@ -4,7 +4,7 @@
 
 .timelineLabel {
   /* This margin allows for the label of the CustomizableTimeline to be at the same x-position as the other labels, accounting for space usually taken by checkboxes & dragger icons. */
-  margin-left: 40px;
+  margin-left: 60px;
   /* Lock down to 150 pixel width. */
   display: inline-block;
   max-width: 150px;

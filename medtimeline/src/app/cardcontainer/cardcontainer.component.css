@@ -10,6 +10,7 @@
      -moz-user-select: none; /* Firefox */
       -ms-user-select: none; /* Internet Explorer/Edge */
           user-select: none; /* Chrome and Opera */
+  margin-top: 240px;
 }
 
 .mat-expansion-panel {
@@ -113,4 +114,20 @@
 
 .dataSelector {
   display: inline-block;
+}
+
+.pinned {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.customizableTimeline {
+  background-color: #4a59b8;
+  padding: 15px;
+}
+
+.container {
+  width: 100%;
 }
