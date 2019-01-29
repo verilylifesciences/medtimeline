@@ -9,6 +9,16 @@ import * as Color from 'color';
  * http://www.childrenshospital.org/legal/brand-style-guidelines
  */
 
+
+// Material Colors
+export const PRIMARY_COLOR = Color.rgb(0, 35, 86);
+export const SECONDARY_COLOR = Color.rgb(179, 157, 219);
+
+export const MATERIAL_GREEN = Color.rgb(102, 187, 106);
+export const MATERIAL_YELLOW = Color.rgb(253, 216, 53);
+export const MATERIAL_TEAL = Color.rgb(38, 166, 154);
+export const MATERIAL_ORANGE = Color.rgb(255, 112, 67);
+
 // Core brand colors
 export const BOSTON_BLUE = Color.rgb(0, 48, 135);
 export const BOSTON_SKY = Color.rgb(65, 182, 230);
@@ -32,8 +42,8 @@ export const BOSTON_WARM_GRAY = Color.rgb(197, 185, 172);
 export const BOSTON_RED = Color.rgb(246, 50, 62);
 
 // Color to indicate a selected item.
-// Material-light version of secondary color (BOSTON_LAVENDER).
-export const SELECTED = Color('#d7c3db');
+// Material-light version of secondary color.
+export const SELECTED = Color('#d9ceed');
 
 // Rules for which text colors can be used for which backgrounds
 const DO_NOT_USE_WHITE_TYPE = [BOSTON_YELLOW, BOSTON_MORNING, Color.WHITE];

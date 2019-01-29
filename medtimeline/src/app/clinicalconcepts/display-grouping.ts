@@ -38,22 +38,22 @@ export class DisplayGrouping {
 
 
 export const labResult =
-    new DisplayGrouping('Lab Results', BCHColors.BOSTON_MEADOW);
+    new DisplayGrouping('Lab Results', BCHColors.MATERIAL_GREEN);
 export const vitalSign =
-    new DisplayGrouping('Vital Signs', BCHColors.BOSTON_MORNING);
+    new DisplayGrouping('Vital Signs', BCHColors.MATERIAL_YELLOW);
 export const culture =
     new DisplayGrouping('Cultures', BCHColors.BOSTON_WARM_GRAY);
 export const med =
-    new DisplayGrouping('Vancomycin and Gentamicin', BCHColors.BOSTON_LAVENDER);
+    new DisplayGrouping('Vancomycin and Gentamicin', BCHColors.MATERIAL_TEAL);
 export const document = new DisplayGrouping('Document', BCHColors.BOSTON_BAY);
 export const microbio =
-    new DisplayGrouping('Microbiology', BCHColors.BOSTON_PINK);
+    new DisplayGrouping('Microbiology', BCHColors.MATERIAL_ORANGE);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
 export const posPrelimMB = new DisplayGrouping(
-    'Check Result Preliminary', Color.rgb(255, 255, 255), BCHColors.BOSTON_RED);
+    'Check Result Preliminary', Color('#e4e2e2'), BCHColors.BOSTON_RED);
 export const negPrelimMB = new DisplayGrouping(
-    'Negative Preliminary', Color.rgb(255, 255, 255), BCHColors.BOSTON_BLUE);
+    'Negative Preliminary', Color('#e4e2e2'), BCHColors.BOSTON_BLUE);
 export const posFinalMB =
     new DisplayGrouping('Check Result Final', BCHColors.BOSTON_RED);
 export const negFinalMB =

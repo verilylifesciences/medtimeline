@@ -1,5 +1,5 @@
 .cardContainer {
-  background-color: #4a59b8;
+  background-color: #002356; /* PRIMARY_COLOR */
   display: flex;
   padding: 15px;
   width: 100%;
@@ -11,6 +11,10 @@
       -ms-user-select: none; /* Internet Explorer/Edge */
           user-select: none; /* Chrome and Opera */
   margin-top: 240px;
+}
+
+.mat-toolbar {
+  background-color: #00002d; /* PRIMARY_COLOR, dark variant */
 }
 
 .mat-expansion-panel {
