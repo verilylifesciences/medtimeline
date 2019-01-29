@@ -14,11 +14,13 @@ import {CustomizableGraphAnnotation} from 'src/app/graphtypes/tooltips/tooltip';
 @Component({
   selector: 'app-customizable-timeline',
   templateUrl: './customizable-timeline.component.html',
-  styleUrls: ['./customizable-timeline.component.css', '../cardstyles.css']
+  styleUrls: ['./customizable-timeline.component.css']
 })
 
-// TODO(b/120783502): Create class that both CustomizableTimeline and
-// MultigraphCard can extend.
+/**
+ * The customizable timeline lets the user plot any events they'd like to keep
+ * track of as little flags along a timeline.
+ */
 export class CustomizableTimelineComponent {
   // The GraphComponent this card holds.
   @ViewChild(GraphComponent) containedGraph!: GraphComponent<GraphData>;
@@ -39,9 +41,10 @@ export class CustomizableTimelineComponent {
     this.data = CustomizableData.fromInitialPoint(
         DateTime.fromJSDate(new Date(-8640000000000000)), 0,
         new CustomizableGraphAnnotation());
+    this.renderContainedGraph();
   }
 
-  // Render the contained graphs in the event of a resize.
+  // Render the contained graph in the event of a resize.
   renderContainedGraph() {
     if (this.containedGraph && this.containedGraph.chart) {
       this.containedGraph.regenerateChart();

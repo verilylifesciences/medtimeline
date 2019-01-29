@@ -30,9 +30,9 @@ import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {CardcontainerComponent} from './cardcontainer/cardcontainer.component';
+import {CardComponent} from './cardtypes/card/card.component';
 import {CustomizableTimelineDialogComponent} from './cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/customizable-timeline.component';
-import {DraggablecardComponent} from './cardtypes/draggablecard/draggablecard.component';
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
 import {ResourceCodeManager} from './clinicalconcepts/resource-code-manager';
@@ -63,7 +63,6 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     StepGraphComponent,
     MultiGraphCardComponent,
     TimelineControllerComponent,
-    DraggablecardComponent,
     CustomizableTimelineComponent,
     CustomizableGraphComponent,
     CustomizableTimelineDialogComponent,
@@ -72,6 +71,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     DataSelectorElementComponent,
     DataSelectorMenuComponent,
     HelpDialogComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule, MatCardModule, HttpClientModule, MatSidenavModule,

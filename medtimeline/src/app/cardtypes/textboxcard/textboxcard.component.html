@@ -1,26 +1,13 @@
-<mat-card [attr.id]="id" fxLayout="row" fxLayoutAlign="none center">
-  <div fxFlex fxFlexAlign="stretch" fxShrink='0' fxGrow='0' [style.background-color]="'#836fa9'">
-    <mat-icon matTooltip="You can edit this card">edit</mat-icon>
-  </div>
-  <div fxFlex>
-    <!-- Show grabbers to indicate dragging. -->
-    <mat-icon>
-      drag_indicator
-    </mat-icon>
-  </div>
-  <div class="checkbox" fxFlex fxShrink="0" fxGrow="0">
-    <mat-checkbox [(ngModel)]="isChecked" (change)="checkboxChange($event)"></mat-checkbox>
-  </div>
-  <mat-form-field style="width: 100%;">
-    <textarea #textArea matInput matTextareaAutosize placeholder="Enter notes here" (change)="updateValue()" (blur)="hideSave()"
-      (focus)="showSave()" [(ngModel)]="noteString">
+<app-card [id]="id" [isEditable]="true" (onRemove)="remove()" (onCheck)="check($event)">
+  <ng-container class="contents-block">
+    <mat-form-field style="width: 95%;">
+      <textarea #textArea matInput matTextareaAutosize placeholder="Enter notes here" (change)="updateValue()" (blur)="hideSave()"
+        (focus)="showSave()" [(ngModel)]="noteString">
     </textarea>
-  </mat-form-field>
-  <!-- The save button removes focus from the text field and reappears when the user is typing in the field. -->
-  <div fxFlex fxShrink="0" fxGrow="0">
-    <mat-icon [id]="'save' + id" matSuffix (click)="unfocus()" style="visibility: hidden;">check</mat-icon>
-  </div>
-  <div fxFlex fxShrink="0" fxGrow="0">
-    <mat-icon class="removeCardButton" (click)="removeCard()" matTooltip="Remove this card">clear</mat-icon>
-  </div>
-</mat-card>
+    </mat-form-field>
+    <!-- The save button removes focus from the text field and reappears when the user is typing in the field. -->
+    <div fxFlex fxShrink="0" fxGrow="0">
+      <mat-icon [id]="'save' + id" matSuffix (click)="unfocus()" style="visibility: hidden;">check</mat-icon>
+    </div>
+  </ng-container>
+</app-card>

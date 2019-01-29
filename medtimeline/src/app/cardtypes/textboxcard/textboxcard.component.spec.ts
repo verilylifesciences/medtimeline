@@ -13,6 +13,8 @@ import {By} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SELECTED} from 'src/app/theme/bch_colors';
 
+import {CardComponent} from '../card/card.component';
+
 import {TextboxcardComponent} from './textboxcard.component';
 
 describe('TextboxcardComponent', () => {
@@ -31,7 +33,7 @@ describe('TextboxcardComponent', () => {
             ReactiveFormsModule,
             MatCheckboxModule,
           ],
-          declarations: [TextboxcardComponent]
+          declarations: [TextboxcardComponent, CardComponent]
         })
         .compileComponents();
   }));
@@ -49,25 +51,22 @@ describe('TextboxcardComponent', () => {
 
   it('should emit event to remove textbox', async(() => {
        fixture.detectChanges();
-       spyOn(component.deleteEvent, 'emit');
+       spyOn(component.onRemove, 'emit');
        const button = fixture.debugElement.nativeElement.querySelector(
            'mat-icon.removeCardButton');
        button.click();
        fixture.whenStable().then(() => {
-         expect(component.deleteEvent.emit).toHaveBeenCalledWith(component.id);
+         expect(component.onRemove.emit).toHaveBeenCalledWith(component.id);
        });
      }));
 
-  it('should correctly toggle background color and emit checkedEvent when checkbox is clicked',
-     async(() => {
+  it('should emit checkedEvent when checkbox is clicked', async(() => {
        fixture.detectChanges();
        const background = fixture.debugElement.query(By.css('#id'));
-       spyOn(component.checkedEvent, 'emit');
-       component.checkboxChange({checked: true});
+       spyOn(component.onCheck, 'emit');
+       component.check({checked: true});
        fixture.whenStable().then(() => {
-         expect(component.checkedEvent.emit).toHaveBeenCalled();
-         expect(background.nativeElement.style.backgroundColor)
-             .toEqual('' + SELECTED);
+         expect(component.onCheck.emit).toHaveBeenCalled();
        });
      }));
 });

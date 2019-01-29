@@ -1,0 +1,12 @@
+.legend {
+  cursor: pointer;
+}
+
+/* This is the color swatch for the legends.*/
+.legend span {
+  border-style: solid !important;
+  height: 7px;
+  margin: 3px;
+  vertical-align: center;
+  width: 7px;
+}

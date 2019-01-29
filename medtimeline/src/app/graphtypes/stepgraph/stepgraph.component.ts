@@ -8,8 +8,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
-import {getDataColors} from 'src/app/theme/bch_colors';
 import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
+import {getDataColors} from 'src/app/theme/bch_colors';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {MedicationTooltip} from '../../graphtypes/tooltips/medication-tooltips';
@@ -19,7 +19,7 @@ import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
   selector: 'app-stepgraph',
   templateUrl: '../graph/graph.component.html',
   // TODO(b/117575935): These styles need to be extracted and generalized
-  styleUrls: ['../../cardtypes/cardstyles.css'],
+  styleUrls: ['../graph.css'],
   providers: [
     {provide: GraphComponent, useExisting: forwardRef(() => StepGraphComponent)}
   ]

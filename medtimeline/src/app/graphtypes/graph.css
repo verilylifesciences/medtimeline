@@ -1,0 +1,61 @@
+/* All the below styles apply to elements within the graphs. Because these
+are nested inside the components and within C3 divs, we have to prefix the
+style names with ::ng-deep.  */
+
+::ng-deep .c3-region {
+  fill: hsl(150, 50%, 50%);
+  stroke: hsl(150, 50%, 70%);;
+  stroke-dasharray: 1px;
+}
+
+::ng-deep .c3 {
+  cursor: default !important;
+}
+
+.c3-tooltip > tbody > tr > th {
+  background-color: rgb(197, 185, 172); /* Boston Warm Gray */
+}
+
+::ng-deep .c3-circle {
+  opacity: 1 !important;
+}
+
+/* This ensures that the step graph lines do not show circles for individual data points, except for the end points of each line segment. */
+::ng-deep .stepgraph .c3-circles:not([class *="endpoint"]) {
+  display: none;
+}
+
+/* This is styling for a stepgraphcard's circles on the end points of line segments. */
+::ng-deep .stepgraph [class *= "endpoint"] {
+  stroke: black;
+  opacity: 1;
+  stroke-width: 3;
+}
+
+::ng-deep .stepgraph .c3-line {
+  stroke-width: 2px;
+}
+
+::ng-deep .stepgraph [class*="tooltip"] {
+  width: 210px;
+}
+
+::ng-deep .c3-axis-y text :not(.c3-axis-y-label) {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+::ng-deep .c3-axis-x text {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 13px;
+}
+
+::ng-deep .noData {
+  opacity: 1 !important;
+}
+
+::ng-deep .c3-ygrid-line text {
+  font-size: 13px !important;
+  fill: black;
+}
+

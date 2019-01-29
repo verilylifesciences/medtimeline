@@ -1,6 +1,6 @@
 <div class="pinned">
   <mat-toolbar color="primary" class="toolbar">
-    <app-timeline-controller (changeDateRange)="changeDateRange($event)" class="timeline"></app-timeline-controller>
+    <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
     <!--Push the buttons to the right and left sides.-->
     <div fxFlex></div>
     <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
@@ -23,22 +23,22 @@
   </div>
   <div class="addCardInPlace">
     <hr class="dashedLineAddCardLeft" />
-    <app-data-selector-menu class="dataSelector" (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
+    <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
     <hr class="dashedLineAddCardRight" />
   </div>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
       <ng-container [ngSwitch]="element.concept === 'textbox'">
-        <div align="right" *ngSwitchCase="true">
-          <app-textboxcard [id]="element.id" (checkedEvent)="updateCheckedConcepts($event)" (deleteEvent)="removeDisplayedCard($event)"></app-textboxcard>
+        <div *ngSwitchCase="true">
+          <app-textboxcard [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)"></app-textboxcard>
         </div>
         <app-multigraphcard *ngSwitchCase="false" [resourceCodeGroups]="element.concept" [dateRange]="dateRange" [id]="element.id"
-          (checkedEvent)="updateCheckedConcepts($event)" (deleteEvent)="removeDisplayedCard($event)">
+          (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
         </app-multigraphcard>
       </ng-container>
       <div class="addCardInPlace">
         <hr class="dashedLineAddCardLeft" />
-        <app-data-selector-menu class="dataSelector" (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
+        <app-data-selector-menu (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
         <hr class="dashedLineAddCardRight" />
       </div>
     </div>

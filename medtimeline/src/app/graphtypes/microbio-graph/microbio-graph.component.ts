@@ -6,21 +6,17 @@
 import {Component, forwardRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as d3 from 'd3';
-import {DateTime} from 'luxon';
 import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 'src/app/clinicalconcepts/display-grouping';
 import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
-import {CHECK_RESULT_CODE, NEG_CODE, NEGFLORA_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
-import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
+import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';
-import {MicrobioTooltip} from '../tooltips/microbio-tooltips';
 
 @Component({
   selector: 'app-microbio-graph',
   templateUrl: '../graph/graph.component.html',
-  // TODO(b/117575935): These styles need to be extracted and generalized
-  styleUrls: ['../../cardtypes/cardstyles.css'],
+  styleUrls: ['../graph.css'],
   providers: [{
     provide: GraphComponent,
     useExisting: forwardRef(() => MicrobioGraphComponent)

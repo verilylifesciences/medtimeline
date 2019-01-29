@@ -1,12 +1,9 @@
-<mat-card [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="this.renderContainedGraph()">
-  <div fxFlex fxFlexAlign="stretch" fxShrink='0' fxGrow='0'>
-    <mat-icon matTooltip="You can edit this card">edit</mat-icon>
-  </div>
-  <div fxFlex fxShrink="0" fxGrow="0" class="timelineLabel">Timeline</div>
-  <div fxFlex>
+<app-card [attr.id]="id" label="Custom Timeline" [isDraggable]="false" [isEditable]="true" [isRemovable]="false">
+  <ng-container class="legends-block">
+    Click on this graph to add a flag for anything you want to keep track of.
+  </ng-container>
+  <div fxFlex="row" class="contents-block">
     <app-customizable-graph class="timeline" [data]="this.data" [dateRange]="this.dateRange">
     </app-customizable-graph>
   </div>
-  <!-- This element allows for the timeline to not extend to the end of the card, stopped at the same x-position as other charts that have a delete button. -->
-  <div fxFlex fxShrink="0" fxGrow="0" style="margin-left: 42px"></div>
-</mat-card>
+</app-card>

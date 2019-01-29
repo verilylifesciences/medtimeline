@@ -1,3 +1,7 @@
+.mat-icon {
+  color: white;
+}
+
 .conceptSelector {
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -38,8 +42,4 @@
 
 .conceptFormField {
   width: 100%;
-}
-
-::ng-deep .mat-menu-content {
-  padding: 0px !important;
 }

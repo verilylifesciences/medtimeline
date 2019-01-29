@@ -1,0 +1,21 @@
+<!-- This component is a card that holds a colored sidebar with icons indicating
+functionality, then space for a label & legend, then space for other contents. -->
+<mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="resize($event)"
+  [style.background-color]="selectionIndicationColor">
+  <div fxFlex fxLayout="column" fxFlexAlign="stretch" fxShrink='0' fxGrow='0' fxLayoutAlign="space-between center"
+    [style.background-color]="color" class="colorbar">
+    <mat-checkbox *ngIf="isRemovable" [(ngModel)]="isChecked" (change)="check($event)"></mat-checkbox>
+    <mat-icon *ngIf="isEditable" matTooltip="You can edit this card">edit</mat-icon>
+    <mat-icon *ngIf="isDraggable">
+      drag_indicator
+    </mat-icon>
+    <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)" matTooltip="Remove this card">clear</mat-icon>
+  </div>
+  <div *ngIf="label" fxFlex fxLayout="column" fxFlexAlign="stretch" fxGrow="0" fxShrink="0" class="labelColumn">
+    <div fxFlex class="mat-title label">{{label}}</div>
+    <!--Give the div that you want to appear here the class "legends-block".-->
+    <ng-content select=".legends-block"></ng-content>
+  </div>
+  <!--Give the div that you want to appear here the class "contents-block".-->
+  <ng-content select=".contents-block"></ng-content>
+</mat-card>

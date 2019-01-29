@@ -10,7 +10,7 @@ import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
 import {v4 as uuid} from 'uuid';
 
-import {DraggablecardComponent} from '../cardtypes/draggablecard/draggablecard.component';
+import {CardComponent} from '../cardtypes/card/card.component';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -28,8 +28,7 @@ export class CardcontainerComponent {
   // How long to display the snack bar for.
   private readonly DISPLAY_TIME = 6000;
 
-  @ViewChildren(DraggablecardComponent)
-  containedCards!: QueryList<DraggablecardComponent>;
+  @ViewChildren(CardComponent) containedCards!: QueryList<CardComponent>;
 
   // The concepts that are actually being displayed on the page.
   // We keep track of unique ids for each displayed card, to allow removal on
@@ -155,7 +154,7 @@ export class CardcontainerComponent {
 
     this.containedCards.forEach(card => {
       card.isChecked = $event.checked;
-      card.toggleBackground($event.checked);
+      card.toggleBackground();
     });
     this.updateAllCheckedStatus();
   }

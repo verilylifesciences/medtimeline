@@ -17,40 +17,6 @@
   background-color: #00002d; /* PRIMARY_COLOR, dark variant */
 }
 
-.mat-expansion-panel {
-  background-color: inherit;
-  margin-top: 25px;
-}
-
-.header {
-  background-color: white;
-  padding-top: 20px;
-}
-
-.timeline {
-  display: inline-block;
-}
-
-.masterCheckbox {
-  margin-left: 55px;
-  margin-right: 15px;
-  padding-bottom: 15px;
-}
-
-::ng-deep .masterCheckbox .mat-checkbox-frame {
-  border-color: rgb(190, 189, 189) !important;
-  transition: border-color .3s;
-}
-
-.divider {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.displayedConcept {
-  margin-bottom: 7px;
-}
-
 .addCardInPlace {
   opacity: 0;
   transition: opacity .3s;
@@ -95,32 +61,8 @@
   opacity: 1;
 }
 
-::ng-deep .toolbarButton {
-  font-size: 30px;
-  color:white;
-  height: 30px;
-  width: 30px;
-}
-
-.multicardActions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.checkboxActions {
-  display: flex;
-}
-
-.removeChecked {
-  cursor: pointer;
-  color: white;
-}
-
-.dataSelector {
-  display: inline-block;
-}
-
 .pinned {
+  background-color: #002356; /* PRIMARY_COLOR */
   position: fixed;
   top: 0;
   width: 100%;
@@ -128,10 +70,5 @@
 }
 
 .customizableTimeline {
-  background-color: #4a59b8;
   padding: 15px;
-}
-
-.container {
-  width: 100%;
 }

@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -20,6 +20,7 @@ import {SidebarModule} from 'ng-sidebar';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
+import {CardComponent} from '../cardtypes/card/card.component';
 import {CustomizableTimelineComponent} from '../cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from '../cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from '../cardtypes/textboxcard/textboxcard.component';
@@ -60,22 +61,17 @@ describe('CardcontainerComponent', () => {
             MatInputModule,          FormsModule,
             ReactiveFormsModule,     BrowserModule,
             BrowserAnimationsModule, MatProgressSpinnerModule,
-            MatMenuModule,           NgxDaterangepickerMd.forRoot()
+            MatMenuModule,           NgxDaterangepickerMd.forRoot(),
+            MatToolbarModule
           ],
           declarations: [
-            CardcontainerComponent,
-            TextboxcardComponent,
-            TimelineControllerComponent,
-            MultiGraphCardComponent,
-            CustomizableGraphComponent,
-            LineGraphComponent,
-            StepGraphComponent,
-            ScatterplotComponent,
-            MicrobioGraphComponent,
-            CustomizableTimelineComponent,
-            TimelineToolbarComponent,
-            DataSelectorElementComponent,
-            DataSelectorMenuComponent,
+            CardcontainerComponent, TextboxcardComponent,
+            TimelineControllerComponent, MultiGraphCardComponent,
+            CustomizableGraphComponent, LineGraphComponent, StepGraphComponent,
+            ScatterplotComponent, MicrobioGraphComponent,
+            CustomizableTimelineComponent, TimelineToolbarComponent,
+            DataSelectorElementComponent, DataSelectorMenuComponent,
+            CardComponent
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},

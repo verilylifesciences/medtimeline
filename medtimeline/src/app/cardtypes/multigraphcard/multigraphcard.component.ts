@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Color} from 'color';
 import {Interval} from 'luxon';
@@ -16,7 +16,6 @@ import {FhirService} from '../../fhir.service';
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
 import * as Colors from '../../theme/bch_colors';
 import {Card} from '../card';
-import {DraggablecardComponent} from '../draggablecard/draggablecard.component';
 
 /**
  * This card holds a label, one or more graphs on one or more axes, and a
@@ -24,23 +23,26 @@ import {DraggablecardComponent} from '../draggablecard/draggablecard.component';
  */
 @Component({
   selector: 'app-multigraphcard',
-  styleUrls: ['../cardstyles.css'],
+  styleUrls: ['../legendstyles.css'],
   templateUrl: './multigraphcard.html',
-  providers:
-      [{provide: DraggablecardComponent, useExisting: MultiGraphCardComponent}]
 })
 
-export class MultiGraphCardComponent extends DraggablecardComponent implements
-    OnInit, OnChanges {
+export class MultiGraphCardComponent implements OnInit, OnChanges {
   // The GraphComponents this card holds.
   @ViewChildren(GraphComponent)
   containedGraphs!: QueryList<GraphComponent<GraphData>>;
+
+  @Input() id: string;
 
   // Over which time interval the card should display data
   @Input() dateRange: Interval;
 
   // The ResourceCodeGroups displayed on this card.
   @Input() resourceCodeGroups: ResourceCodesForCard;
+
+  /** Propogate remove and check events up to the card container.  */
+  @Output() onRemove = new EventEmitter();
+  @Output() onCheck = new EventEmitter();
 
   // An error message if there's an error in data retrieval.
   // TODO(b/119878664): Surface any errors in the UI.
@@ -74,9 +76,7 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
   readonly userEditable = false;
 
   constructor(
-      private fhirService: FhirService, private sanitizer: DomSanitizer) {
-    super();
-  }
+      private fhirService: FhirService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.initializeData();
@@ -138,7 +138,7 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
         })
         .then(allUnits => {
           const units = new Set<string>(allUnits);
-          if (units.size === 1) {
+          if (units.size === 1 && allUnits[0] !== undefined) {
             return ' (' + allUnits[0] + ')';
           } else {
             return '';
@@ -156,5 +156,17 @@ export class MultiGraphCardComponent extends DraggablecardComponent implements
     this.containedGraphs.forEach(graph => {
       graph.resetChart(displayGroup);
     });
+  }
+
+  // The events below need to get propogated up to the card container.
+  // Fires an event indicating the user clicked the checkbox.
+  check($event) {
+    this.onCheck.emit({checked: $event.checked, id: this.id});
+  }
+
+
+  // Called when the user clicks the trashcan button on the card.
+  remove() {
+    this.onRemove.emit(this.id);
   }
 }
