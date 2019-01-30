@@ -27,6 +27,10 @@ export class CardComponent {
 
   @Output() onRender = new EventEmitter();
   @Output() onRemove = new EventEmitter();
+  @Output() onEdit = new EventEmitter();
+  @Output() onSave = new EventEmitter();
+
+  inEditMode = false;
 
   // The events below need to get propogated up to the card container.
 
@@ -38,5 +42,17 @@ export class CardComponent {
   // Called when the card resizes.
   resize($event) {
     this.onRender.emit($event);
+  }
+
+  // Called when the user clicks on the edit button.
+  edit($event) {
+    this.inEditMode = true;
+    this.onEdit.emit($event);
+  }
+
+  // Called when the user hits the save button to exit out of edit mode.
+  save($event) {
+    this.inEditMode = false;
+    this.onSave.emit($event);
   }
 }

@@ -1,13 +1,14 @@
-<app-card [id]="id" [isEditable]="true" (onRemove)="remove()">
+<app-card [id]="id" [isEditable]="true" (onRemove)="remove()" (onEdit)="edit()" (onSave)="save()">
   <ng-container class="contents-block">
-    <mat-form-field style="width: 95%;">
-      <textarea #textArea matInput matTextareaAutosize placeholder="Enter notes here" (change)="updateValue()" (blur)="hideSave()"
-        (focus)="showSave()" [(ngModel)]="noteString">
+    <mat-form-field *ngIf="inEditMode" style="width: 95%;">
+      <textarea #textArea matInput matTextareaAutosize placeholder="Add your annotation here. Click the Save button to save your annotation."
+        (change)="updateValue()" [(ngModel)]="noteString">
     </textarea>
     </mat-form-field>
-    <!-- The save button removes focus from the text field and reappears when the user is typing in the field. -->
-    <div fxFlex fxShrink="0" fxGrow="0">
-      <mat-icon [id]="'save' + id" matSuffix (click)="unfocus()" style="visibility: hidden;">check</mat-icon>
-    </div>
+    <ng-container *ngIf="!inEditMode">
+      <mat-label>
+        {{noteString ? noteString: 'Click the edit button to add your annotation here.'}}
+      </mat-label>
+    </ng-container>
   </ng-container>
 </app-card>

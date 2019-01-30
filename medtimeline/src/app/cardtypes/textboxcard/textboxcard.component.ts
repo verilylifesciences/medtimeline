@@ -24,23 +24,10 @@ export class TextboxcardComponent {
   // Holds the text typed in the input field of the textbox.
   noteString: string;
 
+  inEditMode = false;
+
   updateValue() {
     this.textAreaElement.nativeElement.innerHTML = this.noteString;
-  }
-
-  // Remove the focus from the text area.
-  unfocus() {
-    this.textAreaElement.nativeElement.blur();
-  }
-
-  // Show the save button.
-  showSave() {
-    document.getElementById('save' + this.id).style.visibility = 'visible';
-  }
-
-  // Hide the save button.
-  hideSave() {
-    document.getElementById('save' + this.id).style.visibility = 'hidden';
   }
 
   // The events below need to get propogated up to the card container.
@@ -48,5 +35,13 @@ export class TextboxcardComponent {
   // Called when the user clicks the trashcan button on the card.
   remove() {
     this.onRemove.emit(this.id);
+  }
+
+  edit() {
+    this.inEditMode = true;
+  }
+
+  save() {
+    this.inEditMode = false;
   }
 }

@@ -6,7 +6,10 @@ functionality, then space for a label & legend, then space for other contents. -
     <mat-icon *ngIf="isDraggable">
       drag_indicator
     </mat-icon>
-    <mat-icon *ngIf="isEditable" matTooltip="You can edit this card">edit</mat-icon>
+    <ng-container *ngIf="isEditable">
+      <mat-icon *ngIf="!inEditMode" matTooltip="Click to edit this card" (click)="edit($event)">edit</mat-icon>
+      <mat-icon *ngIf="inEditMode" matTooltip="Click to save your work" (click)="save($event)">save</mat-icon>
+    </ng-container>
     <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)" matTooltip="Remove this card">clear</mat-icon>
   </div>
   <div *ngIf="label" fxFlex fxLayout="column" fxFlexAlign="stretch" fxGrow="0" fxShrink="0" class="labelColumn">
