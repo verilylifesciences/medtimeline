@@ -101,38 +101,4 @@ describe('StepGraphComponent', () => {
           done();
         });
   });
-
-  it('should calculate whether tick labels need to be wrapped', () => {
-    const earliestMedicationOrder = makeMedicationOrder();
-    const latestMedicationOrder = makeMedicationOrder();
-
-    earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub)
-        .then(() => {
-          return earliestMedicationOrder.setMedicationAdministrations(
-              fhirServiceStub);
-        })
-        .then(() => {
-          const fhirServiceStubAdjustedDates: any = {
-            getMedicationAdministrationsWithOrder(id: string) {
-              const medicationAdministrations = [
-                makeMedicationAdministration('2018-09-14T11:00:00.000Z'),
-                makeMedicationAdministration('2018-09-30T11:00:00.000Z')
-              ];
-              return Promise.resolve(medicationAdministrations);
-            }
-          };
-          return latestMedicationOrder.setMedicationAdministrations(
-              fhirServiceStubAdjustedDates);
-        })
-        .then(result => {
-          const medOrderSet = new MedicationOrderSet(
-              [earliestMedicationOrder, latestMedicationOrder]);
-          component.data = StepGraphData.fromMedicationOrderSetList(
-              [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-          component.dateRange = dateRange;
-          component.data.yAxisMap.set(10, 'vancomycinlonglonglong');
-          expect(component.yAxisTickDisplayValues.toString())
-              .toEqual('vancomycinlonglonglong');
-        });
-  });
 });

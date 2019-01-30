@@ -1,6 +1,10 @@
-<button mat-icon-button [matMenuTriggerFor]="masterMenu" matTooltip="Add card to page">
-  <mat-icon class="toolbarButton">add_circle</mat-icon>
-</button>
+<div fxFlex fxLayout="row" fxLayoutAlign="start center" class="addCardInline">
+  <button mat-icon-button [matMenuTriggerFor]="masterMenu" matTooltip="Add card here">
+    <mat-icon class="toolbarButton">add_circle</mat-icon>
+  </button>
+  <span fxFlex>
+  </span>
+</div>
 <mat-menu #masterMenu="matMenu" [overlapTrigger]="false">
   <ng-template matMenuContent>
     <button mat-menu-item (click)="textbox()">

@@ -3,33 +3,23 @@
     <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
     <!--Push the buttons to the right and left sides.-->
     <div fxFlex></div>
-    <app-timeline-toolbar (addCard)="addConceptCard($event)" (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
+    <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
   </mat-toolbar>
-  <div class="customizableTimeline">
-    <app-customizable-timeline [dateRange]="dateRange"></app-customizable-timeline>
+  <div class="customizableTimeline makeGutters">
+    <app-customizable-timeline class="card" [dateRange]="dateRange"></app-customizable-timeline>
   </div>
 </div>
-<div fxLayout="column" class="cardContainer" id="{{CARDHOLDER}}">
-  <div class="addCardInPlace">
-    <hr class="dashedLineAddCardLeft" />
-    <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
-    <hr class="dashedLineAddCardRight" />
-  </div>
+<div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start" id="{{CARDHOLDER}}">
+  <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
-      <ng-container [ngSwitch]="element.concept === 'textbox'">
-        <div *ngSwitchCase="true">
-          <app-textboxcard [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)"></app-textboxcard>
-        </div>
-        <app-multigraphcard *ngSwitchCase="false" [resourceCodeGroups]="element.concept" [dateRange]="dateRange" [id]="element.id"
-          (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
-        </app-multigraphcard>
-      </ng-container>
-      <div class="addCardInPlace">
-        <hr class="dashedLineAddCardLeft" />
-        <app-data-selector-menu (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
-        <hr class="dashedLineAddCardRight" />
-      </div>
+      <app-textboxcard *ngIf="element.concept ==='textbox'" [id]="element.id" (onCheck)="updateCheckedConcepts($event)"
+        (onRemove)="removeDisplayedCard($event)"></app-textboxcard>
+      <app-multigraphcard *ngIf="element.concept !=='textbox'" [resourceCodeGroups]="element.concept" [dateRange]="dateRange"
+        [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
+      </app-multigraphcard>
+
+      <app-data-selector-menu (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>
     </div>
   </div>
 </div>

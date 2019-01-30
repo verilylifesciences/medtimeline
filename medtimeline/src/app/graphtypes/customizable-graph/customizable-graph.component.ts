@@ -42,8 +42,10 @@ export class CustomizableGraphComponent extends
   }
 
   ngOnDestroy() {
-    // Destroy the dialog ref to prevent memory leaks.
-    this.dialogRef.unsubscribe();
+    if (this.dialogRef) {
+      // Destroy the dialog ref to prevent memory leaks.
+      this.dialogRef.unsubscribe();
+    }
   }
 
   regenerateChart() {

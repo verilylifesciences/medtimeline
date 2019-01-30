@@ -6,13 +6,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatDialog, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
-import {By} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
-import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
 import {StubFhirService} from '../test_utils';
 
 import {TimelineToolbarComponent} from './timeline-toolbar.component';
@@ -22,33 +20,22 @@ describe('TimelineToolbarComponent', () => {
   let fixture: ComponentFixture<TimelineToolbarComponent>;
   const resourceCodeManagerStub =
       new ResourceCodeManager(new StubFhirService());
-  let dataSelectorMenu: DataSelectorMenuComponent;
 
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          declarations: [
-            TimelineToolbarComponent,
-            DataSelectorElementComponent,
-            DataSelectorMenuComponent,
-          ],
+          declarations:
+              [TimelineToolbarComponent, DataSelectorElementComponent],
           imports: [
-            MatMenuModule,
-            MatTooltipModule,
-            MatIconModule,
-            MatListModule,
-            MatAutocompleteModule,
-            NgxDaterangepickerMd.forRoot(),
-            MatFormFieldModule,
-            MatInputModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserAnimationsModule,
+            MatMenuModule, MatTooltipModule, MatIconModule, MatListModule,
+            MatAutocompleteModule, NgxDaterangepickerMd.forRoot(),
+            MatFormFieldModule, MatInputModule, FormsModule,
+            ReactiveFormsModule, BrowserAnimationsModule
           ],
           providers: [
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            {provide: MatDialogRef, useValue: null},
-            {provide: MatDialog, useValue: null},
+            {provide: MatDialogRef, useValue: {}},
+            {provide: MatDialog, useValue: {}},
           ]
         })
         .compileComponents();
@@ -57,30 +44,11 @@ describe('TimelineToolbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimelineToolbarComponent);
     component = fixture.componentInstance;
-    dataSelectorMenu =
-        fixture.debugElement.query(By.directive(DataSelectorMenuComponent))
-            .componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should emit event to add card', () => {
-    spyOn(component.addCard, 'emit');
-    dataSelectorMenu.addCard.emit('label');
-    fixture.whenStable().then(() => {
-      expect(component.addCard.emit).toHaveBeenCalledWith('label');
-    });
-  });
-
-  it('should emit event to add textbox', () => {
-    spyOn(component.addTextbox, 'emit');
-    dataSelectorMenu.addTextbox.emit();
-    fixture.whenStable().then(() => {
-      expect(component.addTextbox.emit).toHaveBeenCalled();
-    });
   });
 
   // TODO(b/122653172): Add test for snapshot event, and figure out how to open

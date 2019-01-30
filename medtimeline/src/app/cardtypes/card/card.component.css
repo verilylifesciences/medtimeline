@@ -2,15 +2,17 @@
   cursor: grab;
   margin-top:0px;
   margin-bottom:0px;
+  margin-left: 35px; /* Leave space for the "add card" button. */
   padding-top: 0px;
   padding-bottom: 0px;
   padding-right: 20px;
   padding-left: 0px;
   transition: box-shadow .1s;
+  background-color: rgb(248, 248, 248);
 }
 
 .mat-card:hover {
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(240, 240, 240);
   box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);
 }
 

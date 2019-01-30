@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatToolbarModule} from '@angular/material';
+import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
@@ -70,7 +70,8 @@ describe('CardcontainerComponent', () => {
             MatProgressSpinnerModule,
             MatMenuModule,
             NgxDaterangepickerMd.forRoot(),
-            MatToolbarModule
+            MatToolbarModule,
+            MatSnackBarModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,
@@ -85,7 +86,7 @@ describe('CardcontainerComponent', () => {
             {provide: FhirService, useValue: new StubFhirService()},
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
             DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}},
-            {provide: MatSnackBar, useValue: null}
+            {provide: MatSnackBar, useValue: {}}
           ],
         })
         .compileComponents();
@@ -136,15 +137,6 @@ describe('CardcontainerComponent', () => {
   it('should listen for event to add textbox', () => {
     const displayedConceptsOriginalSize = component.displayedConcepts.length;
     dataSelectorMenu.addTextbox.emit();
-    fixture.whenStable().then(() => {
-      expect(component.displayedConcepts.length)
-          .toEqual(displayedConceptsOriginalSize + 1);
-    });
-  });
-
-  it('should listen for event to add card from toolbar', () => {
-    const displayedConceptsOriginalSize = component.displayedConcepts.length;
-    timelineToolbar.addCard.emit('Temperature');
     fixture.whenStable().then(() => {
       expect(component.displayedConcepts.length)
           .toEqual(displayedConceptsOriginalSize + 1);

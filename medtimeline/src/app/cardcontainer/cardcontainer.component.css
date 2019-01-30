@@ -17,48 +17,9 @@
   background-color: #00002d; /* PRIMARY_COLOR, dark variant */
 }
 
-.addCardInPlace {
-  opacity: 0;
-  transition: opacity .3s;
-  padding-top: 6px;
-  height: 20px;
-  margin-bottom: 8px;
-}
-
-.dashedLineAddCardLeft {
-  border: 3px dashed white;
-  border-top: white;
-  display: inline-block;
-  width: 45px;
-}
-
-.dashedLineAddCardRight {
-  border: 3px dashed white;
-  border-top: white;
-  display: inline-block;
-  width: calc(100% - 90px);;
-}
-
-::ng-deep .addCardInPlace .mat-icon-button {
-  width: 25px;
-  line-height: 30px !important;
-  height: 30px !important;
-}
-
-::ng-deep .addCardInPlace .mat-icon {
-  padding-bottom: 10px;
-}
-
 ::ng-deep .gu-mirror .chartBorder {
   opacity: 1 !important;
   box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36) !important;
-}
-
-::ng-deep .addCardInPlace .mat-button-ripple.mat-ripple{
-  margin-top: 5px;
-}
-.addCardInPlace:hover {
-  opacity: 1;
 }
 
 .pinned {
@@ -73,8 +34,9 @@
   padding: 15px;
 }
 
-::ng-deep .addCardInPlace .masterButton {
-  color: white !important;
+.makeGutters {
+  padding-right: 100px;
+  padding-left: 100px;
 }
 
 ::ng-deep .mat-toolbar-single-row {
