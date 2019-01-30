@@ -16,12 +16,24 @@
   border-color: grey;
   border-radius: 3px;
   min-height: 25px;
-  width: 180px;
+  width: 160px;
   max-height: 100px;
   background-color: white;
   overflow: auto;
   color: white;
 }
+
+
+::ng-deep [class*="tooltip-whole"] {
+  position: absolute;
+  display: block;
+  min-height: 25px;
+  width: 0px;
+  max-height: 100px;
+  border-left-style: solid;
+  border-width: 1px;
+}
+
 
 ::ng-deep [class*="tooltip-title-custom"] {
   margin: 0px;
@@ -29,9 +41,10 @@
   text-align: center;
   max-width: 120px;
   display: inline-block;
+  vertical-align: bottom;
   min-width: 120px;
   overflow: auto;
-  margin-top: 10px;
+  margin-top: 5px;
   overflow-wrap: break-word;
 }
 
@@ -45,12 +58,12 @@
 
 ::ng-deep [id*="expand"] {
   visibility: hidden;
-  vertical-align: text-top;
+  vertical-align: middle;
 }
 
 ::ng-deep [id*="delete"] {
   visibility: hidden;
-  vertical-align: text-top;
+  vertical-align: middle;
 }
 ::ng-deep [id*="edit"] {
   visibility: hidden;

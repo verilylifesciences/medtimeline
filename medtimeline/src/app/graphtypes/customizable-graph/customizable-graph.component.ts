@@ -33,8 +33,11 @@ export class CustomizableGraphComponent extends
   private hoveringOverPoint = false;
   // The width and height of the dialog box that appears when the user clicks on
   // the chart.
-  dialogWidth = '450px';
-  dialogHeight = '350px';
+  private readonly dialogWidth = '450px';
+  private readonly dialogHeight = '350px';
+
+  // The y-position of the customizable timeline.
+  private readonly chartY = 180;
 
   // The reference for the Dialog opened.
   private dialogRef: any;
@@ -104,7 +107,7 @@ export class CustomizableGraphComponent extends
             0;  // We want each clicked data point to show up at y=0.
 
         const dialogCoordinates = self.findDialogCoordinates(
-            parentCoordinates[0] + 10, parentCoordinates[1] + 10);
+            parentCoordinates[0] + 10, parentCoordinates[1] + this.chartY);
 
         // Make the dialog show up near where the user clicked.
         this.dialogRef = self.dialog.open(CustomizableTimelineDialogComponent, {
@@ -183,7 +186,6 @@ export class CustomizableGraphComponent extends
     // relation to the rest of the screen.
     // TODO(b/122471941): Find exact positioning of CustomizableGraph's chart.
     const chartX = 400;
-    const chartY = 180;
     // We sort the points by timestamp.
     const timestamps = Array.from(this.data.annotations.keys()).sort();
     // Charted points are always sorted by timestamp.
@@ -203,7 +205,7 @@ export class CustomizableGraphComponent extends
               timestamp, xPosition, this.chart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
-          this.addEditEvent(timestamp, Number(xPosition) + chartX, chartY);
+          this.addEditEvent(timestamp, Number(xPosition) + chartX, this.chartY);
         }
       }
     }
@@ -253,7 +255,7 @@ export class CustomizableGraphComponent extends
     const currAnnotation = this.data.annotations.get(millis);
 
     const dialogCoordinates =
-        self.findDialogCoordinates(xCoord + 10, yCoord + 10);
+        self.findDialogCoordinates(xCoord + 10, yCoord + this.chartY);
     editIcon.on('click', function() {
       // Make the dialog show up near where the user clicked.
       self.dialogRef = self.dialog.open(CustomizableTimelineDialogComponent, {

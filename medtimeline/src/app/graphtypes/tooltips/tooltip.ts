@@ -80,7 +80,7 @@ export class CustomizableGraphAnnotation {
   private showDetails: boolean;
 
   // The default y-coordinate for the annotation.
-  readonly defaultYCoordinate = 70;
+  readonly defaultYCoordinate = 45;
 
   // The maximum horizontal overlap for any two annotations.
   readonly horizontalOverlap = 20;
@@ -88,8 +88,10 @@ export class CustomizableGraphAnnotation {
   readonly verticalOverlap = 10;
   // The width of the annotation.
   readonly annotationWidth = 100;
-  // The y-coordinate for the connector.
-  readonly connectorYCoord = 50;
+  // The default height of the annotation.
+  readonly annotationHeight = 25;
+  // The default padding for the annotation.
+  readonly defaultPadding = 30;
 
   // The color for this annotation and associated point.
   color: Color;
@@ -103,19 +105,21 @@ export class CustomizableGraphAnnotation {
     const self = this;
     this.showDetails = false;
     const xAxisYCoord = '100px';
-    const yAxisXCoord = 70;
+    const yAxisXCoord = 90;
     // Find the points for where to draw the new annotation & connector, which
     // are on different scales.
     const yCoordinate = this.findBestYCoordinates(xCoordinate);
-    const difference = this.defaultYCoordinate - yCoordinate;
+    const tooltip = chart.internal.selectChart.style('position', 'relative')
+                        .append('div')
+                        .attr('class', 'tooltip-whole-' + millis);
     const tooltipContainer =
-        chart.internal.selectChart.style('position', 'relative')
-            .append('div')
-            .attr('class', 'tooltip-custom-' + millis);
+        tooltip.append('div').attr('class', 'tooltip-custom-' + millis);
+
     const tooltipTitleContainer = tooltipContainer.append('div');
     const expandIcon = tooltipTitleContainer.append('i')
                            .attr('class', 'material-icons')
                            .attr('id', 'expand-' + millis)
+                           .style('font-size', '18px')
                            .html('expand_more');
     const tooltipTitle = tooltipTitleContainer.append('h6')
                              .attr('class', 'tooltip-title-custom-' + millis)
@@ -124,7 +128,8 @@ export class CustomizableGraphAnnotation {
     const deleteIcon = tooltipTitleContainer.append('i')
                            .attr('class', 'material-icons')
                            .attr('id', 'delete-' + millis)
-                           .html('delete');
+                           .style('font-size', '18px')
+                           .html('clear');
     const tooltipDetails = tooltipContainer.append('div').attr(
         'class', 'tooltip-details-custom-' + millis);
     const tooltipDetailsText =
@@ -132,20 +137,20 @@ export class CustomizableGraphAnnotation {
     const editIcon = tooltipDetails.append('i')
                          .attr('class', 'material-icons')
                          .attr('id', 'edit-' + millis)
+                         .style('font-size', '18px')
                          .html('edit');
-    // The connector is the vertical line rendered that connects the flag to the
-    // x-axis.
-    const tooltipConnector =
-        chart.internal.selectChart.select('svg')
-            .append('line')
-            .attr('class', 'tooltip-connector' + millis)
-            .attr('x1', (Number(xCoordinate) + yAxisXCoord) + 'px')
-            .attr('x2', (Number(xCoordinate) + yAxisXCoord) + 'px')
-            .attr('y1', (this.connectorYCoord + difference) + 'px')
-            .attr('y2', xAxisYCoord)
-            .style('stroke-width', '1px');
-    tooltipContainer.style('left', (Number(xCoordinate) + yAxisXCoord) + 'px')
-        .style('bottom', yCoordinate + 'px')
+    tooltip.style('left', (Number(xCoordinate) + yAxisXCoord) + 'px')
+        .style('top', yCoordinate + 'px')
+        .style('border-left-color', this.color)
+        .style(
+            'padding-bottom',
+            (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
+                'px');
+    tooltipContainer.style('left', '0px')
+        .style(
+            'bottom',
+            (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
+                'px')
         .style('background-color', this.color);
     tooltipTitle.on('click', () => {
       // Toggle whether or not the details are shown.
@@ -165,7 +170,7 @@ export class CustomizableGraphAnnotation {
         self.showDetailsToggle(millis, false, tooltipContainer.node());
       }
     });
-    tooltipContainer
+    tooltip
         .on('mouseover',
             () => {
               // Only show icons when hovering over the tooltip.
@@ -179,9 +184,13 @@ export class CustomizableGraphAnnotation {
               // on it.
               // TODO(b/122365189): Bring annotation to front while hovering
               // without disturbing scroll.
-              // TODO(b/120919698): Bring the connector to the front as well.
               const parent = this.parentNode;
-              parent.appendChild(this);
+              // TODO(b/123935165): Find a better way to handle the errors.
+              try {
+                parent.appendChild(this);
+              } catch (e) {
+                console.log(e);
+              }
             })
         .on('mouseout', () => {
           expandIcon.style('visibility', 'hidden');
@@ -210,10 +219,10 @@ export class CustomizableGraphAnnotation {
 
   private findBestYCoordinates(xCoordinate: string) {
     const newXCoord = Number(xCoordinate.replace('px', ''));
-    const nodes: any = d3.selectAll('[class*="tooltip-custom"]').nodes();
+    const nodes: any = d3.selectAll('[class*="tooltip-whole"]').nodes();
     const positions = nodes.map(function(element) {
       return {
-        bottom: Number(element.style.bottom.replace('px', '')),
+        top: Number(element.style.top.replace('px', '')),
         left: Number(element.style.left.replace('px', '')),
       };
     });
@@ -224,13 +233,13 @@ export class CustomizableGraphAnnotation {
 
       if (newXCoord <= rightPosition &&
           (newXCoord + this.annotationWidth) >= position.left) {
-        overlappingYs.push(position.bottom);
+        overlappingYs.push(position.top);
       }
     }
 
     // Figure out the new y-coordinate for the annotation.
-    let defaultBottom = this.defaultYCoordinate;  // The default y-coordinate
-                                                  // for all annotations.
+    let defaultTop = this.defaultYCoordinate;  // The default y-coordinate
+                                               // for all annotations.
 
     overlappingYs.sort(function(a, b) {
       return a - b;
@@ -239,18 +248,18 @@ export class CustomizableGraphAnnotation {
     // horizontal overlap.
     if (overlappingYs.length > 0) {
       const topPosition = overlappingYs[overlappingYs.length - 1];
-      defaultBottom = topPosition + this.verticalOverlap;
+      defaultTop = topPosition - this.verticalOverlap;
     }
     // Check if there is any position with space available between existing
-    // annotaitons.
+    // annotations.
     for (let i = 0; i < overlappingYs.length - 1; i++) {
       // Check if there is enough space.
       if (overlappingYs[i + 1] - (overlappingYs[i] + this.annotationWidth) >=
           this.horizontalOverlap) {
-        defaultBottom = overlappingYs[i];
+        defaultTop = overlappingYs[i];
       }
     }
 
-    return defaultBottom;
+    return defaultTop;
   }
 }

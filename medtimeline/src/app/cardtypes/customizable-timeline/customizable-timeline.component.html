@@ -1,4 +1,5 @@
-<app-card [attr.id]="id" label="Custom Timeline" [isDraggable]="false" [isEditable]="true" [isRemovable]="false">
+<app-card [attr.id]="id" label="Custom Timeline" [isDraggable]="false" [isEditable]="true" [isRemovable]="false"
+  [color]="white" (onRender)="this.renderContainedGraph()">
   <ng-container class="legends-block">
     Click on this graph to add a flag for anything you want to keep track of.
   </ng-container>

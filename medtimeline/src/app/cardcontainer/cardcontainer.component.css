@@ -10,7 +10,7 @@
      -moz-user-select: none; /* Firefox */
       -ms-user-select: none; /* Internet Explorer/Edge */
           user-select: none; /* Chrome and Opera */
-  margin-top: 240px;
+  margin-top: 210px;
 }
 
 .mat-toolbar {
@@ -31,7 +31,8 @@
 }
 
 .customizableTimeline {
-  padding: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .makeGutters {
