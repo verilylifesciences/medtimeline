@@ -27,32 +27,8 @@ export class CardComponent {
 
   @Output() onRender = new EventEmitter();
   @Output() onRemove = new EventEmitter();
-  @Output() onCheck = new EventEmitter();
 
-  // Holds checkbox status.
-  isChecked = false;
-
-  // Holds the color this card's background should be.
-  selectionIndicationColor: Color = 'white';
-
-  // This event switches the background color of this card, indicating whether
-  // or not the card is selected.
-  toggleBackground() {
-    if (this.isChecked) {
-      // Change background color to make the card appear as "selected".
-      this.selectionIndicationColor = SELECTED;
-    } else {
-      this.selectionIndicationColor = 'white';
-    }
-  }
-
-  // The three events below need to get propogated up to the card container.
-
-  // Fires an event indicating the user clicked the checkbox.
-  check($event) {
-    this.toggleBackground();
-    this.onCheck.emit({checked: $event.checked, id: this.id});
-  }
+  // The events below need to get propogated up to the card container.
 
   // Called when the user clicks the trashcan button on the card.
   remove() {

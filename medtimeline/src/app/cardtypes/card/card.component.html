@@ -1,10 +1,8 @@
 <!-- This component is a card that holds a colored sidebar with icons indicating
 functionality, then space for a label & legend, then space for other contents. -->
-<mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="resize($event)"
-  [style.background-color]="selectionIndicationColor">
+<mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="resize($event)">
   <div fxFlex fxLayout="column" fxFlexAlign="stretch" fxShrink='0' fxGrow='0' fxLayoutAlign="space-between center"
     [style.background-color]="color" class="colorbar">
-    <mat-checkbox *ngIf="isRemovable" [(ngModel)]="isChecked" (change)="check($event)"></mat-checkbox>
     <mat-icon *ngIf="isEditable" matTooltip="You can edit this card">edit</mat-icon>
     <mat-icon *ngIf="isDraggable">
       drag_indicator

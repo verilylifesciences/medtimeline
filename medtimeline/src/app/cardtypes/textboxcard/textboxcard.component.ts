@@ -18,9 +18,8 @@ export class TextboxcardComponent {
   @ViewChild('textArea') textAreaElement: ElementRef;
   @Input() id: string;
 
-  /** Propogate remove and check events up to the card container.  */
+  /** Propogate remove events up to the card container.  */
   @Output() onRemove = new EventEmitter();
-  @Output() onCheck = new EventEmitter();
 
   // Holds the text typed in the input field of the textbox.
   noteString: string;
@@ -45,11 +44,6 @@ export class TextboxcardComponent {
   }
 
   // The events below need to get propogated up to the card container.
-  // Fires an event indicating the user clicked the checkbox.
-  check($event) {
-    this.onCheck.emit({checked: $event.checked, id: this.id});
-  }
-
 
   // Called when the user clicks the trashcan button on the card.
   remove() {

@@ -4,8 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule, MatCheckboxModule, MatDialog, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
 
 import {CardComponent} from '../card/card.component';
@@ -19,10 +18,7 @@ describe('CustomizableTimelineComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          imports: [
-            MatCardModule, MatIconModule, MatCheckboxModule, MatFormFieldModule,
-            FormsModule, ReactiveFormsModule, MatInputModule
-          ],
+          imports: [MatCardModule, MatIconModule],
           declarations: [
             CustomizableTimelineComponent,
             CustomizableGraphComponent,

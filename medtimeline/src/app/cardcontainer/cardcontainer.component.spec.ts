@@ -7,7 +7,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -52,16 +51,25 @@ describe('CardcontainerComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            MatCardModule,           MatIconModule,
-            MatCheckboxModule,       MatSidenavModule,
-            MatListModule,           MatDividerModule,
-            SidebarModule,           MatExpansionModule,
-            MatTabsModule,           MatDatepickerModule,
-            MatNativeDateModule,     MatAutocompleteModule,
-            MatInputModule,          FormsModule,
-            ReactiveFormsModule,     BrowserModule,
-            BrowserAnimationsModule, MatProgressSpinnerModule,
-            MatMenuModule,           NgxDaterangepickerMd.forRoot(),
+            MatCardModule,
+            MatIconModule,
+            MatSidenavModule,
+            MatListModule,
+            MatDividerModule,
+            SidebarModule,
+            MatExpansionModule,
+            MatTabsModule,
+            MatDatepickerModule,
+            MatNativeDateModule,
+            MatAutocompleteModule,
+            MatInputModule,
+            FormsModule,
+            ReactiveFormsModule,
+            BrowserModule,
+            BrowserAnimationsModule,
+            MatProgressSpinnerModule,
+            MatMenuModule,
+            NgxDaterangepickerMd.forRoot(),
             MatToolbarModule
           ],
           declarations: [

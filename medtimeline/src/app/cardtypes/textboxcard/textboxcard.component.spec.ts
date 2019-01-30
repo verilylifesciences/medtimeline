@@ -3,18 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {By} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SELECTED} from 'src/app/theme/bch_colors';
 
 import {CardComponent} from '../card/card.component';
-
 import {TextboxcardComponent} from './textboxcard.component';
 
 describe('TextboxcardComponent', () => {
@@ -31,7 +27,6 @@ describe('TextboxcardComponent', () => {
             MatIconModule,
             FormsModule,
             ReactiveFormsModule,
-            MatCheckboxModule,
           ],
           declarations: [TextboxcardComponent, CardComponent]
         })
@@ -57,16 +52,6 @@ describe('TextboxcardComponent', () => {
        button.click();
        fixture.whenStable().then(() => {
          expect(component.onRemove.emit).toHaveBeenCalledWith(component.id);
-       });
-     }));
-
-  it('should emit checkedEvent when checkbox is clicked', async(() => {
-       fixture.detectChanges();
-       const background = fixture.debugElement.query(By.css('#id'));
-       spyOn(component.onCheck, 'emit');
-       component.check({checked: true});
-       fixture.whenStable().then(() => {
-         expect(component.onCheck.emit).toHaveBeenCalled();
        });
      }));
 });

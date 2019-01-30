@@ -10,17 +10,6 @@
   </div>
 </div>
 <div fxLayout="column" class="cardContainer" id="{{CARDHOLDER}}">
-  <div class="multicardActions">
-    <!-- TODO(b/120088015): Move things below into a separate toolbar for multicard actions. -->
-    <div class="checkboxActions">
-      <div class="masterCheckbox">
-        <mat-checkbox [(ngModel)]="allChecked" [(indeterminate)]="someChecked" (change)="allChange($event)" matTooltip="Select all"></mat-checkbox>
-      </div>
-      <div *ngIf="allChecked || someChecked">
-        <mat-icon class="removeChecked" (click)="removeCheckedCards()" matTooltip="Remove selected cards">clear</mat-icon>
-      </div>
-    </div>
-  </div>
   <div class="addCardInPlace">
     <hr class="dashedLineAddCardLeft" />
     <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>

@@ -4,11 +4,9 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {ResourceCodesForCard} from 'src/app/clinicalconcepts/resource-code-manager';
@@ -32,12 +30,8 @@ describe('MultiGraphCardComponent', () => {
           imports: [
             BrowserAnimationsModule,
             MatCardModule,
-            MatInputModule,
             MatIconModule,
-            FormsModule,
-            ReactiveFormsModule,
             MatProgressSpinnerModule,
-            MatCheckboxModule,
           ],
           declarations: [
             MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,
@@ -70,15 +64,6 @@ describe('MultiGraphCardComponent', () => {
        button.click();
        fixture.whenStable().then(() => {
          expect(component.onRemove.emit).toHaveBeenCalledWith(component.id);
-       });
-     }));
-
-  it('should emit event for checkbox clicking', async(() => {
-       fixture.detectChanges();
-       spyOn(component.onCheck, 'emit');
-       component.check({checked: true});
-       fixture.whenStable().then(() => {
-         expect(component.onCheck.emit).toHaveBeenCalled();
        });
      }));
 });

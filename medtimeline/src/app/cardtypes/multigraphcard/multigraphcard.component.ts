@@ -40,9 +40,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // The ResourceCodeGroups displayed on this card.
   @Input() resourceCodeGroups: ResourceCodesForCard;
 
-  /** Propogate remove and check events up to the card container.  */
+  /** Propogate remove events up to the card container.  */
   @Output() onRemove = new EventEmitter();
-  @Output() onCheck = new EventEmitter();
 
   // An error message if there's an error in data retrieval.
   // TODO(b/119878664): Surface any errors in the UI.
@@ -159,11 +158,6 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   }
 
   // The events below need to get propogated up to the card container.
-  // Fires an event indicating the user clicked the checkbox.
-  check($event) {
-    this.onCheck.emit({checked: $event.checked, id: this.id});
-  }
-
 
   // Called when the user clicks the trashcan button on the card.
   remove() {

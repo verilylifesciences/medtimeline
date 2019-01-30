@@ -1,4 +1,4 @@
-<app-card [id]="id" [isEditable]="true" (onRemove)="remove()" (onCheck)="check($event)">
+<app-card [id]="id" [isEditable]="true" (onRemove)="remove()">
   <ng-container class="contents-block">
     <mat-form-field style="width: 95%;">
       <textarea #textArea matInput matTextareaAutosize placeholder="Enter notes here" (change)="updateValue()" (blur)="hideSave()"

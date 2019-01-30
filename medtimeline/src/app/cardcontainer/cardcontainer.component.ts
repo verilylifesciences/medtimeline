@@ -50,11 +50,6 @@ export class CardcontainerComponent {
   // Dragula Service.
   private readonly subs = new Subscription();
 
-  readonly checkedConcepts = new Map<string, boolean>();
-
-  someChecked = false;
-  allChecked = false;
-
   // Holds the most recently removed cards from the container, mapping the index
   // of the displayed card to the displayedConcept value.
   private recentlyRemoved =
@@ -64,8 +59,7 @@ export class CardcontainerComponent {
   // the ts files and html files.
   constructor(
       dragulaService: DragulaService, private fhirService: FhirService,
-      private resourceCodeManager: ResourceCodeManager,
-      private snackBar: MatSnackBar) {
+      resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
@@ -83,21 +77,6 @@ export class CardcontainerComponent {
         this.displayedConcepts.push({'id': uuid(), 'concept': concept});
       }
     }
-  }
-
-  /**
-   * Gets the index of the card below a dragged-and-dropped card's new place.
-   */
-  private getSiblingIdx(value): number {
-    let siblingIndex;
-    if (value.sibling === null) {
-      // Dragged to bottom of list
-      siblingIndex = this.displayedConcepts.length;
-    } else {
-      const siblingId = value.sibling.getAttribute('data-index');
-      siblingIndex = this.displayedConcepts.map(x => x.id).indexOf(siblingId);
-    }
-    return siblingIndex;
   }
 
   /**
@@ -123,90 +102,13 @@ export class CardcontainerComponent {
         DateTime.fromJSDate(new Date()).toISO());
   }
 
-  // We use this method to check whether the concept of a displayed concept is a
-  // string, which corresponds to a textbox rendered on the page.
-  private isString(x) {
-    return (typeof x === 'string');
-  }
-
-  // This method is called when a card's specific checkbox is clicked. It
-  // updates the list of checked concepts displayed.
-  private updateCheckedConcepts($event) {
-    if ($event.checked) {
-      this.checkedConcepts.set($event.id, $event.checked);
-    } else {
-      this.checkedConcepts.delete($event.id);
-    }
-    this.updateAllCheckedStatus();
-  }
-
-  // This method is called when the "master" checkbox toggles to/from an "all
-  // selected" state. It updates the list of checked concepts displayed.
-  allChange($event) {
-    this.checkedConcepts.clear();
-    if ($event.checked) {
-      // This case is when the user wants to select all cards
-      // remaining on the screen.
-      for (const concept of this.displayedConcepts) {
-        this.checkedConcepts.set(concept.id.toString(), true);
-      }
-    }
-
-    this.containedCards.forEach(card => {
-      card.isChecked = $event.checked;
-      card.toggleBackground();
-    });
-    this.updateAllCheckedStatus();
-  }
-
-  // This method is called when the user wants to delete all the cards selected
-  // on the page. It removes the selected cards and updates the list of checked
-  // concepts.
-  // TODO(b/122302858): Allow text in textbox to be restored.
-  private removeCheckedCards() {
-    // Remove these cards from this.displayedConcepts, as well as from
-    // this.checkedConcepts.
-    const checkedEntries = Array.from(this.checkedConcepts.entries());
-    this.recentlyRemoved.clear();
-    // Find all indices prior to removing the cards from the display. This must
-    // be done in order for the cards to be inserted back into the correct
-    // places, if necessary.
-    for (const checkedCard of checkedEntries) {
-      const index =
-          this.displayedConcepts.map(x => x.id).indexOf(checkedCard[0]);
-      this.recentlyRemoved.set(index, this.displayedConcepts[index]);
-    }
-    // Find and remove checked cards, updating indices after every deletion.
-    for (const checkedCard of checkedEntries) {
-      const index =
-          this.displayedConcepts.map(x => x.id).indexOf(checkedCard[0]);
-      this.displayedConcepts.splice(index, 1);
-    }
-    this.checkedConcepts.clear();
-    this.allChecked =
-        this.checkedConcepts.size === this.displayedConcepts.length &&
-        this.checkedConcepts.size !== 0;
-    this.someChecked = (this.checkedConcepts.size > 0) &&
-        (this.checkedConcepts.size < this.displayedConcepts.length);
-    this.openSnackBar();
-  }
-
-  private updateAllCheckedStatus() {
-    this.allChecked = (this.checkedConcepts.size > 0) &&
-        (this.checkedConcepts.size === this.displayedConcepts.length);
-    this.someChecked = (this.checkedConcepts.size > 0) &&
-        (this.checkedConcepts.size < this.displayedConcepts.length);
-  }
-
   // Listen for an event indicating that a "delete" button has been clicked on a
   // card currently displayed, and update the displayed & checked concepts
   // accordingly.
   private removeDisplayedCard($event) {
     const index = this.displayedConcepts.map(x => x.id).indexOf($event);
     const concept = this.displayedConcepts[index];
-    this.checkedConcepts.delete($event);
     this.displayedConcepts.splice(index, 1);
-    this.updateAllCheckedStatus();
     this.recentlyRemoved.clear();
     this.recentlyRemoved.set(index, concept);
     this.openSnackBar();
