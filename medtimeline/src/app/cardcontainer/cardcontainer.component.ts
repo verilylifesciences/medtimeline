@@ -29,6 +29,7 @@ export class CardcontainerComponent {
   private readonly DISPLAY_TIME = 6000;
 
   @ViewChildren(CardComponent) containedCards!: QueryList<CardComponent>;
+  eventlines: Array<{[key: string]: number | string}> = [];
 
   // The concepts that are actually being displayed on the page.
   // We keep track of unique ids for each displayed card, to allow removal on
@@ -152,5 +153,17 @@ export class CardcontainerComponent {
         id ? (this.displayedConcepts.map(x => x.id).indexOf(id) + 1) : 0;
     this.displayedConcepts.splice(
         index, 0, {id: uuid(), concept: graphCardValue});
+  }
+
+  /**
+   * Listens for an event indicating that the user has edited the points on the
+   * custom timeline, and updates the x-axis eventlines displayed on all other
+   * charts.
+   * @param $event The array of eventlines for each chart to display.
+   *
+   */
+
+  updateEventLines($event) {
+    this.eventlines = $event;
   }
 }

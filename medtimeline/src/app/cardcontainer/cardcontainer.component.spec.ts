@@ -45,6 +45,7 @@ describe('CardcontainerComponent', () => {
   let fixture: ComponentFixture<CardcontainerComponent>;
   let dataSelectorMenu: DataSelectorMenuComponent;
   let timelineToolbar: TimelineToolbarComponent;
+  let customizableTimeline: CustomizableTimelineComponent;
 
 
   beforeEach(async(() => {
@@ -101,6 +102,9 @@ describe('CardcontainerComponent', () => {
     timelineToolbar =
         fixture.debugElement.query(By.directive(TimelineToolbarComponent))
             .componentInstance;
+    customizableTimeline =
+        fixture.debugElement.query(By.directive(CustomizableTimelineComponent))
+            .componentInstance;
     fixture.detectChanges();
   }));
 
@@ -149,6 +153,16 @@ describe('CardcontainerComponent', () => {
     fixture.whenStable().then(() => {
       expect(component.displayedConcepts.length)
           .toEqual(displayedConceptsOriginalSize + 1);
+    });
+  });
+
+  it('should listen for event to update eventlines', () => {
+    const eventlinesOriginalSize = component.eventlines.length;
+    const neweventlines = [{value: 5, class: 'color000000', text: 'eventline'}];
+    customizableTimeline.updateEventLines.emit(neweventlines);
+    fixture.whenStable().then(() => {
+      expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
+      expect(component.eventlines.toString()).toEqual(neweventlines.toString());
     });
   });
 });

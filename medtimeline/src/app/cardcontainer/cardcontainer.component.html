@@ -6,7 +6,7 @@
     <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
   </mat-toolbar>
   <div class="customizableTimeline makeGutters">
-    <app-customizable-timeline class="card" [dateRange]="dateRange"></app-customizable-timeline>
+    <app-customizable-timeline class="card" [dateRange]="dateRange" (updateEventLines)="updateEventLines($event)"></app-customizable-timeline>
   </div>
 </div>
 <div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start" id="{{CARDHOLDER}}">
@@ -16,7 +16,7 @@
       <app-textboxcard *ngIf="element.concept ==='textbox'" [id]="element.id" (onCheck)="updateCheckedConcepts($event)"
         (onRemove)="removeDisplayedCard($event)"></app-textboxcard>
       <app-multigraphcard *ngIf="element.concept !=='textbox'" [resourceCodeGroups]="element.concept" [dateRange]="dateRange"
-        [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
+        [eventlines]="eventlines" [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
       </app-multigraphcard>
 
       <app-data-selector-menu (addCard)="addConceptCard($event, element.id)" (addTextbox)="addTextbox(element.id)"></app-data-selector-menu>

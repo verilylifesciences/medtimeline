@@ -3,7 +3,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
@@ -31,6 +32,17 @@ export class CustomizableTimelineComponent {
   // Over which time interval the card should display data
   @Input() dateRange: Interval;
 
+  // An event indicating that the event lines displayed on all other charts need
+  // to be updated.
+  // The format of each object in the array is an object representing a line
+  // drawn on the chart, that has a value, text, and class field. The value
+  // field represents the x-position of the line to be drawn, while the class
+  // represents the class name, and the text represents the text displayed near
+  // the line.
+  @Output()
+  updateEventLines =
+      new EventEmitter<Array<{[key: string]: number | string}>>();
+
   // The data for the graph contained.
   data: CustomizableData;
 
@@ -49,5 +61,26 @@ export class CustomizableTimelineComponent {
     if (this.containedGraph && this.containedGraph.chart) {
       this.containedGraph.regenerateChart();
     }
+  }
+
+  // Listens for an event indicating that the points on the CustomizableGraph
+  // have been changed, and emits an event with the modified eventlines displayed
+  // on all other charts.
+  pointsChanged($event) {
+    const times = Array.from($event.annotations.keys())
+                      .map(x => Number(x))
+                      .sort((a, b) => a - b);
+
+    // Remove the first point (with the earliest possible date) that was added
+    // in order to display the x-axis.
+    times.shift();
+    const eventlines = times.map(x => {
+      return {
+        value: x,
+        text: $event.annotations.get(x).title,
+        class: 'color' + $event.annotations.get(x).color.hex().replace('#', '')
+      };
+    });
+    this.updateEventLines.emit(eventlines);
   }
 }

@@ -32,6 +32,7 @@ export class CustomizableTimelineDialogComponent {
   listOfTimes = [];
 
   // The list of colors the user will be able to choose from.
+  // These colors need to stay consistent with the colored styles in graph.css.
   listOfColors = [
     BOSTON_YELLOW, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_BAY, BOSTON_PINK,
     BOSTON_LAVENDER, BOSTON_PURPLE

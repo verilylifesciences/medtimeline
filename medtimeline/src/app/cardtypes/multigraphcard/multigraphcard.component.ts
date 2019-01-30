@@ -40,7 +40,14 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // The ResourceCodeGroups displayed on this card.
   @Input() resourceCodeGroups: ResourceCodesForCard;
 
-  /** Propogate remove events up to the card container.  */
+  // The format of each object in the array is an object representing a line
+  // drawn on the chart, that has a value, text, and class field. The value
+  // field represents the x-position of the line to be drawn, while the class
+  // represents the class name, and the text represents the text displayed near
+  // the line.
+  @Input() eventlines: Array<{[key: string]: number | string}>;
+
+  /** Propogate remove up to the card container.  */
   @Output() onRemove = new EventEmitter();
 
   // An error message if there's an error in data retrieval.
@@ -98,7 +105,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // specified range.
   ngOnChanges(changes: SimpleChanges) {
     const dateRangeChange = changes['dateRange'];
-    if (dateRangeChange.previousValue !== dateRangeChange.currentValue) {
+    if (dateRangeChange &&
+        dateRangeChange.previousValue !== dateRangeChange.currentValue) {
       this.initializeData();
     }
   }

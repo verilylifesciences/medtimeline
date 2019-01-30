@@ -6,11 +6,9 @@
 import {Component, forwardRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
-import {DateTime} from 'luxon';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 
 import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
-import {DiscreteObservationTooltip} from '../tooltips/observation-tooltips';
 
 @Component({
   selector: 'app-linegraph',

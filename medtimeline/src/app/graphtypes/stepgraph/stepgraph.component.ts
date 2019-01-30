@@ -102,7 +102,7 @@ export class StepGraphComponent extends
     graph.data.colors = chartColors;
     // Don't draw lines between endpoints.
     graph.data.types = types;
-    graph.grid = {y: {show: true}};
+    graph.grid.y = {show: true};
     return graph;
   }
 }

@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file or at
 // https://developers.google.com/open-source/licenses/bsd
-import {Component, forwardRef, OnDestroy} from '@angular/core';
+import {Component, EventEmitter, forwardRef, OnDestroy, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
@@ -27,6 +27,8 @@ import {GraphComponent} from '../graph/graph.component';
 })
 export class CustomizableGraphComponent extends
     GraphComponent<CustomizableData> implements OnDestroy {
+  // An event indicating that the points on the CustomizableGraph have changed.
+  @Output() pointsChanged = new EventEmitter<CustomizableData>();
   // Whether or not the user is hovering over any point on the chart.
   private hoveringOverPoint = false;
   // The width and height of the dialog box that appears when the user clicks on
@@ -137,6 +139,7 @@ export class CustomizableGraphComponent extends
             self.addEditEvent(
                 userSelectedDate.toMillis(), parentCoordinates[0],
                 parentCoordinates[1]);
+            self.pointsChanged.emit(self.data);
           }
         });
       }
@@ -233,6 +236,7 @@ export class CustomizableGraphComponent extends
       const time = DateTime.fromMillis(millis);
       self.data.removePointFromSeries(time);
       self.regenerateChart();
+      self.pointsChanged.emit(self.data);
     });
   }
 
@@ -286,6 +290,7 @@ export class CustomizableGraphComponent extends
             // of changes made to the other fields.
             self.data.annotations.set(millis, result.annotation);
           }
+          self.pointsChanged.emit(self.data);
           // Remove the annotation from the DOM.
           self.removeAnnotation(millis);
           self.regenerateChart();

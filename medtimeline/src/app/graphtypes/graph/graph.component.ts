@@ -35,6 +35,8 @@ export const Y_AXIS_TICK_MAX = 12;
  */
 export abstract class GraphComponent<T extends GraphData> implements
     OnChanges, AfterViewInit {
+  // The x-axis eventlines to display on the chart.
+  @Input() eventlines: Array<{[key: string]: number | string}>;
   // Over which time interval the card should display data
   @Input() dateRange: Interval;
   @Input() data: T;
@@ -179,6 +181,7 @@ export abstract class GraphComponent<T extends GraphData> implements
     }
 
     const self = this;
+    const gridValues: any = this.eventlines ? this.eventlines : [];
     const graph = {
       bindto: '#' + this.chartDivId,
       size: {height: BASE_CHART_HEIGHT_PX},
@@ -195,6 +198,7 @@ export abstract class GraphComponent<T extends GraphData> implements
         self.boldDates();
         self.onRendered(this);
       },
+      grid: {x: {lines: gridValues}}
     };
 
     graph['tooltip'] = this.setTooltip();
