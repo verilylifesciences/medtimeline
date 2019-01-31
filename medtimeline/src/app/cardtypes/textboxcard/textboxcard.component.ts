@@ -22,7 +22,7 @@ export class TextboxcardComponent {
   @Output() onRemove = new EventEmitter();
 
   // Holds the text typed in the input field of the textbox.
-  noteString: string;
+  @Input() noteString: string;
 
   inEditMode = false;
 
@@ -34,7 +34,9 @@ export class TextboxcardComponent {
 
   // Called when the user clicks the trashcan button on the card.
   remove() {
-    this.onRemove.emit(this.id);
+    // We pass a 'value' field with the contents of the textbox so that, in case
+    // of restoration of a deleted textbox, the previous value can be displayed.
+    this.onRemove.emit({id: this.id, value: this.noteString});
   }
 
   edit() {

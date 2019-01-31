@@ -169,6 +169,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
 
   // Called when the user clicks the trashcan button on the card.
   remove() {
-    this.onRemove.emit(this.id);
+    // We do not add a 'value' field because there is no internal value that
+    // needs to be restored when the user reverts a deletion.
+    this.onRemove.emit({id: this.id});
   }
 }

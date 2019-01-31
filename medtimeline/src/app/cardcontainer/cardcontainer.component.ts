@@ -78,6 +78,47 @@ export class CardcontainerComponent {
         this.displayedConcepts.push({'id': uuid(), 'concept': concept});
       }
     }
+    this.setUpDrag(dragulaService);
+  }
+
+  // Ensures that the order of displayed concepts is updated as the user drags
+  // cards around.
+  private setUpDrag(dragulaService: DragulaService) {
+    this.subs.add(dragulaService.drop('graphcards').subscribe((value) => {
+      // These cases are dragging from within the card holder.
+      if (value.source.id === this.CARDHOLDER &&
+          value.target.id === this.CARDHOLDER) {
+        // Rearrange the order of this.displayedConcepts if graph/textbox
+        // cards are reordered. We do not use dragulaModel since we cannot use
+        // it for separate lists on the configuration panel.
+        let originalIndex = this.displayedConcepts.map(x => x.id).indexOf(
+            value.el.getAttribute('data-index'));
+        const siblingIndex = this.getSiblingIdx(value);
+        const elementDisplayed = this.displayedConcepts[originalIndex];
+        // Add the element to its new position.
+        this.displayedConcepts.splice(siblingIndex, 0, elementDisplayed);
+        // Adjust the original position if needed.
+        if (siblingIndex < originalIndex) {
+          originalIndex++;
+        }
+        this.displayedConcepts.splice(originalIndex, 1);
+      }
+    }));
+  }
+
+  /**
+   * Gets the index of the card below a dragged-and-dropped card's new place.
+   */
+  private getSiblingIdx(value): number {
+    let siblingIndex;
+    if (value.sibling === null) {
+      // Dragged to bottom of list
+      siblingIndex = this.displayedConcepts.length;
+    } else {
+      const siblingId = value.sibling.getAttribute('data-index');
+      siblingIndex = this.displayedConcepts.map(x => x.id).indexOf(siblingId);
+    }
+    return siblingIndex;
   }
 
   /**
@@ -107,8 +148,9 @@ export class CardcontainerComponent {
   // card currently displayed, and update the displayed & checked concepts
   // accordingly.
   private removeDisplayedCard($event) {
-    const index = this.displayedConcepts.map(x => x.id).indexOf($event);
+    const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     const concept = this.displayedConcepts[index];
+    concept.value = $event.value;
     this.displayedConcepts.splice(index, 1);
     this.recentlyRemoved.clear();
     this.recentlyRemoved.set(index, concept);

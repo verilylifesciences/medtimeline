@@ -13,7 +13,7 @@
   <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
-      <app-textboxcard *ngIf="element.concept ==='textbox'" [id]="element.id" (onCheck)="updateCheckedConcepts($event)"
+      <app-textboxcard *ngIf="element.concept ==='textbox'" [id]="element.id" [noteString]="element.value" (onCheck)="updateCheckedConcepts($event)"
         (onRemove)="removeDisplayedCard($event)"></app-textboxcard>
       <app-multigraphcard *ngIf="element.concept !=='textbox'" [resourceCodeGroups]="element.concept" [dateRange]="dateRange"
         [eventlines]="eventlines" [id]="element.id" (onCheck)="updateCheckedConcepts($event)" (onRemove)="removeDisplayedCard($event)">
