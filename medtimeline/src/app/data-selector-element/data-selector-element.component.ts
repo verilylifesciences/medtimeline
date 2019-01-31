@@ -23,6 +23,6 @@ export class DataSelectorElementComponent {
   // The DisplayGrouping for the card represented by this DataSelectorElement.
   @Input() conceptGroupKey: DisplayGrouping;
   // Hold an instance of the app time interval so we can display it in the HTML
-  readonly appTimeIntervalString = APP_TIMESPAN.start.toFormat('dd/MM/yyyy') +
-      ' and ' + APP_TIMESPAN.end.toFormat('dd/MM/yyyy');
+  readonly appTimeIntervalString = APP_TIMESPAN.start.toFormat('MM/dd/yyyy') +
+      ' and ' + APP_TIMESPAN.end.toFormat('MM/dd/yyyy');
 }
