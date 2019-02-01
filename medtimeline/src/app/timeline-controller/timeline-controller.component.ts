@@ -61,6 +61,7 @@ export class TimelineControllerComponent implements OnInit {
         .then(
             encounters => {
               if (encounters.length > 0) {
+                // Encounters come in local time.
                 encounters = encounters.sort(
                     (a, b) =>
                         a.period.start.toMillis() - b.period.start.toMillis());
@@ -72,17 +73,20 @@ export class TimelineControllerComponent implements OnInit {
                 // points that fall outside the time range of the encounter.
                 // We set the time of the dates of the encounter to be 00:00.
                 this.datesUpdated({
-                  startDate: moment.utc(
-                      latestEncounter.start.toJSDate().setHours(0, 0, 0, 0)),
+                  startDate: moment(
+                      latestEncounter.start.startOf('day').toUTC().toJSDate()),
                   endDate: moment.utc(
-                      latestEncounter.end.toJSDate().setHours(0, 0, 0, 0))
+                      latestEncounter.end.startOf('day').toUTC().toJSDate())
                 });
 
                 // Set the minimum date to select to be the beginning of the
                 // earliest encounter that had days that fell inside the app
-                // timespan.
+                // timespan, in UTC.
                 this.earliestAvailableDate =
-                    moment.utc(encounters[0].period.start.toJSDate());
+                    moment(encounters[0]
+                               .period.start.startOf('day')
+                               .toUTC()
+                               .toJSDate());
 
                 // We have to store everything as an ISO string because if we
                 // store as objects the set membership check doesn't work.
@@ -92,9 +96,15 @@ export class TimelineControllerComponent implements OnInit {
 
                 // We manually update the ranges stored in the daterangepicker
                 // so that the list of encounters is displayed.
+                // We store these in local time to prevent errors with
+                // displaying a date different than the dates of the encounter.
+                // While being communicated with charts, the interval will be
+                // converted to UTC.
                 for (const encounter of encounters) {
-                  const start = moment.utc(encounter.period.start.toJSDate());
-                  const end = moment.utc(encounter.period.end.toJSDate());
+                  const start =
+                      moment(encounter.period.start.startOf('day').toJSDate());
+                  const end =
+                      moment(encounter.period.end.startOf('day').toJSDate());
                   const label = start.format('MM/DD/YYYY') + '-' +
                       end.format('MM/DD/YYYY');
 
@@ -129,9 +139,12 @@ export class TimelineControllerComponent implements OnInit {
     }
     if (rangeIn.startDate.isBefore(rangeIn.endDate)) {
       this.selected = rangeIn;
+      // Convert to UTC time.
       const interval = Interval.fromDateTimes(
-          DateTime.fromJSDate(rangeIn.startDate.toDate()).toUTC(),
-          DateTime.fromJSDate(rangeIn.endDate.toDate()).toUTC());
+          DateTime.fromJSDate(rangeIn.startDate.toDate())
+              .startOf('day')
+              .toUTC(),
+          DateTime.fromJSDate(rangeIn.endDate.toDate()).startOf('day').toUTC());
       this.changeDateRange.emit(interval);
     }
   }

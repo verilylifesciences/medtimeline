@@ -97,12 +97,41 @@ describe('GraphComponent', () => {
         DateTime.utc(1990, 7, 13, 12), DateTime.utc(1990, 7, 15, 12));
 
     const generatedChart = component.generateBasicChart({});
-
     expect(generatedChart.axis.x.tick.values).toEqual([
-      DateTime.local(1990, 7, 13), DateTime.local(1990, 7, 14),
-      DateTime.local(1990, 7, 15), DateTime.local(1990, 7, 16)
+      DateTime.local(1990, 7, 13),
+      DateTime.local(1990, 7, 13, 12),
+      DateTime.local(1990, 7, 14),
+      DateTime.local(1990, 7, 14, 12),
+      DateTime.local(1990, 7, 15),
+      DateTime.local(1990, 7, 15, 12),
     ].map(x => Number(x)));
   });
+
+
+  it('x ticks should be separated by day intervals if the date range is large',
+     () => {
+       const testComponent = new StubGraphComponent();
+       component.dateRange = Interval.fromDateTimes(
+           DateTime.utc(1990, 7, 13, 12), DateTime.utc(1990, 7, 25, 12));
+
+       const generatedChart = component.generateBasicChart({});
+       expect(generatedChart.axis.x.tick.values).toEqual([
+         DateTime.local(1990, 7, 13),
+         DateTime.local(1990, 7, 14),
+         DateTime.local(1990, 7, 15),
+         DateTime.local(1990, 7, 16),
+         DateTime.local(1990, 7, 17),
+         DateTime.local(1990, 7, 18),
+         DateTime.local(1990, 7, 19),
+         DateTime.local(1990, 7, 20),
+         DateTime.local(1990, 7, 21),
+         DateTime.local(1990, 7, 22),
+         DateTime.local(1990, 7, 23),
+         DateTime.local(1990, 7, 24),
+         DateTime.local(1990, 7, 25),
+         DateTime.local(1990, 7, 26),
+       ].map(x => Number(x)));
+     });
 
 
   it('x ticks should work for very small ranges', () => {
@@ -113,7 +142,8 @@ describe('GraphComponent', () => {
     const generatedChart = component.generateBasicChart({});
 
     expect(generatedChart.axis.x.tick.values).toEqual([
-      DateTime.local(1964, 3, 22), DateTime.local(1964, 3, 23)
+      DateTime.local(1964, 3, 22),
+      DateTime.local(1964, 3, 22, 12),
     ].map(x => Number(x)));
   });
 
@@ -127,8 +157,14 @@ describe('GraphComponent', () => {
        const generatedChart = component.generateBasicChart();
 
        expect(generatedChart.axis.x.tick.values).toEqual([
-         DateTime.local(1995, 7, 21), DateTime.local(1995, 7, 22),
-         DateTime.local(1995, 7, 23), DateTime.local(1995, 7, 24)
+         DateTime.local(1995, 7, 21),
+         DateTime.local(1995, 7, 21, 12),
+         DateTime.local(1995, 7, 22),
+         DateTime.local(1995, 7, 22, 12),
+         DateTime.local(1995, 7, 23),
+         DateTime.local(1995, 7, 23, 12),
+         DateTime.local(1995, 7, 24),
+         DateTime.local(1995, 7, 24, 12),
        ].map(x => Number(x)));
      });
 

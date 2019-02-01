@@ -5,18 +5,22 @@
 
 import {DateTime, Duration, Interval} from 'luxon';
 /**
- * For this the given date range, returns a DateTime for each day in the time
+ * For the given date range, returns a DateTime for each day in the time
  * range (converting to local time first) as a list in chronological
- * order--possibly plus one extra day on the end. The first DateTime in the list
- * will be at or prior to the first item in timeRange, and the last DateTime in
- * the list will be at or after the second item in timeRange, so that all data
- * points in timeRange will be enclosed by the days listed in the returned
- * array.
+ * order. All data points in dateRange will be enclosed by the days listed in
+ * the returned array. If specified, additional DateTimes will be included at
+ * the 12-hour mark of each day in the interval.
+ * @param dateRange The date range to get tick marks for.
+ * @param twelveHour Whether or not to include DateTimes at the 12-hour mark of
+ *     each day.
  *
  * @returns A list of the days in chronological order within the time range.
  */
-export function getDaysInRange(dateRange: Interval): DateTime[] {
+export function getTickMarksForXAxis(
+    dateRange: Interval, twelveHour: boolean): DateTime[] {
   const days: DateTime[] = [];
+  // The dateRange could be stored in UTC, so convert it back to local
+  // time.
   const intervalLocal = Interval.fromDateTimes(
       dateRange.start.toLocal(), dateRange.end.toLocal());
   const startDate: DateTime = intervalLocal.start.startOf('day');
@@ -26,21 +30,19 @@ export function getDaysInRange(dateRange: Interval): DateTime[] {
 
   for (let i = 0; i <= dayCount; i++) {
     days.push(startDate.plus({days: i}));
+    if (twelveHour) {
+      days.push(startDate.plus({days: i, hours: 12}));
+    }
   }
 
-  // If the timestamp of the last day in the range is not 00:00, then we
-  // want to include that day in the listed range.
-  if (intervalLocal.end.startOf('day').toISO() !== intervalLocal.end.toISO()) {
-    days.push(startDate.plus({days: dayCount + 1}));
-  }
   return days;
 }
 
 /**
  * Returns a DateTime for each day contained in any of the intervals in the
  * passed-in interval set. If the interval set contains day-boundaries, it will
- * add an extra day to be sure to encompass the full day, like getDaysInRange.
- * The days returned will be in an array in time order.
+ * add an extra day to be sure to encompass the full day, like
+ * getTickMarksForXAxis. The days returned will be in an array in time order.
  *
  * @param intervals The intervals to list all the days for.
  */
@@ -48,7 +50,7 @@ export function getDaysForIntervalSet(intervals: Interval[]): DateTime[] {
   const days: DateTime[] = [];
   const allIntervals = Interval.merge(intervals);
   for (const interval of allIntervals) {
-    getDaysInRange(interval).forEach(x => days.push(x.toUTC()));
+    getTickMarksForXAxis(interval, false).forEach(x => days.push(x.toUTC()));
   }
   return days.sort();
 }
