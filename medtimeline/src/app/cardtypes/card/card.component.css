@@ -22,9 +22,15 @@
 }
 
 .mat-icon {
-  color: rgb(53, 46, 21);
+  color: rgb(34, 44, 66);
   cursor: pointer;
   margin: 6px;
+  transition: opacity .3s;
+  opacity: .2;
+}
+
+.mat-card:hover .mat-icon {
+  opacity: 1;
 }
 
 .labelColumn{

@@ -3,6 +3,7 @@ functionality, then space for a label & legend, then space for other contents. -
 <mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="none center" (resized)="resize($event)">
   <div fxFlex fxLayout="column" fxFlexAlign="stretch" fxShrink='0' fxGrow='0' fxLayoutAlign="space-between center"
     [style.background-color]="color" class="colorbar">
+    <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)" matTooltip="Remove this card">clear</mat-icon>
     <mat-icon *ngIf="isDraggable">
       drag_indicator
     </mat-icon>
@@ -10,7 +11,8 @@ functionality, then space for a label & legend, then space for other contents. -
       <mat-icon *ngIf="!inEditMode" matTooltip="Click to edit this card" (click)="edit($event)">edit</mat-icon>
       <mat-icon *ngIf="inEditMode" matTooltip="Click to save your work" (click)="save($event)">save</mat-icon>
     </ng-container>
-    <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)" matTooltip="Remove this card">clear</mat-icon>
+    <!--Ensure that the dragger icon is always at the center of the color bar.-->
+    <div *ngIf="!isEditable" style="margin-bottom: 15px"></div>
   </div>
   <div *ngIf="label" fxFlex fxLayout="column" fxFlexAlign="stretch" fxGrow="0" fxShrink="0" class="labelColumn">
     <div fxFlex class="mat-title label">{{label}}</div>
