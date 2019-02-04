@@ -37,9 +37,9 @@ export class LineGraphData extends GraphData {
        * the purposes of color and legends
        */
       seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
-      tooltipMap?: Map<string, string>,
-      tooltipKeyFn?: (key: string) => string) {
-    super(series, seriesToDisplayGroup, tooltipMap, tooltipKeyFn);
+      tooltipMap?: Map<string, string>, tooltipKeyFn?: (key: string) => string,
+      regions?: any[]) {
+    super(series, seriesToDisplayGroup, tooltipMap, tooltipKeyFn, regions);
   }
 
   /**
@@ -94,7 +94,14 @@ export class LineGraphData extends GraphData {
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
       sanitizer: DomSanitizer): LineGraphData {
     const tooltipMap = new Map<string, string>();
+    const regions = [];
     for (const order of medicationOrderSet.resourceList) {
+      regions.push({
+        axis: 'x',
+        class: 'order-region',
+        start: order.firstAdministration.timestamp,
+        end: order.lastAdmininistration.timestamp
+      });
       for (const admin of order.administrationsForOrder.resourceList) {
         const timestamp =
             admin.medAdministration.timestamp.toMillis().toString();
@@ -120,7 +127,8 @@ export class LineGraphData extends GraphData {
     return new LineGraphData(
         medicationOrderSet.label, [singleSeries],
         [medicationOrderSet.minDose, medicationOrderSet.maxDose],
-        medicationOrderSet.unit, seriesToDisplayGrouping, tooltipMap);
+        medicationOrderSet.unit, seriesToDisplayGrouping, tooltipMap, undefined,
+        regions);
   }
 
   /**

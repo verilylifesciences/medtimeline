@@ -6,6 +6,7 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
+import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
@@ -46,13 +47,13 @@ export class CustomizableTimelineComponent {
   // The data for the graph contained.
   data: CustomizableData;
 
-  constructor() {
+  constructor(private fhirService: FhirService) {
     // We need to initialize the data with a point so that the c3 chart can show
     // the x-axis with the dates (otherwise, it turns up blank). This date is
     // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
     this.data = CustomizableData.fromInitialPoint(
         DateTime.fromJSDate(new Date(-8640000000000000)), 0,
-        new CustomizableGraphAnnotation());
+        new CustomizableGraphAnnotation(), fhirService);
     this.renderContainedGraph();
   }
 
@@ -64,8 +65,8 @@ export class CustomizableTimelineComponent {
   }
 
   // Listens for an event indicating that the points on the CustomizableGraph
-  // have been changed, and emits an event with the modified eventlines displayed
-  // on all other charts.
+  // have been changed, and emits an event with the modified eventlines
+  // displayed on all other charts.
   pointsChanged($event) {
     const times = Array.from($event.annotations.keys())
                       .map(x => Number(x))

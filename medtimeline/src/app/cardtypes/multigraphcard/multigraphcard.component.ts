@@ -98,6 +98,9 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
       this.getLabelText().then(lblText => {
         this.unitsLabel = lblText;
       });
+      if (this.card.axes.length > 1) {
+        this.setRegions();
+      }
     }
   }
 
@@ -150,6 +153,28 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
           } else {
             return '';
           }
+        });
+  }
+
+  /**
+   * Get all the regions for the axes on this card, and plot all the regions on
+   * every axis of the card.
+   */
+  setRegions() {
+    let allRegions = [];
+    Promise.all(this.card.axes.map(axis => axis.getDataFromFhir()))
+        .then(data => {
+          if (data.length > 1) {
+            for (const dataAxis of data) {
+              if (dataAxis.xRegions) {
+                allRegions = allRegions.concat(dataAxis.xRegions);
+              }
+            }
+          }
+        })
+        .then(x => {
+          Promise.all(this.card.axes.map(axis => axis.getDataFromFhir()))
+              .then(data => data.forEach(d => d.xRegions = allRegions));
         });
   }
 

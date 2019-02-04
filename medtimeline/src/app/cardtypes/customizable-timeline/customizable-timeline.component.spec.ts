@@ -7,8 +7,10 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
+import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/tooltips/tooltip';
+import {StubFhirService} from 'src/app/test_utils';
 
 import {CardComponent} from '../card/card.component';
 
@@ -28,7 +30,10 @@ describe('CustomizableTimelineComponent', () => {
             CustomizableGraphComponent,
             CardComponent,
           ],
-          providers: [{provide: MatDialog, useValue: null}]
+          providers: [
+            {provide: MatDialog, useValue: null},
+            {provide: FhirService, useValue: new StubFhirService()}
+          ]
         })
         .compileComponents();
   }));

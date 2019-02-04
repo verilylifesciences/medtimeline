@@ -4,7 +4,9 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
+import {APP_TIMESPAN} from 'src/constants';
 
+import {FhirService} from '../fhir.service';
 import {CustomizableGraphAnnotation} from '../graphtypes/tooltips/tooltip';
 
 import {GraphData} from './graphdata';
@@ -25,8 +27,9 @@ export class CustomizableData extends GraphData {
        * map from a number representation of a Date to
        * CustomizableGraphAnnotation for the corresponding point.
        */
-      readonly annotations: Map<number, CustomizableGraphAnnotation>) {
-    super([series], new Map());
+      readonly annotations: Map<number, CustomizableGraphAnnotation>,
+      regions: any[]) {
+    super([series], new Map(), undefined, undefined, regions);
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
   }
@@ -38,12 +41,25 @@ export class CustomizableData extends GraphData {
    * @param annotation The CustomizableGraphAnnotation for this point.
    * @returns a new CustomizableData representing this initial point.
    */
+  // TODO(b/123940928): Consider passing in encounters rather than FhirService.
   static fromInitialPoint(
-      date: DateTime, yValue: number, annotation: CustomizableGraphAnnotation) {
+      date: DateTime, yValue: number, annotation: CustomizableGraphAnnotation,
+      fhirService: FhirService) {
     const annotations = new Map<number, CustomizableGraphAnnotation>().set(
         date.toMillis(), annotation);
+    const regions = [];
+    fhirService.getEncountersForPatient(APP_TIMESPAN).then(encounters => {
+      for (const encounter of encounters) {
+        regions.push({
+          axis: 'x',
+          class: 'encounter-region',
+          start: encounter.period.start.startOf('day'),
+          end: encounter.period.end.endOf('day')
+        });
+      }
+    });
     return new CustomizableData(
-        LabeledSeries.fromInitialPoint(date, yValue), annotations);
+        LabeledSeries.fromInitialPoint(date, yValue), annotations, regions);
   }
 
   /**

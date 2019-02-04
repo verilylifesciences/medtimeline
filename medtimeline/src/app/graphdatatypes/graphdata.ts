@@ -24,7 +24,7 @@ export class DisplayConfiguration {
       /**
        * Maps y-series names (keys) to DisplayGroupings.
        */
-      readonly ySeriesLabelToDisplayGroup: Map<string, DisplayGrouping>) {};
+      readonly ySeriesLabelToDisplayGroup: Map<string, DisplayGrouping>) {}
 }
 
 /*
@@ -32,6 +32,7 @@ export class DisplayConfiguration {
  */
 export class GraphData {
   c3DisplayConfiguration: DisplayConfiguration;
+  xRegions: any[];
 
   constructor(
       /** A list of the series to be displayed on the graph. */
@@ -66,9 +67,14 @@ export class GraphData {
        * takes in a graph data point and returns the key into tooltipMap that
        * provides the tooltip for that data point.
        */
-      readonly tooltipKeyFn?: (graphData: any) => string) {
+      readonly tooltipKeyFn?: (graphData: any) => string,
+      /**
+       * A list of x-axis regions to display on the graph.
+       */
+      regions?: any[]) {
     this.c3DisplayConfiguration =
         this.generateColumnMapping(seriesToDisplayGroup);
+    this.xRegions = regions;
   }
 
   /*

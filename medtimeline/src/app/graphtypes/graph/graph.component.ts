@@ -229,6 +229,7 @@ export abstract class GraphComponent<T extends GraphData> implements
         type: chartTypeString,
         colors: colorsMap,
       },
+      regions: this.data.xRegions,
       axis: {x: xAxisConfig, y: yAxisConfig},
       legend: {show: false},  // There's always a custom legend
       line: {connectNull: false},
@@ -312,7 +313,10 @@ export abstract class GraphComponent<T extends GraphData> implements
     }
 
     basicChart.axis.y.tick['values'] = yBounds;
-    basicChart['regions'] = [{axis: 'y', start: yBounds[0], end: yBounds[1]}];
+    if (!basicChart['regions']) {
+      basicChart['regions'] = [];
+    }
+    basicChart['regions'].push({axis: 'y', start: yBounds[0], end: yBounds[1]});
     return basicChart;
   }
 

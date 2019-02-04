@@ -89,3 +89,13 @@ style names with ::ng-deep.  */
 ::ng-deep .c3-xgrid-line.color80225F line {
   stroke: #80225F;
 }
+
+::ng-deep .encounter-region {
+  fill: rgb(0, 35, 86); /* Primary color */
+  stroke: rgb(0, 35, 86); /* Primary color */
+}
+
+::ng-deep .order-region {
+  fill: rgb(179, 157, 219); /* Secondary color */
+  stroke:  rgb(179, 157, 219); /* Secondary color */
+}
