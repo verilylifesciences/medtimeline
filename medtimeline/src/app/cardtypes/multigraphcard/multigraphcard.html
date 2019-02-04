@@ -14,13 +14,15 @@
     <div fxFlex *ngFor="let axis of card.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.isResolved" [diameter]="30"></mat-spinner>
       <ng-container *ngIf="axis.isResolved" [ngSwitch]="axis.chartType">
-        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"></app-linegraph>
-        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"></app-scatterplot>
+        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"
+          [axisLabel]="axis.label"></app-linegraph>
+        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"
+          [axisLabel]="axis.label"></app-scatterplot>
         <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.data" [dateRange]="this.dateRange"
-          [eventlines]="this.eventlines">
+          [eventlines]="this.eventlines" [axisLabel]="axis.label">
         </app-stepgraph>
         <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.data" [dateRange]="this.dateRange"
-          [eventlines]="this.eventlines"></app-microbio-graph>
+          [eventlines]="this.eventlines" [axisLabel]="axis.label"></app-microbio-graph>
       </ng-container>
     </div>
   </div>

@@ -39,6 +39,8 @@ export abstract class GraphComponent<T extends GraphData> implements
   // Over which time interval the card should display data
   @Input() dateRange: Interval;
   @Input() data: T;
+  // The y-axis label to display.
+  @Input() axisLabel: string;
 
   // A unique identifier for the element to bind the graph to.
   chartDivId: string;
@@ -186,6 +188,12 @@ export abstract class GraphComponent<T extends GraphData> implements
     } else if (this.chartType !== ChartType.LINE) {
       throw Error('Unsupported chart type: ' + this.chartType);
     }
+
+    // Show the y-axis label on the chart.
+    yAxisConfig['label'] = {
+      text: (this.axisLabel ? this.axisLabel : ''),
+      position: 'outer-middle'
+    };
 
     const self = this;
     const gridValues: any = this.eventlines ? this.eventlines : [];

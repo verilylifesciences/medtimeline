@@ -55,7 +55,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
               .padStart(Y_AXIS_TICK_MAX, '\xa0');
         }
       },
-      label: this.data.unit
     };
 
     let graph = this.generateBasicChart(yAxisConfig);
@@ -97,7 +96,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     // Replace the tick label's initially displayed values to padded strings so
     // that the axis is aligned.
     if (needToWrap) {
-      graph.axis.x.tick.format = function(d) {
+      graph.axis.y.tick.format = function(d) {
         return ''.trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
       };
     }

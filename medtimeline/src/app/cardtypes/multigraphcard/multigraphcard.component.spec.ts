@@ -63,7 +63,9 @@ describe('MultiGraphCardComponent', () => {
            'mat-icon.removeCardButton');
        button.click();
        fixture.whenStable().then(() => {
-         expect(component.onRemove.emit).toHaveBeenCalledWith(component.id);
+         expect(component.onRemove.emit).toHaveBeenCalledWith({
+           id: component.id
+         });
        });
      }));
 });

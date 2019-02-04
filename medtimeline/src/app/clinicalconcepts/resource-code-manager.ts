@@ -203,10 +203,10 @@ export class ResourceCodeManager {
       codeGroups.push(new ResourceCodesForCard(
           [
             new RxNormCodeGroup(
-                this.fhirService, 'Vancomycin',
+                this.fhirService, 'Medication Administrations',
                 [RxNormCode.fromCodeString('11124')], med, ChartType.SCATTER),
             new LOINCCodeGroup(
-                this.fhirService, 'Vancomycin',
+                this.fhirService, 'Monitoring',
                 ResourceCodeManager.vancMonitoring, med, ChartType.SCATTER)
           ],
           'Vancomycin', med));

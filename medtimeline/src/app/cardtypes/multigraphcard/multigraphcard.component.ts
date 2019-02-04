@@ -90,8 +90,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
 
   private initializeData() {
     this.card = new Card(
-        this.fhirService, this.resourceCodeGroups.resourceCodeGroups,
-        this.dateRange, this.sanitizer);
+        this.fhirService, this.resourceCodeGroups, this.dateRange,
+        this.sanitizer);
     if (this.resourceCodeGroups) {
       this.label = this.resourceCodeGroups.label;
       this.color = this.resourceCodeGroups.displayGrouping.fill;

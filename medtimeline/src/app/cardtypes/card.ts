@@ -8,6 +8,7 @@ import {Interval} from 'luxon';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
+import {ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {FhirService} from '../fhir.service';
 import {Axis} from '../graphtypes/axis';
 
@@ -38,15 +39,19 @@ export class Card {
   /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.
-   * @param resourceCodeGroups The groups of resources to display on each Axis
+   * @param resourceCodes The groups of resources to display on each Axis
    *     for this Card.
    * @param dateRange The date range for this Card.
    * @throws Error if the ResourceCodeGroups have mixed display groupings, or
    * the resource code groups are undefined
    */
   constructor(
-      fhirService: FhirService, resourceCodeGroups: ResourceCodeGroup[],
-      dateRange: Interval, sanitizer: DomSanitizer) {
+      fhirService: FhirService,
+      resourceCodes: ResourceCodesForCard,
+      dateRange: Interval,
+      sanitizer: DomSanitizer,
+  ) {
+    const resourceCodeGroups = resourceCodes.resourceCodeGroups;
     if (!resourceCodeGroups) {
       throw Error('Resource codes are undefined.');
     }
@@ -63,8 +68,11 @@ export class Card {
 
     this.dateRange = dateRange;
     for (const resourceGroup of resourceCodeGroups) {
+      const label = (resourceGroup.label !== resourceCodes.label) ?
+          resourceGroup.label :
+          undefined;
       this.axes.push(
-          new Axis(fhirService, resourceGroup, dateRange, sanitizer));
+          new Axis(fhirService, resourceGroup, dateRange, sanitizer, label));
     }
   }
 }

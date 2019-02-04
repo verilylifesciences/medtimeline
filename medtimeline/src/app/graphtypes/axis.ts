@@ -62,19 +62,27 @@ export class Axis {
    */
   isResolved = false;
 
+
+  /*
+   * The label for this axis.
+   */
+  label: string;
+
   /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.
    * @param resourceGroup The ResourceGroup to request data for.
    * @param dateRange: The date range to display on the axis.
+   * @param label?: The optional y-axis label for this axis.
    */
   constructor(
       private fhirService: FhirService, resourceGroup: ResourceCodeGroup,
-      dateRange: Interval, private sanitizer: DomSanitizer) {
+      dateRange: Interval, private sanitizer: DomSanitizer, label?: string) {
     this.dateRange = dateRange;
     this.chartType = resourceGroup.chartType;
     this.displayConcept = resourceGroup.displayGrouping;
     this.resourceGroup = resourceGroup;
+    this.label = label;
     this.getDataFromFhir().then(res => {
       this.data = res;
       this.isResolved = true;
