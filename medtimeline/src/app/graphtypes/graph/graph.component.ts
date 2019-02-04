@@ -16,7 +16,6 @@ import {v4 as uuid} from 'uuid';
 
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
 import {getDaysInRange} from '../../date_utils';
-import * as Colors from '../../theme/bch_colors';
 
 export enum ChartType {
   SCATTER,
@@ -118,6 +117,14 @@ export abstract class GraphComponent<T extends GraphData> implements
             'No data for ' + this.dateRange.start.toLocaleString() + '-' +
             this.dateRange.end.toLocaleString());
         emptyContainer.attr('class', 'c3-text c3-empty noData');
+        // We set the opacity of the y-axis ticks of empty charts to 0 after
+        // setting the tick values. We do this instead of not displaying the
+        // y-axis altogether to ensure that the left padding of the chart is
+        // aligned with all other charts.
+        const yAxisTicks = d3.select('#' + this.chartDivId)
+                               .selectAll('.c3-axis-y')
+                               .selectAll('.tick')
+                               .style('opacity', 0);
       }
       this.wrapYAxisLabels();
     }
@@ -196,6 +203,7 @@ export abstract class GraphComponent<T extends GraphData> implements
       line: {connectNull: false},
       onrendered: function() {
         self.boldDates();
+        self.wrapYAxisLabels();
         self.onRendered(this);
       },
       grid: {x: {lines: gridValues}}
