@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Component, QueryList, ViewChildren} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
@@ -12,6 +12,7 @@ import {v4 as uuid} from 'uuid';
 
 import {CardComponent} from '../cardtypes/card/card.component';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
@@ -56,11 +57,15 @@ export class CardcontainerComponent {
   private recentlyRemoved =
       new Map<number, {[key: string]: ResourceCodesForCard | string}>();
 
+  // The reference for the Dialog opened.
+  private dialogRef: MatDialogRef<DeleteDialogComponent>;
+
   // TODO(b/119251288): Extract out the constants to somewhere shared between
   // the ts files and html files.
   constructor(
       dragulaService: DragulaService, private fhirService: FhirService,
-      resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar) {
+      resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
+      private deleteDialog: MatDialog) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
@@ -145,16 +150,22 @@ export class CardcontainerComponent {
   }
 
   // Listen for an event indicating that a "delete" button has been clicked on a
-  // card currently displayed, and update the displayed & checked concepts
-  // accordingly.
+  // card currently displayed, and update the displayed concepts
+  // accordingly after asking for confirmation of deletion.
   private removeDisplayedCard($event) {
     const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     const concept = this.displayedConcepts[index];
     concept.value = $event.value;
-    this.displayedConcepts.splice(index, 1);
-    this.recentlyRemoved.clear();
-    this.recentlyRemoved.set(index, concept);
-    this.openSnackBar();
+    this.dialogRef = this.deleteDialog.open(DeleteDialogComponent);
+    this.dialogRef.afterClosed().subscribe(result => {
+      // The user wishes to delete the card.
+      if (result) {
+        this.displayedConcepts.splice(index, 1);
+        this.recentlyRemoved.clear();
+        this.recentlyRemoved.set(index, concept);
+        this.openSnackBar();
+      }
+    });
   }
 
   // Open a snack bar allowing for the user to potentially reverse the removal

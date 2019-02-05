@@ -112,23 +112,6 @@ describe('CardcontainerComponent', () => {
        fixture.whenStable().then(x => expect(component).toBeTruthy());
      }));
 
-  it('should listen for removeCard event', async(() => {
-       fixture.whenStable().then(x => {
-         const textboxElement =
-             fixture.debugElement.query(By.directive(TextboxcardComponent));
-         const trashcan = textboxElement.nativeElement.querySelector(
-             'mat-icon.removeCardButton');
-         let index = component.displayedConcepts.map(y => y.id).indexOf(
-             textboxElement.componentInstance.id);
-         expect(index).toBeGreaterThan(-1);
-         trashcan.click();
-
-         index = component.displayedConcepts.map(y => y.id).indexOf(
-             textboxElement.componentInstance.id);
-         expect(index).toEqual(-1);
-       });
-     }));
-
   it('should listen for event to add card', () => {
     const displayedConceptsOriginalSize = component.displayedConcepts.length;
     dataSelectorMenu.addCard.emit('Temperature');

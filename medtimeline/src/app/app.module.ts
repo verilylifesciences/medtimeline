@@ -36,6 +36,7 @@ import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.componen
 import {ResourceCodeManager} from './clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from './data-selector-menu/data-selector-menu.component';
+import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {FhirHttpService} from './fhir-http.service';
 import {FhirLaunchComponent} from './fhir-launch/fhir-launch.component';
 import {FhirService} from './fhir.service';
@@ -70,6 +71,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     DataSelectorMenuComponent,
     HelpDialogComponent,
     CardComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule, MatCardModule, HttpClientModule, MatSidenavModule,
@@ -102,7 +104,10 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     {provide: ResourceCodeManager, useClass: ResourceCodeManager}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CustomizableTimelineDialogComponent, HelpDialogComponent]
+  entryComponents: [
+    CustomizableTimelineDialogComponent, HelpDialogComponent,
+    DeleteDialogComponent
+  ]
 })
 export class AppModule {
 }
