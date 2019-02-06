@@ -8,8 +8,8 @@ import {Color} from 'd3';
 import {Interval} from 'luxon';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
+import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
-import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 import {DiscreteObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
@@ -50,7 +50,8 @@ export class LineGraphData extends GraphData {
    * @throws Error if the observations in observationGroup have different units.
    */
   static fromObservationSetList(
-      label: string, observationGroup: ObservationSet[]): LineGraphData {
+      label: string, observationGroup: ObservationSet[],
+      resourceCodeGroup: ResourceCodeGroup): LineGraphData {
     const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
     let seriesIdx = 0;
     const dataColors: Color[] = getDataColors();
@@ -72,6 +73,37 @@ export class LineGraphData extends GraphData {
       minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
       maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
     }
+    let yAxisDisplayMin;
+    let yAxisDisplayMax;
+    if (resourceCodeGroup.forceDisplayBounds) {
+      // We use the provided display bounds by default, regardless of the bounds
+      // of the data.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds ?
+          resourceCodeGroup.displayBounds[0] :
+          minY;
+      yAxisDisplayMax = resourceCodeGroup.displayBounds ?
+          resourceCodeGroup.displayBounds[1] :
+          maxY;
+    } else {
+      // We use the provided display bounds as the y-axis display min and max,
+      // unless the calculated minimum and maximum of the data span a smaller
+      // range.
+
+      // We choose the provided min bound if it is larger than the min of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds ?
+          ((resourceCodeGroup.displayBounds[0] >= minY) ?
+               resourceCodeGroup.displayBounds[0] :
+               minY) :
+          minY;
+      // We choose the provided max bound if it is smaller than the max of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMax = resourceCodeGroup.displayBounds ?
+          ((resourceCodeGroup.displayBounds[1] <= maxY) ?
+               resourceCodeGroup.displayBounds[1] :
+               maxY) :
+          maxY;
+    }
 
     const allUnits =
         new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
@@ -79,8 +111,8 @@ export class LineGraphData extends GraphData {
       throw Error('Observations have different units.');
     }
     return new LineGraphData(
-        label, series, [minY, maxY], allUnits.values().next().value,
-        seriesToDisplayGrouping);
+        label, series, [yAxisDisplayMin, yAxisDisplayMax],
+        allUnits.values().next().value, seriesToDisplayGrouping);
   }
 
   /*

@@ -29,10 +29,10 @@ const salmonella = new BCHMicrobioCode(
     'SALMONELLAANDSHIGELLACULTURE', microbio, 'Salmonella and Shigella Culture',
     false);
 
-export const diastolicBP =
-    new LOINCCode('8462-4', vitalSign, 'Diastolic Blood Pressure', true);
-export const systolicBP =
-    new LOINCCode('8480-6', vitalSign, 'Systolic Blood Pressure', true);
+export const diastolicBP = new LOINCCode(
+    '8462-4', vitalSign, 'Diastolic Blood Pressure', true, [25, 150]);
+export const systolicBP = new LOINCCode(
+    '8480-6', vitalSign, 'Systolic Blood Pressure', true, [30, 250]);
 
 export class ResourceCodesForCard {
   // Each ResourceCodeGroup represents data series on one axis. The type of
@@ -86,36 +86,28 @@ export class ResourceCodeManager {
 
   private static readonly labLoincs = [
     // Pull all the defaults to the top.
-    new LOINCCode('26464-8', labResult, 'WBC', true),
-    new LOINCCode('764-1', labResult, 'Neutrophil/Band', true),
-    new LOINCCode('38518-7', labResult, 'Immature Granulocytes', true),
-    new LOINCCode('1988-5', labResult, 'C-Reactive Protein', true),
-    new LOINCCode('30341-2', labResult, 'ESR', true),
+    new LOINCCode(
+        '1988-5', labResult, 'C-Reactive Protein', true, [0, 100], true),
+    new LOINCCode('30341-2', labResult, 'ESR', true, [0, 200]),
     new LOINCCode('3094-0', labResult, 'BUN', true),
     new LOINCCode('2160-0', labResult, 'Creatinine', true),
     new LOINCCode('1742-6', labResult, 'ALT', true),
     new LOINCCode('1920-8', labResult, 'AST', true),
     // The rest show up alphabetically below.
     new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', false),
-    new LOINCCode('707-0', labResult, 'Basophil', false),
     new LOINCCode('1968-7', labResult, 'Bilirubin, Direct', false),
     new LOINCCode('1975-2', labResult, 'Bilirubin, Total', false),
-    new LOINCCode('714-6', labResult, 'Eosinophil', false),
     new LOINCCode('2324-2', labResult, 'GGTP', false),
-    new LOINCCode('4544-3', labResult, 'Hematocrit', false),
-    new LOINCCode('718-7', labResult, 'Hemoglobin', false),
     new LOINCCode('14804-9', labResult, 'LDH', false),
-    new LOINCCode('737-7', labResult, 'Lymphocyte', false),
-    new LOINCCode('743-5', labResult, 'Monocyte', false),
-    new LOINCCode('777-3', labResult, 'Platelet', false),
   ];
 
   private static readonly vitalLoincs = [
-    new LOINCCode('8310-5', vitalSign, 'Temperature', true),
-    new LOINCCode('8867-4', vitalSign, 'Heart Rate', true),
-    new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true),
-    new LOINCCode('55284-4', vitalSign, 'Blood pressure', true),
-    new LOINCCode('59408-5', vitalSign, 'Oxygen Saturation', true)
+    new LOINCCode('8310-5', vitalSign, 'Temperature', true, [35, 41]),
+    new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
+    new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
+    new LOINCCode('55284-4', vitalSign, 'Blood pressure', true, [25, 250]),
+    new LOINCCode(
+        '59408-5', vitalSign, 'Oxygen Saturation', true, [5, 100], true)
   ];
 
   private static readonly gentMonitoring = [
@@ -185,10 +177,70 @@ export class ResourceCodeManager {
           codeGroups.push(new ResourceCodesForCard(
               [new LOINCCodeGroup(
                   this.fhirService, loinc.label, new Array(loinc), conceptGroup,
-                  ChartType.LINE)],
+                  ChartType.LINE, loinc.displayBounds,
+                  loinc.forceDisplayBounds)],
               loinc.label, conceptGroup));
         }
       }
+
+      const cbc = [
+        new LOINCCodeGroup(
+            this.fhirService, 'WBC',
+            [new LOINCCode('26464-8', labResult, 'WBC', true, [0, 150])],
+            labResult, ChartType.LINE, [0, 150]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Hemoglobin',
+            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Hematocrit',
+            [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
+            labResult, ChartType.LINE, [10, 70]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Platelet',
+            [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
+            labResult, ChartType.LINE, [2, 900]),
+
+      ];
+      codeGroups.push(new ResourceCodesForCard(cbc, 'CBC', labResult));
+
+
+      const cbcWBC = [
+        new LOINCCodeGroup(
+            this.fhirService, 'Neutrophil/Band',
+            [new LOINCCode(
+                '764-1', labResult, 'Neutrophil/Band', true, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
+        new LOINCCodeGroup(
+            this.fhirService, 'Immature Granulocytes',
+            [new LOINCCode(
+                '38518-7', labResult, 'Immature Granulocytes', true, [0, 100],
+                true)],
+            labResult, ChartType.LINE, [0, 100], true),
+        new LOINCCodeGroup(
+            this.fhirService, 'Lymphocyte',
+            [new LOINCCode(
+                '737-7', labResult, 'Lymphocyte', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
+        new LOINCCodeGroup(
+            this.fhirService, 'Monocyte',
+            [new LOINCCode(
+                '743-5', labResult, 'Monocyte', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
+        new LOINCCodeGroup(
+            this.fhirService, 'Eosinophil',
+            [new LOINCCode(
+                '714-6', labResult, 'Eosinophil', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
+        new LOINCCodeGroup(
+            this.fhirService, 'Basophil',
+            [new LOINCCode(
+                '707-0', labResult, 'Basophil', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
+
+      ];
+      codeGroups.push(
+          new ResourceCodesForCard(cbcWBC, 'CBC White Blood Cell', labResult));
 
       // TODO(b/118874488): Allow for configuration of RxNormCodeGroups.
       const medsSummaryGroup = RXNORM_CODES;
@@ -212,9 +264,14 @@ export class ResourceCodeManager {
           'Vancomycin', med));
 
       codeGroups.push(new ResourceCodesForCard(
-          [new LOINCCodeGroup(
-              this.fhirService, 'Gentamicin',
-              ResourceCodeManager.gentMonitoring, med, ChartType.SCATTER)],
+          [
+            new RxNormCodeGroup(
+                this.fhirService, 'Medication Administrations',
+                [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
+            new LOINCCodeGroup(
+                this.fhirService, 'Monitoring',
+                ResourceCodeManager.gentMonitoring, med, ChartType.SCATTER)
+          ],
           'Gentamicin', med));
 
 

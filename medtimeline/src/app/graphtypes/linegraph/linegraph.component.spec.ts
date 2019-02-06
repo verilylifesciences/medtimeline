@@ -5,11 +5,14 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
+import {labResult} from 'src/app/clinicalconcepts/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 
 import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
-import {makeSampleObservationJson} from '../../test_utils';
+import {makeSampleObservationJson, StubFhirService} from '../../test_utils';
+import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
 
@@ -24,7 +27,10 @@ describe('LineGraphComponent', () => {
 
   const testDateRange = Interval.fromDateTimes(
       DateTime.utc(1995, 7, 21), DateTime.utc(1995, 7, 22));
-
+  const loincCodeGroup = new LOINCCodeGroup(
+      new StubFhirService(), 'lbl',
+      [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
+      ChartType.LINE, [0, 50], false);
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
@@ -38,7 +44,7 @@ describe('LineGraphComponent', () => {
     component = fixture.componentInstance;
     component.dateRange = testDateRange;
     component.data = LineGraphData.fromObservationSetList(
-        'label', new Array(obsSet, obsSet));
+        'label', new Array(obsSet, obsSet), loincCodeGroup);
   });
 
   it('should create', () => {
@@ -74,8 +80,8 @@ describe('LineGraphComponent', () => {
 
   it('region plotted for normal values when there is only one series', () => {
     fixture.detectChanges();
-    component.data =
-        LineGraphData.fromObservationSetList('testgraph', new Array(obsSet));
+    component.data = LineGraphData.fromObservationSetList(
+        'testgraph', new Array(obsSet), loincCodeGroup);
     const generatedChart = component.generateChart();
     expect(generatedChart['regions'].length).toEqual(1);
     expect(generatedChart['regions'][0]['axis']).toEqual('y');

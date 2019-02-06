@@ -140,7 +140,7 @@ export class Axis {
                     this.displayConcept.label, obsSetList, this.sanitizer);
               } else if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
                 return LineGraphData.fromObservationSetList(
-                    this.displayConcept.label, obsSetList);
+                    this.displayConcept.label, obsSetList, this.resourceGroup);
               } else {
                 throw Error(
                     'ObservationSets must all be continous ' +

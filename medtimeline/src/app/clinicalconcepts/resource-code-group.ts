@@ -35,7 +35,12 @@ export abstract class ResourceCode {
 
   constructor(
       readonly codeString: string, readonly displayGrouping: DisplayGrouping,
-      readonly label: string, readonly showByDefault = false) {
+      readonly label: string, readonly showByDefault = false,
+      /* Absolute axis bounds for the graph displaying this ResourceCode. */
+      readonly displayBounds?: number[],
+      /* Whether or not to force the axis bounds, even if a smaller range
+         containing all the data can be calculated. */
+      readonly forceDisplayBounds = false) {
     ResourceCode.CODE_STRING_TO_CODE[codeString] = this;
   }
 
@@ -70,7 +75,12 @@ export class ResourceCodeGroup {
   constructor(
       readonly fhirService: FhirService, label: string,
       resourceCodes: ResourceCode[], displayGrouping: DisplayGrouping,
-      chartType: ChartType) {
+      chartType: ChartType,
+      /* Absolute axis bounds for the graph displaying this ResourceCode. */
+      readonly displayBounds?: number[],
+      /* Whether or not to force the axis bounds, even if a smaller range
+         containing all the data can be calculated. */
+      readonly forceDisplayBounds = false) {
     this.resourceCodes = resourceCodes;
     this.displayGrouping = displayGrouping;
     this.chartType = chartType;
