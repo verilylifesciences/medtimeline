@@ -21,8 +21,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {AngularResizedEventModule} from 'angular-resize-event';
-import {SidebarModule} from 'ng-sidebar';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
@@ -81,9 +79,8 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     MatProgressSpinnerModule, MatButtonModule, MatDatepickerModule,
     MatAutocompleteModule, MatButtonToggleModule, MatNativeDateModule,
     FormsModule, ReactiveFormsModule, MatMenuModule, MatTooltipModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
-    AngularResizedEventModule, MatTabsModule, MatDialogModule, MatStepperModule,
-    MatToolbarModule, MatSnackBarModule, SidebarModule.forRoot(),
+    FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatTabsModule,
+    MatDialogModule, MatStepperModule, MatToolbarModule, MatSnackBarModule,
     NgxDaterangepickerMd.forRoot({}),
     /* On their end, it's locked down so that the only acceptable redirect
     URL is localhost:8000/. So, we have to do a different path for
