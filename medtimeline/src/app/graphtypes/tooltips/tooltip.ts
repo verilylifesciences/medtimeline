@@ -133,7 +133,9 @@ export class CustomizableGraphAnnotation {
     const tooltipDetails = tooltipContainer.append('div').attr(
         'class', 'tooltip-details-custom-' + millis);
     const tooltipDetailsText =
-        tooltipDetails.append('div').text(this.description);
+        tooltipDetails.append('div')
+            .text(this.description)
+            .attr('class', 'tooltip-details-text-' + millis);
     const editIcon = tooltipDetails.append('i')
                          .attr('class', 'material-icons')
                          .attr('id', 'edit-' + millis)
