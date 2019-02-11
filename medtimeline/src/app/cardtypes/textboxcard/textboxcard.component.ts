@@ -46,4 +46,12 @@ export class TextboxcardComponent {
   save() {
     this.inEditMode = false;
   }
+
+  getHintText() {
+    if (this.inEditMode) {
+      return 'Click the save button to save annotation';
+    } else {
+      return 'Click the edit button to modify annotation';
+    }
+  }
 }

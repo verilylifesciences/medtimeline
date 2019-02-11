@@ -1,14 +1,10 @@
 <app-card [id]="id" [isEditable]="true" (onRemove)="remove()" (onEdit)="edit()" (onSave)="save()">
   <ng-container class="contents-block">
-    <mat-form-field *ngIf="inEditMode" style="width: 95%;">
-      <textarea #textArea matInput matTextareaAutosize placeholder="Add your annotation here. Click the Save button to save your annotation."
+    <mat-form-field style="width: 95%;">
+      <textarea #textArea matInput matTextareaAutosize placeholder="Add annotation here." [disabled]="!inEditMode"
         (change)="updateValue()" [(ngModel)]="noteString">
     </textarea>
+      <mat-hint> {{getHintText()}} </mat-hint>
     </mat-form-field>
-    <ng-container *ngIf="!inEditMode">
-      <mat-label>
-        {{noteString ? noteString: 'Click the edit button to add your annotation here.'}}
-      </mat-label>
-    </ng-container>
   </ng-container>
 </app-card>

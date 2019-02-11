@@ -17,20 +17,34 @@
 }
 
 .colorbar {
-  padding: 6px;
   margin-right: 6px;
+  min-width: 24px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .mat-icon {
   color: rgb(34, 44, 66);
   cursor: pointer;
-  margin: 6px;
+  opacity: .3;
   transition: opacity .3s;
-  opacity: .2;
+}
+
+.removeCardButton {
+  opacity: 0;
 }
 
 .mat-card:hover .mat-icon {
-  opacity: 1;
+  opacity: .8;
+}
+
+.mat-card:hover .dragCardIcon.mat-icon {
+  opacity: .4;
+}
+
+.dragCardIcon {
+  opacity: 0;
+  margin-bottom: 15px;
 }
 
 .labelColumn{
@@ -41,4 +55,8 @@
   max-width: 200px;
   min-width: 200px;
   word-wrap: break-word;
+}
+
+::ng-deep .mat-input-element:disabled{
+  color: rgb(0,0,0, .7) !important;
 }
