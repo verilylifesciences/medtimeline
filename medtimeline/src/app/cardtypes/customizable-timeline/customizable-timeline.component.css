@@ -3,7 +3,16 @@
 }
 
 ::ng-deep .timeline .c3 {
+  cursor: default !important;
+}
+
+::ng-deep .inEditMode .timeline .c3 {
   cursor: pointer !important;
+}
+
+/* Only display icons on flags in the CustomizableGraph if in edit mode. */
+::ng-deep app-customizable-graph.inEditMode .showIcon {
+  visibility: visible !important;
 }
 
 ::ng-deep [class*="tooltip-custom"] {

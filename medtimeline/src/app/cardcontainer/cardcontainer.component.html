@@ -1,15 +1,13 @@
-<div class="pinned">
-  <mat-toolbar color="primary" class="toolbar">
-    <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
-    <!--Push the buttons to the right and left sides.-->
-    <div fxFlex></div>
-    <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
-  </mat-toolbar>
-  <div class="customizableTimeline makeGutters">
+<mat-toolbar color="primary" class="toolbar">
+  <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
+  <!--Push the buttons to the right and left sides.-->
+  <div fxFlex></div>
+  <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
+</mat-toolbar>
+<div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start" id="{{CARDHOLDER}}">
+  <div class="customizableTimeline">
     <app-customizable-timeline class="card" [dateRange]="dateRange" (updateEventLines)="updateEventLines($event)"></app-customizable-timeline>
   </div>
-</div>
-<div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start" id="{{CARDHOLDER}}">
   <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"></app-data-selector-menu>
   <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">

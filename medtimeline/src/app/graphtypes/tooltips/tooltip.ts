@@ -163,6 +163,7 @@ export class CustomizableGraphAnnotation {
         self.showDetailsToggle(millis, false, tooltipContainer.node());
       }
     });
+    expandIcon.style('cursor', 'pointer');
     expandIcon.on('click', () => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
@@ -175,10 +176,12 @@ export class CustomizableGraphAnnotation {
     tooltip
         .on('mouseover',
             () => {
-              // Only show icons when hovering over the tooltip.
+              // Only show icons when hovering over the tooltip, and while the
+              // custom timeline is in edit mode. Show the expander icon
+              // regardless of edit mode.
               expandIcon.style('visibility', 'visible');
-              deleteIcon.style('visibility', 'visible');
-              editIcon.style('visibility', 'visible');
+              deleteIcon.classed('showIcon', true);
+              editIcon.classed('showIcon', true);
             })
         .on('click',
             function() {
@@ -195,9 +198,9 @@ export class CustomizableGraphAnnotation {
               }
             })
         .on('mouseout', () => {
+          deleteIcon.classed('showIcon', false);
+          editIcon.classed('showIcon', false);
           expandIcon.style('visibility', 'hidden');
-          deleteIcon.style('visibility', 'hidden');
-          editIcon.style('visibility', 'hidden');
         });
   }
 

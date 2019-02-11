@@ -4,7 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
@@ -47,6 +46,9 @@ export class CustomizableTimelineComponent {
   // The data for the graph contained.
   data: CustomizableData;
 
+  // Whether or not this CustomizableTimeline is being edited.
+  inEditMode = false;
+
   constructor(private fhirService: FhirService) {
     // We need to initialize the data with a point so that the c3 chart can show
     // the x-axis with the dates (otherwise, it turns up blank). This date is
@@ -60,6 +62,7 @@ export class CustomizableTimelineComponent {
   // Render the contained graph in the event of a resize.
   renderContainedGraph() {
     if (this.containedGraph && this.containedGraph.chart) {
+      this.inEditMode = false;
       this.containedGraph.regenerateChart();
     }
   }
@@ -83,5 +86,15 @@ export class CustomizableTimelineComponent {
       };
     });
     this.updateEventLines.emit(eventlines);
+  }
+
+  // Switch to editing mode.
+  private edit() {
+    this.inEditMode = true;
+  }
+
+  // Switch from editing mode.
+  private save() {
+    this.inEditMode = false;
   }
 }

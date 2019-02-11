@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file or at
 // https://developers.google.com/open-source/licenses/bsd
-import {Component, EventEmitter, forwardRef, OnDestroy, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnDestroy, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
@@ -29,6 +29,7 @@ export class CustomizableGraphComponent extends
     GraphComponent<CustomizableData> implements OnDestroy {
   // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
+  @Input() inEditMode: boolean;
   // Whether or not the user is hovering over any point on the chart.
   private hoveringOverPoint = false;
   // The width and height of the dialog box that appears when the user clicks on
@@ -68,27 +69,12 @@ export class CustomizableGraphComponent extends
     // Show a focus line corresponding to the correct x-value when hovering
     // anywhere on the chart.
     chart.internal.main.on('mousemove', function() {
-      const coordinates = d3.mouse(this);
-      // Remove all other timestamps
-      d3.select('.c3-xgrid-focus').selectAll('text').remove();
-      const focusEl = d3.select('line.c3-xgrid-focus');
-      focusEl.attr('x1', coordinates[0]);
-      focusEl.attr('x2', coordinates[0]);
-      const timestamp =
-          DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
-      // See time on hover
-      d3.select('g.c3-xgrid-focus')
-          .append('text')
-          .attr('text-anchor', 'end')
-          .attr('transform', 'rotate(-90)')
-          .attr('x', 0)
-          .attr('y', coordinates[0])
-          .attr('dx', -4)
-          .attr('dy', -5)
-          .style('opacity', 1)
-          .text(
-              timestamp.toLocal().toLocaleString() + ' ' +
-              timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
+      if (self.inEditMode) {
+        const coordinates = d3.mouse(this);
+        // Remove all other timestamps
+        d3.select('.c3-xgrid-focus').selectAll('text').remove();
+        self.showFocusLine(chart, coordinates);
+      }
     });
     // Clear gridlines when not hovering over the chart.
     chart.internal.main.on('mouseout', function() {
@@ -99,52 +85,10 @@ export class CustomizableGraphComponent extends
     });
     // Logic to add a point when clicking on the chart.
     chart.internal.main.on('click', function() {
-      if (!self.hoveringOverPoint) {
+      if (self.inEditMode && !self.hoveringOverPoint) {
         const coordinates = d3.mouse(this);
         const parentCoordinates = d3.mouse(document.body);
-        const xCoordinate = chart.internal.x.invert(coordinates[0]);
-        const yCoordinate =
-            0;  // We want each clicked data point to show up at y=0.
-
-        const dialogCoordinates = self.findDialogCoordinates(
-            parentCoordinates[0] + 10, parentCoordinates[1] + this.chartY);
-
-        // Make the dialog show up near where the user clicked.
-        this.dialogRef = self.dialog.open(CustomizableTimelineDialogComponent, {
-          width: this.dialogWidth,
-          height: this.dialogHeight,
-          position: {
-            top: dialogCoordinates[1] + 'px',
-            left: dialogCoordinates[0] + 'px'
-          },
-          data: {date: xCoordinate}
-        });
-        this.dialogRef.afterClosed().subscribe(result => {
-          if (result && result.annotation) {
-            // Update the bound data.
-
-            // By default, the user selected date is the original date
-            // corresponding to where the user chose to add the point.
-            let userSelectedDate = DateTime.fromJSDate(result.date);
-            // TODO(b/122371627):  Use UUIDs instead of timestamps to track
-            // annotations.
-            userSelectedDate = DateTime.fromMillis(
-                self.updateTime(userSelectedDate.toMillis()));
-            self.data.addPointToSeries(
-                userSelectedDate, yCoordinate, result.annotation);
-            self.data.annotations.get(userSelectedDate.toMillis())
-                .addAnnotation(
-                    userSelectedDate.toMillis(),
-                    chart.internal.x(userSelectedDate) + '', chart);
-            self.loadNewData();
-            // Add listeners for click events on the new annotation.
-            self.addDeleteEvent(userSelectedDate.toMillis());
-            self.addEditEvent(
-                userSelectedDate.toMillis(), parentCoordinates[0],
-                parentCoordinates[1]);
-            self.pointsChanged.emit(self.data);
-          }
-        });
+        self.allowAddingPoints(chart, coordinates, parentCoordinates);
       }
     });
     // Send the chart to the back, allowing points to be displayed on top of the
@@ -177,6 +121,76 @@ export class CustomizableGraphComponent extends
       return this.updateTime(millis + 1);
     }
     return millis;
+  }
+
+  // Show a focus line with the timestamps when moving the mouse around the
+  // chart.
+  private showFocusLine(chart: any, coordinates: number[]) {
+    const focusEl = d3.select('line.c3-xgrid-focus');
+    focusEl.attr('x1', coordinates[0]);
+    focusEl.attr('x2', coordinates[0]);
+    const timestamp =
+        DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
+    // See time on hover
+    d3.select('g.c3-xgrid-focus')
+        .append('text')
+        .attr('text-anchor', 'end')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', 0)
+        .attr('y', coordinates[0])
+        .attr('dx', -4)
+        .attr('dy', -5)
+        .style('opacity', 1)
+        .text(
+            timestamp.toLocal().toLocaleString() + ' ' +
+            timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
+  }
+
+  // Allow for the addition of a point to the CustomizableGraph, via a
+  // CustomizableTimelineDialog
+  private allowAddingPoints(
+      chart: any, coordinates: number[], parentCoordinates: number[]) {
+    const xCoordinate = chart.internal.x.invert(coordinates[0]);
+    const yCoordinate =
+        0;  // We want each clicked data point to show up at y=0.
+
+    const dialogCoordinates = this.findDialogCoordinates(
+        parentCoordinates[0] + 10, parentCoordinates[1] + this.chartY);
+
+    // Make the dialog show up near where the user clicked.
+    this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
+      width: this.dialogWidth,
+      height: this.dialogHeight,
+      position:
+          {top: dialogCoordinates[1] + 'px', left: dialogCoordinates[0] + 'px'},
+      data: {date: xCoordinate}
+    });
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result && result.annotation) {
+        // Update the bound data.
+
+        // By default, the user selected date is the original date
+        // corresponding to where the user chose to add the point.
+        let userSelectedDate = DateTime.fromJSDate(result.date);
+        // TODO(b/122371627):  Use UUIDs instead of timestamps to track
+        // annotations.
+        userSelectedDate =
+            DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
+        this.data.addPointToSeries(
+            userSelectedDate, yCoordinate, result.annotation);
+        this.data.annotations.get(userSelectedDate.toMillis())
+            .addAnnotation(
+                userSelectedDate.toMillis(),
+                chart.internal.x(userSelectedDate) + '', chart);
+        this.loadNewData();
+        // Add listeners for click events on the new annotation.
+        this.addDeleteEvent(userSelectedDate.toMillis());
+        this.addEditEvent(
+            userSelectedDate.toMillis(), parentCoordinates[0],
+            parentCoordinates[1]);
+        this.pointsChanged.emit(this.data);
+      }
+    });
   }
 
   // Updates the annotations displayed on the chart after a new point is added

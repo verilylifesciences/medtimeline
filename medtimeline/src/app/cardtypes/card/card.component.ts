@@ -5,7 +5,7 @@
 
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import * as Color from 'color';
-import {BOSTON_WARM_GRAY, SELECTED} from 'src/app/theme/bch_colors';
+import {BOSTON_WARM_GRAY} from 'src/app/theme/bch_colors';
 
 /**
  * This is the base template for all the cards in this app. It will show a
