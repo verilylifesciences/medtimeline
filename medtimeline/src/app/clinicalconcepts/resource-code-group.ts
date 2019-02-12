@@ -57,34 +57,27 @@ export abstract class ResourceCode {
  * the same Axis together.
  */
 export class ResourceCodeGroup {
-  /* The display grouping for this resource code group. */
-  readonly displayGrouping: DisplayGrouping;
-
-  /* The resource codes to display on this Axis. */
-  readonly resourceCodes: ResourceCode[];
-
-  /* The chart type for this Axis. */
-  readonly chartType: ChartType;
-
-  readonly label: string;
-
   /* Whether or not to show this ResourceCodeGroup by default. This is true
    * when any ResourceCode in the group should be shown as default.*/
   readonly showByDefault: boolean;
 
   constructor(
-      readonly fhirService: FhirService, label: string,
-      resourceCodes: ResourceCode[], displayGrouping: DisplayGrouping,
-      chartType: ChartType,
-      /* Absolute axis bounds for the graph displaying this ResourceCode. */
+      readonly fhirService: FhirService,
+      /** The label for this resource code group. */
+      readonly label: string,
+      /** The resource codes to display on this Axis. */
+      readonly resourceCodes: ResourceCode[],
+      /** The display grouping for this resource code group. */
+      readonly displayGrouping: DisplayGrouping,
+      /** The chart type for this Axis. */
+      readonly chartType: ChartType,
+      /** Absolute axis bounds for the graph displaying this ResourceCode. */
       readonly displayBounds?: number[],
-      /* Whether or not to force the axis bounds, even if a smaller range
-         containing all the data can be calculated. */
+      /*
+         Whether or not to force the axis bounds, even if a smaller range
+         containing all the data can be calculated.
+       */
       readonly forceDisplayBounds = false) {
-    this.resourceCodes = resourceCodes;
-    this.displayGrouping = displayGrouping;
-    this.chartType = chartType;
-    this.label = label;
     this.showByDefault = this.resourceCodes.some(code => code.showByDefault);
   }
 
