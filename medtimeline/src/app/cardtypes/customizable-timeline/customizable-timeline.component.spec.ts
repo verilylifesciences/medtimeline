@@ -8,8 +8,8 @@ import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
+import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/tooltips/tooltip';
 import {StubFhirService} from 'src/app/test_utils';
 
 import {CardComponent} from '../card/card.component';

@@ -9,15 +9,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
@@ -74,16 +69,15 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     DeleteDialogComponent,
   ],
   imports: [
-    BrowserModule, MatCardModule, HttpClientModule, MatSidenavModule,
-    MatListModule, MatDividerModule, MatIconModule, MatExpansionModule,
-    MatCheckboxModule, BrowserAnimationsModule, FormsModule,
+    BrowserModule, MatCardModule, HttpClientModule, MatListModule,
+    MatDividerModule, MatIconModule, BrowserAnimationsModule, FormsModule,
     ReactiveFormsModule, MatInputModule, BrowserAnimationsModule,
-    MatProgressSpinnerModule, MatButtonModule, MatDatepickerModule,
-    MatAutocompleteModule, MatButtonToggleModule, MatNativeDateModule,
-    FormsModule, ReactiveFormsModule, MatMenuModule, MatTooltipModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatTabsModule,
-    MatDialogModule, MatStepperModule, MatToolbarModule, MatSnackBarModule,
-    NgxDaterangepickerMd.forRoot({}),
+    MatProgressSpinnerModule, MatButtonModule, MatAutocompleteModule,
+    MatMenuModule, MatTooltipModule,
+    FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatDialogModule,
+    MatStepperModule, MatToolbarModule, MatSnackBarModule, MatDatepickerModule,
+    NgxDaterangepickerMd.forRoot({}), MatButtonToggleModule,
+    MatNativeDateModule,
     /* On their end, it's locked down so that the only acceptable redirect
     URL is localhost:8000/. So, we have to do a different path for
     authentication. */

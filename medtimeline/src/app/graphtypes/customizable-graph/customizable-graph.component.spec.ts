@@ -16,7 +16,7 @@ describe('CustomizableGraphComponent', () => {
     TestBed
         .configureTestingModule({
           declarations: [CustomizableGraphComponent],
-          providers: [{provide: MatDialog, useValue: null}]
+          providers: [{provide: MatDialog, useValue: {}}]
         })
         .compileComponents();
   }));

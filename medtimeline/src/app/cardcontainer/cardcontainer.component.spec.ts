@@ -7,15 +7,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
 import {By} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SidebarModule} from 'ng-sidebar';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
@@ -52,27 +48,11 @@ describe('CardcontainerComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            MatCardModule,
-            MatIconModule,
-            MatSidenavModule,
-            MatListModule,
-            MatDividerModule,
-            SidebarModule,
-            MatExpansionModule,
-            MatTabsModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            MatAutocompleteModule,
-            MatInputModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserModule,
-            BrowserAnimationsModule,
-            MatProgressSpinnerModule,
-            MatMenuModule,
-            NgxDaterangepickerMd.forRoot(),
-            MatToolbarModule,
-            MatSnackBarModule
+            MatCardModule, MatIconModule, MatListModule, MatDividerModule,
+            MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule,
+            MatInputModule, FormsModule, ReactiveFormsModule, BrowserModule,
+            BrowserAnimationsModule, MatProgressSpinnerModule, MatMenuModule,
+            NgxDaterangepickerMd.forRoot(), MatToolbarModule, MatSnackBarModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,

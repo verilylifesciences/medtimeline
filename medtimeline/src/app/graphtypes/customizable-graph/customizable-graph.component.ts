@@ -34,8 +34,8 @@ export class CustomizableGraphComponent extends
   private hoveringOverPoint = false;
   // The width and height of the dialog box that appears when the user clicks on
   // the chart.
-  private readonly dialogWidth = '450px';
-  private readonly dialogHeight = '350px';
+  readonly dialogWidth = '450px';
+  readonly dialogHeight = '350px';
 
   // The y-position of the customizable timeline.
   private readonly chartY = 180;

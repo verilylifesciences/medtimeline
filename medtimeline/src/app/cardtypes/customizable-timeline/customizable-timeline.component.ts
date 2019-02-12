@@ -8,8 +8,8 @@ import {DateTime, Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
+import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/tooltips/tooltip';
 
 
 @Component({
