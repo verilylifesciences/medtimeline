@@ -4,11 +4,13 @@
 // license that can be found in the LICENSE file.
 
 import {FhirResourceSet} from '../fhir-resource-set';
-import {Observation} from './observation';
+
+import {AnnotatedObservation} from './annotated-observation';
+
 /**
  * A set of observations that belong together as part of the same series.
  */
-export class ObservationSet extends FhirResourceSet<Observation> {
+export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   /**
    * The normal range for this set of observations. Left unset if the normal
    * range is different across the observations.
@@ -34,11 +36,11 @@ export class ObservationSet extends FhirResourceSet<Observation> {
    *     that they are data points from different series, or if there is not
    *     a label.
    */
-  constructor(observationList: Observation[]) {
+  constructor(observationList: AnnotatedObservation[]) {
     super(observationList);
 
-    const firstNormalRange = observationList[0].normalRange;
-    const firstUnit = observationList[0].unit;
+    const firstNormalRange = observationList[0].observation.normalRange;
+    const firstUnit = observationList[0].observation.unit;
     // Ensure that the labels of the data are all the same. Also ensure that
     // we only set a normal range if all the observations have a matching
     // normal range.
@@ -47,13 +49,13 @@ export class ObservationSet extends FhirResourceSet<Observation> {
 
     for (const obs of observationList) {
       // Some observations may not have a normal range.
-      if (obs.normalRange &&
-          (obs.normalRange[0] !== firstNormalRange[0] ||
-           obs.normalRange[1] !== firstNormalRange[1])) {
+      if (obs.observation.normalRange &&
+          (obs.observation.normalRange[0] !== firstNormalRange[0] ||
+           obs.observation.normalRange[1] !== firstNormalRange[1])) {
         differentNormalRanges = true;
       }
       // Some observations may not have a normal range.
-      if (obs.unit && obs.unit !== firstUnit) {
+      if (obs.observation.unit && obs.observation.unit !== firstUnit) {
         differentUnits = true;
       }
     }
@@ -65,7 +67,7 @@ export class ObservationSet extends FhirResourceSet<Observation> {
       this.unit = firstUnit;
     }
 
-    this.allQualitative =
-        observationList.every(code => (code.result !== null && !code.value));
+    this.allQualitative = observationList.every(
+        obs => (obs.observation.result !== null && !obs.observation.value));
   }
 }

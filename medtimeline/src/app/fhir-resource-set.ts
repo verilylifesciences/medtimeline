@@ -7,7 +7,7 @@
  * A class that has a label attribute.
  */
 export class LabeledClass {
-  label;
+  constructor(readonly label: string) {}
 }
 
 /**

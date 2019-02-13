@@ -4,6 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
+
+import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -17,20 +19,20 @@ const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-05T11:00:00.000Z').toUTC());
 
 const returnedObservationSet: ObservationSet[] = new Array(new ObservationSet([
-  new Observation({
+  new AnnotatedObservation(new Observation({
     code: {
       text: 'Temperature',
       coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
     },
     valueQuantity: {value: 97},
-  }),
-  new Observation({
+  })),
+  new AnnotatedObservation(new Observation({
     code: {
       text: 'Temperature',
       coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
     },
     valueQuantity: {value: 98},
-  })
+  }))
 ]));
 
 class StubCachedResourceCodeGroup extends

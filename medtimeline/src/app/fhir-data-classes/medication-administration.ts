@@ -32,7 +32,11 @@ export class MedicationAdministration extends LabeledClass {
    * @param json A JSON object that represents a FHIR MedicationAdministration.
    */
   constructor(private json: any) {
-    super();
+    super(
+        json.medicationReference ? json.medicationReference.display :
+                                   json.medicationCodeableConcept ?
+                                   json.medicationCodeableConcept.text :
+                                   null);
     if (json.medicationCodeableConcept) {
       if (json.medicationCodeableConcept.coding) {
         this.rxNormCode =
@@ -49,11 +53,6 @@ export class MedicationAdministration extends LabeledClass {
                  .filter((code) => !!code))[0];
       }
     }
-
-    this.label = json.medicationReference ?
-        json.medicationReference.display :
-        json.medicationCodeableConcept ? json.medicationCodeableConcept.text :
-                                         null;
 
     // TODO(b/111990521): If there are hours and minutes then we can guarantee
     // timezone is specified, but if not, then the timezone might not be
@@ -212,8 +211,7 @@ export class AnnotatedAdministration extends LabeledClass {
   constructor(
       medAdmin: MedicationAdministration, doseInOrder: number, doseDay: number,
       prevDose?: AnnotatedAdministration) {
-    super();
-    this.label = medAdmin.label;
+    super(medAdmin.label);
     this.medAdministration = medAdmin;
     this.doseInOrder = doseInOrder;
     this.doseDay = doseDay;

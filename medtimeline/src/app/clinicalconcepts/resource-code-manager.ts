@@ -4,8 +4,11 @@
 // license that can be found in the LICENSE file.
 
 import {Injectable} from '@angular/core';
+import {Interval} from 'luxon';
 
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
+import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
@@ -94,11 +97,11 @@ export class ResourceCodeManager {
     new LOINCCode('1742-6', labResult, 'ALT', true),
     new LOINCCode('1920-8', labResult, 'AST', true),
     // The rest show up alphabetically below.
-    new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', false),
-    new LOINCCode('1968-7', labResult, 'Bilirubin, Direct', false),
-    new LOINCCode('1975-2', labResult, 'Bilirubin, Total', false),
-    new LOINCCode('2324-2', labResult, 'GGTP', false),
-    new LOINCCode('14804-9', labResult, 'LDH', false),
+    new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase'),
+    new LOINCCode('1968-7', labResult, 'Bilirubin, Direct'),
+    new LOINCCode('1975-2', labResult, 'Bilirubin, Total'),
+    new LOINCCode('2324-2', labResult, 'GGTP'),
+    new LOINCCode('14804-9', labResult, 'LDH'),
   ];
 
   private static readonly vitalLoincs = [
@@ -111,9 +114,9 @@ export class ResourceCodeManager {
   ];
 
   private static readonly gentMonitoring = [
-    new LOINCCode('35668-3', labResult, 'Gent Level', false),
-    new LOINCCode('3663-2', labResult, 'Gent Pk', false),
-    new LOINCCode('3665-7', labResult, 'Gent Tr', false)
+    new LOINCCode('35668-3', labResult, 'Gent Level'),
+    new LOINCCode('3663-2', labResult, 'Gent Pk'),
+    new LOINCCode('3665-7', labResult, 'Gent Tr')
   ];
 
   private static readonly vancMonitoring = [
@@ -124,23 +127,22 @@ export class ResourceCodeManager {
 
 
   private static readonly urineGroup = [
-    new LOINCCode('5767-9', labResult, 'Appearance, Urinalysis', false),
-    new LOINCCode('5769-5', labResult, 'Bacteria, Urinalysis', false),
-    new LOINCCode('50551-1', labResult, 'Bilirubin, Urinalysis', false),
-    new LOINCCode('5794-3', labResult, 'Blood, Urinalysis', false),
-    new LOINCCode('5778-6', labResult, 'Color, Urinalysis', false),
-    new LOINCCode('50555-2', labResult, 'Glucose, Urinalysis', false),
-    new LOINCCode('57734-6', labResult, 'Ketone, Urinalysis', false),
-    new LOINCCode('50558-6', labResult, 'Nitrite, Urinalysis', false),
-    new LOINCCode('50560-2', labResult, 'pH, Urinalysis', false),
-    new LOINCCode('57735-3', labResult, 'Protein, Urinalysis', false),
-    new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis', false),
-    new LOINCCode('5810-7', labResult, 'Specific Gravity, Urinalysis', false),
-    new LOINCCode(
-        '11277-1', labResult, 'Squamous Epithelial, Urinalysis', false),
-    new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis', false),
-    new LOINCCode('5799-2', labResult, 'WBC Enzyme, Urinalysis', false),
-    new LOINCCode('5799-2', labResult, 'White Cells, Urinalysis', false)
+    new LOINCCode('5767-9', labResult, 'Appearance, Urinalysis'),
+    new LOINCCode('5769-5', labResult, 'Bacteria, Urinalysis'),
+    new LOINCCode('50551-1', labResult, 'Bilirubin, Urinalysis'),
+    new LOINCCode('5794-3', labResult, 'Blood, Urinalysis'),
+    new LOINCCode('5778-6', labResult, 'Color, Urinalysis'),
+    new LOINCCode('50555-2', labResult, 'Glucose, Urinalysis'),
+    new LOINCCode('57734-6', labResult, 'Ketone, Urinalysis'),
+    new LOINCCode('50558-6', labResult, 'Nitrite, Urinalysis'),
+    new LOINCCode('50560-2', labResult, 'pH, Urinalysis'),
+    new LOINCCode('57735-3', labResult, 'Protein, Urinalysis'),
+    new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis'),
+    new LOINCCode('5810-7', labResult, 'Specific Gravity, Urinalysis'),
+    new LOINCCode('11277-1', labResult, 'Squamous Epithelial, Urinalysis'),
+    new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis'),
+    new LOINCCode('5799-2', labResult, 'WBC Enzyme, Urinalysis'),
+    new LOINCCode('5799-2', labResult, 'White Cells, Urinalysis')
   ];
 
   // TODO(b/117431412): Figure out which microbio concepts to display.
@@ -177,8 +179,7 @@ export class ResourceCodeManager {
           codeGroups.push(new ResourceCodesForCard(
               [new LOINCCodeGroup(
                   this.fhirService, loinc.label, new Array(loinc), conceptGroup,
-                  ChartType.LINE, loinc.displayBounds,
-                  loinc.forceDisplayBounds)],
+                  ChartType.LINE)],
               loinc.label, conceptGroup));
         }
       }
@@ -187,19 +188,19 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'WBC',
             [new LOINCCode('26464-8', labResult, 'WBC', true, [0, 150])],
-            labResult, ChartType.LINE, [0, 150]),
+            labResult, ChartType.LINE),
         new LOINCCodeGroup(
             this.fhirService, 'Hemoglobin',
             [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-            labResult, ChartType.LINE, [0.5, 30]),
+            labResult, ChartType.LINE),
         new LOINCCodeGroup(
             this.fhirService, 'Hematocrit',
             [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
-            labResult, ChartType.LINE, [10, 70]),
+            labResult, ChartType.LINE),
         new LOINCCodeGroup(
             this.fhirService, 'Platelet',
             [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
-            labResult, ChartType.LINE, [2, 900]),
+            labResult, ChartType.LINE),
 
       ];
       codeGroups.push(new ResourceCodesForCard(cbc, 'CBC', labResult));
@@ -210,33 +211,33 @@ export class ResourceCodeManager {
             this.fhirService, 'Neutrophil/Band',
             [new LOINCCode(
                 '764-1', labResult, 'Neutrophil/Band', true, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
         new LOINCCodeGroup(
             this.fhirService, 'Immature Granulocytes',
             [new LOINCCode(
                 '38518-7', labResult, 'Immature Granulocytes', true, [0, 100],
                 true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
         new LOINCCodeGroup(
             this.fhirService, 'Lymphocyte',
             [new LOINCCode(
                 '737-7', labResult, 'Lymphocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
         new LOINCCodeGroup(
             this.fhirService, 'Monocyte',
             [new LOINCCode(
                 '743-5', labResult, 'Monocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
         new LOINCCodeGroup(
             this.fhirService, 'Eosinophil',
             [new LOINCCode(
                 '714-6', labResult, 'Eosinophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
         new LOINCCodeGroup(
             this.fhirService, 'Basophil',
             [new LOINCCode(
                 '707-0', labResult, 'Basophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            labResult, ChartType.LINE, true),
 
       ];
       codeGroups.push(
@@ -246,20 +247,39 @@ export class ResourceCodeManager {
       const medsSummaryGroup = RXNORM_CODES;
       codeGroups.push(new ResourceCodesForCard(
           [new RxNormCodeGroup(
-              this.fhirService, 'Vanc & Gent Summary', medsSummaryGroup, med,
-              ChartType.STEP)],
-          'Vanc & Gent Summary', med));
+              this.fhirService, 'Vancomycin & Gentamicin Summary',
+              medsSummaryGroup, med, ChartType.STEP)],
+          'Vancomycin & Gentamicin Summary', med));
+
+      // Drug monitoring should be a scatterplot, and the related concepts
+      // should be displayed on the same axes.
+      const vancRxNorm = new RxNormCodeGroup(
+          this.fhirService, 'Vancomycin', [RxNormCode.fromCodeString('11124')],
+          med, ChartType.SCATTER);
 
       // Drug monitoring should be a scatterplot, and the related concepts
       // should be displayed on the same axes.
       codeGroups.push(new ResourceCodesForCard(
           [
-            new RxNormCodeGroup(
-                this.fhirService, 'Medication Administrations',
-                [RxNormCode.fromCodeString('11124')], med, ChartType.SCATTER),
+            vancRxNorm,
             new LOINCCodeGroup(
-                this.fhirService, 'Monitoring',
-                ResourceCodeManager.vancMonitoring, med, ChartType.SCATTER)
+                this.fhirService, 'Vancomycin',
+                ResourceCodeManager.vancMonitoring, med, ChartType.SCATTER,
+                false, undefined,  // no meaningful y-axis ranges
+                (observation: Observation, dateRange: Interval):
+                    Promise<AnnotatedObservation> => {
+                      return vancRxNorm.getResourceSet(dateRange)
+                          .then(rxNorms => {
+                            // We know that we're only pushing in one RxNorm
+                            // so it's safe to grab the first (and only) one in
+                            // the list.
+                            return rxNorms[0].orders;
+                          })
+                          .then(orderSet => {
+                            return AnnotatedObservation.forMedicationMonitoring(
+                                observation, orderSet);
+                          });
+                    })
           ],
           'Vancomycin', med));
 

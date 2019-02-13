@@ -141,32 +141,30 @@ export class Axis {
       // ChartType.Line, for plotting LOINC Codes.
       return (this.resourceGroup as LOINCCodeGroup)
           .getResourceSet(this.dateRange)
-          .then(
-              obsSetList => {
-                if (obsSetList) {
-                  // We only draw the Line charts if all ObservationSets are of
-                  // the same type of y-value: continuous or discrete.
-                  if (obsSetList.length > 0 &&
-                      obsSetList.every(obsSet => obsSet.allQualitative)) {
-                    return LineGraphData.fromObservationSetListDiscrete(
-                        this.displayConcept.label, obsSetList, this.sanitizer);
-                  } else if (obsSetList.every(
-                                 obsSet => !obsSet.allQualitative)) {
-                    return LineGraphData.fromObservationSetList(
-                        this.displayConcept.label, obsSetList,
-                        this.resourceGroup);
-                  } else {
-                    throw Error(
-                        'ObservationSets must all be continous ' +
-                        'or discrete-valued.');
-                  }
-                }
-              },
-              rejection => {
-                // Something wrong happened when constructing a LabeledClass
-                // object for a code in this resourceGroup.
-                throw rejection;
-              });
+          .then(obsSetList => {
+            if (obsSetList) {
+              // We only draw the Line charts if all ObservationSets are of
+              // the same type of y-value: continuous or discrete.
+              if (obsSetList.length > 0 &&
+                  obsSetList.every(obsSet => obsSet.allQualitative)) {
+                return LineGraphData.fromObservationSetListDiscrete(
+                    this.displayConcept.label, obsSetList, this.sanitizer);
+              } else if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
+                return LineGraphData.fromObservationSetList(
+                    this.displayConcept.label, obsSetList, this.resourceGroup,
+                    this.sanitizer);
+              } else {
+                throw Error(
+                    'ObservationSets must all be continous ' +
+                    'or discrete-valued.');
+              }
+            }
+          },
+          rejection => {
+            // Something wrong happened when constructing a LabeledClass
+            // object for a code in this resourceGroup.
+            throw rejection;
+          });
     }
   }
 

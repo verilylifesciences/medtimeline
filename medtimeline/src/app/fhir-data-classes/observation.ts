@@ -29,6 +29,12 @@ interface Quantity {
  * information in a standard Observation
  * (see https://www.hl7.org/fhir/observation.html#resource) but instead stores
  * only the information we're interested in seeing.
+ *
+ * In general, in terms of the MedTimeLine app, we represent an Observation
+ * as a point on a line graph for a lab or a vital sign. Observations also hold
+ * information about microbiology report results that show up in the
+ * microbiology graph tooltips.
+ * TODO(b/126222425): Add a descriptive readme to this folder.
  */
 export class Observation extends LabeledClass {
   readonly codes: ResourceCode[] = [];
@@ -51,7 +57,7 @@ export class Observation extends LabeledClass {
    * @param json A JSON object that represents a FHIR observation.
    */
   constructor(private json: any) {
-    super();
+    super(Observation.getLabel(json));
     // TODO(b/111990521): If there are hours and minutes then we can
     // guarantee timezone is specified, but if not, then the timezone might
     // not be specified! I'm not sure how to best handle that.
@@ -60,7 +66,6 @@ export class Observation extends LabeledClass {
         DateTime.fromISO(json.effectiveDateTime).toUTC() :
         json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
     if (json.code) {
-      this.label = json.code.text;
       if (json.code.coding) {
         // TODO(b/121318193): Implement better parsing of Observations with BCH
         // Codes (associated with Microbiology data).
@@ -68,7 +73,6 @@ export class Observation extends LabeledClass {
           this.codes = json.code.coding.map(
               (coding) => BCHMicrobioCode.fromCodeString(coding.code));
           this.display = json.code.coding[0].display;
-          this.label = this.display;
         } else {
           this.codes =
               json.code.coding
@@ -99,7 +103,6 @@ export class Observation extends LabeledClass {
       }
       // Silently ignore encodings coming from other systems.
     }
-
 
     if (json.component) {
       json.component.forEach(element => {
@@ -166,5 +169,18 @@ export class Observation extends LabeledClass {
         ];
       }
     }
+  }
+
+  private static getLabel(json: any) {
+    let label;
+    if (json.code) {
+      label = json.code.text;
+      if (json.code.coding) {
+        if (json.code.coding[0].system === BCHMicrobioCode.CODING_STRING) {
+          label = json.code.coding[0].display;
+        }
+      }
+    }
+    return label;
   }
 }

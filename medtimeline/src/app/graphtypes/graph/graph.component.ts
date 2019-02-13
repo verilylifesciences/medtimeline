@@ -16,6 +16,7 @@ import {v4 as uuid} from 'uuid';
 
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
 import {getTickMarksForXAxis} from '../../date_utils';
+import {StandardTooltip} from '../tooltips/tooltip';
 
 export enum ChartType {
   SCATTER,
@@ -259,31 +260,34 @@ export abstract class GraphComponent<T extends GraphData> implements
     const self = this;
     if (this.data && this.data.tooltipMap) {
       return {
-        contents:
-            (pointData: any[], defaultTitleFormat, defaultValueFormat,
-             color) => {
-              // pointData will hold every point for the x-value you're hovering
-              // on. We squish together all those data points preemptively in
-              // our tooltip creation so that we just find the index of the
-              // tooltip based on the first point's x-value.
-              const value = pointData[0];
-              const timestampKey =
-                  DateTime.fromJSDate(value.x).toMillis().toString();
-              // Our data class may provide a tooltip key function that will
-              // get the correct identifier from the data point. If it does,
-              // we'll use that, but by default, the key is the timestamp
-              // of the data point.
-              const keyToUse = this.data.tooltipKeyFn ?
-                  this.data.tooltipKeyFn(value) :
-                  timestampKey;
-              // If something bad happens and we don't have a tooltip for the
-              // key, return an empty string so that there will just be no
-              // tooltip.
-              if (!this.data.tooltipMap.has(keyToUse)) {
-                return '';
-              }
-              return this.data.tooltipMap.get(keyToUse);
-            }
+        contents: (
+            pointData: any[], defaultTitleFormat, defaultValueFormat,
+            color) => {
+          // pointData will hold every point for the x-value you're hovering
+          // on. We squish together all those data points preemptively in
+          // our tooltip creation so that we just find the index of the
+          // tooltip based on the first point's x-value.
+          const value = pointData[0];
+          const timestampKey =
+              DateTime.fromJSDate(value.x).toMillis().toString();
+          // Our data class may provide a tooltip key function that will
+          // get the correct identifier from the data point. If it does,
+          // we'll use that, but by default, the key is the timestamp
+          // of the data point.
+          const keyToUse = this.data.tooltipKeyFn ?
+              this.data.tooltipKeyFn(value) :
+              timestampKey;
+          // If something bad happens and we don't have a tooltip for the
+          // key, return an empty string so that there will just be no
+          // tooltip.
+          if (!this.data.tooltipMap.has(keyToUse)) {
+            return new StandardTooltip(
+                       pointData, color,
+                       self.data instanceof LineGraphData ? self.data.unit : '')
+                .getTooltip(undefined, this.sanitizer);
+          }
+          return this.data.tooltipMap.get(keyToUse);
+        }
       };
     } else {
       return {

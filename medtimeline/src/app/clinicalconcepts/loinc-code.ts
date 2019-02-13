@@ -6,10 +6,13 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
+import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {FhirService} from '../fhir.service';
+import {ChartType} from '../graphtypes/graph/graph.component';
 
+import {DisplayGrouping} from './display-grouping';
 import {ResourceCode} from './resource-code-group';
 import {CachedResourceCodeGroup} from './resource-code-group';
 
@@ -30,6 +33,43 @@ export class LOINCCode extends ResourceCode {
  * group.
  */
 export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
+  constructor(
+      /** FHIR service for retrieving data */
+      readonly fhirService: FhirService,
+      /** The label for this resource code group. */
+      readonly label: string,
+      /** The resource codes to display on this Axis. */
+      readonly resourceCodes: ResourceCode[],
+      /** The display grouping for this resource code group. */
+      readonly displayGrouping: DisplayGrouping,
+      /** The chart type for this Axis. */
+      readonly chartType: ChartType,
+      /**
+       * Whether or not to force the axis bounds, even if a smaller range
+       * containing all the data can be calculated.
+       */
+      readonly forceDisplayBounds = false,
+      /** Absolute axis bounds for the graph displaying this ResourceCode. */
+      readonly displayBounds?: [number, number],
+      /**
+       * The (optional) function that will make an observation into an
+       * AnnotatedObservation so that the graph can show the appropriate
+       * tooltip.
+       */
+      readonly makeAnnotated?:
+          (observation: Observation,
+           dateRange: Interval) => Promise<AnnotatedObservation>) {
+    super(
+        fhirService, label, resourceCodes, displayGrouping, chartType,
+        displayBounds, forceDisplayBounds);
+
+    // If there's only one resource code in the group, just use its display
+    // bounds as the axis bounds.
+    if (!displayBounds && resourceCodes.length === 1) {
+      this.displayBounds = resourceCodes[0].displayBounds;
+    }
+  }
+
   /**
    * Gets one ObservationSet for each LOINCCode in this group, and returns
    * a list of those ObservationSets.
@@ -38,49 +78,65 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
    */
   getResourceFromFhir(dateRange: Interval): Promise<ObservationSet[]> {
     return this.fhirService.getObservationsForCodeGroup(this, dateRange)
-        .then(
-            result => {
-              const obsSetList: ObservationSet[] = [];
-              // Keep track of the potential outer/inner components of each
-              // Observation by mapping labels to all the Observations
-              // associated with that label.
-              const mapObs = new Map<string, Observation[]>();
-              for (const o of result) {
-                // Separate the Observations into ObservationSets based on
-                // possible inner components.
-                for (const observation of o) {
-                  // The outer component may not have a value or result.
-                  if (observation.value || observation.result) {
-                    let obsList = mapObs.get(observation.label);
-                    if (!obsList) {
-                      obsList = [];
-                    }
-                    obsList.push(observation);
-                    mapObs.set(observation.label, obsList);
-                  }
-                  // Add separate ObservationLists for each inner component.
-                  if (observation.innerComponents.length > 0) {
-                    for (const innerComponent of observation.innerComponents) {
-                      let obsList = mapObs.get(innerComponent.label);
-                      if (!obsList) {
-                        obsList = [];
-                      }
-                      obsList.push(innerComponent);
-                      mapObs.set(innerComponent.label, obsList);
-                    }
-                  }
-                }
-              }
-              // We turn each value in the map into an ObservationSet.
-              for (const value of Array.from(mapObs.values())) {
-                obsSetList.push(new ObservationSet(value));
-              }
-              return Promise.resolve(obsSetList);
-            },
-            rejection => {
+        .then(observationDoubleArray => {
+          // Unnest the inner and outer observations into one flattened
+          // array per concept group.
+          return observationDoubleArray.map(
+              obsSingleArray =>
+                  Array.from(obsSingleArray)
+                      .reduce((acc: Observation[], observation) => {
+                        // The outer component may not have a
+                        // value or result.
+                        if (observation.value || observation.result ||
+                            observation.interpretation) {
+                          acc.push(observation);
+                        }
+                        // Add separate ObservationLists for
+                        // each inner component.
+                        if (observation.innerComponents.length > 0) {
+                          for (const innerComponent of
+                                   observation.innerComponents) {
+                            acc.push(innerComponent);
+                          }
+                        }
+                        return acc;
+                      }, []));
+        },
+        rejection => {
               // If there is any error with constructing an Observation for any
               // code in this code group, throw the error.
               throw rejection;
-            });
+        })
+        .then(flattened => {
+          const mapObs =
+              new Map<string, Array<Promise<AnnotatedObservation>>>();
+          flattened.forEach(conceptList => {
+            for (const observation of conceptList) {
+              // From this point on, each observation should have a value,
+              // result, or interpretation. All observations that just had
+              // innerComponents have been flattened out.
+              let obsList = mapObs.get(observation.label);
+              if (!obsList) {
+                obsList = new Array<Promise<AnnotatedObservation>>();
+              }
+              if (this.makeAnnotated) {
+                obsList.push(this.makeAnnotated(observation, dateRange));
+              } else {
+                obsList.push(
+                    Promise.resolve(new AnnotatedObservation(observation)));
+              }
+              mapObs.set(observation.label, obsList);
+            }
+          });
+          return Array.from(mapObs.values());
+        })
+        .then(
+            doubleAnnotationArray => doubleAnnotationArray.map(
+                singleAnnotationArray =>
+                    Promise.all(singleAnnotationArray)
+                        .then(
+                            resolvedAnnotations =>
+                                new ObservationSet(resolvedAnnotations))))
+        .then(observationSetArray => Promise.all(observationSetArray));
   }
 }

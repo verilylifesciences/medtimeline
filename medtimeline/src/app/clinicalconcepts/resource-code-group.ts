@@ -32,7 +32,7 @@ export abstract class ResourceCode {
       readonly codeString: string, readonly displayGrouping: DisplayGrouping,
       readonly label: string, readonly showByDefault = false,
       /* Absolute axis bounds for the graph displaying this ResourceCode. */
-      readonly displayBounds?: number[],
+      readonly displayBounds?: [number, number],
       /* Whether or not to force the axis bounds, even if a smaller range
          containing all the data can be calculated. */
       readonly forceDisplayBounds = false) {
@@ -68,9 +68,9 @@ export class ResourceCodeGroup {
       readonly chartType: ChartType,
       /** Absolute axis bounds for the graph displaying this ResourceCode. */
       readonly displayBounds?: number[],
-      /*
-         Whether or not to force the axis bounds, even if a smaller range
-         containing all the data can be calculated.
+      /**
+       * Whether or not to force the axis bounds, even if a smaller range
+       * containing all the data can be calculated.
        */
       readonly forceDisplayBounds = false) {
     this.showByDefault = this.resourceCodes.some(code => code.showByDefault);

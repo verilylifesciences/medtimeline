@@ -96,7 +96,8 @@ export class LabeledSeries {
     const coordinates: Array<[DateTime, number]> = [];
     const observations = observationSet.resourceList;
     for (const obs of observations) {
-      coordinates.push([obs.timestamp, obs.value.value]);
+      coordinates.push(
+          [obs.observation.timestamp, obs.observation.value.value]);
     }
     return new LabeledSeries(
         observationSet.label, coordinates, observationSet.unit,
@@ -120,7 +121,7 @@ export class LabeledSeries {
     for (const obsSet of observationSets) {
       const observations = obsSet.resourceList;
       for (const obs of observations) {
-        coordinates.push([obs.timestamp, yValue]);
+        coordinates.push([obs.observation.timestamp, yValue]);
       }
     }
     return new LabeledSeries(label, coordinates);

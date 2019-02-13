@@ -4,9 +4,11 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
+import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
 
 import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
@@ -21,8 +23,10 @@ describe('LineGraphComponent', () => {
   let component: LineGraphComponent;
   let fixture: ComponentFixture<LineGraphComponent>;
   const obsSet = new ObservationSet([
-    new Observation(makeSampleObservationJson(15, DateTime.utc(1995, 7, 21))),
-    new Observation(makeSampleObservationJson(20, DateTime.utc(1995, 7, 22)))
+    new AnnotatedObservation(new Observation(
+        makeSampleObservationJson(15, DateTime.utc(1995, 7, 21)))),
+    new AnnotatedObservation(new Observation(
+        makeSampleObservationJson(20, DateTime.utc(1995, 7, 22))))
   ]);
 
   const testDateRange = Interval.fromDateTimes(
@@ -30,7 +34,7 @@ describe('LineGraphComponent', () => {
   const loincCodeGroup = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
       [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
-      ChartType.LINE, [0, 50], false);
+      ChartType.LINE, false, [0, 50]);
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
@@ -44,7 +48,8 @@ describe('LineGraphComponent', () => {
     component = fixture.componentInstance;
     component.dateRange = testDateRange;
     component.data = LineGraphData.fromObservationSetList(
-        'label', new Array(obsSet, obsSet), loincCodeGroup);
+        'label', new Array(obsSet, obsSet), loincCodeGroup,
+        TestBed.get(DomSanitizer));
   });
 
   it('should create', () => {
@@ -81,7 +86,8 @@ describe('LineGraphComponent', () => {
   it('region plotted for normal values when there is only one series', () => {
     fixture.detectChanges();
     component.data = LineGraphData.fromObservationSetList(
-        'testgraph', new Array(obsSet), loincCodeGroup);
+        'testgraph', new Array(obsSet), loincCodeGroup,
+        TestBed.get(DomSanitizer));
     const generatedChart = component.generateChart();
     expect(generatedChart['regions'].length).toEqual(1);
     expect(generatedChart['regions'][0]['axis']).toEqual('y');

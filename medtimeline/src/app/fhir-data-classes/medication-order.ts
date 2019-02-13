@@ -27,12 +27,16 @@ export class MedicationOrder extends LabeledClass {
    * @param json The json representing this MedicationOrder.
    */
   constructor(private json: any) {
-    super();
+    // A MedicationOrder's label is one of the following in order of preference:
+    // 1) the medication reference's display anme
+    // 2) the medication encoding's text
+    // 3) the order's ID
+    super(
+        json.medicationReference ? json.medicationReference.display :
+                                   json.medicationCodeableConcept ?
+                                   json.medicationCodeableConcept.text :
+                                   json.id);
     this.orderId = json.id;
-    this.label = json.medicationReference ?
-        json.medicationReference.display :
-        json.medicationCodeableConcept ? json.medicationCodeableConcept.text :
-                                         null;
     if (json.medicationCodeableConcept) {
       if (json.medicationCodeableConcept.coding) {
         this.rxNormCode =

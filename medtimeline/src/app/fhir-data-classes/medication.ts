@@ -19,13 +19,12 @@ export class ContainedMedication extends LabeledClass {
   readonly dosage: Dosage;
   readonly id: string;
   constructor(json: any, ingredients: Map<string, any>) {
-    super();
+    super(json.code ? json.code.text : null);
     // We want to construct new Medications for jsons containing RxNorm codes.
     if (json.resourceType !== 'Medication') {
       throw Error('Resource must be of type Medication');
     }
     if (json.code) {
-      this.label = json.code.text;
       if (json.code.coding) {
         this.code =
             json.code.coding

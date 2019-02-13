@@ -12,7 +12,7 @@ import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
-import {DiscreteObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {DiscreteObservationTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {getDataColors} from '../theme/bch_colors';
 
 import {GraphData} from './graphdata';
@@ -46,12 +46,16 @@ export class LineGraphData extends GraphData {
    * Converts a list of ObservationSets to a LineGraphData object.
    * @param label The label for this set of observations.
    * @param observationGroup A list of ObservationSets to display.
+   * @param resourceCodeGroup The ResourceCodeGroup these ObservationSets belong
+   *   to
+   * @param sanitizer A DOM sanitizer for use in tooltip construction
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the observations in observationGroup have different units.
    */
   static fromObservationSetList(
       label: string, observationGroup: ObservationSet[],
-      resourceCodeGroup: ResourceCodeGroup): LineGraphData {
+      resourceCodeGroup: ResourceCodeGroup,
+      sanitizer: DomSanitizer): LineGraphData {
     const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
     let seriesIdx = 0;
     const dataColors: Color[] = getDataColors();
@@ -60,12 +64,14 @@ export class LineGraphData extends GraphData {
     let maxY: number = Number.MIN_VALUE;
 
     const series: LabeledSeries[] = [];
+    const obsLabelToColor = new Map<string, Color>();
     for (const obsSet of observationGroup) {
       const lblSeries = LabeledSeries.fromObservationSet(obsSet);
       series.push(lblSeries);
+      const color = dataColors[seriesIdx];
       seriesToDisplayGrouping.set(
-          lblSeries,
-          new DisplayGrouping(lblSeries.label, dataColors[seriesIdx]));
+          lblSeries, new DisplayGrouping(lblSeries.label, color));
+      obsLabelToColor.set(obsSet.label, color);
 
       seriesIdx = (seriesIdx + 1) % dataColors.length;
 
@@ -73,17 +79,67 @@ export class LineGraphData extends GraphData {
       minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
       maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
     }
+
+    const tooltipMap = LineGraphData.makeTooltipMap(
+        observationGroup, sanitizer, obsLabelToColor);
+
+    const allUnits =
+        new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
+    if (allUnits.size > 1) {
+      throw Error('Observations have different units.');
+    }
+
+    return new LineGraphData(
+        label, series,
+        LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup),
+        allUnits.values().next().value, seriesToDisplayGrouping,
+        tooltipMap.size > 0 ? tooltipMap : undefined);
+  }
+
+  private static makeTooltipMap(
+      obsGroup: ObservationSet[], sanitizer: DomSanitizer,
+      obsLabelToColor: Map<string, Color>): Map<string, string> {
+    const tooltipMap = new Map<string, string>();
+    // Only construct custom tooltips if there's annotation values for hte
+    // observations.
+    for (const obsSet of obsGroup) {
+      for (const obs of obsSet.resourceList) {
+        if (obs.annotationValues.length > 0) {
+          const timestamp = obs.observation.timestamp.toMillis().toString();
+          // The key for this tooltip is the administration's timestamp.
+          // There may be multiple data points associated with the timestamp
+          // so we stack the administrations on top of one another in that case.
+          if (tooltipMap.get(timestamp)) {
+            tooltipMap.set(
+                timestamp,
+                tooltipMap.get(timestamp) +
+                    new GenericAnnotatedObservationTooltip(
+                        false, obsLabelToColor.get(obs.label))
+                        .getTooltip(obs, sanitizer));
+          } else {
+            tooltipMap.set(
+                timestamp,
+                new GenericAnnotatedObservationTooltip(
+                    true, obsLabelToColor.get(obs.label))
+                    .getTooltip(obs, sanitizer));
+          }
+        }
+      }
+    }
+    return tooltipMap;
+  }
+
+  private static getDisplayBounds(
+      minInSeries: number, maxInSeries: number,
+      resourceCodeGroup: ResourceCodeGroup): [number, number] {
     let yAxisDisplayMin;
     let yAxisDisplayMax;
-    if (resourceCodeGroup.forceDisplayBounds) {
-      // We use the provided display bounds by default, regardless of the bounds
-      // of the data.
-      yAxisDisplayMin = resourceCodeGroup.displayBounds ?
-          resourceCodeGroup.displayBounds[0] :
-          minY;
-      yAxisDisplayMax = resourceCodeGroup.displayBounds ?
-          resourceCodeGroup.displayBounds[1] :
-          maxY;
+    if (resourceCodeGroup.forceDisplayBounds &&
+        resourceCodeGroup.displayBounds) {
+      // We use the provided display bounds by default, regardless of the
+      // bounds of the data.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
+      yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
     } else {
       // We use the provided display bounds as the y-axis display min and max,
       // unless the calculated minimum and maximum of the data span a smaller
@@ -92,35 +148,27 @@ export class LineGraphData extends GraphData {
       // We choose the provided min bound if it is larger than the min of the
       // data, to cut off abnormal values.
       yAxisDisplayMin = resourceCodeGroup.displayBounds ?
-          ((resourceCodeGroup.displayBounds[0] >= minY) ?
+          ((resourceCodeGroup.displayBounds[0] >= minInSeries) ?
                resourceCodeGroup.displayBounds[0] :
-               minY) :
-          minY;
+               minInSeries) :
+          minInSeries;
       // We choose the provided max bound if it is smaller than the max of the
       // data, to cut off abnormal values.
       yAxisDisplayMax = resourceCodeGroup.displayBounds ?
-          ((resourceCodeGroup.displayBounds[1] <= maxY) ?
+          ((resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
                resourceCodeGroup.displayBounds[1] :
-               maxY) :
-          maxY;
+               maxInSeries) :
+          maxInSeries;
     }
-
-    const allUnits =
-        new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
-    if (allUnits.size > 1) {
-      throw Error('Observations have different units.');
-    }
-    return new LineGraphData(
-        label, series, [yAxisDisplayMin, yAxisDisplayMax],
-        allUnits.values().next().value, seriesToDisplayGrouping);
+    return [yAxisDisplayMin, yAxisDisplayMax];
   }
 
   /*
    * Converts a list of MedicationOrderSets to a LineGraphData object.
    * @param medicationOrderListGroup A list of MedicationOrderSets to display.
    * @returns a new LineGraphData for this observation set.
-   * @throws Error if the medication administrations in medicationOrderSet have
-   *     different units.
+   * @throws Error if the medication administrations in medicationOrderSet
+   *     have different units.
    */
   static fromMedicationOrderSet(
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
@@ -166,13 +214,14 @@ export class LineGraphData extends GraphData {
   /**
    * Converts a list of ObservationSets with discrete y-values (results) to a
    * LineGraphData object.
-   * If we are graphing Observations with discrete values, such as "yellow" for
-   * the color of urine, we group all ObservationSets into one LabeledSeries,
-   * and display textual information in the tooltip.
+   * If we are graphing Observations with discrete values, such as "yellow"
+   * for the color of urine, we group all ObservationSets into one
+   * LabeledSeries, and display textual information in the tooltip.
    * @param label The label for this set of observations.
    * @param observationGroup A list of ObservationSets to display.
    * @returns a new LineGraphData for this observation set.
-   * @throws Error if the observations in observationGroup have different units.
+   * @throws Error if the observations in observationGroup have different
+   *     units.
    */
   static fromObservationSetListDiscrete(
       label: string, observationGroup: ObservationSet[],
@@ -189,9 +238,9 @@ export class LineGraphData extends GraphData {
     const tooltipMap = new Map<string, string>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
-        const tsString = obs.timestamp.toMillis().toString();
-        const tooltipText =
-            new DiscreteObservationTooltip().getTooltip([obs], sanitizer);
+        const tsString = obs.observation.timestamp.toMillis().toString();
+        const tooltipText = new DiscreteObservationTooltip().getTooltip(
+            [obs.observation], sanitizer);
         // The key for this tooltip is the observation's timestamp.
         // There may be multiple data points associated with the timestamp
         // so we stack the tooltips on top of one another in that case.
