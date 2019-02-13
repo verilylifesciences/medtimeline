@@ -173,8 +173,18 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
           }
         })
         .then(x => {
-          Promise.all(this.card.axes.map(axis => axis.getDataFromFhir()))
-              .then(data => data.forEach(d => d.xRegions = allRegions));
+          return Promise
+              .all(this.card.axes.map(async function(axis) {
+                return {data: await axis.getDataFromFhir(), axis: axis};
+              }))
+              .then(d => {
+                d.forEach(data => {
+                  data.data.xRegions =
+                      allRegions.filter(region => (region.axis === 'x'));
+                  data.axis.data = data.data;
+                });
+                this.containedGraphs.forEach(graph => graph.regenerateChart());
+              });
         });
   }
 
