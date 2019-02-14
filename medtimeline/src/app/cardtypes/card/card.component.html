@@ -18,8 +18,8 @@ functionality, then space for a label & legend, then space for other contents. -
   <!--Give the div that you want to appear here the class "contents-block".-->
   <ng-content select=".contents-block"></ng-content>
   <div *ngIf="!isEditable" style="margin-right: 25px"></div>
-  <ng-container *ngIf="isEditable" class="editCardIcon">
-    <mat-icon *ngIf="!inEditMode" matTooltip="Click to edit this card" (click)="edit($event)">edit</mat-icon>
+  <ng-container *ngIf="isEditable">
+    <mat-icon *ngIf="!inEditMode" matTooltip="Click to edit this card" (click)="edit($event)" class="editCardIcon">edit</mat-icon>
     <mat-icon *ngIf="inEditMode" matTooltip="Click to save your work" (click)="save($event)">save</mat-icon>
   </ng-container>
 </mat-card>

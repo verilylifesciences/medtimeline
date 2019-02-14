@@ -13,6 +13,12 @@ export class CustomizableTimelinePage {
         .element(by.css('svg'));
   }
 
+  getEditIcon() {
+    return element(by.css('app-customizable-timeline'))
+        .element(by.css('app-card'))
+        .element(by.css('.editCardIcon'));
+  }
+
   // Wait for an element with the specified selector to load.
   async waitForElement(selector: string) {
     return await browser.isElementPresent(by.css(selector));

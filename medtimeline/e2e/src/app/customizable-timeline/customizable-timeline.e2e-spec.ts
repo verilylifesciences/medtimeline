@@ -20,6 +20,8 @@ describe('Customizable Timeline', () => {
   beforeEach(async () => {
     await browser.get('/');
     const timeline = customTimeline.getGraph();
+    const editIcon = customTimeline.getEditIcon();
+    await editIcon.click();
     await customTimeline.clickOnElement(timeline, 150, 100);
     await customTimeline.waitForDialog();
   });
