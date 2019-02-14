@@ -43,8 +43,6 @@ describe('CustomizableTimelineDialogComponent', () => {
         .compileComponents();
   }));
 
-  // TODO(b/121256611): Implement testing for the
-  // CustomizableTimelineDialogComponent.
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomizableTimelineDialogComponent);
     component = fixture.componentInstance;

@@ -14,6 +14,7 @@ import {CardComponent} from '../cardtypes/card/card.component';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
+import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 @Component({
@@ -30,6 +31,12 @@ export class CardcontainerComponent {
   private readonly DISPLAY_TIME = 6000;
 
   @ViewChildren(CardComponent) containedCards!: QueryList<CardComponent>;
+
+  // The format of each object in the array is an object representing a line
+  // drawn on the chart, that has a value, text, and class field. The value
+  // field represents the x-position of the line to be drawn, while the class
+  // represents the class name, and the text represents the text displayed near
+  // the line.
   eventlines: Array<{[key: string]: number | string}> = [];
 
   // The concepts that are actually being displayed on the page.
@@ -37,7 +44,8 @@ export class CardcontainerComponent {
   // clicking the trashcan icon.
 
   readonly displayedConcepts:
-      Array<{[key: string]: ResourceCodesForCard | string}> = [];
+      Array<{[key: string]: ResourceCodesForCard | string | CustomizableData}> =
+          [];
 
   // The original concepts to duplicate, if necessary.
   readonly originalConcepts: ResourceCodesForCard[];
@@ -54,11 +62,17 @@ export class CardcontainerComponent {
 
   // Holds the most recently removed cards from the container, mapping the index
   // of the displayed card to the displayedConcept value.
-  private recentlyRemoved =
-      new Map<number, {[key: string]: ResourceCodesForCard | string}>();
+  private recentlyRemoved = new Map<
+      number,
+      {[key: string]: ResourceCodesForCard | string | CustomizableData}>();
 
   // The reference for the Dialog opened.
   private dialogRef: MatDialogRef<DeleteDialogComponent>;
+
+  // A map of custom timeline id to the event lines corresponding to that
+  // timeline.
+  private eventsForCustomTimelines =
+      new Map<string, Array<{[key: string]: number | string}>>();
 
   // TODO(b/119251288): Extract out the constants to somewhere shared between
   // the ts files and html files.
@@ -73,6 +87,8 @@ export class CardcontainerComponent {
                                 .reduce((acc, val) => acc.concat(val), []);
     // Add a textbox at the top of the card list.
     this.addTextbox();
+    // Add a custom timeline to the top of the card list.
+    this.addCustomTimeline();
     for (const concept of this.originalConcepts) {
       // We decide the original displayed concepts based on whether any
       // ResourceCodeGroup in the ResourceCodeGroup array associated with one
@@ -136,6 +152,17 @@ export class CardcontainerComponent {
     this.displayedConcepts.splice(index, 0, {id: uuid(), concept: 'textbox'});
   }
 
+  /**
+   * Adds a new custom timeline to the card panel.
+   * @param id: The id of the card above the position of the new annotation box.
+   */
+  addCustomTimeline(id?: string) {
+    const index =
+        id ? (this.displayedConcepts.map(x => x.id).indexOf(id) + 1) : 0;
+    this.displayedConcepts.splice(
+        index, 0, {id: uuid(), concept: 'customTimeline'});
+  }
+
   // Listen for an event indicating that the date range has been changed on the
   // UI, and update the date range.
   changeDateRange($event) {
@@ -164,6 +191,11 @@ export class CardcontainerComponent {
         this.recentlyRemoved.clear();
         this.recentlyRemoved.set(index, concept);
         this.openSnackBar();
+        if (this.eventsForCustomTimelines.get($event.id)) {
+          // We only remove the event lines for this CustomTimeline if the user
+          // confirms the deletion of the card.
+          this.updateEventLines({id: $event.id});
+        }
       }
     });
   }
@@ -184,6 +216,12 @@ export class CardcontainerComponent {
                .sort((a, b) => a - b)) {
         this.displayedConcepts.splice(
             index, 0, this.recentlyRemoved.get(index));
+        if (this.displayedConcepts[index].concept === 'customTimeline') {
+          this.updateEventLines({
+            id: this.displayedConcepts[index].id,
+            data: this.displayedConcepts[index].value
+          });
+        }
       }
     });
   }
@@ -209,14 +247,40 @@ export class CardcontainerComponent {
   }
 
   /**
-   * Listens for an event indicating that the user has edited the points on the
+   * Listens for an event indicating that the user has edited the points on a
    * custom timeline, and updates the x-axis eventlines displayed on all other
    * charts.
-   * @param $event The array of eventlines for each chart to display.
+   * @param $event The updated CustomizableData from which we calculate event
+   *     lines for each chart to display, along with the id of the updated.
    *
    */
 
   updateEventLines($event) {
-    this.eventlines = $event;
+    let times = [];
+    if ($event.data) {
+      times = Array.from($event.data.annotations.keys())
+                  .map(x => Number(x))
+                  .sort((a, b) => a - b);
+    }
+    // Remove the first point (with the earliest possible date) that was added
+    // in order to display the x-axis.
+    times.shift();
+    const eventlines = times.map(x => {
+      return {
+        value: x,
+        text: $event.data.annotations.get(x).title,
+        class: 'color' +
+            $event.data.annotations.get(x).color.hex().replace('#', '')
+      };
+    });
+    const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
+    this.eventsForCustomTimelines.set($event.id, eventlines);
+
+    // Consolidate all event lines from all custom timelines.
+    let allEvents = [];
+    for (const events of Array.from(this.eventsForCustomTimelines.values())) {
+      allEvents = allEvents.concat(events);
+    }
+    this.eventlines = allEvents;
   }
 }

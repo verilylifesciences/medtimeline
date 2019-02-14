@@ -36,6 +36,8 @@ export class DataSelectorMenuComponent implements OnInit {
   @Output() addCard = new EventEmitter<string>();
   // An event that is emitted when the user requests to add a textbox.
   @Output() addTextbox = new EventEmitter<null>();
+  // An event that is emitted when the user requests to add a custom timeline.
+  @Output() addCustomTimeline = new EventEmitter<null>();
 
   // All ResourceCodesForCard that correspond to cards displayed on the page.
   readonly allConcepts: Array<ResourceCodesForCard>;
@@ -70,6 +72,10 @@ export class DataSelectorMenuComponent implements OnInit {
   // top of the page.
   private textbox() {
     this.addTextbox.emit();
+  }
+
+  private customTimeline() {
+    this.addCustomTimeline.emit();
   }
 
   // Filter the concepts shown on the autocomplete menu.

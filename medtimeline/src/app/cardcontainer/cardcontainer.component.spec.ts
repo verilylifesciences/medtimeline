@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DateTime} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
@@ -23,6 +24,8 @@ import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
 import {FhirService} from '../fhir.service';
+import {CustomizableData} from '../graphdatatypes/customizabledata';
+import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from '../graphtypes/customizable-graph/customizable-graph.component';
 import {LineGraphComponent} from '../graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from '../graphtypes/microbio-graph/microbio-graph.component';
@@ -41,7 +44,6 @@ describe('CardcontainerComponent', () => {
   let fixture: ComponentFixture<CardcontainerComponent>;
   let dataSelectorMenu: DataSelectorMenuComponent;
   let timelineToolbar: TimelineToolbarComponent;
-  let customizableTimeline: CustomizableTimelineComponent;
 
 
   beforeEach(async(() => {
@@ -73,7 +75,7 @@ describe('CardcontainerComponent', () => {
         .compileComponents();
   }));
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(CardcontainerComponent);
     component = fixture.componentInstance;
     dataSelectorMenu =
@@ -82,11 +84,8 @@ describe('CardcontainerComponent', () => {
     timelineToolbar =
         fixture.debugElement.query(By.directive(TimelineToolbarComponent))
             .componentInstance;
-    customizableTimeline =
-        fixture.debugElement.query(By.directive(CustomizableTimelineComponent))
-            .componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', async(() => {
        fixture.whenStable().then(x => expect(component).toBeTruthy());
@@ -119,13 +118,54 @@ describe('CardcontainerComponent', () => {
     });
   });
 
-  it('should listen for event to update eventlines', () => {
+  it('should calculate eventlines correctly', () => {
+    const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
     const eventlinesOriginalSize = component.eventlines.length;
-    const neweventlines = [{value: 5, class: 'color000000', text: 'eventline'}];
-    customizableTimeline.updateEventLines.emit(neweventlines);
-    fixture.whenStable().then(() => {
-      expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
-      expect(component.eventlines.toString()).toEqual(neweventlines.toString());
-    });
+    const data = CustomizableData.fromInitialPoint(
+        DateTime.fromJSDate(new Date(-8640000000000000)), 0,
+        new CustomizableGraphAnnotation(), new StubFhirService());
+    data.addPointToSeries(
+        dateTime, 0, new CustomizableGraphAnnotation('title!'));
+    component.updateEventLines(
+        {data: data, id: component.displayedConcepts[0].id});
+    expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
+    expect(component.eventlines).toEqual([
+      {class: 'color000000', text: 'title!', value: dateTime.toMillis()}
+    ]);
   });
+
+  it('should calculate eventlines correctly with more than one custom timeline',
+     () => {
+       const dateTime1 = DateTime.fromISO('2012-08-04T11:00:00.000Z');
+       const dateTime2 = DateTime.fromISO('2012-08-20T11:00:00.000Z');
+       const eventlinesOriginalSize = component.eventlines.length;
+       const data1 = CustomizableData.fromInitialPoint(
+           DateTime.fromJSDate(new Date(-8640000000000000)), 0,
+           new CustomizableGraphAnnotation(), new StubFhirService());
+       data1.addPointToSeries(
+           dateTime1, 0, new CustomizableGraphAnnotation('title!'));
+       component.updateEventLines(
+           {data: data1, id: component.displayedConcepts[0].id});
+       expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
+       expect(component.eventlines).toEqual([
+         {class: 'color000000', text: 'title!', value: dateTime1.toMillis()}
+       ]);
+
+       component.displayedConcepts.push(
+           {concept: 'customTimeline', id: 'uniqueID'});
+       const data2 = CustomizableData.fromInitialPoint(
+           DateTime.fromJSDate(new Date(-8640000000000000)), 0,
+           new CustomizableGraphAnnotation(), new StubFhirService());
+       data2.addPointToSeries(
+           dateTime2, 0, new CustomizableGraphAnnotation('another title!'));
+       component.updateEventLines({data: data2, id: 'uniqueID'});
+       expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 2);
+       expect(component.eventlines).toEqual([
+         {class: 'color000000', text: 'title!', value: dateTime1.toMillis()}, {
+           class: 'color000000',
+           text: 'another title!',
+           value: dateTime2.toMillis()
+         }
+       ]);
+     });
 });

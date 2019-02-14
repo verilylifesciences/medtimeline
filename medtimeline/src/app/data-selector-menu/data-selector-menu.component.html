@@ -9,12 +9,16 @@
   <ng-template matMenuContent>
     <button mat-menu-item (click)="textbox()">
       <mat-icon>add_comment</mat-icon>
-      <span>Add blank annotation</span>
+      <span>Add Blank Annotation</span>
+    </button>
+    <button mat-menu-item (click)="customTimeline()">
+      <mat-icon>show_chart</mat-icon>
+      <span>Add Custom Timeline</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item [matMenuTriggerFor]="conceptSelectorMenu">
       <mat-icon>add_to_photos</mat-icon>
-      <span>Add chart</span>
+      <span>Add Chart</span>
     </button>
   </ng-template>
 </mat-menu>

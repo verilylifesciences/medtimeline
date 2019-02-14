@@ -51,15 +51,28 @@ describe('CustomizableTimelineComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should listen for event to update eventlines', () => {
-    const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
-    customGraph.data.addPointToSeries(
-        dateTime, 0, new CustomizableGraphAnnotation('title!'));
-    const neweventlines =
-        [{value: dateTime.toMillis(), class: 'color000000', text: 'eventline'}];
-    customGraph.pointsChanged.emit(customGraph.data);
-    fixture.whenStable().then(() => {
-      expect(component.updateEventLines).toHaveBeenCalledWith(neweventlines);
-    });
-  });
+  it('should listen for event to update eventlines', async(() => {
+       fixture.detectChanges();
+       const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
+       spyOn(component.updateEventLines, 'emit');
+       customGraph.data.addPointToSeries(
+           dateTime, 0, new CustomizableGraphAnnotation('title!'));
+       customGraph.pointsChanged.emit(customGraph.data);
+       fixture.whenStable().then(() => {
+         expect(component.updateEventLines.emit)
+             .toHaveBeenCalledWith({id: component.id, data: component.data});
+       });
+     }));
+
+  it('should emit event to remove card', async(() => {
+       fixture.detectChanges();
+       spyOn(component.onRemove, 'emit');
+       const button = fixture.debugElement.nativeElement.querySelector(
+           'mat-icon.removeCardButton');
+       button.click();
+       fixture.whenStable().then(() => {
+         expect(component.onRemove.emit)
+             .toHaveBeenCalledWith({id: component.id, value: component.data});
+       });
+     }));
 });

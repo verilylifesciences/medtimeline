@@ -37,9 +37,6 @@ export class CustomizableGraphComponent extends
   readonly dialogWidth = '450px';
   readonly dialogHeight = '350px';
 
-  // The y-position of the customizable timeline.
-  private readonly chartY = 180;
-
   // The reference for the Dialog opened.
   private dialogRef: any;
 
@@ -48,7 +45,7 @@ export class CustomizableGraphComponent extends
   }
 
   ngOnDestroy() {
-    if (this.dialogRef) {
+    if (this.dialogRef && this.dialogRef.unsubscribe) {
       // Destroy the dialog ref to prevent memory leaks.
       this.dialogRef.unsubscribe();
     }
@@ -72,7 +69,10 @@ export class CustomizableGraphComponent extends
       if (self.inEditMode) {
         const coordinates = d3.mouse(this);
         // Remove all other timestamps
-        d3.select('.c3-xgrid-focus').selectAll('text').remove();
+        d3.select(chart.element)
+            .select('.c3-xgrid-focus')
+            .selectAll('text')
+            .remove();
         self.showFocusLine(chart, coordinates);
       }
     });
@@ -81,7 +81,10 @@ export class CustomizableGraphComponent extends
       // clear all x-axis gridlines.
       chart.xgrids([]);
       // Remove all other timestamps
-      d3.select('.c3-xgrid-focus').selectAll('text').remove();
+      d3.select(chart.element)
+          .select('.c3-xgrid-focus')
+          .selectAll('text')
+          .remove();
     });
     // Logic to add a point when clicking on the chart.
     chart.internal.main.on('click', function() {
@@ -126,13 +129,14 @@ export class CustomizableGraphComponent extends
   // Show a focus line with the timestamps when moving the mouse around the
   // chart.
   private showFocusLine(chart: any, coordinates: number[]) {
-    const focusEl = d3.select('line.c3-xgrid-focus');
+    const focusEl = d3.select(chart.element).select('line.c3-xgrid-focus');
     focusEl.attr('x1', coordinates[0]);
     focusEl.attr('x2', coordinates[0]);
     const timestamp =
         DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
     // See time on hover
-    d3.select('g.c3-xgrid-focus')
+    d3.select(chart.element)
+        .select('g.c3-xgrid-focus')
         .append('text')
         .attr('text-anchor', 'end')
         .attr('transform', 'rotate(-90)')
@@ -155,7 +159,7 @@ export class CustomizableGraphComponent extends
         0;  // We want each clicked data point to show up at y=0.
 
     const dialogCoordinates = this.findDialogCoordinates(
-        parentCoordinates[0] + 10, parentCoordinates[1] + this.chartY);
+        parentCoordinates[0] + 10, parentCoordinates[1] + 10);
 
     // Make the dialog show up near where the user clicked.
     this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
@@ -185,9 +189,7 @@ export class CustomizableGraphComponent extends
         this.loadNewData();
         // Add listeners for click events on the new annotation.
         this.addDeleteEvent(userSelectedDate.toMillis());
-        this.addEditEvent(
-            userSelectedDate.toMillis(), parentCoordinates[0],
-            parentCoordinates[1]);
+        this.addEditEvent(userSelectedDate.toMillis());
         this.pointsChanged.emit(this.data);
       }
     });
@@ -196,10 +198,6 @@ export class CustomizableGraphComponent extends
   // Updates the annotations displayed on the chart after a new point is added
   // or the date range is changed.
   private updateAnnotations() {
-    // Approximate coordinates of where the CustomizableGraph resides in
-    // relation to the rest of the screen.
-    // TODO(b/122471941): Find exact positioning of CustomizableGraph's chart.
-    const chartX = 400;
     // We sort the points by timestamp.
     const timestamps = Array.from(this.data.annotations.keys()).sort();
     // Charted points are always sorted by timestamp.
@@ -219,7 +217,7 @@ export class CustomizableGraphComponent extends
               timestamp, xPosition, this.chart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
-          this.addEditEvent(timestamp, Number(xPosition) + chartX, this.chartY);
+          this.addEditEvent(timestamp);
         }
       }
     }
@@ -263,14 +261,15 @@ export class CustomizableGraphComponent extends
    * @param xCoord The x-coordinate of where to show the dialog box.
    * @param yCoord The y-coordinate of where to show the dialog box.
    */
-  private addEditEvent(millis: number, xCoord: number, yCoord: number) {
+  private addEditEvent(millis: number) {
     const self = this;
     const editIcon = d3.select('#' + this.chartDivId).select('#edit-' + millis);
     const currAnnotation = this.data.annotations.get(millis);
 
-    const dialogCoordinates =
-        self.findDialogCoordinates(xCoord + 10, yCoord + this.chartY);
     editIcon.on('click', function() {
+      const parentCoordinates = d3.mouse(document.body);
+      const dialogCoordinates = self.findDialogCoordinates(
+          parentCoordinates[0] + 10, parentCoordinates[1] + 0);
       // Make the dialog show up near where the user clicked.
       self.dialogRef = self.dialog.open(CustomizableTimelineDialogComponent, {
         width: self.dialogWidth,
