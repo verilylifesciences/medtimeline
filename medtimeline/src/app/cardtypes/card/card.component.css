@@ -59,6 +59,7 @@
   max-width: 200px;
   min-width: 200px;
   word-wrap: break-word;
+  font-family: 'Quicksand', sans-serif;
 }
 
 ::ng-deep .mat-input-element:disabled{

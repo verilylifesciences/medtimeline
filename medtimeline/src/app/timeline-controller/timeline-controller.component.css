@@ -25,3 +25,7 @@
 ::ng-deep td.available{
   color: black;
 }
+
+input {
+  font-family: 'Quicksand', sans-serif;
+}

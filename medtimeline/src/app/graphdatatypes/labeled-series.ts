@@ -22,7 +22,7 @@ export class LabeledSeries {
   readonly label: string;
 
   /** The descriptive units of the data series. */
-  readonly unit: string;
+  unit: string;
 
   /**
    * The x-values for this data series. This array should be parallel to the

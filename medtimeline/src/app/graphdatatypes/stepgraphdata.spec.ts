@@ -92,4 +92,24 @@ describe('StepGraphData', () => {
              expect(data.yAxisMap.get(10)).toEqual('vancomycin');
            });
      });
+
+  it('StepGraphData.fromMedicationOrderSetList should not include units',
+     () => {
+       const earliestMedicationOrder = makeMedicationOrder();
+       earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
+       Promise
+           .resolve(earliestMedicationOrder.setMedicationAdministrations(
+               fhirServiceStub))
+           .then(result => {
+             const medOrderSet =
+                 new MedicationOrderSet([earliestMedicationOrder]);
+             const data = StepGraphData.fromMedicationOrderSetList(
+                 [medOrderSet], dateRange, TestBed.get(DomSanitizer));
+
+             data.dataSeries.forEach(
+                 series => expect(series.unit).toBeUndefined());
+             data.endpointSeries.forEach(
+                 series => expect(series.unit).toBeUndefined());
+           });
+     });
 });

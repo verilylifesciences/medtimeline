@@ -92,6 +92,14 @@ export class StepGraphData extends GraphData {
       }
       currYPosition += StepGraphData.Y_AXIS_SPACING;
     }
+    // Do not display the units for Medication administration values on the card
+    // for MedicationSummary.
+    for (const series of data) {
+      series.unit = undefined;
+    }
+    for (const series of endpoints) {
+      series.unit = undefined;
+    }
     return new StepGraphData(
         data, endpoints, yAxisMap, seriesToDisplayGroup, tooltipMap,
         // Our tooltip key here is the series ID, so we pass in a

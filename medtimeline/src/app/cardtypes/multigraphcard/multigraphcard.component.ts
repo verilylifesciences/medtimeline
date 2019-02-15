@@ -151,7 +151,24 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
           if (units.size === 1 && allUnits[0] !== undefined) {
             return ' (' + allUnits[0] + ')';
           } else {
+            this.updateAxisLabels();
             return '';
+          }
+        });
+  }
+
+  /**
+   * If the axes on this card have different units, make sure that each
+   * axis displays its units on the y-axis, for clarity.
+   */
+  updateAxisLabels() {
+    return Promise.all(this.card.axes.map(axis => axis.getDataFromFhir()))
+        .then(() => {
+          for (const axis of this.card.axes) {
+            if (axis.data && axis.label && axis.data.series &&
+                axis.data.series.length > 0) {
+              axis.label += ' (' + axis.data.series[0].unit + ')';
+            }
           }
         });
   }
