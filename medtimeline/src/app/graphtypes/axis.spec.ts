@@ -48,9 +48,6 @@ describe('Axis', () => {
       new RxNormCode(
           '308182', new DisplayGrouping('concept', 'red'), 'label2', true)
     ];
-    const graphType = ChartType.LINE;
-    const displayConcept = new DisplayGrouping('concept', 'red');
-
 
     const constructor = () => {
       const axis = new Axis(
@@ -64,7 +61,8 @@ describe('Axis', () => {
   });
 
 
-  it('Axis should throw error if Observations returned for the resource groups are of mixed y-value types.',
+  it('Axis should throw error if Observations returned for the' +
+         ' resource groups are of mixed y-value types.',
      () => {
        const resourceCodeList = [
          new LOINCCode(

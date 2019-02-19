@@ -122,6 +122,7 @@ export class Axis {
     if (!allLoinc && !allRx && !allBCHMicrobio) {
       throw Error('All resource codes must be of the same type.');
     }
+
     if (allRx) {
       // Prescriptions can be plotted as a step chart or as a line chart.
       if (this.chartType === ChartType.STEP) {
@@ -131,12 +132,14 @@ export class Axis {
         return this.getLineGraphDataForMedicationDetail(
             this.resourceGroup as RxNormCodeGroup);
       }
+    }
 
-    } else if (allBCHMicrobio) {
+    if (allBCHMicrobio) {
       // Microbiology always shows up as a step chart.
       return this.getStepGraphDataForMB(
           this.resourceGroup as BCHMicrobioCodeGroup);
-    } else if (allLoinc) {
+    } else {
+      // In this case it is all LOINC codes.
       // We use LineGraphData for both ChartType.Scatter and
       // ChartType.Line, for plotting LOINC Codes.
       return (this.resourceGroup as LOINCCodeGroup)
@@ -145,19 +148,20 @@ export class Axis {
             if (obsSetList) {
               // We only draw the Line charts if all ObservationSets are of
               // the same type of y-value: continuous or discrete.
-              if (obsSetList.length > 0 &&
-                  obsSetList.every(obsSet => obsSet.allQualitative)) {
+              if (obsSetList.every(obsSet => obsSet.allQualitative)) {
                 return LineGraphData.fromObservationSetListDiscrete(
                     this.displayConcept.label, obsSetList, this.sanitizer);
-              } else if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
+              }
+
+              if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
                 return LineGraphData.fromObservationSetList(
                     this.displayConcept.label, obsSetList, this.resourceGroup,
                     this.sanitizer);
-              } else {
-                throw Error(
-                    'ObservationSets must all be continous ' +
-                    'or discrete-valued.');
               }
+
+              throw Error(
+                  'ObservationSets must all be continuous ' +
+                  'or discrete-valued.');
             }
           },
           rejection => {

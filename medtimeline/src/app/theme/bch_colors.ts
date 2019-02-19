@@ -53,28 +53,6 @@ const CAN_USE_BOSTON_BLUE_TYPE =
 const CAN_USE_BOSTON_SKY_TYPE = [BOSTON_BLUE];
 
 /**
- * Gets a list of acceptable text colors for a given background color.
- * @param backgroundColor The background color you plan to display the text on
- */
-export function getTypeColors(backgroundColor: Color): Color[] {
-  const acceptableColors: Color[] = [];
-  if (!DO_NOT_USE_WHITE_TYPE.find(backgroundColor)) {
-    acceptableColors.push(Color.WHITE);
-  }
-  if (!DO_NOT_USE_BLACK_TYPE.find(backgroundColor)) {
-    acceptableColors.push(Color.BLACK);
-  }
-  if (CAN_USE_BOSTON_BLUE_TYPE.find(backgroundColor)) {
-    acceptableColors.push(BOSTON_BLUE);
-  }
-  if (CAN_USE_BOSTON_SKY_TYPE.find(backgroundColor)) {
-    acceptableColors.push(BOSTON_SKY);
-  }
-  return acceptableColors;
-}
-
-
-/**
  * Returns all the colors that are acceptable for data points to be plotted in.
  */
 export function getDataColors(): Color[] {
