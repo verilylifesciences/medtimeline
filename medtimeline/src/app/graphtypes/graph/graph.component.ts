@@ -290,7 +290,7 @@ export abstract class GraphComponent<T extends GraphData> implements
         format: {
           value: (value, ratio, id, index) => {
             if (self.data instanceof LineGraphData) {
-              return (value + ' ' + self.data.unit);
+              return (d3.format(',')(value) + ' ' + self.data.unit);
             }
             return value;
           }
