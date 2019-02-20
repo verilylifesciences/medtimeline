@@ -25,11 +25,6 @@ export abstract class ResourceCode {
       {[code: string]: ResourceCode} = {};
 
   static fromCodeString(code: string): ResourceCode {
-    if (ResourceCode.CODE_STRING_TO_CODE[code] === undefined) {
-      throw Error(
-          'The code ' + code + ' is unknown!' +
-          ResourceCode.CODE_STRING_TO_CODE);
-    }
     return ResourceCode.CODE_STRING_TO_CODE[code];
   }
 

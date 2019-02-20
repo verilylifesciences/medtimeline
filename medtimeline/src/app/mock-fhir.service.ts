@@ -7,8 +7,9 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Interval} from 'luxon';
 
-import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
+import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
+import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
@@ -33,63 +34,107 @@ export class MockFhirService extends FhirService {
   private readonly diagnosticReportsPath =
       this.assetPath + '/DiagnosticReportMockData.json';
 
-  readonly rxnormCodeText = {
-    '248656': 'Azithromycin',  // Code found online.
-    '308182': 'Amoxicillin',
-    '281': 'Acyclovir'  // Code found in Mock data json file supplied to us.
-  };
+  private loincMap: Promise<Map<LOINCCode, Observation[]>>;
+  private medicationAdministrationMapByCode:
+      Promise<Map<RxNormCode, MedicationAdministration[]>>;
+  private medicationAdministrationMapByOrderId:
+      Promise<Map<string, MedicationAdministration[]>>;
+  private medicationOrderMap: Promise<Map<string, MedicationOrder[]>>;
+  private diagnosticReportMap: Promise<Map<ResourceCode, DiagnosticReport[]>>;
+  private encounters: Promise<Encounter[]>;
 
-  // These order id's are random and there is no meaning associated with them.
-  // Acycylovir's order id was found in the Mock data json file supplied to us.
-  readonly rxNormOrders = {
-    '248656': ['12345678'],
-    '308182':
-        [
-          '23865893', '85426486'
-        ],  // This individual might have had two orders for amoxicillin in this
-            // mock time period.
-    '281': ['2516412263']
-  };
+  private constructResourceMap<K, V>(
+      resourcePath: string, constructorFn: (data: any) => V,
+      getCodesFn: (value: V) => K[]): Promise<Map<K, V[]>> {
+    return this.http.get(resourcePath).toPromise<any>().then(data => {
+      const returnedMap = new Map<K, V[]>();
+      for (const json of data) {
+        try {
+          const obj = constructorFn(json.resource);
+          for (const code of getCodesFn(obj)) {
+            let existing = returnedMap.get(code);
+            if (!existing) {
+              existing = [];
+            }
+            existing.push(obj);
+            returnedMap.set(code, existing);
+          }
+        } catch (error) {
+          console.info(error);
+        }
+      }
+      return returnedMap;
+    });
+  }
 
   constructor(private http: HttpClient) {
     super();
+    this.loincMap = this.constructResourceMap<LOINCCode, Observation>(
+        this.observationPath, (data) => new Observation(data),
+        (obs) => obs.codes);
+
+    this.medicationAdministrationMapByCode =
+        this.constructResourceMap<RxNormCode, MedicationAdministration>(
+            this.medicationAdministrationsPath,
+            (data) => new MedicationAdministration(data),
+            (admin) => [admin.rxNormCode]);
+
+    this.medicationAdministrationMapByOrderId =
+        this.constructResourceMap<string, MedicationAdministration>(
+            this.medicationAdministrationsPath,
+            (data) => new MedicationAdministration(data),
+            (admin) => [admin.medicationOrderId]);
+
+    this.medicationOrderMap =
+        this.constructResourceMap<string, MedicationOrder>(
+            this.medicationOrderPath, (data) => new MedicationOrder(data),
+            (order) => [order.orderId]);
+
+    this.diagnosticReportMap =
+        this.constructResourceMap<ResourceCode, DiagnosticReport>(
+            this.diagnosticReportsPath, (data) => new DiagnosticReport(data),
+            (report) =>
+                report.results.map(x => x.codes)
+                    .reduce((prev: ResourceCode[], curr: ResourceCode[]) => {
+                      return prev.concat(curr);
+                    }, []));
+
+    this.encounters =
+        this.http.get(this.encountersPath).toPromise<any>().then(data => {
+          const allEncounters = [];
+          for (const json of data) {
+            try {
+              const encounter = new Encounter(json.resource);
+              allEncounters.push(encounter);
+            } catch (error) {
+              console.info(error);
+            }
+          }
+          return allEncounters;
+        });
   }
 
   /**
    * Gets observations from a specified date range with a specific LOINC code.
    * @param code The LOINC code for which to get observations.
    * @param dateRange The time interval observations should fall between.
-   * @param limitCount Unused in this implementation, as this is just a
-   *     time-saving feature for HTTP calls.
+   * @param limitCount If set, the number of observations that should be
+   *     queried for
    */
   getObservationsWithCode(
       code: LOINCCode, dateRange: Interval,
       limitCount?: number): Promise<Observation[]> {
-    return this.http.get(this.observationPath)
-        .toPromise<any>()
-        .then(data => {
-          // We filter the mock data by reading in the value from a
-          // locally stored JSON file, and filtering for observations
-          // based on the LOINC Code and date range parameters.
-          return data.filter((obj) => {
-            obj.resource.code.coding = obj.resource.code.coding === undefined ?
-                [] :
-                obj.resource.code.coding.filter(
-                    c => (c.code === code.codeString));
-            return (obj.resource.code.coding.length !== 0);
-          });
-        })
-        .then(data => {
-          const observations = [];
-          for (const json of data) {
-            try {
-              observations.push(new Observation(json.resource));
-            } catch (error) {
-              console.info(error);
-            }
-          }
-          return observations;
-        });
+    return this.loincMap.then(
+        map => this.getObservations(map, code, dateRange, limitCount));
+  }
+
+  private getObservations(
+      map: Map<LOINCCode, Observation[]>, code: LOINCCode, dateRange: Interval,
+      limitCount = 0) {
+    return map.has(code) ? map.get(code)
+                               .filter(obs => dateRange.contains(obs.timestamp))
+                               .slice(0, limitCount ? limitCount : undefined) :
+                           [];
   }
 
   /**
@@ -102,26 +147,12 @@ export class MockFhirService extends FhirService {
   getMedicationAdministrationsWithCode(
       code: RxNormCode, dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
-    return this.http.get(this.medicationAdministrationsPath)
-        .toPromise<any>()
-        .then(data => {
-          return data
-              .map(d => {
-                try {
-                  return new MedicationAdministration(d.resource);
-                } catch (error) {
-                  console.info(error);
-                  return undefined;
-                }
-              })
-              .filter(medAdmin => {
-                if (medAdmin === undefined) {
-                  return false;
-                } else {
-                  return medAdmin.rxNormCode.codeString === code.codeString;
-                }
-              });
-        });
+    return this.medicationAdministrationMapByCode.then(
+        adminMap => adminMap.has(code) ?
+            adminMap.get(code)
+                .filter(obs => dateRange.contains(obs.timestamp))
+                .slice(0, limitCount ? limitCount : undefined) :
+            []);
   }
 
   /**
@@ -131,27 +162,7 @@ export class MockFhirService extends FhirService {
    * different medications requested.
    */
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
-    return this.http.get(this.medicationOrderPath)
-        .toPromise<any>()
-        .then(data => {
-          // We filter the mock data by reading in the value from a
-          // locally stored JSON file, and filtering for observations
-          // based on the LOINC Code and date range parameters.
-          return data.filter(obj => {
-            return (obj.resource.id === id);
-          });
-        })
-        .then(data => {
-          if (data.length > 0) {
-            for (const json of data) {
-              try {
-                return new MedicationOrder(json.resource);
-              } catch (error) {
-                console.info(error);
-              }
-            }
-          }
-        });
+    return this.medicationOrderMap.then(map => map.get(id)[0]);
   }
 
   /**
@@ -160,23 +171,7 @@ export class MockFhirService extends FhirService {
    */
   getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
-    return this.http.get(this.medicationAdministrationsPath)
-        .toPromise<any>()
-        .then(data => {
-          // We filter the mock data by reading in the value from a
-          // locally stored JSON file, and filtering for administrations
-          // based on the order id.
-          return data.filter((obj) => {
-            return (obj.resource.prescription.reference === id);
-          });
-        })
-        .then(data => {
-          const admins = [];
-          for (const json of data) {
-            admins.push(new MedicationAdministration(json.resource));
-          }
-          return admins;
-        });
+    return this.medicationAdministrationMapByOrderId.then(map => map.get(id));
   }
 
   /**
@@ -186,14 +181,9 @@ export class MockFhirService extends FhirService {
    *   date range.
    */
   getEncountersForPatient(dateRange: Interval): Promise<Encounter[]> {
-    return this.http.get(this.encountersPath).toPromise<any>().then(data => {
-      const encounters = [];
-      for (const json of data) {
-        encounters.push(new Encounter(json.resource));
-      }
-      return encounters.filter(
-          encounter => dateRange.intersection(encounter.period) !== null);
-    });
+    return this.encounters.then(
+        encounters => encounters.filter(
+            encounter => dateRange.intersection(encounter.period) !== null));
   }
 
   /**
@@ -211,60 +201,24 @@ export class MockFhirService extends FhirService {
    * the given date range, whose contained Observations are in the codeGroup
    * provided.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-   * @param dateRange Return all DiagnosticReports that covered any time in this
+   * @param dateRange Return all DiagnosticReports that covered any time in
+   *     this
    *   date range.
    */
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {
-    return this.http.get(this.diagnosticReportsPath)
-        .toPromise<any>()
-        .then(data => {
-          let reports = [];
-          for (const json of data) {
-            try {
-              reports.push(new DiagnosticReport(json.resource));
-            } catch (e) {
-              console.info(e);
-            }
-          }
-          // Filter reports by having the correct specimen type in their
-          // specimen list.
-          reports = reports.filter(report => {
-            const matchingSpecimen = report.specimens.find(
-                specimen => specimen.type === codeGroup.label);
-            return (matchingSpecimen !== undefined);
-          });
-          // Filter remaining reports by having a code in their results list
-          // that matches a code in the codegroup's list of resourcecodes.
-          reports = reports.filter(report => {
-            const results = report.results;
-            return this.findResultWithCode(codeGroup, results) !== undefined;
-          });
-          return reports;
-        });
-  }
-
-  // This method returns the first Observation that contains the same code as
-  // any code in the codegroup's resource list.
-  private findResultWithCode(
-      codeGroup: BCHMicrobioCodeGroup, results: Observation[]): Observation {
-    // Find the first Observation in results.
-    return results.find(result => {
-      // Check whether the Observation has some code matching a code in the
-      // codegroup's list.
-      return result.codes.some(code => {
-        return this.findMatchingCode(codeGroup, code as BCHMicrobioCode) !==
-            undefined;
-      });
+    return this.diagnosticReportMap.then(reportMap => {
+      let reports = new Array<DiagnosticReport>();
+      for (const code of codeGroup.resourceCodes) {
+        if (reportMap.has(code)) {
+          reports = reports.concat(reportMap.get(code));
+        }
+      }
+      reports.filter(
+          report => report.specimens.map(s => s.type)
+                        .find(specimen => specimen === codeGroup.label) !==
+              undefined);
+      return reports;
     });
-  }
-
-  // This method returns the first BCHMicrobioCode that is contained in the list
-  // of codes of the codegroup.
-  private findMatchingCode(
-      codeGroup: BCHMicrobioCodeGroup, code: BCHMicrobioCode): BCHMicrobioCode {
-    return (codeGroup.resourceCodes.find(
-               resourceCode => resourceCode.codeString === code.codeString)) as
-        BCHMicrobioCode;
   }
 }
