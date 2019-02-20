@@ -99,10 +99,10 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       graph.axis.y.tick.format = function(d) {
         return ''.trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
       };
+      this.yAxisTickDisplayValues = yValues.map(
+          value => value.toLocaleString(
+              'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
     }
-    this.yAxisTickDisplayValues = yValues.map(
-        value => value.toLocaleString(
-            'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
     return graph;
   }
 

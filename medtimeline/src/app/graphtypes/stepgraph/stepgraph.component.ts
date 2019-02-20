@@ -12,8 +12,7 @@ import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 import {getDataColors} from 'src/app/theme/bch_colors';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
-import {MedicationTooltip} from '../../graphtypes/tooltips/medication-tooltips';
-import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
+import {GraphComponent} from '../graph/graph.component';
 
 @Component({
   selector: 'app-stepgraph',
@@ -67,25 +66,26 @@ export class StepGraphComponent extends
     // initially numbers, to discrete labels representing each Medication's
     // label, and sets the tick values to be those labels.
     const yValues = Array.from(this.data.yAxisMap.keys());
-    const needToWrap = yValues.some(
-        value => this.data.yAxisMap.get(value).length > Y_AXIS_TICK_MAX);
+    // We need a slightly larger padding for step charts to be aligned with all
+    // other charts.
+    const stepGraphYAxisTickMax = 15;
     this.yAxisTickDisplayValues =
         yValues.map(value => this.data.yAxisMap.get(value));
+
     const yAxisConfig: c3.YAxisConfiguration = {
       // We add the min and max so that when series are hidden by being clicked
       // on, the y axis does not change and the hidden medications' tick marks
       // still appear
       min: 10,
       max: yValues.sort()[yValues.length - 1],
-      padding: {top: 30, bottom: 20},
+      padding: {top: 20, bottom: 20},
       tick: {
         // We add padding to our y-axis tick labels so that all y-axes of the
         // charts rendered on the page can be aligned.
-        // If the labels need to be wrapped, use an empty string placeholder for
-        // each label, so that the axis does not get shifted over.
+        // We use an empty string placeholder for each label, so that the axis
+        // does not get shifted over.
         format: d => {
-          const value = needToWrap ? '' : this.data.yAxisMap.get(d);
-          return (value).toString().trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
+          return ''.trim().padStart(stepGraphYAxisTickMax, '\xa0');
         },
         values: Array.from(this.data.yAxisMap.keys()),
       },
