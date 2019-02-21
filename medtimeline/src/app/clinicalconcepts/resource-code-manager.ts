@@ -179,7 +179,8 @@ export class ResourceCodeManager {
           codeGroups.push(new ResourceCodesForCard(
               [new LOINCCodeGroup(
                   this.fhirService, loinc.label, new Array(loinc), conceptGroup,
-                  ChartType.LINE)],
+                  ChartType.LINE, loinc.displayBounds,
+                  loinc.forceDisplayBounds)],
               loinc.label, conceptGroup));
         }
       }
@@ -188,19 +189,19 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'WBC',
             [new LOINCCode('26464-8', labResult, 'WBC', true, [0, 150])],
-            labResult, ChartType.LINE),
+            labResult, ChartType.LINE, [0, 150]),
         new LOINCCodeGroup(
             this.fhirService, 'Hemoglobin',
             [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-            labResult, ChartType.LINE),
+            labResult, ChartType.LINE, [0.5, 30]),
         new LOINCCodeGroup(
             this.fhirService, 'Hematocrit',
             [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
-            labResult, ChartType.LINE),
+            labResult, ChartType.LINE, [10, 70]),
         new LOINCCodeGroup(
             this.fhirService, 'Platelet',
             [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
-            labResult, ChartType.LINE),
+            labResult, ChartType.LINE, [2, 900]),
 
       ];
       codeGroups.push(new ResourceCodesForCard(cbc, 'CBC', labResult));
@@ -210,34 +211,34 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'Neutrophil/Band',
             [new LOINCCode(
-                '764-1', labResult, 'Neutrophil/Band', true, [0, 100], true)],
-            labResult, ChartType.LINE, true),
+                '35332-6', labResult, 'Neutrophil/Band', true, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
         new LOINCCodeGroup(
             this.fhirService, 'Immature Granulocytes',
             [new LOINCCode(
                 '38518-7', labResult, 'Immature Granulocytes', true, [0, 100],
                 true)],
-            labResult, ChartType.LINE, true),
+            labResult, ChartType.LINE, [0, 100], true),
         new LOINCCodeGroup(
             this.fhirService, 'Lymphocyte',
             [new LOINCCode(
-                '737-7', labResult, 'Lymphocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, true),
+                '736-9', labResult, 'Lymphocyte', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
         new LOINCCodeGroup(
             this.fhirService, 'Monocyte',
             [new LOINCCode(
-                '743-5', labResult, 'Monocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, true),
+                '5905-5', labResult, 'Monocyte', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
         new LOINCCodeGroup(
             this.fhirService, 'Eosinophil',
             [new LOINCCode(
-                '714-6', labResult, 'Eosinophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, true),
+                '713-8', labResult, 'Eosinophil', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
         new LOINCCodeGroup(
             this.fhirService, 'Basophil',
             [new LOINCCode(
-                '707-0', labResult, 'Basophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, true),
+                '706-2', labResult, 'Basophil', false, [0, 100], true)],
+            labResult, ChartType.LINE, [0, 100], true),
 
       ];
       codeGroups.push(
@@ -263,9 +264,10 @@ export class ResourceCodeManager {
           [
             vancRxNorm,
             new LOINCCodeGroup(
-                this.fhirService, 'Vancomycin',
+                this.fhirService, 'Vancomycin Monitoring',
                 ResourceCodeManager.vancMonitoring, med, ChartType.SCATTER,
-                false, undefined,  // no meaningful y-axis ranges
+                undefined,  // no meaningful y-axis ranges
+                false,
                 (observation: Observation, dateRange: Interval):
                     Promise<AnnotatedObservation> => {
                       return vancRxNorm.getResourceSet(dateRange)

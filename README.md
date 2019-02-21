@@ -18,7 +18,7 @@ new clinical concepts, and changing the timeframe of the visualized data.
 1. Clone this repository.
 1. Change into the `medtimeline` directory.
 1. Run `npm install` to install all dependencies.
-1. Run `ng serve --port 8000 --configuration=dev_mock` to run the application
+1. Run `ng serve --port 8000 --configuration=dev_mock_synth_data` to run the application
    against the included mock data (note there is not data for all clinical
    concepts).
 
@@ -88,7 +88,7 @@ to run the application.
 
 If instead you want to run against the mock data, found in`src/assets/DemoMockData`, run this command:
 
-`ng serve --port 8000 --configuration=dev_mock`
+`ng serve --port 8000 --configuration=dev_mock_old_data`
 
 Navigate to `http://localhost:8000/` to see the application.
 

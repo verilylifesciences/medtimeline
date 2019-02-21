@@ -47,11 +47,19 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "dev_mock": {
+            "dev_mock_old_data": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.mock.ts"
+                  "with": "src/environments/environment_old.mock.ts"
+                }
+              ]
+            },
+            "dev_mock_synth_data": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment_synth.mock.ts"
                 }
               ]
             },
@@ -74,8 +82,11 @@
             "production": {
               "browserTarget": "medtimeline:build:production"
             },
-            "dev_mock": {
-              "browserTarget": "medtimeline:build:dev_mock"
+            "dev_mock_old_data": {
+              "browserTarget": "medtimeline:build:dev_mock_old_data"
+            },
+            "dev_mock_synth_data": {
+              "browserTarget": "medtimeline:build:dev_mock_synth_data"
             },
             "dev_http": {
               "browserTarget": "medtimeline:build:dev_http"

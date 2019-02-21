@@ -34,7 +34,7 @@ describe('LineGraphComponent', () => {
   const loincCodeGroup = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
       [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
-      ChartType.LINE, false, [0, 50]);
+      ChartType.LINE, [0, 50], false);
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({

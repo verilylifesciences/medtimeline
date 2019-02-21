@@ -6,6 +6,9 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Interval} from 'luxon';
+import {FhirResourceType} from 'src/constants';
+
+import {environment} from '../environments/environment';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
@@ -22,96 +25,95 @@ import {FhirService} from './fhir.service';
 export class MockFhirService extends FhirService {
   errorMessage: string;
 
-  private readonly folderName = 'DemoMockData';
-  private readonly assetPath = './assets/' + this.folderName;
-  private readonly medicationAdministrationsPath =
-      this.assetPath + '/MedicationAdministrationMockData.json';
-  private readonly medicationOrderPath =
-      this.assetPath + '/MedicationOrderMockData.json';
-  private readonly observationPath =
-      this.assetPath + '/ObservationMockData.json';
-  private readonly encountersPath = this.assetPath + '/EncounterMockData.json';
-  private readonly diagnosticReportsPath =
-      this.assetPath + '/DiagnosticReportMockData.json';
+  private readonly assetPath = './assets/' + environment.mockDataFolder + '/';
+  private readonly allFilePaths =
+      environment.mockDataFiles.map(x => this.assetPath + x + '.json');
 
-  private loincMap: Promise<Map<LOINCCode, Observation[]>>;
-  private medicationAdministrationMapByCode:
-      Promise<Map<RxNormCode, MedicationAdministration[]>>;
-  private medicationAdministrationMapByOrderId:
-      Promise<Map<string, MedicationAdministration[]>>;
-  private medicationOrderMap: Promise<Map<string, MedicationOrder[]>>;
-  private diagnosticReportMap: Promise<Map<ResourceCode, DiagnosticReport[]>>;
-  private encounters: Promise<Encounter[]>;
+  private readonly loincMap = new Map<LOINCCode, Observation[]>();
+  private readonly medicationAdministrationMapByCode =
+      new Map<RxNormCode, MedicationAdministration[]>();
+  private readonly medicationAdministrationMapByOrderId =
+      new Map<string, MedicationAdministration[]>();
+  private readonly medicationOrderMap = new Map<string, MedicationOrder[]>();
+  private readonly diagnosticReportMap =
+      new Map<ResourceCode, DiagnosticReport[]>();
+  private readonly encounters = new Array<Encounter>();
+  private readonly allDataPromise: Promise<void[]>;
 
   private constructResourceMap<K, V>(
-      resourcePath: string, constructorFn: (data: any) => V,
-      getCodesFn: (value: V) => K[]): Promise<Map<K, V[]>> {
-    return this.http.get(resourcePath).toPromise<any>().then(data => {
-      const returnedMap = new Map<K, V[]>();
-      for (const json of data) {
-        try {
-          const obj = constructorFn(json.resource);
-          for (const code of getCodesFn(obj)) {
-            let existing = returnedMap.get(code);
-            if (!existing) {
-              existing = [];
-            }
-            existing.push(obj);
-            returnedMap.set(code, existing);
-          }
-        } catch (error) {
-          console.info(error);
+      json: any, mapToUpdate: Map<K, V[]>, constructorFn: (any) => V,
+      getCodesFn: (value: V) => K[]) {
+    try {
+      const obj = constructorFn(json.resource);
+      for (const code of getCodesFn(obj)) {
+        let existing = mapToUpdate.get(code);
+        if (!existing) {
+          existing = [];
         }
+        existing.push(obj);
+        mapToUpdate.set(code, existing);
       }
-      return returnedMap;
-    });
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
+  private mapAllData(): Promise<void[]> {
+    return Promise.all(this.allFilePaths.map(filePath => {
+      return this.http.get(filePath).toPromise<any>().then(data => {
+        for (const json of data.entry) {
+          const resourceType = json.resource.resourceType;
+
+          if (resourceType === FhirResourceType.Observation) {
+            this.constructResourceMap(
+                json, this.loincMap, (x: any) => new Observation(x),
+                (obs) => obs.codes);
+          }
+
+          if (resourceType === FhirResourceType.MedicationAdministration) {
+            this.constructResourceMap(
+                json, this.medicationAdministrationMapByCode,
+                (data) => new MedicationAdministration(data),
+                (admin) => [admin.rxNormCode]);
+
+            this.constructResourceMap(
+                json, this.medicationAdministrationMapByOrderId,
+                (data) => new MedicationAdministration(data),
+                (admin) => [admin.medicationOrderId]);
+          }
+
+          if (resourceType === FhirResourceType.MedicationOrder) {
+            this.constructResourceMap(
+                json, this.medicationOrderMap,
+                (data) => new MedicationOrder(data),
+                (order) => [order.orderId]);
+          }
+
+          if (resourceType === FhirResourceType.Encounter) {
+            const encounter = new Encounter(json.resource);
+            this.encounters.push(encounter);
+          }
+
+          if (resourceType === FhirResourceType.DiagnosticReport) {
+            this.constructResourceMap(
+                json, this.diagnosticReportMap,
+                (data) => new DiagnosticReport(data),
+                (report) =>
+                    report.results.map(x => x.codes)
+                        .reduce(
+                            (prev: ResourceCode[], curr: ResourceCode[]) => {
+                              return prev.concat(curr);
+                            },
+                            []));
+          }
+        }
+      });
+    }));
   }
 
   constructor(private http: HttpClient) {
     super();
-    this.loincMap = this.constructResourceMap<LOINCCode, Observation>(
-        this.observationPath, (data) => new Observation(data),
-        (obs) => obs.codes);
-
-    this.medicationAdministrationMapByCode =
-        this.constructResourceMap<RxNormCode, MedicationAdministration>(
-            this.medicationAdministrationsPath,
-            (data) => new MedicationAdministration(data),
-            (admin) => [admin.rxNormCode]);
-
-    this.medicationAdministrationMapByOrderId =
-        this.constructResourceMap<string, MedicationAdministration>(
-            this.medicationAdministrationsPath,
-            (data) => new MedicationAdministration(data),
-            (admin) => [admin.medicationOrderId]);
-
-    this.medicationOrderMap =
-        this.constructResourceMap<string, MedicationOrder>(
-            this.medicationOrderPath, (data) => new MedicationOrder(data),
-            (order) => [order.orderId]);
-
-    this.diagnosticReportMap =
-        this.constructResourceMap<ResourceCode, DiagnosticReport>(
-            this.diagnosticReportsPath, (data) => new DiagnosticReport(data),
-            (report) =>
-                report.results.map(x => x.codes)
-                    .reduce((prev: ResourceCode[], curr: ResourceCode[]) => {
-                      return prev.concat(curr);
-                    }, []));
-
-    this.encounters =
-        this.http.get(this.encountersPath).toPromise<any>().then(data => {
-          const allEncounters = [];
-          for (const json of data) {
-            try {
-              const encounter = new Encounter(json.resource);
-              allEncounters.push(encounter);
-            } catch (error) {
-              console.info(error);
-            }
-          }
-          return allEncounters;
-        });
+    this.allDataPromise = this.mapAllData();
   }
 
   /**
@@ -124,8 +126,9 @@ export class MockFhirService extends FhirService {
   getObservationsWithCode(
       code: LOINCCode, dateRange: Interval,
       limitCount?: number): Promise<Observation[]> {
-    return this.loincMap.then(
-        map => this.getObservations(map, code, dateRange, limitCount));
+    return this.allDataPromise.then(
+        map =>
+            this.getObservations(this.loincMap, code, dateRange, limitCount));
   }
 
   private getObservations(
@@ -147,9 +150,9 @@ export class MockFhirService extends FhirService {
   getMedicationAdministrationsWithCode(
       code: RxNormCode, dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
-    return this.medicationAdministrationMapByCode.then(
-        adminMap => adminMap.has(code) ?
-            adminMap.get(code)
+    return this.allDataPromise.then(
+        x => this.medicationAdministrationMapByCode.has(code) ?
+            this.medicationAdministrationMapByCode.get(code)
                 .filter(obs => dateRange.contains(obs.timestamp))
                 .slice(0, limitCount ? limitCount : undefined) :
             []);
@@ -162,7 +165,10 @@ export class MockFhirService extends FhirService {
    * different medications requested.
    */
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
-    return this.medicationOrderMap.then(map => map.get(id)[0]);
+    return this.allDataPromise.then(
+        x => this.medicationOrderMap.has(id) ?
+            this.medicationOrderMap.get(id)[0] :
+            undefined);
   }
 
   /**
@@ -171,7 +177,8 @@ export class MockFhirService extends FhirService {
    */
   getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
-    return this.medicationAdministrationMapByOrderId.then(map => map.get(id));
+    return this.allDataPromise.then(
+        x => this.medicationAdministrationMapByOrderId.get(id));
   }
 
   /**
@@ -181,8 +188,8 @@ export class MockFhirService extends FhirService {
    *   date range.
    */
   getEncountersForPatient(dateRange: Interval): Promise<Encounter[]> {
-    return this.encounters.then(
-        encounters => encounters.filter(
+    return this.allDataPromise.then(
+        x => this.encounters.filter(
             encounter => dateRange.intersection(encounter.period) !== null));
   }
 
@@ -207,11 +214,11 @@ export class MockFhirService extends FhirService {
    */
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {
-    return this.diagnosticReportMap.then(reportMap => {
+    return this.allDataPromise.then(x => {
       let reports = new Array<DiagnosticReport>();
       for (const code of codeGroup.resourceCodes) {
-        if (reportMap.has(code)) {
-          reports = reports.concat(reportMap.get(code));
+        if (this.diagnosticReportMap.has(code)) {
+          reports = reports.concat(this.diagnosticReportMap.get(code));
         }
       }
       reports.filter(

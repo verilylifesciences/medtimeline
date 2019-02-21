@@ -44,13 +44,13 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
       readonly displayGrouping: DisplayGrouping,
       /** The chart type for this Axis. */
       readonly chartType: ChartType,
+      /** Absolute axis bounds for the graph displaying this ResourceCode. */
+      readonly displayBounds?: [number, number],
       /**
        * Whether or not to force the axis bounds, even if a smaller range
        * containing all the data can be calculated.
        */
       readonly forceDisplayBounds = false,
-      /** Absolute axis bounds for the graph displaying this ResourceCode. */
-      readonly displayBounds?: [number, number],
       /**
        * The (optional) function that will make an observation into an
        * AnnotatedObservation so that the graph can show the appropriate

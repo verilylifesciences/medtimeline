@@ -4,9 +4,13 @@
 
 export const environment = {
   production: false,
-  useMockServer: false,
-  mockDataFolder: '',
-  mockDataFiles: []
+  useMockServer: true,
+  mockDataFolder: 'demo_data/DemoMockData',
+  mockDataFiles: [
+    'DiagnosticReportMockData', 'EncounterMockData',
+    'MedicationAdministrationMockData', 'MedicationOrderMockData',
+    'ObservationMockData'
+  ]
 };
 
 /*

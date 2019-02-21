@@ -116,8 +116,8 @@ export class Observation extends LabeledClass {
 
     if (!this.codes || this.codes.length === 0) {
       throw Error(
-          'Observations have to have a LOINC code to be useful. ' +
-          'JSON: ' + JSON.stringify(json));
+          'Observations have to have a LOINC code to be useful.' +
+          ' Label: ' + this.label + '\nJSON: ' + JSON.stringify(json));
     }
 
     if (!this.label) {

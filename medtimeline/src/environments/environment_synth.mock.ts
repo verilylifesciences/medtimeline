@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  useMockServer: true
+  useMockServer: true,
+  mockDataFolder: 'demo_data/test_bmedtimeA',
+  mockDataFiles: [
+    'test_bmedtimeA_encounters', 'test_bmedtimeA_med_order',
+    'test_bmedtimeA_med_st', 'test_bmedtimeA_obs_labs',
+    'test_bmedtimeA_obs_vitals'
+  ]
 };
 
 /*

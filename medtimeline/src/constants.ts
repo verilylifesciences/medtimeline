@@ -18,4 +18,5 @@ export enum FhirResourceType {
   Patient = 'Patient',
   Specimen = 'Specimen',
   Medication = 'Medication',
+  DiagnosticReport = 'DiagnosticReport'
 }
