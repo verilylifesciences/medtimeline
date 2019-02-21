@@ -7,24 +7,27 @@ import 'jasmine';
 
 import {browser} from 'protractor';
 
+import {IndexPage} from '../index.po';
+
 import {DataSelectorPage} from './dataselector.po';
 
 
-describe('Customizable Timeline', () => {
+describe('Data Selector', () => {
+  const index: IndexPage = new IndexPage();
   const dataSelector: DataSelectorPage = new DataSelectorPage();
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
   const subMenu = dataSelector.getSubMenu(1);
 
   beforeEach(async () => {
     await browser.get('/');
-    await dataSelector.expectToExist('.mat-menu-panel', false);
+    await index.expectToExist('.mat-menu-panel', false);
     const dataSelectorButton = dataSelector.getAddCardButton();
-    await dataSelector.clickOnElement(dataSelectorButton);
+    await index.clickOnElement(dataSelectorButton);
     await dataSelector.waitForMenu();
   });
 
   it('clicking on the add menu button should open the menu', async () => {
-    await dataSelector.expectToExist('.mat-menu-content');
+    await index.expectToExist('.mat-menu-content');
   });
 
   it('menu first options should include adding a textbox, custom timeline, and adding a card',
@@ -38,11 +41,11 @@ describe('Customizable Timeline', () => {
   it('menu should close after adding a textbox', async () => {
     const menu = await dataSelector.getMenu();
     const textboxOption = await dataSelector.getItems(menu).get(0);
-    await dataSelector.waitForClickable(
+    await index.waitForClickable(
         textboxOption, jasmine.DEFAULT_TIMEOUT_INTERVAL);
     await textboxOption.click();
     await dataSelector.waitForMenuClose(menu);
-    await dataSelector.expectToExist('.mat-menu-panel', false);
+    await index.expectToExist('.mat-menu-panel', false);
   });
 
   it('submenu should open after adding a card', async () => {
@@ -67,8 +70,7 @@ describe('Customizable Timeline', () => {
 
     const addVitals = await dataSelector.getItems(subMenu).get(1);
 
-    await dataSelector.waitForClickable(
-        addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    await index.waitForClickable(addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
     await addVitals.click();
 
@@ -87,8 +89,7 @@ describe('Customizable Timeline', () => {
 
     const addLabs = await dataSelector.getItems(subMenu).get(2);
 
-    await dataSelector.waitForClickable(
-        addLabs, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    await index.waitForClickable(addLabs, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
     await addLabs.click();
 
@@ -108,8 +109,7 @@ describe('Customizable Timeline', () => {
 
     const addMeds = await dataSelector.getItems(subMenu).get(3);
 
-    await dataSelector.waitForClickable(
-        addMeds, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    await index.waitForClickable(addMeds, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
     await addMeds.click();
 
@@ -127,8 +127,7 @@ describe('Customizable Timeline', () => {
 
     const addMB = await dataSelector.getItems(subMenu).get(4);
 
-    await dataSelector.waitForClickable(
-        addMB, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    await index.waitForClickable(addMB, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
     await addMB.click();
 
@@ -150,7 +149,7 @@ describe('Customizable Timeline', () => {
 
        const addVitals = await dataSelector.getItems(subMenu).get(1);
 
-       await dataSelector.waitForClickable(
+       await index.waitForClickable(
            addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
        await addVitals.click();
@@ -162,7 +161,7 @@ describe('Customizable Timeline', () => {
        expect(text).toContain('No data between');
 
        const confCard = dataSelector.getConfigurationCard(firstVital);
-       const color = await dataSelector.getStyle(confCard, 'border-left-color');
+       const color = await index.getStyle(confCard, 'border-left-color');
 
        // The color of "No Data".
        expect(color).toEqual('rgba(197, 185, 172, 1)');

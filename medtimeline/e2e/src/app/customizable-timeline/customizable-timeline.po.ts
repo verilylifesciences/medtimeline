@@ -3,9 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {browser, by, element, ElementFinder, ExpectedConditions} from 'protractor';
+import {by, element, ElementFinder} from 'protractor';
+import {IndexPage} from '../index.po';
 
 export class CustomizableTimelinePage {
+  index = new IndexPage();
   // Return the svg portion of the Customizable Graph.
   getGraph() {
     return element(by.css('app-customizable-graph'))
@@ -19,55 +21,9 @@ export class CustomizableTimelinePage {
         .element(by.css('.editCardIcon'));
   }
 
-  // Wait for an element with the specified selector to load.
-  async waitForElement(selector: string) {
-    return await browser.isElementPresent(by.css(selector));
-  }
-
-  async expectToExist(selector: string, expected = true) {
-    await this.waitForElement(selector).then((isPresent: boolean) => {
-      expect(isPresent).toBe(expected);
-    });
-  }
-
-  async waitForClickable(el: ElementFinder, timeout: number) {
-    await browser.wait(ExpectedConditions.elementToBeClickable(el), timeout);
-  }
-
-  // Hover over the element specified.
-  async hoverOverElement(el: ElementFinder) {
-    await browser.actions().mouseMove(el).perform();
-  }
-
-  // Return the inner element of el, specified by the selector.
-  async getElement(el: ElementFinder, selector: string) {
-    return el.element(by.css(selector));
-  }
-
-  // Get the style value of the element specified.
-  getStyle(el: ElementFinder, style: string) {
-    return el.getCssValue(style);
-  }
-
-  // Enter text to the element specified.
-  async enterText(el: ElementFinder, text: string) {
-    await el.sendKeys(text);
-  }
-
-  // Get the text value of the inner element, specified by selector, of el.
-  async getText(el: ElementFinder, selector: string) {
-    return el.element(by.css(selector)).getText();
-  }
-
-  // Click on the element specified, optionally shifting the mouse coordinates
-  // by x and/or y. Default click is in the middle of the element.
-  async clickOnElement(el: ElementFinder, x?: number, y?: number) {
-    await browser.actions().mouseMove(el, {x: x, y: y}).click().perform();
-  }
-
   // Wait for the CustomizableTimelineDialog element to fully load.
   async waitForDialog() {
-    await this.waitForElement('mat-dialog-container');
+    await this.index.waitForElement('mat-dialog-container');
   }
 
   // Return the save button in the CustomizableTimelineDialog.
@@ -77,7 +33,8 @@ export class CustomizableTimelinePage {
 
   async clickOnSaveButton() {
     const saveButton = this.getSaveButton();
-    await this.waitForClickable(saveButton, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    await this.index.waitForClickable(
+        saveButton, jasmine.DEFAULT_TIMEOUT_INTERVAL);
     await saveButton.click();
   }
 
