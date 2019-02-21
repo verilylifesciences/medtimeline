@@ -17,7 +17,7 @@ import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
 export class BCHMicrobioCode extends ResourceCode {
   static readonly CODING_STRING = 'http://cerner.com/bch_mapping/';
 
-  // TODO(b/117431412): Make this accurate according to microbiology results
+  // TODO(b/125441215): Make this accurate according to microbiology results
   dataAvailableInAppTimeScope(): Promise<boolean> {
     return Promise.resolve(false);
   }

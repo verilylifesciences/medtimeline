@@ -77,32 +77,36 @@ export class MedicationOrder extends LabeledClass {
   setMedicationAdministrations(fhirService: FhirService):
       Promise<MedicationOrder> {
     return fhirService.getMedicationAdministrationsWithOrder(this.orderId)
-        .then(medAdmins => {
-          medAdmins = medAdmins.sort((a, b) => {
-            return a.timestamp.toMillis() - b.timestamp.toMillis();
-          });
-          this.firstAdministration = medAdmins[0];
-          this.lastAdmininistration = medAdmins[medAdmins.length - 1];
+        .then(
+            medAdmins => {
+              medAdmins = medAdmins.sort((a, b) => {
+                return a.timestamp.toMillis() - b.timestamp.toMillis();
+              });
+              this.firstAdministration = medAdmins[0];
+              this.lastAdmininistration = medAdmins[medAdmins.length - 1];
 
-          const admins = [];
-          for (let i = 0; i < medAdmins.length; i++) {
-            const admin = medAdmins[i];
-            // We want the dose counts and day counts to start with 1 so we
-            // add 1 to the day count and the index for the dose.
-            const dayCount =
-                admin.timestamp.diff(this.firstAdministration.timestamp)
-                    .as('day') + 1;
-            const annotated = new AnnotatedAdministration(
-                admin, i + 1 /* dose in order starts at 1 */, dayCount,
-                i > 0 ? admins[i - 1] : undefined);
-            admins.push(annotated);
-          }
-          this.administrationsForOrder =
-              new MedicationAdministrationSet(admins);
-        })
-        .then(() => {
-          return this;
-        });
+              const admins = [];
+              for (let i = 0; i < medAdmins.length; i++) {
+                const admin = medAdmins[i];
+                // We want the dose counts and day counts to start with 1 so we
+                // add 1 to the day count and the index for the dose.
+                const dayCount =
+                    admin.timestamp.diff(this.firstAdministration.timestamp)
+                        .as('day') + 1;
+                const annotated = new AnnotatedAdministration(
+                    admin, i + 1 /* dose in order starts at 1 */, dayCount,
+                    i > 0 ? admins[i - 1] : undefined);
+                admins.push(annotated);
+              }
+              this.administrationsForOrder =
+                  new MedicationAdministrationSet(admins);
+              return this;
+            },
+            rejection => {
+              // Throw an error if the construction of the
+              // MedicationAdministration results in an error.
+              throw rejection;
+            });
   }
 }
 

@@ -105,10 +105,16 @@ export abstract class CachedResourceCodeGroup<T> extends ResourceCodeGroup {
     if (this.dataCache.has(dateRange)) {
       return Promise.resolve(this.dataCache.get(dateRange));
     } else {
-      return this.getResourceFromFhir(dateRange).then(res => {
-        this.dataCache.set(dateRange, res);
-        return Promise.resolve(this.dataCache.get(dateRange));
-      });
+      return this.getResourceFromFhir(dateRange).then(
+          res => {
+            this.dataCache.set(dateRange, res);
+            return Promise.resolve(this.dataCache.get(dateRange));
+          },
+          rejection => {
+            // If there is any error with getting the resources for this
+            // ResourceCodeGroup, throw an error.
+            throw rejection;
+          });
     }
   }
 

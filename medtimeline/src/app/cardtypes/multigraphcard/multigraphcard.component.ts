@@ -50,10 +50,6 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   /** Propogate remove up to the card container.  */
   @Output() onRemove = new EventEmitter();
 
-  // An error message if there's an error in data retrieval.
-  // TODO(b/119878664): Surface any errors in the UI.
-  private readonly errorMessage: string;
-
   // The label for this graphcard.
   label: string;
 

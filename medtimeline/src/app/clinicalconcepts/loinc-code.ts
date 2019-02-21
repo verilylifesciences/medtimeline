@@ -38,43 +38,49 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
    */
   getResourceFromFhir(dateRange: Interval): Promise<ObservationSet[]> {
     return this.fhirService.getObservationsForCodeGroup(this, dateRange)
-        .then(result => {
-          const obsSetList: ObservationSet[] = [];
-          // Keep track of the potential outer/inner components of each
-          // Observation by mapping labels to all the Observations associated
-          // with that label.
-          const mapObs = new Map<string, Observation[]>();
-          for (const o of result) {
-            // Separate the Observations into ObservationSets based on possible
-            // inner components.
-            for (const observation of o) {
-              // The outer component may not have a value or result.
-              if (observation.value || observation.result) {
-                let obsList = mapObs.get(observation.label);
-                if (!obsList) {
-                  obsList = [];
-                }
-                obsList.push(observation);
-                mapObs.set(observation.label, obsList);
-              }
-              // Add separate ObservationLists for each inner component.
-              if (observation.innerComponents.length > 0) {
-                for (const innerComponent of observation.innerComponents) {
-                  let obsList = mapObs.get(innerComponent.label);
-                  if (!obsList) {
-                    obsList = [];
+        .then(
+            result => {
+              const obsSetList: ObservationSet[] = [];
+              // Keep track of the potential outer/inner components of each
+              // Observation by mapping labels to all the Observations
+              // associated with that label.
+              const mapObs = new Map<string, Observation[]>();
+              for (const o of result) {
+                // Separate the Observations into ObservationSets based on
+                // possible inner components.
+                for (const observation of o) {
+                  // The outer component may not have a value or result.
+                  if (observation.value || observation.result) {
+                    let obsList = mapObs.get(observation.label);
+                    if (!obsList) {
+                      obsList = [];
+                    }
+                    obsList.push(observation);
+                    mapObs.set(observation.label, obsList);
                   }
-                  obsList.push(innerComponent);
-                  mapObs.set(innerComponent.label, obsList);
+                  // Add separate ObservationLists for each inner component.
+                  if (observation.innerComponents.length > 0) {
+                    for (const innerComponent of observation.innerComponents) {
+                      let obsList = mapObs.get(innerComponent.label);
+                      if (!obsList) {
+                        obsList = [];
+                      }
+                      obsList.push(innerComponent);
+                      mapObs.set(innerComponent.label, obsList);
+                    }
+                  }
                 }
               }
-            }
-          }
-          // We turn each value in the map into an ObservationSet.
-          for (const value of Array.from(mapObs.values())) {
-            obsSetList.push(new ObservationSet(value));
-          }
-          return Promise.resolve(obsSetList);
-        });
+              // We turn each value in the map into an ObservationSet.
+              for (const value of Array.from(mapObs.values())) {
+                obsSetList.push(new ObservationSet(value));
+              }
+              return Promise.resolve(obsSetList);
+            },
+            rejection => {
+              // If there is any error with constructing an Observation for any
+              // code in this code group, throw the error.
+              throw rejection;
+            });
   }
 }

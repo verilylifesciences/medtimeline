@@ -27,10 +27,17 @@ export class RxNormCodeGroup extends CachedResourceCodeGroup<RxNormCode> {
   getResourceFromFhir(dateRange: Interval): Promise<RxNormCode[]> {
     return this.fhirService
         .getMedicationAdministrationsWithCodes(this, dateRange)
-        .then(medAdmins => {
-          const groupedByOrder = this.groupAdministrationsByOrderId(medAdmins);
-          return this.getMedicationOrdersAndMapToMed(groupedByOrder);
-        });
+        .then(
+            medAdmins => {
+              const groupedByOrder =
+                  this.groupAdministrationsByOrderId(medAdmins);
+              return this.getMedicationOrdersAndMapToMed(groupedByOrder);
+            },
+            rejection => {
+              // If there are any errors constructing MedicationAdministrations
+              // or MedicationOrders for this RxNormCode[], throw the error.
+              throw rejection;
+            });
   }
 
   /**
@@ -113,54 +120,73 @@ export class RxNormCodeGroup extends CachedResourceCodeGroup<RxNormCode> {
     const groupedByMed = new Map<RxNormCode, MedicationOrder[]>();
     const allPromises = Array.from(groupedByOrder.keys()).map(orderId => {
       return this.fhirService.getMedicationOrderWithId(orderId)
-          .then(order => {
-            // We only have the MedicationAdministrations from within the
-            // specified time window, so we have to search again for all the
-            // MedicationAdministrations present for this order and assign
-            // them to the order.
-            return order.setMedicationAdministrations(this.fhirService);
-          })
-          .then((order: MedicationOrder) => {
-            // Verify all the administrations have the same RxNormCode and
-            // same Order ID.
-            const rxNormCodeSet =
-                new Set(Array.from(groupedByOrder.get(order.orderId).values())
-                            .map(admin => admin.rxNormCode));
-            if (rxNormCodeSet.size !== 1) {
-              throw Error(
-                  'Administrations for order ' + order.orderId +
-                  ' are for multiple RxNorms: ' +
-                  Array.from(rxNormCodeSet.values()));
-            }
+          .then(
+              order => {
+                // We only have the MedicationAdministrations from within the
+                // specified time window, so we have to search again for all the
+                // MedicationAdministrations present for this order and assign
+                // them to the order.
+                return order.setMedicationAdministrations(this.fhirService);
+              },
+              rejection => {
+                // If there are any errors constructing MedicationOrders for
+                // this RxNormCode[], throw the error.
+                throw rejection;
+              })
+          .then(
+              (order: MedicationOrder) => {
+                // Verify all the administrations have the same RxNormCode and
+                // same Order ID.
+                const rxNormCodeSet = new Set(
+                    Array.from(groupedByOrder.get(order.orderId).values())
+                        .map(admin => admin.rxNormCode));
+                if (rxNormCodeSet.size !== 1) {
+                  throw Error(
+                      'Administrations for order ' + order.orderId +
+                      ' are for multiple RxNorms: ' +
+                      Array.from(rxNormCodeSet.values()));
+                }
 
-            const orderSet =
-                new Set(Array.from(groupedByOrder.get(order.orderId).values())
-                            .map(admin => admin.medicationOrderId));
-            if (rxNormCodeSet.size !== 1) {
-              throw Error(
-                  'Administrations for order ' + order.orderId +
-                  ' report multiple order IDs: ' + Array.from(orderSet));
-            }
+                const orderSet = new Set(
+                    Array.from(groupedByOrder.get(order.orderId).values())
+                        .map(admin => admin.medicationOrderId));
+                if (rxNormCodeSet.size !== 1) {
+                  throw Error(
+                      'Administrations for order ' + order.orderId +
+                      ' report multiple order IDs: ' + Array.from(orderSet));
+                }
 
-            // Add the order to the map for the RxNorm code.
-            const rxCode = rxNormCodeSet.values().next().value;
-            if (groupedByMed.has(rxCode)) {
-              groupedByMed.set(rxCode, groupedByMed.get(rxCode).concat(order));
-            } else {
-              groupedByMed.set(rxCode, new Array(order));
-            }
-          });
+                // Add the order to the map for the RxNorm code.
+                const rxCode = rxNormCodeSet.values().next().value;
+                if (groupedByMed.has(rxCode)) {
+                  groupedByMed.set(
+                      rxCode, groupedByMed.get(rxCode).concat(order));
+                } else {
+                  groupedByMed.set(rxCode, new Array(order));
+                }
+              },
+              rejection => {
+                // If there are any errors constructing MedicationOrders for
+                // this RxNormCode[], throw the error.
+                throw rejection;
+              });
     });
     // Resolve all the promises and set the corresponding orders for each
     // RxNorm.
-    return Promise.all(allPromises).then(_ => {
-      Array.from(groupedByMed.entries()).forEach(medEntry => {
-        const rxNorm = medEntry[0];
-        const medOrders = medEntry[1];
-        rxNorm.orders = new MedicationOrderSet(medOrders);
-      });
-      // Return all the populated RxNorms.
-      return Array.from(groupedByMed.keys());
-    });
+    return Promise.all(allPromises)
+        .then(
+            _ => {
+              Array.from(groupedByMed.entries()).forEach(medEntry => {
+                const rxNorm = medEntry[0];
+                const medOrders = medEntry[1];
+                rxNorm.orders = new MedicationOrderSet(medOrders);
+              });
+              // Return all the populated RxNorms.
+              return Array.from(groupedByMed.keys());
+            },
+            rejection => {
+              // If any promise is rejected, throw the same rejection.
+              throw rejection;
+            });
   }
 }

@@ -20,6 +20,7 @@ describe('Axis', () => {
   const dateRangeEnd = '2018-09-18T00:00:00.00';
   const dateRange = Interval.fromDateTimes(
       DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
+  const getDataFromFhir = () => {};
 
   beforeEach(async(() => {
     TestBed

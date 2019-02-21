@@ -31,7 +31,11 @@ export abstract class FhirService {
       Promise<boolean> {
     // Just ask for one result to reduce the call time.
     return this.getObservationsWithCode(code, dateRange, 1)
-        .then(obs => obs.length > 0);
+        .then(obs => obs.length > 0, rejection => {
+          // If any Observation for this code results in an error, do not show
+          // any Observations at all.
+          throw rejection;
+        });
   }
 
   /**
@@ -75,7 +79,11 @@ export abstract class FhirService {
       Promise<boolean> {
     // Just ask for one result to reduce the call time.
     return this.getMedicationAdministrationsWithCode(code, dateRange, 1)
-        .then(obs => obs.length > 0);
+        .then(obs => obs.length > 0, rejection => {
+          // If any MedicationAdministration for this code results in an error,
+          // do not show any MedicationAdministrations at all.
+          throw rejection;
+        });
   }
 
   /**
@@ -107,6 +115,7 @@ export abstract class FhirService {
       medicationPromises.push(this.getMedicationAdministrationsWithCode(
           code as RxNormCode, dateRange));
     }
+    // This will be rejected if any Promise is rejected.
     return Promise.all(medicationPromises);
   }
 

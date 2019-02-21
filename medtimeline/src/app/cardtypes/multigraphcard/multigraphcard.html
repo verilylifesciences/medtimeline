@@ -1,10 +1,11 @@
-<app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel" (onRender)="this.renderContainedGraphs()"
-  (onRemove)="remove()">
+<app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel"
+  (onRender)="this.renderContainedGraphs()" (onRemove)="remove()">
   <ng-container class="legends-block">
     <ng-container *ngIf="uniqueDisplayGroups.length > 1">
-      <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups" (mouseover)="focusOnDisplayGroup(displayGroup, $event)"
-        (mouseout)="resetChart(displayGroup, $event)">
-        <span [style.background-color]="displayGroup.fill.hsl().string()" [style.border]="displayGroup.outline.hsl().string()">
+      <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups"
+        (mouseover)="focusOnDisplayGroup(displayGroup, $event)" (mouseout)="resetChart(displayGroup, $event)">
+        <span [style.background-color]="displayGroup.fill.hsl().string()"
+          [style.border]="displayGroup.outline.hsl().string()">
         </span>
         <div fxFlex class="mat-body">{{displayGroup.label}}</div>
       </div>
@@ -13,11 +14,14 @@
   <div fxFlex fxLayout="column" class="contents-block">
     <div fxFlex *ngFor="let axis of card.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.isResolved" [diameter]="30"></mat-spinner>
-      <ng-container *ngIf="axis.isResolved" [ngSwitch]="axis.chartType">
-        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"
-          [axisLabel]="axis.label"></app-linegraph>
-        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange" [eventlines]="this.eventlines"
-          [axisLabel]="axis.label"></app-scatterplot>
+      <div *ngIf="axis.isResolved && axis.errorMessage">
+        {{axis.errorMessage}}
+      </div>
+      <ng-container *ngIf="axis.isResolved && !axis.errorMessage" [ngSwitch]="axis.chartType">
+        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange"
+          [eventlines]="this.eventlines" [axisLabel]="axis.label"></app-linegraph>
+        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange"
+          [eventlines]="this.eventlines" [axisLabel]="axis.label"></app-scatterplot>
         <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.data" [dateRange]="this.dateRange"
           [eventlines]="this.eventlines" [axisLabel]="axis.label">
         </app-stepgraph>

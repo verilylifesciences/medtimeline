@@ -68,6 +68,9 @@ export class Axis {
    */
   label: string;
 
+  // An error message if there's an error in data retrieval.
+  private errorMessage: string;
+
   /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.
@@ -83,10 +86,18 @@ export class Axis {
     this.displayConcept = resourceGroup.displayGrouping;
     this.resourceGroup = resourceGroup;
     this.label = label;
-    this.getDataFromFhir().then(res => {
-      this.data = res;
-      this.isResolved = true;
-    });
+    this.getDataFromFhir().then(
+        res => {
+          this.data = res;
+          this.isResolved = true;
+        },
+        // TODO(b/126186009): Add testing for this code.
+        rejection => {
+          this.isResolved = true;
+          // TODO(b/126227729): Revise this language.
+          this.errorMessage =
+              'Invalid data received. Please check the medical record.';
+        });
   }
 
   /**
@@ -130,24 +141,32 @@ export class Axis {
       // ChartType.Line, for plotting LOINC Codes.
       return (this.resourceGroup as LOINCCodeGroup)
           .getResourceSet(this.dateRange)
-          .then(obsSetList => {
-            if (obsSetList) {
-              // We only draw the Line charts if all ObservationSets are of
-              // the same type of y-value: continuous or discrete.
-              if (obsSetList.length > 0 &&
-                  obsSetList.every(obsSet => obsSet.allQualitative)) {
-                return LineGraphData.fromObservationSetListDiscrete(
-                    this.displayConcept.label, obsSetList, this.sanitizer);
-              } else if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
-                return LineGraphData.fromObservationSetList(
-                    this.displayConcept.label, obsSetList, this.resourceGroup);
-              } else {
-                throw Error(
-                    'ObservationSets must all be continous ' +
-                    'or discrete-valued.');
-              }
-            }
-          });
+          .then(
+              obsSetList => {
+                if (obsSetList) {
+                  // We only draw the Line charts if all ObservationSets are of
+                  // the same type of y-value: continuous or discrete.
+                  if (obsSetList.length > 0 &&
+                      obsSetList.every(obsSet => obsSet.allQualitative)) {
+                    return LineGraphData.fromObservationSetListDiscrete(
+                        this.displayConcept.label, obsSetList, this.sanitizer);
+                  } else if (obsSetList.every(
+                                 obsSet => !obsSet.allQualitative)) {
+                    return LineGraphData.fromObservationSetList(
+                        this.displayConcept.label, obsSetList,
+                        this.resourceGroup);
+                  } else {
+                    throw Error(
+                        'ObservationSets must all be continous ' +
+                        'or discrete-valued.');
+                  }
+                }
+              },
+              rejection => {
+                // Something wrong happened when constructing a LabeledClass
+                // object for a code in this resourceGroup.
+                throw rejection;
+              });
     }
   }
 

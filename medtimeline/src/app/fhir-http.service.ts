@@ -73,14 +73,17 @@ export class FhirHttpService extends FhirService {
     };
 
     return this.smartApiPromise.then(
-        smartApi => smartApi.patient.api.fetchAll(queryParams)
-                        .then((results: any[]) => results.map(result => {
-                          try {
-                            return new Observation(result);
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        })));
+        smartApi =>
+            smartApi.patient.api.fetchAll(queryParams)
+                .then(
+                    (results: any[]) => results.map(result => {
+                      return new Observation(result);
+                    }),
+                    // Do not return any Observations for this code if one of
+                    // the Observation constructions throws an error.
+                    rejection => {
+                      throw rejection;
+                    }));
   }
 
   /**
@@ -114,13 +117,16 @@ export class FhirHttpService extends FhirService {
 
     return this.smartApiPromise.then(
         smartApi => smartApi.patient.api.fetchAll(queryParams)
-                        .then((results: any[]) => results.map(result => {
-                          try {
-                            return new MedicationAdministration(result);
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        })));
+                        .then(
+                            (results: any[]) => results.map(result => {
+                              return new MedicationAdministration(result);
+                            }),
+                            // Do not return any MedicationAdministrations for
+                            // this code if one of the MedicationAdministration
+                            // constructions throws an error.
+                            rejection => {
+                              throw rejection;
+                            }));
   }
 
   /**
@@ -132,20 +138,21 @@ export class FhirHttpService extends FhirService {
         smartApi =>
             smartApi.patient.api
                 .read({type: FhirResourceType.MedicationOrder, 'id': id})
-                .then((result: any) => {
-                  try {
-                    return new MedicationOrder(result.data);
-                  } catch (error) {
-                    console.log(error);
-                  }
-                }));
+                .then(
+                    (result: any) => {
+                      return new MedicationOrder(result.data);
+                    },
+                    // Do not return any MedicationOrders for
+                    // this code if one of the MedicationOrder
+                    // constructions throws an error.
+                    rejection => {
+                      throw rejection;
+                    }));
   }
 
   /**
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
-   * TODO(b/116854154): Find proper search parameters for pulling
-   * MedicationAdministrations with order id.
    */
   getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
@@ -159,15 +166,18 @@ export class FhirHttpService extends FhirService {
     };
     return this.smartApiPromise.then(
         smartApi => smartApi.patient.api.fetchAll(queryParams)
-                        .then((results: any[]) => {
-                          results.map(result => {
-                            try {
-                              return new MedicationAdministration(result);
-                            } catch (error) {
-                              console.log(error);
-                            }
-                          });
-                        }));
+                        .then(
+                            (results: any[]) => {
+                              results.map(result => {
+                                return new MedicationAdministration(result);
+                              });
+                            },
+                            // Do not return any MedicationOrders for
+                            // this code if one of the MedicationOrder
+                            // constructions throws an error.
+                            rejection => {
+                              throw rejection;
+                            }));
   }
 
   /**
