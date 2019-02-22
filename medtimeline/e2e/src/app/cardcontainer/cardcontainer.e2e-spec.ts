@@ -3,43 +3,186 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {CardContainerE2eTestingPage} from './cardcontainer.po';
+import {browser} from 'protractor';
 
-describe('workspace-project App', () => {
-  const page: CardContainerE2eTestingPage = new CardContainerE2eTestingPage();
-  it('should display welcome message', () => {
-    // TODO(b/118395310): Figure out how to get tests to not time out with HTTP
-    // requests in MockFhirService.
-    page.navigateTo().then(t => {
-      expect(page.getTitle()).toEqual('Medtimeline');
+import {IndexPage} from '../index.po';
+
+import {CardContainerPage} from './cardcontainer.po';
+
+describe('Card Container', () => {
+  const page: CardContainerPage = new CardContainerPage();
+  const index: IndexPage = new IndexPage();
+  const cards = page.getCards();
+  const intialBackgroundColor = 'rgba(248, 248, 248, 1)';
+  const finalBackgroundColor = 'rgba(240, 240, 240, 1)';
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
+  beforeEach(async () => {
+    await browser.waitForAngularEnabled(false);
+    await browser.get('/');
+    browser.driver.executeScript(disableCSSAnimation);
+    // Disable CSS animations and transitions, to accurately test style changes
+    // for CardContainer.
+    function disableCSSAnimation() {
+      const css = '* {' +
+          '-webkit-transition-duration: 0s !important;' +
+          'transition-duration: 0s !important;' +
+          '-webkit-animation-duration: 0s !important;' +
+          'animation-duration: 0s !important;' +
+          'transition: none !important;' +
+          '}',
+            head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
+
+      style.type = 'text/css';
+      style.appendChild(document.createTextNode(css));
+      head.appendChild(style);
+    }
+  });
+
+
+  it('should display welcome message', async () => {
+    const title = await page.getTitle();
+    expect(title).toEqual('Medtimeline');
+  });
+
+  it('should drag graph cards correctly', async () => {
+    // This test drags the first card below the second card and switches
+    // the order of the first two cards. It needs to be dragged *past* the
+    // second card, to roughly the position of the third card, to be effective.
+
+    // The first two cards are the Custom Timeline and the textbox.
+    const firstGraph = cards.get(2);
+    const thirdGraph = cards.get(4);
+
+    const firstCardOriginalText = await page.getCardLabel(firstGraph);
+
+    const secondCardOriginalText = await page.getCardLabel(cards.get(3));
+    await page.moveCard(firstGraph, thirdGraph);
+
+    const updatedCards = page.getCards();
+    const firstUpdated = updatedCards.get(2);
+    const secondUpdated = updatedCards.get(3);
+    expect(firstCardOriginalText)
+        .toEqual(await page.getCardLabel(secondUpdated));
+    expect(secondCardOriginalText)
+        .toEqual(await page.getCardLabel(firstUpdated));
+  });
+
+  it('correct number of default cards should be rendered on the page' +
+         ', in the correct order',
+     async () => {
+       const cardLabels = [];
+       await cards.each(async function(el) {
+         if (await page.hasCardLabel(el)) {
+           cardLabels.push(await page.getCardLabel(el));
+         }
+       });
+
+       // We display 19 cards by default, with one being a textbox. A textbox
+       // does not have a label, and would not be in this list.
+       expect(cardLabels.length).toEqual(20);
+
+       expect(cardLabels).toEqual([
+         'Custom Timeline',
+         'Body temperature',
+         'Heart Rate',
+         'Respiratory Rate',
+         'Blood Pressure',
+         'Oxygen Saturation',
+         'C-Reactive Protein',
+         'ESR',
+         'BUN',
+         'Creatinine',
+         'ALT',
+         'AST',
+         'Alkaline Phosphatase',
+         'Bilirubin, Direct',
+         'Bilirubin, Total',
+         'CBC White Blood Cell',
+         'Vancomycin & Gentamicin Summary',
+         'Vancomycin',
+         'Stool',
+         'NP Swab'
+       ]);
+     });
+
+  it('all cards should have a data selector after the card', async () => {
+    await cards.each(async function(el) {
+      expect(await page.hasDataSelector(el)).toBeTruthy();
     });
   });
 
-  it('should drag graph cards correctly', () => {
-    // This test drags the first card below the second card and switches the
-    // order of the first two cards. It needs to be dragged *past* the second
-    // card, to roughly the position of the third card, to be effective.
-    let firstCardOriginalText;
-    let secondCardOriginalText;
-    page.navigateTo()
-        .then(t => {
-          const graphs = page.getCards();
-          const firstCard = graphs.get(1);
-          const thirdCard = graphs.get(3);
-          page.getCardLabel(firstCard).then(
-              text => firstCardOriginalText = text);
-          page.getCardLabel(graphs.get(2))
-              .then(text => secondCardOriginalText = text);
-          page.moveCard(firstCard, thirdCard);
-        })
-        .then(t => {
-          const graphs = page.getCards();
-          const firstUpdated = graphs.get(1);
-          const secondUpdated = graphs.get(2);
-          page.getCardLabel(firstUpdated)
-              .then(x => expect(x).toEqual(secondCardOriginalText));
-          page.getCardLabel(secondUpdated)
-              .then(x => expect(x).toEqual(firstCardOriginalText));
-        });
+  it('data selector style should change on hover', async () => {
+    const dataSelectors = page.getDataSelectors();
+
+    await dataSelectors.each(async function(el) {
+      const addCard = await index.getElement(el, '.addCardInline');
+      const initialCardOpacity = await index.getStyle(addCard, 'opacity');
+
+      await index.hoverOverElement(addCard);
+      const finalCardOpacity = await index.getStyle(addCard, 'opacity');
+
+      expect(initialCardOpacity).toEqual('0.15');
+      expect(Number(finalCardOpacity)).toEqual(1);
+    });
+  });
+
+  it('data selector color should be correct', async () => {
+    const dataSelectors = page.getDataSelectors();
+
+    await dataSelectors.each(async function(el) {
+      const addCard = await index.getElement(el, '.addCardInline');
+      const color = await index.getStyle(addCard, 'color');
+      expect(color).toEqual(intialBackgroundColor);
+    });
+  });
+
+
+  it('remove icons should only appear on hover', async () => {
+    await cards.each(async function(el) {
+      const card = await index.getElement(el, 'mat-card');
+
+      const deleteIcon = await index.getElement(card, '.removeCardButton');
+      const initialDeleteIconOpacity =
+          await index.getStyle(deleteIcon, 'opacity');
+      expect(initialDeleteIconOpacity).toEqual('0');
+
+      await index.hoverOverElement(card);
+
+      const finalDeleteIconOpacity =
+          await index.getStyle(deleteIcon, 'opacity');
+      expect(Number(finalDeleteIconOpacity)).toEqual(0.8);
+    });
+  });
+
+  it('drag icons should only appear on hover', async () => {
+    await cards.each(async function(el) {
+      if (await index.hasInnerElement(el, '.dragCardIcon')) {
+        const card = await index.getElement(el, 'mat-card');
+
+        const dragIcon = await index.getElement(card, '.dragCardIcon');
+        const initialDragIconOpacity =
+            await index.getStyle(dragIcon, 'opacity');
+        expect(initialDragIconOpacity).toEqual('0');
+
+        await index.hoverOverElement(card);
+
+        const finalDragIconOpacity = await index.getStyle(dragIcon, 'opacity');
+        expect(finalDragIconOpacity).toEqual('0.4');
+      }
+    });
+  });
+
+  it('background of card should change on hover', async () => {
+    await cards.each(async function(el) {
+      const card = await index.getElement(el, 'mat-card');
+      const initialColor = await index.getStyle(card, 'background-color');
+      expect(initialColor).toEqual(intialBackgroundColor);
+
+      await index.hoverOverElement(card);
+
+      const finalColor = await index.getStyle(card, 'background-color');
+      expect(finalColor).toEqual(finalBackgroundColor);
+    });
   });
 });
