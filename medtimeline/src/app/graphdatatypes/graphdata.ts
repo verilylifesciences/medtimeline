@@ -31,8 +31,17 @@ export class DisplayConfiguration {
  * The base class for holding data pertaining to one graph.
  */
 export class GraphData {
+  // The DisplayConfiguration, including data and column names, for this
+  // GraphData.
   c3DisplayConfiguration: DisplayConfiguration;
+
+  // A list of x-regions to highlight on the graph.
   xRegions: any[];
+
+  // The number of decimal places to show for any value associated with this
+  // GraphData. The default is 0, to minimize errors caused by unnecessary
+  // trailing zeros.
+  precision = 0;
 
   constructor(
       /** A list of the series to be displayed on the graph. */

@@ -77,6 +77,7 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
    * ObservationSets for those LOINCCodes, provided that they are mapped.
    */
   getResourceFromFhir(dateRange: Interval): Promise<ObservationSet[]> {
+    let maxPrecision = 0;
     return this.fhirService.getObservationsForCodeGroup(this, dateRange)
         .then(
             observationDoubleArray => {
@@ -120,6 +121,9 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
               if (!obsList) {
                 obsList = new Array<Promise<AnnotatedObservation>>();
               }
+              if (observation.precision > maxPrecision) {
+                maxPrecision = observation.precision;
+              }
               if (this.makeAnnotated) {
                 obsList.push(this.makeAnnotated(observation, dateRange));
               } else {
@@ -129,6 +133,7 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
               mapObs.set(observation.label, obsList);
             }
           });
+          this.precision = maxPrecision;
           return Array.from(mapObs.values());
         })
         .then(

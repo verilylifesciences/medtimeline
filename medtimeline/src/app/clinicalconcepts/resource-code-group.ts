@@ -56,6 +56,11 @@ export class ResourceCodeGroup {
    * when any ResourceCode in the group should be shown as default.*/
   readonly showByDefault: boolean;
 
+  // The number of decimal places to show for any value associated with this
+  // resource group. The default is 0, to minimize errors caused by unnecessary
+  // trailing zeros.
+  precision = 0;
+
   constructor(
       readonly fhirService: FhirService,
       /** The label for this resource code group. */

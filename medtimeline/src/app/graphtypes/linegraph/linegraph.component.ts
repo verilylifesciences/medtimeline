@@ -49,8 +49,10 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
           // We add padding to our y-axis tick labels so that all y-axes of the
           // charts rendered on the page can be aligned.
           return (d)
-              .toLocaleString(
-                  'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+              .toLocaleString('en-us', {
+                minimumFractionDigits: this.data.precision,
+                maximumFractionDigits: this.data.precision
+              })
               .trim()
               .padStart(Y_AXIS_TICK_MAX, '\xa0');
         }
@@ -99,9 +101,11 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       graph.axis.y.tick.format = function(d) {
         return ''.trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
       };
-      this.yAxisTickDisplayValues = yValues.map(
-          value => value.toLocaleString(
-              'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+      this.yAxisTickDisplayValues =
+          yValues.map(value => value.toLocaleString('en-us', {
+            minimumFractionDigits: this.data.precision,
+            maximumFractionDigits: this.data.precision
+          }));
     }
 
     // Ensure that a line is not drawn through points with "null" values.

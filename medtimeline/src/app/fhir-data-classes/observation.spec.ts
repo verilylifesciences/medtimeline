@@ -91,6 +91,14 @@ describe('Observation', () => {
     expect(observation.value.value).toEqual(101);
   });
 
+
+  it('should set precision from json', () => {
+    const observation = new Observation(
+        {'valueQuantity': {'value': 101.54}, ...observationCodingString});
+    expect(observation.precision).toBeDefined();
+    expect(observation.precision).toEqual(2);
+  });
+
   it('should set normal range from JSON', () => {
     const observation = new Observation({
       referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],

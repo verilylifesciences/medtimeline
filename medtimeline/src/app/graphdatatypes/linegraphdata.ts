@@ -39,8 +39,9 @@ export class LineGraphData extends GraphData {
        */
       seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
       tooltipMap?: Map<string, string>, tooltipKeyFn?: (key: string) => string,
-      regions?: any[]) {
+      regions?: any[], precision?: number) {
     super(series, seriesToDisplayGroup, tooltipMap, tooltipKeyFn, regions);
+    this.precision = precision ? precision : 0;
   }
 
   /**
@@ -92,11 +93,15 @@ export class LineGraphData extends GraphData {
       throw Error('Observations have different units.');
     }
 
-    return new LineGraphData(
+    const data = new LineGraphData(
         label, series,
         LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup),
         allUnits.values().next().value, seriesToDisplayGrouping,
-        tooltipMap.size > 0 ? tooltipMap : undefined);
+        tooltipMap.size > 0 ? tooltipMap : undefined,
+        undefined,  // tooltipMap
+        undefined,  // regions
+        resourceCodeGroup.precision);
+    return data;
   }
 
   private static makeTooltipMap(
