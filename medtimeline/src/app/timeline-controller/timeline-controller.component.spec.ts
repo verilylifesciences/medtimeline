@@ -89,18 +89,6 @@ describe('TimelineControllerComponent with encounters', () => {
          done();
        });
      });
-  it('should exclude dates not covered by an encounter', (done: DoneFn) => {
-    fixture.whenStable().then(x => {
-      component.daysCoveredByAnEncounter =
-          new Set<string>(['2012-08-04', '2012-08-05', '2012-08-08']);
-
-      expect(component.filterDates(moment.utc(new Date(2012, 7, 5))))
-          .toBe(false);
-      expect(component.filterDates(moment.utc(new Date(2012, 7, 6))))
-          .toBe(true);
-      done();
-    });
-  });
   it('should correctly set ranges as the list of encounters',
      (done: DoneFn) => {
        fixture.whenStable().then(x => {

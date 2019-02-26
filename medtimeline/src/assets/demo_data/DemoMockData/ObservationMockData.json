@@ -20182,6 +20182,549 @@
           "unit": "µg/mL"
         }
       }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4787092450",
+        "meta": {
+          "versionId": "1-4787092449",
+          "lastUpdated": "2018-10-02T16:02:30.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "76214-6"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-02T16:00:00.000Z",
+        "issued": "2018-11-02T16:02:10.000Z",
+        "valueQuantity": {
+          "value": 78,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-01T06:03:00.000Z",
+        "issued": "2018-11-01T06:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.7,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-02T16:03:00.000Z",
+        "issued": "2018-11-02T16:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.7,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-03T06:03:00.000Z",
+        "issued": "2018-11-03T06:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.3,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-03T12:03:00.000Z",
+        "issued": "2018-11-03T12:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-02T06:03:00.000Z",
+        "issued": "2018-11-02T06:34:45.000Z",
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-04T08:03:00.000Z",
+        "issued": "2018-11-04T08:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.4,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-04T16:03:00.000Z",
+        "issued": "2018-11-04T16:34:45.000Z",
+        "valueQuantity": {
+          "value": 37.6,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
     }
   ]
 }

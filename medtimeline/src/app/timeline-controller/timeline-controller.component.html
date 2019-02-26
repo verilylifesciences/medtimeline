@@ -1,5 +1,6 @@
 <div class="datePicker" fxLayout="row" fxLayoutGap="10px" class="mat-h2">
-  <input type="button" class="mat-raised-button" ngxDaterangepickerMd [(ngModel)]="selected" [minDate]="earliestAvailableDate"
-    [maxDate]="latestAvailableDate" [linkedCalendars]="true" [isInvalidDate]="filterDates" (datesUpdated)="datesUpdated($event)"
-    [ranges]="ranges" [alwaysShowCalendars]="true" [keepCalendarOpeningWithRange]="true" matTooltip="Change date range" />
+  <input type="button" class="mat-raised-button" ngxDaterangepickerMd [(ngModel)]="selected"
+    [minDate]="earliestAvailableDate" [maxDate]="latestAvailableDate" [linkedCalendars]="true"
+    [isCustomDate]="addCustomClass" (datesUpdated)="datesUpdated($event)" [ranges]="ranges" [alwaysShowCalendars]="true"
+    [keepCalendarOpeningWithRange]="true" matTooltip="Change date range" />
 </div>

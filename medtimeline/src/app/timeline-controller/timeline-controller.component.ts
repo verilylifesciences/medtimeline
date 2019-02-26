@@ -123,10 +123,12 @@ export class TimelineControllerComponent implements OnInit {
             });
   }
 
-  // Only allow selection of dates covered by an encounter.
-  filterDates =
+  // Clearly differentiate between dates inside and outside of encounters.
+  addCustomClass =
       (m: moment.Moment) => {
-        return !this.daysCoveredByAnEncounter.has(m.toISOString().slice(0, 10));
+        return this.daysCoveredByAnEncounter.has(m.toISOString().slice(0, 10)) ?
+            'inEncounter' :
+            'notInEncounter';
       }
 
   /**

@@ -26,6 +26,21 @@
   color: black;
 }
 
+::ng-deep td.notInEncounter {
+  color: grey !important;
+  opacity: .5;
+  text-decoration: line-through;
+}
+
+::ng-deep td.inEncounter {
+  color: rgb(0, 35, 86) !important;
+  background-color: #e5f3ec;
+}
+
+::ng-deep td.active.available.inEncounter {
+  color: white !important;
+}
+
 input {
   font-family: 'Quicksand', sans-serif;
 }
