@@ -49,7 +49,7 @@ describe('LineGraphComponent', () => {
     component.dateRange = testDateRange;
     component.data = LineGraphData.fromObservationSetList(
         'label', new Array(obsSet, obsSet), loincCodeGroup,
-        TestBed.get(DomSanitizer));
+        TestBed.get(DomSanitizer), []);
   });
 
   it('should create', () => {
@@ -87,7 +87,7 @@ describe('LineGraphComponent', () => {
     fixture.detectChanges();
     component.data = LineGraphData.fromObservationSetList(
         'testgraph', new Array(obsSet), loincCodeGroup,
-        TestBed.get(DomSanitizer));
+        TestBed.get(DomSanitizer), []);
     const generatedChart = component.generateChart();
     expect(generatedChart['regions'].length).toEqual(1);
     expect(generatedChart['regions'][0]['axis']).toEqual('y');

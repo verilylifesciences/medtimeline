@@ -39,8 +39,12 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   constructor(observationList: AnnotatedObservation[]) {
     super(observationList);
 
-    const firstNormalRange = observationList[0].observation.normalRange;
-    const firstUnit = observationList[0].observation.unit;
+    let firstNormalRange;
+    let firstUnit;
+    if (observationList.length > 0) {
+      firstNormalRange = observationList[0].observation.normalRange;
+      firstUnit = observationList[0].observation.unit;
+    }
     // Ensure that the labels of the data are all the same. Also ensure that
     // we only set a normal range if all the observations have a matching
     // normal range.

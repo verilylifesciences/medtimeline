@@ -103,6 +103,9 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
           value => value.toLocaleString(
               'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
     }
+
+    // Ensure that a line is not drawn through points with "null" values.
+    graph.line = {connectNull: false};
     return graph;
   }
 

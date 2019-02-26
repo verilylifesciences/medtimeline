@@ -4,8 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
+
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
 
 import {MedicationOrder, MedicationOrderSet} from './../fhir-data-classes/medication-order';
@@ -91,14 +93,19 @@ export class LabeledSeries {
   /**
    * Generates a LabeledSeries from the given ObservationSet.
    * @param observationSet The ObservationSet to chart.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    */
-  static fromObservationSet(observationSet: ObservationSet): LabeledSeries {
-    const coordinates: Array<[DateTime, number]> = [];
+  static fromObservationSet(
+      observationSet: ObservationSet, encounters: Encounter[]): LabeledSeries {
+    let coordinates: Array<[DateTime, number]> = [];
     const observations = observationSet.resourceList;
     for (const obs of observations) {
       coordinates.push(
           [obs.observation.timestamp, obs.observation.value.value]);
     }
+
+    coordinates = this.addEncounterEndpoints(coordinates, encounters);
     return new LabeledSeries(
         observationSet.label, coordinates, observationSet.unit,
         observationSet.normalRange);
@@ -114,16 +121,20 @@ export class LabeledSeries {
    * @param yValue The numerical y-value to map to this ObservationSet with
    *     discrete results.
    * @param label The label for this LabeledSeries.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    */
   static fromObservationSetsDiscrete(
-      observationSets: ObservationSet[], yValue: number, label): LabeledSeries {
-    const coordinates: Array<[DateTime, number]> = [];
+      observationSets: ObservationSet[], yValue: number, label,
+      encounters: Encounter[]): LabeledSeries {
+    let coordinates: Array<[DateTime, number]> = [];
     for (const obsSet of observationSets) {
       const observations = obsSet.resourceList;
       for (const obs of observations) {
         coordinates.push([obs.observation.timestamp, yValue]);
       }
     }
+    coordinates = this.addEncounterEndpoints(coordinates, encounters);
     return new LabeledSeries(label, coordinates);
   }
 
@@ -133,13 +144,15 @@ export class LabeledSeries {
    * represents all orders for the same medication.
    * @param medOrderSet The MedicationOrderSet to chart.
    * @param dateRange The date range displayed on the chart.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @param fixedYPosition If set, we use this y-position for all the
    *    datapoints in both returned series. If unset, we use the dosage
    *    quantity for each administration as the y-value.
    */
   static fromMedicationOrderSet(
       medOrderSet: MedicationOrderSet, dateRange: Interval,
-      fixedYPosition?: number): LabeledSeries {
+      encounters: Encounter[], fixedYPosition?: number): LabeledSeries {
     const data = [];
     for (const medOrder of medOrderSet.resourceList) {
       // The first series in fromMedicationOrder is all the administrations.
@@ -150,13 +163,14 @@ export class LabeledSeries {
 
     // Combine all the series into a single series so that it shows up with
     // the same color.
-    const coords = [];
+    let coords = [];
     for (const series of data) {
       for (let i = 0; i < series.xValues.length; i++) {
         coords.push([series.xValues[i], series.yValues[i]]);
       }
     }
 
+    coords = this.addEncounterEndpoints(coords, encounters);
     return new LabeledSeries(
         medOrderSet.label, coords, medOrderSet.unit,
         undefined,  // yNormalBounds
@@ -296,5 +310,22 @@ export class LabeledSeries {
     return fixedYPosition !== undefined && fixedYPosition !== null ?
         fixedYPosition :
         medAdmin.dosage.quantity;
+  }
+
+  private static addEncounterEndpoints(
+      coordinates: any[], encounters: Encounter[]): any[] {
+    if (coordinates.length > 0) {
+      // If any encounters are set for this MedicationOrderSet, add null values
+      // to the endpoints of encounters to ensure line breakage between points
+      // of different encounters.
+      // We assume that encounter endpoints correspond to correct line breaks,
+      // and do not cross-check encounter id's of MedicationOrders or
+      // MedicationAdministrations.
+      for (const encounter of encounters) {
+        coordinates.push([encounter.period.start.toUTC(), null]);
+        coordinates.push([encounter.period.end.toUTC(), null]);
+      }
+    }
+    return coordinates;
   }
 }

@@ -237,6 +237,7 @@ export abstract class GraphComponent<T extends GraphData> implements
       onrendered: function() {
         self.boldDates();
         self.wrapYAxisLabels();
+        self.fixOpacity();
         self.onRendered(this);
       },
       grid: {x: {lines: gridValues}}
@@ -452,6 +453,14 @@ export abstract class GraphComponent<T extends GraphData> implements
             }
           });
     }
+  }
+
+  fixOpacity() {
+    d3.select('#' + this.chartDivId).selectAll('.c3-circle').each(function(d) {
+      if (d3.select(this).style('opacity') === '0.5') {
+        d3.select(this).style('opacity', 1);
+      }
+    });
   }
 
   /**

@@ -16,10 +16,6 @@ style names with ::ng-deep.  */
   background-color: rgb(197, 185, 172); /* Boston Warm Gray */
 }
 
-::ng-deep .c3-circle {
-  opacity: 1 !important;
-}
-
 /* This ensures that the step graph lines do not show circles for individual data points, except for the end points of each line segment. */
 ::ng-deep .stepgraph .c3-circles:not([class *="endpoint"]) {
   display: none;

@@ -9,6 +9,7 @@ import {Interval} from 'luxon';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
+import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
@@ -49,13 +50,15 @@ export class LineGraphData extends GraphData {
    * @param resourceCodeGroup The ResourceCodeGroup these ObservationSets belong
    *   to
    * @param sanitizer A DOM sanitizer for use in tooltip construction
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the observations in observationGroup have different units.
    */
   static fromObservationSetList(
       label: string, observationGroup: ObservationSet[],
-      resourceCodeGroup: ResourceCodeGroup,
-      sanitizer: DomSanitizer): LineGraphData {
+      resourceCodeGroup: ResourceCodeGroup, sanitizer: DomSanitizer,
+      encounters: Encounter[]): LineGraphData {
     const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
     let seriesIdx = 0;
     const dataColors: Color[] = getDataColors();
@@ -66,7 +69,7 @@ export class LineGraphData extends GraphData {
     const series: LabeledSeries[] = [];
     const obsLabelToColor = new Map<string, Color>();
     for (const obsSet of observationGroup) {
-      const lblSeries = LabeledSeries.fromObservationSet(obsSet);
+      const lblSeries = LabeledSeries.fromObservationSet(obsSet, encounters);
       series.push(lblSeries);
       const color = dataColors[seriesIdx];
       seriesToDisplayGrouping.set(
@@ -163,16 +166,18 @@ export class LineGraphData extends GraphData {
     return [yAxisDisplayMin, yAxisDisplayMax];
   }
 
-  /*
+  /**
    * Converts a list of MedicationOrderSets to a LineGraphData object.
    * @param medicationOrderListGroup A list of MedicationOrderSets to display.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the medication administrations in medicationOrderSet
    *     have different units.
    */
   static fromMedicationOrderSet(
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
-      sanitizer: DomSanitizer): LineGraphData {
+      sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
     const tooltipMap = new Map<string, string>();
     const regions = [];
     for (const order of medicationOrderSet.resourceList) {
@@ -197,8 +202,8 @@ export class LineGraphData extends GraphData {
         }
       }
     }
-    const singleSeries =
-        LabeledSeries.fromMedicationOrderSet(medicationOrderSet, dateRange);
+    const singleSeries = LabeledSeries.fromMedicationOrderSet(
+        medicationOrderSet, dateRange, encounters);
     const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
     seriesToDisplayGrouping.set(
         singleSeries,
@@ -219,18 +224,20 @@ export class LineGraphData extends GraphData {
    * LabeledSeries, and display textual information in the tooltip.
    * @param label The label for this set of observations.
    * @param observationGroup A list of ObservationSets to display.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the observations in observationGroup have different
    *     units.
    */
   static fromObservationSetListDiscrete(
       label: string, observationGroup: ObservationSet[],
-      sanitizer: DomSanitizer): LineGraphData {
+      sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
     // For ObservationSets with discrete categories, we display a scatterplot
     // with one series, with most information in the tooltip.
     const yValue = 10;
     const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
-        observationGroup, yValue, label);
+        observationGroup, yValue, label, encounters);
     const seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
     seriesToDisplayGroup.set(
         lblSeries, new DisplayGrouping(lblSeries.label, getDataColors()[0]));

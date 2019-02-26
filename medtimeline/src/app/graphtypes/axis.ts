@@ -12,6 +12,7 @@ import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
+import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
 import {GraphData} from '../graphdatatypes/graphdata';
@@ -71,6 +72,9 @@ export class Axis {
   // An error message if there's an error in data retrieval.
   private errorMessage: string;
 
+  // The encounters for the date range.
+  encounters: Encounter[] = [];
+
   /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.
@@ -113,6 +117,14 @@ export class Axis {
       return Promise.resolve(this.data);
     }
 
+    // Set the encounters for this date range. If the promise fails, the list of
+    // encounters is empty.
+    this.fhirService.getEncountersForPatient(this.dateRange).then(e => {
+      e = e.sort(
+          (a, b) => a.period.start.toMillis() - b.period.start.toMillis());
+      this.encounters = e;
+    }, reject => this.encounters = []);
+
     const resourceCodeList = this.resourceGroup.resourceCodes;
     // Check that all elements of the resourceCodeList are of the same type.
     const allLoinc = resourceCodeList.every(code => code instanceof LOINCCode);
@@ -144,31 +156,33 @@ export class Axis {
       // ChartType.Line, for plotting LOINC Codes.
       return (this.resourceGroup as LOINCCodeGroup)
           .getResourceSet(this.dateRange)
-          .then(obsSetList => {
-            if (obsSetList) {
-              // We only draw the Line charts if all ObservationSets are of
-              // the same type of y-value: continuous or discrete.
-              if (obsSetList.every(obsSet => obsSet.allQualitative)) {
-                return LineGraphData.fromObservationSetListDiscrete(
-                    this.displayConcept.label, obsSetList, this.sanitizer);
-              }
+          .then(
+              obsSetList => {
+                if (obsSetList) {
+                  // We only draw the Line charts if all ObservationSets are of
+                  // the same type of y-value: continuous or discrete.
+                  if (obsSetList.every(obsSet => obsSet.allQualitative)) {
+                    return LineGraphData.fromObservationSetListDiscrete(
+                        this.displayConcept.label, obsSetList, this.sanitizer,
+                        this.encounters);
+                  }
 
-              if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
-                return LineGraphData.fromObservationSetList(
-                    this.displayConcept.label, obsSetList, this.resourceGroup,
-                    this.sanitizer);
-              }
+                  if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
+                    return LineGraphData.fromObservationSetList(
+                        this.displayConcept.label, obsSetList,
+                        this.resourceGroup, this.sanitizer, this.encounters);
+                  }
 
-              throw Error(
-                  'ObservationSets must all be continuous ' +
-                  'or discrete-valued.');
-            }
-          },
-          rejection => {
-            // Something wrong happened when constructing a LabeledClass
-            // object for a code in this resourceGroup.
-            throw rejection;
-          });
+                  throw Error(
+                      'ObservationSets must all be continuous ' +
+                      'or discrete-valued.');
+                }
+              },
+              rejection => {
+                // Something wrong happened when constructing a LabeledClass
+                // object for a code in this resourceGroup.
+                throw rejection;
+              });
     }
   }
 
@@ -215,7 +229,8 @@ export class Axis {
         })
         .then(orders => {
           return LineGraphData.fromMedicationOrderSet(
-              new MedicationOrderSet(orders), this.dateRange, this.sanitizer);
+              new MedicationOrderSet(orders), this.dateRange, this.sanitizer,
+              this.encounters);
         });
   }
 }

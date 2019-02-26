@@ -12,6 +12,7 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
+import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
@@ -112,6 +113,10 @@ export function makeSampleDiscreteObservationJson(
 
 export function getEmptyFhirService() {
   return new StubFhirService();
+}
+
+export function makeEncounter(start: DateTime, end: DateTime) {
+  return new Encounter({identifier: 'id', period: {start: start, end: end}});
 }
 
 export function makeDiagnosticReports(): DiagnosticReport[] {

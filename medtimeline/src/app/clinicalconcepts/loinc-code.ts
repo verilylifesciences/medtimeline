@@ -78,35 +78,36 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
    */
   getResourceFromFhir(dateRange: Interval): Promise<ObservationSet[]> {
     return this.fhirService.getObservationsForCodeGroup(this, dateRange)
-        .then(observationDoubleArray => {
-          // Unnest the inner and outer observations into one flattened
-          // array per concept group.
-          return observationDoubleArray.map(
-              obsSingleArray =>
-                  Array.from(obsSingleArray)
-                      .reduce((acc: Observation[], observation) => {
-                        // The outer component may not have a
-                        // value or result.
-                        if (observation.value || observation.result ||
-                            observation.interpretation) {
-                          acc.push(observation);
-                        }
-                        // Add separate ObservationLists for
-                        // each inner component.
-                        if (observation.innerComponents.length > 0) {
-                          for (const innerComponent of
-                                   observation.innerComponents) {
-                            acc.push(innerComponent);
-                          }
-                        }
-                        return acc;
-                      }, []));
-        },
-        rejection => {
+        .then(
+            observationDoubleArray => {
+              // Unnest the inner and outer observations into one flattened
+              // array per concept group.
+              return observationDoubleArray.map(
+                  obsSingleArray =>
+                      Array.from(obsSingleArray)
+                          .reduce((acc: Observation[], observation) => {
+                            // The outer component may not have a
+                            // value or result.
+                            if (observation.value || observation.result ||
+                                observation.interpretation) {
+                              acc.push(observation);
+                            }
+                            // Add separate ObservationLists for
+                            // each inner component.
+                            if (observation.innerComponents.length > 0) {
+                              for (const innerComponent of
+                                       observation.innerComponents) {
+                                acc.push(innerComponent);
+                              }
+                            }
+                            return acc;
+                          }, []));
+            },
+            rejection => {
               // If there is any error with constructing an Observation for any
               // code in this code group, throw the error.
               throw rejection;
-        })
+            })
         .then(flattened => {
           const mapObs =
               new Map<string, Array<Promise<AnnotatedObservation>>>();

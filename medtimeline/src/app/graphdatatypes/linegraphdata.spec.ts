@@ -44,7 +44,7 @@ describe('LineGraphData', () => {
        const obsSetList = new Array(obsSet, obsSet, obsSet);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
 
        expect(lgData.series.length).toBe(3);
      });
@@ -65,7 +65,8 @@ describe('LineGraphData', () => {
     ]);
 
     const lgData = LineGraphData.fromObservationSetList(
-        'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer));
+        'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer),
+        []);
 
     expect(lgData.tooltipMap.size).toBe(2);
     expect(lgData.tooltipMap.get('575078400000'))
@@ -96,7 +97,8 @@ describe('LineGraphData', () => {
        ]);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer));
+           'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer),
+           []);
 
        expect(lgData.tooltipMap.size).toBe(1);
        expect(lgData.tooltipMap.get('575078400000'))
@@ -130,7 +132,7 @@ describe('LineGraphData', () => {
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
 
        expect(lgData.yAxisDisplayBounds).toEqual([1, 40]);
      });
@@ -162,7 +164,7 @@ describe('LineGraphData', () => {
          const obsSetList = new Array(obsSet1, obsSet2);
 
          const lgData = LineGraphData.fromObservationSetList(
-             'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer));
+             'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
        }).toThrowError();
      });
 
@@ -190,7 +192,7 @@ describe('LineGraphData', () => {
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
 
        expect(lgData.yAxisDisplayBounds).toEqual([0, 50]);
      });
@@ -218,7 +220,7 @@ describe('LineGraphData', () => {
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
 
        expect(lgData.yAxisDisplayBounds).toEqual([1, 50]);
      });
@@ -251,7 +253,7 @@ describe('LineGraphData', () => {
            [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
            ChartType.LINE, [0, 50], true);
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup2, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, loincCodeGroup2, TestBed.get(DomSanitizer), []);
 
        expect(lgData.yAxisDisplayBounds).toEqual([0, 50]);
      });
@@ -292,7 +294,7 @@ describe('LineGraphData', () => {
            medOrderSet,
            Interval.fromDateTimes(
                DateTime.utc(1988, 3, 22), DateTime.utc(1988, 3, 28)),
-           TestBed.get(DomSanitizer));
+           TestBed.get(DomSanitizer), []);
 
        expect(lgData.series.length).toBe(1);
 
@@ -330,7 +332,7 @@ describe('LineGraphData', () => {
         medOrderSet,
         Interval.fromDateTimes(
             DateTime.utc(1988, 3, 22), DateTime.utc(1988, 3, 28)),
-        TestBed.get(DomSanitizer));
+        TestBed.get(DomSanitizer), []);
 
     expect(lgData.tooltipMap.size).toBe(1);
     expect(lgData.tooltipMap.get('575078400000'))
@@ -356,7 +358,7 @@ describe('LineGraphData', () => {
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetListDiscrete(
-           'lbl', obsSetList, TestBed.get(DomSanitizer));
+           'lbl', obsSetList, TestBed.get(DomSanitizer), []);
 
        expect(lgData.series.length).toEqual(1);
      });
