@@ -361,13 +361,6 @@ export class CustomizableGraphComponent extends
 
     const graph = this.generateBasicChart(yAxisConfig);
 
-    graph.grid = {
-      y: {
-        lines: [
-          {value: 0, text: 'Click anywhere above the x-axis to add a point.'}
-        ]
-      }
-    };
     graph.axis.x.height = 50;
     graph.data.type = 'scatter';
     graph.zoom = {enabled: false};

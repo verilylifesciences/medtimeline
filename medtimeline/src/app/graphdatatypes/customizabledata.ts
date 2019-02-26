@@ -28,7 +28,7 @@ export class CustomizableData extends GraphData {
        * CustomizableGraphAnnotation for the corresponding point.
        */
       readonly annotations: Map<number, CustomizableGraphAnnotation>,
-      regions: any[]) {
+      regions?: any[]) {
     super([series], new Map(), undefined, undefined, regions);
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
@@ -47,19 +47,8 @@ export class CustomizableData extends GraphData {
       fhirService: FhirService) {
     const annotations = new Map<number, CustomizableGraphAnnotation>().set(
         date.toMillis(), annotation);
-    const regions = [];
-    fhirService.getEncountersForPatient(APP_TIMESPAN).then(encounters => {
-      for (const encounter of encounters) {
-        regions.push({
-          axis: 'x',
-          class: 'encounter-region',
-          start: encounter.period.start.startOf('day'),
-          end: encounter.period.end.endOf('day')
-        });
-      }
-    });
     return new CustomizableData(
-        LabeledSeries.fromInitialPoint(date, yValue), annotations, regions);
+        LabeledSeries.fromInitialPoint(date, yValue), annotations);
   }
 
   /**
