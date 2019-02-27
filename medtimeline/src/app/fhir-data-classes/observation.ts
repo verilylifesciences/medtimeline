@@ -25,6 +25,31 @@ interface Quantity {
 }
 
 /**
+ * FHIR element for ObservationStatus, from the DSTU2 version of the
+ * standard.
+ * http://hl7.org/fhir/DSTU2/valueset-observation-status.html
+ */
+export enum ObservationStatus {
+  Registered = 'Registered',
+  Preliminary = 'Preliminary',
+  Final = 'Final',
+  Amended = 'Amended',
+  Cancelled = 'Cancelled',
+  EnteredInError = 'Enteredinerror',
+  Unknown = 'Unknown'
+}
+
+const statusToEnumMap = new Map<string, ObservationStatus>([
+  ['registered', ObservationStatus.Registered],
+  ['preliminary', ObservationStatus.Preliminary],
+  ['final', ObservationStatus.Final],
+  ['amended', ObservationStatus.Amended],
+  ['cancelled', ObservationStatus.Cancelled],
+  ['entered-in-error', ObservationStatus.EnteredInError],
+  ['unknown', ObservationStatus.Unknown],
+]);
+
+/**
  * This object represents a FHIR Observation. It does not contain all the
  * information in a standard Observation
  * (see https://www.hl7.org/fhir/observation.html#resource) but instead stores
@@ -49,6 +74,7 @@ export class Observation extends LabeledClass {
   // The display string associated with the code for this Observation.
   readonly display: string;
   readonly interpretation: ObservationInterpretation;
+  readonly status: ObservationStatus;
 
 
   /**
@@ -169,6 +195,8 @@ export class Observation extends LabeledClass {
         ];
       }
     }
+
+    this.status = statusToEnumMap.get(json.status);
   }
 
   private static getLabel(json: any) {

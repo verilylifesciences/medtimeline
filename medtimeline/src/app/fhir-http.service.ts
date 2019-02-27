@@ -17,7 +17,7 @@ import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
-import {Observation} from './fhir-data-classes/observation';
+import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 
@@ -76,9 +76,16 @@ export class FhirHttpService extends FhirService {
         smartApi =>
             smartApi.patient.api.fetchAll(queryParams)
                 .then(
-                    (results: any[]) => results.map(result => {
-                      return new Observation(result);
-                    }),
+                    (results: any[]) =>
+                        results
+                            .map(result => {
+                              return new Observation(result);
+                            })
+                            // TODO(b/126775896): Determine which statuses to
+                            // filter out.
+                            .filter(
+                                result => result.status !==
+                                    ObservationStatus.EnteredInError),
                     // Do not return any Observations for this code if one of
                     // the Observation constructions throws an error.
                     rejection => {

@@ -18,7 +18,7 @@ import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
-import {Observation} from './fhir-data-classes/observation';
+import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
 
 @Injectable()
@@ -134,10 +134,12 @@ export class MockFhirService extends FhirService {
   private getObservations(
       map: Map<LOINCCode, Observation[]>, code: LOINCCode, dateRange: Interval,
       limitCount = 0) {
-    return map.has(code) ? map.get(code)
-                               .filter(obs => dateRange.contains(obs.timestamp))
-                               .slice(0, limitCount ? limitCount : undefined) :
-                           [];
+    return map.has(code) ?
+        map.get(code)
+            .filter(obs => dateRange.contains(obs.timestamp))
+            .filter(obs => obs.status !== ObservationStatus.EnteredInError)
+            .slice(0, limitCount ? limitCount : undefined) :
+        [];
   }
 
   /**
