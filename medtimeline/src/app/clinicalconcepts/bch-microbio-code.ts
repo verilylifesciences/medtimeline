@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Interval} from 'luxon';
+import {APP_TIMESPAN} from 'src/constants';
 
 import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 
@@ -17,7 +18,6 @@ import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
 export class BCHMicrobioCode extends ResourceCode {
   static readonly CODING_STRING = 'http://cerner.com/bch_mapping/';
 
-  // TODO(b/125441215): Make this accurate according to microbiology results
   dataAvailableInAppTimeScope(): Promise<boolean> {
     return Promise.resolve(false);
   }
@@ -41,5 +41,15 @@ export class BCHMicrobioCodeGroup extends
         .then(result => {
           return result;
         });
+  }
+
+  /**
+   * Returns whether there is any data available for this ResourceCode within
+   * the fixed timescope of this app.
+   * @override
+   */
+  dataAvailableInAppTimeScope(): Promise<boolean> {
+    return this.fhirService.diagnosticReportsPresentWithCodes(
+        this, APP_TIMESPAN);
   }
 }

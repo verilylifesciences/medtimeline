@@ -209,11 +209,11 @@ export class MockFhirService extends FhirService {
    * provided.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
    * @param dateRange Return all DiagnosticReports that covered any time in
-   *     this
-   *   date range.
+   *     this date range.
    */
-  getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
-      Promise<DiagnosticReport[]> {
+  getDiagnosticReports(
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      limitCount?: number): Promise<DiagnosticReport[]> {
     return this.allDataPromise.then(x => {
       let reports = new Array<DiagnosticReport>();
       for (const code of codeGroup.resourceCodes) {
@@ -221,10 +221,12 @@ export class MockFhirService extends FhirService {
           reports = reports.concat(this.diagnosticReportMap.get(code));
         }
       }
-      reports.filter(
-          report => report.specimens.map(s => s.type)
-                        .find(specimen => specimen === codeGroup.label) !==
-              undefined);
+      reports
+          .filter(
+              report => report.specimens.map(s => s.type)
+                            .find(specimen => specimen === codeGroup.label) !==
+                  undefined)
+          .slice(0, limitCount ? limitCount : undefined);
       return reports;
     });
   }

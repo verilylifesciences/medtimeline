@@ -16,6 +16,7 @@ import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
+import {ChartType} from './graphtypes/graph/graph.component';
 
 @Injectable()
 export abstract class FhirService {
@@ -34,6 +35,23 @@ export abstract class FhirService {
         .then(obs => obs.length > 0, rejection => {
           // If any Observation for this code results in an error, do not show
           // any Observations at all.
+          throw rejection;
+        });
+  }
+
+  /**
+   * Returns whether there are any observations with this code in the given
+   * time range.
+   * @param code The BCHMicrobio code for which to get observations.
+   * @param dateRange The time interval observations should fall between.
+   */
+  diagnosticReportsPresentWithCodes(
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval): Promise<boolean> {
+    // Just ask for one result to reduce the call time.
+    return this.getDiagnosticReports(codeGroup, dateRange, 1)
+        .then(reports => reports.length > 0, rejection => {
+          // If any DiagnosticReports for this code results in an error, do not
+          // show any DiagnosticReports at all.
           throw rejection;
         });
   }
@@ -156,6 +174,6 @@ export abstract class FhirService {
    *   date range.
    */
   abstract getDiagnosticReports(
-      codeGroup: BCHMicrobioCodeGroup,
-      dateRange: Interval): Promise<DiagnosticReport[]>;
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      limitCount?: number): Promise<DiagnosticReport[]>;
 }
