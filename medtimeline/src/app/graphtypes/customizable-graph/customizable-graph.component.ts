@@ -92,7 +92,7 @@ export class CustomizableGraphComponent extends
       if (self.inEditMode && !self.hoveringOverPoint) {
         const coordinates = d3.mouse(this);
         const parentCoordinates = d3.mouse(document.body);
-        self.allowAddingPoints(chart, coordinates, parentCoordinates);
+        self.allowAddingPoints(coordinates, parentCoordinates);
       }
     });
     // Send the chart to the back, allowing points to be displayed on top of the
@@ -154,24 +154,41 @@ export class CustomizableGraphComponent extends
   // Allow for the addition of a point to the CustomizableGraph, via a
   // CustomizableTimelineDialog
   private allowAddingPoints(
-      chart: any, coordinates: number[], parentCoordinates: number[]) {
-    const xCoordinate = chart.internal.x.invert(coordinates[0]);
-    const yCoordinate =
-        0;  // We want each clicked data point to show up at y=0.
-
+      clickCoordinates: [number, number], parentCoordinates: [number, number]) {
     const dialogCoordinates = this.findDialogCoordinates(
         parentCoordinates[0] + 10, parentCoordinates[1] + 10);
+    this.dialogRef = this.openDialog(clickCoordinates, dialogCoordinates);
+  }
 
+  private openDialog(
+      clickCoordinates: [number, number], dialogCoordinates: [number, number],
+      editedAnnotation?: CustomizableGraphAnnotation) {
+    const chart = this.chart as any;
+    const xCoordinate = chart.internal.x.invert(clickCoordinates[0]);
     // Make the dialog show up near where the user clicked.
+    const data = editedAnnotation ? {
+      title: editedAnnotation.title,
+      date: new Date(editedAnnotation.timestamp.toMillis()),
+      description: editedAnnotation.description,
+      color: editedAnnotation.color
+    } :
+                                    {date: xCoordinate};
     this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
       width: this.dialogWidth,
       height: this.dialogHeight,
       position:
           {top: dialogCoordinates[1] + 'px', left: dialogCoordinates[0] + 'px'},
-      data: {date: xCoordinate}
+      data: data
     });
     this.dialogRef.afterClosed().subscribe(r => {
       if (r) {
+        if (editedAnnotation) {
+          this.data.removePointFromSeries(
+              DateTime.fromMillis(editedAnnotation.timestamp.toMillis()));
+          this.removeAnnotation(editedAnnotation.timestamp.toMillis());
+          this.regenerateChart();
+        }
+
         const result: CustomizableGraphAnnotation =
             r as CustomizableGraphAnnotation;
         // By default, the user selected date is the original date
@@ -182,7 +199,7 @@ export class CustomizableGraphComponent extends
         userSelectedDate =
             DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
         result.timestamp = userSelectedDate;
-        this.data.addPointToSeries(yCoordinate, result);
+        this.data.addPointToSeries(0, result);
         this.data.annotations.get(userSelectedDate.toMillis())
             .addAnnotation(chart);
         this.loadNewData();
@@ -193,6 +210,7 @@ export class CustomizableGraphComponent extends
       }
     });
   }
+
 
   // Updates the annotations displayed on the chart after a new point is added
   // or the date range is changed.
@@ -268,49 +286,9 @@ export class CustomizableGraphComponent extends
       const parentCoordinates = d3.mouse(document.body);
       const dialogCoordinates = self.findDialogCoordinates(
           parentCoordinates[0] + 10, parentCoordinates[1] + 0);
-      // Make the dialog show up near where the user clicked.
-      self.dialogRef = self.dialog.open(CustomizableTimelineDialogComponent, {
-        width: self.dialogWidth,
-        height: self.dialogHeight,
-        position: {
-          top: dialogCoordinates[1] + 'px',
-          left: dialogCoordinates[0] + 'px'
-        },
-        data: {
-          title: currAnnotation.title,
-          date: new Date(millis),
-          description: currAnnotation.description,
-          color: currAnnotation.color
-        }
-      });
-      self.dialogRef.afterClosed().subscribe(r => {
-        const chart: any = self.chart;
-        if (r) {
-          const result = r as CustomizableGraphAnnotation;
-          // Update the bound data and annotation.
-          let userSelectedDate = result.timestamp;
-          if (userSelectedDate.toMillis() !== millis) {
-            // Update the data point if the date is changed by user.
-            // TODO(b/122371627):  Use UUIDs instead of timestamps to track
-            // annotations.
-            userSelectedDate = DateTime.fromMillis(
-                self.updateTime(userSelectedDate.toMillis()));
-            // The annotation is removed from the previous time and added to the
-            // updated time.
-            self.data.removePointFromSeries(DateTime.fromMillis(millis));
-            result.timestamp = userSelectedDate;
-            self.data.addPointToSeries(0, result);
-          } else {
-            // If the timestamp does not change, update the annotation in case
-            // of changes made to the other fields.
-            self.data.annotations.set(millis, result);
-          }
-          self.pointsChanged.emit(self.data);
-          // Remove the annotation from the DOM.
-          self.removeAnnotation(millis);
-          self.regenerateChart();
-        }
-      });
+
+      self.dialogRef =
+          self.openDialog(parentCoordinates, dialogCoordinates, currAnnotation);
     });
   }
 
@@ -321,7 +299,7 @@ export class CustomizableGraphComponent extends
    * @param yCoordinate The y coordinate to change, if necessary.
    */
   findDialogCoordinates(xCoordinate: number, yCoordinate: number):
-      Array<number> {
+      [number, number] {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const dialogWidth = Number(this.dialogWidth.replace('px', ''));
