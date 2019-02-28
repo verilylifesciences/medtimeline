@@ -79,6 +79,49 @@ describe('MedicationOrder', () => {
     expect(medicationOrder.label).toEqual('vancomycin');
   });
 
+  it('should get dosage instruction from json', () => {
+    const medicationOrder = new MedicationOrder({
+      medicationReference: {display: 'vancomycin'},
+      dosageInstruction: [{text: 'dosage'}],
+      medicationCodeableConcept: {
+        coding: [
+          {system: RxNormCode.CODING_STRING, code: '11124'},
+        ]
+      },
+    });
+    expect(medicationOrder.dosageInstruction).toBeDefined();
+    expect(medicationOrder.dosageInstruction).toEqual('dosage');
+  });
+
+  it('should indicate lack of dosage instructions when applicable', () => {
+    const medicationOrder = new MedicationOrder({
+      medicationReference: {display: 'vancomycin'},
+      medicationCodeableConcept: {
+        coding: [
+          {system: RxNormCode.CODING_STRING, code: '11124'},
+        ]
+      },
+    });
+    expect(medicationOrder.dosageInstruction).toBeDefined();
+    expect(medicationOrder.dosageInstruction)
+        .toEqual('Could not retrieve dosage instructions.');
+  });
+
+  it('should throw error with more than one dosage instruction', () => {
+    const json = {
+      medicationReference: {display: 'vancomycin'},
+      dosageInstruction: [{text: 'dosage1'}, {text: 'dosage2'}],
+      medicationCodeableConcept: {
+        coding: [
+          {system: RxNormCode.CODING_STRING, code: '11124'},
+        ]
+      },
+    };
+    expect(() => {
+      const x = new MedicationOrder(json);
+    }).toThrowError();
+  });
+
   it('should get label from medicationCodeableConcept if medicationReference is absent',
      () => {
        const medicationOrder = new MedicationOrder({

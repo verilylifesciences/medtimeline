@@ -56,7 +56,7 @@ describe('FhirService', () => {
          expect(observationReadSpy.calls.count())
              .toBe(1, 'smartApi.observation.fetchAll was called once');
          expect(observation.length).toBe(2);
-         expect(observation[0].label).toEqual('Hemoglobin');
+         expect(observation[0].label).toEqual('Vanc Pk');
          done();
        });
      });
@@ -70,7 +70,7 @@ describe('FhirService', () => {
        service.getObservationsWithCode(code, dateRange).then(observation => {
          expect(observationReadSpy.calls.count()).toBe(1);
          expect(observation.length).toBeGreaterThan(0);
-         expect(observation[0].label).toEqual('Hemoglobin');
+         expect(observation[0].label).toEqual('Vanc Pk');
          done();
        });
        clientReadyCallback(smartApi);

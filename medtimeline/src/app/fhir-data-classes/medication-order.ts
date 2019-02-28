@@ -21,10 +21,14 @@ import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrat
  */
 export class MedicationOrder extends LabeledClass {
   readonly rxNormCode: RxNormCode;
+  readonly dosageRetrievalError = 'Could not retrieve dosage instructions.';
   firstAdministration: MedicationAdministration;
   lastAdmininistration: MedicationAdministration;
   administrationsForOrder: MedicationAdministrationSet;
   readonly orderId: string;
+  // By default, we set the instruction message as the retrieval error message,
+  // and change it if we find a valid dosage instruction.
+  dosageInstruction = this.dosageRetrievalError;
   /**
    * Makes an MedicationOrder out of a list of MedicationAdministrations.
    * https://www.hl7.org/fhir/DSTU2/medicationorder.html
@@ -40,7 +44,15 @@ export class MedicationOrder extends LabeledClass {
                                    json.medicationCodeableConcept ?
                                    json.medicationCodeableConcept.text :
                                    json.id);
+
+    if (json.dosageInstruction && json.dosageInstruction[0]) {
+      if (json.dosageInstruction.length > 1) {
+        throw Error('JSON must only include one dosage instruction.');
+      }
+      this.dosageInstruction = json.dosageInstruction[0].text;
+    }
     this.orderId = json.id;
+
     if (json.medicationCodeableConcept) {
       if (json.medicationCodeableConcept.coding) {
         this.rxNormCode =
