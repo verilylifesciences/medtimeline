@@ -5,6 +5,7 @@
 
 import * as Color from 'color';
 import * as d3 from 'd3';
+import {DateTime} from 'luxon';
 
 /*
  * This class makes an annotation for a particular timestamp with custom notes.
@@ -26,21 +27,32 @@ export class CustomizableGraphAnnotation {
   // The default padding for the annotation.
   readonly defaultPadding = 30;
 
+  timestamp: DateTime;
+
+  private readonly yAxisXCoord = 90;
+
   constructor(
+      timestamp: DateTime,
       /** The title that will show up in the annotation. */
       readonly title = '',
       /** The description that will show up in the annotation. */
       readonly description = '',
       /** The color for this annotation and associated point. */
-      readonly color: Color = Color.rgb('black')) {}
+      readonly color: Color = Color.rgb('black'),
+      /** The timestamp for the annotation */
+  ) {
+    this.timestamp = timestamp;
+  }
 
-  addAnnotation(millis: number, xCoordinate: string, chart: any) {
+  addAnnotation(chart: any) {
     const self = this;
     this.showDetails = false;
-    const xAxisYCoord = '100px';
-    const yAxisXCoord = 90;
-    // Find the points for where to draw the new annotation & connector, which
-    // are on different scales.
+
+    const millis = this.timestamp.toMillis();
+    const xCoordinate = chart.internal.x(millis) + '';
+
+    // Find the points for where to draw the new annotation & connector,
+    // which are on different scales.
     const yCoordinate = this.findBestYCoordinates(xCoordinate);
     const tooltip = chart.internal.selectChart.style('position', 'relative')
                         .append('div')
@@ -72,7 +84,7 @@ export class CustomizableGraphAnnotation {
                          .attr('id', 'edit-' + millis)
                          .style('font-size', '18px')
                          .html('edit');
-    tooltip.style('left', (Number(xCoordinate) + yAxisXCoord) + 'px')
+    tooltip.style('left', (Number(xCoordinate) + this.yAxisXCoord) + 'px')
         .style('top', yCoordinate + 'px')
         .style('border-left-color', this.color)
         .style(
@@ -85,30 +97,26 @@ export class CustomizableGraphAnnotation {
             (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
                 'px')
         .style('background-color', this.color);
+
+    /**
+     * Add action handlers.
+     */
     tooltipTitle.on('click', () => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      if (self.showDetails) {
-        self.showDetailsToggle(millis, true, tooltipContainer.node());
-      } else {
-        self.showDetailsToggle(millis, false, tooltipContainer.node());
-      }
+      self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
     });
     expandIcon.style('cursor', 'pointer');
     expandIcon.on('click', () => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      if (self.showDetails) {
-        self.showDetailsToggle(millis, true, tooltipContainer.node());
-      } else {
-        self.showDetailsToggle(millis, false, tooltipContainer.node());
-      }
+      self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
     });
     tooltip
         .on('mouseover',
             () => {
-              // Only show icons when hovering over the tooltip, and while the
-              // custom timeline is in edit mode. Show the expander icon
+              // Only show icons when hovering over the tooltip, and while
+              // the custom timeline is in edit mode. Show the expander icon
               // regardless of edit mode.
               expandIcon.style('visibility', 'visible');
               deleteIcon.classed('showIcon', true);
@@ -134,21 +142,18 @@ export class CustomizableGraphAnnotation {
           expandIcon.style('visibility', 'hidden');
         });
   }
-  // Toogles whether or not the full annotation is shown.
+
+  // Toggles whether or not the full annotation is shown.
   private showDetailsToggle(millis: number, toggle: boolean, element: any) {
+    const detailsElement =
+        d3.select(element).select('.tooltip-details-custom-' + millis);
+    const expandElement = d3.select(element).select('#expand-' + millis);
     if (toggle) {
-      d3.select(element)
-          .select('.tooltip-details-custom-' + millis)
-          .style('display', 'inline-block')
-          .raise();
-      // Switch the orientation of the expand icon.
-      d3.select(element).select('#expand-' + millis).html('expand_less');
+      detailsElement.style('display', 'inline-block').raise();
+      expandElement.html('expand_less');
     } else {
-      d3.select(element)
-          .select('.tooltip-details-custom-' + millis)
-          .style('display', 'none');
-      // Switch the orientation of the expand icon.
-      d3.select(element).select('#expand-' + millis).html('expand_more');
+      detailsElement.style('display', 'none');
+      expandElement.html('expand_more');
     }
   }
   private findBestYCoordinates(xCoordinate: string) {

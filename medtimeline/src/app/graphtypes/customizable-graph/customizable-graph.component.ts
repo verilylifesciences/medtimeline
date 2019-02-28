@@ -13,6 +13,7 @@ import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizabl
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
 import {GraphComponent} from '../graph/graph.component';
+import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 
 @Component({
   selector: 'app-customizable-graph',
@@ -169,23 +170,21 @@ export class CustomizableGraphComponent extends
           {top: dialogCoordinates[1] + 'px', left: dialogCoordinates[0] + 'px'},
       data: {date: xCoordinate}
     });
-    this.dialogRef.afterClosed().subscribe(result => {
-      if (result && result.annotation) {
-        // Update the bound data.
-
+    this.dialogRef.afterClosed().subscribe(r => {
+      if (r) {
+        const result: CustomizableGraphAnnotation =
+            r as CustomizableGraphAnnotation;
         // By default, the user selected date is the original date
         // corresponding to where the user chose to add the point.
-        let userSelectedDate = DateTime.fromJSDate(result.date);
+        let userSelectedDate = result.timestamp;
         // TODO(b/122371627):  Use UUIDs instead of timestamps to track
         // annotations.
         userSelectedDate =
             DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
-        this.data.addPointToSeries(
-            userSelectedDate, yCoordinate, result.annotation);
+        result.timestamp = userSelectedDate;
+        this.data.addPointToSeries(yCoordinate, result);
         this.data.annotations.get(userSelectedDate.toMillis())
-            .addAnnotation(
-                userSelectedDate.toMillis(),
-                chart.internal.x(userSelectedDate) + '', chart);
+            .addAnnotation(chart);
         this.loadNewData();
         // Add listeners for click events on the new annotation.
         this.addDeleteEvent(userSelectedDate.toMillis());
@@ -213,8 +212,7 @@ export class CustomizableGraphComponent extends
         // date range selected, and its x-position is greater than 0 (where the
         // y-axis is).
         if (Number(xPosition) >= 0) {
-          this.data.annotations.get(timestamp).addAnnotation(
-              timestamp, xPosition, this.chart);
+          this.data.annotations.get(timestamp).addAnnotation(this.chart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
           this.addEditEvent(timestamp);
@@ -285,11 +283,12 @@ export class CustomizableGraphComponent extends
           color: currAnnotation.color
         }
       });
-      self.dialogRef.afterClosed().subscribe(result => {
+      self.dialogRef.afterClosed().subscribe(r => {
         const chart: any = self.chart;
-        if (result && result.annotation) {
+        if (r) {
+          const result = r as CustomizableGraphAnnotation;
           // Update the bound data and annotation.
-          let userSelectedDate = DateTime.fromJSDate(result.date);
+          let userSelectedDate = result.timestamp;
           if (userSelectedDate.toMillis() !== millis) {
             // Update the data point if the date is changed by user.
             // TODO(b/122371627):  Use UUIDs instead of timestamps to track
@@ -299,11 +298,12 @@ export class CustomizableGraphComponent extends
             // The annotation is removed from the previous time and added to the
             // updated time.
             self.data.removePointFromSeries(DateTime.fromMillis(millis));
-            self.data.addPointToSeries(userSelectedDate, 0, result.annotation);
+            result.timestamp = userSelectedDate;
+            self.data.addPointToSeries(0, result);
           } else {
             // If the timestamp does not change, update the annotation in case
             // of changes made to the other fields.
-            self.data.annotations.set(millis, result.annotation);
+            self.data.annotations.set(millis, result);
           }
           self.pointsChanged.emit(self.data);
           // Remove the annotation from the DOM.

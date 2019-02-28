@@ -3,53 +3,99 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {OverlayContainer} from '@angular/cdk/overlay';
+import {async, fakeAsync, flush, inject, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatOptionModule} from '@angular/material';
+import {MAT_DIALOG_DATA, MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatOptionModule} from '@angular/material';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime} from 'luxon';
+import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 
 import {CustomizableTimelineDialogComponent} from './customizable-timeline-dialog.component';
 
 describe('CustomizableTimelineDialogComponent', () => {
-  let component: CustomizableTimelineDialogComponent;
-  let fixture: ComponentFixture<CustomizableTimelineDialogComponent>;
+  let fixture;
+  let component;
+  let dialog: MatDialog;
+  let overlayContainer: OverlayContainer;
 
   beforeEach(async(() => {
-    TestBed
-        .configureTestingModule({
-          imports: [
-            MatFormFieldModule,
-            FormsModule,
-            MatDialogModule,
-            MatInputModule,
-            BrowserAnimationsModule,
-            MatIconModule,
-            MatDatepickerModule,
-            MatOptionModule,
-            MatAutocompleteModule,
-            MatButtonToggleModule,
-            MatButtonModule,
-            MatCardModule,
-            ReactiveFormsModule,
-            MatNativeDateModule,
-          ],
-          declarations: [CustomizableTimelineDialogComponent],
-          providers: [
-            {provide: MatDialogRef, useValue: null},
-            {provide: MAT_DIALOG_DATA, useValue: DateTime.utc()}
-          ]
-        })
-        .compileComponents();
-  }));
+    TestBed.configureTestingModule({
+      declarations: [CustomizableTimelineDialogComponent],
+      imports: [
+        MatFormFieldModule, FormsModule, MatDialogModule, MatInputModule,
+        BrowserAnimationsModule, MatIconModule, MatDatepickerModule,
+        MatOptionModule, MatAutocompleteModule, MatButtonToggleModule,
+        MatButtonModule, MatCardModule, ReactiveFormsModule,
+        MatNativeDateModule, MatDialogModule
+      ],
+      providers: [
+        {provide: MAT_DIALOG_DATA, useValue: DateTime.utc()},
+        {provide: MatDialogRef, useValue: {}}
+      ]
 
-  beforeEach(() => {
+    });
+
+    TestBed.overrideModule(
+        BrowserDynamicTestingModule,
+        {set: {entryComponents: [CustomizableTimelineDialogComponent]}});
+
     fixture = TestBed.createComponent(CustomizableTimelineDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject(
+      [MatDialog, OverlayContainer], (d: MatDialog, oc: OverlayContainer) => {
+        dialog = d;
+        overlayContainer = oc;
+      }));
+
+  afterEach(() => {
+    overlayContainer.ngOnDestroy();
   });
 
+
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const dialogRef =
+        dialog.open(CustomizableTimelineDialogComponent, {data: {}});
+    expect(dialogRef).toBeTruthy();
+  });
+
+  it('should create annotation object on close', (done: DoneFn) => {
+    const dialogRef =
+        dialog.open(CustomizableTimelineDialogComponent, {data: {}})
+            .componentInstance as CustomizableTimelineDialogComponent;
+    dialogRef.userTitle = 'user title';
+    dialogRef.userDescription = 'description';
+    dialogRef.selectedColor = dialogRef.listOfColors[1];
+    dialogRef.dialogRef.afterClosed().subscribe(result => {
+      const annotation = result as CustomizableGraphAnnotation;
+      expect(annotation.title).toEqual('user title');
+      expect(annotation.description).toEqual('description');
+      done();
+    });
+    dialogRef.onSave();
+    fixture.detectChanges();
+  });
+
+  it('should return blank annotation on cancel', (done: DoneFn) => {
+    const dialogRef =
+        dialog.open(CustomizableTimelineDialogComponent, {data: {}})
+            .componentInstance as CustomizableTimelineDialogComponent;
+    dialogRef.date = DateTime.fromISO('2016-05-25T09:08:34.123').toJSDate();
+    dialogRef.userTitle = 'user title';
+    dialogRef.userDescription = 'description';
+    dialogRef.selectedColor = dialogRef.listOfColors[1];
+    dialogRef.dialogRef.afterClosed().subscribe(result => {
+      const annotation = result as CustomizableGraphAnnotation;
+      expect(annotation).toBeUndefined();
+      done();
+    });
+    dialogRef.onCancel();
+    fixture.detectChanges();
   });
 });

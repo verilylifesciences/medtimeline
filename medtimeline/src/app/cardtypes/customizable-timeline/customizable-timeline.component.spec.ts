@@ -56,7 +56,7 @@ describe('CustomizableTimelineComponent', () => {
        const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
        spyOn(component.updateEventLines, 'emit');
        customGraph.data.addPointToSeries(
-           dateTime, 0, new CustomizableGraphAnnotation('title!'));
+           0, new CustomizableGraphAnnotation(dateTime, 'title!'));
        customGraph.pointsChanged.emit(customGraph.data);
        fixture.whenStable().then(() => {
          expect(component.updateEventLines.emit)

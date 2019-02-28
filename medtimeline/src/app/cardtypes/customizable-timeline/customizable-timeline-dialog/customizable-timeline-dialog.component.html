@@ -4,8 +4,8 @@
   </div>
   <div class="timelineInputs">
     <mat-form-field>
-      <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl" (click)="datePicker.open()"
-        required>
+      <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
+        (click)="datePicker.open()" required>
       <mat-error *ngIf="dateFormControl.invalid">Invalid date</mat-error>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
@@ -36,6 +36,7 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancel()" id="cancelButton">Cancel</button>
-  <button [disabled]="findIncompleteFields()" mat-raised-button (click)="onSave()" color="primary" id="saveButton">Save</button>
+  <button mat-button (click)="onCancel()" id="cancelButton" class="cancelButton">Cancel</button>
+  <button [disabled]="findIncompleteFields()" mat-raised-button (click)="onSave()" color="primary"
+    id="saveButton">Save</button>
 </div>

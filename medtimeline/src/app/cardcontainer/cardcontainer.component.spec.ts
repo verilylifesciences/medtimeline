@@ -45,7 +45,6 @@ describe('CardcontainerComponent', () => {
   let dataSelectorMenu: DataSelectorMenuComponent;
   let timelineToolbar: TimelineToolbarComponent;
 
-
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
@@ -121,13 +120,11 @@ describe('CardcontainerComponent', () => {
   it('should calculate eventlines correctly', () => {
     const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
     const eventlinesOriginalSize = component.eventlines.length;
-    const data = CustomizableData.fromInitialPoint(
-        DateTime.fromJSDate(new Date(-8640000000000000)), 0,
-        new CustomizableGraphAnnotation(), new StubFhirService());
-    data.addPointToSeries(
-        dateTime, 0, new CustomizableGraphAnnotation('title!'));
+    const initialData = CustomizableData.defaultEmptySeries();
+    initialData.addPointToSeries(
+        0, new CustomizableGraphAnnotation(dateTime, 'title!'));
     component.updateEventLines(
-        {data: data, id: component.displayedConcepts[0].id});
+        {data: initialData, id: component.displayedConcepts[0].id});
     expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
     expect(component.eventlines).toEqual([
       {class: 'color000000', text: 'title!', value: dateTime.toMillis()}
@@ -136,16 +133,14 @@ describe('CardcontainerComponent', () => {
 
   it('should calculate eventlines correctly with more than one custom timeline',
      () => {
+       const initialData = CustomizableData.defaultEmptySeries();
        const dateTime1 = DateTime.fromISO('2012-08-04T11:00:00.000Z');
        const dateTime2 = DateTime.fromISO('2012-08-20T11:00:00.000Z');
        const eventlinesOriginalSize = component.eventlines.length;
-       const data1 = CustomizableData.fromInitialPoint(
-           DateTime.fromJSDate(new Date(-8640000000000000)), 0,
-           new CustomizableGraphAnnotation(), new StubFhirService());
-       data1.addPointToSeries(
-           dateTime1, 0, new CustomizableGraphAnnotation('title!'));
+       initialData.addPointToSeries(
+           0, new CustomizableGraphAnnotation(dateTime1, 'title!'));
        component.updateEventLines(
-           {data: data1, id: component.displayedConcepts[0].id});
+           {data: initialData, id: component.displayedConcepts[0].id});
        expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
        expect(component.eventlines).toEqual([
          {class: 'color000000', text: 'title!', value: dateTime1.toMillis()}
@@ -153,11 +148,9 @@ describe('CardcontainerComponent', () => {
 
        component.displayedConcepts.push(
            {concept: 'customTimeline', id: 'uniqueID'});
-       const data2 = CustomizableData.fromInitialPoint(
-           DateTime.fromJSDate(new Date(-8640000000000000)), 0,
-           new CustomizableGraphAnnotation(), new StubFhirService());
+       const data2 = CustomizableData.defaultEmptySeries();
        data2.addPointToSeries(
-           dateTime2, 0, new CustomizableGraphAnnotation('another title!'));
+           0, new CustomizableGraphAnnotation(dateTime2, 'another title!'));
        component.updateEventLines({data: data2, id: 'uniqueID'});
        expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 2);
        expect(component.eventlines).toEqual([

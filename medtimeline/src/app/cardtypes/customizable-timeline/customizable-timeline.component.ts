@@ -51,12 +51,7 @@ export class CustomizableTimelineComponent implements OnChanges {
   inEditMode = false;
 
   constructor(private fhirService: FhirService) {
-    // We need to initialize the data with a point so that the c3 chart can show
-    // the x-axis with the dates (otherwise, it turns up blank). This date is
-    // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
-    this.data = CustomizableData.fromInitialPoint(
-        DateTime.fromJSDate(new Date(-8640000000000000)), 0,
-        new CustomizableGraphAnnotation(), fhirService);
+    this.data = CustomizableData.defaultEmptySeries();
     this.renderContainedGraph();
   }
 

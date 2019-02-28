@@ -7,6 +7,7 @@ import {Component, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import * as Color from 'color';
+import {DateTime} from 'luxon';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {BOSTON_BAY, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_LAVENDER, BOSTON_PINK, BOSTON_PURPLE, BOSTON_YELLOW} from 'src/app/theme/bch_colors';
 
@@ -81,11 +82,12 @@ export class CustomizableTimelineDialogComponent {
 
   // Closes the dialog popup and saves user input.
   onSave(): void {
-    this.dialogRef.close({
-      annotation: new CustomizableGraphAnnotation(
-          this.userTitle, this.userDescription, Color.rgb(this.selectedColor)),
-      date: this.getSelectedDate()
-    });
+    this.dialogRef.close(new CustomizableGraphAnnotation(
+        DateTime.fromJSDate(this.getSelectedDate()),
+        this.userTitle,
+        this.userDescription,
+        Color.rgb(this.selectedColor),
+        ));
   }
 
   // Generates a list of times with 30-minute intervals, for the autocomplete

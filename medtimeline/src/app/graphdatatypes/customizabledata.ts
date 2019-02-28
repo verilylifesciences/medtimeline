@@ -34,6 +34,17 @@ export class CustomizableData extends GraphData {
     this.yAxisDisplayBounds = [0, 10];
   }
 
+  static defaultEmptySeries() {
+    // We need to initialize the data with a point so that the c3 chart can show
+    // the x-axis with the dates (otherwise, it turns up blank). This date is
+    // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
+    return CustomizableData.fromInitialPoint(
+        0,
+        new CustomizableGraphAnnotation(
+            DateTime.fromJSDate(new Date(-8640000000000000)),
+            'initial_point_hidden'));
+  }
+
   /**
    * Converts an initial time and y value to a CustomizableData object.
    * @param date The date for this initial point.
@@ -43,12 +54,13 @@ export class CustomizableData extends GraphData {
    */
   // TODO(b/123940928): Consider passing in encounters rather than FhirService.
   static fromInitialPoint(
-      date: DateTime, yValue: number, annotation: CustomizableGraphAnnotation,
-      fhirService: FhirService) {
+      yValue: number, annotation: CustomizableGraphAnnotation) {
+    console.warn(annotation);
     const annotations = new Map<number, CustomizableGraphAnnotation>().set(
-        date.toMillis(), annotation);
+        annotation.timestamp.toMillis(), annotation);
     return new CustomizableData(
-        LabeledSeries.fromInitialPoint(date, yValue), annotations);
+        LabeledSeries.fromInitialPoint(annotation.timestamp, yValue),
+        annotations);
   }
 
   /**
@@ -58,12 +70,11 @@ export class CustomizableData extends GraphData {
    * @param annotation The CustomizableGraphAnnotation for this point.
    * @returns a new CustomizableData with the addition of this point.
    */
-  addPointToSeries(
-      date: DateTime, yValue: number, annotation: CustomizableGraphAnnotation) {
+  addPointToSeries(yValue: number, annotation: CustomizableGraphAnnotation) {
     // This method assumes there is only 1 series.
-    this.series[0].xValues.push(date);
+    this.series[0].xValues.push(annotation.timestamp);
     this.series[0].yValues.push(yValue);
-    this.annotations.set(date.toMillis(), annotation);
+    this.annotations.set(annotation.timestamp.toMillis(), annotation);
     this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }
 
