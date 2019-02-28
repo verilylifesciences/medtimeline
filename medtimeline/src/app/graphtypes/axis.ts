@@ -69,6 +69,12 @@ export class Axis {
    */
   label: string;
 
+  /*
+   * Whether to show tick marks for this axis (only changed when results are all
+   * qualitative).
+   */
+  showTicks = true;
+
   // An error message if there's an error in data retrieval.
   errorMessage: string;
 
@@ -162,6 +168,7 @@ export class Axis {
                   // We only draw the Line charts if all ObservationSets are of
                   // the same type of y-value: continuous or discrete.
                   if (obsSetList.every(obsSet => obsSet.allQualitative)) {
+                    this.showTicks = false;
                     return LineGraphData.fromObservationSetListDiscrete(
                         this.displayConcept.label, obsSetList, this.sanitizer,
                         this.encounters);

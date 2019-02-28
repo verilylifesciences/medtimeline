@@ -95,3 +95,7 @@ style names with ::ng-deep.  */
   fill: rgb(179, 157, 219); /* Secondary color */
   stroke:  rgb(179, 157, 219); /* Secondary color */
 }
+
+::ng-deep .c3-tooltip td {
+  max-width: 160px;
+}
