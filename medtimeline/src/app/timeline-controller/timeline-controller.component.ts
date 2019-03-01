@@ -54,12 +54,18 @@ export class TimelineControllerComponent implements OnInit {
   /** The list of encounters to display as available ranges to select. */
   ranges = {};
 
+  /**
+   * Whether there was any error in retrieving the encounters for this patient.
+   */
+  encounterError = false;
+
   constructor(private renderer: Renderer2, private fhirService: FhirService) {}
 
   ngOnInit() {
     this.fhirService.getEncountersForPatient(APP_TIMESPAN)
         .then(
             encounters => {
+              this.encounterError = false;
               if (encounters.length > 0) {
                 // Encounters come in local time.
                 encounters = encounters.sort(
@@ -120,6 +126,7 @@ export class TimelineControllerComponent implements OnInit {
             reject => {
               // points that fall outside the time range of the encounter.
               this.datesUpdated(this.defaultDateRange);
+              this.encounterError = true;
             });
   }
 
