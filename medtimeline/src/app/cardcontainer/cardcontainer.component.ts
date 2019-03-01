@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
@@ -17,6 +17,7 @@ import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {ChartType} from '../graphtypes/graph/graph.component';
+import {SetupDataService} from '../setup-data.service';
 
 @Component({
   selector: 'app-cardcontainer',
@@ -68,7 +69,7 @@ export class CardcontainerComponent {
   ];
 
   // The reference for the Dialog opened.
-  private dialogRef: MatDialogRef<DeleteDialogComponent>;
+  private deleteDialogRef: MatDialogRef<DeleteDialogComponent>;
 
   // A map of custom timeline id to the event lines corresponding to that
   // timeline.
@@ -80,27 +81,26 @@ export class CardcontainerComponent {
   constructor(
       dragulaService: DragulaService, private fhirService: FhirService,
       resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
-      private deleteDialog: MatDialog) {
+      private deleteDialog: MatDialog,
+      private setupDataService: SetupDataService) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
     this.originalConcepts = Array.from(displayGroups.values())
                                 .reduce((acc, val) => acc.concat(val), []);
+    this.setUpCards();
+    this.setUpDrag(dragulaService);
+  }
+
+  private setUpCards() {
     // Add a textbox at the top of the card list.
     this.addTextbox();
     // Add a custom timeline to the top of the card list.
     this.addCustomTimeline();
-    for (const concept of this.originalConcepts) {
-      // We decide the original displayed concepts based on whether any
-      // ResourceCodeGroup in the ResourceCodeGroup array associated with one
-      // Card is marked as "showByDefault".
-      const showByDefault =
-          concept.resourceCodeGroups.some(x => x.showByDefault);
-      if (showByDefault) {
-        this.displayedConcepts.push({'id': uuid(), 'concept': concept});
-      }
+    // Add all cards selected at the set-up screen.
+    for (const concept of this.setupDataService.selectedConcepts) {
+      this.displayedConcepts.push({'id': uuid(), 'concept': concept});
     }
-    this.setUpDrag(dragulaService);
   }
 
   // Ensures that the order of displayed concepts is updated as the user drags
@@ -180,8 +180,8 @@ export class CardcontainerComponent {
     const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     const concept = this.displayedConcepts[index];
     concept.value = $event.value;
-    this.dialogRef = this.deleteDialog.open(DeleteDialogComponent);
-    this.dialogRef.afterClosed().subscribe(result => {
+    this.deleteDialogRef = this.deleteDialog.open(DeleteDialogComponent);
+    this.deleteDialogRef.afterClosed().subscribe(result => {
       // The user wishes to delete the card.
       if (result) {
         this.displayedConcepts.splice(index, 1);

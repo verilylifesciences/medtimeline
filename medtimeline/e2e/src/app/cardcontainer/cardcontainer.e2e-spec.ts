@@ -19,6 +19,7 @@ describe('Card Container', () => {
   beforeEach(async () => {
     await browser.waitForAngularEnabled(false);
     await browser.get('/');
+    index.navigateToMainPage();
     browser.driver.executeScript(disableCSSAnimation);
     // Disable CSS animations and transitions, to accurately test style changes
     // for CardContainer.

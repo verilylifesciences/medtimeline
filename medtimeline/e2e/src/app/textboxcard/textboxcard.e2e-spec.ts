@@ -24,6 +24,7 @@ describe('TextboxCard', async () => {
 
   beforeEach(async () => {
     await browser.get('/');
+    await index.navigateToMainPage();
   });
 
   it('textbox card should be in saved mode by default, with input disabled',

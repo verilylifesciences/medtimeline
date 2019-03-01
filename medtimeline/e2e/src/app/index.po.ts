@@ -84,4 +84,12 @@ export class IndexPage {
   async clickOnElement(el: ElementFinder, x?: number, y?: number) {
     await browser.actions().mouseMove(el, {x: x, y: y}).click().perform();
   }
+
+  async navigateToMainPage() {
+    const defaultConfigButton = element(by.css('#defaultConfig'));
+    await defaultConfigButton.click();
+
+    const continueButton = element(by.css('#continue'));
+    await continueButton.click();
+  }
 }
