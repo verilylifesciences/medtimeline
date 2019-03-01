@@ -20,6 +20,7 @@ describe('Data Selector', () => {
 
   beforeEach(async () => {
     await browser.get('/');
+    await index.navigateToMainPage();
     await index.expectToExist('.mat-menu-panel', false);
     const dataSelectorButton = dataSelector.getAddCardButton();
     await index.clickOnElement(dataSelectorButton);

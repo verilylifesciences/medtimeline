@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="toolbar">
+  <h1 class="title">Select Initial Configuration</h1>
+</mat-toolbar>
+<div class="mainSetup">
+  <form class="conceptForm">
+    <mat-form-field class="conceptFormField">
+      <input matInput placeholder="Search for a concept" aria-label="Search for a concept" [formControl]="conceptCtrl">
+    </mat-form-field>
+    <div *ngFor="let entry of displayGroupingOptions | async">
+      <div class="category" [style.color]="entry[0].fill.hsl().string()">
+        {{entry[0].label}}
+      </div>
+      <div *ngFor="let element of entry[1].sort(sortResources)">
+        <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}">
+          {{element.label}}
+        </mat-checkbox>
+      </div>
+    </div>
+  </form>
+  <div class="actions">
+    <button mat-raised-button color="accent" (click)="defaultRequested()" id="defaultConfig">
+      Select Default Configuration
+    </button>
+    <button mat-raised-button color="accent" (click)="onContinue()" cdkFocusInitial id="continue">
+      Continue
+    </button>
+  </div>
+</div>

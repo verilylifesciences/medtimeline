@@ -6,7 +6,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDialog, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
+import {MAT_DIALOG_DATA, MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule, MatDialog, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -35,6 +35,7 @@ import {LineGraphComponent} from '../graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from '../graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from '../graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from '../graphtypes/stepgraph/stepgraph.component';
+import {SetupDataService} from '../setup-data.service';
 import {StubFhirService} from '../test_utils';
 import {TimelineControllerComponent} from '../timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from '../timeline-toolbar/timeline-toolbar.component';
@@ -77,7 +78,7 @@ describe('CardcontainerComponent', () => {
             NgxDaterangepickerMd.forRoot(),
             MatToolbarModule,
             MatSnackBarModule,
-
+            MatCheckboxModule,
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,
@@ -91,9 +92,9 @@ describe('CardcontainerComponent', () => {
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            DragulaService,
-            {provide: MAT_DIALOG_DATA, useValue: {}},
-          ]
+            DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}},
+            {provide: SetupDataService, useValue: {selectedConcepts: []}}
+          ],
         })
         .compileComponents();
   }));
