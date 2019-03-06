@@ -48,7 +48,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   @Input() eventlines: Array<{[key: string]: number | string}>;
 
   /** Propogate remove up to the card container.  */
-  @Output() onRemove = new EventEmitter();
+  @Output() removeEvent = new EventEmitter();
 
   // The label for this graphcard.
   label: string;
@@ -219,6 +219,6 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   remove() {
     // We do not add a 'value' field because there is no internal value that
     // needs to be restored when the user reverts a deletion.
-    this.onRemove.emit({id: this.id});
+    this.removeEvent.emit({id: this.id});
   }
 }

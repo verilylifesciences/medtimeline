@@ -3,6 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Disable this check because it's for IE 11 compatibility and we're not worried
+// about that in our testing code.
+/* tslint:disable:object-literal-shorthand*/
 import {async} from '@angular/core/testing';
 import {Interval} from 'luxon';
 import {DateTime} from 'luxon';
@@ -237,3 +240,4 @@ describe('MedicationOrderSet', () => {
     }).toThrowError();
   });
 });
+/* tslint:enable:object-literal-shorthand*/

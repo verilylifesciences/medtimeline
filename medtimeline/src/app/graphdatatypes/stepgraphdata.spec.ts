@@ -3,6 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Disable this check because it's for IE 11 compatibility and we're not worried
+// about that in our testing code.
+/* tslint:disable:object-literal-shorthand*/
+
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
@@ -10,7 +14,7 @@ import {of} from 'rxjs';
 
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
-import {makeDiagnosticReports, makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 
 import {StepGraphData} from './stepgraphdata';
 
@@ -113,3 +117,5 @@ describe('StepGraphData', () => {
            });
      });
 });
+
+/* tslint:enable:object-literal-shorthand*/

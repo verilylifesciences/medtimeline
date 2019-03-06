@@ -3,12 +3,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {DateTime, Interval} from 'luxon';
+import {Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
 
 
@@ -42,7 +42,7 @@ export class CustomizableTimelineComponent implements OnChanges {
       new EventEmitter<{[key: string]: string | CustomizableData}>();
 
   /** Propogate remove events up to the card container.  */
-  @Output() onRemove = new EventEmitter();
+  @Output() removeEvent = new EventEmitter();
 
   // The data for the graph contained.
   data: CustomizableData;
@@ -76,18 +76,8 @@ export class CustomizableTimelineComponent implements OnChanges {
     this.updateEventLines.emit({data: this.data, id: this.id});
   }
 
-  // Switch to editing mode.
-  private edit() {
-    this.inEditMode = true;
-  }
-
-  // Switch from editing mode.
-  private save() {
-    this.inEditMode = false;
-  }
-
   // Called when the user clicks the trashcan button on the card.
   remove() {
-    this.onRemove.emit({id: this.id, value: this.data});
+    this.removeEvent.emit({id: this.id, value: this.data});
   }
 }

@@ -3,6 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Disable this check because it's for IE 11 compatibility and we're not worried
+// about that in our testing code.
+/* tslint:disable:object-literal-shorthand*/
+
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
@@ -102,3 +106,5 @@ describe('StepGraphComponent', () => {
         });
   });
 });
+
+/* tslint:enable:object-literal-shorthand*/

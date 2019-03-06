@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// tslint:disable-next-line:max-line-length
 import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
@@ -24,6 +25,7 @@ import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 import {CardcontainerComponent} from './cardcontainer/cardcontainer.component';
 import {CardComponent} from './cardtypes/card/card.component';
+// tslint:disable-next-line:max-line-length
 import {CustomizableTimelineDialogComponent} from './cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
@@ -71,9 +73,8 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
   imports: [
     BrowserModule, MatCardModule, HttpClientModule, MatListModule,
     MatDividerModule, MatIconModule, BrowserAnimationsModule, FormsModule,
-    ReactiveFormsModule, MatInputModule, BrowserAnimationsModule,
-    MatProgressSpinnerModule, MatButtonModule, MatAutocompleteModule,
-    MatMenuModule, MatTooltipModule,
+    ReactiveFormsModule, MatInputModule, MatProgressSpinnerModule,
+    MatButtonModule, MatAutocompleteModule, MatMenuModule, MatTooltipModule,
     FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatDialogModule,
     MatStepperModule, MatToolbarModule, MatSnackBarModule, MatDatepickerModule,
     NgxDaterangepickerMd.forRoot({}), MatButtonToggleModule,

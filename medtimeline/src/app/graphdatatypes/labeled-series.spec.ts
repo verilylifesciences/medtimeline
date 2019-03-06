@@ -3,6 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Disable this check because it's for IE 11 compatibility and we're not worried
+// about that in our testing code.
+/* tslint:disable:object-literal-shorthand*/
+
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
@@ -13,6 +17,7 @@ import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 import {FhirService} from './../fhir.service';
+// tslint:disable-next-line:max-line-length
 import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservationJson} from './../test_utils';
 import {makeSampleDiscreteObservationJson} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
@@ -344,3 +349,4 @@ describe('LabeledSeries', () => {
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');
      });
 });
+/* tslint:enable:object-literal-shorthand*/

@@ -55,7 +55,6 @@ export class CustomizableData extends GraphData {
   // TODO(b/123940928): Consider passing in encounters rather than FhirService.
   static fromInitialPoint(
       yValue: number, annotation: CustomizableGraphAnnotation) {
-    console.warn(annotation);
     const annotations = new Map<number, CustomizableGraphAnnotation>().set(
         annotation.timestamp.toMillis(), annotation);
     return new CustomizableData(

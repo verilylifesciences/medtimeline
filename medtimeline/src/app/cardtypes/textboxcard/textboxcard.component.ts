@@ -19,7 +19,7 @@ export class TextboxcardComponent {
   @Input() id: string;
 
   /** Propogate remove events up to the card container.  */
-  @Output() onRemove = new EventEmitter();
+  @Output() removeEvent = new EventEmitter();
 
   // Holds the text typed in the input field of the textbox.
   @Input() noteString: string;
@@ -36,7 +36,7 @@ export class TextboxcardComponent {
   remove() {
     // We pass a 'value' field with the contents of the textbox so that, in case
     // of restoration of a deleted textbox, the previous value can be displayed.
-    this.onRemove.emit({id: this.id, value: this.noteString});
+    this.removeEvent.emit({id: this.id, value: this.noteString});
   }
 
   edit() {

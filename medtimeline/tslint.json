@@ -74,6 +74,11 @@
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
+    // IE11 doesn't like object-literal-shorthand.
+    "object-literal-shorthand": [
+      true,
+      "never"
+    ],
     "object-literal-sort-keys": false,
     "one-line": [
       true,

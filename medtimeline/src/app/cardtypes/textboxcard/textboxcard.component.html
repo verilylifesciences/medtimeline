@@ -1,4 +1,5 @@
-<app-card [id]="id" [isEditable]="true" (onRemove)="remove()" (onEdit)="edit()" (onSave)="save()" [ngClass]="{'inEditMode': inEditMode}">
+<app-card [id]="id" [isEditable]="true" (removeEvent)="remove()" (editEvent)="edit()" (saveEvent)="save()"
+  [ngClass]="{'inEditMode': inEditMode}">
   <ng-container class="contents-block">
     <mat-form-field style="width: 95%;">
       <textarea #textArea matInput matTextareaAutosize placeholder="Add annotation here." [disabled]="!inEditMode"

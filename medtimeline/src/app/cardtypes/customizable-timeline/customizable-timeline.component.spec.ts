@@ -66,12 +66,12 @@ describe('CustomizableTimelineComponent', () => {
 
   it('should emit event to remove card', async(() => {
        fixture.detectChanges();
-       spyOn(component.onRemove, 'emit');
+       spyOn(component.removeEvent, 'emit');
        const button = fixture.debugElement.nativeElement.querySelector(
            'mat-icon.removeCardButton');
        button.click();
        fixture.whenStable().then(() => {
-         expect(component.onRemove.emit)
+         expect(component.removeEvent.emit)
              .toHaveBeenCalledWith({id: component.id, value: component.data});
        });
      }));

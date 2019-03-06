@@ -8,7 +8,9 @@ import {FormControl} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
+// tslint:disable-next-line:max-line-length
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
+// tslint:disable-next-line:max-line-length
 import {BOSTON_BAY, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_LAVENDER, BOSTON_PINK, BOSTON_PURPLE, BOSTON_YELLOW} from 'src/app/theme/bch_colors';
 
 @Component({

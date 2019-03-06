@@ -54,7 +54,8 @@ export class MockFhirService extends FhirService {
         mapToUpdate.set(code, existing);
       }
     } catch (err) {
-      console.warn(err);
+      // tslint:disable-next-line:no-console
+      console.debug(err);
     }
   }
 
@@ -73,19 +74,18 @@ export class MockFhirService extends FhirService {
           if (resourceType === FhirResourceType.MedicationAdministration) {
             this.constructResourceMap(
                 json, this.medicationAdministrationMapByCode,
-                (data) => new MedicationAdministration(data),
+                (d) => new MedicationAdministration(d),
                 (admin) => [admin.rxNormCode]);
 
             this.constructResourceMap(
                 json, this.medicationAdministrationMapByOrderId,
-                (data) => new MedicationAdministration(data),
+                (d) => new MedicationAdministration(d),
                 (admin) => [admin.medicationOrderId]);
           }
 
           if (resourceType === FhirResourceType.MedicationOrder) {
             this.constructResourceMap(
-                json, this.medicationOrderMap,
-                (data) => new MedicationOrder(data),
+                json, this.medicationOrderMap, (d) => new MedicationOrder(d),
                 (order) => [order.orderId]);
           }
 
@@ -96,8 +96,7 @@ export class MockFhirService extends FhirService {
 
           if (resourceType === FhirResourceType.DiagnosticReport) {
             this.constructResourceMap(
-                json, this.diagnosticReportMap,
-                (data) => new DiagnosticReport(data),
+                json, this.diagnosticReportMap, (d) => new DiagnosticReport(d),
                 (report) =>
                     report.results.map(x => x.codes)
                         .reduce(

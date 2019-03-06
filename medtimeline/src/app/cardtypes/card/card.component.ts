@@ -25,10 +25,10 @@ export class CardComponent {
   @Input() isEditable = false;
   @Input() isRemovable = true;
 
-  @Output() onRender = new EventEmitter();
-  @Output() onRemove = new EventEmitter();
-  @Output() onEdit = new EventEmitter();
-  @Output() onSave = new EventEmitter();
+  @Output() renderEvent = new EventEmitter();
+  @Output() removeEvent = new EventEmitter();
+  @Output() editEvent = new EventEmitter();
+  @Output() saveEvent = new EventEmitter();
 
   inEditMode = false;
 
@@ -36,23 +36,23 @@ export class CardComponent {
 
   // Called when the user clicks the trashcan button on the card.
   remove() {
-    this.onRemove.emit(this.id);
+    this.removeEvent.emit(this.id);
   }
 
   // Called when the card resizes.
   resize($event) {
-    this.onRender.emit($event);
+    this.renderEvent.emit($event);
   }
 
   // Called when the user clicks on the edit button.
   edit($event) {
     this.inEditMode = true;
-    this.onEdit.emit($event);
+    this.editEvent.emit($event);
   }
 
   // Called when the user hits the save button to exit out of edit mode.
   save($event) {
     this.inEditMode = false;
-    this.onSave.emit($event);
+    this.saveEvent.emit($event);
   }
 }

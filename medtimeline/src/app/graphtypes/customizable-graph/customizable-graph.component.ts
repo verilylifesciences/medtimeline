@@ -9,6 +9,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
 import {DateTime} from 'luxon';
+// tslint:disable-next-line:max-line-length
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 

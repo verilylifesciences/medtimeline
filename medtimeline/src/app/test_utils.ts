@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 /**
- * * Testing utilities used across multiple files.
+ * Testing utilities used across multiple files.
  */
 import {DateTime, Interval} from 'luxon';
 
@@ -67,7 +67,7 @@ export function makeSampleObservationJson(
       text: 'Vanc Pk'
     },
     effectiveDateTime: timestamp.toISO(),
-    valueQuantity: {value},
+    valueQuantity: {value: value},
     interpretation: {text: 'NA'},
     referenceRange:
         [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}]

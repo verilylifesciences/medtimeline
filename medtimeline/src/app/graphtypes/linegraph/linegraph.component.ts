@@ -40,8 +40,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     }
 
     const yAxisConfig: c3.YAxisConfiguration = {
-      min,
-      max,
+      min: min,
+      max: max,
       padding: {top: 20, bottom: 20},
       tick: {
         count: 5,

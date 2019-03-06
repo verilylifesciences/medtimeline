@@ -4,19 +4,20 @@
 // license that can be found in the LICENSE file.
 
 import {OverlayContainer} from '@angular/cdk/overlay';
-import {async, fakeAsync, flush, inject, TestBed} from '@angular/core/testing';
+import {async, inject, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// tslint:disable-next-line:max-line-length
 import {MAT_DIALOG_DATA, MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatOptionModule} from '@angular/material';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime} from 'luxon';
+// tslint:disable-next-line:max-line-length
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 
 import {CustomizableTimelineDialogComponent} from './customizable-timeline-dialog.component';
 
 describe('CustomizableTimelineDialogComponent', () => {
   let fixture;
-  let component;
   let dialog: MatDialog;
   let overlayContainer: OverlayContainer;
 
@@ -42,7 +43,6 @@ describe('CustomizableTimelineDialogComponent', () => {
         {set: {entryComponents: [CustomizableTimelineDialogComponent]}});
 
     fixture = TestBed.createComponent(CustomizableTimelineDialogComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
 
     TestBed.compileComponents();

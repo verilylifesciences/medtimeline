@@ -70,7 +70,7 @@ export class Axis {
   label: string;
 
   // An error message if there's an error in data retrieval.
-  private errorMessage: string;
+  errorMessage: string;
 
   // The encounters for the date range.
   encounters: Encounter[] = [];
