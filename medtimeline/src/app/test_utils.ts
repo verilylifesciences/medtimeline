@@ -63,8 +63,8 @@ export function makeSampleObservationJson(
     referenceRange: [number, number] = [10, 20]): any {
   return {
     code: {
-      coding: [{system: 'http://loinc.org', code: '4090-7'}],
-      text: 'Vanc Pk'
+      coding: [{system: 'http://loinc.org', code: '718-7'}],
+      text: 'Hemoglobin'
     },
     effectiveDateTime: timestamp.toISO(),
     valueQuantity: {value: value},

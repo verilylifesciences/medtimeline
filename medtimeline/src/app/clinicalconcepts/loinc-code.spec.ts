@@ -25,26 +25,26 @@ describe('LOINCCodeGroup', () => {
        const observations: Observation[][] = [[
          new Observation({
            code: {
-             text: 'BP',
-             coding: [{system: LOINCCode.CODING_STRING, code: '55284-4'}]
+             text: 'ALT',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
            },
            valueQuantity: {value: 97},
          }),
          new Observation({
            code: {
-             text: 'BP',
-             coding: [{system: LOINCCode.CODING_STRING, code: '55284-4'}]
+             text: 'ALT',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
            },
            valueQuantity: {value: 98},
          }),
          new Observation({
            code: {
-             text: 'BP',
-             coding: [{system: LOINCCode.CODING_STRING, code: '55284-4'}]
+             text: 'ALT',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
            },
            component: [{
              code: {
-               coding: [{system: LOINCCode.CODING_STRING, code: '55284-4'}],
+               coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}],
                text: 'Diastolic BP'
              },
              valueQuantity: {value: 69}
@@ -66,7 +66,7 @@ describe('LOINCCodeGroup', () => {
              // Observations corresponding to BP that have values, and one for
              // the inner component of the last Observation.
              expect(result.length).toEqual(2);
-             expect(result[0].label).toEqual('BP');
+             expect(result[0].label).toEqual('ALT');
              expect(result[0].resourceList.length).toEqual(2);
              expect(result[1].label).toEqual('Diastolic BP');
              expect(result[1].resourceList.length).toEqual(1);
@@ -79,43 +79,43 @@ describe('LOINCCodeGroup', () => {
        const observationsOfDifferentCodes: Observation[][] = [[
          new Observation({
            code: {
-             text: 'Vanc Pk',
-             coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
+             text: 'ALT',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
            },
            valueQuantity: {value: 97},
          }),
          new Observation({
            code: {
-             text: 'Vanc Pk',
-             coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
+             text: 'ALT',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
            },
            valueQuantity: {value: 98},
          }),
          new Observation({
            code: {
-             text: 'Vanc Tr',
-             coding: [{system: LOINCCode.CODING_STRING, code: '4092-3'}]
+             text: 'Bilirubin, Direct',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
            },
            valueQuantity: {value: 1},
          }),
          new Observation({
            code: {
-             text: 'Vanc Tr',
-             coding: [{system: LOINCCode.CODING_STRING, code: '4092-3'}]
+             text: 'Bilirubin, Direct',
+             coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
            },
            valueQuantity: {value: 2},
          }),
          new Observation({
            code: {
-             text: 'Vanc',
-             coding: [{system: LOINCCode.CODING_STRING, code: '20578-1'}]
+             text: 'Basophil',
+             coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
            },
            valueQuantity: {value: 1},
          }),
          new Observation({
            code: {
-             text: 'Vanc',
-             coding: [{system: LOINCCode.CODING_STRING, code: '20578-1'}]
+             text: 'Basophil',
+             coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
            },
            valueQuantity: {value: 2},
          })
@@ -130,9 +130,9 @@ describe('LOINCCodeGroup', () => {
        const loincGroup = new LOINCCodeGroup(
            fhirServiceStub, 'label',
            [
-             LOINCCode.fromCodeString('4090-7'),
-             LOINCCode.fromCodeString('4092-3'),
-             LOINCCode.fromCodeString('20578-1')
+             LOINCCode.fromCodeString('1742-6'),
+             LOINCCode.fromCodeString('1968-7'),
+             LOINCCode.fromCodeString('706-2')
            ],
            vitalSign, ChartType.LINE);
        Promise.resolve(loincGroup.getResourceFromFhir(this.interval))
@@ -233,7 +233,7 @@ describe('LOINCCodeGroup', () => {
     const loincGroup = new LOINCCodeGroup(
         undefined /* FHIR service */, 'label',
         /* ESR's bounds are 0-200 */
-        [ResourceCode.fromCodeString('30341-2')], vitalSign, ChartType.LINE);
+        [ResourceCode.fromCodeString('4537-7')], vitalSign, ChartType.LINE);
     expect(loincGroup.displayBounds).toEqual([0, 200]);
   });
 
@@ -242,8 +242,8 @@ describe('LOINCCodeGroup', () => {
        const loincGroup = new LOINCCodeGroup(
            undefined /* FHIR service */, 'label',
            [
-             ResourceCode.fromCodeString('30341-2'),
-             ResourceCode.fromCodeString('3094-0')
+             ResourceCode.fromCodeString('4537-7'),  // ESR
+             ResourceCode.fromCodeString('8867-4')   // Heart rate
            ],
            vitalSign, ChartType.LINE);
        expect(loincGroup.displayBounds).toBeUndefined();
@@ -255,8 +255,8 @@ describe('LOINCCodeGroup', () => {
            undefined /* FHIR service */,
            'label',
            [
-             ResourceCode.fromCodeString('30341-2'),
-             ResourceCode.fromCodeString('3094-0')
+             ResourceCode.fromCodeString('26464-8'),  // WBC
+             ResourceCode.fromCodeString('8310-5')    // Temperature
            ],
            vitalSign,
            ChartType.LINE,

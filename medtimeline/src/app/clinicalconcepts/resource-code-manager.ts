@@ -91,21 +91,19 @@ export class ResourceCodeManager {
     // Pull all the defaults to the top.
     new LOINCCode(
         '1988-5', labResult, 'C-Reactive Protein', true, [0, 100], true),
-    new LOINCCode('30341-2', labResult, 'ESR', true, [0, 200]),
+    new LOINCCode('4537-7', labResult, 'ESR', true, [0, 200]),
     new LOINCCode('3094-0', labResult, 'BUN', true),
     new LOINCCode('2160-0', labResult, 'Creatinine', true),
     new LOINCCode('1742-6', labResult, 'ALT', true),
     new LOINCCode('1920-8', labResult, 'AST', true),
-    // The rest show up alphabetically below.
-    new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase'),
-    new LOINCCode('1968-7', labResult, 'Bilirubin, Direct'),
-    new LOINCCode('1975-2', labResult, 'Bilirubin, Total'),
-    new LOINCCode('2324-2', labResult, 'GGTP'),
-    new LOINCCode('14804-9', labResult, 'LDH'),
+    new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', true),
+    new LOINCCode('1968-7', labResult, 'Bilirubin, Direct', true),
+    new LOINCCode('1975-2', labResult, 'Bilirubin, Total', true),
+    new LOINCCode('3084-1', labResult, 'Uric acid', false)
   ];
 
   private static readonly vitalLoincs = [
-    new LOINCCode('8310-5', vitalSign, 'Temperature', true, [35, 41]),
+    new LOINCCode('8310-5', vitalSign, 'Body temperature', true, [35, 41]),
     new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
     new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
     new LOINCCode('55284-4', vitalSign, 'Blood pressure', true, [25, 250]),
@@ -116,33 +114,33 @@ export class ResourceCodeManager {
   private static readonly gentMonitoring = [
     new LOINCCode('35668-3', labResult, 'Gent Level'),
     new LOINCCode('3663-2', labResult, 'Gent Pk'),
-    new LOINCCode('3665-7', labResult, 'Gent Tr')
+    new LOINCCode('31092-0', labResult, 'Gent Tr')
+    // TODO: add Gentamicin, Peak/Post Q24H
   ];
 
   private static readonly vancMonitoring = [
     new LOINCCode('20578-1', labResult, 'Vanc Level', true),
     new LOINCCode('4092-3', labResult, 'Vanc Tr', true),
-    new LOINCCode('4090-7', labResult, 'Vanc Pk', true)
+    // TODO: add Vanc Peak
   ];
 
 
   private static readonly urineGroup = [
-    new LOINCCode('5767-9', labResult, 'Appearance, Urinalysis'),
     new LOINCCode('5769-5', labResult, 'Bacteria, Urinalysis'),
     new LOINCCode('50551-1', labResult, 'Bilirubin, Urinalysis'),
     new LOINCCode('5794-3', labResult, 'Blood, Urinalysis'),
-    new LOINCCode('5778-6', labResult, 'Color, Urinalysis'),
-    new LOINCCode('50555-2', labResult, 'Glucose, Urinalysis'),
-    new LOINCCode('57734-6', labResult, 'Ketone, Urinalysis'),
+    new LOINCCode('21033-6', labResult, 'Budding Yeast, Urinalysis'),
+    new LOINCCode('25157-9', labResult, 'Epithelial Cast, Urinalysis'),
     new LOINCCode('50558-6', labResult, 'Nitrite, Urinalysis'),
-    new LOINCCode('50560-2', labResult, 'pH, Urinalysis'),
-    new LOINCCode('57735-3', labResult, 'Protein, Urinalysis'),
+    // TODO: add Protein, Urinalysis
+    new LOINCCode('58449-0', labResult, 'Red Blood Cell Clump, Urinalysis'),
     new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis'),
-    new LOINCCode('5810-7', labResult, 'Specific Gravity, Urinalysis'),
-    new LOINCCode('11277-1', labResult, 'Squamous Epithelial, Urinalysis'),
+    // TODO: add Squamous Epithelial, Urinalysis
     new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis'),
     new LOINCCode('5799-2', labResult, 'WBC Enzyme, Urinalysis'),
-    new LOINCCode('5799-2', labResult, 'White Cells, Urinalysis')
+    new LOINCCode('33825-1', labResult, 'WBC Clump, Urinalysis'),
+    // TODO: add White Cells, Urinalysis
+    // TODO: add yeast, Urinalysis
   ];
 
   // TODO(b/117431412): Figure out which microbio concepts to display.
@@ -187,25 +185,20 @@ export class ResourceCodeManager {
 
       const cbc = [
         new LOINCCodeGroup(
-            this.fhirService, 'WBC',
-            [new LOINCCode('26464-8', labResult, 'WBC', true, [0, 150])],
-            labResult, ChartType.LINE, [0, 150]),
-        new LOINCCodeGroup(
-            this.fhirService, 'Hemoglobin',
-            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-            labResult, ChartType.LINE, [0.5, 30]),
-        new LOINCCodeGroup(
             this.fhirService, 'Hematocrit',
             [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
             labResult, ChartType.LINE, [10, 70]),
         new LOINCCodeGroup(
-            this.fhirService, 'Platelet',
-            [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
-            labResult, ChartType.LINE, [2, 900]),
-
+            this.fhirService, 'Hemoglobin',
+            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
+        // TODO: add Platelet
+        new LOINCCodeGroup(
+            this.fhirService, 'WBC',
+            [new LOINCCode('26464-8', labResult, 'WBC', false)], labResult,
+            ChartType.LINE),
       ];
       codeGroups.push(new ResourceCodesForCard(cbc, 'CBC', labResult));
-
 
       const cbcWBC = [
         new LOINCCodeGroup(
@@ -213,17 +206,8 @@ export class ResourceCodeManager {
             [new LOINCCode(
                 '35332-6', labResult, 'Neutrophil/Band', true, [0, 100], true)],
             labResult, ChartType.LINE, [0, 100], true),
-        new LOINCCodeGroup(
-            this.fhirService, 'Immature Granulocytes',
-            [new LOINCCode(
-                '38518-7', labResult, 'Immature Granulocytes', true, [0, 100],
-                true)],
-            labResult, ChartType.LINE, [0, 100], true),
-        new LOINCCodeGroup(
-            this.fhirService, 'Lymphocyte',
-            [new LOINCCode(
-                '736-9', labResult, 'Lymphocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+        // TODO: add Immature Granulocytes
+        // TODO: add Lymphocyte
         new LOINCCodeGroup(
             this.fhirService, 'Monocyte',
             [new LOINCCode(
