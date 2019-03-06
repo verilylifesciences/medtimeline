@@ -28,14 +28,12 @@ export class MicrobioGraphComponent extends StepGraphComponent {
   }
 
   /**
-   * @returns the c3.ChartConfiguration object to generate the c3 chart.
    * @override
    */
-  generateChart(): c3.ChartConfiguration {
-    const graph = super.generateChart();
-    graph.data.type = 'scatter';
-    graph.point = {r: 5};
-    return graph;
+  generateChart() {
+    super.generateChart();
+    this.chartConfiguration.data.type = 'scatter';
+    this.chartConfiguration.point = {r: 5};
   }
 
   /**

@@ -26,10 +26,21 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     super(sanitizer);
   }
   /**
-   * @returns the c3.ChartConfiguration object to generate the c3 chart.
    * @override
    */
-  generateChart(): c3.ChartConfiguration {
+  generateChart() {
+    this.adjustYAxisConfig();
+    this.generateBasicChart();
+    this.adjustDataDependent();
+
+    // Ensure that a line is not drawn through points with "null" values.
+    this.chartConfiguration.line = {connectNull: false};
+  }
+
+  /**
+   * Adjusts the y-axis configuration for the chart.
+   */
+  adjustYAxisConfig() {
     // Give labels to each series and make a map of x-values to y-values.
     let min;
     let max;
@@ -42,7 +53,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       max = this.data.yAxisDisplayBounds[1];
     }
 
-    const yAxisConfig: c3.YAxisConfiguration = {
+    this.yAxisConfig = {
       min: min,
       max: max,
       padding: {top: 20, bottom: 20},
@@ -61,9 +72,12 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         }
       },
     };
+  }
 
-    let graph = this.generateBasicChart(yAxisConfig);
-
+  /**
+   * Adjusts the data-dependent fields of the chart's configuration.
+   */
+  adjustDataDependent() {
     // Some things are only valid if there are y-axis normal bounds. We
     // also only show normal bounds if there's one data series on the
     // axis.
@@ -73,35 +87,34 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     if (this.data.series.length > 0) {
       const yBounds = this.data.series[0].yNormalBounds;
       if (this.data.series.length === 1 && yBounds) {
-        graph = this.addYRegionOnChart(graph, yBounds);
+        this.chartConfiguration =
+            this.addYRegionOnChart(this.chartConfiguration, yBounds);
       }
     }
-
     // Check if there are any data points in the time range.
     this.noDataPointsInDateRange =
         !GraphComponent.dataPointsInRange(this.data.series, this.dateRange);
-
-    const self = this;
     // If tick values aren't set, calculate the values.
-    if (!graph.axis.y.tick.values) {
-      graph.axis.y.tick.values = this.findYAxisValues(
+    if (!this.chartConfiguration.axis.y.tick.values) {
+      this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(
           this.data.yAxisDisplayBounds[0], this.data.yAxisDisplayBounds[1]);
     }
 
-    if (graph.axis.y.tick.values.length === 0) {
+    if (this.chartConfiguration.axis.y.tick.values.length === 0) {
       // The dataset is empty. We show padded tick marks to align the y axis
       // with the rest of the charts' axes.
       for (let i = 0; i < 5; i++) {
-        graph.axis.y.tick.values.push(i);
+        this.chartConfiguration.axis.y.tick.values.push(i);
       }
     }
-    const yValues = graph.axis.y.tick.values;
+    const yValues = this.chartConfiguration.axis.y.tick.values;
     const needToWrap =
         yValues.some(value => value.toString().length > Y_AXIS_TICK_MAX);
-    // Replace the tick label's initially displayed values to padded strings so
-    // that the axis is aligned.
+    // Replace the tick label's initially displayed values to padded empty
+    // strings so that the axis is aligned. We only do this if we need to wrap
+    // axis labels in the first place.
     if (needToWrap) {
-      graph.axis.y.tick.format = function(d) {
+      this.chartConfiguration.axis.y.tick.format = function(d) {
         return ''.trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
       };
       this.yAxisTickDisplayValues =
@@ -110,10 +123,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
             maximumFractionDigits: this.data.precision
           }));
     }
-
-    // Ensure that a line is not drawn through points with "null" values.
-    graph.line = {connectNull: false};
-    return graph;
   }
 
   // Manually find y axis tick values based on the min and max display bounds.

@@ -103,7 +103,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = setTimeout(() => {
           self.containedGraphs.forEach(graph => {
-            graph.regenerateChart();
+            graph.generateFromScratch();
             Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
               unique.add(group);
             });
@@ -192,7 +192,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
                       allRegions.filter(region => (region.axis === 'x'));
                   data.axis.data = data.data;
                 });
-                this.containedGraphs.forEach(graph => graph.regenerateChart());
+                this.containedGraphs.forEach(
+                    graph => graph.generateFromScratch());
               });
         });
   }

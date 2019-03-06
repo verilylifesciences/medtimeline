@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file or at
 // https://developers.google.com/open-source/licenses/bsd
-import {Component, EventEmitter, forwardRef, Input, OnDestroy, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
@@ -14,6 +14,7 @@ import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizabl
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
 import {GraphComponent} from '../graph/graph.component';
+
 import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 
 @Component({
@@ -28,7 +29,7 @@ import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
   }]
 })
 export class CustomizableGraphComponent extends
-    GraphComponent<CustomizableData> implements OnDestroy {
+    GraphComponent<CustomizableData> implements OnChanges, OnDestroy {
   // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   @Input() inEditMode: boolean;
@@ -53,8 +54,12 @@ export class CustomizableGraphComponent extends
     }
   }
 
-  regenerateChart() {
-    super.regenerateChart();
+  ngOnChanges() {
+    this.generateFromScratch();
+  }
+
+  generateFromScratch() {
+    super.generateFromScratch();
     const self = this;
     const chart: any =
         this.chart;  // We need the "any" declaration in order to access the
@@ -187,7 +192,7 @@ export class CustomizableGraphComponent extends
           this.data.removePointFromSeries(
               DateTime.fromMillis(editedAnnotation.timestamp.toMillis()));
           this.removeAnnotation(editedAnnotation.timestamp.toMillis());
-          this.regenerateChart();
+          this.generateFromScratch();
         }
 
         const result: CustomizableGraphAnnotation =
@@ -266,7 +271,7 @@ export class CustomizableGraphComponent extends
     deleteIcon.on('click', function() {
       const time = DateTime.fromMillis(millis);
       self.data.removePointFromSeries(time);
-      self.regenerateChart();
+      self.generateFromScratch();
       self.pointsChanged.emit(self.data);
     });
   }
@@ -319,8 +324,42 @@ export class CustomizableGraphComponent extends
    * @override
    */
   generateChart(): c3.ChartConfiguration {
+    this.adjustYAxisConfig();
+    this.generateBasicChart();
+
+    this.chartConfiguration.axis.x.height = 50;
+    this.chartConfiguration.data.type = 'scatter';
+    this.chartConfiguration.zoom = {enabled: false};
+    const self = this;
+    this.chartConfiguration.data.onmouseover = function(d) {
+      self.hoveringOverPoint = true;
+    };
+    this.chartConfiguration.tooltip = {show: false};
+    this.chartConfiguration.transition = {duration: 0};
+    this.chartConfiguration.data.onmouseout = function(d) {
+      // Add a timeout to ensure that the user can't add a point immediately
+      // after moving away from an existing point.
+      setTimeout(() => {
+        self.hoveringOverPoint = false;
+      }, 500);
+    };
+    this.chartConfiguration.data.onclick = function(d, element) {
+      self.hoveringOverPoint = true;
+    };
+
+    this.chartConfiguration.data.color = function(color, d) {
+      return self.data.annotations.get(DateTime.fromJSDate(d.x).toMillis())
+          .color;
+    };
+    this.chartConfiguration
+        .point = {show: true, r: 5, focus: {expand: {enabled: false}}};
+    return this.chartConfiguration;
+  }
+
+
+  adjustYAxisConfig() {
     // Give labels to each series and make a map of x-values to y-values.
-    const yAxisConfig: c3.YAxisConfiguration = {
+    this.yAxisConfig = {
       min: 0,
       max: 5,
       padding: {top: 0, bottom: 0},
@@ -337,34 +376,9 @@ export class CustomizableGraphComponent extends
         }
       }
     };
-
-    const graph = this.generateBasicChart(yAxisConfig);
-
-    graph.axis.x.height = 50;
-    graph.data.type = 'scatter';
-    graph.zoom = {enabled: false};
-    const self = this;
-    graph.data.onmouseover = function(d) {
-      self.hoveringOverPoint = true;
-    };
-    graph.tooltip = {show: false};
-    graph.transition = {duration: 0};
-    graph.data.onmouseout = function(d) {
-      // Add a timeout to ensure that the user can't add a point immediately
-      // after moving away from an existing point.
-      setTimeout(() => {
-        self.hoveringOverPoint = false;
-      }, 500);
-    };
-    graph.data.onclick = function(d, element) {
-      self.hoveringOverPoint = true;
-    };
-
-    graph.data.color = function(color, d) {
-      return self.data.annotations.get(DateTime.fromJSDate(d.x).toMillis())
-          .color;
-    };
-    graph.point = {show: true, r: 5, focus: {expand: {enabled: false}}};
-    return graph;
   }
+
+  // This is not relevant for the CustomizableGraph, so its implementation for
+  // this class is empty.
+  adjustDataDependent() {}
 }

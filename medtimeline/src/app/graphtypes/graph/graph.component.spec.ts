@@ -28,6 +28,8 @@ class StubGraphComponent extends GraphComponent<any> {
   generateChart() {
     return this.generateBasicChart();
   }
+  adjustYAxisConfig() {}
+  adjustDataDependent() {}
 }
 
 describe('GraphComponent', () => {
@@ -50,20 +52,24 @@ describe('GraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
-    const generatedChart = component.generateBasicChart();
+    component.generateBasicChart();
 
-    expect(generatedChart['data']['xs']['Vanc Pk']).toEqual('x_Vanc Pk');
+    expect(component.chartConfiguration['data']['xs']['Vanc Pk'])
+        .toEqual('x_Vanc Pk');
 
-    expect(generatedChart['data']['columns'][0].map(x => x.toString()))
+    expect(component.chartConfiguration['data']['columns'][0].map(
+               x => x.toString()))
         .toEqual([
           'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
           DateTime.utc(1995, 7, 22).toISO()
         ]);
-    expect(generatedChart['data']['columns'][1]).toEqual(['Vanc Pk', 15, 20]);
+    expect(component.chartConfiguration['data']['columns'][1]).toEqual([
+      'Vanc Pk', 15, 20
+    ]);
   });
 
   it('y axis bounds passed in okay', () => {
-    const yConfig: c3.YAxisConfiguration = {
+    component.yAxisConfig = {
       min: 12,
       max: 81,
       padding: {top: 20, bottom: 20},
@@ -75,20 +81,22 @@ describe('GraphComponent', () => {
         }
       }
     };
-    const generatedChart = component.generateBasicChart(yConfig);
+    component.generateBasicChart();
 
-    expect(generatedChart['axis']['y']).toEqual(yConfig);
+    expect(component.chartConfiguration['axis']['y'])
+        .toEqual(component.yAxisConfig);
   });
 
   it('regions displayed on y-axis', () => {
-    let generatedChart = component.generateBasicChart();
+    component.generateBasicChart();
 
-    generatedChart = component.addYRegionOnChart(generatedChart, [11, 101]);
+    component.chartConfiguration =
+        component.addYRegionOnChart(component.chartConfiguration, [11, 101]);
 
-    expect(generatedChart['regions'].length).toEqual(1);
-    expect(generatedChart['regions'][0]['axis']).toEqual('y');
-    expect(generatedChart['regions'][0]['start']).toEqual(11);
-    expect(generatedChart['regions'][0]['end']).toEqual(101);
+    expect(component.chartConfiguration['regions'].length).toEqual(1);
+    expect(component.chartConfiguration['regions'][0]['axis']).toEqual('y');
+    expect(component.chartConfiguration['regions'][0]['start']).toEqual(11);
+    expect(component.chartConfiguration['regions'][0]['end']).toEqual(101);
   });
 
   it('x ticks should enclose both ends of the data range', () => {
@@ -96,8 +104,8 @@ describe('GraphComponent', () => {
     component.dateRange = Interval.fromDateTimes(
         DateTime.utc(1990, 7, 13, 12), DateTime.utc(1990, 7, 15, 12));
 
-    const generatedChart = component.generateBasicChart({});
-    expect(generatedChart.axis.x.tick.values).toEqual([
+    component.generateBasicChart();
+    expect(component.chartConfiguration.axis.x.tick.values).toEqual([
       DateTime.local(1990, 7, 13),
       DateTime.local(1990, 7, 13, 12),
       DateTime.local(1990, 7, 14),
@@ -114,8 +122,8 @@ describe('GraphComponent', () => {
        component.dateRange = Interval.fromDateTimes(
            DateTime.utc(1990, 7, 13, 12), DateTime.utc(1990, 7, 25, 12));
 
-       const generatedChart = component.generateBasicChart({});
-       expect(generatedChart.axis.x.tick.values).toEqual([
+       component.generateBasicChart();
+       expect(component.chartConfiguration.axis.x.tick.values).toEqual([
          DateTime.local(1990, 7, 13),
          DateTime.local(1990, 7, 14),
          DateTime.local(1990, 7, 15),
@@ -139,9 +147,9 @@ describe('GraphComponent', () => {
     component.dateRange = Interval.fromDateTimes(
         DateTime.local(1964, 3, 22, 12), DateTime.local(1964, 3, 22, 20));
 
-    const generatedChart = component.generateBasicChart({});
+    component.generateBasicChart();
 
-    expect(generatedChart.axis.x.tick.values).toEqual([
+    expect(component.chartConfiguration.axis.x.tick.values).toEqual([
       DateTime.local(1964, 3, 22),
       DateTime.local(1964, 3, 22, 12),
     ].map(x => Number(x)));
@@ -154,9 +162,9 @@ describe('GraphComponent', () => {
        component.dateRange = Interval.fromDateTimes(
            DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
 
-       const generatedChart = component.generateBasicChart();
+       component.generateBasicChart();
 
-       expect(generatedChart.axis.x.tick.values).toEqual([
+       expect(component.chartConfiguration.axis.x.tick.values).toEqual([
          DateTime.local(1995, 7, 21),
          DateTime.local(1995, 7, 21, 12),
          DateTime.local(1995, 7, 22),
