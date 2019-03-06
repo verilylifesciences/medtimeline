@@ -6,6 +6,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
+import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
@@ -16,6 +17,7 @@ import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
 })
 export class TimelineToolbarComponent {
   readonly displayGroupings: Array<[DisplayGrouping, ResourceCodesForCard[]]>;
+  readonly showMockDataMessage = environment.useMockServer;
 
   @Output() saveSnapshot = new EventEmitter<null>();
   @Output() addTextbox = new EventEmitter<null>();

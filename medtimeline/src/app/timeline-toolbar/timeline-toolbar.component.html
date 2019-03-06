@@ -1,4 +1,5 @@
-<div style="float: right; margin-right: 15px">
+<div style="float: right; margin-right: 15px" fxLayout="row">
+  <div *ngIf="showMockDataMessage">This is synthesized data used for demo purposes only.</div>
   <button mat-icon-button matTooltip="Launch Tutorial">
     <mat-icon class="toolbarButton" (click)="openHelpDialog()">help_outline</mat-icon>
   </button>

@@ -1,5 +1,7 @@
 # MedTimeLine
 
+[See the online demo here!](https://verilylifesciences.github.io/medtimeline/)
+
 ## Disclaimer
 This is not an official Verily product.
 
@@ -18,7 +20,7 @@ new clinical concepts, and changing the timeframe of the visualized data.
 1. Clone this repository.
 1. Change into the `medtimeline` directory.
 1. Run `npm install` to install all dependencies.
-1. Run `ng serve --port 8000 --configuration=dev_mock_synth_data` to run the application
+1. Run `ng serve --port 8000 --configuration dev_mock_synth_data` to run the application
    against the included mock data (note there is not data for all clinical
    concepts).
 
@@ -65,8 +67,8 @@ const prod = {
 };
 
 const config = {
-  dev,
-  prod,
+  dev: dev,
+  prod: prod,
 };
 
 // Here we have the environment set to dev, but of course you could also switch
@@ -77,7 +79,7 @@ module.exports = config[env];
 
 After you've put in your configuration, run the following command:
 
-`ng serve --port <the port you've configured in your FHIR server and in fhir_config.js for redirect> --configuration=dev_http`
+`ng serve --port <the port you've configured in your FHIR server and in fhir_config.js for redirect> --configuration dev_http`
 
 This will serve the page at `localhost:<specified port number`.
 
@@ -86,9 +88,9 @@ to run the application.
 
 ### Running against mock data
 
-If instead you want to run against the mock data, found in`src/assets/DemoMockData`, run this command:
+If instead you want to run against the mock data, found in `src/assets/test_bmedtimeA`, run this command:
 
-`ng serve --port 8000 --configuration=dev_mock_old_data`
+`ng serve --port 8000 --configuration=dev_mock_synth_data`
 
 Navigate to `http://localhost:8000/` to see the application.
 
