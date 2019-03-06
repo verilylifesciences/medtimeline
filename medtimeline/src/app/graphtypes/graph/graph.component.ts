@@ -65,6 +65,21 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The rendered chart so that you can apply functions to it.
   chart: c3.ChartAPI;
 
+  // The rendered chart's configuration.
+  chartConfiguration: c3.ChartConfiguration;
+
+  // The y-axis configuration for the chart.
+  yAxisConfig: c3.YAxisConfiguration;
+
+  // The x-axis configuration for the chart.
+  xAxisConfig: c3.XAxisConfiguration;
+
+  // A map containing a color for each series displayed on the graph.
+  colorsMap: {[key: string]: string} = {};
+
+  // The default chart type for this chart.
+  chartTypeString: string;
+
   // We hold the values of yAxis tick labels and set the values as empty strings
   // during setup, so that the y axis does not get shifted while getting
   // displayed.
@@ -102,49 +117,180 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The chart can't find the element to bind to until after the view is
   // initialized so we need to regenerate the chart here.
   ngAfterViewInit() {
-    this.regenerateChart();
+    this.generateFromScratch();
   }
 
-  // Any time the bound data changes, we need to regenerate the chart.
+  // Any time the bound data changes, we need to adjust the configurations of
+  // the chart. If there is not yet a chart configuration, we generate the chart
+  // from scratch.
   ngOnChanges(changes: SimpleChanges) {
-    this.regenerateChart();
+    // Only change what needs to be changed.
+    if (this.chartConfiguration) {
+      if (changes.data) {
+        this.dataChanged();
+      }
+      if (changes.dateRange) {
+        this.adjustXAxis();
+      }
+      if (changes.eventlines) {
+        this.updateEventlines();
+      }
+      this.chart = c3.generate(this.chartConfiguration);
+      this.adjustStyle();
+    } else {
+      this.generateFromScratch();
+    }
   }
 
-  regenerateChart() {
+  // If there is not yet a chart or chart configuration, configure and generate
+  // the chart to display.
+  generateFromScratch() {
     if (this.data && this.dateRange) {
-      this.chart = c3.generate(this.generateChart());
-      // Add an overlay indicating that there are no data points in the date
-      // range.
-      if (this.noDataPointsInDateRange) {
-        const emptyContainer =
-            d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
-        emptyContainer.text(
-            'No data for ' + this.dateRange.start.toLocaleString() + '-' +
-            this.dateRange.end.toLocaleString());
-        emptyContainer.attr('class', 'c3-text c3-empty noData');
-        // We set the opacity of the y-axis ticks of empty charts to 0 after
-        // setting the tick values. We do this instead of not displaying the
-        // y-axis altogether to ensure that the left padding of the chart is
-        // aligned with all other charts.
-        const yAxisTicks = d3.select('#' + this.chartDivId)
-                               .selectAll('.c3-axis-y')
-                               .selectAll('.tick')
-                               .style('opacity', 0);
-      }
-      this.wrapYAxisLabels();
+      this.generateChart();
+      this.chart = c3.generate(this.chartConfiguration);
+      this.adjustStyle();
+    }
+  }
+
+  // Called if the data to be displayed on the chart is changed.
+  dataChanged() {
+    // Y axis configuration depends on the data values.
+    this.adjustYAxisConfig();
+    // The colors displayed depends on the data values.
+    this.adjustColorMap();
+    // Update the data points displayed on the chart.
+    this.updateData();
+    // Adjust the y-axis ticks and wrapping for the chart, also dependent on the
+    // data values.
+    this.adjustDataDependent();
+  }
+
+  // Called after some, or all, parts of the chart are changed, to ensure that
+  // the style stays.
+  adjustStyle() {
+    this.showNoData();
+    this.wrapYAxisLabels();
+  }
+
+  // Add an overlay indicating that there are no data points in the date
+  // range.
+  showNoData() {
+    if (this.noDataPointsInDateRange) {
+      const emptyContainer =
+          d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
+      emptyContainer.text(
+          'No data for ' + this.dateRange.start.toLocaleString() + '-' +
+          this.dateRange.end.toLocaleString());
+      emptyContainer.attr('class', 'c3-text c3-empty noData');
+      // We set the opacity of the y-axis ticks of empty charts to 0 after
+      // setting the tick values. We do this instead of not displaying the
+      // y-axis altogether to ensure that the left padding of the chart is
+      // aligned with all other charts.
+      const yAxisTicks = d3.select('#' + this.chartDivId)
+                             .selectAll('.c3-axis-y')
+                             .selectAll('.tick')
+                             .style('opacity', 0);
     }
   }
 
   /**
-   * @param configuration Holds configuration information for the data that
-   *     belongs in this chart.
-   * @param yAxisConfig Custom y-axis configurations.
-   * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
-   * @returns A generalized c3.ChartConfig for the data passed in. See the
+   * Sets up a generalized c3.ChartConfig for the data passed in. See the
    * type definition at:
    * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
+   * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
    */
-  generateBasicChart(yAxisConfig = {}, maxXTicks = 10): c3.ChartConfiguration {
+  generateBasicChart(maxXTicks = 10) {
+    this.adjustXAxis(maxXTicks);
+    this.adjustColorMap();
+
+    this.chartTypeString = 'line';
+
+    if (this.chartType === ChartType.SCATTER) {
+      this.chartTypeString = 'scatter';
+    } else if (this.chartType !== ChartType.LINE) {
+      throw Error('Unsupported chart type: ' + this.chartType);
+    }
+
+    // Show the y-axis label on the chart.
+    this.yAxisConfig['label'] = {
+      text: (this.axisLabel ? this.axisLabel : ''),
+      position: 'outer-middle'
+    };
+
+    const gridlines: any = this.eventlines ? this.eventlines : [];
+    const self = this;
+    const chartConfiguration = {
+      bindto: '#' + this.chartDivId,
+      size: {height: BASE_CHART_HEIGHT_PX},
+      data: {
+        columns: this.data.c3DisplayConfiguration.allColumns,
+        xs: this.data.c3DisplayConfiguration.columnMap,
+        type: this.chartTypeString,
+        colors: this.colorsMap,
+      },
+      regions: this.data.xRegions,
+      axis: {x: this.xAxisConfig, y: this.yAxisConfig},
+      legend: {show: false},  // There's always a custom legend
+      line: {connectNull: false},
+      onrendered: function() {
+        self.boldDates();
+        self.adjustStyle();
+        self.fixOpacity();
+        self.onRendered(this);
+      },
+      grid: {x: {lines: gridlines}},
+      tooltip: this.setTooltip()
+    };
+
+    // chartConfiguration['tooltip'] = this.setTooltip();
+
+    this.setCustomLegend(
+        this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
+    this.chartConfiguration = chartConfiguration;
+  }
+
+  // If only the data is updated, there is no need to re-configure the chart
+  // configurations that stay constant. Instead, just rework the
+  // ChartConfiguration's data field.
+  updateData() {
+    this.chartConfiguration.data = {
+      columns: this.data.c3DisplayConfiguration.allColumns,
+      xs: this.data.c3DisplayConfiguration.columnMap,
+      type: this.chartTypeString,
+      colors: this.colorsMap,
+    };
+  }
+
+  // Update any event lines from any CustomTimeline that should be shown on the
+  // chart.
+  updateEventlines() {
+    const gridlines: any = this.eventlines ? this.eventlines : [];
+    this.chartConfiguration.grid.x = {lines: gridlines};
+  }
+
+  // Adjust the color map for the data belonging to the chart.
+  adjustColorMap() {
+    for (const key of Object.keys(this.data.c3DisplayConfiguration.columnMap)) {
+      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(
+              key)) {
+        const lookupColor: Color =
+            this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
+                .fill;
+        this.colorsMap[key] = lookupColor.toString();
+      }
+    }
+  }
+
+  /**
+   * If the date range is changed, adjust the x-axis tick marks displayed. This
+   * method does not need to be called otherwise, as the x-axis should stay
+   * constant unless the date range is changed.
+   * @param maxXTicks The maximum number of labeled ticks to display. By
+   *     default, any date range lasting shorter than maxXTicks will show tick
+   *     marks with labels at each 24-hour mark, and tick marks without labels
+   *     at 12-hour marks.
+   */
+  adjustXAxis(maxXTicks = 10) {
     const daysInRange = getTickMarksForXAxis(this.dateRange, true);
     // The ticks with labels displayed.
     const ticksLabels = new Array<DateTime>();
@@ -180,18 +326,9 @@ export abstract class GraphComponent<T extends GraphData> implements
       const formatTime = d3.timeFormat('%m/%d %H:%M');
       return formatTime(date);
     });
-    const colorsMap = {};
-    for (const key of Object.keys(this.data.c3DisplayConfiguration.columnMap)) {
-      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(
-              key)) {
-        const lookupColor: Color =
-            this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
-                .fill;
-        colorsMap[key] = lookupColor.toString();
-      }
-    }
 
-    const xAxisConfig: c3.XAxisConfiguration = {
+
+    this.xAxisConfig = {
       type: 'timeseries',
       min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
       max: this.dateRange.end.toLocal().endOf('day').toJSDate(),
@@ -204,50 +341,6 @@ export abstract class GraphComponent<T extends GraphData> implements
         values: ticks.map(x => Number(x))
       }
     };
-    // If there's more than one series we'll need a legend so make the
-    // graph a bit taller.
-    let chartTypeString = 'line';
-    if (this.chartType === ChartType.SCATTER) {
-      chartTypeString = 'scatter';
-    } else if (this.chartType !== ChartType.LINE) {
-      throw Error('Unsupported chart type: ' + this.chartType);
-    }
-
-    // Show the y-axis label on the chart.
-    yAxisConfig['label'] = {
-      text: (this.axisLabel ? this.axisLabel : ''),
-      position: 'outer-middle'
-    };
-
-    const self = this;
-    const gridValues: any = this.eventlines ? this.eventlines : [];
-    const graph = {
-      bindto: '#' + this.chartDivId,
-      size: {height: BASE_CHART_HEIGHT_PX},
-      data: {
-        columns: this.data.c3DisplayConfiguration.allColumns,
-        xs: this.data.c3DisplayConfiguration.columnMap,
-        type: chartTypeString,
-        colors: colorsMap,
-      },
-      regions: this.data.xRegions,
-      axis: {x: xAxisConfig, y: yAxisConfig},
-      legend: {show: false},  // There's always a custom legend
-      line: {connectNull: false},
-      onrendered: function() {
-        self.boldDates();
-        self.wrapYAxisLabels();
-        self.fixOpacity();
-        self.onRendered(this);
-      },
-      grid: {x: {lines: gridValues}}
-    };
-
-    graph['tooltip'] = this.setTooltip();
-
-    this.setCustomLegend(
-        this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
-    return graph;
   }
 
   /**
@@ -467,10 +560,19 @@ export abstract class GraphComponent<T extends GraphData> implements
 
   /**
    * Generates the chart specified by the extending class.
-   * @param containedGraph The graph component to be rendered.
    * @param chartHeight The height of the chart in pixels.
-   * @returns a ChartConfiguration. See typing definition here:
-   * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
    */
-  abstract generateChart(chartHeight?: number): c3.ChartConfiguration;
+  abstract generateChart(chartHeight?: number);
+
+  /**
+   * Generates the y-axis configuration for the chart specified by the extending
+   * class.
+   */
+  abstract adjustYAxisConfig();
+
+  /**
+   * Adjusts the data-dependent fields of the chart's configuration specified by
+   * the extending class.
+   */
+  abstract adjustDataDependent();
 }
