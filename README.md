@@ -51,6 +51,7 @@ const dev = {
     username: '<your FHIR auth username>',
     password: '<your FHIR auth password>',
   },
+  googleAnalyticsTag: '<your Google Analytics tracking ID>',
 };
 
 const prod = {
@@ -66,6 +67,7 @@ const prod = {
     username: '<your FHIR auth username>',
     password: '<your FHIR auth password>',
   },
+  googleAnalyticsTag: '<your Google Analytics tracking ID>',
 };
 
 const config = {
@@ -78,6 +80,8 @@ const config = {
 module.exports = config[env];
 
 ```
+To track events and user interactions with Google Analytics, set up a Google Analytics account,
+and use the given tracking ID in your `src/app/fhir_config.js` file.
 
 After you've put in your configuration, run the following command:
 

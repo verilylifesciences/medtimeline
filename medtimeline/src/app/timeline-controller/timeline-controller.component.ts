@@ -162,6 +162,13 @@ export class TimelineControllerComponent {
               .toUTC(),
           DateTime.fromJSDate(rangeIn.endDate.toDate()).endOf('day').toUTC());
       this.changeDateRange.emit(interval);
+
+      // Record the user changing the date range to Google Analytics.
+      (<any>window).gtag('event', 'dateRangeChanged', {
+        'event_category': 'timeline',
+        'event_label': interval.start.toLocaleString() + ' - ' +
+            interval.end.toLocaleString()
+      });
     }
   }
 }

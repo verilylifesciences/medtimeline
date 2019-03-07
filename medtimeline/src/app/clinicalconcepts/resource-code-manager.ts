@@ -16,7 +16,7 @@ import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
-import {DisplayGrouping, labResult, med, microbio, vitalSign} from './display-grouping';
+import {DisplayGrouping, document, labResult, med, microbio, vitalSign} from './display-grouping';
 import {LOINCCode} from './loinc-code';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
@@ -25,7 +25,7 @@ import {RxNormCodeGroup} from './rx-norm-group';
 // include it in the groupings below because it is not graphed/displayed in the
 // configuration sidebar.
 export const documentReferenceLoinc =
-    new LOINCCode('68608-9', undefined, 'Summary', true);
+    new LOINCCode('68608-9', document, 'Summary', true);
 
 const ovaAndParasiteExam = new BCHMicrobioCode(
     'OVAANDPARASITEEXAM', microbio, 'Ovo and Parasite Exam', false);

@@ -28,9 +28,7 @@ import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 })
 export class CustomizableGraphComponent extends
     GraphComponent<CustomizableData> implements OnChanges, OnDestroy {
-  /**
-   * An event indicating that the points on the CustomizableGraph have changed.
-   */
+  // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   /**
    * Holds whether this graph is in edit mode.
@@ -299,6 +297,13 @@ export class CustomizableGraphComponent extends
         this.data.addPointToSeries(result);
         this.pointsChanged.emit(this.data);
         this.generateChart();
+
+        // Record the user adding an event on a CustomizableTimeline to Google
+        // Analytics.
+        (<any>window).gtag('event', 'addEventCustomTimeline', {
+          'event_category': 'customTimeline',
+          'event_label': new Date().toDateString()
+        });
       }
     });
   }
@@ -326,6 +331,12 @@ export class CustomizableGraphComponent extends
   addEditListener(annotation: CustomizableGraphAnnotation) {
     annotation.editIcon.onclick = ((e: MouseEvent) => {
       this.dialogRef = this.openDialog(annotation.timestamp, annotation);
+      // Record the user editing an event on a CustomizableTimeline to Google
+      // Analytics.
+      (<any>window).gtag('event', 'editEventCustomTimeline', {
+        'event_category': 'customTimeline',
+        'event_label': new Date().toDateString()
+      });
     });
   }
 }

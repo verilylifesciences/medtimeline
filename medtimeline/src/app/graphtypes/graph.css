@@ -32,6 +32,42 @@ style names with ::ng-deep.  */
   width: 125px;
 }
 
+/* These colors need to stay consistent with the color options in the dialog for the custom timeline. */
+/* Yellow grid line */
+::ng-deep .c3-xgrid-line.colorF2A900 line {
+  stroke: #F2A900;
+}
+
+/* Blue grid line */
+::ng-deep .c3-xgrid-line.color007396 line {
+  stroke: #007396;
+}
+
+/* Green grid line */
+::ng-deep .c3-xgrid-line.color739600 line {
+  stroke: #739600;
+}
+
+/* Pink grid line */
+::ng-deep .c3-xgrid-line.colorC6579A line {
+  stroke: #C6579A;
+}
+
+/* Purple grid line */
+::ng-deep .c3-xgrid-line.color8C4799 line {
+  stroke: #8C4799;
+}
+
+/* Red grid line */
+::ng-deep .c3-xgrid-line.color80225F line {
+  stroke: #80225F;
+}
+
+::ng-deep .encounter-region {
+  fill: rgb(0, 35, 86); /* Primary color */
+  stroke: rgb(0, 35, 86); /* Primary color */
+}
+
 ::ng-deep .order-region {
   fill: rgb(179, 157, 219); /* Secondary color */
   stroke:  rgb(179, 157, 219); /* Secondary color */

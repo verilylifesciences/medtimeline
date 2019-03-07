@@ -13,7 +13,7 @@ import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {LegendInfo} from 'src/app/graphtypes/legend-info';
 
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
-import * as Colors from '../../theme/verily_colors';
+import * as Colors from '../../theme/bch_colors';
 
 /**
  * This card holds a label, one or more graphs on one or more axes, and a
@@ -67,7 +67,8 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   unitsLabel = '';
 
   /** Holds the color corresponding to this card. */
-  color: Color = Colors.BLUE_GREY_50;  // Default color for a card component.
+  color: Color =
+      Colors.BOSTON_WARM_GRAY;  // Default color for a card component.
 
   /** Hold an instance of this enum so the HTML template can reference it. */
   ChartType: typeof ChartType = ChartType;
@@ -227,5 +228,10 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
     // We do not add a 'value' field because there is no internal value that
     // needs to be restored when the user reverts a deletion.
     this.removeEvent.emit({id: this.id});
+    // Record the user deleting a card with charts to Google Analytics.
+    (<any>window).gtag('event', 'deleteConcept', {
+      'event_category': 'deleteCard',
+      'event_label': this.label
+    });
   }
 }

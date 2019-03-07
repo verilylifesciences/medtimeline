@@ -1,20 +1,7 @@
 /* Default Angular Material prebuilt theme. */
 @import "./bch-material-theme.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
-
-/* Verily branding basics */
-* {
-  font-family: 'Work Sans', sans-serif;
-}
-
-.defaultBackgroundColor {
-  background-color:#C3D7DB;
-}
-
-.accentBackgroundColor {
-  background-color:#C41061; /* PINK_A700 */
-}
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
 
 // Self-host the Angular Material icons.
 @font-face {

@@ -4,7 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import * as Color from 'color';
-import * as Colors from '../theme/verily_colors';
+import * as BCHColors from '../theme/bch_colors';
+
 
 export const ALL_DISPLAY_GROUPS_MAP = new Map<string, DisplayGrouping>();
 
@@ -21,9 +22,9 @@ export class DisplayGrouping {
   constructor(readonly label: string, color?: Color, outline?: Color) {
     let tempColor: Color = color;
     if (color === undefined) {
-      tempColor = Colors.getDataColors()[DisplayGrouping.colorIdx];
+      tempColor = BCHColors.getDataColors()[DisplayGrouping.colorIdx];
       DisplayGrouping.colorIdx =
-          (DisplayGrouping.colorIdx + 1) % Colors.getDataColors().length;
+          (DisplayGrouping.colorIdx + 1) % BCHColors.getDataColors().length;
     }
     this.fill = tempColor;
     this.outline = outline ? outline : tempColor;
@@ -31,19 +32,25 @@ export class DisplayGrouping {
   }
 }
 
-export const labResult = new DisplayGrouping('Lab Results', Colors.TURQUOISE);
-export const vitalSign = new DisplayGrouping('Vital Signs', Colors.BLUE_A400);
+
+export const labResult =
+    new DisplayGrouping('Lab Results', BCHColors.MATERIAL_GREEN);
+export const vitalSign =
+    new DisplayGrouping('Vital Signs', BCHColors.MATERIAL_YELLOW);
+export const culture =
+    new DisplayGrouping('Cultures', BCHColors.BOSTON_WARM_GRAY);
 export const med =
-    new DisplayGrouping('Vancomycin and Gentamicin', Colors.GOLD);
+    new DisplayGrouping('Vancomycin and Gentamicin', BCHColors.MATERIAL_TEAL);
+export const document = new DisplayGrouping('Document', BCHColors.BOSTON_BAY);
 export const microbio =
-    new DisplayGrouping('Microbiology', Colors.DEEP_PURPLE_600);
+    new DisplayGrouping('Microbiology', BCHColors.MATERIAL_ORANGE);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
 export const posPrelimMB = new DisplayGrouping(
-    'Check Result Preliminary', Color('#e4e2e2'), Colors.ABNORMAL);
+    'Check Result Preliminary', Color('#e4e2e2'), BCHColors.ABNORMAL);
 export const negPrelimMB = new DisplayGrouping(
-    'Negative Preliminary', Color('#e4e2e2'), Colors.BLUE_A700);
+    'Negative Preliminary', Color('#e4e2e2'), BCHColors.BOSTON_BLUE);
 export const posFinalMB =
-    new DisplayGrouping('Check Result Final', Colors.ABNORMAL);
+    new DisplayGrouping('Check Result Final', BCHColors.ABNORMAL);
 export const negFinalMB =
-    new DisplayGrouping('Negative Final', Colors.BLUE_A700);
+    new DisplayGrouping('Negative Final', BCHColors.BOSTON_BLUE);

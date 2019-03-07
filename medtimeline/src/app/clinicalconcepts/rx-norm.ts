@@ -8,16 +8,20 @@ import {APP_TIMESPAN} from 'src/constants';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
-import * as Colors from '../theme/verily_colors';
+import * as BCHColors from '../theme/bch_colors';
 
 import {DisplayGrouping} from './display-grouping';
 
 export class MedicationConceptGroup extends DisplayGrouping {}
 
+export const ANTIVIRAL =
+    new MedicationConceptGroup('Antiviral', BCHColors.BOSTON_PURPLE);
 export const ANTIBIOTIC =
-    new MedicationConceptGroup('Antibiotic', Colors.DEEP_CYAN);
+    new MedicationConceptGroup('Antibiotic', BCHColors.BOSTON_INDIGO);
+export const ANTIFUNGAL =
+    new MedicationConceptGroup('Antifungal', BCHColors.BOSTON_YELLOW);
 
-export const MEDICATION_GROUPS = [ANTIBIOTIC];
+export const MEDICATION_GROUPS = [ANTIVIRAL, ANTIBIOTIC, ANTIFUNGAL];
 
 /**
  * Holds RXNorm codes and orders corresponding to them.
