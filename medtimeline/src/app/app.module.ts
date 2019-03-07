@@ -15,7 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserModule} from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
@@ -72,7 +72,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
   ],
   imports: [
     BrowserModule, MatCardModule, HttpClientModule, MatListModule,
-    MatDividerModule, MatIconModule, NoopAnimationsModule, FormsModule,
+    MatDividerModule, MatIconModule, BrowserAnimationsModule, FormsModule,
     ReactiveFormsModule, MatInputModule, MatProgressSpinnerModule,
     MatButtonModule, MatAutocompleteModule, MatMenuModule, MatTooltipModule,
     FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatDialogModule,

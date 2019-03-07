@@ -7,6 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
+import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {FhirService} from '../fhir.service';
 import {Axis} from '../graphtypes/axis';
