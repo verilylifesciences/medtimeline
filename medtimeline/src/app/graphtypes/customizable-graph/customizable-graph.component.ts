@@ -1,20 +1,19 @@
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-import {Component, EventEmitter, forwardRef, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+// license that can be found in the LICENSE file or at
+// https://developers.google.com/open-source/licenses/bsd
+import {Component, EventEmitter, forwardRef, Input, OnDestroy, Output} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime, Interval} from 'luxon';
+import * as c3 from 'c3';
+import * as d3 from 'd3';
+import {DateTime} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
-import {recordGoogleAnalyticsEvent} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
-
 import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 
 @Component({
@@ -29,27 +28,22 @@ import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
   }]
 })
 export class CustomizableGraphComponent extends
-    GraphComponent<CustomizableData> implements OnChanges, OnDestroy {
-  /**
-   * An event indicating that the points on the CustomizableGraph have changed.
-   */
+    GraphComponent<CustomizableData> implements OnDestroy {
+  // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
-  /**
-   * Holds whether this graph is in edit mode.
-   */
   @Input() inEditMode: boolean;
+  // Whether or not the user is hovering over any point on the chart.
+  private hoveringOverPoint = false;
+  // The width and height of the dialog box that appears when the user clicks on
+  // the chart.
+  readonly dialogWidth = '450px';
+  readonly dialogHeight = '350px';
 
-  /**
-   * The reference for the Dialog opened.
-   */
+  // The reference for the Dialog opened.
   private dialogRef: any;
 
-
-  constructor(
-      readonly sanitizer: DomSanitizer, public dialog: MatDialog,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(sanitizer, uiConstants);
-    this.chartTypeString = 'scatter';
+  constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
+    super(sanitizer);
   }
 
   ngOnDestroy() {
@@ -59,193 +53,70 @@ export class CustomizableGraphComponent extends
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-    if (changes.dateRange) {
-      // CustomizableGraph needs to update annotations in the case that the date
-      // range is changed.
-      this.dateRangeChanged();
-    }
-  }
-  adjustGeneratedChartConfiguration() {
+  regenerateChart() {
+    super.regenerateChart();
     const self = this;
-    this.chartOptions.scales.yAxes[0].display = false;
-    this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
-    this.chartOptions.tooltips = {enabled: false};
-    this.chartOptions.hover = {mode: null};
-    this.chartOptions.onClick = function(event) {
-      if (!self.inEditMode) {
-        return;
-      }
-      const xValueMoment =
-          this.scales[GraphComponent.X_AXIS_ID].getValueForPixel(event.offsetX);
-      const dateClicked = DateTime.fromJSDate(xValueMoment.toDate());
-      const currentInterval = Interval.fromDateTimes(
-          self.dateRange.start.toLocal().startOf('day'),
-          self.dateRange.end.toLocal().endOf('day'));
-      if (currentInterval.contains(dateClicked)) {
-        self.openDialog(dateClicked);
-      }
-    };
-    this.chartOptions.onHover = function(event) {
-      if (!self.inEditMode) {
-        return;
-      }
-      const chart: any = this;
-      const yScale = chart.scales[GraphComponent.Y_AXIS_ID];
-      const xScale = chart.scales[GraphComponent.X_AXIS_ID];
-      const currentDate =
-          DateTime.fromJSDate(xScale.getValueForPixel(event.offsetX).toDate());
-      const currentDateString = currentDate.toLocaleString() + ' ' +
-          currentDate.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE);
+    const chart: any =
+        this.chart;  // We need the "any" declaration in order to access the
+    // internals of the chart without throwing an error.
 
-      const currentInterval = Interval.fromDateTimes(
-          self.dateRange.start.toLocal().startOf('day'),
-          self.dateRange.end.toLocal().endOf('day'));
-
-      // Remove all other ctx lines drawn, to only show one hover line.
-      chart.clear();
-      chart.draw();
-
-      // Only display the hover line if the date it represents is within the
-      // current date range. This is because the chart is slightly larger than
-      // the area contained within the axes, and a line could potentially be
-      // shown before the x-axis starts, or after it ends.
-      if (currentInterval.contains(currentDate)) {
-        chart.ctx.beginPath();
-        chart.ctx.moveTo(event.offsetX, 0);
-        chart.ctx.strokeStyle = '#A0A0A0';
-        chart.ctx.lineTo(event.offsetX, yScale.bottom);
-        chart.ctx.stroke();
-        chart.ctx.fillText(currentDateString, event.offsetX, yScale.bottom / 2);
-      }
-    };
-    this.chartOptions.animation = {
-      onComplete: function(chart) {
-        self.removeAnnotations();
-        self.addAnnotations();
-      }
-    };
-  }
-
-  dateRangeChanged() {
-    this.reloadChart();
-    this.adjustGeneratedChartConfiguration();
-  }
-
-  addAnnotations() {
-    for (const dataPt of this.chartData[0].data) {
-      const canvas = document.getElementById(this.chartDivId);
-      const millis = DateTime.fromISO(dataPt['x']).toMillis();
-      const annotation = this.data.annotations.get(millis);
-      const color = annotation.color ? annotation.color : '#000000';
-      // We need to cast this.chart.chart as any so we can access the 'scales'
-      // property.
-      const xOffset = (this.chart.chart as any)
-                          .scales[GraphComponent.X_AXIS_ID]
-                          .getPixelForValue(annotation.timestamp.toJSDate());
-      const yOffset = (this.chart.chart as any)
-                          .scales[GraphComponent.Y_AXIS_ID]
-                          .margins['bottom'];
-      const yAxisHeight =
-          (this.chart.chart as any).scales[GraphComponent.Y_AXIS_ID].height;
-      const heightToUse =
-          this.findBestYCoordinate(xOffset, yAxisHeight, yOffset);
-      const difference = heightToUse - yOffset;
-
-      // Only display the flag if the date it represents is within the
-      // current date range. This is so that the flag is not added to a location
-      // on the DOM that is not within the chart.
-      if (this.entireInterval.contains(DateTime.fromMillis(millis).toLocal())) {
-        const tooltip = this.findOrCreateTooltipElement(
-            canvas, 'annotation-' + this.chartDivId + millis);
-        tooltip.setAttribute(
-            'class', 'tooltip-whole-' + this.chartDivId + millis);
-        tooltip.style.borderLeftColor = color;
-        tooltip.style.bottom = yOffset + 'px';
-        tooltip.style.left = xOffset + 'px';
-        tooltip.style.height = heightToUse + 'px';
-        while (tooltip.firstChild) {
-          tooltip.removeChild(tooltip.firstChild);
-        }
-        tooltip.onclick = (e: MouseEvent) => {
-          const parent = tooltip.parentNode;
-          // TODO(b/123935165): Find a better way to handle the errors.
-          try {
-            parent.appendChild(tooltip);
-          } catch (e) {
-            console.log(e);
-          }
-        };
-
-        tooltip.appendChild(
-            annotation.addAnnotation(this.chartDivId, difference));
-        this.addDeleteEvent(annotation);
-        this.addEditListener(annotation);
-      }
+    if (!chart) {
+      return;
     }
-  }
+    chart.resize({height: 150});
 
-  private removeAnnotations() {
-    const selector = 'tooltip-whole-' + this.chartDivId;
-    for (const annotation of Array.from(
-             document.querySelectorAll('[class*=' + selector + ']'))) {
-      annotation.remove();
-    }
-  }
-
-  private findBestYCoordinate(
-      xOffset: number, yAxisHeight: number, yOffset: number): number {
-    const annotationWidth = 100;
-    const verticalOverlap = 10;
-    const horizontalOverlap = 20;
-    const selector = 'tooltip-whole-' + this.chartDivId;
-    const allFlags =
-        Array.from(document.querySelectorAll('[class*=' + selector + ']'));
-    const positions = allFlags.map(flag => {
-      const htmlFlag = flag as HTMLElement;
-      return {
-        left: Number(htmlFlag.style.left.replace('px', '')),
-        height: Number(htmlFlag.style.height.replace('px', '')),
-      };
+    // Show a focus line corresponding to the correct x-value when hovering
+    // anywhere on the chart.
+    chart.internal.main.on('mousemove', function() {
+      if (self.inEditMode) {
+        const coordinates = d3.mouse(this);
+        // Remove all other timestamps
+        d3.select(chart.element)
+            .select('.c3-xgrid-focus')
+            .selectAll('text')
+            .remove();
+        self.showFocusLine(chart, coordinates);
+      }
     });
-    const overlappingYs = [];
-    // Check if there are any annotations with horizontal overlap.
-    for (const position of positions) {
-      const leftPosition = position.left + annotationWidth;
-      if (xOffset <= leftPosition &&
-          (xOffset + annotationWidth >= position.left)) {
-        overlappingYs.push(position.height);
-      }
-    }
-
-    // Figure out the new y-coordinate for the annotation.
-    let heightToUse = yOffset;
-    // Sort all heights in increasing order.
-    overlappingYs.sort(function(a, b) {
-      return a - b;
+    // Clear gridlines when not hovering over the chart.
+    chart.internal.main.on('mouseout', function() {
+      // clear all x-axis gridlines.
+      chart.xgrids([]);
+      // Remove all other timestamps
+      d3.select(chart.element)
+          .select('.c3-xgrid-focus')
+          .selectAll('text')
+          .remove();
     });
-    // By default, try putting the new box above all other annotations with
-    // horizontal overlap.
-    if (overlappingYs.length > 0) {
-      const currentMaxHeight = overlappingYs[overlappingYs.length - 1];
-      // Only add height if the annotation does not go past the y axis height.
-      if (currentMaxHeight + verticalOverlap <= yAxisHeight) {
-        heightToUse = currentMaxHeight + verticalOverlap;
-      } else {
-        heightToUse = currentMaxHeight;
+    // Logic to add a point when clicking on the chart.
+    chart.internal.main.on('click', function() {
+      if (self.inEditMode && !self.hoveringOverPoint) {
+        const coordinates = d3.mouse(this);
+        const parentCoordinates = d3.mouse(document.body);
+        self.allowAddingPoints(coordinates, parentCoordinates);
       }
-    }
-    // Check if there is any position with space available between existing
-    // annotations.
-    for (let i = 0; i < overlappingYs.length; i++) {
-      // Check if there is enough space.
-      if (overlappingYs[i + 1] - (overlappingYs[i] + annotationWidth) >=
-          horizontalOverlap) {
-        heightToUse = overlappingYs[i];
-      }
-    }
-    return heightToUse;
+    });
+    // Send the chart to the back, allowing points to be displayed on top of the
+    // axis.
+    const chartLayer = d3.select(chart.element).select('.c3-chart');
+    const chartLayerNode: any = chartLayer.node();
+    const chartLayerParentNode = chartLayerNode.parentNode;
+    const removedNode = chartLayer.remove();
+    chartLayerParentNode.appendChild(removedNode.node());
+    chartLayer.attr('clip-path', null);
+
+    // Don't show the y-axis, but still set values so that the width is adjusted
+    // & aligned with other charts.
+    d3.select(chart.element).select('.c3-axis-y').style('visibility', 'hidden');
+
+    // Update the annotations displayed for this chart.
+    this.updateAnnotations();
+  }
+
+  // This function loads the data into the chart without needing the chart to be
+  // re-rendered completely.
+  private loadNewData() {
+    this.chart.load({columns: this.data.c3DisplayConfiguration.allColumns});
   }
 
   // If the selected date already has an annotation, modify the time
@@ -257,40 +128,66 @@ export class CustomizableGraphComponent extends
     return millis;
   }
 
-  /**
-   * Allow for the addition of a point to the CustomizableGraph, via a
-   * CustomizableTimelineDialog.
-   * (Visible only for testing.)
-   */
-  addPoint(timestamp: DateTime) {
-    if (this.inEditMode) {
-      this.dialogRef = this.openDialog(timestamp);
-    }
+  // Show a focus line with the timestamps when moving the mouse around the
+  // chart.
+  private showFocusLine(chart: any, coordinates: number[]) {
+    const focusEl = d3.select(chart.element).select('line.c3-xgrid-focus');
+    focusEl.attr('x1', coordinates[0]);
+    focusEl.attr('x2', coordinates[0]);
+    const timestamp =
+        DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
+    // See time on hover
+    d3.select(chart.element)
+        .select('g.c3-xgrid-focus')
+        .append('text')
+        .attr('text-anchor', 'end')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', 0)
+        .attr('y', coordinates[0])
+        .attr('dx', -4)
+        .attr('dy', -5)
+        .style('opacity', 1)
+        .text(
+            timestamp.toLocal().toLocaleString() + ' ' +
+            timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
+  }
+
+  // Allow for the addition of a point to the CustomizableGraph, via a
+  // CustomizableTimelineDialog
+  private allowAddingPoints(
+      clickCoordinates: [number, number], parentCoordinates: [number, number]) {
+    const dialogCoordinates = this.findDialogCoordinates(
+        parentCoordinates[0] + 10, parentCoordinates[1] + 10);
+    this.dialogRef = this.openDialog(clickCoordinates, dialogCoordinates);
   }
 
   private openDialog(
-      timestamp: DateTime, editedAnnotation?: CustomizableGraphAnnotation) {
+      clickCoordinates: [number, number], dialogCoordinates: [number, number],
+      editedAnnotation?: CustomizableGraphAnnotation) {
+    const chart = this.chart as any;
+    const xCoordinate = chart.internal.x.invert(clickCoordinates[0]);
     // Make the dialog show up near where the user clicked.
     const data = editedAnnotation ? {
       title: editedAnnotation.title,
       date: new Date(editedAnnotation.timestamp.toMillis()),
       description: editedAnnotation.description,
-      color: editedAnnotation.color,
-      dateRange: this.dateRange,
+      color: editedAnnotation.color
     } :
-                                    {
-                                      date: timestamp,
-                                      dateRange: this.dateRange,
-                                    };
-
-    this.dialogRef =
-        this.dialog.open(CustomizableTimelineDialogComponent, {data: data});
+                                    {date: xCoordinate};
+    this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
+      width: this.dialogWidth,
+      height: this.dialogHeight,
+      position:
+          {top: dialogCoordinates[1] + 'px', left: dialogCoordinates[0] + 'px'},
+      data: data
+    });
     this.dialogRef.afterClosed().subscribe(r => {
       if (r) {
         if (editedAnnotation) {
           this.data.removePointFromSeries(
               DateTime.fromMillis(editedAnnotation.timestamp.toMillis()));
-          editedAnnotation.removeAnnotation(this.chartDivId);
+          this.removeAnnotation(editedAnnotation.timestamp.toMillis());
+          this.regenerateChart();
         }
 
         const result: CustomizableGraphAnnotation =
@@ -303,44 +200,171 @@ export class CustomizableGraphComponent extends
         userSelectedDate =
             DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
         result.timestamp = userSelectedDate;
-        this.data.addPointToSeries(result);
+        this.data.addPointToSeries(0, result);
+        this.data.annotations.get(userSelectedDate.toMillis())
+            .addAnnotation(chart);
+        this.loadNewData();
+        // Add listeners for click events on the new annotation.
+        this.addDeleteEvent(userSelectedDate.toMillis());
+        this.addEditEvent(userSelectedDate.toMillis());
         this.pointsChanged.emit(this.data);
-        this.generateChart();
-
-        recordGoogleAnalyticsEvent(
-            'addEventCustomTimeline', 'customTimeline',
-            new Date().toDateString());
       }
     });
+  }
+
+
+  // Updates the annotations displayed on the chart after a new point is added
+  // or the date range is changed.
+  private updateAnnotations() {
+    // We sort the points by timestamp.
+    const timestamps = Array.from(this.data.annotations.keys()).sort();
+    // Charted points are always sorted by timestamp.
+    const chartedPoints = d3.select('#' + this.chartDivId)
+                              .select('.c3-circles')
+                              .selectAll('circle')
+                              .nodes();
+    if (chartedPoints.length > 0) {
+      for (let i = 0; i < timestamps.length; i++) {
+        const timestamp = timestamps[i];
+        const xPosition = d3.select(chartedPoints[i]).attr('cx');
+        // Only add the annotation if the chart point is displayed given the
+        // date range selected, and its x-position is greater than 0 (where the
+        // y-axis is).
+        if (Number(xPosition) >= 0) {
+          this.data.annotations.get(timestamp).addAnnotation(this.chart);
+          // Add listeners for click events on the new annotation.
+          this.addDeleteEvent(timestamp);
+          this.addEditEvent(timestamp);
+        }
+      }
+    }
+  }
+
+  /**
+   * Removes an annotation at the given time from the DOM.
+   * @param millis The millis for this point to remove.
+   */
+  private removeAnnotation(millis: number) {
+    d3.select('#' + this.chartDivId)
+        .select('tooltip-custom-' + millis)
+        .remove();
+    d3.select('#' + this.chartDivId)
+        .select('tooltip-connector-' + millis)
+        .remove();
+    this.updateAnnotations();
   }
 
   /**
    * Add a listener for a click event on the delete button of the annotation at
    * the given time.
-   * @param annotation The annotation for this point to remove.
+   * @param millis The millis for this point to remove.
    */
-  private addDeleteEvent(annotation: CustomizableGraphAnnotation) {
-    annotation.deleteIcon.onclick = ((e: MouseEvent) => {
-      this.data.removePointFromSeries(annotation.timestamp);
-      annotation.removeAnnotation(this.chartDivId);
-      this.pointsChanged.emit(this.data);
-      this.generateChart();
+  private addDeleteEvent(millis: number) {
+    const self = this;
+    const deleteIcon =
+        d3.select('#' + this.chartDivId).select('#delete-' + millis);
+    deleteIcon.on('click', function() {
+      const time = DateTime.fromMillis(millis);
+      self.data.removePointFromSeries(time);
+      self.regenerateChart();
+      self.pointsChanged.emit(self.data);
     });
   }
 
   /**
    * Add a listener for a click event on the edit button of the annotation at
    * the given time.
-   * Visible only for testing.
-   * @param annotation The annotation for the point to edit.
+   * @param millis The millis for this point to remove.
+   * @param xCoord The x-coordinate of where to show the dialog box.
+   * @param yCoord The y-coordinate of where to show the dialog box.
    */
-  addEditListener(annotation: CustomizableGraphAnnotation) {
-    annotation.editIcon.onclick = ((e: MouseEvent) => {
-      this.dialogRef = this.openDialog(annotation.timestamp, annotation);
+  private addEditEvent(millis: number) {
+    const self = this;
+    const editIcon = d3.select('#' + this.chartDivId).select('#edit-' + millis);
+    const currAnnotation = this.data.annotations.get(millis);
 
-      recordGoogleAnalyticsEvent(
-          'editEventCustomTimeline', 'customTimeline',
-          new Date().toDateString());
+    editIcon.on('click', function() {
+      const parentCoordinates = d3.mouse(document.body);
+      const dialogCoordinates = self.findDialogCoordinates(
+          parentCoordinates[0] + 10, parentCoordinates[1] + 0);
+
+      self.dialogRef =
+          self.openDialog(parentCoordinates, dialogCoordinates, currAnnotation);
     });
+  }
+
+  /**
+   * Change the coordinates of the dialog's position if the dialog will go past
+   * the edges of the screen.
+   * @param xCoordinate The x coordinate to change, if necessary.
+   * @param yCoordinate The y coordinate to change, if necessary.
+   */
+  findDialogCoordinates(xCoordinate: number, yCoordinate: number):
+      [number, number] {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const dialogWidth = Number(this.dialogWidth.replace('px', ''));
+    const dialogHeight = Number(this.dialogHeight.replace('px', ''));
+    if ((xCoordinate + dialogWidth) > windowWidth) {
+      xCoordinate -= ((xCoordinate + dialogWidth) - windowWidth);
+    }
+    if ((yCoordinate + dialogHeight) > windowHeight) {
+      yCoordinate -= ((yCoordinate + dialogHeight) - windowHeight);
+    }
+    return [xCoordinate, yCoordinate];
+  }
+
+  /**
+   * @returns the c3.ChartConfiguration object to generate the c3 chart.
+   * @override
+   */
+  generateChart(): c3.ChartConfiguration {
+    // Give labels to each series and make a map of x-values to y-values.
+    const yAxisConfig: c3.YAxisConfiguration = {
+      min: 0,
+      max: 5,
+      padding: {top: 0, bottom: 0},
+      tick: {
+        count: 5,
+        format: d => {
+          // We add padding to our y-axis tick labels so that all y-axes of the
+          // charts rendered on the page can be aligned.
+          return (d)
+              .toLocaleString(
+                  'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+              .trim()
+              .padStart(12, '\xa0');
+        }
+      }
+    };
+
+    const graph = this.generateBasicChart(yAxisConfig);
+
+    graph.axis.x.height = 50;
+    graph.data.type = 'scatter';
+    graph.zoom = {enabled: false};
+    const self = this;
+    graph.data.onmouseover = function(d) {
+      self.hoveringOverPoint = true;
+    };
+    graph.tooltip = {show: false};
+    graph.transition = {duration: 0};
+    graph.data.onmouseout = function(d) {
+      // Add a timeout to ensure that the user can't add a point immediately
+      // after moving away from an existing point.
+      setTimeout(() => {
+        self.hoveringOverPoint = false;
+      }, 500);
+    };
+    graph.data.onclick = function(d, element) {
+      self.hoveringOverPoint = true;
+    };
+
+    graph.data.color = function(color, d) {
+      return self.data.annotations.get(DateTime.fromJSDate(d.x).toMillis())
+          .color;
+    };
+    graph.point = {show: true, r: 5, focus: {expand: {enabled: false}}};
+    return graph;
   }
 }

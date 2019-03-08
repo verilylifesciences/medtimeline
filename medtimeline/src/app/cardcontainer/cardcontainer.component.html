@@ -1,14 +1,9 @@
-<mat-toolbar>
-  <app-timeline-controller (changeDateRange)="changeDateRange($event)" [encounters]="this.setupDataService.encounters"
-    [selectedDateRange]="this.setupDataService.selectedDateRange"></app-timeline-controller>
+<mat-toolbar color="primary" class="toolbar">
+  <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
   <!--Push the buttons to the right and left sides.-->
-  <div fxFlex class="flexSpacer"></div>
-  <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()">
-  </app-timeline-toolbar>
+  <div fxFlex></div>
+  <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
 </mat-toolbar>
-<div *ngIf="useDebugger">
-  <app-debugger></app-debugger>
-</div>
 <div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start">
   <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"
     (addCustomTimeline)="addCustomTimeline()"></app-data-selector-menu>
@@ -21,7 +16,7 @@
         (removeEvent)="removeDisplayedCard($event)">
       </app-customizable-timeline>
       <app-multigraphcard *ngIf="element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'"
-        [axisGroup]="element['concept']" [dateRange]="dateRange" [eventlines]="eventlines" [id]="element['id']"
+        [resourceCodeGroups]="element['concept']" [dateRange]="dateRange" [eventlines]="eventlines" [id]="element['id']"
         (removeEvent)="removeDisplayedCard($event)">
       </app-multigraphcard>
       <app-data-selector-menu (addCard)="addConceptCard($event, element['id'])" (addTextbox)="addTextbox(element['id'])"

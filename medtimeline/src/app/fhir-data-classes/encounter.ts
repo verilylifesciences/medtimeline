@@ -11,38 +11,20 @@ import {DateTime, Interval} from 'luxon';
 export class Encounter {
   readonly encounterId: string;
   readonly period: Interval;
+  readonly reason: string;
+  readonly type: string;
 
   constructor(private json: any) {
-    this.encounterId = json.id;
-
-    if (!json.period) {
-      throw Error(
-          'An encounter must have a time period. JSON: ' +
-          JSON.stringify(json));
-    }
-
-    if (!json.period.start) {
+    this.encounterId = json.identifier;
+    try {
+      this.period = Interval.fromDateTimes(
+          DateTime.fromISO(json.period.start),
+          json.period.end ? DateTime.fromISO(json.period.end) : DateTime.utc());
+    } catch {
       throw Error(
           'An encounter must have a start date. JSON: ' + JSON.stringify(json));
     }
-    const startTime = DateTime.fromISO(json.period.start).toLocal();
-
-    let endTime = json.period.end ?
-        DateTime.fromISO(json.period.end).toLocal() :
-        undefined;
-    if (endTime === undefined || (endTime > DateTime.local())) {
-      endTime = DateTime.local();
-    }
-
-    if (endTime < startTime) {
-      throw Error(
-          'The start time comes before the end time. JSON: ' +
-          JSON.stringify(json));
-    }
-    if (startTime > DateTime.local()) {
-      throw Error(
-          'The start time is in the future.. JSON: ' + JSON.stringify(json));
-    }
-    this.period = Interval.fromDateTimes(startTime, endTime);
+    this.type = json.type;
+    this.reason = json.reason;
   }
 }

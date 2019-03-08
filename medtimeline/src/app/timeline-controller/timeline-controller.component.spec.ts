@@ -6,12 +6,13 @@
 import {DebugElement} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInput, MatInputModule, MatNativeDateModule, MatTooltipModule} from '@angular/material';
+import {MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInput, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {Interval} from 'luxon';
 import * as moment from 'moment';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
-import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {APP_TIMESPAN} from 'src/constants';
 
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
@@ -29,10 +30,16 @@ const encounters = [
     period: {start: '1987-05-13T00:00:00.000Z', end: '1987-05-20T00:00:00.000Z'}
   })
 ];
-
+// TODO(b/121206822): better coverage for various encounter scenarios
 describe('TimelineControllerComponent with encounters', () => {
   let component: TimelineControllerComponent;
   let fixture: ComponentFixture<TimelineControllerComponent>;
+
+  class StubFhirServiceWithEncounters extends StubFhirService {
+    getEncountersForPatient(dateRange: Interval) {
+      return Promise.resolve(encounters);
+    }
+  }
 
   beforeEach(async(() => {
     TestBed
@@ -40,11 +47,13 @@ describe('TimelineControllerComponent with encounters', () => {
           imports: [
             MatDatepickerModule, MatNativeDateModule, MatInputModule,
             ReactiveFormsModule, NoopAnimationsModule, MatFormFieldModule,
-            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot(),
-            MatTooltipModule
+            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot()
           ],
           declarations: [TimelineControllerComponent],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
+          providers: [{
+            provide: FhirService,
+            useValue: new StubFhirServiceWithEncounters()
+          }]
         })
         .compileComponents();
   }));
@@ -52,11 +61,18 @@ describe('TimelineControllerComponent with encounters', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimelineControllerComponent);
     component = fixture.componentInstance;
-    component.encounters = encounters;
-    component.selectedDateRange = encounters[0].period;
     fixture.detectChanges();
   });
 
+  it('should not allow calendar to go back before date range covered by encounters',
+     (done: DoneFn) => {
+       fixture.whenStable().then(x => {
+         // Earliest encounter is 5/13 UTC, which is 5/12 local
+         expect(component.earliestAvailableDate.toISOString())
+             .toBe('1987-05-12T04:00:00.000Z');
+         done();
+       });
+     });
   it('should not allow calendar to advance after current date',
      (done: DoneFn) => {
        fixture.whenStable().then(x => {
@@ -83,11 +99,11 @@ describe('TimelineControllerComponent with encounters', () => {
                '-' +
                moment(encounter.period.end.startOf('day').toJSDate())
                    .format('MM/DD/YYYY');
-           expect(component.datePickerRanges[label]).toBeDefined();
-           expect(component.datePickerRanges[label][0].valueOf())
+           expect(component.ranges[label]).toBeDefined();
+           expect(component.ranges[label][0].valueOf())
                .toEqual(encounter.period.start.startOf('day').toMillis());
-           expect(component.datePickerRanges[label][1].valueOf())
-               .toEqual(encounter.period.end.endOf('day').toMillis());
+           expect(component.ranges[label][1].valueOf())
+               .toEqual(encounter.period.end.startOf('day').toMillis());
          }
          done();
        });
@@ -104,14 +120,10 @@ describe('TimelineControllerComponent without encounters', () => {
           imports: [
             MatDatepickerModule, MatNativeDateModule, MatInputModule,
             ReactiveFormsModule, NoopAnimationsModule, MatFormFieldModule,
-            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot(),
-            MatTooltipModule
+            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot()
           ],
           declarations: [TimelineControllerComponent],
-          providers: [
-            {provide: FhirService, useValue: new StubFhirService()},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
-          ]
+          providers: [{provide: FhirService, useValue: new StubFhirService()}]
         })
         .compileComponents();
   }));
@@ -119,7 +131,6 @@ describe('TimelineControllerComponent without encounters', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimelineControllerComponent);
     component = fixture.componentInstance;
-    component.selectedDateRange = encounters[0].period;
     fixture.detectChanges();
   });
   it('should not allow calendar to go back before app timespan',

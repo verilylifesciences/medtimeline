@@ -3,16 +3,14 @@ functionality, then space for a label & legend, then space for other contents. -
 <mat-card fxFlex [attr.id]="id" fxLayout="row" fxLayoutAlign="space-between center" (resized)="resize($event)">
   <div fxFlex fxLayout="column" fxFlexAlign="stretch" fxShrink='0' fxGrow='0' fxLayoutAlign="space-between center"
     [style.background-color]="color" class="colorbar">
-    <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)"
-      matTooltip="{{uiConstants.REMOVE_THIS_CARD}}">clear
-    </mat-icon>
-    <mat-icon class="removeCardButton" matTooltip="{{uiConstants.DRAG_THIS_CARD}}">
-      drag_handle
+    <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)" matTooltip="Remove this card">clear</mat-icon>
+    <mat-icon *ngIf="isDraggable" class="dragCardIcon">
+      drag_indicator
     </mat-icon>
     <!--Ensure that the dragger icon is always at the center of the color bar.-->
     <div style="margin-bottom: 12px"></div>
   </div>
-  <div *ngIf="label" fxFlex="0 0 15" fxLayout="column" fxFlexAlign="stretch" class="labelColumn">
+  <div *ngIf="label" fxFlex fxLayout="column" fxFlexAlign="stretch" fxGrow="0" fxShrink="0" class="labelColumn">
     <div fxFlex class="mat-title label">{{label}}</div>
     <!--Give the div that you want to appear here the class "legends-block".-->
     <ng-content select=".legends-block"></ng-content>
@@ -21,9 +19,7 @@ functionality, then space for a label & legend, then space for other contents. -
   <ng-content select=".contents-block"></ng-content>
   <div *ngIf="!isEditable" style="margin-right: 25px"></div>
   <ng-container *ngIf="isEditable">
-    <mat-icon *ngIf="!inEditMode" matTooltip="{{uiConstants.EDIT_THIS_CARD}}" (click)="edit($event)"
-      class="editCardIcon">edit
-    </mat-icon>
-    <mat-icon *ngIf="inEditMode" matTooltip="{{uiConstants.SAVE_YOUR_WORK}}" (click)="save($event)">save</mat-icon>
+    <mat-icon *ngIf="!inEditMode" matTooltip="Click to edit this card" (click)="edit($event)" class="editCardIcon">edit</mat-icon>
+    <mat-icon *ngIf="inEditMode" matTooltip="Click to save your work" (click)="save($event)">save</mat-icon>
   </ng-container>
 </mat-card>

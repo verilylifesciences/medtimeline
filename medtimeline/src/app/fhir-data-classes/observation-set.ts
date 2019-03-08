@@ -3,10 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DateTime} from 'luxon';
-
 import {FhirResourceSet} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../unit_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
 
@@ -15,10 +12,10 @@ import {AnnotatedObservation} from './annotated-observation';
  */
 export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   /**
-   * The normal ranges for this set of observations. It maps a timestamp of each
-   * Observation with a normal range to the corresponding normal range.
+   * The normal range for this set of observations. Left unset if the normal
+   * range is different across the observations.
    */
-  normalRanges = new Map<DateTime, [number, number]>();
+  readonly normalRange: [number, number];
 
   /**
    * The units for this set of observations. Left unset if the normal
@@ -27,10 +24,10 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   readonly unit: string;
 
   /**
-   * Whether or not any Observations belonging to this ObservationSet contain
-   * qualitative results rather than numerical values.
+   * Whether or not all Observations belonging to this ObservationSet contain
+   * all qualitative results rather than numerical values.
    */
-  readonly anyQualitative: boolean = false;
+  readonly allQualitative: boolean = false;
 
   /**
    * Constructor for ObservationSet.
@@ -42,29 +39,39 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   constructor(observationList: AnnotatedObservation[]) {
     super(observationList);
 
+    let firstNormalRange;
     let firstUnit;
     if (observationList.length > 0) {
+      firstNormalRange = observationList[0].observation.normalRange;
       firstUnit = observationList[0].observation.unit;
     }
-    // Ensure that the labels of the data are all the same.
+    // Ensure that the labels of the data are all the same. Also ensure that
+    // we only set a normal range if all the observations have a matching
+    // normal range.
+    let differentNormalRanges = false;
     let differentUnits = false;
 
     for (const obs of observationList) {
       // Some observations may not have a normal range.
-      if (obs.observation.normalRange) {
-        this.normalRanges.set(
-            obs.observation.timestamp, obs.observation.normalRange);
+      if (obs.observation.normalRange &&
+          (obs.observation.normalRange[0] !== firstNormalRange[0] ||
+           obs.observation.normalRange[1] !== firstNormalRange[1])) {
+        differentNormalRanges = true;
       }
       // Some observations may not have a normal range.
       if (obs.observation.unit && obs.observation.unit !== firstUnit) {
         differentUnits = true;
       }
     }
-    if (!differentUnits && firstUnit) {
-      this.unit = fixUnitAbbreviations(firstUnit);
+
+    if (!differentNormalRanges) {
+      this.normalRange = firstNormalRange;
+    }
+    if (!differentUnits) {
+      this.unit = firstUnit;
     }
 
-    this.anyQualitative = observationList.some(
+    this.allQualitative = observationList.every(
         obs => (obs.observation.result !== null && !obs.observation.value));
   }
 }

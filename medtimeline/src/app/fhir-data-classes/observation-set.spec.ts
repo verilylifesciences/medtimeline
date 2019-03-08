@@ -3,8 +3,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DateTime} from 'luxon';
-
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 
 import {AnnotatedObservation} from './annotated-observation';
@@ -26,7 +24,7 @@ describe('ObservationSet', () => {
       new AnnotatedObservation(new Observation({
         code: {
           coding: [{system: LOINCCode.CODING_STRING, code: '4092-3'}],
-          text: 'Vancomycin Level, Trough/Pre'
+          text: 'Vanc Tr'
         },
         valueQuantity: {value: 90}
       }))
@@ -37,28 +35,40 @@ describe('ObservationSet', () => {
     expect(constructor).toThrowError();
   });
 
-  it('should set normal range with corresponding timestamps', () => {
+  it('should not set normal range with nonmatching ranges', () => {
+    const observations = [
+      new AnnotatedObservation(new Observation({
+        referenceRange: [{low: {value: 0.0}, high: {value: 30.0}}],
+        ...observationCodingString,
+        valueQuantity: {value: 94},
+      })),
+      new AnnotatedObservation(new Observation({
+        referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
+        ...observationCodingString,
+        valueQuantity: {value: 92}
+      }))
+    ];
+    const obsSet = new ObservationSet(observations);
+    expect(obsSet.normalRange).toBeUndefined();
+  });
+
+  it('should set normal range with matching ranges', () => {
     const observations = [
       new AnnotatedObservation(new Observation(
           {
             referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
             ...observationCodingString,
             valueQuantity: {value: 93},
-            effectiveDateTime: DateTime.utc(2016, 1, 14).toISO(),
           },
           )),
       new AnnotatedObservation(new Observation({
-        referenceRange: [{low: {value: 10.0}, high: {value: 26.0}}],
+        referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
         ...observationCodingString,
-        valueQuantity: {value: 93},
-        effectiveDateTime: DateTime.utc(2016, 1, 15).toISO(),
+        valueQuantity: {value: 93}
       }))
     ];
     const obsSet = new ObservationSet(observations);
-    expect(obsSet.normalRanges.size).toEqual(2);
-    const values = Array.from(obsSet.normalRanges.values());
-    expect(values[0]).toEqual([10, 20]);
-    expect(values[1]).toEqual([10, 26]);
+    expect(obsSet.normalRange).toEqual([10, 20]);
   });
 
   it('should get the label text', () => {
@@ -71,7 +81,7 @@ describe('ObservationSet', () => {
     const obsSet = new ObservationSet(observations);
     expect(obsSet.label).toBe('Temperature');
   });
-  it('should set anyQualitative as true if any Observations have qualitative results',
+  it('should set allQualitative as true if all Observations have all qualitative results',
      () => {
        const observations = [
          new AnnotatedObservation(new Observation({
@@ -80,26 +90,26 @@ describe('ObservationSet', () => {
          })),
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           valueQuantity: {value: 101},
+           valueCodeableConcept: {text: 'yellow'}
          }))
        ];
        const obsSet = new ObservationSet(observations);
-       expect(obsSet.anyQualitative).toBeTruthy();
+       expect(obsSet.allQualitative).toBeTruthy();
      });
 
-  it('should set anyQualitative as false if all Observations do not have qualitative results',
+  it('should set allQualitative as false if all Observations do not have all qualitative results',
      () => {
        const observations = [
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           valueQuantity: {value: 102},
+           valueCodeableConcept: {text: 'red'}
          })),
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           valueQuantity: {value: 101},
+           'valueQuantity': {'value': 101},
          }))
        ];
        const obsSet = new ObservationSet(observations);
-       expect(obsSet.anyQualitative).toBeFalsy();
+       expect(obsSet.allQualitative).toBeFalsy();
      });
 });

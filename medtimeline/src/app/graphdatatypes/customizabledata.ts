@@ -26,28 +26,52 @@ export class CustomizableData extends GraphData {
        */
       readonly annotations: Map<number, CustomizableGraphAnnotation>,
       regions?: any[]) {
-    super(
-        [series], undefined,  // tooltip map
-        undefined,            // tooltip key function
-        regions);
+    super([series], new Map(), undefined, undefined, regions);
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
   }
 
   static defaultEmptySeries() {
+    // We need to initialize the data with a point so that the c3 chart can show
+    // the x-axis with the dates (otherwise, it turns up blank). This date is
+    // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
+    return CustomizableData.fromInitialPoint(
+        0,
+        new CustomizableGraphAnnotation(
+            DateTime.fromJSDate(new Date(-8640000000000000)),
+            'initial_point_hidden'));
+  }
+
+  /**
+   * Converts an initial time and y value to a CustomizableData object.
+   * @param date The date for this initial point.
+   * @param yValue The y-value for this initial point.
+   * @param annotation The CustomizableGraphAnnotation for this point.
+   * @returns a new CustomizableData representing this initial point.
+   */
+  // TODO(b/123940928): Consider passing in encounters rather than FhirService.
+  static fromInitialPoint(
+      yValue: number, annotation: CustomizableGraphAnnotation) {
+    const annotations = new Map<number, CustomizableGraphAnnotation>().set(
+        annotation.timestamp.toMillis(), annotation);
     return new CustomizableData(
-        LabeledSeries.emptySeries(),
-        new Map<number, CustomizableGraphAnnotation>());
+        LabeledSeries.fromInitialPoint(annotation.timestamp, yValue),
+        annotations);
   }
 
   /**
    * Adds a point to the series in this CustomizableData object.
-   * @param annotation: The annotation to add in to the graph.
+   * @param date The date for this point.
+   * @param yValue The y-value for this point.
+   * @param annotation The CustomizableGraphAnnotation for this point.
+   * @returns a new CustomizableData with the addition of this point.
    */
-  addPointToSeries(annotation: CustomizableGraphAnnotation) {
+  addPointToSeries(yValue: number, annotation: CustomizableGraphAnnotation) {
     // This method assumes there is only 1 series.
-    this.series[0].coordinates.push([annotation.timestamp, 0]);
+    this.series[0].xValues.push(annotation.timestamp);
+    this.series[0].yValues.push(yValue);
     this.annotations.set(annotation.timestamp.toMillis(), annotation);
+    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }
 
   /**
@@ -56,9 +80,11 @@ export class CustomizableData extends GraphData {
    * @param date The date for this point to remove.
    */
   removePointFromSeries(date: DateTime) {
-    const index = this.series[0].coordinates.findIndex(
-        c => c[0].toMillis() === date.toMillis());
-    this.series[0].coordinates.splice(index, 1);
+    const index =
+        this.series[0].xValues.findIndex(x => x.toMillis() === date.toMillis());
+    this.series[0].xValues.splice(index, 1);
+    this.series[0].yValues.splice(index, 1);
     this.annotations.delete(date.toMillis());
+    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }
 }

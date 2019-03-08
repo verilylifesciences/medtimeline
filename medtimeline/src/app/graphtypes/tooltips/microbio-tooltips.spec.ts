@@ -18,13 +18,14 @@ describe('MicrobioTooltip', () => {
 
   it('should create', () => {
     const tooltip = new MicrobioTooltip().getTooltip(
-        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]),
+        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0], 'Stool'),
         TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
   });
 
   it('should generate tooltip text', () => {
-    const annotated = new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]);
+    const annotated =
+        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0], 'Stool');
     const tooltipText =
         new MicrobioTooltip().getTooltip(annotated, TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();
@@ -38,8 +39,6 @@ describe('MicrobioTooltip', () => {
             '<tr>' +
             '<td class="name">Status</td>' +
             '<td class="value">Final</td></tr>' +
-            '<tr><td class="name">Specimen</td>' +
-            '<td class="value">Stool</td></tr>' +
             '<tr><td></td></tr>' +
             '<tr><th colspan="2">Results Contained</th></tr>' +
             '<tr>' +

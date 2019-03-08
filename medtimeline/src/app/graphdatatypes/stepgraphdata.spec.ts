@@ -12,7 +12,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {of} from 'rxjs';
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
@@ -36,14 +35,14 @@ describe('StepGraphData', () => {
     TestBed.configureTestingModule(
         {providers: [{provide: FhirService, useValue: fhirServiceStub}]});
     fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
+      getMedicationAdministrationsWithOrder(id: string) {
         return of(medicationAdministrations).toPromise();
       }
     };
   }));
 
   it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
-         ' the data as the end point series',
+         ' the two series for a MedicationOrderSet',
      (done: DoneFn) => {
        const earliestMedicationOrder = makeMedicationOrder();
        earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
@@ -56,18 +55,45 @@ describe('StepGraphData', () => {
 
              const data = StepGraphData.fromMedicationOrderSetList(
                  [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-             const endpointSeries = data.series;
+             const adminSeries = data.series;
+             const endpointSeries = data.endpointSeries;
              // The adminSeries holds both the adminSeries and the
              // endpointSeries; it's redundantly stored due to the constraints
              // of inheritance from graphData and all the stuff that's needed
              // to make things like custom legends work.
-             expect(endpointSeries.length).toEqual(1);
+             expect(adminSeries.length).toEqual(2);
              // for the administration series
-             expect(endpointSeries[0].coordinates.map(c => c[0])).toEqual([
-               DateTime.fromISO(admin1Time).toUTC(),
-               DateTime.fromISO(admin2Time).toUTC()
-             ]);
+             expect(adminSeries[0].xValues[0].toString()).toEqual(admin1Time);
+             expect(adminSeries[0].xValues[1].toString()).toEqual(admin2Time);
+             // for the end point series
+             expect(adminSeries[1].xValues[0].toString()).toEqual(admin1Time);
+             expect(adminSeries[1].xValues[1].toString()).toEqual(admin2Time);
+
+             expect(endpointSeries.length).toEqual(1);
+             expect(endpointSeries[0].xValues[0].toString())
+                 .toEqual(admin1Time);
+             expect(endpointSeries[0].xValues[1].toString())
+                 .toEqual(admin2Time);
              done();
+           });
+     });
+
+  it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
+         'y axis numerical to discrete map',
+     () => {
+       const earliestMedicationOrder = makeMedicationOrder();
+       earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
+       Promise
+           .resolve(earliestMedicationOrder.setMedicationAdministrations(
+               fhirServiceStub))
+           .then(result => {
+             const medOrderSet =
+                 new MedicationOrderSet([earliestMedicationOrder]);
+
+             const data = StepGraphData.fromMedicationOrderSetList(
+                 [medOrderSet], dateRange, TestBed.get(DomSanitizer));
+
+             expect(data.yAxisMap.get(10)).toEqual('vancomycin');
            });
      });
 
@@ -84,7 +110,10 @@ describe('StepGraphData', () => {
              const data = StepGraphData.fromMedicationOrderSetList(
                  [medOrderSet], dateRange, TestBed.get(DomSanitizer));
 
-             data.series.forEach(series => expect(series.unit).toBeUndefined());
+             data.dataSeries.forEach(
+                 series => expect(series.unit).toBeUndefined());
+             data.endpointSeries.forEach(
+                 series => expect(series.unit).toBeUndefined());
            });
      });
 });

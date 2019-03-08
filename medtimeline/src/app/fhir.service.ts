@@ -20,6 +20,8 @@ import {ChartType} from './graphtypes/graph/graph.component';
 
 @Injectable()
 export abstract class FhirService {
+  errorMessage: string;
+
   /**
    * Returns whether there are any observations with this code in the given
    * time range.
@@ -145,7 +147,7 @@ export abstract class FhirService {
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
    */
-  abstract getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+  abstract getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]>;
 
   /**
@@ -157,13 +159,12 @@ export abstract class FhirService {
   abstract getEncountersForPatient(dateRange: Interval): Promise<Encounter[]>;
 
   /**
-   * Saves the current image of the graphs rendered as a DocumentReference
+   * Saves the current HTML of the graphs rendered as a DocumentReference
    * (static save).
-   * @param image The image to save in the Document.
+   * @param html The inner HTML to keep in the Document.
    * @param date The date the note was written on.
    */
-  abstract saveStaticNote(image: HTMLCanvasElement, date: string):
-      Promise<boolean>;
+  abstract saveStaticNote(html: string, date: string): void;
 
   /**
    * Gets the DiagnosticReports for the patient for any report that falls in

@@ -3,10 +3,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef, Inject} from '@angular/core';
+import {Component, forwardRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
+import * as d3 from 'd3';
+import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 'src/app/clinicalconcepts/display-grouping';
+import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
+import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';
@@ -21,37 +23,67 @@ import {StepGraphComponent} from '../stepgraph/stepgraph.component';
   }]
 })
 export class MicrobioGraphComponent extends StepGraphComponent {
-  constructor(
-      sanitizer: DomSanitizer,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(sanitizer, uiConstants);
+  constructor(sanitizer: DomSanitizer) {
+    super(sanitizer);
   }
 
-  prepareForChartConfiguration() {
-    super.prepareForChartConfiguration();
-    // Make the points a little bigger for microbio series since there is info
-    // encoded in their point styling.
-    for (const series of this.chartData) {
-      series.pointRadius = 5;
-      series.pointBorderWidth = 2;
-    }
+  /**
+   * @returns the c3.ChartConfiguration object to generate the c3 chart.
+   * @override
+   */
+  generateChart(): c3.ChartConfiguration {
+    const graph = super.generateChart();
+    graph.data.type = 'scatter';
+    graph.point = {r: 5};
+    return graph;
   }
 
-  /***************************
-   * Legend interactions
-   * Because of the unique nature of the series in the MicrobioGraph, we do not
-   * allow legend interactions for microbiology graphs. This prevents errors
-   * that occur when the user hovers over a legend element that might correspond
-   * to many series on the chart.
-   */
-
   /**
-   * @override
+   * Every time the graph is rendered, go back and find all the preliminary
+   * points and make sure their fill is transparent and there is a border
+   * around it.
    */
-  resetChart() {}
+  onRendered(graphObject) {
+    // Apply colors. This will be handled better when we work on the legends.
+    const posCircles: d3.Selection<any, any, any, any> =
+        graphObject.getCircles()
+            .filter((d) => {
+              return d.id.includes(CHECK_RESULT_CODE);
+            })
+            .style('fill', posFinalMB.fill.toString());
+    const negCircles: d3.Selection<any, any, any, any> =
+        graphObject.getCircles()
+            .filter((d) => {
+              return !d.id.includes(CHECK_RESULT_CODE);
+            })
+            .style('fill', negFinalMB.fill.toString());
 
-  /**
-   * @override
-   */
-  focusOnSeries(labeledSeries: LabeledSeries[]) {}
+    // Make prelim circles transparent-filled.
+    const prelimCircles: d3.Selection<any, any, any, any> =
+        graphObject.getCircles()
+            .filter((d) => {
+              return d.id.includes(
+                  DiagnosticReportStatus.Preliminary.toString());
+            })
+            .style('fill', 'transparent')
+            .style('stroke-width', '2px');
+    prelimCircles
+        .filter((d) => {
+          return d.id.includes(CHECK_RESULT_CODE);
+        })
+        .style('stroke', posPrelimMB.outline.toString());
+    prelimCircles
+        .filter((d) => {
+          return !d.id.includes(CHECK_RESULT_CODE);
+        })
+        .style('stroke', negPrelimMB.outline.toString());
+  }
+
+  // Toggle the display of various points on the chart, and style various points
+  // based on report status. This method is called after the user clicks on a
+  // particular displayGroup in the legend.
+  toggleDisplayGroup(displayGroup: DisplayGrouping) {
+    this.chart.toggle(this.displayGroupToSeries.get(displayGroup));
+    this.wrapYAxisLabels();
+  }
 }

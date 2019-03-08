@@ -4,9 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ChartsModule} from 'ng2-charts';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
-
 import {ScatterplotComponent} from './scatterplot.component';
 
 describe('ScatterplotComponent', () => {
@@ -14,12 +11,7 @@ describe('ScatterplotComponent', () => {
   let fixture: ComponentFixture<ScatterplotComponent>;
 
   beforeEach(async(() => {
-    TestBed
-        .configureTestingModule({
-          declarations: [ScatterplotComponent],
-          imports: [ChartsModule],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
-        })
+    TestBed.configureTestingModule({declarations: [ScatterplotComponent]})
         .compileComponents();
   }));
 

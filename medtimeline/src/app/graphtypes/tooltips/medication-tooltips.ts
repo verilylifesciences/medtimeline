@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
+import * as d3 from 'd3';
 import {Duration} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-data-classes/medication-administration';
 
@@ -21,13 +22,10 @@ export class MedicationTooltip extends Tooltip<MedicationOrder> {
         Tooltip.formatTimestamp(order.firstAdministration.timestamp);
     const lastDose =
         Tooltip.formatTimestamp(order.lastAdmininistration.timestamp);
-    const dosageInstruction = order.dosageInstruction;
     const table = Tooltip.createNewTable();
     Tooltip.addHeader(medication, table, sanitizer);
     Tooltip.addRow(table, ['First Dose', firstDose], sanitizer);
     Tooltip.addRow(table, ['Last Dose', lastDose], sanitizer);
-    Tooltip.addRow(
-        table, ['Dosage Instructions', dosageInstruction], sanitizer);
     return table.outerHTML;
   }
 }
@@ -83,7 +81,7 @@ export class MedicationAdministrationTooltip extends
   }
 
   private formatDosage(administration: MedicationAdministration) {
-    return administration.dosage.quantity.toLocaleString() + ' ' +
+    return d3.format(',')(administration.dosage.quantity) + ' ' +
         administration.dosage.unit;
   }
 }

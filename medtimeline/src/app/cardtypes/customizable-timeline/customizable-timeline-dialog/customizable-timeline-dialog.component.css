@@ -1,86 +1,53 @@
-ngb-timepicker {
-  font-size: 1rem;
-}
-
-::ng-deep fieldset {
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-::ng-deep .ngb-tp {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-}
-::ng-deep .ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-}
-
-::ng-deep .ngb-tp-input-container {
-  width: 4em;
-}
-
-::ng-deep .ngb-tp-spacer {
-  width: 50px !important;
-  text-align: center;
-}
-
-::ng-deep .btn-link {
-  font-weight: 400;
-  color: #5E35B1;
-  background-color: transparent;
-  border-width: 1px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-::ng-deep .form-control {
-  display: block;
+.timelinePicker {
   width: 100%;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
+  display: flex;
 }
 
-::ng-deep .ngb-tp-input {
-  text-align: center;
-  width: inherit;
+.timelinePicker .mat-form-field {
+  width: 130px;
 }
 
-::ng-deep .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  border: none;
+.clock {
+  margin-right: 20px;
+  margin-top: 16px;
+  display: inline-block;
 }
 
-::ng-deep .mat-error {
-  font-size: 12px;
+.timelineInputs {
+  width: 100%;
+  display: inline-flex;
 }
 
-.mockPlaceholder {
-  font-size: 12px;
-  color: grey;
-  margin-top: 18px;
+.inputTitle {
+  width: 100%;
+}
+
+.mat-radio-button {
+  margin: 5px;
+}
+
+.mat-button-toggle-group {
+  height: 20px !important;
+}
+
+.mat-button-toggle {
+  width: 50px !important;
+}
+
+.mat-card {
+  min-width: 15px;
+  min-height: 15px;
+  padding: 0px;
+}
+
+.inputDescription {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  float: right;
+}
+
+input {
+  height: 20px;
 }

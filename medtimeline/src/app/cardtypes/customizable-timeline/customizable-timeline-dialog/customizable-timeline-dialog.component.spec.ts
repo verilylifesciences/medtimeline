@@ -10,7 +10,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatOptionModule} from '@angular/material';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DateTime} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
@@ -26,22 +25,11 @@ describe('CustomizableTimelineDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CustomizableTimelineDialogComponent],
       imports: [
-        MatFormFieldModule,
-        FormsModule,
-        MatDialogModule,
-        MatInputModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatDatepickerModule,
-        MatOptionModule,
-        MatAutocompleteModule,
-        MatButtonToggleModule,
-        MatButtonModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        MatNativeDateModule,
-        MatDialogModule,
-        NgbModule,
+        MatFormFieldModule, FormsModule, MatDialogModule, MatInputModule,
+        BrowserAnimationsModule, MatIconModule, MatDatepickerModule,
+        MatOptionModule, MatAutocompleteModule, MatButtonToggleModule,
+        MatButtonModule, MatCardModule, ReactiveFormsModule,
+        MatNativeDateModule, MatDialogModule
       ],
       providers: [
         {provide: MAT_DIALOG_DATA, useValue: DateTime.utc()},

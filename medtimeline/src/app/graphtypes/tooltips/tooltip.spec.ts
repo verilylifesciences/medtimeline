@@ -5,7 +5,7 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as Color from 'color';
+import * as d3 from 'd3';
 import {DateTime} from 'luxon';
 
 import {StandardTooltip, Tooltip} from './tooltip';
@@ -18,7 +18,7 @@ describe('StandardTooltip', () => {
   it('should create', () => {
     const tooltip = new StandardTooltip(
         [{x: new Date(1, 1, 2001), name: 'name', value: 15}],
-        () => Color.rgb(244, 244, 244), 'unit');
+        () => d3.rgb(244, 244, 244), 'unit');
     expect(tooltip).toBeDefined();
   });
 
@@ -28,7 +28,7 @@ describe('StandardTooltip', () => {
           {x: new Date(2001, 1, 1), name: 'name', value: 15},
           {x: new Date(2001, 1, 1), name: 'name', value: 25}
         ],
-        () => Color.rgb(244, 244, 244), 'unit');
+        () => d3.rgb(244, 244, 244), 'unit');
     expect(tooltip.getTooltip(undefined, TestBed.get(DomSanitizer)))
         .toBe(
             '<table class="c3-tooltip">' +
@@ -37,12 +37,12 @@ describe('StandardTooltip', () => {
             '</th></tr>' +
             '<tr><td class="name">' +
             '<span style="background-color: rgb(244, 244, 244);' +
-            ' display: inline-block; height: 10px; width: 10px; margin-right: 6px;"></span>' +
+            ' display: inline-block; height: 10px; width: 10px;"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">15 unit</td></tr>' +
             '<tr><td class="name">' +
             '<span style="background-color: rgb(244, 244, 244);' +
-            ' display: inline-block; height: 10px; width: 10px; margin-right: 6px;"></span>' +
+            ' display: inline-block; height: 10px; width: 10px;"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">25 unit</td></tr></tbody></table>');
   });

@@ -7,9 +7,7 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
 import {MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
@@ -22,7 +20,7 @@ describe('DataSelectorMenuComponent', () => {
   let component: DataSelectorMenuComponent;
   let fixture: ComponentFixture<DataSelectorMenuComponent>;
   const resourceCodeManagerStub =
-      new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
+      new ResourceCodeManager(new StubFhirService());
 
   beforeEach(async(() => {
     TestBed
@@ -43,7 +41,6 @@ describe('DataSelectorMenuComponent', () => {
           ],
           providers: [
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
         .compileComponents();
@@ -60,11 +57,9 @@ describe('DataSelectorMenuComponent', () => {
   });
 
   it('should filter concepts based on input', fakeAsync(() => {
-       const userInput = 'Com';
+       const userInput = 'CB';
        expect(component.filter(userInput).length).toEqual(2);
        expect(new Set(component.filter(userInput).map(x => x.label)))
-           .toEqual(new Set([
-             'Complete Blood Count', 'Complete Blood Count White Blood Cell'
-           ]));
+           .toEqual(new Set(['CBC', 'CBC White Blood Cell']));
      }));
 });

@@ -4,15 +4,17 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime, Interval} from 'luxon';
+import {Color} from 'd3';
+import {Interval} from 'luxon';
 
+import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
-// tslint:disable-next-line:max-line-length
-import {DiscreteObservationTooltip, GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {DiscreteObservationTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {getDataColors} from '../theme/bch_colors';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
@@ -22,14 +24,6 @@ import {LabeledSeries} from './labeled-series';
  * one or more LabeledSeries.
  */
 export class LineGraphData extends GraphData {
-  /** The tick marks to display on the y axis. */
-  readonly yTicks: number[];
-
-  /**
-   * Contains the ResourceCodeGroup for this set of data, which helps determine
-   * whether to force display bounds, and the code group's display bounds.
-   */
-  readonly resourceGroup: ResourceCodeGroup;
   private constructor(
       /** The label for the graph. */
       readonly label: string,
@@ -38,14 +32,16 @@ export class LineGraphData extends GraphData {
       /** The display bounds of the y-axis. */
       readonly yAxisDisplayBounds: [number, number],
       /** The unit for the y-axis of the graph. */
-      readonly unit: string, tooltipMap?: Map<string, string>,
-      tooltipKeyFn?: (key: string) => string, regions?: any[],
-      precision?: number, resourceCodeGroup?: ResourceCodeGroup) {
-    super(series, tooltipMap, tooltipKeyFn, regions);
+      readonly unit: string,
+      /**
+       * The LabeledSeries mapped to which DisplayGrouping they fall under for
+       * the purposes of color and legends
+       */
+      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
+      tooltipMap?: Map<string, string>, tooltipKeyFn?: (key: string) => string,
+      regions?: any[], precision?: number) {
+    super(series, seriesToDisplayGroup, tooltipMap, tooltipKeyFn, regions);
     this.precision = precision ? precision : 0;
-    this.yTicks =
-        LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
-    this.resourceGroup = resourceCodeGroup;
   }
 
   /**
@@ -64,26 +60,32 @@ export class LineGraphData extends GraphData {
       label: string, observationGroup: ObservationSet[],
       resourceCodeGroup: ResourceCodeGroup, sanitizer: DomSanitizer,
       encounters: Encounter[]): LineGraphData {
+    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
+    let seriesIdx = 0;
+    const dataColors: Color[] = getDataColors();
+
     let minY: number = Number.MAX_VALUE;
     let maxY: number = Number.MIN_VALUE;
 
-    const allSeries = [];
-    const obsGroupToSeries = new Map<ObservationSet, LabeledSeries>();
+    const series: LabeledSeries[] = [];
+    const obsLabelToColor = new Map<string, Color>();
     for (const obsSet of observationGroup) {
       const lblSeries = LabeledSeries.fromObservationSet(obsSet, encounters);
-      obsGroupToSeries.set(obsSet, lblSeries);
-      allSeries.push(lblSeries);
+      series.push(lblSeries);
+      const color = dataColors[seriesIdx];
+      seriesToDisplayGrouping.set(
+          lblSeries, new DisplayGrouping(lblSeries.label, color));
+      obsLabelToColor.set(obsSet.label, color);
+
+      seriesIdx = (seriesIdx + 1) % dataColors.length;
+
       /* Find the minimum and maximum y values for all the series. */
-      if (lblSeries.yDisplayBounds) {
-        minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
-        maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
-      }
+      minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
+      maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
     }
 
-    let tooltipMap = LineGraphData.makeTooltipMap(obsGroupToSeries, sanitizer);
-
-    tooltipMap = LineGraphData.addAbnormalValueTooltips(
-        tooltipMap, sanitizer, obsGroupToSeries);
+    const tooltipMap = LineGraphData.makeTooltipMap(
+        observationGroup, sanitizer, obsLabelToColor);
 
     const allUnits =
         new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
@@ -92,112 +94,42 @@ export class LineGraphData extends GraphData {
     }
 
     const data = new LineGraphData(
-        label, allSeries, [minY, maxY], allUnits.values().next().value,
+        label, series,
+        LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup),
+        allUnits.values().next().value, seriesToDisplayGrouping,
         tooltipMap.size > 0 ? tooltipMap : undefined,
         undefined,  // tooltipMap
         undefined,  // regions
-        resourceCodeGroup.precision, resourceCodeGroup);
+        resourceCodeGroup.precision);
     return data;
   }
 
-  /**
-   * Manually find y axis tick values based on the min and max display bounds.
-   */
-  static getYTicks(min: number, max: number, tickCount = 4): number[] {
-    // Evenly space out 5 numbers between the min and max (display bounds).
-    const difference = max - min;
-    const spacing = difference / tickCount;
-    const values = [];
-    // If there is no difference between the min and max, simply return the
-    // min.
-    if (spacing === 0) {
-      return [min];
-    }
-    for (let curr = min; curr <= max; curr += spacing) {
-      values.push(curr);
-    }
-    return values;
-  }
-
-
   private static makeTooltipMap(
-      obsGroupToSeries: Map<ObservationSet, LabeledSeries>,
-      sanitizer: DomSanitizer,
-      ): Map<string, string> {
+      obsGroup: ObservationSet[], sanitizer: DomSanitizer,
+      obsLabelToColor: Map<string, Color>): Map<string, string> {
     const tooltipMap = new Map<string, string>();
-
-    for (const entry of Array.from(obsGroupToSeries.entries())) {
-      const obsGroup: ObservationSet = entry[0];
-      const series: LabeledSeries = entry[1];
-      for (const obs of obsGroup.resourceList) {
-        const timestamp = obs.observation.timestamp.toMillis().toString();
-        // The key for this tooltip is the administration's timestamp.
-        // There may be multiple data points associated with the timestamp
-        // so we stack the administrations on top of one another in that case.
-        if (tooltipMap.get(timestamp)) {
-          tooltipMap.set(
-              timestamp,
-              tooltipMap.get(timestamp) +
-                  new GenericAnnotatedObservationTooltip(
-                      false, series.legendInfo.fill)
-                      .getTooltip(obs, sanitizer));
-        } else {
-          tooltipMap.set(
-              timestamp,
-              new GenericAnnotatedObservationTooltip(
-                  true, series.legendInfo.fill)
-                  .getTooltip(obs, sanitizer));
-        }
-      }
-    }
-    return tooltipMap;
-  }
-
-  /**
-   * Constructs a map of timestamps to GenericAbnormalTooltips for any point
-   * with an "abnormal" value. Currently, we only use the normal range as
-   * reference.
-   * @param series The series to construct the tooltip map for.
-   * @param tooltipMap The existing tooltips for the series.
-   * @param obsLabelToColor A map of Observation label to corresponding color.
-   * @param sanitizer A DOM sanitizer for use in tooltip construction
-   * @returns a map of timstamp strings to tooltips, with GenericObservation
-   *     tooltips replaced with GenericAbnormal tooltip if the value is
-   *     abnormal.
-   */
-  private static addAbnormalValueTooltips(
-      tooltipMap: Map<string, string>,
-      sanitizer: DomSanitizer,
-      obsGroupToSeries: Map<ObservationSet, LabeledSeries>,
-      ): Map<string, string> {
-    for (const entry of Array.from(obsGroupToSeries.entries())) {
-      const series: LabeledSeries = entry[1];
-      // Add a tooltip for any value with an abnormal y-value.
-      for (const coords of series.coordinates) {
-        const value = coords[1];
-        const timestamp = coords[0].toMillis().toString();
-        const yBounds = series.normalRanges.get(coords[0]);
-        if (yBounds && (value < yBounds[0] || value > yBounds[1])) {
-          const params = {};
-          params['timestamp'] = coords[0].toMillis();
-          params['value'] = value;
-          params['label'] = series.label;
-          params['unit'] = series.unit;
-          // The key for this tooltip is the timestamp.
-          // There may be multiple data points associated with the
-          // timestamp so we stack the administrations on top of one
-          // another in that case.
+    // Only construct custom tooltips if there's annotation values for hte
+    // observations.
+    for (const obsSet of obsGroup) {
+      for (const obs of obsSet.resourceList) {
+        if (obs.annotationValues.length > 0) {
+          const timestamp = obs.observation.timestamp.toMillis().toString();
+          // The key for this tooltip is the administration's timestamp.
+          // There may be multiple data points associated with the timestamp
+          // so we stack the administrations on top of one another in that case.
           if (tooltipMap.get(timestamp)) {
             tooltipMap.set(
                 timestamp,
                 tooltipMap.get(timestamp) +
-                    new GenericAbnormalTooltip(false, series.legendInfo.fill)
-                        .getTooltip(params, sanitizer));
+                    new GenericAnnotatedObservationTooltip(
+                        false, obsLabelToColor.get(obs.label))
+                        .getTooltip(obs, sanitizer));
           } else {
             tooltipMap.set(
                 timestamp,
-                new GenericAbnormalTooltip(true, series.legendInfo.fill)
-                    .getTooltip(params, sanitizer));
+                new GenericAnnotatedObservationTooltip(
+                    true, obsLabelToColor.get(obs.label))
+                    .getTooltip(obs, sanitizer));
           }
         }
       }
@@ -205,12 +137,45 @@ export class LineGraphData extends GraphData {
     return tooltipMap;
   }
 
+  private static getDisplayBounds(
+      minInSeries: number, maxInSeries: number,
+      resourceCodeGroup: ResourceCodeGroup): [number, number] {
+    let yAxisDisplayMin;
+    let yAxisDisplayMax;
+    if (resourceCodeGroup.forceDisplayBounds &&
+        resourceCodeGroup.displayBounds) {
+      // We use the provided display bounds by default, regardless of the
+      // bounds of the data.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
+      yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
+    } else {
+      // We use the provided display bounds as the y-axis display min and max,
+      // unless the calculated minimum and maximum of the data span a smaller
+      // range.
+
+      // We choose the provided min bound if it is larger than the min of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds ?
+          ((resourceCodeGroup.displayBounds[0] >= minInSeries) ?
+               resourceCodeGroup.displayBounds[0] :
+               minInSeries) :
+          minInSeries;
+      // We choose the provided max bound if it is smaller than the max of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMax = resourceCodeGroup.displayBounds ?
+          ((resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
+               resourceCodeGroup.displayBounds[1] :
+               maxInSeries) :
+          maxInSeries;
+    }
+    return [yAxisDisplayMin, yAxisDisplayMax];
+  }
+
   /**
    * Converts a list of MedicationOrderSets to a LineGraphData object.
-   * @param medicationOrderListGroup A list of MedicationOrderSets to
-   *     display.
-   * @param encounters A list of Encounters to use while determining line
-   *     breaks in series.
+   * @param medicationOrderListGroup A list of MedicationOrderSets to display.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the medication administrations in medicationOrderSet
    *     have different units.
@@ -219,19 +184,20 @@ export class LineGraphData extends GraphData {
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
       sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
     const tooltipMap = new Map<string, string>();
-    const regions = new Array<[DateTime, DateTime]>();
+    const regions = [];
     for (const order of medicationOrderSet.resourceList) {
-      regions.push([
-        order.firstAdministration.timestamp,
-        order.lastAdmininistration.timestamp
-      ]);
+      regions.push({
+        axis: 'x',
+        class: 'order-region',
+        start: order.firstAdministration.timestamp,
+        end: order.lastAdmininistration.timestamp
+      });
       for (const admin of order.administrationsForOrder.resourceList) {
         const timestamp =
             admin.medAdministration.timestamp.toMillis().toString();
         // The key for this tooltip is the administration's timestamp.
         // There may be multiple data points associated with the timestamp
-        // so we stack the administrations on top of one another in that
-        // case.
+        // so we stack the administrations on top of one another in that case.
         const tooltipText = new MedicationAdministrationTooltip().getTooltip(
             [admin], sanitizer);
         if (tooltipMap.get(timestamp)) {
@@ -241,25 +207,30 @@ export class LineGraphData extends GraphData {
         }
       }
     }
+    const singleSeries = LabeledSeries.fromMedicationOrderSet(
+        medicationOrderSet, dateRange, encounters);
+    const seriesToDisplayGrouping = new Map<LabeledSeries, DisplayGrouping>();
+    seriesToDisplayGrouping.set(
+        singleSeries,
+        new DisplayGrouping(singleSeries.label, getDataColors()[0]));
 
     return new LineGraphData(
-        medicationOrderSet.label,
-        [LabeledSeries.fromMedicationOrderSet(
-            medicationOrderSet, dateRange, encounters)],
+        medicationOrderSet.label, [singleSeries],
         [medicationOrderSet.minDose, medicationOrderSet.maxDose],
-        medicationOrderSet.unit, tooltipMap, undefined, regions);
+        medicationOrderSet.unit, seriesToDisplayGrouping, tooltipMap, undefined,
+        regions);
   }
 
   /**
-   * Converts a list of ObservationSets with discrete y-values (results) to
-   * a LineGraphData object. If we are graphing Observations with discrete
-   * values, such as "yellow" for the color of urine, we group all
-   * ObservationSets into one LabeledSeries, and display textual information
-   * in the tooltip.
+   * Converts a list of ObservationSets with discrete y-values (results) to a
+   * LineGraphData object.
+   * If we are graphing Observations with discrete values, such as "yellow"
+   * for the color of urine, we group all ObservationSets into one
+   * LabeledSeries, and display textual information in the tooltip.
    * @param label The label for this set of observations.
    * @param observationGroup A list of ObservationSets to display.
-   * @param encounters A list of Encounters to use while determining line
-   *     breaks in series.
+   * @param encounters A list of Encounters to use while determining line breaks
+   *     in series.
    * @returns a new LineGraphData for this observation set.
    * @throws Error if the observations in observationGroup have different
    *     units.
@@ -267,29 +238,21 @@ export class LineGraphData extends GraphData {
   static fromObservationSetListDiscrete(
       label: string, observationGroup: ObservationSet[],
       sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
-    // For ObservationSets with discrete categories, we display a
-    // scatterplot with one series, with most information in the tooltip.
+    // For ObservationSets with discrete categories, we display a scatterplot
+    // with one series, with most information in the tooltip.
     const yValue = 10;
     const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
         observationGroup, yValue, label, encounters);
+    const seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
+    seriesToDisplayGroup.set(
+        lblSeries, new DisplayGrouping(lblSeries.label, getDataColors()[0]));
 
     const tooltipMap = new Map<string, string>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
         const tsString = obs.observation.timestamp.toMillis().toString();
-        // Only add the timestamp to the tooltip for the first entry.
-        let tooltipText: string;
-        if (obs.observation.value) {
-          tooltipText =
-              new GenericAnnotatedObservationTooltip(
-                  !tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                  .getTooltip(obs, sanitizer);
-        } else {
-          tooltipText =
-              new DiscreteObservationTooltip(!tooltipMap.has(tsString))
-                  .getTooltip([obs.observation], sanitizer);
-        }
-
+        const tooltipText = new DiscreteObservationTooltip().getTooltip(
+            [obs.observation], sanitizer);
         // The key for this tooltip is the observation's timestamp.
         // There may be multiple data points associated with the timestamp
         // so we stack the tooltips on top of one another in that case.
@@ -301,7 +264,7 @@ export class LineGraphData extends GraphData {
       }
     }
     return new LineGraphData(
-        label, [lblSeries], [0, yValue * 2], undefined,  // Units
-        tooltipMap);
+        label, [lblSeries], [0, yValue], undefined,  // Units
+        seriesToDisplayGroup, tooltipMap);
   }
 }

@@ -1,7 +1,6 @@
 # MedTimeLine
 
 [See the online demo here!](https://verilylifesciences.github.io/medtimeline/)
-This demo was automatically built using ./build_demo.sh
 
 ## Disclaimer
 This is not an official Verily product.
@@ -21,10 +20,9 @@ new clinical concepts, and changing the timeframe of the visualized data.
 1. Clone this repository.
 1. Change into the `medtimeline` directory.
 1. Run `npm install` to install all dependencies.
-1. Run `ng serve --port 8000 --configuration dev_mock_DemoMockData` to run the application
+1. Run `ng serve --port 8000 --configuration dev_mock_synth_data` to run the application
    against the included mock data (note there is not data for all clinical
    concepts).
-1. Visit http://localhost:8000 in your browser.
 
 ## Configuring your own server
 
@@ -51,7 +49,6 @@ const dev = {
     username: '<your FHIR auth username>',
     password: '<your FHIR auth password>',
   },
-  googleAnalyticsTag: '<your Google Analytics tracking ID>',
 };
 
 const prod = {
@@ -67,7 +64,6 @@ const prod = {
     username: '<your FHIR auth username>',
     password: '<your FHIR auth password>',
   },
-  googleAnalyticsTag: '<your Google Analytics tracking ID>',
 };
 
 const config = {
@@ -80,8 +76,6 @@ const config = {
 module.exports = config[env];
 
 ```
-To track events and user interactions with Google Analytics, set up a Google Analytics account,
-and use the given tracking ID in your `src/app/fhir_config.js` file.
 
 After you've put in your configuration, run the following command:
 
@@ -92,44 +86,11 @@ This will serve the page at `localhost:<specified port number`.
 Navigate to `http://localhost:<your port number>/auth?iss=<your ISS configuration>&launch=<your launch configuration>`
 to run the application.
 
-#### Optional use of custom microbiology server
-
-Right now Cerner does not support getting DiagnosticReports representing microbiology results from
-its standard FHIR interface. So, if you run this app as-is, you will just never get microbiology
-results. If you implement your own microbiology server, you can wire it in to this app by providing
-this stanza in your dev and prod configurations:
-
-```
-  microbiology: {
-    url: '<your url>',
-    username: 'username',
-    password: 'password',
-  }
-```
-
-The server should support simple authentication and should respond to a call that looks like this:
-
-```
-http://<your_url>/DiagnosticReport?patient=<PATIENTID>&category=microbiology&item-date=ge<lower date bound>&item-date=<upper date bound>&_format=json
-```
-
-with this header (code copied from fhir-http.service.ts)
-
-```
-const httpHeaders = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Authorization': 'Basic ' + FhirConfig.microbiology.username + ':' +
-      FhirConfig.microbiology.password,
-});
-```
-
 ### Running against mock data
 
-If instead you want to run against the mock data, you have your pick of test data sets to run against.
-Look in src/assets/demo_data. There is a readme describing available data sets.
-Here is an example of running against one of them.
+If instead you want to run against the mock data, found in `src/assets/test_bmedtimeA`, run this command:
 
-`ng serve --port 8000 --configuration=dev_test_bmedtimeA`
+`ng serve --port 8000 --configuration=dev_mock_synth_data`
 
 Navigate to `http://localhost:8000/` to see the application.
 

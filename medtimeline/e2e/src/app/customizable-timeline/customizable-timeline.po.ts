@@ -3,15 +3,16 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {browser, by, element, ElementFinder} from 'protractor';
-
+import {by, element, ElementFinder} from 'protractor';
 import {IndexPage} from '../index.po';
 
 export class CustomizableTimelinePage {
   index = new IndexPage();
   // Return the svg portion of the Customizable Graph.
   getGraph() {
-    return element(by.css('app-customizable-graph'));
+    return element(by.css('app-customizable-graph'))
+        .element(by.css('.c3'))
+        .element(by.css('svg'));
   }
 
   getEditIcon() {
@@ -35,7 +36,6 @@ export class CustomizableTimelinePage {
     await this.index.waitForClickable(
         saveButton, jasmine.DEFAULT_TIMEOUT_INTERVAL);
     await saveButton.click();
-    await browser.sleep(2000);
   }
 
   // Return the cancel button in the CustomizableTimelineDialog.
@@ -68,7 +68,9 @@ export class CustomizableTimelinePage {
 
   // Return the flag rendered on the CustomizableGraph.
   async getFlag() {
-    return element(by.css('[class*="tooltip-custom"]'));
+    return element(by.css('app-customizable-graph'))
+        .element(by.css('.c3'))
+        .element(by.css('[class*="tooltip-custom"]'));
   }
 
   // Return the title of the flag rendered on the CustomizableGraph.

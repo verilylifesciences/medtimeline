@@ -34,14 +34,6 @@ describe('MedicationAdministration', () => {
         .toBe(RxNormCode.fromCodeString('11124'));
   });
 
-  it('if RxNorm code not provided, should lookup using string', () => {
-    const medicationAdministration = new MedicationAdministration(
-        {medicationCodeableConcept: {text: 'vancomycin'}});
-    expect(medicationAdministration.rxNormCode).toBeDefined();
-    expect(medicationAdministration.rxNormCode as ResourceCode)
-        .toBe(RxNormCode.fromCodeString('11124'));
-  });
-
   it('should throw error without rxNorm code', () => {
     const constructor = () => {
       const admin = new MedicationAdministration({});

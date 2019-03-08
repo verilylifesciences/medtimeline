@@ -5,7 +5,7 @@
 
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {DateTime, Interval} from 'luxon';
+import {Interval} from 'luxon';
 import {FhirResourceType} from 'src/constants';
 
 import {environment} from '../environments/environment';
@@ -23,6 +23,8 @@ import {FhirService} from './fhir.service';
 
 @Injectable()
 export class MockFhirService extends FhirService {
+  errorMessage: string;
+
   private readonly assetPath = './assets/' + environment.mockDataFolder + '/';
   private readonly allFilePaths =
       environment.mockDataFiles.map(x => this.assetPath + x + '.json');
@@ -43,8 +45,7 @@ export class MockFhirService extends FhirService {
       getCodesFn: (value: V) => K[]) {
     try {
       const obj = constructorFn(json.resource);
-      const uniqueCodes = Array.from(new Set(getCodesFn(obj)));
-      for (const code of uniqueCodes) {
+      for (const code of getCodesFn(obj)) {
         let existing = mapToUpdate.get(code);
         if (!existing) {
           existing = [];
@@ -61,61 +62,49 @@ export class MockFhirService extends FhirService {
   private mapAllData(): Promise<void[]> {
     return Promise.all(this.allFilePaths.map(filePath => {
       return this.http.get(filePath).toPromise<any>().then(data => {
-        try {
-          let entry = data.entry;
-          // Sometimes data comes to us in bundles, and then we want to flatten
-          // it into a series of resources.
-          if (data.length > 0) {
-            entry = data.map(bundle => bundle.entry).flat();
+        for (const json of data.entry) {
+          const resourceType = json.resource.resourceType;
+
+          if (resourceType === FhirResourceType.Observation) {
+            this.constructResourceMap(
+                json, this.loincMap, (x: any) => new Observation(x),
+                (obs) => obs.codes);
           }
-          for (const json of entry) {
-            const resourceType = json.resource.resourceType;
-            if (resourceType === FhirResourceType.Observation) {
-              this.constructResourceMap(
-                  json, this.loincMap, (x: any) => new Observation(x),
-                  (obs) => obs.codes);
-            }
 
-            if (resourceType === FhirResourceType.MedicationAdministration) {
-              this.constructResourceMap(
-                  json, this.medicationAdministrationMapByCode,
-                  (d) => new MedicationAdministration(d),
-                  (admin) => [admin.rxNormCode]);
+          if (resourceType === FhirResourceType.MedicationAdministration) {
+            this.constructResourceMap(
+                json, this.medicationAdministrationMapByCode,
+                (d) => new MedicationAdministration(d),
+                (admin) => [admin.rxNormCode]);
 
-              this.constructResourceMap(
-                  json, this.medicationAdministrationMapByOrderId,
-                  (d) => new MedicationAdministration(d),
-                  (admin) => [admin.medicationOrderId]);
-            }
-
-            if (resourceType === FhirResourceType.MedicationOrder) {
-              this.constructResourceMap(
-                  json, this.medicationOrderMap, (d) => new MedicationOrder(d),
-                  (order) => [order.orderId]);
-            }
-
-            if (resourceType === FhirResourceType.Encounter) {
-              const encounter = new Encounter(json.resource);
-              this.encounters.push(encounter);
-            }
-
-            if (resourceType === FhirResourceType.DiagnosticReport) {
-              this.constructResourceMap(
-                  json, this.diagnosticReportMap,
-                  (d) => new DiagnosticReport(d),
-                  (report) =>
-                      report.results.map(x => x.codes)
-                          .reduce(
-                              (prev: ResourceCode[], curr: ResourceCode[]) => {
-                                return prev.concat(curr);
-                              },
-                              []));
-            }
+            this.constructResourceMap(
+                json, this.medicationAdministrationMapByOrderId,
+                (d) => new MedicationAdministration(d),
+                (admin) => [admin.medicationOrderId]);
           }
-        } catch {
-          console.warn(
-              'Trouble reading file: ' + filePath +
-              '. Continuing on since this is the mock server.');
+
+          if (resourceType === FhirResourceType.MedicationOrder) {
+            this.constructResourceMap(
+                json, this.medicationOrderMap, (d) => new MedicationOrder(d),
+                (order) => [order.orderId]);
+          }
+
+          if (resourceType === FhirResourceType.Encounter) {
+            const encounter = new Encounter(json.resource);
+            this.encounters.push(encounter);
+          }
+
+          if (resourceType === FhirResourceType.DiagnosticReport) {
+            this.constructResourceMap(
+                json, this.diagnosticReportMap, (d) => new DiagnosticReport(d),
+                (report) =>
+                    report.results.map(x => x.codes)
+                        .reduce(
+                            (prev: ResourceCode[], curr: ResourceCode[]) => {
+                              return prev.concat(curr);
+                            },
+                            []));
+          }
         }
       });
     }));
@@ -163,16 +152,18 @@ export class MockFhirService extends FhirService {
       code: RxNormCode, dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
     return this.allDataPromise.then(
-        x => {return this.medicationAdministrationMapByCode.has(code) ?
-                  this.medicationAdministrationMapByCode.get(code)
-                      .filter(obs => dateRange.contains(obs.timestamp))
-                      .slice(0, limitCount ? limitCount : undefined) :
-                  []});
+        x => this.medicationAdministrationMapByCode.has(code) ?
+            this.medicationAdministrationMapByCode.get(code)
+                .filter(obs => dateRange.contains(obs.timestamp))
+                .slice(0, limitCount ? limitCount : undefined) :
+            []);
   }
 
   /**
    * Returns arbitrary orders for current mock medications.
    * @param id The id to pull the order from.
+   * TODO(b/117438708): Add more mock medication orders to JSON files for
+   * different medications requested.
    */
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
     return this.allDataPromise.then(
@@ -185,7 +176,7 @@ export class MockFhirService extends FhirService {
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
    */
-  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+  getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
     return this.allDataPromise.then(
         x => this.medicationAdministrationMapByOrderId.get(id));
@@ -200,8 +191,7 @@ export class MockFhirService extends FhirService {
   getEncountersForPatient(dateRange: Interval): Promise<Encounter[]> {
     return this.allDataPromise.then(
         x => this.encounters.filter(
-            encounter => dateRange.intersection(encounter.period) !== null &&
-                encounter.period.start >= DateTime.utc().minus({years: 1})));
+            encounter => dateRange.intersection(encounter.period) !== null));
   }
 
   /**
@@ -209,10 +199,9 @@ export class MockFhirService extends FhirService {
    * @param html The inner HTML to keep in the Document.
    * @param date The date the note was written for.
    */
-  saveStaticNote(image: HTMLCanvasElement, date: string): Promise<boolean> {
+  saveStaticNote(html: string, date: string) {
     console.log('Save to note button clicked for mock data for date: ' + date);
-    console.log(image);
-    return Promise.resolve(true);
+    console.log(html);
   }
 
   /**
@@ -233,7 +222,12 @@ export class MockFhirService extends FhirService {
           reports = reports.concat(this.diagnosticReportMap.get(code));
         }
       }
-      reports.slice(0, limitCount ? limitCount : undefined);
+      reports
+          .filter(
+              report => report.specimens.map(s => s.type)
+                            .find(specimen => specimen === codeGroup.label) !==
+                  undefined)
+          .slice(0, limitCount ? limitCount : undefined);
       return reports;
     });
   }

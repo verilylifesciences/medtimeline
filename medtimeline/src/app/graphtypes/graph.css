@@ -1,65 +1,94 @@
-::ng-deep canvas {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  cursor: pointer;
-}
-::ng-deep .chartjs-tooltip {
-  opacity: 1;
-  position: absolute;
-  pointer-events: none;
-  /* Show the tooltip above everything else. */
-  z-index: 1000;
-}
-
-::ng-deep .chartjs-tooltip-key {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 10px;
-}
-
 /* All the below styles apply to elements within the graphs. Because these
 are nested inside the components and within C3 divs, we have to prefix the
 style names with ::ng-deep.  */
 
-::ng-deep .c3-tooltip {
+::ng-deep .c3-region {
+  fill: hsl(150, 50%, 50%);
+  stroke: hsl(150, 50%, 70%);;
+  stroke-dasharray: 1px;
+}
+
+::ng-deep .c3 {
+  cursor: default !important;
+}
+
+.c3-tooltip > tbody > tr > th {
+  background-color: rgb(197, 185, 172); /* Boston Warm Gray */
+}
+
+/* This ensures that the step graph lines do not show circles for individual data points, except for the end points of each line segment. */
+::ng-deep .stepgraph .c3-circles:not([class *="endpoint"]) {
+  display: none;
+}
+
+/* This is styling for a stepgraphcard's circles on the end points of line segments. */
+::ng-deep .stepgraph [class *= "endpoint"] {
+  stroke: black;
+  opacity: 1;
+  stroke-width: 3;
+}
+
+::ng-deep .stepgraph .c3-line {
+  stroke-width: 2px;
+}
+
+::ng-deep .stepgraph [class*="tooltip"] {
+  width: 210px;
+}
+
+::ng-deep .c3-axis-y text :not(.c3-axis-y-label) {
+  font-family: "Roboto", sans-serif;
   font-size: 13px;
-  border-collapse: collapse;
-  border-spacing: 0;
-  background-color: #fff;
-  empty-cells: show;
-  -webkit-box-shadow: 7px 7px 12px -9px #777777;
-  -moz-box-shadow: 7px 7px 12px -9px #777777;
-  box-shadow: 7px 7px 12px -9px #777777;
-  opacity: 0.9;
 }
 
-::ng-deep table {
-  background: #fff;
-  border: solid 1px #ddd;
-}
-
-::ng-deep .c3-tooltip tr {
-  border: 1px solid #CCC;
-}
-
-::ng-deep .c3-tooltip > tbody > tr > th {
-  width: 100%;
-  word-wrap: break-word;
-  background-color: #aaa;
-  font-size: 14px;
-  padding: 2px 5px;
-  text-align: left;
-  color: #FFF;
-}
-
-::ng-deep .c3-tooltip td {
-  width: 125px;
+::ng-deep .c3-axis-x text {
+  font-family: "Roboto", sans-serif !important;
   font-size: 13px;
-  padding: 3px 6px;
-  background-color: #fff;
-  border-left: 1px dotted #999;
+}
+
+::ng-deep .noData {
+  opacity: 1 !important;
+}
+
+::ng-deep .c3-ygrid-line text {
+  font-size: 13px !important;
+  fill: black;
+}
+
+/* These colors need to stay consistent with the color options in the dialog for the custom timeline. */
+/* Yellow grid line */
+::ng-deep .c3-xgrid-line.colorF2A900 line {
+  stroke: #F2A900;
+}
+
+/* Blue grid line */
+::ng-deep .c3-xgrid-line.color007396 line {
+  stroke: #007396;
+}
+
+/* Green grid line */
+::ng-deep .c3-xgrid-line.color739600 line {
+  stroke: #739600;
+}
+
+/* Pink grid line */
+::ng-deep .c3-xgrid-line.colorC6579A line {
+  stroke: #C6579A;
+}
+
+/* Purple grid line */
+::ng-deep .c3-xgrid-line.color8C4799 line {
+  stroke: #8C4799;
+}
+
+/* Red grid line */
+::ng-deep .c3-xgrid-line.color80225F line {
+  stroke: #80225F;
+}
+
+::ng-deep .encounter-region {
+  fill: rgb(0, 35, 86); /* Primary color */
+  stroke: rgb(0, 35, 86); /* Primary color */
 }
 
 ::ng-deep .order-region {

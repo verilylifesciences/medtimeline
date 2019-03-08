@@ -4,7 +4,11 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedDiagnosticReport, DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {DateTime} from 'luxon';
+
+import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from '../clinicalconcepts/display-grouping';
+import {AnnotatedDiagnosticReport, DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
+import {CHECK_RESULT_CODE, NEG_CODE, NEGFLORA_CODE} from '../fhir-data-classes/observation-interpretation-valueset';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
 
 import {LabeledSeries} from './labeled-series';
@@ -19,8 +23,18 @@ import {StepGraphData} from './stepgraphdata';
 
 export class MicrobioGraphData extends StepGraphData {
   private constructor(
-      endpointSeries: LabeledSeries[], tooltipMap: Map<string, string>) {
-    super(endpointSeries, tooltipMap, undefined);
+      series: LabeledSeries[], endpointSeries: LabeledSeries[],
+      yAxisMap: Map<number, string>,
+      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
+      tooltipMap: Map<string, string>, keyFn: (data: string) => string,
+      /**
+       * Maps the report ID to the report status. This is used for custom
+       * styling of display points.
+       */
+      readonly reportIdToStatus: Map<string, DiagnosticReportStatus>) {
+    super(
+        series, endpointSeries, yAxisMap, seriesToDisplayGroup, tooltipMap,
+        keyFn);
   }
 
   /**
@@ -30,28 +44,95 @@ export class MicrobioGraphData extends StepGraphData {
    * @returns a new StepGraphData for this set.
    */
   static fromDiagnosticReports(
-      diagnosticReports: DiagnosticReport[],
+      diagnosticReports: DiagnosticReport[], cultureType: string,
       sanitizer: DomSanitizer): MicrobioGraphData {
+    // TODO(b/121266814): Make constants or enum for cultureType.
     const points: LabeledSeries[] = [];
-
+    // We keep the yAxisMap mapping y-axis positions to labels to be consistent
+    // with other forms of StepGraphData.
+    let currYPosition = StepGraphData.Y_AXIS_SPACING;
+    const yAxisMap = new Map<number, string>();
     const tooltipMap = new Map<string, string>();
-
+    const timestampToId = new Map<string, string>();
+    const seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
+    // We create a master y-axis map mapping discrete labels (Observation
+    // displays) to y-values. This must be uniform across all DiagnosticReports.
     for (const report of diagnosticReports) {
-      // Get the timestamp from the collection time of the specimen.
-      const specimen = report.specimen;
+      for (const observation of report.results) {
+        if (!Array.from(yAxisMap.values()).includes(observation.display)) {
+          yAxisMap.set(currYPosition, observation.display);
+          currYPosition += StepGraphData.Y_AXIS_SPACING;
+        }
+      }
+    }
+
+    const reportIdToStatus = new Map<string, DiagnosticReportStatus>();
+    for (const report of diagnosticReports) {
+      // Find the specimen in the report with the correct Culture type.
+      // We throw an error if there are mutiple specimens of the same type for
+      // a DiagnosticReport.
+      const seen = new Set();
+      const hasDuplicates = report.specimens.some((s) => {
+        return seen.size === seen.add(s.type).size;
+      });
+      if (hasDuplicates) {
+        throw Error('Report has multiple specimens with same type.');
+      }
+
+      reportIdToStatus.set(report.id, report.status);
+
+      const specimen = report.specimens.find(s => (s.type === cultureType));
       if (specimen) {
-        const annotatedReport = new AnnotatedDiagnosticReport(report);
-        // For this tooltip, the keys are timestamps.
+        const annotatedReport =
+            new AnnotatedDiagnosticReport(report, cultureType);
+        // For this tooltip, the keys are report IDs.
         tooltipMap.set(
-            annotatedReport.timestamp.toMillis().toString(),
+            report.id,
             new MicrobioTooltip().getTooltip(annotatedReport, sanitizer));
+        const ts = annotatedReport.timestamp.toMillis().toString();
+        timestampToId.set(ts, report.id);
         for (const series of LabeledSeries.fromDiagnosticReport(
-                 report, annotatedReport.timestamp)) {
+                 report, annotatedReport.timestamp, yAxisMap)) {
+          seriesToDisplayGroup.set(
+              series,
+              MicrobioGraphData.getDisplayGroupFromResult(
+                  report.status, series.label.includes(CHECK_RESULT_CODE)));
           points.push(series);
         }
       }
     }
 
-    return new MicrobioGraphData(points, tooltipMap);
+    return new MicrobioGraphData(
+        [],  // No series representing "lines" on this chart
+        points, yAxisMap, seriesToDisplayGroup, tooltipMap,
+        // Because the keys here are report IDs we have to pass in a custom
+        // function to translate the graph's x-values to the appropriate
+        // tooltip.
+        (reportPoint: any) => {
+          return timestampToId.get(
+              DateTime.fromJSDate(reportPoint.x).toMillis().toString());
+        },
+        reportIdToStatus);
+  }
+
+  /**
+   * Returns the correct display grouping for a diagnostic report.
+   * @param status The DiagnosticReport's status.
+   * @param isPositive Whether the report appears to be positive.
+   * @returns The correct display grouping for the report.
+   */
+  private static getDisplayGroupFromResult(
+      status: DiagnosticReportStatus, isPositive: boolean): DisplayGrouping {
+    if (isPositive) {
+      if (status === DiagnosticReportStatus.Preliminary) {
+        return posPrelimMB;
+      } else if (status === DiagnosticReportStatus.Final) {
+        return posFinalMB;
+      }
+    } else if (status === DiagnosticReportStatus.Preliminary) {
+      return negPrelimMB;
+    } else if (status === DiagnosticReportStatus.Final) {
+      return negFinalMB;
+    }
   }
 }

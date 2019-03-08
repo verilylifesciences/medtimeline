@@ -3,11 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {HttpClient} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
-import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
-
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {FhirHttpService} from './fhir-http.service';
@@ -37,8 +33,15 @@ describe('FhirService', () => {
         }
       }
     };
-    service = new FhirHttpService(
-        null, smartOnFhirClient, TestBed.get(DomSanitizer), undefined);
+    const domSan = {
+      sanitize: () => 'safeString',
+      bypassSecurityTrustHtml: () => 'safeString',
+      bypassSecurityTrustStyle: () => 'safeString',
+      bypassSecurityTrustScript: () => 'safeString',
+      bypassSecurityTrustUrl: () => 'safeString',
+      bypassSecurityTrustResourceUrl: () => 'safeString',
+    };
+    service = new FhirHttpService(smartOnFhirClient, domSan);
   });
 
 
@@ -53,7 +56,7 @@ describe('FhirService', () => {
          expect(observationReadSpy.calls.count())
              .toBe(1, 'smartApi.observation.fetchAll was called once');
          expect(observation.length).toBe(2);
-         expect(observation[0].label).toEqual('Hemoglobin');
+         expect(observation[0].label).toEqual('Vanc Pk');
          done();
        });
      });
@@ -67,7 +70,7 @@ describe('FhirService', () => {
        service.getObservationsWithCode(code, dateRange).then(observation => {
          expect(observationReadSpy.calls.count()).toBe(1);
          expect(observation.length).toBeGreaterThan(0);
-         expect(observation[0].label).toEqual('Hemoglobin');
+         expect(observation[0].label).toEqual('Vanc Pk');
          done();
        });
        clientReadyCallback(smartApi);

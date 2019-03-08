@@ -9,8 +9,6 @@ import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {LabeledClass} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../unit_utils';
-
 import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';
 
 
@@ -81,6 +79,7 @@ export class Observation extends LabeledClass {
   // The number of decimal places stored in the value.
   readonly precision: number;
 
+
   /**
    * Makes an Observation out of a JSON object that represents a
    * a FHIR observation.
@@ -88,11 +87,17 @@ export class Observation extends LabeledClass {
    */
   constructor(private json: any) {
     super(Observation.getLabel(json));
+    // TODO(b/111990521): If there are hours and minutes then we can
+    // guarantee timezone is specified, but if not, then the timezone might
+    // not be specified! I'm not sure how to best handle that.
+    // https://www.hl7.org/fhir/DSTU2/datatypes.html#dateTime
     this.timestamp = json.effectiveDateTime ?
         DateTime.fromISO(json.effectiveDateTime).toUTC() :
         json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
     if (json.code) {
       if (json.code.coding) {
+        // TODO(b/121318193): Implement better parsing of Observations with BCH
+        // Codes (associated with Microbiology data).
         if (json.code.coding[0].system === BCHMicrobioCode.CODING_STRING) {
           this.codes = json.code.coding.map(
               (coding) => BCHMicrobioCode.fromCodeString(coding.code));
@@ -150,18 +155,21 @@ export class Observation extends LabeledClass {
           'JSON: ' + JSON.stringify(json));
     }
 
+    /*
+    TODO(b/119673528): Work out which labels we're going to use for BCH, then
+    re-enable.
     // Check the observation label against the LOINC code label.
-    if (this.label.toLowerCase() !== this.codes[0].label.toLowerCase()) {
+    if (this.label !== this.loincCodes[0].label) {
       throw Error(
           'The label for this observation\'s LOINC code doesn\'t match ' +
           ' the label in the data. Observation label: ' + this.label +
-          ' LOINC label: ' + this.codes[0].label);
+          ' LOINC label: ' + this.loincCodes[0].label);
     }
-
+    */
 
     this.value = json.valueQuantity ? json.valueQuantity : null;
     if (this.value) {
-      this.unit = fixUnitAbbreviations(this.value.unit);
+      this.unit = this.value.unit;
     }
 
     // We must calculate precision before the value is stored as a number, where
@@ -173,8 +181,12 @@ export class Observation extends LabeledClass {
 
     this.result =
         json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
-    if (this.value === null && this.result === null && !this.interpretation &&
-        (this.innerComponents && this.innerComponents.length === 0)) {
+
+    // TODO(b/121318193): Impement better parsing of Observations with BCH Codes
+    // (associated with Microbiology data). These Observations might not have
+    // values or results.
+    if (this.value === null && this.result === null &&
+        this.interpretation === null && this.innerComponents.length === 0) {
       throw Error(
           'An Observation must have a value, result, inner components, ' +
           'or an interpretation to be useful. JSON: ' + JSON.stringify(json));
@@ -185,6 +197,7 @@ export class Observation extends LabeledClass {
     // We are going to err on the side of safety and not include a normal range
     // unless there's just the one, and it includes a high and low field.
     // https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
+    // TODO(b/113575661): handle multiple ranges
     if (json.referenceRange && json.referenceRange.length === 1) {
       if (json.referenceRange[0].low && json.referenceRange[0].high) {
         this.normalRange = [

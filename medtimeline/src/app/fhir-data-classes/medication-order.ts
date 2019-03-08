@@ -10,7 +10,6 @@
 import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
 import {FhirService} from '../fhir.service';
-import {fixUnitAbbreviations} from '../unit_utils';
 
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
@@ -22,14 +21,10 @@ import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrat
  */
 export class MedicationOrder extends LabeledClass {
   readonly rxNormCode: RxNormCode;
-  readonly dosageRetrievalError = 'Could not retrieve dosage instructions.';
   firstAdministration: MedicationAdministration;
   lastAdmininistration: MedicationAdministration;
   administrationsForOrder: MedicationAdministrationSet;
   readonly orderId: string;
-  // By default, we set the instruction message as the retrieval error message,
-  // and change it if we find a valid dosage instruction.
-  dosageInstruction = this.dosageRetrievalError;
   /**
    * Makes an MedicationOrder out of a list of MedicationAdministrations.
    * https://www.hl7.org/fhir/DSTU2/medicationorder.html
@@ -45,16 +40,23 @@ export class MedicationOrder extends LabeledClass {
                                    json.medicationCodeableConcept ?
                                    json.medicationCodeableConcept.text :
                                    json.id);
-
-    if (json.dosageInstruction && json.dosageInstruction[0]) {
-      if (json.dosageInstruction.length > 1) {
-        throw Error('JSON must only include one dosage instruction.');
-      }
-      this.dosageInstruction = json.dosageInstruction[0].text;
-    }
     this.orderId = json.id;
-
-    this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
+    if (json.medicationCodeableConcept) {
+      if (json.medicationCodeableConcept.coding) {
+        this.rxNormCode =
+            (json.medicationCodeableConcept.coding
+                 .map(
+                     // Map the codes to a boolean that is true only if the
+                     // encoding is an RxNorm encoding, and the RxNorm code
+                     // appears in our RxNormCode list that we care about.
+                     (coding) => (!coding.system ||
+                                  coding.system.indexOf(
+                                      RxNormCode.CODING_STRING) !== -1) &&
+                         RxNormCode.fromCodeString(coding.code))
+                 // Filter out any codes that are not RxNorm codes.
+                 .filter((code) => !!code))[0];
+      }
+    }
 
     if (!(this.rxNormCode && this.label)) {
       throw Error(
@@ -82,11 +84,9 @@ export class MedicationOrder extends LabeledClass {
    */
   setMedicationAdministrations(fhirService: FhirService):
       Promise<MedicationOrder> {
-    return fhirService
-        .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
+    return fhirService.getMedicationAdministrationsWithOrder(this.orderId)
         .then(
             medAdmins => {
-              if (!medAdmins) return this;
               medAdmins = medAdmins.sort((a, b) => {
                 return a.timestamp.toMillis() - b.timestamp.toMillis();
               });
@@ -151,6 +151,8 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
     super(medicationOrderList);
     // Set the RxNormCode and MedicationConceptGroup for this
     // MedicationOrderSet.
+    // TODO(b/117327111): Restructure FhirResourceSet to take in a list of
+    // attributes to check sameness for
     if (medicationOrderList.length > 0) {
       const firstRxNorm = medicationOrderList[0].rxNormCode;
       if (!firstRxNorm) {
@@ -176,7 +178,7 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
         throw Error(
             'Different units in the order set: ' + Array.from(units.values()));
       }
-      this.unit = fixUnitAbbreviations(Array.from(units.values())[0]);
+      this.unit = Array.from(units.values())[0];
     }
   }
 }

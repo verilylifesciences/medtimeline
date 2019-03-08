@@ -11,6 +11,8 @@ import {IndexPage} from '../index.po';
 
 import {TextboxCardPage} from './textboxcard.po';
 
+
+
 describe('TextboxCard', async () => {
   const index: IndexPage = new IndexPage();
   const textboxCard: TextboxCardPage = new TextboxCardPage();
@@ -21,8 +23,7 @@ describe('TextboxCard', async () => {
   const isDisabled = await index.hasClass(formField, 'mat-form-field-disabled');
 
   beforeEach(async () => {
-    await browser.get('/setup');
-    await index.navigateToMainPage();
+    await browser.get('/');
   });
 
   it('textbox card should be in saved mode by default, with input disabled',

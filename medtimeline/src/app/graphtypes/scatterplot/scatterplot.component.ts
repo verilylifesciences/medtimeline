@@ -3,10 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef, Inject} from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {ChartType} from '../graph/graph.component';
 import {GraphComponent} from '../graph/graph.component';
 import {LineGraphComponent} from '../linegraph/linegraph.component';
 
@@ -20,10 +20,8 @@ import {LineGraphComponent} from '../linegraph/linegraph.component';
   }]
 })
 export class ScatterplotComponent extends LineGraphComponent {
-  constructor(
-      sanitizer: DomSanitizer,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(sanitizer, uiConstants);
-    this.chartTypeString = 'scatter';
+  constructor(sanitizer: DomSanitizer) {
+    super(sanitizer);
+    this.chartType = ChartType.SCATTER;
   }
 }

@@ -11,7 +11,7 @@
   ],
   "entry": [
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2523147881",
@@ -107,7 +107,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2602139465",
@@ -198,7 +198,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2495748469",
@@ -258,7 +258,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2570179677",
@@ -370,7 +370,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2621928079",
@@ -457,7 +457,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2579480385",
@@ -534,7 +534,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2516412263",
@@ -635,7 +635,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2561829833",
@@ -703,7 +703,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2561829445",
@@ -780,7 +780,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2650237299",
@@ -856,7 +856,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2514822491",
@@ -941,7 +941,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2607334917",
@@ -1040,7 +1040,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2500078065",
@@ -1124,7 +1124,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2525292085",
@@ -1200,7 +1200,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2505994783",
@@ -1302,7 +1302,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2577898191",
@@ -1386,7 +1386,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2588488077",
@@ -1481,7 +1481,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2634852059",
@@ -1568,7 +1568,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2506296495",
@@ -1653,7 +1653,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2525327943",
@@ -1748,7 +1748,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2559782265",
@@ -1849,7 +1849,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2495391709",
@@ -1937,7 +1937,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2587847185",
@@ -2025,7 +2025,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2489352065",
@@ -2096,7 +2096,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "id": "2604840457",
@@ -2180,7 +2180,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "meta": {
@@ -2219,7 +2219,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "meta": {
@@ -2258,7 +2258,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "meta": {
@@ -2297,7 +2297,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "meta": {
@@ -2336,7 +2336,7 @@
       }
     },
     {
-      "fullUrl": "https://xxxxx",
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/MedicationOrder/xxxxxxxxx",
       "resource": {
         "resourceType": "MedicationOrder",
         "meta": {

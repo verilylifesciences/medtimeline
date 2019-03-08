@@ -5,6 +5,7 @@
 
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
+import * as d3 from 'd3';
 import {DateTime, Interval} from 'luxon';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
@@ -16,7 +17,7 @@ import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
-import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
 import {makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
 
@@ -57,21 +58,26 @@ describe('LineGraphData', () => {
         new Observation(
             makeSampleObservationJson(10, DateTime.utc(1988, 3, 24), [1, 90])),
         [['labelB', 'valueB']]);
+    const obsSet = new ObservationSet([
+      obs1, obs2,
+      new AnnotatedObservation(new Observation(
+          makeSampleObservationJson(10, DateTime.utc(1988, 3, 25), [1, 90])))
+    ]);
 
     const lgData = LineGraphData.fromObservationSetList(
-        'lbl', new Array(new ObservationSet([obs1, obs2])), loincCodeGroup,
-        TestBed.get(DomSanitizer), []);
+        'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer),
+        []);
 
     expect(lgData.tooltipMap.size).toBe(2);
-
-    const seriesColor = lgData.series[0].legendInfo.fill;
     expect(lgData.tooltipMap.get('575078400000'))
-        .toEqual(new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs1, TestBed.get(DomSanitizer)));
+        .toEqual(
+            new GenericAnnotatedObservationTooltip(true, d3.rgb(0, 48, 135))
+                .getTooltip(obs1, TestBed.get(DomSanitizer)));
 
     expect(lgData.tooltipMap.get('575164800000'))
-        .toEqual(new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs2, TestBed.get(DomSanitizer)));
+        .toEqual(
+            new GenericAnnotatedObservationTooltip(true, d3.rgb(0, 48, 135))
+                .getTooltip(obs2, TestBed.get(DomSanitizer)));
   });
 
   it('fromObservationSetList should handle two tooltips for same timestamp',
@@ -84,18 +90,22 @@ describe('LineGraphData', () => {
            new Observation(makeSampleObservationJson(
                10, DateTime.utc(1988, 3, 23), [1, 90])),
            [['labelB', 'valueB']]);
+       const obsSet = new ObservationSet([
+         obs1, obs2,
+         new AnnotatedObservation(new Observation(
+             makeSampleObservationJson(10, DateTime.utc(1988, 3, 25), [1, 90])))
+       ]);
 
        const lgData = LineGraphData.fromObservationSetList(
-           'lbl', new Array(new ObservationSet([obs1, obs2])), loincCodeGroup,
-           TestBed.get(DomSanitizer), []);
+           'lbl', new Array(obsSet), loincCodeGroup, TestBed.get(DomSanitizer),
+           []);
 
-       const seriesColor = lgData.series[0].legendInfo.fill;
        expect(lgData.tooltipMap.size).toBe(1);
        expect(lgData.tooltipMap.get('575078400000'))
            .toEqual(
-               new GenericAnnotatedObservationTooltip(true, seriesColor)
+               new GenericAnnotatedObservationTooltip(true, d3.rgb(0, 48, 135))
                    .getTooltip(obs1, TestBed.get(DomSanitizer)) +
-               new GenericAnnotatedObservationTooltip(false, seriesColor)
+               new GenericAnnotatedObservationTooltip(false, d3.rgb(0, 48, 135))
                    .getTooltip(obs2, TestBed.get(DomSanitizer)));
      });
 
@@ -158,25 +168,94 @@ describe('LineGraphData', () => {
        }).toThrowError();
      });
 
-  it('fromObservationSetList should set abnormal value tooltip correctly.',
+
+  it('fromObservationSetList should set y axis display as display' +
+         ' bounds if min/max of data fall outside of this range',
      () => {
        const obsSet1 = new ObservationSet([
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
              100, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             -10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
        ]);
-       const obsSetList = new Array(obsSet1);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             -40, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetList(
            'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
-       const seriesColor = lgData.series[0].legendInfo.fill;
-       const params = {};
-       params['label'] = 'Hemoglobin';
-       params['value'] = 100;
-       params['timestamp'] = 575078400000;
-       expect(lgData.tooltipMap.size).toBe(1);
-       expect(lgData.tooltipMap.get('575078400000'))
-           .toContain(new GenericAbnormalTooltip(false, seriesColor)
-                          .getTooltip(params, TestBed.get(DomSanitizer)));
+
+       expect(lgData.yAxisDisplayBounds).toEqual([0, 50]);
+     });
+
+  it('fromObservationSetList should set y axis display correctly' +
+         ' if points fall outside display bound range in only one direction',
+     () => {
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             100, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             5, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             6, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+       const lgData = LineGraphData.fromObservationSetList(
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
+
+       expect(lgData.yAxisDisplayBounds).toEqual([1, 50]);
+     });
+
+  it('fromObservationSetList should set y axis display as bounds ' +
+         ' passed in if forceDisplayBounds is true',
+     () => {
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             40, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             5, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             6, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+
+       const loincCodeGroup2 = new LOINCCodeGroup(
+           new StubFhirService(), 'lbl',
+           [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
+           ChartType.LINE, [0, 50], true);
+       const lgData = LineGraphData.fromObservationSetList(
+           'lbl', obsSetList, loincCodeGroup2, TestBed.get(DomSanitizer), []);
+
+       expect(lgData.yAxisDisplayBounds).toEqual([0, 50]);
      });
 
   it('fromMedicationOrderSet should have one data series' +
@@ -220,12 +299,14 @@ describe('LineGraphData', () => {
        expect(lgData.series.length).toBe(1);
 
        const series = lgData.series[0];
-       expect(series.coordinates.length).toBe(4);
+       expect(series.xValues.length).toBe(4);
+       expect(series.yValues.length).toBe(4);
 
-       expect(series.coordinates).toEqual([
-         [medAdmin1.timestamp, 95], [medAdmin2.timestamp, 100],
-         [medAdmin1Order2.timestamp, 105], [medAdmin2Order2.timestamp, 110]
+       expect(series.xValues).toEqual([
+         medAdmin1.timestamp, medAdmin2.timestamp, medAdmin1Order2.timestamp,
+         medAdmin2Order2.timestamp
        ]);
+       expect(series.yValues).toEqual([95, 100, 105, 110]);
      });
 
 

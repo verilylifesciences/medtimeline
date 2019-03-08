@@ -7,6 +7,5 @@ export const environment = {
   production: true,
   useMockServer: false,
   mockDataFolder: '',
-  mockDataFiles: [],
-  useDebugger: false,
+  mockDataFiles: []
 };

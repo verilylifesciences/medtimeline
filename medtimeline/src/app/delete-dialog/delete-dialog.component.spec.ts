@@ -4,8 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatDialogRef} from '@angular/material/dialog';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {MatDialogRef} from '@angular/material';
 
 import {DeleteDialogComponent} from './delete-dialog.component';
 
@@ -17,10 +16,7 @@ describe('DeleteDialogComponent', () => {
     TestBed
         .configureTestingModule({
           declarations: [DeleteDialogComponent],
-          providers: [
-            {provide: MatDialogRef, useValue: {}},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
-          ]
+          providers: [{provide: MatDialogRef, useValue: {}}]
         })
         .compileComponents();
   }));

@@ -4,15 +4,13 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatCardModule, MatDialog, MatIconModule, MatTooltipModule} from '@angular/material';
+import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
-import {DateTime, Interval} from 'luxon';
-import {ChartsModule} from 'ng2-charts';
+import {DateTime} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
 import {StubFhirService} from 'src/app/test_utils';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../card/card.component';
 
@@ -26,16 +24,15 @@ describe('CustomizableTimelineComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          imports:
-              [MatCardModule, MatIconModule, ChartsModule, MatTooltipModule],
+          imports: [MatCardModule, MatIconModule],
           declarations: [
-            CustomizableTimelineComponent, CustomizableGraphComponent,
-            CardComponent
+            CustomizableTimelineComponent,
+            CustomizableGraphComponent,
+            CardComponent,
           ],
           providers: [
             {provide: MatDialog, useValue: null},
-            {provide: FhirService, useValue: new StubFhirService()},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+            {provide: FhirService, useValue: new StubFhirService()}
           ]
         })
         .compileComponents();
@@ -47,8 +44,6 @@ describe('CustomizableTimelineComponent', () => {
     customGraph =
         fixture.debugElement.query(By.directive(CustomizableGraphComponent))
             .componentInstance;
-    component.dateRange = Interval.fromDateTimes(
-        DateTime.local(2012, 8, 4, 12), DateTime.local(2012, 8, 15, 12));
     fixture.detectChanges();
   });
 
@@ -56,24 +51,28 @@ describe('CustomizableTimelineComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should listen for event to update eventlines', (() => {
+  it('should listen for event to update eventlines', async(() => {
        fixture.detectChanges();
        const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
        spyOn(component.updateEventLines, 'emit');
        customGraph.data.addPointToSeries(
-           new CustomizableGraphAnnotation(dateTime, 'title!'));
+           0, new CustomizableGraphAnnotation(dateTime, 'title!'));
        customGraph.pointsChanged.emit(customGraph.data);
-       expect(component.updateEventLines.emit)
-           .toHaveBeenCalledWith({id: component.id, data: component.data});
+       fixture.whenStable().then(() => {
+         expect(component.updateEventLines.emit)
+             .toHaveBeenCalledWith({id: component.id, data: component.data});
+       });
      }));
 
-  it('should emit event to remove card', (() => {
+  it('should emit event to remove card', async(() => {
        fixture.detectChanges();
        spyOn(component.removeEvent, 'emit');
        const button = fixture.debugElement.nativeElement.querySelector(
            'mat-icon.removeCardButton');
        button.click();
-       expect(component.removeEvent.emit)
-           .toHaveBeenCalledWith({id: component.id, value: component.data});
+       fixture.whenStable().then(() => {
+         expect(component.removeEvent.emit)
+             .toHaveBeenCalledWith({id: component.id, value: component.data});
+       });
      }));
 });

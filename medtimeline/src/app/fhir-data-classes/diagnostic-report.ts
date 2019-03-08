@@ -54,8 +54,8 @@ const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
 export class DiagnosticReport {
   readonly id: string;
 
-  /** Specimen this report is based on */
-  readonly specimen: Specimen;
+  /** Specimens this report is based on */
+  readonly specimens = new Array<Specimen>();
 
   /** Results in the form of observations */
   readonly results = new Array<Observation>();
@@ -70,19 +70,14 @@ export class DiagnosticReport {
 
     // Contained resources may be either specimens or observations.
     const contained = json.contained;
-    const specimens = [];
     for (const rsc of contained) {
       if (rsc.resourceType === FhirResourceType.Specimen) {
-        specimens.push(new Specimen(rsc));
+        this.specimens.push(new Specimen(rsc));
       } else if (rsc.resourceType === FhirResourceType.Observation) {
         this.results.push(new Observation(rsc));
       }
       // Silently ignore all other contained resource types.
     }
-    if (specimens.length > 1) {
-      throw Error('The report cannot have multiple specimens.');
-    }
-    this.specimen = specimens[0];
 
     if (!json.status) {
       throw Error(
@@ -101,9 +96,9 @@ export class AnnotatedDiagnosticReport {
   readonly timestamp: DateTime;
   readonly report: DiagnosticReport;
 
-  constructor(report: DiagnosticReport) {
+  constructor(report: DiagnosticReport, cultureType: string) {
     // Get the timestamp from the collection time of the specimen.
-    const specimen = report.specimen;
+    const specimen = report.specimens.find(s => (s.type === cultureType));
     if (specimen) {
       this.timestamp = specimen.collectedDateTime ?
           specimen.collectedDateTime :

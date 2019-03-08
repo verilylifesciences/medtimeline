@@ -1,13 +1,9 @@
 .cardContainer {
-  background-color: #202020; /* GREY_900 */
+  background-color: #002356; /* PRIMARY_COLOR */
   display: flex;
-  display: -ms-flexbox; /* For IE10 */
   padding: 15px;
   width: 100%;
   min-height: 100%;
-  height: 100%;
-  flex-direction: column;
-  -ms-flex-direction: column; /* For IE10 */
   /* Disable selecting/highlighting on the page. */
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -16,59 +12,28 @@
           user-select: none; /* Chrome and Opera */
 }
 
-.draggable {
-  display: flex;
-  display: -ms-flexbox;
-  height: 100%;
-  flex-direction: column;
-  -ms-flex-direction: column; /* For IE10 */
-}
-
-.flexSpacer {
-  flex: 1 1 0%;
-  -ms-flex: 1 1 0%; /* For IE10 */
-}
-
-::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {
-  display: -ms-flexbox; /* For IE10 */
-}
-
 .mat-toolbar {
-   /* Deep Purple 800 to Pink 900 */
-  background-image: linear-gradient(to right, #4527A0 , #870D4E);
-  color: white;
+  background-color: #00002d; /* PRIMARY_COLOR, dark variant */
 }
 
-::ng-deep .gu-unselectable app-data-selector-menu {
+::ng-deep .gu-unselectable app-data-selector-menu { 
   /* Hide the data selector menus while a card is being dragged. */
   opacity: 0 !important;
 }
 
+.pinned {
+  background-color: #002356; /* PRIMARY_COLOR */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
 .makeGutters {
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
 }
 
 ::ng-deep .mat-toolbar-single-row {
   white-space: unset !important;
-}
-
-::ng-deep .timelineToolbarMain {
-  float: right;
-  margin-right: 15px;
-  display: -ms-flexbox;  /* For IE10 */
-}
-
-::ng-deep app-card {
-  flex-direction: row;
-  -ms-flex-direction: row;
-  display: flex;
-  display: -ms-flexbox; /* For IE10 */
-}
-
-::ng-deep app-data-selector-menu {
-  flex-direction: row;
-  -ms-flex-direction: row;
-  display: flex;
-  display: -ms-flexbox; /* For IE10 */
 }

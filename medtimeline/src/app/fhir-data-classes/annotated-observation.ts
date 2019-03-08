@@ -9,7 +9,6 @@ import {LabeledClass} from '../fhir-resource-set';
 
 import {MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
-import {ObservationSet} from './observation-set';
 
 /**
  * An Observation with additional information to display in its tooltip.
@@ -21,6 +20,7 @@ export class AnnotatedObservation extends LabeledClass {
        * The items in this list are [label, value] pairs to be displayed in
        * a tooltip.
        * This array should be treated as immutable.
+       * TODO(b/126219092): Pull in a library to enforce immutability.
        */
       readonly annotationValues = new Array<[string, string]>()) {
     super(observation.label);
@@ -101,33 +101,6 @@ export class AnnotatedObservation extends LabeledClass {
       annotations.push([
         'Time before dose #' + doseCountAfter, timeBeforeNext.toFormat('h:mm')
       ]);
-    }
-
-    return new AnnotatedObservation(observation, annotations);
-  }
-
-  /**
-   * Makes an AnnotatedObservation for blood pressure, with information about
-   * the blood pressure location.
-   * @param observation The monitoring observation to annotate
-   * @param locationSet The ObservationSet containing Blood Pressure location
-   *     observations.
-   * @throws Error if there are two observations in locationSet
-   *     that contain the timestamp of the observation
-   */
-  static forBloodPressure(
-      observation: Observation,
-      locationSet: ObservationSet): AnnotatedObservation {
-    const annotations = new Array<[string, string]>();
-    // Find the medication order set that coincides in time with this
-    // administration (if any).
-    if (locationSet) {
-      for (const locationObs of locationSet.resourceList) {
-        if (locationObs.observation.timestamp.equals(observation.timestamp)) {
-          annotations.push(
-              ['Blood Pressure Location', locationObs.observation.result]);
-        }
-      }
     }
 
     return new AnnotatedObservation(observation, annotations);

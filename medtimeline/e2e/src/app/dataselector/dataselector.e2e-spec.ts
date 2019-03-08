@@ -19,8 +19,7 @@ describe('Data Selector', () => {
   const subMenu = dataSelector.getSubMenu(1);
 
   beforeEach(async () => {
-    await browser.get('/setup');
-    await index.navigateToMainPage();
+    await browser.get('/');
     await index.expectToExist('.mat-menu-panel', false);
     const dataSelectorButton = dataSelector.getAddCardButton();
     await index.clickOnElement(dataSelectorButton);
@@ -36,7 +35,7 @@ describe('Data Selector', () => {
        const menu = await dataSelector.getMenu();
        const itemsText = await dataSelector.getItemsText(menu).getText();
        expect(itemsText).toEqual(
-           ['Add Textbox', 'Add Custom Timeline', 'Add Data Timeline']);
+           ['Add Blank Annotation', 'Add Custom Timeline', 'Add Chart']);
      });
 
   it('menu should close after adding a textbox', async () => {
@@ -78,11 +77,11 @@ describe('Data Selector', () => {
     const vitalsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(vitalsMenu).getText();
 
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set([
-          'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood Pressure',
-          'Oxygen Saturation (SpO2)'
-        ]));
+    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
+      'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood pressure',
+      'Oxygen Saturation'
+    ]);
+    expect(itemsText.length).toEqual(5);
   });
 
   it('lab results option menu should have correct options', async () => {
@@ -97,14 +96,12 @@ describe('Data Selector', () => {
     const labsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(labsMenu).getText();
 
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set([
-          'ALT', 'Alkaline Phosphatase', 'AST (Aspartate Aminotransferase)',
-          'Bilirubin, Direct', 'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
-          'Complete Blood Count', 'Complete Blood Count White Blood Cell',
-          'Creatinine', 'CSF', 'ESR (Erythrocyte Sedimentation Rate)',
-          'Other Fluid', 'Uric acid', 'Urinalysis'
-        ]));
+    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
+      'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT', 'AST',
+      'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total', 'GGTP',
+      'LDH', 'CBC', 'CBC White Blood Cell', 'Urinalysis'
+    ]);
+    expect(itemsText.length).toEqual(14);
   });
 
   it('vanc and gent option menu should have correct options', async () => {
@@ -119,9 +116,9 @@ describe('Data Selector', () => {
     const medsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(medsMenu).getText();
 
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(
-            ['Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin']));
+    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
+      'Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin'
+    ]);
     expect(itemsText.length).toEqual(3);
   });
 
@@ -137,9 +134,10 @@ describe('Data Selector', () => {
     const mbMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(mbMenu).getText();
 
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(
-            ['Blood', 'CSF Microbiology', 'Other', 'Respiratory', 'Stool']));
+    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
+      'Stool', 'NP Swab'
+    ]);
+    expect(itemsText.length).toEqual(2);
   });
 
   it('color and text of each clinical concept should reflect no data.',

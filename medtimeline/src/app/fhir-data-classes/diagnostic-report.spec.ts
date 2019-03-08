@@ -8,7 +8,7 @@ import {DiagnosticReport, DiagnosticReportStatus} from './diagnostic-report';
 import {Observation} from './observation';
 import {Specimen} from './specimen';
 
-const specimen = {
+const specimen1 = {
   resourceType: 'Specimen',
   id: 'specimen_id',
   type: {text: 'specimen_source_type'},
@@ -41,7 +41,7 @@ describe('DiagnosticReport', () => {
   const drString = {
     id: 'dr_id',
     status: 'final',
-    contained: [specimen, observation1]
+    contained: [specimen1, specimen2, observation1]
   };
 
   it('should get ID from json if it is present', () => {
@@ -68,21 +68,17 @@ describe('DiagnosticReport', () => {
     }).toThrowError();
   });
 
-  it('should raise an error if there are multiple specimens', () => {
-    expect(() => {
-      const dr = new DiagnosticReport(
-          {id: 'dr_id', contained: [specimen, specimen2, observation1]});
-    }).toThrowError();
-  });
-
   it('should get status from json if it is present', () => {
     const dr = new DiagnosticReport(drString);
     expect(dr.status).toBe(DiagnosticReportStatus.Final);
   });
 
-  it('should get contained specimen from json if it is present', () => {
+  it('should get contained specimens from json if they are present', () => {
     const dr = new DiagnosticReport(drString);
-    expect(dr.specimen).toEqual(new Specimen(specimen));
+    expect(dr.specimens.length).toBe(2);
+    expect(dr.specimens).toEqual([
+      new Specimen(specimen1), new Specimen(specimen2)
+    ]);
   });
 
   it('should get contained observations from json if they are present', () => {

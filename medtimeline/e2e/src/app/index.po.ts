@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {browser, by, element, ElementFinder, ExpectedConditions, Key} from 'protractor';
+import {browser, by, ElementFinder, ExpectedConditions} from 'protractor';
 
 export class IndexPage {
   // Wait for an element with the specified selector to load.
@@ -15,15 +15,6 @@ export class IndexPage {
     await this.waitForElement(selector).then((isPresent: boolean) => {
       expect(isPresent).toBe(expected);
     });
-  }
-
-  // Return whether the element is present, without waiting for it to exist.
-  async hasInnerElement(el: ElementFinder, selector: string) {
-    return el.element(by.css(selector)).isPresent();
-  }
-
-  async hasElement(selector: string) {
-    return element(by.css(selector)).isPresent();
   }
 
   async waitForClickable(el: ElementFinder, timeout: number) {
@@ -68,12 +59,6 @@ export class IndexPage {
     await el.sendKeys(text);
   }
 
-  async pressEscape() {
-    await browser.actions()
-        .sendKeys.call(browser.actions(), Key.ESCAPE)
-        .perform();
-  }
-
   // Get the text value of the inner element, specified by selector, of el.
   async getText(el: ElementFinder, selector: string) {
     return el.element(by.css(selector)).getText();
@@ -83,10 +68,5 @@ export class IndexPage {
   // by x and/or y. Default click is in the middle of the element.
   async clickOnElement(el: ElementFinder, x?: number, y?: number) {
     await browser.actions().mouseMove(el, {x: x, y: y}).click().perform();
-  }
-
-  async navigateToMainPage() {
-    const continueButton = element(by.css('#continue'));
-    await continueButton.click();
   }
 }

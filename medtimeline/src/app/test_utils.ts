@@ -40,7 +40,7 @@ export class StubFhirService extends FhirService {
     return Promise.resolve(makeMedicationOrder());
   }
 
-  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+  getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
     return Promise.resolve(
         [makeMedicationAdministration(DateTime.utc().toISO())]);
@@ -50,9 +50,7 @@ export class StubFhirService extends FhirService {
     return Promise.resolve([]);
   }
 
-  saveStaticNote(image: HTMLCanvasElement, date: string): Promise<boolean> {
-    return Promise.resolve(true);
-  }
+  saveStaticNote(html: string, date: string): void {}
 
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {
@@ -62,7 +60,7 @@ export class StubFhirService extends FhirService {
 
 export function makeSampleObservationJson(
     value: number, timestamp: DateTime,
-    referenceRange: [number, number] = [10, 20], interpretation = 'N'): any {
+    referenceRange: [number, number] = [10, 20]): any {
   return {
     code: {
       coding: [{system: 'http://loinc.org', code: '718-7'}],
@@ -70,12 +68,7 @@ export function makeSampleObservationJson(
     },
     effectiveDateTime: timestamp.toISO(),
     valueQuantity: {value: value},
-    interpretation: {
-      coding: [{
-        code: interpretation,
-        system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
-      }]
-    },
+    interpretation: {text: 'NA'},
     referenceRange:
         [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}]
   };
@@ -106,19 +99,14 @@ export function makeMedicationOrder(): MedicationOrder {
 }
 
 export function makeSampleDiscreteObservationJson(
-    result: string, timestamp: DateTime, interpretation = 'N'): any {
+    result: string, timestamp: DateTime): any {
   return {
     code: {
       coding: [{system: 'http://loinc.org', code: '4090-7'}],
-      text: 'Vanc pk'
+      text: 'Vanco Pk'
     },
     effectiveDateTime: timestamp.toISO(),
-    interpretation: {
-      coding: [{
-        code: interpretation,
-        system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
-      }]
-    },
+    interpretation: {text: 'NA'},
     valueCodeableConcept: {text: result}
   };
 }
@@ -212,55 +200,6 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
       ],
       status: 'final',
       category: {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-    }),
-    new DiagnosticReport({
-      id: 'id3',
-      contained: [
-        {
-          resourceType: 'Specimen',
-          id: '1',
-          type: {text: 'Stool'},
-          collection: {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
-        },
-        {
-          resourceType: 'Observation',
-          id: '2',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'NEGORFLORA',
-              display: 'Neg or Flora'
-            }]
-          }
-        },
-        {
-          resourceType: 'Observation',
-          id: '3',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'CHECKRESULT',
-              display: 'Check Result'
-            }]
-          }
-        }
-      ],
-      status: 'corrected',
-      category: {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-    }),
+    })
   ];
 }
