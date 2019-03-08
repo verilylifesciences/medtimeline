@@ -117,7 +117,7 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(medsMenu).getText();
 
     expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
-      'Vanc & Gent Summary', 'Vancomycin', 'Gentamicin'
+      'Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin'
     ]);
     expect(itemsText.length).toEqual(3);
   });

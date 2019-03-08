@@ -4,9 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
-import {APP_TIMESPAN} from 'src/constants';
-
-import {FhirService} from '../fhir.service';
 import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/customizable-graph-annotation';
 
 import {GraphData} from './graphdata';

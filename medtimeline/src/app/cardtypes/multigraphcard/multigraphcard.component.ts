@@ -85,6 +85,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   }
 
   private initializeData() {
+    const self = this;
     this.card = new Card(
         this.fhirService, this.resourceCodeGroups, this.dateRange,
         this.sanitizer);
@@ -94,8 +95,24 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
       this.getLabelText().then(lblText => {
         this.unitsLabel = lblText;
       });
-      if (this.card.axes.length > 1) {
-        this.setRegions();
+
+      const unique = new Set<DisplayGrouping>();
+      if (this.containedGraphs) {
+        // Wait until the resize is "done" to re-render each graph. This reduces
+        // choppy, computationally expensive re-renders as elements resize.
+        clearTimeout(this.resizeTimer);
+        this.resizeTimer = setTimeout(() => {
+          self.containedGraphs.forEach(graph => {
+            graph.regenerateChart();
+            Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
+              unique.add(group);
+            });
+          });
+          this.uniqueDisplayGroups = Array.from(unique.keys());
+          if (this.card.axes.length > 1) {
+            this.setRegions();
+          }
+        }, this.RESIZE_WAIT);
       }
     }
   }
@@ -107,27 +124,6 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
     if (dateRangeChange &&
         dateRangeChange.previousValue !== dateRangeChange.currentValue) {
       this.initializeData();
-    }
-  }
-
-  // This function is called upon resize to re-render all the contained graphs
-  // so they snap to the correct size.
-  renderContainedGraphs() {
-    const self = this;
-    const unique = new Set<DisplayGrouping>();
-    if (this.containedGraphs) {
-      // Wait until the resize is "done" to re-render each graph. This reduces
-      // choppy, computationally expensive re-renders as elements resize.
-      clearTimeout(this.resizeTimer);
-      this.resizeTimer = setTimeout(() => {
-        self.containedGraphs.forEach(graph => {
-          graph.regenerateChart();
-          Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
-            unique.add(group);
-          });
-        });
-        this.uniqueDisplayGroups = Array.from(unique.keys());
-      }, this.RESIZE_WAIT);
     }
   }
 
