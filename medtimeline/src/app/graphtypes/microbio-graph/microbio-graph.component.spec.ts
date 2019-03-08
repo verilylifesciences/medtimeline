@@ -5,6 +5,10 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
+import * as d3 from 'd3';
+import {negFinalMB, posFinalMB} from 'src/app/clinicalconcepts/display-grouping';
+import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
+import {CHECK_RESULT_CODE, NEGFLORA_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
 import {MicrobioGraphComponent} from './microbio-graph.component';
 
@@ -26,6 +30,110 @@ describe('MicrobioGraphComponent', () => {
   });
 
   it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should color positive and negative point fills correctly', () => {
+    const jsonCircles = [
+      {
+        'x_axis': 30,
+        'y_axis': 30,
+        'radius': 20,
+        'color': 'green',
+        id: CHECK_RESULT_CODE
+      },
+      {
+        'x_axis': 70,
+        'y_axis': 70,
+        'radius': 20,
+        'color': 'purple',
+        id: NEGFLORA_CODE
+      },
+    ];
+
+    const container =
+        d3.select('body').append('svg').attr('width', 200).attr('height', 200);
+
+    const c = container.selectAll('circle')
+                  .data(jsonCircles)
+                  .enter()
+                  .append('circle');
+
+    const fakeGraphObject = {
+      getCircles: function() {
+        return c;
+      }
+    };
+
+    component.onRendered(fakeGraphObject);
+
+    const circles = container.selectAll('circle');
+    expect(circles
+               .filter(function(d, i) {
+                 return i === 0;
+               })
+               .style('fill'))
+        .toEqual(posFinalMB.fill.toString());
+    expect(circles
+               .filter(function(d, i) {
+                 return i === 1;
+               })
+               .style('fill'))
+        .toEqual(negFinalMB.fill.toString());
+
+    expect(component).toBeTruthy();
+  });
+
+
+  it('should have no fill and only stroke for preliminary points', () => {
+    const jsonCircles = [
+      {
+        'x_axis': 30,
+        'y_axis': 30,
+        'radius': 20,
+        'color': 'green',
+        id: CHECK_RESULT_CODE + DiagnosticReportStatus.Preliminary.toString()
+      },
+      {
+        'x_axis': 70,
+        'y_axis': 70,
+        'radius': 20,
+        'color': 'purple',
+        id: NEGFLORA_CODE + DiagnosticReportStatus.Preliminary.toString()
+      },
+    ];
+
+    const container =
+        d3.select('body').append('svg').attr('width', 200).attr('height', 200);
+
+    const c = container.selectAll('circle')
+                  .data(jsonCircles)
+                  .enter()
+                  .append('circle');
+
+    const fakeGraphObject = {
+      getCircles: function() {
+        return c;
+      }
+    };
+
+    component.onRendered(fakeGraphObject);
+
+    const circles = container.selectAll('circle');
+    const posPrelim = circles.filter(function(d, i) {
+      return i === 0;
+    });
+    expect(posPrelim.style('fill')).toEqual('transparent');
+    expect(posPrelim.style('stroke')).toEqual(posFinalMB.fill.toString());
+
+
+    const negPrelim = circles.filter(function(d, i) {
+      return i === 1;
+    });
+    expect(negPrelim.style('fill')).toEqual('transparent');
+
+    expect(negPrelim.style('stroke')).toEqual(negFinalMB.fill.toString());
+
     expect(component).toBeTruthy();
   });
 });

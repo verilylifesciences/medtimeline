@@ -22,13 +22,10 @@ export class MedicationTooltip extends Tooltip<MedicationOrder> {
         Tooltip.formatTimestamp(order.firstAdministration.timestamp);
     const lastDose =
         Tooltip.formatTimestamp(order.lastAdmininistration.timestamp);
-    const dosageInstruction = order.dosageInstruction;
     const table = Tooltip.createNewTable();
     Tooltip.addHeader(medication, table, sanitizer);
     Tooltip.addRow(table, ['First Dose', firstDose], sanitizer);
     Tooltip.addRow(table, ['Last Dose', lastDose], sanitizer);
-    Tooltip.addRow(
-        table, ['Dosage Instructions', dosageInstruction], sanitizer);
     return table.outerHTML;
   }
 }

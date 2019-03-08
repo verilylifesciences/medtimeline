@@ -6,7 +6,7 @@
 import {Component, forwardRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as d3 from 'd3';
-import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 'src/app/clinicalconcepts/display-grouping';
+import {negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 'src/app/clinicalconcepts/display-grouping';
 import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
@@ -77,13 +77,5 @@ export class MicrobioGraphComponent extends StepGraphComponent {
           return !d.id.includes(CHECK_RESULT_CODE);
         })
         .style('stroke', negPrelimMB.outline.toString());
-  }
-
-  // Toggle the display of various points on the chart, and style various points
-  // based on report status. This method is called after the user clicks on a
-  // particular displayGroup in the legend.
-  toggleDisplayGroup(displayGroup: DisplayGrouping) {
-    this.chart.toggle(this.displayGroupToSeries.get(displayGroup));
-    this.wrapYAxisLabels();
   }
 }

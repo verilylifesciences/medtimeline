@@ -5,13 +5,12 @@
 
 import {DateTime} from 'luxon';
 
-import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder, makeSampleObservationJson} from '../test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from './medication-administration';
 import {MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
-import {ObservationSet} from './observation-set';
 
 // Copyright 2018 Verily Life Sciences Inc.
 //
@@ -103,24 +102,5 @@ describe('AnnotatedObservation', () => {
          'Time before dose #3', '72:00'
        ]);
        expect(annotated.label).toBe(obs.label);
-     });
-
-  it('forBloodPressure should correctly give annotations with accurate bp locations',
-     () => {
-       const json = makeSampleDiscreteObservationJson(
-           'location', DateTime.fromISO('1992-11-06T00:00:00.00'));
-       json.code = {
-         coding: [{code: '41904-4', system: 'http://loinc.org'}],
-         text: 'Blood Pressure Location'
-       };
-       const locationObservationSet = new ObservationSet(
-           [new AnnotatedObservation(new Observation(json))]);
-       const annotated =
-           AnnotatedObservation.forBloodPressure(obs, locationObservationSet);
-       expect(annotated.observation).toEqual(obs);
-       expect(annotated.annotationValues.length).toEqual(1);
-       expect(annotated.annotationValues[0]).toEqual([
-         'Blood Pressure Location', 'location'
-       ]);
      });
 });
