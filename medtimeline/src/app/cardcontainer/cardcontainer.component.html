@@ -4,10 +4,10 @@
   <div fxFlex></div>
   <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
 </mat-toolbar>
-<div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start" id="{{CARDHOLDER}}">
+<div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start">
   <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"
     (addCustomTimeline)="addCustomTimeline()"></app-data-selector-menu>
-  <div fxLayout="column" dragula="graphcards" id="{{CARDHOLDER}}" class="draggable">
+  <div fxLayout="column" dragula="graphcards" class="draggable">
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
       <app-textboxcard *ngIf="element['concept'] ==='textbox'" [id]="element['id']" [noteString]="element['value']"
         (removeEvent)="removeDisplayedCard($event)"></app-textboxcard>

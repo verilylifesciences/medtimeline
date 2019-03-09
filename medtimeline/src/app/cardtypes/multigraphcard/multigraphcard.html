@@ -1,5 +1,4 @@
-<app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel"
-  (onRender)="this.renderContainedGraphs()" (removeEvent)="remove()">
+<app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel" (removeEvent)="remove()">
   <ng-container class="legends-block">
     <ng-container *ngIf="uniqueDisplayGroups.length > 1">
       <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups"

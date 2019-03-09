@@ -23,10 +23,6 @@ import {ChartType} from '../graphtypes/graph/graph.component';
   styleUrls: ['./cardcontainer.component.css']
 })
 export class CardcontainerComponent {
-  // Constants for dragging regions of this component.
-  // TODO(b/119251288): Extract out the constants to somewhere shared between
-  // the ts files and html files.
-  readonly CARDHOLDER = 'cardholder';
   // How long to display the snack bar for.
   private readonly DISPLAY_TIME = 6000;
 
@@ -106,24 +102,20 @@ export class CardcontainerComponent {
   // cards around.
   private setUpDrag(dragulaService: DragulaService) {
     this.subs.add(dragulaService.drop('graphcards').subscribe((value) => {
-      // These cases are dragging from within the card holder.
-      if (value.source.id === this.CARDHOLDER &&
-          value.target.id === this.CARDHOLDER) {
-        // Rearrange the order of this.displayedConcepts if graph/textbox
-        // cards are reordered. We do not use dragulaModel since we cannot use
-        // it for separate lists on the configuration panel.
-        let originalIndex = this.displayedConcepts.map(x => x.id).indexOf(
-            value.el.getAttribute('data-index'));
-        const siblingIndex = this.getSiblingIdx(value);
-        const elementDisplayed = this.displayedConcepts[originalIndex];
-        // Add the element to its new position.
-        this.displayedConcepts.splice(siblingIndex, 0, elementDisplayed);
-        // Adjust the original position if needed.
-        if (siblingIndex < originalIndex) {
-          originalIndex++;
-        }
-        this.displayedConcepts.splice(originalIndex, 1);
+      // Rearrange the order of this.displayedConcepts if graph/textbox
+      // cards are reordered. We do not use dragulaModel since we cannot use
+      // it for separate lists on the configuration panel.
+      let originalIndex = this.displayedConcepts.map(x => x.id).indexOf(
+          value.el.getAttribute('data-index'));
+      const siblingIndex = this.getSiblingIdx(value);
+      const elementDisplayed = this.displayedConcepts[originalIndex];
+      // Add the element to its new position.
+      this.displayedConcepts.splice(siblingIndex, 0, elementDisplayed);
+      // Adjust the original position if needed.
+      if (siblingIndex < originalIndex) {
+        originalIndex++;
       }
+      this.displayedConcepts.splice(originalIndex, 1);
     }));
   }
 
@@ -273,7 +265,6 @@ export class CardcontainerComponent {
             $event.data.annotations.get(x).color.hex().replace('#', '')
       };
     });
-    const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     this.eventsForCustomTimelines.set($event.id, eventlines);
 
     // Consolidate all event lines from all custom timelines.
