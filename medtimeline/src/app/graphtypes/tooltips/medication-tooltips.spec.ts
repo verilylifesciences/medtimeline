@@ -57,7 +57,32 @@ describe('MedicationTooltip', () => {
             '<td class="name">Last Dose</td>' +
             '<td class="value">' +
             Tooltip.formatTimestamp(order.lastAdmininistration.timestamp) +
-            '</td></tr></tbody></table>');
+            '</td></tr>' +
+            '<tr><td class="name">Dosage Instructions</td><td class="value">Could not retrieve dosage instructions.</td></tr>' +
+            '</tbody></table>');
+  });
+
+  it('should show dosage instruction information', () => {
+    order.dosageInstruction = 'dosage';
+    const tooltipText =
+        new MedicationTooltip().getTooltip(order, TestBed.get(DomSanitizer));
+    expect(tooltipText).toBeDefined();
+    expect(tooltipText)
+        .toEqual(
+            '<table class="c3-tooltip">' +
+            '<tbody><tr><th colspan="2">vancomycin</th></tr>' +
+            '<tr>' +
+            '<td class="name">First Dose</td>' +
+            '<td class="value">' +
+            Tooltip.formatTimestamp(order.firstAdministration.timestamp) +
+            '</td></tr>' +
+            '<tr>' +
+            '<td class="name">Last Dose</td>' +
+            '<td class="value">' +
+            Tooltip.formatTimestamp(order.lastAdmininistration.timestamp) +
+            '</td></tr>' +
+            '<tr><td class="name">Dosage Instructions</td><td class="value">dosage</td></tr>' +
+            '</tbody></table>');
   });
 });
 
