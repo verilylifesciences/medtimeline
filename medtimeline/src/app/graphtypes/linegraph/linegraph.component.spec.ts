@@ -33,7 +33,7 @@ describe('LineGraphComponent', () => {
       DateTime.utc(1995, 7, 21), DateTime.utc(1995, 7, 22));
   const loincCodeGroup = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
-      [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
+      [new LOINCCode('718-7', labResult, 'Hemoglobin', true)], labResult,
       ChartType.LINE, [0, 50], false);
   beforeEach(async(() => {
     TestBed
@@ -59,13 +59,15 @@ describe('LineGraphComponent', () => {
   it('graph x and y values are correctly passed through', () => {
     fixture.detectChanges();
     const generatedChart = component.generateChart();
-    expect(generatedChart['data']['xs']['Vanc Pk']).toEqual('x_Vanc Pk');
+    expect(generatedChart['data']['xs']['Hemoglobin']).toEqual('x_Hemoglobin');
     expect(generatedChart['data']['columns'][0].map(x => x.toString()))
         .toEqual([
-          'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
+          'x_Hemoglobin', DateTime.utc(1995, 7, 21).toISO(),
           DateTime.utc(1995, 7, 22).toISO()
         ]);
-    expect(generatedChart['data']['columns'][1]).toEqual(['Vanc Pk', 15, 20]);
+    expect(generatedChart['data']['columns'][1]).toEqual([
+      'Hemoglobin', 15, 20
+    ]);
   });
 
   it('region not plotted for normal values when there is more than one series',
