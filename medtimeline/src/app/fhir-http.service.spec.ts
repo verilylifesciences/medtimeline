@@ -41,7 +41,7 @@ describe('FhirService', () => {
       bypassSecurityTrustUrl: () => 'safeString',
       bypassSecurityTrustResourceUrl: () => 'safeString',
     };
-    service = new FhirHttpService(smartOnFhirClient, domSan);
+    service = new FhirHttpService(null, smartOnFhirClient, domSan);
   });
 
 

@@ -4,6 +4,9 @@
   <div fxFlex></div>
   <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
 </mat-toolbar>
+<div *ngIf="useDebugger">
+  <app-debugger></app-debugger>
+</div>
 <div fxLayout="column" class="cardContainer makeGutters" fxLayoutAlign="start">
   <app-data-selector-menu (addCard)="addConceptCard($event)" (addTextbox)="addTextbox()"
     (addCustomTimeline)="addCustomTimeline()"></app-data-selector-menu>
