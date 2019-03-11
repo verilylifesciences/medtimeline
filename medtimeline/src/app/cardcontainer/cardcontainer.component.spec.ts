@@ -24,6 +24,7 @@ import {TextboxcardComponent} from '../cardtypes/textboxcard/textboxcard.compone
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
+import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/customizable-graph-annotation';
@@ -63,7 +64,7 @@ describe('CardcontainerComponent', () => {
             ScatterplotComponent, MicrobioGraphComponent,
             CustomizableTimelineComponent, TimelineToolbarComponent,
             DataSelectorElementComponent, DataSelectorMenuComponent,
-            CardComponent
+            CardComponent, DebuggerComponent
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},

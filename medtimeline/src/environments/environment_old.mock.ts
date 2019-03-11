@@ -10,7 +10,8 @@ export const environment = {
     'DiagnosticReportMockData', 'EncounterMockData',
     'MedicationAdministrationMockData', 'MedicationOrderMockData',
     'ObservationMockData'
-  ]
+  ],
+  useDebugger: false,
 };
 
 /*
