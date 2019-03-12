@@ -1,16 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
-import { DebuggerComponent } from './debugger.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {DebuggerComponent} from './debugger.component';
 
 describe('DebuggerComponent', () => {
   let component: DebuggerComponent;
   let fixture: ComponentFixture<DebuggerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DebuggerComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [DebuggerComponent]})
+        .compileComponents();
   }));
 
   beforeEach(() => {
