@@ -3,9 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef} from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
+import * as d3 from 'd3';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 
 import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
@@ -19,6 +20,8 @@ import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
   ]
 })
 export class LineGraphComponent extends GraphComponent<LineGraphData> {
+  @Input() showTicks: boolean;
+
   constructor(readonly sanitizer: DomSanitizer) {
     super(sanitizer);
   }
@@ -123,5 +126,13 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       values.push(curr);
     }
     return values;
+  }
+
+  onRendered() {
+    if (!this.showTicks) {
+      d3.select('#' + this.chartDivId)
+          .selectAll('.c3-axis-y .tick')
+          .style('display', 'none');
+    }
   }
 }
