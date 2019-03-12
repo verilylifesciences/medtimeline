@@ -1,6 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
-import { DebuggerService } from './debugger.service';
+import {TestBed} from '@angular/core/testing';
+
+import {DebuggerService} from './debugger.service';
 
 describe('DebuggerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

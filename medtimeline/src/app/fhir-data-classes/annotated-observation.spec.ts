@@ -5,6 +5,7 @@
 
 import {DateTime} from 'luxon';
 
+// tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
