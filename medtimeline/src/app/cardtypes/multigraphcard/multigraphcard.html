@@ -11,7 +11,7 @@
     </ng-container>
   </ng-container>
   <div fxFlex fxLayout="column" class="contents-block">
-    <div fxFlex *ngFor="let axis of card.axes" fxShrink="0" fxGrow="0" class="axis">
+    <div fxFlex *ngFor="let axis of card.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.isResolved" [diameter]="30"></mat-spinner>
       <div *ngIf="axis.isResolved && axis.errorMessage">
         {{axis.errorMessage}}

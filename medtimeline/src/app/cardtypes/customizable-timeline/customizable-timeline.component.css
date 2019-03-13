@@ -78,12 +78,3 @@
   visibility: hidden;
   margin-top: 8px;
 }
-
-.contents-block {
-  flex-direction: column;
-  -ms-flex-direction: column;
-  display: flex;
-  display: -ms-flexbox;
-  flex: 1 1 100%;
-  -ms-flex: 1 1 100%; /* For IE10 */
-}

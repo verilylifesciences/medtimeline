@@ -7,18 +7,6 @@
   just enough to hold the line placeholder.*/
   margin-bottom:-14px;
   margin-top:-14px;
-  display: flex;
-  display: -ms-flexbox; /* For IE10 */
-  flex-direction: row;
-  -ms-flex-direction: row; /* For IE10 */
-  align-content: center;
-  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */
-  justify-content: flex-start;
-  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */
-  align-items: center;
-  -ms-flex-align: center;  /* Align items: center conversion for IE10 */
-  flex: 1 1 0%;
-  -ms-flex: 1 1 0%; /* For IE10 */
 }
 
 span {
@@ -26,8 +14,7 @@ span {
   /* Only outline the bottom instead of all four sides.*/
   border-style: none none dotted;
   display: inline-block;
-  flex: 1 1 0%;
-  -ms-flex: 1 1 0%; /* For IE10 */
+
 }
 
 .addCardInline:hover {
