@@ -98,7 +98,7 @@ export class CustomizableGraphComponent extends
       if (self.inEditMode && !self.hoveringOverPoint) {
         const coordinates = d3.mouse(this);
         const parentCoordinates = d3.mouse(document.body);
-        self.allowAddingPoints(coordinates, parentCoordinates);
+        self.addPoint(coordinates, parentCoordinates);
       }
     });
     // Send the chart to the back, allowing points to be displayed on top of the
@@ -157,10 +157,14 @@ export class CustomizableGraphComponent extends
             timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
   }
 
-  // Allow for the addition of a point to the CustomizableGraph, via a
-  // CustomizableTimelineDialog
-  private allowAddingPoints(
-      clickCoordinates: [number, number], parentCoordinates: [number, number]) {
+  /**
+   * Allow for the addition of a point to the CustomizableGraph, via a
+   * CustomizableTimelineDialog.
+   * (Visible only for testing.)
+   */
+  addPoint(clickCoordinates: [number, number], parentCoordinates: [
+    number, number
+  ]) {
     const dialogCoordinates = this.findDialogCoordinates(
         parentCoordinates[0] + 10, parentCoordinates[1] + 10);
     this.dialogRef = this.openDialog(clickCoordinates, dialogCoordinates);
@@ -179,6 +183,7 @@ export class CustomizableGraphComponent extends
       color: editedAnnotation.color
     } :
                                     {date: xCoordinate};
+
     this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
       width: this.dialogWidth,
       height: this.dialogHeight,
@@ -211,7 +216,7 @@ export class CustomizableGraphComponent extends
         this.loadNewData();
         // Add listeners for click events on the new annotation.
         this.addDeleteEvent(userSelectedDate.toMillis());
-        this.addEditEvent(userSelectedDate.toMillis());
+        this.addEditListener(userSelectedDate.toMillis());
         this.pointsChanged.emit(this.data);
       }
     });
@@ -239,7 +244,7 @@ export class CustomizableGraphComponent extends
           this.data.annotations.get(timestamp).addAnnotation(this.chart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
-          this.addEditEvent(timestamp);
+          this.addEditListener(timestamp);
         }
       }
     }
@@ -279,11 +284,10 @@ export class CustomizableGraphComponent extends
   /**
    * Add a listener for a click event on the edit button of the annotation at
    * the given time.
+   * Visible only for testing.
    * @param millis The millis for this point to remove.
-   * @param xCoord The x-coordinate of where to show the dialog box.
-   * @param yCoord The y-coordinate of where to show the dialog box.
    */
-  private addEditEvent(millis: number) {
+  addEditListener(millis: number) {
     const self = this;
     const editIcon = d3.select('#' + this.chartDivId).select('#edit-' + millis);
     const currAnnotation = this.data.annotations.get(millis);

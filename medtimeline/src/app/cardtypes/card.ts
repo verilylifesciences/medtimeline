@@ -31,11 +31,6 @@ export class Card {
   readonly axes: Axis[] = [];
 
   /**
-   * The date range associated with this Card.
-   */
-  readonly dateRange: Interval;
-
-  /**
    * The constructor for this axis.
    * @param fhirService The FhirService used to make the FHIR calls.
    * @param resourceCodes The groups of resources to display on each Axis
@@ -47,7 +42,10 @@ export class Card {
   constructor(
       fhirService: FhirService,
       resourceCodes: ResourceCodesForCard,
-      dateRange: Interval,
+      /**
+       * The date range associated with this Card.
+       */
+      readonly dateRange: Interval,
       sanitizer: DomSanitizer,
   ) {
     const resourceCodeGroups = resourceCodes.resourceCodeGroups;
