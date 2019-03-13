@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, QueryList, ViewChildren} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
@@ -17,13 +17,11 @@ import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {ChartType} from '../graphtypes/graph/graph.component';
-import {SetupDataService} from '../setup-data.service';
 
 @Component({
   selector: 'app-cardcontainer',
   templateUrl: './cardcontainer.component.html',
-  styleUrls: ['./cardcontainer.component.css'],
-  entryComponents: [DeleteDialogComponent],
+  styleUrls: ['./cardcontainer.component.css']
 })
 export class CardcontainerComponent {
   // How long to display the snack bar for.
@@ -62,14 +60,14 @@ export class CardcontainerComponent {
   // Dragula Service.
   private readonly subs = new Subscription();
 
-  // Holds the most recently removed card from the container, mapping the index
+  // Holds the most recently removed cards from the container, mapping the index
   // of the displayed card to the displayedConcept value.
-  private recentlyRemoved: [
-    number, {[key: string]: ResourceCodesForCard | string | CustomizableData}
-  ];
+  private recentlyRemoved = new Map<
+      number,
+      {[key: string]: ResourceCodesForCard | string | CustomizableData}>();
 
   // The reference for the Dialog opened.
-  private deleteDialogRef: MatDialogRef<DeleteDialogComponent>;
+  private dialogRef: MatDialogRef<DeleteDialogComponent>;
 
   // A map of custom timeline id to the event lines corresponding to that
   // timeline.
@@ -81,26 +79,27 @@ export class CardcontainerComponent {
   constructor(
       dragulaService: DragulaService, private fhirService: FhirService,
       resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
-      private deleteDialog: MatDialog,
-      private setupDataService: SetupDataService) {
+      private deleteDialog: MatDialog) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
     this.originalConcepts = Array.from(displayGroups.values())
                                 .reduce((acc, val) => acc.concat(val), []);
-    this.setUpCards();
-    this.setUpDrag(dragulaService);
-  }
-
-  private setUpCards() {
     // Add a textbox at the top of the card list.
     this.addTextbox();
     // Add a custom timeline to the top of the card list.
     this.addCustomTimeline();
-    // Add all cards selected at the set-up screen.
-    for (const concept of this.setupDataService.selectedConcepts) {
-      this.displayedConcepts.push({'id': uuid(), 'concept': concept});
+    for (const concept of this.originalConcepts) {
+      // We decide the original displayed concepts based on whether any
+      // ResourceCodeGroup in the ResourceCodeGroup array associated with one
+      // Card is marked as "showByDefault".
+      const showByDefault =
+          concept.resourceCodeGroups.some(x => x.showByDefault);
+      if (showByDefault) {
+        this.displayedConcepts.push({'id': uuid(), 'concept': concept});
+      }
     }
+    this.setUpDrag(dragulaService);
   }
 
   // Ensures that the order of displayed concepts is updated as the user drags
@@ -176,16 +175,17 @@ export class CardcontainerComponent {
   // Listen for an event indicating that a "delete" button has been clicked on a
   // card currently displayed, and update the displayed concepts
   // accordingly after asking for confirmation of deletion.
-  removeDisplayedCard($event) {
+  private removeDisplayedCard($event) {
     const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     const concept = this.displayedConcepts[index];
     concept.value = $event.value;
-    this.deleteDialogRef = this.deleteDialog.open(DeleteDialogComponent);
-    this.deleteDialogRef.afterClosed().subscribe(result => {
+    this.dialogRef = this.deleteDialog.open(DeleteDialogComponent);
+    this.dialogRef.afterClosed().subscribe(result => {
       // The user wishes to delete the card.
       if (result) {
         this.displayedConcepts.splice(index, 1);
-        this.recentlyRemoved = [index, concept];
+        this.recentlyRemoved.clear();
+        this.recentlyRemoved.set(index, concept);
         this.openSnackBar();
         if (this.eventsForCustomTimelines.get($event.id)) {
           // We only remove the event lines for this CustomTimeline if the user
@@ -199,7 +199,8 @@ export class CardcontainerComponent {
   // Open a snack bar allowing for the user to potentially reverse the removal
   // of cards from the page. Only one snack bar can be opened at a time.
   private openSnackBar() {
-    const message = 'Card removed.';
+    const message =
+        this.recentlyRemoved.size > 1 ? 'Cards removed.' : 'Card removed.';
     const snackBarRef = this.snackBar.open(message, 'Undo', {
       duration:
           this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the snack bar.
@@ -207,12 +208,16 @@ export class CardcontainerComponent {
     // Undo the most recent deletion according to what is stored in
     // recentlyRemoved.
     snackBarRef.onAction().subscribe(() => {
-      this.displayedConcepts.splice(0, 0, this.recentlyRemoved[1]);
-      if (this.displayedConcepts[0].concept === 'customTimeline') {
-        this.updateEventLines({
-          id: this.displayedConcepts[0].id,
-          data: this.displayedConcepts[0].value
-        });
+      for (const index of Array.from(this.recentlyRemoved.keys())
+               .sort((a, b) => a - b)) {
+        this.displayedConcepts.splice(
+            index, 0, this.recentlyRemoved.get(index));
+        if (this.displayedConcepts[index].concept === 'customTimeline') {
+          this.updateEventLines({
+            id: this.displayedConcepts[index].id,
+            data: this.displayedConcepts[index].value
+          });
+        }
       }
     });
   }

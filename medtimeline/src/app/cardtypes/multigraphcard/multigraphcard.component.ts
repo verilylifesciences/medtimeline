@@ -68,6 +68,10 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // Hold an instance of this enum so the HTML template can reference it.
   ChartType: typeof ChartType = ChartType;
 
+  // Holds a timer for when the chart should be resized.
+  private resizeTimer;
+  private readonly RESIZE_WAIT = 250;
+
   // Holds the display groups for the legend.
   uniqueDisplayGroups = new Array<DisplayGrouping>();
 
@@ -92,16 +96,23 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
         this.unitsLabel = lblText;
       });
 
+      const unique = new Set<DisplayGrouping>();
       if (this.containedGraphs) {
-        const unique = new Set<DisplayGrouping>();
-        this.containedGraphs.forEach(graph => {
-          graph.generateFromScratch();
-          Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
-            unique.add(group);
+        // Wait until the resize is "done" to re-render each graph. This reduces
+        // choppy, computationally expensive re-renders as elements resize.
+        clearTimeout(this.resizeTimer);
+        this.resizeTimer = setTimeout(() => {
+          self.containedGraphs.forEach(graph => {
+            graph.generateFromScratch();
+            Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
+              unique.add(group);
+            });
           });
-        });
-        this.uniqueDisplayGroups = Array.from(unique.keys());
-        this.setRegions();
+          this.uniqueDisplayGroups = Array.from(unique.keys());
+          if (this.card.axes.length > 1) {
+            this.setRegions();
+          }
+        }, this.RESIZE_WAIT);
       }
     }
   }
@@ -125,8 +136,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
         .then(dataArray => dataArray.map(data => data.series))
         .then(seriesNestedArray => {
           const flattened: LabeledSeries[] = [].concat(...seriesNestedArray);
-          return flattened.map(series => series.unit)
-              .filter(v => v !== undefined);
+          return flattened.map(series => series.unit);
         })
         .then(allUnits => {
           const units = new Set<string>(allUnits);
@@ -149,11 +159,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
           for (const axis of this.card.axes) {
             if (axis.data && axis.label && axis.data.series &&
                 axis.data.series.length > 0 && axis.data.series[0].unit) {
-              const units = ' (' + axis.data.series[0].unit + ')';
-              // Only add units if not done so already.
-              if (axis.label.indexOf(units) === -1) {
-                axis.label += units;
-              }
+              axis.label += ' (' + axis.data.series[0].unit + ')';
             }
           }
         });

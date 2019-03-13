@@ -4,10 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
-
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../unit_utils';
 
 import {Dosage} from './dosage';
 import {ContainedMedication} from './medication';
@@ -179,7 +177,7 @@ export class MedicationAdministrationSet extends
           'Different units in the administration set: ' +
           Array.from(units.values()));
     }
-    this.unit = fixUnitAbbreviations(Array.from(units.values())[0]);
+    this.unit = Array.from(units.values())[0];
   }
 }
 

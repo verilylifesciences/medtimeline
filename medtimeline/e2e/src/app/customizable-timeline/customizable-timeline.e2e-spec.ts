@@ -22,7 +22,6 @@ describe('Customizable Timeline', () => {
 
   beforeEach(async () => {
     await browser.get('/');
-    await index.navigateToMainPage();
     const timeline = customTimeline.getGraph();
     const editIcon = customTimeline.getEditIcon();
     await editIcon.click();

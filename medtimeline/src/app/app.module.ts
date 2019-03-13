@@ -10,7 +10,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckbox, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -22,7 +22,6 @@ import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 
 import {environment} from '../environments/environment';
 
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CardcontainerComponent} from './cardcontainer/cardcontainer.component';
 import {CardComponent} from './cardtypes/card/card.component';
@@ -46,7 +45,6 @@ import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.compone
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {HelpDialogComponent} from './help-dialog/help-dialog.component';
 import {MockFhirService} from './mock-fhir.service';
-import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 import {TimelineControllerComponent} from './timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.component';
@@ -73,36 +71,24 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     CardComponent,
     DeleteDialogComponent,
     DebuggerComponent,
-    SetupComponent,
   ],
   imports: [
-    BrowserModule,
-    MatCardModule,
-    HttpClientModule,
-    MatListModule,
-    MatDividerModule,
-    MatIconModule,
-    NoopAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatAutocompleteModule,
-    MatMenuModule,
-    MatTooltipModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
-    MatDialogModule,
-    MatStepperModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatDatepickerModule,
-    NgxDaterangepickerMd.forRoot({}),
-    MatButtonToggleModule,
+    BrowserModule, MatCardModule, HttpClientModule, MatListModule,
+    MatDividerModule, MatIconModule, NoopAnimationsModule, FormsModule,
+    ReactiveFormsModule, MatInputModule, MatProgressSpinnerModule,
+    MatButtonModule, MatAutocompleteModule, MatMenuModule, MatTooltipModule,
+    FlexLayoutModule.withConfig({useColumnBasisZero: false}), MatDialogModule,
+    MatStepperModule, MatToolbarModule, MatSnackBarModule, MatDatepickerModule,
+    NgxDaterangepickerMd.forRoot({}), MatButtonToggleModule,
     MatNativeDateModule,
-    MatCheckboxModule,
-    DragulaModule.forRoot(),
-    AppRoutingModule
+    /* On their end, it's locked down so that the only acceptable redirect
+    URL is localhost:8000/. So, we have to do a different path for
+    authentication. */
+    RouterModule.forRoot([
+      {path: 'auth', component: FhirLaunchComponent},
+      {path: '', component: CardcontainerComponent}
+    ]),
+    DragulaModule.forRoot()
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by

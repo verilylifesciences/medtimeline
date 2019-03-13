@@ -6,7 +6,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import {MAT_DIALOG_DATA, MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule, MatDialog, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
+import {MAT_DIALOG_DATA, MatAutocompleteModule, MatDatepickerModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBar, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -16,7 +16,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
-import {of} from 'rxjs';
 
 import {CardComponent} from '../cardtypes/card/card.component';
 import {CustomizableTimelineComponent} from '../cardtypes/customizable-timeline/customizable-timeline.component';
@@ -26,7 +25,6 @@ import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
 import {DebuggerComponent} from '../debugger/debugger.component';
-import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/customizable-graph-annotation';
@@ -35,7 +33,6 @@ import {LineGraphComponent} from '../graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from '../graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from '../graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from '../graphtypes/stepgraph/stepgraph.component';
-import {SetupDataService} from '../setup-data.service';
 import {StubFhirService} from '../test_utils';
 import {TimelineControllerComponent} from '../timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from '../timeline-toolbar/timeline-toolbar.component';
@@ -50,35 +47,15 @@ describe('CardcontainerComponent', () => {
   let dataSelectorMenu: DataSelectorMenuComponent;
   let timelineToolbar: TimelineToolbarComponent;
 
-  // Set up spies for the snackbar and dialog, as they're hard to directly
-  // unit test.
-  let snackBarSpy;
-  let dialogSpy;
-  let dialogRefSpyObj;
-  let snackbarRefSpyObj;
-
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
           imports: [
-            MatCardModule,
-            MatIconModule,
-            MatListModule,
-            MatDividerModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            MatAutocompleteModule,
-            MatInputModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserModule,
-            BrowserAnimationsModule,
-            MatProgressSpinnerModule,
-            MatMenuModule,
-            NgxDaterangepickerMd.forRoot(),
-            MatToolbarModule,
-            MatSnackBarModule,
-            MatCheckboxModule,
+            MatCardModule, MatIconModule, MatListModule, MatDividerModule,
+            MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule,
+            MatInputModule, FormsModule, ReactiveFormsModule, BrowserModule,
+            BrowserAnimationsModule, MatProgressSpinnerModule, MatMenuModule,
+            NgxDaterangepickerMd.forRoot(), MatToolbarModule, MatSnackBarModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,
@@ -87,13 +64,13 @@ describe('CardcontainerComponent', () => {
             ScatterplotComponent, MicrobioGraphComponent,
             CustomizableTimelineComponent, TimelineToolbarComponent,
             DataSelectorElementComponent, DataSelectorMenuComponent,
-            CardComponent, DebuggerComponent, DeleteDialogComponent
+            CardComponent, DebuggerComponent
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
             DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}},
-            {provide: SetupDataService, useValue: {selectedConcepts: []}}
+            {provide: MatSnackBar, useValue: {}}
           ],
         })
         .compileComponents();
@@ -108,17 +85,6 @@ describe('CardcontainerComponent', () => {
     timelineToolbar =
         fixture.debugElement.query(By.directive(TimelineToolbarComponent))
             .componentInstance;
-
-    dialogRefSpyObj =
-        jasmine.createSpyObj({open: of({}), afterClosed: of({}), close: null});
-    dialogSpy =
-        spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
-    dialogRefSpyObj.componentInstance = {body: ''};
-
-    snackbarRefSpyObj = jasmine.createSpyObj({open: of({}), onAction: of({})});
-    snackBarSpy = spyOn(TestBed.get(MatSnackBar), 'open')
-                      .and.returnValue(snackbarRefSpyObj);
-
     fixture.detectChanges();
   });
 
@@ -197,31 +163,4 @@ describe('CardcontainerComponent', () => {
          }
        ]);
      });
-
-  /**
-   * Testing this action is difficult because of all the mocks. This is covered
-   * well in e2e tests, but this unit test is just a sanity check to make sure
-   * the code runs through okay.
-   */
-  it('should go through all the actions to delete and replace card', () => {
-    // Grab the third card and remove it.
-    const cardToRemove = component.displayedConcepts[2];
-    const origDisplayedConcepts = component.displayedConcepts;
-
-    component.removeDisplayedCard({id: cardToRemove.id});
-
-    // Expect that the delete dialog comes up.
-    expect(dialogSpy).toHaveBeenCalled();
-    // Expect the dialog to be closed with a result, so that the card is
-    // (temporarily) deleted.
-    expect(dialogRefSpyObj.afterClosed).toHaveBeenCalled();
-
-    // Expect the snack bar is opened.
-    expect(snackBarSpy).toHaveBeenCalledTimes(1);
-    // Expect the undo is clicked on the snack bar.
-    expect(snackbarRefSpyObj.onAction).toHaveBeenCalled();
-
-    // Expect that, then, the components list doesn't end up changing.
-    expect(component.displayedConcepts).toEqual(origDisplayedConcepts);
-  });
 });

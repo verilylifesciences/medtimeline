@@ -94,9 +94,8 @@ export class ResourceCodeManager {
     new LOINCCode('4537-7', labResult, 'ESR', true, [0, 200]),
     new LOINCCode('3094-0', labResult, 'BUN', true),
     new LOINCCode('2160-0', labResult, 'Creatinine', true),
-    new LOINCCode('1742-6', labResult, 'Alanine Aminotransferase (ALT)', true),
-    new LOINCCode(
-        '1920-8', labResult, 'Aspartate Aminotransferase (AST)', true),
+    new LOINCCode('1742-6', labResult, 'ALT', true),
+    new LOINCCode('1920-8', labResult, 'AST', true),
     new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', true),
     new LOINCCode('1968-7', labResult, 'Bilirubin, Direct', true),
     new LOINCCode('1975-2', labResult, 'Bilirubin, Total', true),
@@ -108,7 +107,8 @@ export class ResourceCodeManager {
     new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
     new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
     new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true, [25, 250]),
-    new LOINCCode('59408-5', vitalSign, 'SpO2', true, [5, 100], true)
+    new LOINCCode(
+        '59408-5', vitalSign, 'Oxygen Saturation', true, [5, 100], true)
   ];
 
   private static readonly gentMonitoring = [
@@ -137,8 +137,8 @@ export class ResourceCodeManager {
     new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis'),
     // TODO: add Squamous Epithelial, Urinalysis
     new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis'),
-    new LOINCCode('5799-2', labResult, 'White Blood Cell Enzyme, Urinalysis'),
-    new LOINCCode('33825-1', labResult, 'White Blood Cell Clump, Urinalysis'),
+    new LOINCCode('5799-2', labResult, 'WBC Enzyme, Urinalysis'),
+    new LOINCCode('33825-1', labResult, 'WBC Clump, Urinalysis'),
     // TODO: add White Cells, Urinalysis
     // TODO: add yeast, Urinalysis
   ];
@@ -229,12 +229,11 @@ export class ResourceCodeManager {
             labResult, ChartType.LINE, [0.5, 30]),
         // TODO: add Platelet
         new LOINCCodeGroup(
-            this.fhirService, 'White Blood Cell',
-            [new LOINCCode('26464-8', labResult, 'White Blood Cell', false)],
-            labResult, ChartType.LINE),
+            this.fhirService, 'WBC',
+            [new LOINCCode('26464-8', labResult, 'WBC', false)], labResult,
+            ChartType.LINE),
       ];
-      codeGroups.push(
-          new ResourceCodesForCard(cbc, 'Complete Blood Count', labResult));
+      codeGroups.push(new ResourceCodesForCard(cbc, 'CBC', labResult));
 
       const cbcWBC = [
         new LOINCCodeGroup(
@@ -261,8 +260,8 @@ export class ResourceCodeManager {
             labResult, ChartType.LINE, [0, 100], true),
 
       ];
-      codeGroups.push(new ResourceCodesForCard(
-          cbcWBC, 'Complete Blood Count White Blood Cell', labResult));
+      codeGroups.push(
+          new ResourceCodesForCard(cbcWBC, 'CBC White Blood Cell', labResult));
 
       // TODO(b/118874488): Allow for configuration of RxNormCodeGroups.
       const medsSummaryGroup = RXNORM_CODES;

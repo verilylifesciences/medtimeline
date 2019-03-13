@@ -57,11 +57,9 @@ describe('DataSelectorMenuComponent', () => {
   });
 
   it('should filter concepts based on input', fakeAsync(() => {
-       const userInput = 'Com';
+       const userInput = 'CB';
        expect(component.filter(userInput).length).toEqual(2);
        expect(new Set(component.filter(userInput).map(x => x.label)))
-           .toEqual(new Set([
-             'Complete Blood Count', 'Complete Blood Count White Blood Cell'
-           ]));
+           .toEqual(new Set(['CBC', 'CBC White Blood Cell']));
      }));
 });
