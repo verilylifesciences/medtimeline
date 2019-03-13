@@ -77,10 +77,11 @@ describe('Data Selector', () => {
     const vitalsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(vitalsMenu).getText();
 
-    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
-      'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood pressure',
-      'Oxygen Saturation'
-    ]);
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set([
+          'Body temperature', 'Heart Rate', 'Respiratory Rate',
+          'Blood Pressure', 'Oxygen Saturation'
+        ]));
     expect(itemsText.length).toEqual(5);
   });
 
@@ -96,12 +97,13 @@ describe('Data Selector', () => {
     const labsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(labsMenu).getText();
 
-    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
-      'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT', 'AST',
-      'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total', 'GGTP',
-      'LDH', 'CBC', 'CBC White Blood Cell', 'Urinalysis'
-    ]);
-    expect(itemsText.length).toEqual(14);
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set([
+          'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT', 'AST',
+          'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total',
+          'Uric acid', 'CBC', 'CBC White Blood Cell', 'Urinalysis'
+        ]));
+    expect(itemsText.length).toEqual(13);
   });
 
   it('vanc and gent option menu should have correct options', async () => {

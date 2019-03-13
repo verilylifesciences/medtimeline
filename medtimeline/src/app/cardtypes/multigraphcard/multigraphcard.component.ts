@@ -68,10 +68,6 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // Hold an instance of this enum so the HTML template can reference it.
   ChartType: typeof ChartType = ChartType;
 
-  // Holds a timer for when the chart should be resized.
-  private resizeTimer;
-  private readonly RESIZE_WAIT = 250;
-
   // Holds the display groups for the legend.
   uniqueDisplayGroups = new Array<DisplayGrouping>();
 
@@ -96,23 +92,16 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
         this.unitsLabel = lblText;
       });
 
-      const unique = new Set<DisplayGrouping>();
       if (this.containedGraphs) {
-        // Wait until the resize is "done" to re-render each graph. This reduces
-        // choppy, computationally expensive re-renders as elements resize.
-        clearTimeout(this.resizeTimer);
-        this.resizeTimer = setTimeout(() => {
-          self.containedGraphs.forEach(graph => {
-            graph.generateFromScratch();
-            Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
-              unique.add(group);
-            });
+        const unique = new Set<DisplayGrouping>();
+        this.containedGraphs.forEach(graph => {
+          graph.generateFromScratch();
+          Array.from(graph.displayGroupToSeries.keys()).forEach(group => {
+            unique.add(group);
           });
-          this.uniqueDisplayGroups = Array.from(unique.keys());
-          if (this.card.axes.length > 1) {
-            this.setRegions();
-          }
-        }, this.RESIZE_WAIT);
+        });
+        this.uniqueDisplayGroups = Array.from(unique.keys());
+        this.setRegions();
       }
     }
   }
@@ -136,7 +125,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
         .then(dataArray => dataArray.map(data => data.series))
         .then(seriesNestedArray => {
           const flattened: LabeledSeries[] = [].concat(...seriesNestedArray);
-          return flattened.map(series => series.unit);
+          return flattened.map(series => series.unit)
+              .filter(v => v !== undefined);
         })
         .then(allUnits => {
           const units = new Set<string>(allUnits);

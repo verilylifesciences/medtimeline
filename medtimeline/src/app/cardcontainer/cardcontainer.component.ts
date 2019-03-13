@@ -21,7 +21,8 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 @Component({
   selector: 'app-cardcontainer',
   templateUrl: './cardcontainer.component.html',
-  styleUrls: ['./cardcontainer.component.css']
+  styleUrls: ['./cardcontainer.component.css'],
+  entryComponents: [DeleteDialogComponent],
 })
 export class CardcontainerComponent {
   // How long to display the snack bar for.
@@ -60,11 +61,11 @@ export class CardcontainerComponent {
   // Dragula Service.
   private readonly subs = new Subscription();
 
-  // Holds the most recently removed cards from the container, mapping the index
+  // Holds the most recently removed card from the container, mapping the index
   // of the displayed card to the displayedConcept value.
-  private recentlyRemoved = new Map<
-      number,
-      {[key: string]: ResourceCodesForCard | string | CustomizableData}>();
+  private recentlyRemoved: [
+    number, {[key: string]: ResourceCodesForCard | string | CustomizableData}
+  ];
 
   // The reference for the Dialog opened.
   private dialogRef: MatDialogRef<DeleteDialogComponent>;
@@ -175,7 +176,7 @@ export class CardcontainerComponent {
   // Listen for an event indicating that a "delete" button has been clicked on a
   // card currently displayed, and update the displayed concepts
   // accordingly after asking for confirmation of deletion.
-  private removeDisplayedCard($event) {
+  removeDisplayedCard($event) {
     const index = this.displayedConcepts.map(x => x.id).indexOf($event.id);
     const concept = this.displayedConcepts[index];
     concept.value = $event.value;
@@ -184,8 +185,7 @@ export class CardcontainerComponent {
       // The user wishes to delete the card.
       if (result) {
         this.displayedConcepts.splice(index, 1);
-        this.recentlyRemoved.clear();
-        this.recentlyRemoved.set(index, concept);
+        this.recentlyRemoved = [index, concept];
         this.openSnackBar();
         if (this.eventsForCustomTimelines.get($event.id)) {
           // We only remove the event lines for this CustomTimeline if the user
@@ -199,8 +199,7 @@ export class CardcontainerComponent {
   // Open a snack bar allowing for the user to potentially reverse the removal
   // of cards from the page. Only one snack bar can be opened at a time.
   private openSnackBar() {
-    const message =
-        this.recentlyRemoved.size > 1 ? 'Cards removed.' : 'Card removed.';
+    const message = 'Card removed.';
     const snackBarRef = this.snackBar.open(message, 'Undo', {
       duration:
           this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the snack bar.
@@ -208,16 +207,12 @@ export class CardcontainerComponent {
     // Undo the most recent deletion according to what is stored in
     // recentlyRemoved.
     snackBarRef.onAction().subscribe(() => {
-      for (const index of Array.from(this.recentlyRemoved.keys())
-               .sort((a, b) => a - b)) {
-        this.displayedConcepts.splice(
-            index, 0, this.recentlyRemoved.get(index));
-        if (this.displayedConcepts[index].concept === 'customTimeline') {
-          this.updateEventLines({
-            id: this.displayedConcepts[index].id,
-            data: this.displayedConcepts[index].value
-          });
-        }
+      this.displayedConcepts.splice(0, 0, this.recentlyRemoved[1]);
+      if (this.displayedConcepts[0].concept === 'customTimeline') {
+        this.updateEventLines({
+          id: this.displayedConcepts[0].id,
+          data: this.displayedConcepts[0].value
+        });
       }
     });
   }
