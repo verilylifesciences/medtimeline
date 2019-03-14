@@ -45,7 +45,8 @@ export class MockFhirService extends FhirService {
       getCodesFn: (value: V) => K[]) {
     try {
       const obj = constructorFn(json.resource);
-      for (const code of getCodesFn(obj)) {
+      const uniqueCodes = Array.from(new Set(getCodesFn(obj)));
+      for (const code of uniqueCodes) {
         let existing = mapToUpdate.get(code);
         if (!existing) {
           existing = [];
@@ -64,7 +65,6 @@ export class MockFhirService extends FhirService {
       return this.http.get(filePath).toPromise<any>().then(data => {
         for (const json of data.entry) {
           const resourceType = json.resource.resourceType;
-
           if (resourceType === FhirResourceType.Observation) {
             this.constructResourceMap(
                 json, this.loincMap, (x: any) => new Observation(x),

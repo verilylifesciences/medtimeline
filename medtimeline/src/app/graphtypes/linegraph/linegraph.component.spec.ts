@@ -58,16 +58,14 @@ describe('LineGraphComponent', () => {
 
   it('graph x and y values are correctly passed through', () => {
     fixture.detectChanges();
-    component.generateChart();
-    expect(component.chartConfiguration['data']['xs']['Hemoglobin'])
-        .toEqual('x_Hemoglobin');
-    expect(component.chartConfiguration['data']['columns'][0].map(
-               x => x.toString()))
+    const generatedChart = component.generateChart();
+    expect(generatedChart['data']['xs']['Hemoglobin']).toEqual('x_Hemoglobin');
+    expect(generatedChart['data']['columns'][0].map(x => x.toString()))
         .toEqual([
           'x_Hemoglobin', DateTime.utc(1995, 7, 21).toISO(),
           DateTime.utc(1995, 7, 22).toISO()
         ]);
-    expect(component.chartConfiguration['data']['columns'][1]).toEqual([
+    expect(generatedChart['data']['columns'][1]).toEqual([
       'Hemoglobin', 15, 20
     ]);
   });

@@ -69,7 +69,7 @@ export abstract class GraphComponent<T extends GraphData> implements
   chartConfiguration: c3.ChartConfiguration;
 
   // The y-axis configuration for the chart.
-  yAxisConfig: c3.YAxisConfiguration = {};
+  yAxisConfig: c3.YAxisConfiguration;
 
   // The x-axis configuration for the chart.
   xAxisConfig: c3.XAxisConfiguration;
@@ -339,7 +339,8 @@ export abstract class GraphComponent<T extends GraphData> implements
         multiline: true,
         fit: true,
         values: ticks.map(x => Number(x))
-      }
+      },
+      padding: {left: 0, right: 0}
     };
   }
 
