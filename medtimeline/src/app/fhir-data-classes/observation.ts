@@ -9,6 +9,8 @@ import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {LabeledClass} from '../fhir-resource-set';
+import {fixUnitAbbreviations} from '../unit_utils';
+
 import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';
 
 
@@ -169,7 +171,7 @@ export class Observation extends LabeledClass {
 
     this.value = json.valueQuantity ? json.valueQuantity : null;
     if (this.value) {
-      this.unit = this.value.unit;
+      this.unit = fixUnitAbbreviations(this.value.unit);
     }
 
     // We must calculate precision before the value is stored as a number, where

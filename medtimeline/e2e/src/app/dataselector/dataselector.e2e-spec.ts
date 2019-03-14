@@ -81,7 +81,7 @@ describe('Data Selector', () => {
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
           'Body temperature', 'Heart Rate', 'Respiratory Rate',
-          'Blood Pressure', 'Oxygen Saturation'
+          'Blood Pressure', 'SpO2'
         ]));
     expect(itemsText.length).toEqual(5);
   });
@@ -100,9 +100,11 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
-          'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT', 'AST',
+          'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine',
+          'Alanine Aminotransferase (ALT)', 'Aspartate Aminotransferase (AST)',
           'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total',
-          'Uric acid', 'CBC', 'CBC White Blood Cell', 'Urinalysis'
+          'Uric acid', 'Complete Blood Count',
+          'Complete Blood Count White Blood Cell', 'Urinalysis'
         ]));
     expect(itemsText.length).toEqual(13);
   });
