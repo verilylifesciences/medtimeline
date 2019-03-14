@@ -10,6 +10,7 @@
 import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
 import {FhirService} from '../fhir.service';
+import {fixUnitAbbreviations} from '../unit_utils';
 
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
@@ -190,7 +191,7 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
         throw Error(
             'Different units in the order set: ' + Array.from(units.values()));
       }
-      this.unit = Array.from(units.values())[0];
+      this.unit = fixUnitAbbreviations(Array.from(units.values())[0]);
     }
   }
 }

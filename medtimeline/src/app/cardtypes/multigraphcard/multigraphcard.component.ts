@@ -149,7 +149,11 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
           for (const axis of this.card.axes) {
             if (axis.data && axis.label && axis.data.series &&
                 axis.data.series.length > 0 && axis.data.series[0].unit) {
-              axis.label += ' (' + axis.data.series[0].unit + ')';
+              const units = ' (' + axis.data.series[0].unit + ')';
+              // Only add units if not done so already.
+              if (axis.label.indexOf(units) === -1) {
+                axis.label += units;
+              }
             }
           }
         });
