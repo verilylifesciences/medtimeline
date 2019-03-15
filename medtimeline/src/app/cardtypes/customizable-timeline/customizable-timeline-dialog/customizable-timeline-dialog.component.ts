@@ -7,7 +7,7 @@ import {Component, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import * as Color from 'color';
-import {DateTime, Interval} from 'luxon';
+import {DateTime} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 // tslint:disable-next-line:max-line-length
@@ -53,9 +53,6 @@ export class CustomizableTimelineDialogComponent {
   // The date selected for this dialog box.
   date: Date;
 
-  // The date range currently being viewed.
-  dateRange: Interval;
-
   constructor(
       public dialogRef: MatDialogRef<CustomizableTimelineDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -78,12 +75,6 @@ export class CustomizableTimelineDialogComponent {
     if (data.description) {
       this.userDescription = data.description;
     }
-
-    if (data.dateRange) {
-      this.dateRange = Interval.fromDateTimes(
-          this.data.dateRange.start.toLocal().startOf('day'),
-          this.data.dateRange.end.toLocal().endOf('day'));
-    }
   }
 
   // Closes the dialog popup without saving the user input.
@@ -95,7 +86,7 @@ export class CustomizableTimelineDialogComponent {
   onSave(): void {
     this.dialogRef.close(new CustomizableGraphAnnotation(
         DateTime.fromJSDate(this.getSelectedDate()),
-        this.userTitle.trim(),
+        this.userTitle,
         this.userDescription,
         Color.rgb(this.selectedColor),
         ));
@@ -131,16 +122,7 @@ export class CustomizableTimelineDialogComponent {
 
   // Finds incomplete fields that are required and disables saving.
   findIncompleteFields() {
-    return !this.userTitle ||
-        (this.userTitle && this.userTitle.trim().length === 0) ||
-        this.dateFormControl.hasError('required') ||
+    return !this.userTitle || this.dateFormControl.hasError('required') ||
         this.timeFormControl.hasError('required');
-  }
-
-  // Returns whether the date selected by the user falls outside the current
-  // date range.
-  private dateNotInRange(): boolean {
-    const dateTime = DateTime.fromJSDate(this.getSelectedDate());
-    return !(this.dateRange.contains(dateTime));
   }
 }

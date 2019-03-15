@@ -4,31 +4,55 @@
 // license that can be found in the LICENSE file.
 
 import {browser, by, element, ElementFinder} from 'protractor';
+import {IndexPage} from '../index.po';
 
-export class CardContainerE2eTestingPage {
-  navigateTo() {
-    browser.waitForAngularEnabled(false);
-    return browser.get('/');
+export class CardContainerPage {
+  index = new IndexPage();
+
+  async getTitle() {
+    return await browser.getTitle();
   }
 
-  getTitle() {
-    return browser.getTitle();
-  }
-
+  // Get all cards on the page.
   getCards() {
     return element.all(by.css('.displayedConcept'));
   }
 
-  getCardLabel(card: ElementFinder) {
+  async getCardLabel(card: ElementFinder) {
     return card.element(by.css('.label')).getText();
   }
 
-  moveCard(oldPosition: ElementFinder, newPosition: ElementFinder) {
-    browser.actions()
+  async moveCard(oldPosition: ElementFinder, newPosition: ElementFinder) {
+    await browser.actions()
         .mouseDown(oldPosition)
         .mouseMove({x: -1, y: -1})
         .mouseMove(newPosition)
         .mouseUp()
         .perform();
+  }
+
+  async hasCardLabel(card: ElementFinder) {
+    return this.index.hasInnerElement(card, '.label');
+  }
+
+  async hasDataSelector(card: ElementFinder) {
+    return this.index.hasInnerElement(card, 'app-data-selector-menu');
+  }
+
+  getDataSelectors() {
+    return element.all(by.css('app-data-selector-menu'));
+  }
+  // Wait for the DeleteDialog element to fully load.
+  async waitForDialog() {
+    await this.index.waitForElement('mat-dialog-container');
+  }
+
+  getBackdrop() {
+    return element(by.css('.cdk-overlay-backdrop'));
+  }
+  // Return the cancel button in the CustomizableTimelineDialog.
+  getCancelButton() {
+    return element(by.css('mat-dialog-container'))
+        .element(by.css('.mat-button'));
   }
 }

@@ -82,7 +82,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.chart = c3.generate(component.generateBasicChart({}));
+    component.generateBasicChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -102,7 +102,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.chart = c3.generate(component.generateBasicChart({}));
+    component.generateBasicChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -132,7 +132,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.chart = c3.generate(component.generateBasicChart({}));
+    component.generateBasicChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.

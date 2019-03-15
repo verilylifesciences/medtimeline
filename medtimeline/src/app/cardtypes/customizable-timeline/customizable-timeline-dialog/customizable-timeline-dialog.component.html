@@ -7,9 +7,6 @@
       <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
         (click)="datePicker.open()" required>
       <mat-error *ngIf="dateFormControl.invalid">Invalid date</mat-error>
-      <mat-hint *ngIf="dateNotInRange()">
-        Caution: Date outside of current range
-      </mat-hint>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
