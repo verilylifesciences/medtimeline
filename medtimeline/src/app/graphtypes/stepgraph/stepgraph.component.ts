@@ -38,9 +38,7 @@ export class StepGraphComponent extends
     this.generateBasicChart();
     this.adjustDataDependent();
 
-    if (!this.noDataPointsInDateRange) {
-      this.chartConfiguration.grid.y = {show: true};
-    }
+    this.chartConfiguration.grid.y = {show: true};
   }
 
   /**
@@ -81,9 +79,6 @@ export class StepGraphComponent extends
     const stepGraphYAxisTickMax = 15;
     this.yAxisTickDisplayValues =
         yValues.map(value => this.data.yAxisMap.get(value));
-    if (this.data.yAxisMap.size === 0) {
-      this.data.yAxisMap.set(10, '');
-    }
 
     this.yAxisConfig = {
       // We add the min and max so that when series are hidden by being clicked

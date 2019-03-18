@@ -20,6 +20,10 @@ export class DisplayGrouping {
   outline: Color;
 
   constructor(readonly label: string, color?: Color, outline?: Color) {
+    if (ALL_DISPLAY_GROUPS_MAP.has(label)) {
+      return ALL_DISPLAY_GROUPS_MAP.get(label);
+    }
+
     let tempColor: Color = color;
     if (color === undefined) {
       tempColor = BCHColors.getDataColors()[DisplayGrouping.colorIdx];

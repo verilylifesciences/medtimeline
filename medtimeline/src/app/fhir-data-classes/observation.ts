@@ -185,8 +185,8 @@ export class Observation extends LabeledClass {
     // TODO(b/121318193): Impement better parsing of Observations with BCH Codes
     // (associated with Microbiology data). These Observations might not have
     // values or results.
-    if (this.value === null && this.result === null &&
-        this.interpretation === null && this.innerComponents.length === 0) {
+    if (this.value === null && this.result === null && !this.interpretation &&
+        this.innerComponents.length === 0) {
       throw Error(
           'An Observation must have a value, result, inner components, ' +
           'or an interpretation to be useful. JSON: ' + JSON.stringify(json));
