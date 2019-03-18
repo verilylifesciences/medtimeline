@@ -339,7 +339,8 @@ export abstract class GraphComponent<T extends GraphData> implements
         multiline: true,
         fit: true,
         values: ticks.map(x => Number(x))
-      }
+      },
+      padding: {left: 0, right: 0}
     };
   }
 

@@ -16,8 +16,5 @@ import {DebuggerService} from '../debugger.service';
  * UI.
  */
 export class DebuggerComponent {
-  browserVersion: string;
-  constructor(readonly debugService: DebuggerService) {
-    this.browserVersion = navigator.appVersion;
-  }
+  constructor(readonly debugService: DebuggerService) {}
 }

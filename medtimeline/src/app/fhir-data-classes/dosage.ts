@@ -1,9 +1,12 @@
+import {fixUnitAbbreviations} from '../unit_utils';
+
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/** * This object represents relevant components of dosage information, provided
+/**
+ * This object represents relevant components of dosage information, provided
  * in MedicationOrders and MedicationAdministrations.
  */
 export class Dosage {
@@ -16,7 +19,7 @@ export class Dosage {
     if (json.dosage) {
       if (json.dosage.quantity) {
         this.quantity = json.dosage.quantity.value;
-        this.unit = json.dosage.quantity.unit;
+        this.unit = fixUnitAbbreviations(json.dosage.quantity.unit);
       }
       if (json.dosage.route) {
         this.route = json.dosage.route.text;

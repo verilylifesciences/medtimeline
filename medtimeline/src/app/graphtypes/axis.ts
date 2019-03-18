@@ -105,8 +105,8 @@ export class Axis {
         rejection => {
           this.isResolved = true;
           // TODO(b/126227729): Revise this language.
-          this.errorMessage = rejection;
-          // 'Invalid data received. Please check the medical record.';
+          this.errorMessage =
+              'Invalid data received. Please check the medical record.';
         });
   }
 
