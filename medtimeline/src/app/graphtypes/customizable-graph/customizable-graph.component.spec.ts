@@ -82,7 +82,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.generateBasicChart();
+    component.generateFromScratch();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -97,12 +97,13 @@ describe('CustomizableGraphComponent', () => {
     expect(component.data.series[0].yValues).toEqual([0, 0]);
   });
 
+  // TODO(b/128857535): Fix tests below.
   it('should handle editing a point', () => {
     // Set up some stub data so that there's a chart to render.
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.generateBasicChart();
+    component.generateFromScratch();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -132,7 +133,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
-    component.generateBasicChart();
+    component.generateFromScratch();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.

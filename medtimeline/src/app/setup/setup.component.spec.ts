@@ -48,13 +48,13 @@ describe('SetupComponent', () => {
   });
 
   it('should filter concepts based on input', fakeAsync(() => {
-       const userInput = 'CB';
+       const userInput = 'Bi';
        const filtered = component.filter(userInput);
        expect(filtered.length).toEqual(1);
        const element = filtered[0];
        expect(element[0].label).toEqual('Lab Results');
        expect(element[1].length).toEqual(2);
-       expect(element[1][0].label).toEqual('CBC');
-       expect(element[1][1].label).toEqual('CBC White Blood Cell');
+       expect(element[1][0].label).toEqual('Bilirubin, Direct');
+       expect(element[1][1].label).toEqual('Bilirubin, Total');
      }));
 });
