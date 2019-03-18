@@ -11,7 +11,7 @@
 }
 
 .actions {
-  float: right;
+  margin-left: auto;
   padding: 20px;
 }
 
@@ -32,37 +32,41 @@ button {
   margin-top: 10px;
 }
 
+mat-icon {
+  padding-top: 20px;
+  vertical-align: bottom;
+}
 
 .mainSetup {
   width: 100%;
-  padding: 20px;
-  position: fixed;
+  padding-top: 20px;
+  padding-left: 40px;
   color: white;
   height: 100%;
   background-color:#002356; /* PRIMARY_COLOR */
 }
 
-::ng-deep .mat-form-field-empty.mat-form-field-label {
+::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {
   color: white;
 }
 
-::ng-deep .mat-form-field-label {
+::ng-deep app-setup .mat-form-field-label {
   color:white !important;
 }
 
-::ng-deep .mat-form-field-underline {
+::ng-deep app-setup .mat-form-field-underline {
   background-color: white !important;
 }
 
-::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: white !important;
 }
 
-::ng-deep .mat-form-field-underline {
+::ng-deep app-setup .mat-form-field-underline {
   background-color: white !important;
 }
 
-.mat-input-placeholder {
+app-setup .mat-input-placeholder {
   color: white;
 }
 
@@ -70,10 +74,14 @@ button {
   background-color: #00002d; /* PRIMARY_COLOR, dark variant */
 }
 
-::ng-deep .mat-form-field-wrapper {
+::ng-deep  app-setup .mat-form-field-wrapper {
   color: white;
 }
 
-::ng-deep .mat-checkbox-frame {
+::ng-deep app-setup .mat-checkbox-frame {
   border-color: white;
+}
+
+.noResults {
+  font-family: "Roboto", sans-serif;
 }

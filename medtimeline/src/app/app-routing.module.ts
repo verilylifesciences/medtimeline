@@ -15,10 +15,8 @@ URL is localhost:8000/. So, we have to do a different path for
 authentication. */
 const routes: Routes = [
   {path: 'main', component: CardcontainerComponent},
-  {path: 'medtimeline', component: SetupComponent},
-  {path: '', redirectTo: '/medtimeline', pathMatch: 'full'},
-  {path: 'auth', component: FhirLaunchComponent},
-  {path: '**', redirectTo: '/medtimeline'}
+  {path: '', component: SetupComponent},
+  {path: 'auth', component: FhirLaunchComponent}, {path: '**', redirectTo: ''}
 ];
 
 
