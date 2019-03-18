@@ -23,6 +23,7 @@ import {SetupDataService} from '../setup-data.service';
 // Users can choose which concepts to display, or pick the default
 // configuration.
 export class SetupComponent implements OnInit, OnDestroy {
+  readonly defaultConcepts: Array<ResourceCodesForCard> = [];
   readonly allConcepts: Array<ResourceCodesForCard> = [];
   readonly checkedConcepts = new Map<string, boolean>();
   readonly chosenConcepts: Array<ResourceCodesForCard> = [];
@@ -79,7 +80,7 @@ export class SetupComponent implements OnInit, OnDestroy {
       const showByDefault =
           concept.resourceCodeGroups.some(x => x.showByDefault);
       if (showByDefault) {
-        this.checkedConcepts[concept.label] = true;
+        this.defaultConcepts.push(concept);
       }
     }
   }
@@ -98,20 +99,11 @@ export class SetupComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * The user wishes to select all concepts.
+   * The user requests the default configuration.
    */
-  selectAll() {
-    for (const concept of this.allConcepts) {
+  defaultRequested() {
+    for (const concept of this.defaultConcepts) {
       this.checkedConcepts[concept.label] = true;
-    }
-  }
-
-  /**
-   * The user wishes to clear all select concepts.
-   */
-  clearAll() {
-    for (const concept of this.allConcepts) {
-      this.checkedConcepts[concept.label] = false;
     }
   }
 

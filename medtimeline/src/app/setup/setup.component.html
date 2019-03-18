@@ -1,24 +1,10 @@
 <mat-toolbar color="primary" class="toolbar">
   <h1 class="title">Select Initial Configuration</h1>
-  <div class="actions">
-    <button mat-raised-button (click)="onContinue()" cdkFocusInitial id="continue">
-      Continue
-    </button>
-  </div>
 </mat-toolbar>
 <div class="mainSetup">
-  <div class="checkboxActions">
-    <button mat-raised-button (click)="selectAll()" id="continue">
-      Select All
-    </button>
-    <button mat-raised-button (click)="clearAll()" id="continue">
-      Clear Selection
-    </button>
-  </div>
   <form class="conceptForm">
     <mat-form-field class="conceptFormField">
       <input matInput placeholder="Search for a concept" aria-label="Search for a concept" [formControl]="conceptCtrl">
-      <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div *ngFor="let entry of displayGroupingOptions | async">
       <div class="category" [style.color]="entry[0].fill.hsl().string()">
@@ -30,8 +16,13 @@
         </mat-checkbox>
       </div>
     </div>
-    <div *ngIf="(displayGroupingOptions | async).length === 0" class="noResults">
-      No results found
-    </div>
   </form>
+  <div class="actions">
+    <button mat-raised-button color="accent" (click)="defaultRequested()" id="defaultConfig">
+      Select Default Configuration
+    </button>
+    <button mat-raised-button color="accent" (click)="onContinue()" cdkFocusInitial id="continue">
+      Continue
+    </button>
+  </div>
 </div>
