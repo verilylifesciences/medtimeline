@@ -141,6 +141,9 @@ export class CustomizableTimelineDialogComponent {
   // date range.
   private dateNotInRange(): boolean {
     const dateTime = DateTime.fromJSDate(this.getSelectedDate());
+    if (!this.dateRange) {
+      return false;
+    }
     return !(this.dateRange.contains(dateTime));
   }
 }

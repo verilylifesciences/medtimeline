@@ -204,8 +204,8 @@ describe('CardcontainerComponent', () => {
    * the code runs through okay.
    */
   it('should go through all the actions to delete and replace card', () => {
-    // Grab the third card and remove it.
-    const cardToRemove = component.displayedConcepts[2];
+    // Grab the second card and remove it.
+    const cardToRemove = component.displayedConcepts[1];
     const origDisplayedConcepts = component.displayedConcepts;
 
     component.removeDisplayedCard({id: cardToRemove.id});

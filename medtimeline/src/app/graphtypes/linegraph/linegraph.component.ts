@@ -110,12 +110,20 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     const yValues = this.chartConfiguration.axis.y.tick.values;
     const needToWrap =
         yValues.some(value => value.toString().length > Y_AXIS_TICK_MAX);
+    // Due to some weird c3 rendering, we need extra padding for tick marks less
+    // than 2 characters long.
+    const needExtraPadding =
+        yValues.every(value => value.toString().length < 2);
     // Replace the tick label's initially displayed values to padded empty
     // strings so that the axis is aligned. We only do this if we need to wrap
     // axis labels in the first place.
-    if (needToWrap) {
+    const extraPadding = 4;
+    const padding = needToWrap ?
+        Y_AXIS_TICK_MAX :
+        (needExtraPadding ? Y_AXIS_TICK_MAX + extraPadding : undefined);
+    if (padding) {
       this.chartConfiguration.axis.y.tick.format = function(d) {
-        return ''.trim().padStart(Y_AXIS_TICK_MAX, '\xa0');
+        return ''.trim().padStart(padding, '\xa0');
       };
       this.yAxisTickDisplayValues =
           yValues.map(value => value.toLocaleString('en-us', {

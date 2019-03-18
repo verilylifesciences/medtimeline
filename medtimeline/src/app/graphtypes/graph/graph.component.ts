@@ -15,8 +15,8 @@ import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {v4 as uuid} from 'uuid';
 
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import {getTickMarksForXAxis} from '../../date_utils';
 import {StandardTooltip} from '../tooltips/tooltip';
-import {DateTimeXAxis} from './datetimexaxis';
 
 export enum ChartType {
   SCATTER,
@@ -69,9 +69,10 @@ export abstract class GraphComponent<T extends GraphData> implements
   chartConfiguration: c3.ChartConfiguration;
 
   // The y-axis configuration for the chart.
-  yAxisConfig: c3.YAxisConfiguration;
+  yAxisConfig: c3.YAxisConfiguration = {};
 
-  xAxis: DateTimeXAxis;
+  // The x-axis configuration for the chart.
+  xAxisConfig: c3.XAxisConfiguration;
 
   // A map containing a color for each series displayed on the graph.
   colorsMap: {[key: string]: string} = {};
@@ -83,6 +84,8 @@ export abstract class GraphComponent<T extends GraphData> implements
   // during setup, so that the y axis does not get shifted while getting
   // displayed.
   yAxisTickDisplayValues: string[];
+
+  labels: string[] = [];
 
   constructor(readonly sanitizer: DomSanitizer) {
     // Generate a unique ID for this chart.
@@ -130,7 +133,7 @@ export abstract class GraphComponent<T extends GraphData> implements
         this.dataChanged();
       }
       if (changes.dateRange) {
-        this.xAxis = new DateTimeXAxis(this.dateRange);
+        this.adjustXAxis();
       }
       if (changes.eventlines) {
         this.updateEventlines();
@@ -200,8 +203,7 @@ export abstract class GraphComponent<T extends GraphData> implements
    * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
    */
   generateBasicChart(maxXTicks = 10) {
-    this.xAxis = new DateTimeXAxis(this.dateRange);
-
+    this.adjustXAxis(maxXTicks);
     this.adjustColorMap();
 
     this.chartTypeString = 'line';
@@ -230,7 +232,7 @@ export abstract class GraphComponent<T extends GraphData> implements
         colors: this.colorsMap,
       },
       regions: this.data.xRegions,
-      axis: {x: this.xAxis.xAxisConfig, y: this.yAxisConfig},
+      axis: {x: this.xAxisConfig, y: this.yAxisConfig},
       legend: {show: false},  // There's always a custom legend
       line: {connectNull: false},
       onrendered: function() {
@@ -242,6 +244,8 @@ export abstract class GraphComponent<T extends GraphData> implements
       grid: {x: {lines: gridlines}},
       tooltip: this.setTooltip()
     };
+
+    // chartConfiguration['tooltip'] = this.setTooltip();
 
     this.setCustomLegend(
         this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
@@ -278,6 +282,69 @@ export abstract class GraphComponent<T extends GraphData> implements
         this.colorsMap[key] = lookupColor.toString();
       }
     }
+  }
+
+  /**
+   * If the date range is changed, adjust the x-axis tick marks displayed. This
+   * method does not need to be called otherwise, as the x-axis should stay
+   * constant unless the date range is changed.
+   * @param maxXTicks The maximum number of labeled ticks to display. By
+   *     default, any date range lasting shorter than maxXTicks will show tick
+   *     marks with labels at each 24-hour mark, and tick marks without labels
+   *     at 12-hour marks.
+   */
+  adjustXAxis(maxXTicks = 10) {
+    const daysInRange = getTickMarksForXAxis(this.dateRange, true);
+    // The ticks with labels displayed.
+    const ticksLabels = new Array<DateTime>();
+    // All ticks displayed.
+    let ticks = new Array<DateTime>();
+    if (Math.floor(daysInRange.length / 2) <= maxXTicks) {
+      // Ticks are separated by 1 day intervals, in which case we show ticks
+      // with no labels at the 12-hour mark.
+      ticks = daysInRange;
+      for (let i = 0; i < daysInRange.length; i += 2) {
+        ticksLabels.push(daysInRange[i]);
+      }
+    } else {
+      // Ticks are separated by intervals > 1 day, in which case we show ticks
+      // with no labels at the day mark.
+      const iteration = Math.ceil(daysInRange.length / maxXTicks);
+      ticksLabels.push(daysInRange[0]);
+      let date = daysInRange[0];
+      while (date <= this.dateRange.end) {
+        date = date.plus({days: iteration});
+        ticksLabels.push(date);
+      }
+      date = daysInRange[0];
+      ticks.push(date);
+      while (date <= this.dateRange.end) {
+        date = date.plus({days: 1});
+        ticks.push(date);
+      }
+    }
+
+    this.labels = ticksLabels.map(function(x) {
+      const date = x.toJSDate();
+      const formatTime = d3.timeFormat('%m/%d %H:%M');
+      return formatTime(date);
+    });
+
+
+    this.xAxisConfig = {
+      type: 'timeseries',
+      min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
+      max: this.dateRange.end.toLocal().endOf('day').toJSDate(),
+      localtime: true,
+      tick: {
+        // To reduce ambiguity we include the hour as well.
+        format: '%m/%d %H:%M',
+        multiline: true,
+        fit: true,
+        values: ticks.map(x => Number(x))
+      },
+      padding: {left: 0, right: 0}
+    };
   }
 
   /**
@@ -477,8 +544,7 @@ export abstract class GraphComponent<T extends GraphData> implements
                               .style('font-weight', 'bolder');
             // Only add the tick label text if it was meant to be
             // displayed.
-            if (self.xAxis.xAxisLabels.length > 0 &&
-                self.xAxis.xAxisLabels.includes(text)) {
+            if (self.labels.length > 0 && self.labels.includes(text)) {
               tspan.text(
                   textSplit[0]);  // Set the 'bold' tspan's content as the date.
               d3.select(this).append('tspan').text(
