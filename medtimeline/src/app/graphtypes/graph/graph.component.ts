@@ -104,9 +104,12 @@ export abstract class GraphComponent<T extends GraphData> implements
    */
   static dataPointsInRange(series: LabeledSeries[], dateRange: Interval):
       boolean {
+    const entireRange = Interval.fromDateTimes(
+        dateRange.start.toLocal().startOf('day'),
+        dateRange.end.toLocal().endOf('day'));
     for (const s of series) {
       for (const x of s.xValues) {
-        if (dateRange.contains(x)) {
+        if (entireRange.contains(x)) {
           return true;
         }
       }

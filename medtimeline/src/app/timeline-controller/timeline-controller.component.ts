@@ -153,7 +153,7 @@ export class TimelineControllerComponent implements OnInit {
           DateTime.fromJSDate(rangeIn.startDate.toDate())
               .startOf('day')
               .toUTC(),
-          DateTime.fromJSDate(rangeIn.endDate.toDate()).startOf('day').toUTC());
+          DateTime.fromJSDate(rangeIn.endDate.toDate()).endOf('day').toUTC());
       this.changeDateRange.emit(interval);
     }
   }
