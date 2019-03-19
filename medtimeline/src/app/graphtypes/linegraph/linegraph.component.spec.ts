@@ -20,6 +20,7 @@ import {ChartType} from '../graph/graph.component';
 import {LineGraphComponent} from './linegraph.component';
 
 describe('LineGraphComponent', () => {
+  const normalRange: [number, number] = [1, 30];
   let component: LineGraphComponent;
   let fixture: ComponentFixture<LineGraphComponent>;
   const obsSet = new ObservationSet([

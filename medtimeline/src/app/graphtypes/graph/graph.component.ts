@@ -173,12 +173,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   chartTypeString = 'line';
 
-  /**
-   * Indicating whether are not there are any data points for the
-   * current time interval.
-   */
-  private dataPointsInDateRange: boolean;
-
   constructor(readonly sanitizer: DomSanitizer) {
     // Generate a unique ID for this chart.
     const chartId = uuid();
@@ -225,7 +219,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       this.entireInterval = Interval.fromDateTimes(
           this.dateRange.start.toLocal().startOf('day'),
           this.dateRange.end.toLocal().endOf('day'));
-      this.dataPointsInDateRange = this.data.dataPointsInRange(this.dateRange);
       this.prepareForChartConfiguration();
       this.generateBasicChart(focusOnSeries);
       this.adjustGeneratedChartConfiguration();

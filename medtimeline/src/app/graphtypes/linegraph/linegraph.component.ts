@@ -6,6 +6,8 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
+import {DateTime} from 'luxon';
+import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
 
@@ -35,20 +37,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       // (unless the bottom is zero or the top is 100--those might be
       // percentages). This reasonably ensures that there's no cropping where
       // the normal bound labels would get cut off.
-      const padding =
-          (this.data.yAxisDisplayBounds[1] - this.data.yAxisDisplayBounds[0]) *
-          0.25;
-      this.chartOptions.scales.yAxes[0].ticks.min =
-          Math.max(this.data.yAxisDisplayBounds[0] - padding, 0);
-      this.chartOptions.scales.yAxes[0].ticks.max =
-          this.data.yAxisDisplayBounds[1] === 100 ?
-          this.data.yAxisDisplayBounds[1] :
-          this.data.yAxisDisplayBounds[1] + padding;
-      this.chartOptions.scales.yAxes[0].afterBuildTicks = (scale) => {
-        if (this.data && this.data.yTicks) {
-          scale.ticks = this.data.yTicks;
-        }
-      };
+      this.adjustChartYScales(this.data.yAxisDisplayBounds);
     }
   }
 
@@ -63,30 +52,111 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    * "abnormal" color if they fall outside the normal range.
    */
   private addYNormalRange() {
+    let yDisplayBounds = this.data.yAxisDisplayBounds;
     // Only LineGraphData has y normal bounds.
     if (!(this.data instanceof LineGraphData)) {
       return;
     }
 
-    // Color points that fall outside of their respective normal ranges.
-    for (let i = 0; i < this.data.series.length; i++) {
-      const chartjsSeries = this.chartData[i];
-      const labeledSeries = this.data.series[i];
-      this.colorAbnormalPoints(
-          chartjsSeries, labeledSeries.yNormalBounds, labeledSeries.legendInfo);
+    if (this.data.series.length === 1) {
+      // Some things are only valid if there are y-axis normal bounds. We
+      // also only show normal bounds if there's one data series on the
+      // axis, and all normal bounds for the current date range are the same.
+      // These customizations are based on this.data, which is a type
+      // specific for LineGraphData, and could not be generalized in the
+      // abstract GraphCard class.
+      let dateTimesInRange = [];
+      let firstNormalRange: [number, number];
+      if (this.data.series[0].normalRanges) {
+        dateTimesInRange = Array.from(this.data.series[0].normalRanges.keys())
+                               .filter(date => this.dateRange.contains(date));
+        firstNormalRange = dateTimesInRange.length > 0 ?
+            this.data.series[0].normalRanges.get(dateTimesInRange[0]) :
+            undefined;
+      }
+      if (firstNormalRange) {
+        let differentNormalRanges = false;
+        for (const time of dateTimesInRange) {
+          const currNormalRange = this.data.series[0].normalRanges.get(time);
+          if (currNormalRange[0] !== firstNormalRange[0] ||
+              currNormalRange[1] !== firstNormalRange[1]) {
+            differentNormalRanges = true;
+          }
+        }
+        // If all normal ranges associated with points in the current date
+        // range are the same, then add the region to the chart, and adjust
+        // display bounds accordingly.
+        if (!differentNormalRanges) {
+          this.addGreenRegion(firstNormalRange);
+          yDisplayBounds = [
+            Math.min(yDisplayBounds[0], firstNormalRange[0]),
+            Math.max(yDisplayBounds[1], firstNormalRange[1])
+          ];
+          // Color points that fall outside of their respective normal ranges.
+          for (let i = 0; i < this.data.series.length; i++) {
+            const chartjsSeries = this.chartData[i];
+            const labeledSeries = this.data.series[i];
+            if (labeledSeries.normalRanges) {
+              this.colorAbnormalPoints(
+                  chartjsSeries, firstNormalRange, labeledSeries.legendInfo);
+            }
+          }
+        }
+      }
+    }
+    if (this.data.resourceGroup && this.data.resourceGroup.displayBounds) {
+      yDisplayBounds = this.getDisplayBounds(
+          yDisplayBounds[0], yDisplayBounds[1], this.data.resourceGroup);
     }
 
-    // If there's more than one series on this graph we don't mark a normal
-    // region because they might not be the same.
-    const yBounds = this.data.series.length === 1 ?
-        this.data.series[0].yNormalBounds :
-        undefined;
-    if (!yBounds) {
-      return;
-    }
-
-    this.addGreenRegion(yBounds);
+    this.adjustChartYScales(yDisplayBounds);
   }
+
+  private adjustChartYScales(yDisplayBounds: [number, number]) {
+    const padding = (yDisplayBounds[1] - yDisplayBounds[0]) * 0.25;
+    this.chartOptions.scales.yAxes[0].ticks.min = yDisplayBounds[0] - padding;
+    this.chartOptions.scales.yAxes[0].ticks.max = yDisplayBounds[1] === 100 ?
+        yDisplayBounds[1] :
+        yDisplayBounds[1] + padding;
+    this.chartOptions.scales.yAxes[0].afterBuildTicks = (scale) => {
+      if (this.data && this.data.yTicks) {
+        scale.ticks = (this.data.yTicks.length === 1) ?
+            LineGraphData.getYTicks(yDisplayBounds[0], yDisplayBounds[1]) :
+            this.data.yTicks;
+      }
+    };
+  }
+
+
+  private getDisplayBounds(
+      minInSeries: number, maxInSeries: number,
+      resourceCodeGroup: ResourceCodeGroup): [number, number] {
+    let yAxisDisplayMin;
+    let yAxisDisplayMax;
+    if (resourceCodeGroup.forceDisplayBounds) {
+      // We use the provided display bounds by default, regardless of the
+      // bounds of the data.
+      yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
+      yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
+    } else {
+      // We use the provided display bounds as the y-axis display min and max,
+      // unless the calculated minimum and maximum of the data span a smaller
+      // range.
+
+      // We choose the provided min bound if it is larger than the min of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMin = (resourceCodeGroup.displayBounds[0] >= minInSeries) ?
+          resourceCodeGroup.displayBounds[0] :
+          minInSeries;
+      // We choose the provided max bound if it is smaller than the max of the
+      // data, to cut off abnormal values.
+      yAxisDisplayMax = (resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
+          resourceCodeGroup.displayBounds[1] :
+          maxInSeries;
+    }
+    return [yAxisDisplayMin, yAxisDisplayMax];
+  }
+
 
   /**
    * Draws a green box spanning the entire x-axis and covering y axis normal
@@ -153,7 +223,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    * @param seriesLegend The legend info for the series we're working with.
    */
   private colorAbnormalPoints(
-      series: any, yNormalBounds: [number, number], seriesLegend: LegendInfo) {
+      series: any, yBounds: [number, number], seriesLegend: LegendInfo) {
     const pointBackgroundColors = new Array<string>();
     const pointBorderColors = new Array<string>();
 
@@ -164,8 +234,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       // y-attribute is a workaround.
       if (pt.hasOwnProperty('y')) {
         pt = pt as ChartPoint;
-        if (yNormalBounds &&
-            (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1])) {
+        if (yBounds && (pt.y < yBounds[0] || pt.y > yBounds[1])) {
           pointBackgroundColors.push(seriesLegend.fill.rgb().string());
           pointBorderColors.push(ABNORMAL.rgb().string());
         } else {

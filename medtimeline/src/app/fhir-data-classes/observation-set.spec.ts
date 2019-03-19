@@ -3,6 +3,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DateTime} from 'luxon';
+
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 
 import {AnnotatedObservation} from './annotated-observation';
@@ -35,40 +37,28 @@ describe('ObservationSet', () => {
     expect(constructor).toThrowError();
   });
 
-  it('should not set normal range with nonmatching ranges', () => {
-    const observations = [
-      new AnnotatedObservation(new Observation({
-        referenceRange: [{low: {value: 0.0}, high: {value: 30.0}}],
-        ...observationCodingString,
-        valueQuantity: {value: 94},
-      })),
-      new AnnotatedObservation(new Observation({
-        referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
-        ...observationCodingString,
-        valueQuantity: {value: 92}
-      }))
-    ];
-    const obsSet = new ObservationSet(observations);
-    expect(obsSet.normalRange).toBeUndefined();
-  });
-
-  it('should set normal range with matching ranges', () => {
+  it('should set normal range with corresponding timestamps', () => {
     const observations = [
       new AnnotatedObservation(new Observation(
           {
             referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
             ...observationCodingString,
             valueQuantity: {value: 93},
+            effectiveDateTime: DateTime.utc(2016, 1, 14).toISO(),
           },
           )),
       new AnnotatedObservation(new Observation({
-        referenceRange: [{low: {value: 10.0}, high: {value: 20.0}}],
+        referenceRange: [{low: {value: 10.0}, high: {value: 26.0}}],
         ...observationCodingString,
-        valueQuantity: {value: 93}
+        valueQuantity: {value: 93},
+        effectiveDateTime: DateTime.utc(2016, 1, 15).toISO(),
       }))
     ];
     const obsSet = new ObservationSet(observations);
-    expect(obsSet.normalRange).toEqual([10, 20]);
+    expect(obsSet.normalRanges.size).toEqual(2);
+    const values = Array.from(obsSet.normalRanges.values());
+    expect(values[0]).toEqual([10, 20]);
+    expect(values[1]).toEqual([10, 26]);
   });
 
   it('should get the label text', () => {
