@@ -3513,6 +3513,237 @@
       "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-06T12:03:00.000Z",
+        "issued": "2018-11-06T12:34:45.000Z",
+        "valueQuantity": {
+          "value": 76,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-07T00:03:00.000Z",
+        "issued": "2018-11-07T00:34:45.000Z",
+        "valueQuantity": {
+          "value": 60,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "M4786350072",
+        "meta": {
+          "versionId": "1-4786350071",
+          "lastUpdated": "2018-10-02T06:34:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/PatientID"
+        },
+        "encounter": {
+          "reference": "Patient/EncounterID"
+        },
+        "effectiveDateTime": "2018-11-09T00:03:00.000Z",
+        "issued": "2018-11-09T00:34:45.000Z",
+        "valueQuantity": {
+          "value": 85,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.cernerxxxxx.com/dstu2/18c2ddf7-cb55-4622-a2b3-xxxxxx3/Observation/Mxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
         "id": "M4786783122",
         "meta": {
           "versionId": "1-4786783121",

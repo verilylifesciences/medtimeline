@@ -15,7 +15,7 @@ import {DisplayGrouping} from './display-grouping';
 export class MedicationConceptGroup extends DisplayGrouping {}
 
 export const ANTIBIOTIC =
-    new MedicationConceptGroup('Antibiotic', Colors.DEEP_TURQUOISE);
+    new MedicationConceptGroup('Antibiotic', Colors.DEEP_CYAN);
 
 export const MEDICATION_GROUPS = [ANTIBIOTIC];
 

@@ -5,7 +5,7 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from '../clinicalconcepts/display-grouping';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
@@ -28,6 +28,18 @@ export class LabeledSeries {
   unit: string;
 
   /**
+   * The DisplayGrouping this LabeledSeries corresponds to.
+   */
+  concept: DisplayGrouping;
+
+  /**
+   * A map of DateTimes to corresponding tuples representing the low and high
+   * bounds of what should be considered "normal" along the y-axis.
+   */
+  normalRanges: Map<DateTime, [number, number]> =
+      new Map<DateTime, [number, number]>();
+
+  /**
    * This is the desired display range for the y-axis for this series. We
    * calculate it as as:
    * [minimum(yNormalBounds, yValues), maximum(yNormalBounds, yValues)]
@@ -46,14 +58,18 @@ export class LabeledSeries {
       /** The y-axis unit for this series. */
       unit?: string,
       /**
-       * This tuple represents the low and high bounds of what should be
-       * considered "normal" along the y-axis.
-       */
-      readonly yNormalBounds?: [number, number],
-      /**
        * Holds information about how this series should be displayed.
        */
-      readonly legendInfo?: LegendInfo) {
+      readonly legendInfo?: LegendInfo,
+      /**
+       * A map of DateTimes to corresponding tuples representing the low and
+       * high bounds of what should be considered "normal" along the y-axis.
+       */
+      normalRanges?: Map<DateTime, [number, number]>,
+      /**
+       * The DisplayGrouping associated with this LabeledSeries.
+       */
+      concept?: DisplayGrouping) {
     // Sort the coordinates by x-value.
     this.coordinates = coordinates.sort((a, b) => {
       return a[0].toMillis() - b[0].toMillis();
@@ -64,25 +80,21 @@ export class LabeledSeries {
     // series.
     this.legendInfo = legendInfo || new LegendInfo(label);
 
+    this.concept = concept;
+    this.normalRanges = normalRanges;
+
     /**
      * Calculate the y axis display bounds by finding the outer boundaries of
      * the data and the normal range.
      */
+
     const yValues = this.coordinates.map(c => c[1]).filter(x => x !== null);
 
     if (yValues.map(val => typeof val === 'number').some(x => x === false)) {
       return;
     }
-
     this.yDisplayBounds =
         [Math.min.apply(Math, yValues), Math.max.apply(Math, yValues)];
-
-    if (this.yNormalBounds) {
-      this.yDisplayBounds = [
-        Math.min(this.yDisplayBounds[0], this.yNormalBounds[0]),
-        Math.max(this.yDisplayBounds[1], this.yNormalBounds[1])
-      ];
-    }
   }
 
   /**
@@ -111,7 +123,8 @@ export class LabeledSeries {
     coordinates = this.addEncounterEndpoints(coordinates, encounters);
     return new LabeledSeries(
         observationSet.label, coordinates, observationSet.unit,
-        observationSet.normalRange);
+        undefined,  // legendInfo
+        observationSet.normalRanges);
   }
 
   /**
@@ -176,7 +189,13 @@ export class LabeledSeries {
     coords = this.addEncounterEndpoints(coords, encounters);
     return new LabeledSeries(
         medOrderSet.label, coords, medOrderSet.unit,
-        undefined,  // yNormalBounds
+        undefined,  // legendInfo
+        // Always keep normalRanges undefined for MedicationOrder-based
+        // LabeledSeries, as we only show normal ranges for Observations with a
+        // normal range given in the data.
+        undefined,  // normalRanges
+        // TODO(b/122468555): Enforce that medOrderSets have to have a
+        // RxNormCode upon construction
         medOrderSet.rxNormCode ? medOrderSet.rxNormCode.displayGrouping :
                                  undefined);
   }
@@ -255,12 +274,14 @@ export class LabeledSeries {
 
     return [
       new LabeledSeries(
-          label, coordinates, medAdminsForOrder.unit,
-          undefined,  // yNormalBounds
-          legend),
+          label, coordinates, medAdminsForOrder.unit, legend,
+          // Always keep normalRanges undefined for MedicationOrder-based
+          // LabeledSeries, as we only show normal ranges for Observations with
+          // a normal range given in the data.
+          undefined,  // normalRanges
+          order.rxNormCode.displayGrouping),
       new LabeledSeries(
           'endpoint' + label, endpointCoordinates, medAdminsForOrder.unit,
-          undefined,  // yNormalBounds
           legend)
     ];
   }
@@ -307,7 +328,6 @@ export class LabeledSeries {
           // with the correct styling.
           seriesLabel, interpretationMap.get(interpretation),
           undefined,  // unit
-          undefined,  // yNormalBounds
           LabeledSeries.getLegendInfoFromResult(report.status, isPositive)));
     }
     return series;

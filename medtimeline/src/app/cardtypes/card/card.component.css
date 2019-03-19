@@ -85,7 +85,6 @@
   word-wrap: break-word;
   flex: 1 1 auto;
   -ms-flex: 1 1 auto; /* For IE10 */
-  font-family: 'Montserrat', sans-serif;
 }
 
 ::ng-deep .mat-input-element:disabled{

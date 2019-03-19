@@ -1,5 +1,5 @@
 .previewSave {
-  background-color:#202020; /* GREY_900 */
+  background-color: #002356; /* PRIMARY_COLOR */
   display: flex;
   padding: 15px;
   width: 90%;
@@ -19,8 +19,4 @@
 
 .mat-dialog-actions {
   float: right;
-}
-
-h1 {
-  font-family: 'Montserrat', sans-serif;
 }

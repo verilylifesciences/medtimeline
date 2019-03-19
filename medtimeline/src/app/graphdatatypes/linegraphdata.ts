@@ -25,6 +25,11 @@ export class LineGraphData extends GraphData {
   /** The tick marks to display on the y axis. */
   readonly yTicks: number[];
 
+  /**
+   * Contains the ResourceCodeGroup for this set of data, which helps determine
+   * whether to force display bounds, and the code group's display bounds.
+   */
+  readonly resourceGroup: ResourceCodeGroup;
   private constructor(
       /** The label for the graph. */
       readonly label: string,
@@ -35,11 +40,12 @@ export class LineGraphData extends GraphData {
       /** The unit for the y-axis of the graph. */
       readonly unit: string, tooltipMap?: Map<string, string>,
       tooltipKeyFn?: (key: string) => string, regions?: any[],
-      precision?: number) {
+      precision?: number, resourceCodeGroup?: ResourceCodeGroup) {
     super(series, tooltipMap, tooltipKeyFn, regions);
     this.precision = precision ? precision : 0;
     this.yTicks =
         LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
+    this.resourceGroup = resourceCodeGroup;
   }
 
   /**
@@ -85,26 +91,28 @@ export class LineGraphData extends GraphData {
       throw Error('Observations have different units.');
     }
 
-    const displayBounds: [number, number] =
-        LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup);
-
     const data = new LineGraphData(
-        label, allSeries, displayBounds, allUnits.values().next().value,
+        label, allSeries, [minY, maxY], allUnits.values().next().value,
         tooltipMap.size > 0 ? tooltipMap : undefined,
         undefined,  // tooltipMap
         undefined,  // regions
-        resourceCodeGroup.precision);
+        resourceCodeGroup.precision, resourceCodeGroup);
     return data;
   }
 
   /**
    * Manually find y axis tick values based on the min and max display bounds.
    */
-  private static getYTicks(min: number, max: number, tickCount = 4): number[] {
+  static getYTicks(min: number, max: number, tickCount = 4): number[] {
     // Evenly space out 5 numbers between the min and max (display bounds).
     const difference = max - min;
     const spacing = difference / tickCount;
     const values = [];
+    // If there is no difference between the min and max, simply return the
+    // min.
+    if (spacing === 0) {
+      return [min];
+    }
     for (let curr = min; curr <= max; curr += spacing) {
       values.push(curr);
     }
@@ -166,77 +174,37 @@ export class LineGraphData extends GraphData {
       ): Map<string, string> {
     for (const entry of Array.from(obsGroupToSeries.entries())) {
       const series: LabeledSeries = entry[1];
-      const yBounds = series.yNormalBounds;
-      if (yBounds) {
-        // Add a tooltip for any value with an abnormal y-value.
-        for (const coords of series.coordinates) {
-          const value = coords[1];
-          const timestamp = coords[0].toMillis().toString();
-          if (value < yBounds[0] || value > yBounds[1]) {
-            const params = {};
-            params['timestamp'] = coords[0].toMillis();
-            params['value'] = value;
-            params['label'] = series.label;
-            params['unit'] = series.unit;
-            // The key for this tooltip is the timestamp.
-            // There may be multiple data points associated with the
-            // timestamp so we stack the administrations on top of one
-            // another in that case.
-            if (tooltipMap.get(timestamp)) {
-              tooltipMap.set(
-                  timestamp,
-                  tooltipMap.get(timestamp) +
-                      new GenericAbnormalTooltip(false, series.legendInfo.fill)
-                          .getTooltip(params, sanitizer));
-            } else {
-              tooltipMap.set(
-                  timestamp,
-                  new GenericAbnormalTooltip(true, series.legendInfo.fill)
-                      .getTooltip(params, sanitizer));
-            }
+      // Add a tooltip for any value with an abnormal y-value.
+      for (const coords of series.coordinates) {
+        const value = coords[1];
+        const timestamp = coords[0].toMillis().toString();
+        const yBounds = series.normalRanges.get(coords[0]);
+        if (yBounds && (value < yBounds[0] || value > yBounds[1])) {
+          const params = {};
+          params['timestamp'] = coords[0].toMillis();
+          params['value'] = value;
+          params['label'] = series.label;
+          params['unit'] = series.unit;
+          // The key for this tooltip is the timestamp.
+          // There may be multiple data points associated with the
+          // timestamp so we stack the administrations on top of one
+          // another in that case.
+          if (tooltipMap.get(timestamp)) {
+            tooltipMap.set(
+                timestamp,
+                tooltipMap.get(timestamp) +
+                    new GenericAbnormalTooltip(false, series.legendInfo.fill)
+                        .getTooltip(params, sanitizer));
+          } else {
+            tooltipMap.set(
+                timestamp,
+                new GenericAbnormalTooltip(true, series.legendInfo.fill)
+                    .getTooltip(params, sanitizer));
           }
         }
       }
     }
     return tooltipMap;
-  }
-
-  private static getDisplayBounds(
-      minInSeries: number, maxInSeries: number,
-      resourceCodeGroup: ResourceCodeGroup): [number, number] {
-    let yAxisDisplayMin;
-    let yAxisDisplayMax;
-    if (resourceCodeGroup.forceDisplayBounds &&
-        resourceCodeGroup.displayBounds) {
-      // We use the provided display bounds by default, regardless of the
-      // bounds of the data.
-      yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
-      yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
-    } else {
-      // We use the provided display bounds as the y-axis display min and
-      // max, unless the calculated minimum and maximum of the data span are
-      // a smaller range.
-      yAxisDisplayMin = resourceCodeGroup.displayBounds ?
-          ((resourceCodeGroup.displayBounds[0] >= minInSeries) ?
-               resourceCodeGroup.displayBounds[0] :
-               minInSeries) :
-          minInSeries;
-      yAxisDisplayMax = resourceCodeGroup.displayBounds ?
-          ((resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
-               resourceCodeGroup.displayBounds[1] :
-               maxInSeries) :
-          maxInSeries;
-    }
-
-    // If we get all the way here and the min/max values are still min/max
-    // int, then there are just no good bounds and/or no good data. So, we
-    // set an arbitrary min of 0 and max of 100 so that the super long
-    // numbers don't clobber our axis spacing.
-    yAxisDisplayMin =
-        yAxisDisplayMin === Number.MAX_VALUE ? 0 : yAxisDisplayMin;
-    yAxisDisplayMax =
-        yAxisDisplayMax === Number.MIN_VALUE ? 100 : yAxisDisplayMax;
-    return [yAxisDisplayMin, yAxisDisplayMax];
   }
 
   /**

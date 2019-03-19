@@ -33,7 +33,7 @@
 }
 
 ::ng-deep td.inEncounter {
-  color: #4527A0 !important; /* Deep Purple 800 */
+  color: rgb(0, 35, 86) !important;
   background-color: #e5f3ec;
 }
 
@@ -47,15 +47,15 @@ input {
 
 /* Change colors of ngx-datepicker to match custom material theme */
 ::ng-deep .ranges button.active {
-  background-color: #4527A0 !important; /* Deep Purple 800 */
+  background-color: rgb(0, 35, 86) !important; /* Primary color */
 }
 
 ::ng-deep .md-drppicker .btn {
-  background-color: #4527A0 !important; /* Deep Purple 800 */
+  background-color: rgb(0, 35, 86) !important; /* Primary color */
 }
 
 ::ng-deep td.active.available {
-  background-color: #4527A0 !important; /* Deep Purple 800 */
+  background-color: rgb(0, 35, 86) !important; /* Primary color */
 }
 
 .errorIcon {

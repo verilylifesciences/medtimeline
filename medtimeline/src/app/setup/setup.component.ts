@@ -20,6 +20,7 @@ import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {SetupDataService} from '../setup-data.service';
+import {BLUE_GREY_500} from '../theme/verily_colors';
 
 /**
  * Contains the intial configuration options for the MedTimeLine.
@@ -37,6 +38,7 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly chosenConcepts = new Array<AxisGroup>();
   readonly useDebugger = environment.useDebugger;
 
+  readonly categoryHeaderColor = BLUE_GREY_500;
 
   /**
    * Which encounter to load into the app first.

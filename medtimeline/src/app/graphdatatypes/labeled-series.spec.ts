@@ -80,25 +80,7 @@ describe('LabeledSeries', () => {
        ]);
 
        const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
-       expect(lblSeries.yNormalBounds).toEqual([1, 90]);
        expect(lblSeries.yDisplayBounds).toEqual([1, 100]);
-     });
-
-  it('fromObservationSet should calculate display range ' +
-         ' to include normal range even if the data range is smaller',
-     () => {
-       const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 23), [1, 90]))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 24), [1, 90]))),
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(10, DateTime.utc(1988, 3, 25), [1, 90])))
-       ]);
-
-       const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
-       expect(lblSeries.yNormalBounds).toEqual([1, 90]);
-       expect(lblSeries.yDisplayBounds).toEqual([1, 90]);
      });
 
   it('fromObservationSet should add encounter endpoints to series', () => {

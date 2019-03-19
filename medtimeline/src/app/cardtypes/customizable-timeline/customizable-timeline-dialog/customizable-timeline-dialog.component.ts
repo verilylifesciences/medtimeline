@@ -32,12 +32,10 @@ export class CustomizableTimelineDialogComponent {
   listOfTimes = [];
 
   // The list of colors the user will be able to choose from.
+  // These colors need to stay consistent with the colored styles in graph.css.
   listOfColors = [
-    Colors.DEEP_CORAL,
-    Colors.DEEP_ORANGE,
-    Colors.DEEP_TURQUOISE,
-    Colors.DEEP_CYAN,
-    Colors.DEEP_PURPLE_600,
+    Colors.CYAN, Colors.TURQUOISE, Colors.GREEN, Colors.LIME, Colors.GOLD,
+    Colors.ORANGE, Colors.CORAL
   ];
 
   // The selected color in this dialog box.
@@ -71,7 +69,7 @@ export class CustomizableTimelineDialogComponent {
     // matching the selected color passed in.
     this.selectedColor = data.color ?
         this.listOfColors.find(c => c.hex() === data.color.hex()) :
-        Colors.DEEP_CORAL;
+        Colors.CYAN;
     // Set the title if it is passed in.
     if (data.title) {
       this.userTitle = data.title;

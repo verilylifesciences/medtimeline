@@ -5,7 +5,7 @@
 
 import {Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Chart, ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
+import {ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import {DateTime, Interval} from 'luxon';
 import {BaseChartDirective, Color} from 'ng2-charts';
@@ -173,12 +173,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   chartTypeString = 'line';
 
-  /**
-   * Indicating whether are not there are any data points for the
-   * current time interval.
-   */
-  private dataPointsInDateRange: boolean;
-
   constructor(readonly sanitizer: DomSanitizer) {
     // Generate a unique ID for this chart.
     const chartId = uuid();
@@ -225,7 +219,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       this.entireInterval = Interval.fromDateTimes(
           this.dateRange.start.toLocal().startOf('day'),
           this.dateRange.end.toLocal().endOf('day'));
-      this.dataPointsInDateRange = this.data.dataPointsInRange(this.dateRange);
       this.prepareForChartConfiguration();
       this.generateBasicChart(focusOnSeries);
       this.adjustGeneratedChartConfiguration();
@@ -312,7 +305,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   private generateBasicChart(focusOnSeries?: LabeledSeries[]) {
     // Transform the data into a format that chart.js can render it.
-    Chart.defaults.global.defaultFontFamily = 'Work Sans';
     const data = [];
     for (const series of this.data.series) {
       let lineWidth: number = GraphComponent.THIN_LINE;
@@ -488,8 +480,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         // Only show as many tick labels will fit neatly on the axis.
         autoSkip: true,
         display: true
-      },
-      scaleLabel: {fontFamily: 'Work Sans'}
+      }
     };
   }
 

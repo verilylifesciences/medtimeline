@@ -1,5 +1,5 @@
 .cardContainer {
-  background-color: #202020; /* GREY_900 */
+  background-color: #C3D7DB; /* BLUE_GREY_100 */
   display: flex;
   display: -ms-flexbox; /* For IE10 */
   padding: 15px;
@@ -34,9 +34,7 @@
 }
 
 .mat-toolbar {
-   /* Deep Purple 800 to Pink 900 */
-  background-image: linear-gradient(to right, #4527A0 , #870D4E);
-  color: white;
+  background-color: #4527A0; /* DEEP_PURPLE_800 */
 }
 
 ::ng-deep .gu-unselectable app-data-selector-menu {

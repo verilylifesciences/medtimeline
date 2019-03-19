@@ -31,11 +31,12 @@ export class DisplayGrouping {
   }
 }
 
-export const labResult = new DisplayGrouping('Lab Results', Colors.LIME);
-export const vitalSign = new DisplayGrouping('Vital Signs', Colors.ORANGE);
+export const labResult = new DisplayGrouping('Lab Results', Colors.TURQUOISE);
+export const vitalSign = new DisplayGrouping('Vital Signs', Colors.BLUE_A400);
 export const med =
-    new DisplayGrouping('Vancomycin and Gentamicin', Colors.TURQUOISE);
-export const microbio = new DisplayGrouping('Microbiology', Colors.CYAN);
+    new DisplayGrouping('Vancomycin and Gentamicin', Colors.GOLD);
+export const microbio =
+    new DisplayGrouping('Microbiology', Colors.DEEP_PURPLE_600);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
 export const posPrelimMB = new DisplayGrouping(

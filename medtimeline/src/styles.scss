@@ -1,12 +1,19 @@
 /* Default Angular Material prebuilt theme. */
-@import "./verily-colors-material-theme.scss";
+@import "./bch-material-theme.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 
 /* Verily branding basics */
 * {
   font-family: 'Work Sans', sans-serif;
+}
+
+.defaultBackgroundColor {
+  background-color:#C3D7DB;
+}
+
+.accentBackgroundColor {
+  background-color:#C41061; /* PINK_A700 */
 }
 
 // Self-host the Angular Material icons.
@@ -79,7 +86,7 @@
 }
 
 .mat-app-background {
-  background-color: #202020; /* Grey 900 */
+  background-color:#002356; /* PRIMARY_COLOR */
 }
 
 body {

@@ -1,0 +1,86 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Used http://mcg.mbitson.com to generate the material palette.
+
+// #002356 -- PRIMARY_COLOR
+$bch-primary: (
+  50 : #e0e5eb,
+  100 : #b3bdcc,
+  200 : #8091ab,
+  300 : #4d6589,
+  400 : #26446f,
+  500 : #002356,
+  600 : #001f4f,
+  700 : #001a45,
+  800 : #00153c,
+  900 : #000c2b,
+  A100 : #657aff,
+  A200 : #324eff,
+  A400 : #0023fe,
+  A700 : #0020e5,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #ffffff,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+
+// #b39ddb -- SECONDARY_COLOR
+$bch-secondary: (
+  50 : #f6f3fb,
+  100 : #e8e2f4,
+  200 : #d9ceed,
+  300 : #cabae6,
+  400 : #beace0,
+  500 : #b39ddb,
+  600 : #ac95d7,
+  700 : #a38bd2,
+  800 : #9a81cd,
+  900 : #8b6fc4,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #e4d8ff,
+  A700 : #d3beff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+
+
+
+$bch-app-primary: mat-palette($bch-primary);
+$bch-app-accent:  mat-palette($bch-secondary);
+
+$bch-app-warn:    mat-palette($mat-red);
+
+$bch-app-theme: mat-light-theme($bch-app-primary, $bch-app-accent, $bch-app-warn);
+
+@include angular-material-theme($bch-app-theme);

@@ -3,6 +3,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {DateTime} from 'luxon';
+
 import {FhirResourceSet} from '../fhir-resource-set';
 import {fixUnitAbbreviations} from '../unit_utils';
 
@@ -13,10 +15,11 @@ import {AnnotatedObservation} from './annotated-observation';
  */
 export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   /**
-   * The normal range for this set of observations. Left unset if the normal
-   * range is different across the observations.
+   * The normal ranges for this set of observations. It maps a timestamp of each
+   * Observation with a normal range to the corresponding normal range.
    */
-  readonly normalRange: [number, number];
+  normalRanges: Map<DateTime, [number, number]> =
+      new Map<DateTime, [number, number]>();
 
   /**
    * The units for this set of observations. Left unset if the normal
@@ -40,33 +43,23 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   constructor(observationList: AnnotatedObservation[]) {
     super(observationList);
 
-    let firstNormalRange;
     let firstUnit;
     if (observationList.length > 0) {
-      firstNormalRange = observationList[0].observation.normalRange;
       firstUnit = observationList[0].observation.unit;
     }
-    // Ensure that the labels of the data are all the same. Also ensure that
-    // we only set a normal range if all the observations have a matching
-    // normal range.
-    let differentNormalRanges = false;
+    // Ensure that the labels of the data are all the same.
     let differentUnits = false;
 
     for (const obs of observationList) {
       // Some observations may not have a normal range.
-      if (obs.observation.normalRange &&
-          (obs.observation.normalRange[0] !== firstNormalRange[0] ||
-           obs.observation.normalRange[1] !== firstNormalRange[1])) {
-        differentNormalRanges = true;
+      if (obs.observation.normalRange) {
+        this.normalRanges.set(
+            obs.observation.timestamp, obs.observation.normalRange);
       }
       // Some observations may not have a normal range.
       if (obs.observation.unit && obs.observation.unit !== firstUnit) {
         differentUnits = true;
       }
-    }
-
-    if (!differentNormalRanges) {
-      this.normalRange = firstNormalRange;
     }
     if (!differentUnits && firstUnit) {
       this.unit = fixUnitAbbreviations(firstUnit);

@@ -49,5 +49,5 @@ export const ABNORMAL = PINK_A700_DARKER;
  * Returns all the colors that are acceptable for data points to be plotted in.
  */
 export function getDataColors(): Color[] {
-  return [GREY_900, BLUE_A700, DEEP_PURPLE_800, PINK_900, GREEN, GOLD];
+  return [DEEP_PURPLE_600, PINK_A700, CYAN, DEEP_GREEN, GOLD, ORANGE];
 }

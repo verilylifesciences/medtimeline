@@ -1,5 +1,5 @@
 <mat-toolbar class="accentBackgroundColor">
-  <h1 style="color: white;">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>
+  <h1 style="color: white">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>
   <div class="actions">
     <button mat-raised-button (click)="onContinue()" cdkFocusInitial id="continue">
       {{uiConstants.CONTINUE}}
@@ -41,7 +41,7 @@
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div *ngFor="let entry of displayGroupingOptions | async">
-      <div [style.color]="entry[0].fill.hsl().string()" class="category">
+      <div [style.color]="'#EBEEF0'" [style.background-color]="entry[0].fill.hsl().string()" class="category">
         <h3>{{entry[0].label}}</h3>
       </div>
       <div *ngFor="let element of entry[1].sort(sortResources)" class="conceptOptions">

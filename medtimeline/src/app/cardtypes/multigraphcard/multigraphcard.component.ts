@@ -67,7 +67,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   unitsLabel = '';
 
   /** Holds the color corresponding to this card. */
-  color: Color = Colors.BLUE_GREY_500;  // Default color for a card component.
+  color: Color = Colors.BLUE_GREY_50;  // Default color for a card component.
 
   /** Hold an instance of this enum so the HTML template can reference it. */
   ChartType: typeof ChartType = ChartType;
