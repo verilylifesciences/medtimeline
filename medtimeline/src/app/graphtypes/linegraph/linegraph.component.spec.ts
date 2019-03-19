@@ -14,6 +14,7 @@ import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {makeSampleObservationJson, StubFhirService} from '../../test_utils';
+import {DateTimeXAxis} from '../graph/datetimexaxis';
 import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
@@ -46,7 +47,7 @@ describe('LineGraphComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LineGraphComponent);
     component = fixture.componentInstance;
-    component.dateRange = testDateRange;
+    component.xAxis = new DateTimeXAxis(testDateRange);
     component.data = LineGraphData.fromObservationSetList(
         'label', new Array(obsSet, obsSet), loincCodeGroup,
         TestBed.get(DomSanitizer), []);

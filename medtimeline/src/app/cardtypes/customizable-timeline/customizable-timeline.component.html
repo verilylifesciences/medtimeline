@@ -7,7 +7,7 @@
     </div>
   </ng-container>
   <div fxFlex="row" class="contents-block">
-    <app-customizable-graph class="timeline" [data]="this.data" [dateRange]="this.dateRange" [inEditMode]="inEditMode"
+    <app-customizable-graph class="timeline" [data]="this.data" [xAxis]="this.xAxis" [inEditMode]="inEditMode"
       (pointsChanged)="pointsChanged($event)" [ngClass]="{'inEditMode': inEditMode}">
     </app-customizable-graph>
   </div>

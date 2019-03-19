@@ -6,11 +6,11 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Color} from 'color';
-import {Interval} from 'luxon';
 import {DisplayGrouping} from 'src/app/clinicalconcepts/display-grouping';
 import {ResourceCodesForCard} from 'src/app/clinicalconcepts/resource-code-manager';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
+import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 
 import {FhirService} from '../../fhir.service';
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
@@ -34,8 +34,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
 
   @Input() id: string;
 
-  // Over which time interval the card should display data
-  @Input() dateRange: Interval;
+  // The x-axis to use for graphs in this card
+  @Input() xAxis: DateTimeXAxis;
 
   // The ResourceCodeGroups displayed on this card.
   @Input() resourceCodeGroups: ResourceCodesForCard;
@@ -83,7 +83,7 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   private initializeData() {
     const self = this;
     this.card = new Card(
-        this.fhirService, this.resourceCodeGroups, this.dateRange,
+        this.fhirService, this.resourceCodeGroups, this.xAxis.dateRange,
         this.sanitizer);
     if (this.resourceCodeGroups) {
       this.label = this.resourceCodeGroups.label;
@@ -109,9 +109,8 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
   // Any time the data range changes, we need to re-request the data for the
   // specified range.
   ngOnChanges(changes: SimpleChanges) {
-    const dateRangeChange = changes['dateRange'];
-    if (dateRangeChange &&
-        dateRangeChange.previousValue !== dateRangeChange.currentValue) {
+    const axisChange = changes['xAxis'];
+    if (axisChange && axisChange.previousValue !== axisChange.currentValue) {
       this.initializeData();
     }
   }

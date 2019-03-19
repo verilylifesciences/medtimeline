@@ -17,14 +17,14 @@
         {{axis.errorMessage}}
       </div>
       <ng-container *ngIf="axis.isResolved && !axis.errorMessage" [ngSwitch]="axis.chartType">
-        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [dateRange]="this.dateRange"
+        <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.data" [xAxis]="this.xAxis"
           [eventlines]="this.eventlines" [axisLabel]="axis.label" [showTicks]="axis.showTicks"></app-linegraph>
-        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [dateRange]="this.dateRange"
+        <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.data" [xAxis]="this.xAxis"
           [eventlines]="this.eventlines" [axisLabel]="axis.label" [showTicks]="axis.showTicks"></app-scatterplot>
-        <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.data" [dateRange]="this.dateRange"
+        <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.data" [xAxis]="this.xAxis"
           [eventlines]="this.eventlines" [axisLabel]="axis.label">
         </app-stepgraph>
-        <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.data" [dateRange]="this.dateRange"
+        <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.data" [xAxis]="this.xAxis"
           [eventlines]="this.eventlines" [axisLabel]="axis.label"></app-microbio-graph>
       </ng-container>
     </div>

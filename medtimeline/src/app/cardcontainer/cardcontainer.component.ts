@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
+import {APP_TIMESPAN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
@@ -17,6 +18,7 @@ import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
+import {DateTimeXAxis} from '../graphtypes/graph/datetimexaxis';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {SetupDataService} from '../setup-data.service';
 
@@ -56,8 +58,16 @@ export class CardcontainerComponent {
   // Hold an instance of this enum so that the HTML template can access it.
   readonly chartType = ChartType;
 
-  // The time interval displayed.
-  dateRange: Interval;
+  /**
+   * By default make the date range displayed the past seven days.
+   */
+  dateRange: Interval =
+      Interval.fromDateTimes(DateTime.utc().minus({days: 7}), DateTime.utc());
+
+  /**
+   * The x-axis configured for this date range.
+   */
+  xAxis: DateTimeXAxis;
 
   // Holds a subscription to the observable sequence of events emitted by the
   // Dragula Service.
@@ -95,6 +105,7 @@ export class CardcontainerComponent {
                                 .reduce((acc, val) => acc.concat(val), []);
     this.setUpCards();
     this.setUpDrag(dragulaService);
+    this.xAxis = new DateTimeXAxis(this.dateRange);
   }
 
   private setUpCards() {
@@ -169,6 +180,7 @@ export class CardcontainerComponent {
   // UI, and update the date range.
   changeDateRange($event) {
     this.dateRange = $event;
+    this.xAxis = new DateTimeXAxis(this.dateRange);
   }
 
   // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.

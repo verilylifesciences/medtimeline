@@ -38,8 +38,10 @@ export abstract class GraphComponent<T extends GraphData> implements
     OnChanges, AfterViewInit {
   // The x-axis eventlines to display on the chart.
   @Input() eventlines: Array<{[key: string]: number | string}>;
-  // Over which time interval the card should display data, stored in UTC time.
-  @Input() dateRange: Interval;
+  /**
+   * The x-axis to use for the chart.
+   */
+  @Input() xAxis: DateTimeXAxis;
   @Input() data: T;
   // The y-axis label to display.
   @Input() axisLabel: string;
@@ -71,8 +73,6 @@ export abstract class GraphComponent<T extends GraphData> implements
 
   // The y-axis configuration for the chart.
   yAxisConfig: c3.YAxisConfiguration;
-
-  xAxis: DateTimeXAxis;
 
   // A map containing a color for each series displayed on the graph.
   colorsMap: {[key: string]: string} = {};
@@ -127,11 +127,8 @@ export abstract class GraphComponent<T extends GraphData> implements
   ngOnChanges(changes: SimpleChanges) {
     // Only change what needs to be changed.
     if (this.chartConfiguration) {
-      if (changes.data) {
+      if (changes.data || changes.xAxis) {
         this.dataChanged();
-      }
-      if (changes.dateRange) {
-        this.xAxis = new DateTimeXAxis(this.dateRange);
       }
       if (changes.eventlines) {
         this.updateEventlines();
@@ -146,7 +143,7 @@ export abstract class GraphComponent<T extends GraphData> implements
   // If there is not yet a chart or chart configuration, configure and generate
   // the chart to display.
   generateFromScratch() {
-    if (this.data && this.dateRange) {
+    if (this.data && this.xAxis) {
       this.generateChart();
       this.chart = c3.generate(this.chartConfiguration);
       this.adjustStyle();
@@ -180,8 +177,8 @@ export abstract class GraphComponent<T extends GraphData> implements
       const emptyContainer =
           d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
       emptyContainer.text(
-          'No data for ' + this.dateRange.start.toLocaleString() + '-' +
-          this.dateRange.end.toLocaleString());
+          'No data for ' + this.xAxis.dateRange.start.toLocaleString() + '-' +
+          this.xAxis.dateRange.end.toLocaleString());
       emptyContainer.attr('class', 'c3-text c3-empty noData');
       // We set the opacity of the y-axis ticks of empty charts to 0 after
       // setting the tick values. We do this instead of not displaying the
@@ -201,10 +198,7 @@ export abstract class GraphComponent<T extends GraphData> implements
    * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
    */
   generateBasicChart(maxXTicks = 10) {
-    this.xAxis = new DateTimeXAxis(this.dateRange);
-
     this.adjustColorMap();
-
     this.chartTypeString = 'line';
 
     if (this.chartType === ChartType.SCATTER) {

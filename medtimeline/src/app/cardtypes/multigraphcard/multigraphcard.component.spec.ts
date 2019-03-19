@@ -15,7 +15,8 @@ import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodesForCard} from 'src/app/clinicalconcepts/resource-code-manager';
 import {FhirService} from 'src/app/fhir.service';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
-import {ChartType, GraphComponent} from 'src/app/graphtypes/graph/graph.component';
+import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
+import {ChartType} from 'src/app/graphtypes/graph/graph.component';
 import {LineGraphComponent} from 'src/app/graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from 'src/app/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from 'src/app/graphtypes/scatterplot/scatterplot.component';
@@ -58,6 +59,8 @@ describe('MultiGraphCardComponent', () => {
     fixture = TestBed.createComponent(MultiGraphCardComponent);
 
     component = fixture.componentInstance;
+    component.xAxis = new DateTimeXAxis(
+        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
     component.resourceCodeGroups =
         new ResourceCodesForCard([hemoglobin], '', labResult);
     component.id = 'id';
@@ -69,10 +72,9 @@ describe('MultiGraphCardComponent', () => {
   });
 
   it('on date change should retrieve data and render graph', (done: DoneFn) => {
-    component.dateRange =
-        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2}));
-    component.ngOnChanges(
-        {dateRange: new SimpleChange(null, component.dateRange, true)});
+    const xAxis = new DateTimeXAxis(
+        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
+    component.ngOnChanges({xAxis: new SimpleChange(null, xAxis, true)});
 
     Promise.all(component.card.axes.map(axis => axis.getDataFromFhir()))
         .then(() => {
@@ -81,12 +83,12 @@ describe('MultiGraphCardComponent', () => {
 
           const axis = component.card.axes[0];
           expect(axis.displayConcept).toEqual(labResult);
-          expect(axis.dateRange).toEqual(component.dateRange);
+          expect(axis.dateRange).toEqual(component.xAxis.dateRange);
           expect(axis.label).toEqual('lbl');
           expect(component.containedGraphs.length).toEqual(1);
 
           const containedGraph = component.containedGraphs.first;
-          expect(containedGraph.dateRange).toEqual(component.dateRange);
+          expect(containedGraph.xAxis).toEqual(component.xAxis);
           expect(containedGraph.data.series.length).toEqual(1);
           expect(containedGraph.data.series[0])
               .toEqual(new LabeledSeries('Lab Results', []));

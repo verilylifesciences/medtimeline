@@ -5,10 +5,10 @@
 
 // tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
+import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
 
 
@@ -29,8 +29,10 @@ export class CustomizableTimelineComponent implements OnChanges {
   // The unique ID for this displayed card.
   @Input() id: string;
 
-  // Over which time interval the card should display data
-  @Input() dateRange: Interval;
+  /**
+   * The x-axis for this card.
+   */
+  @Input() xAxis: DateTimeXAxis;
   //  Data stored before deletion of the card. This is separate from this.data
   //  to avoid unnecessary re-rendering of the graph.
   @Input() deletedData: any;
