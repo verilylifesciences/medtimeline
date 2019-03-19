@@ -18,7 +18,7 @@ export class DateTimeXAxis {
       /**
        * The date range this x axis configuration should cover.
        */
-      private readonly dateRange: Interval, private readonly maxXTicks = 10) {
+      readonly dateRange: Interval, private readonly maxXTicks = 10) {
     this.makeXAxis();
   }
 

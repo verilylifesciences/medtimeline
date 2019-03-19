@@ -129,8 +129,8 @@ export class CustomizableGraphComponent extends
   private loadNewData() {
     const columnsToLoad: any = [['x_'], ['']];
     const entireInterval = Interval.fromDateTimes(
-        this.dateRange.start.toLocal().startOf('day'),
-        this.dateRange.end.toLocal().endOf('day'));
+        this.xAxis.dateRange.start.toLocal().startOf('day'),
+        this.xAxis.dateRange.end.toLocal().endOf('day'));
     for (let i = 1; i < this.data.c3DisplayConfiguration.allColumns[0].length;
          i++) {
       // Only add the data to the array being loaded if it is within the date
@@ -202,11 +202,11 @@ export class CustomizableGraphComponent extends
       date: new Date(editedAnnotation.timestamp.toMillis()),
       description: editedAnnotation.description,
       color: editedAnnotation.color,
-      dateRange: this.dateRange,
+      dateRange: this.xAxis.dateRange,
     } :
                                     {
                                       date: xCoordinate,
-                                      dateRange: this.dateRange,
+                                      dateRange: this.xAxis.dateRange,
                                     };
 
     this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
@@ -239,8 +239,8 @@ export class CustomizableGraphComponent extends
         // Only display the annotation if the user selected date is within the
         // current date range.
         const entireInterval = Interval.fromDateTimes(
-            this.dateRange.start.toLocal().startOf('day'),
-            this.dateRange.end.toLocal().endOf('day'));
+            this.xAxis.dateRange.start.toLocal().startOf('day'),
+            this.xAxis.dateRange.end.toLocal().endOf('day'));
         if (entireInterval.contains(userSelectedDate)) {
           this.data.annotations.get(userSelectedDate.toMillis())
               .addAnnotation(chart);
@@ -266,8 +266,8 @@ export class CustomizableGraphComponent extends
                               .selectAll('circle')
                               .nodes();
     const entireInterval = Interval.fromDateTimes(
-        this.dateRange.start.toLocal().startOf('day'),
-        this.dateRange.end.toLocal().endOf('day'));
+        this.xAxis.dateRange.start.toLocal().startOf('day'),
+        this.xAxis.dateRange.end.toLocal().endOf('day'));
     if (chartedPoints.length > 0) {
       for (let i = 0; i < timestamps.length; i++) {
         const timestamp = timestamps[i];

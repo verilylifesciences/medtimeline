@@ -9,6 +9,7 @@ import {DateTime, Interval} from 'luxon';
 import {DisplayConfiguration, GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 
+import {DateTimeXAxis} from './datetimexaxis';
 import {GraphComponent} from './graph.component';
 
 class StubGraphComponent extends GraphComponent<any> {
@@ -44,7 +45,7 @@ describe('GraphComponent', () => {
 
   beforeEach(() => {
     component = new StubGraphComponent();
-    component.dateRange = dateRange;
+    component.xAxis = new DateTimeXAxis(dateRange);
   });
 
   it('should create', () => {
@@ -102,9 +103,8 @@ describe('GraphComponent', () => {
   });
 
   it('should add point to data set if data is empty', () => {
-    const testComponent = new StubGraphComponent();
-    component.dateRange = Interval.fromDateTimes(
-        DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
+    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
+        DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0)));
     const data = new GraphData([], new Map());
     const millis = -8640000000000000;
     expect(data.c3DisplayConfiguration.allColumns[0][1].toMillis())
@@ -114,19 +114,20 @@ describe('GraphComponent', () => {
 
 
   it('should check if there are points in the data range', () => {
-    const testComponent = new StubGraphComponent();
-    component.dateRange = Interval.fromDateTimes(
-        DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0));
+    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
+        DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0)));
     const series =
         LabeledSeries.fromInitialPoint(DateTime.local(1995, 7, 23, 12), 0);
-    expect(StubGraphComponent.dataPointsInRange([series], component.dateRange))
+    expect(StubGraphComponent.dataPointsInRange(
+               [series], component.xAxis.dateRange))
         .toBeTruthy();
     const series2 =
         LabeledSeries.fromInitialPoint(DateTime.local(2018, 7, 24, 12), 0);
-    expect(StubGraphComponent.dataPointsInRange([series2], component.dateRange))
+    expect(StubGraphComponent.dataPointsInRange(
+               [series2], component.xAxis.dateRange))
         .toBeFalsy();
     expect(StubGraphComponent.dataPointsInRange(
-               [series, series2], component.dateRange))
+               [series, series2], component.xAxis.dateRange))
         .toBeTruthy();
   });
 });

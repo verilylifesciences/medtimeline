@@ -92,8 +92,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       }
     }
     // Check if there are any data points in the time range.
-    this.noDataPointsInDateRange =
-        !GraphComponent.dataPointsInRange(this.data.series, this.dateRange);
+    this.noDataPointsInDateRange = !GraphComponent.dataPointsInRange(
+        this.data.series, this.xAxis.dateRange);
     // If tick values aren't set, calculate the values.
     if (!this.chartConfiguration.axis.y.tick.values) {
       this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(
