@@ -1,0 +1,3348 @@
+{
+  "entry": [
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:23.000Z",
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            }
+          ],
+          "text": "Oxygen Saturation (SPO2)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:45.000Z",
+        "valueQuantity": {
+          "value": 99,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:26.000Z",
+        "valueQuantity": {
+          "value": 73,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "text": "Blood Pressure Method"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:39.000Z",
+        "valueCodeableConcept": {
+          "text": "Automated"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "41904-4"
+            }
+          ],
+          "text": "Blood Pressure Location"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:36.000Z",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx",
+              "display": "Right upper extremity structure (body structure)"
+            }
+          ],
+          "text": "Right upper"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:43.000Z",
+        "valueQuantity": {
+          "value": 18,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:39.000Z",
+        "valueQuantity": {
+          "value": 77,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:29.000Z",
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            }
+          ],
+          "text": "Oxygen Saturation (SPO2)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:54.000Z",
+        "valueQuantity": {
+          "value": 98,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:31.000Z",
+        "valueQuantity": {
+          "value": 84,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "text": "Blood Pressure Method"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:46.000Z",
+        "valueCodeableConcept": {
+          "text": "Automated"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "41904-4"
+            }
+          ],
+          "text": "Blood Pressure Location"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:44.000Z",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx3",
+              "display": "Left lower extremity structure (body structure)"
+            }
+          ],
+          "text": "Left lower"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:52.000Z",
+        "valueQuantity": {
+          "value": 23,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:46.000Z",
+        "valueQuantity": {
+          "value": 69,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:37.000Z",
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            }
+          ],
+          "text": "Oxygen Saturation (SPO2)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:56.000Z",
+        "valueQuantity": {
+          "value": 97,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:39.000Z",
+        "valueQuantity": {
+          "value": 80,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "text": "Blood Pressure Method"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:49.000Z",
+        "valueCodeableConcept": {
+          "text": "Automated"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "41904-4"
+            }
+          ],
+          "text": "Blood Pressure Location"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:48.000Z",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx",
+              "display": "Right upper extremity structure (body structure)"
+            }
+          ],
+          "text": "Right upper"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:54.000Z",
+        "valueQuantity": {
+          "value": 19,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:09.000Z",
+        "valueQuantity": {
+          "value": 79,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:53:56.000Z",
+        "valueQuantity": {
+          "value": 36.4,
+          "unit": "DegC",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36.4,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "high": {
+              "value": 38.2,
+              "unit": "DegC",
+              "system": "http://unitsofmeasure.org",
+              "code": "Cel"
+            },
+            "text": "36.4-38.2 DegC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5"
+            }
+          ],
+          "text": "Oxygen Saturation (SPO2)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:23.000Z",
+        "valueQuantity": {
+          "value": 96,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:53:58.000Z",
+        "valueQuantity": {
+          "value": 86,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "text": "Blood Pressure Method"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:14.000Z",
+        "valueCodeableConcept": {
+          "text": "Automated"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "41904-4"
+            }
+          ],
+          "text": "Blood Pressure Location"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:12.000Z",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx",
+              "display": "Right upper extremity structure (body structure)"
+            }
+          ],
+          "text": "Right upper"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:20.000Z",
+        "valueQuantity": {
+          "value": 17,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:53:04.000Z",
+        "valueQuantity": {
+          "value": 83,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:52:46.000Z",
+        "valueQuantity": {
+          "value": 96,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "text": "Blood Pressure Method"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:53:22.000Z",
+        "valueCodeableConcept": {
+          "text": "Automated"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "41904-4"
+            }
+          ],
+          "text": "Blood Pressure Location"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:53:20.000Z",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx",
+              "display": "Right upper extremity structure (body structure)"
+            }
+          ],
+          "text": "Right upper"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:52:52.000Z",
+        "valueQuantity": {
+          "value": 22,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:45:00.000Z",
+        "issued": "2019-02-19T15:51:59.000Z",
+        "valueQuantity": {
+          "value": 74,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4"
+            }
+          ],
+          "text": "Heart Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:45:00.000Z",
+        "issued": "2019-02-19T15:51:43.000Z",
+        "valueQuantity": {
+          "value": 92,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Beats}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 55,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "high": {
+              "value": 90,
+              "unit": "bpm",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Beats}/min"
+            },
+            "text": "55-90 bpm"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ],
+          "text": "Respiratory Rate"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:45:00.000Z",
+        "issued": "2019-02-19T15:51:46.000Z",
+        "valueQuantity": {
+          "value": 23,
+          "unit": "br/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "{Breaths}/min"
+        },
+        "interpretation": {
+          "text": "HI"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "high": {
+              "value": 20,
+              "unit": "br/min",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Breaths}/min"
+            },
+            "text": "12-20 br/min"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/Mxxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "Mxxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8478-0"
+            }
+          ],
+          "text": "Mean Arterial Pressure (Device)"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:28:00.000Z",
+        "issued": "2019-02-19T15:50:01.000Z",
+        "valueQuantity": {
+          "value": 77,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:32.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 63,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:58:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T09:00:00.000Z",
+        "issued": "2019-02-19T15:58:32.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 114,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:38.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 66,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T04:35:00.000Z",
+        "issued": "2019-02-19T15:56:38.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 123,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:44.000Z",
+        "interpretation": {
+          "text": "LOW"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 54,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:56:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-16T01:10:00.000Z",
+        "issued": "2019-02-19T15:55:44.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 123,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:07.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 65,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:54:26.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T21:17:00.000Z",
+        "issued": "2019-02-19T15:54:07.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 131,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:52:58.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 72,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:53:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T18:00:00.000Z",
+        "issued": "2019-02-19T15:52:58.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 123,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:45:00.000Z",
+        "issued": "2019-02-19T15:51:54.000Z",
+        "interpretation": {
+          "text": "LOW"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 59,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:45:00.000Z",
+        "issued": "2019-02-19T15:51:54.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 125,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:28:00.000Z",
+        "issued": "2019-02-19T15:49:58.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 64,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 60,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 90,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "60-90 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://fhir-URL//Observation/BP-xxxxxxxxxx",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "BP-xxxxxxxxxx",
+        "meta": {
+          "versionId": "1-xxxxxxxxxx",
+          "lastUpdated": "2019-02-19T15:52:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div>xxxxxxxxxx</div>"
+        },
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ],
+          "text": "Vital Signs"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "xxxxxxxxxx2",
+              "display": "Blood pressure (observable entity)"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4"
+            }
+          ],
+          "text": "Blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/xxxxxxxxxx0"
+        },
+        "encounter": {
+          "reference": "Encounter/xxxxxxxxxx8"
+        },
+        "effectiveDateTime": "2019-02-15T17:28:00.000Z",
+        "issued": "2019-02-19T15:49:58.000Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                },
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 124,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            },
+            "referenceRange": [
+              {
+                "low": {
+                  "value": 100,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "high": {
+                  "value": 140,
+                  "unit": "mmHg",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mm[Hg]"
+                },
+                "text": "100-140 mmHg"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
