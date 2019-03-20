@@ -5,11 +5,11 @@
 
 import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as c3 from 'c3';
 import * as d3 from 'd3';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 
-import {GraphComponent, Y_AXIS_TICK_MAX} from '../graph/graph.component';
+import {GraphComponent} from '../graph/graph.component';
+import {RenderedChart, Y_AXIS_TICK_MAX} from '../graph/renderedchart';
 
 @Component({
   selector: 'app-linegraph',
@@ -23,7 +23,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
   @Input() showTicks: boolean;
 
   constructor(readonly sanitizer: DomSanitizer) {
-    super(sanitizer);
+    super(sanitizer, (axis, id) => new RenderedChart(axis, id));
   }
   /**
    * @override
@@ -67,8 +67,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
                 minimumFractionDigits: this.data.precision,
                 maximumFractionDigits: this.data.precision
               })
-              .trim()
-              .padStart(Y_AXIS_TICK_MAX, '\xa0');
+              .trim();
         }
       },
     };
@@ -92,8 +91,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       }
     }
     // Check if there are any data points in the time range.
-    this.noDataPointsInDateRange =
-        !this.data.dataPointsInRange(this.xAxis.dateRange);
+    this.dataPointsInDateRange =
+        this.data.dataPointsInRange(this.xAxis.dateRange);
     // If tick values aren't set, calculate the values.
     if (!this.chartConfiguration.axis.y.tick.values) {
       this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(
@@ -106,30 +105,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       for (let i = 0; i < 5; i++) {
         this.chartConfiguration.axis.y.tick.values.push(i);
       }
-    }
-    const yValues = this.chartConfiguration.axis.y.tick.values;
-    const needToWrap =
-        yValues.some(value => value.toString().length > Y_AXIS_TICK_MAX);
-    // Due to some weird c3 rendering, we need extra padding for tick marks less
-    // than 2 characters long.
-    const needExtraPadding =
-        yValues.every(value => value.toString().length < 2);
-    // Replace the tick label's initially displayed values to padded empty
-    // strings so that the axis is aligned. We only do this if we need to wrap
-    // axis labels in the first place.
-    const extraPadding = 4;
-    const padding = needToWrap ?
-        Y_AXIS_TICK_MAX :
-        (needExtraPadding ? Y_AXIS_TICK_MAX + extraPadding : undefined);
-    if (padding) {
-      this.chartConfiguration.axis.y.tick.format = function(d) {
-        return ''.trim().padStart(padding, '\xa0');
-      };
-      this.yAxisTickDisplayValues =
-          yValues.map(value => value.toLocaleString('en-us', {
-            minimumFractionDigits: this.data.precision,
-            maximumFractionDigits: this.data.precision
-          }));
     }
   }
 

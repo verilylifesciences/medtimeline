@@ -158,7 +158,7 @@ describe('CardcontainerComponent', () => {
     const eventlinesOriginalSize = component.eventlines.length;
     const initialData = CustomizableData.defaultEmptySeries();
     initialData.addPointToSeries(
-        0, new CustomizableGraphAnnotation(dateTime, 'title!'));
+        new CustomizableGraphAnnotation(dateTime, 'title!'));
     component.updateEventLines(
         {data: initialData, id: component.displayedConcepts[0].id});
     expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
@@ -174,7 +174,7 @@ describe('CardcontainerComponent', () => {
        const dateTime2 = DateTime.fromISO('2012-08-20T11:00:00.000Z');
        const eventlinesOriginalSize = component.eventlines.length;
        initialData.addPointToSeries(
-           0, new CustomizableGraphAnnotation(dateTime1, 'title!'));
+           new CustomizableGraphAnnotation(dateTime1, 'title!'));
        component.updateEventLines(
            {data: initialData, id: component.displayedConcepts[0].id});
        expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 1);
@@ -186,7 +186,7 @@ describe('CardcontainerComponent', () => {
            {concept: 'customTimeline', id: 'uniqueID'});
        const data2 = CustomizableData.defaultEmptySeries();
        data2.addPointToSeries(
-           0, new CustomizableGraphAnnotation(dateTime2, 'another title!'));
+           new CustomizableGraphAnnotation(dateTime2, 'another title!'));
        component.updateEventLines({data: data2, id: 'uniqueID'});
        expect(component.eventlines.length).toEqual(eventlinesOriginalSize + 2);
        expect(component.eventlines).toEqual([

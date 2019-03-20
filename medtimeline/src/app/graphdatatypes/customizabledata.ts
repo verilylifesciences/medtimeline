@@ -61,15 +61,12 @@ export class CustomizableData extends GraphData {
 
   /**
    * Adds a point to the series in this CustomizableData object.
-   * @param date The date for this point.
-   * @param yValue The y-value for this point.
-   * @param annotation The CustomizableGraphAnnotation for this point.
-   * @returns a new CustomizableData with the addition of this point.
+   * @param annotation: The annotation to add in to the graph.
    */
-  addPointToSeries(yValue: number, annotation: CustomizableGraphAnnotation) {
+  addPointToSeries(annotation: CustomizableGraphAnnotation) {
     // This method assumes there is only 1 series.
     this.series[0].xValues.push(annotation.timestamp);
-    this.series[0].yValues.push(yValue);
+    this.series[0].yValues.push(0);
     this.annotations.set(annotation.timestamp.toMillis(), annotation);
     this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
   }

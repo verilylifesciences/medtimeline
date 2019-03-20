@@ -197,9 +197,9 @@ export class MultiGraphCardComponent implements OnInit, OnChanges {
     });
   }
 
-  resetChart(displayGroup: DisplayGrouping) {
+  resetChart() {
     this.containedGraphs.forEach(graph => {
-      graph.resetChart(displayGroup);
+      graph.resetChart();
     });
   }
 
