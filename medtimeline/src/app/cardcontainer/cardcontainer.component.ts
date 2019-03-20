@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, QueryList, ViewChildren} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
@@ -30,7 +30,7 @@ export class CardcontainerComponent {
   private readonly DISPLAY_TIME = 6000;
 
   // Whether or not to display the debugger.
-  private useDebugger = environment.useDebugger;
+  useDebugger = environment.useDebugger;
 
   @ViewChildren(CardComponent) containedCards!: QueryList<CardComponent>;
 
@@ -90,6 +90,7 @@ export class CardcontainerComponent {
                                 .reduce((acc, val) => acc.concat(val), []);
     this.setUpCards();
     this.setUpDrag(dragulaService);
+    console.warn(environment.useDebugger);
   }
 
   private setUpCards() {

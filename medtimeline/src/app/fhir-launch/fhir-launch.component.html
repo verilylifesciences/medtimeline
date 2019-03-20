@@ -1,2 +1,10 @@
-<span *ngIf="!error">Launching...</span>
+<span *ngIf="!error">Launching authentication...</span>
+<div *ngIf="useDebugger" style="background-color: white">
+  Authentication Information<br />
+  Base URI: {{this.baseURL}}<br />
+  Redirect URI : {{this.redirectURL}}<br />
+  Scopes: {{this.scope}};<br />
+  URL parameters: {{this.parameters}} <br />
+  <button (click)="beginAuthenticationFlow()">Click here to continue authentication.</button>
+</div>
 <span *ngIf="error">Error: This app is not configured for this EHR.</span>
