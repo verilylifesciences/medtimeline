@@ -1,10 +1,10 @@
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file or at
-// https://developers.google.com/open-source/licenses/bsd
-import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output} from '@angular/core';
-import {MatDialog} from '@angular/material';
+// license that can be found in the LICENSE file.
+
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
@@ -13,7 +13,9 @@ import {DateTime, Interval} from 'luxon';
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
+import {DateTimeXAxis} from '../graph/datetimexaxis';
 import {GraphComponent} from '../graph/graph.component';
+import {RenderedCustomizableChart} from '../graph/renderedcustomizablechart';
 
 import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 
@@ -33,14 +35,15 @@ export class CustomizableGraphComponent extends
   // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   @Input() inEditMode: boolean;
-  // Whether or not the user is hovering over any point on the chart.
-  private hoveringOverPoint = false;
 
   // The reference for the Dialog opened.
   private dialogRef: any;
 
   constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
-    super(sanitizer);
+    super(
+        sanitizer,
+        (axis: DateTimeXAxis, divId: string) =>
+            new RenderedCustomizableChart(axis, divId));
   }
 
   ngOnDestroy() {
@@ -50,66 +53,17 @@ export class CustomizableGraphComponent extends
     }
   }
 
-  ngOnChanges() {
-    this.generateFromScratch();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.inEditMode && this.renderedChart) {
+      (this.renderedChart as RenderedCustomizableChart).inEditMode =
+          changes.inEditMode.currentValue;
+    } else {
+      this.generateFromScratch();
+    }
   }
 
   generateFromScratch() {
     super.generateFromScratch();
-    const self = this;
-    const chart: any =
-        this.chart;  // We need the "any" declaration in order to access the
-    // internals of the chart without throwing an error.
-
-    if (!chart) {
-      return;
-    }
-    chart.resize({height: 150});
-
-    // Show a focus line corresponding to the correct x-value when hovering
-    // anywhere on the chart.
-    chart.internal.main.on('mousemove', function() {
-      if (self.inEditMode) {
-        const coordinates = d3.mouse(this);
-        // Remove all other timestamps
-        d3.select(chart.element)
-            .select('.c3-xgrid-focus')
-            .selectAll('text')
-            .remove();
-        self.showFocusLine(chart, coordinates);
-      }
-    });
-    // Clear gridlines when not hovering over the chart.
-    chart.internal.main.on('mouseout', function() {
-      // clear all x-axis gridlines.
-      chart.xgrids([]);
-      // Remove all other timestamps
-      d3.select(chart.element)
-          .select('.c3-xgrid-focus')
-          .selectAll('text')
-          .remove();
-    });
-    // Logic to add a point when clicking on the chart.
-    chart.internal.main.on('click', function() {
-      if (self.inEditMode && !self.hoveringOverPoint) {
-        const coordinates = d3.mouse(this);
-        const parentCoordinates = d3.mouse(document.body);
-        self.addPoint(coordinates, parentCoordinates);
-      }
-    });
-    // Send the chart to the back, allowing points to be displayed on top of the
-    // axis.
-    const chartLayer = d3.select(chart.element).select('.c3-chart');
-    const chartLayerNode: any = chartLayer.node();
-    const chartLayerParentNode = chartLayerNode.parentNode;
-    const removedNode = chartLayer.remove();
-    chartLayerParentNode.appendChild(removedNode.node());
-    chartLayer.attr('clip-path', null);
-
-    // Don't show the y-axis, but still set values so that the width is adjusted
-    // & aligned with other charts.
-    d3.select(chart.element).select('.c3-axis-y').style('visibility', 'hidden');
-
     // Once the chart is rendered, only display the data points in the current
     // date range. This is due to a C3 bug that plots some points
     // outside of the x-axis/y-axis boundaries upon loading additional data.
@@ -138,7 +92,8 @@ export class CustomizableGraphComponent extends
         columnsToLoad[1].push(0);
       }
     }
-    this.chart.load({columns: columnsToLoad});
+    (this.renderedChart as RenderedCustomizableChart)
+        .loadNewData(columnsToLoad);
   }
 
   // If the selected date already has an annotation, modify the time
@@ -148,30 +103,6 @@ export class CustomizableGraphComponent extends
       return this.updateTime(millis + 1);
     }
     return millis;
-  }
-
-  // Show a focus line with the timestamps when moving the mouse around the
-  // chart.
-  private showFocusLine(chart: any, coordinates: number[]) {
-    const focusEl = d3.select(chart.element).select('line.c3-xgrid-focus');
-    focusEl.attr('x1', coordinates[0]);
-    focusEl.attr('x2', coordinates[0]);
-    const timestamp =
-        DateTime.fromJSDate(chart.internal.x.invert(coordinates[0]));
-    // See time on hover
-    d3.select(chart.element)
-        .select('g.c3-xgrid-focus')
-        .append('text')
-        .attr('text-anchor', 'end')
-        .attr('transform', 'rotate(-90)')
-        .attr('x', 0)
-        .attr('y', coordinates[0])
-        .attr('dx', -4)
-        .attr('dy', -5)
-        .style('opacity', 1)
-        .text(
-            timestamp.toLocal().toLocaleString() + ' ' +
-            timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE));
   }
 
   /**
@@ -188,8 +119,8 @@ export class CustomizableGraphComponent extends
   private openDialog(
       clickCoordinates: [number, number],
       editedAnnotation?: CustomizableGraphAnnotation) {
-    const chart = this.chart as any;
-    const xCoordinate = chart.internal.x.invert(clickCoordinates[0]);
+    const xCoordinate = (this.renderedChart as RenderedCustomizableChart)
+                            .getClickCoordinate(clickCoordinates[0]);
     // Make the dialog show up near where the user clicked.
     const data = editedAnnotation ? {
       title: editedAnnotation.title,
@@ -224,7 +155,7 @@ export class CustomizableGraphComponent extends
         userSelectedDate =
             DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
         result.timestamp = userSelectedDate;
-        this.data.addPointToSeries(0, result);
+        this.data.addPointToSeries(result);
         // Only display the annotation if the user selected date is within the
         // current date range.
         const entireInterval = Interval.fromDateTimes(
@@ -232,7 +163,7 @@ export class CustomizableGraphComponent extends
             this.xAxis.dateRange.end.toLocal().endOf('day'));
         if (entireInterval.contains(userSelectedDate)) {
           this.data.annotations.get(userSelectedDate.toMillis())
-              .addAnnotation(chart);
+              .addAnnotation(this.renderedChart as RenderedCustomizableChart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(userSelectedDate.toMillis());
           this.addEditListener(userSelectedDate.toMillis());
@@ -242,7 +173,6 @@ export class CustomizableGraphComponent extends
       }
     });
   }
-
 
   // Updates the annotations displayed on the chart after a new point is added
   // or the date range is changed.
@@ -260,11 +190,11 @@ export class CustomizableGraphComponent extends
     if (chartedPoints.length > 0) {
       for (let i = 0; i < timestamps.length; i++) {
         const timestamp = timestamps[i];
-        const xPosition = d3.select(chartedPoints[i]).attr('cx');
         // Only add the annotation if the chart point is displayed given the
         // date range selected.
         if (entireInterval.contains(DateTime.fromMillis(timestamp))) {
-          this.data.annotations.get(timestamp).addAnnotation(this.chart);
+          this.data.annotations.get(timestamp).addAnnotation(
+              this.renderedChart as RenderedCustomizableChart);
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
           this.addEditListener(timestamp);
@@ -317,7 +247,6 @@ export class CustomizableGraphComponent extends
 
     editIcon.on('click', function() {
       const parentCoordinates = d3.mouse(document.body);
-
       self.dialogRef = self.openDialog(parentCoordinates, currAnnotation);
     });
   }
@@ -330,24 +259,24 @@ export class CustomizableGraphComponent extends
     this.adjustYAxisConfig();
     this.generateBasicChart();
 
-    this.chartConfiguration.axis.x.height = 50;
     this.chartConfiguration.data.type = 'scatter';
-    this.chartConfiguration.zoom = {enabled: false};
     const self = this;
     this.chartConfiguration.data.onmouseover = function(d) {
-      self.hoveringOverPoint = true;
+      (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
+          true;
     };
     this.chartConfiguration.tooltip = {show: false};
-    this.chartConfiguration.transition = {duration: 0};
     this.chartConfiguration.data.onmouseout = function(d) {
       // Add a timeout to ensure that the user can't add a point immediately
       // after moving away from an existing point.
       setTimeout(() => {
-        self.hoveringOverPoint = false;
+        (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
+            false;
       }, 500);
     };
     this.chartConfiguration.data.onclick = function(d, element) {
-      self.hoveringOverPoint = true;
+      (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
+          true;
     };
 
     this.chartConfiguration.data.color = function(color, d) {
@@ -359,29 +288,23 @@ export class CustomizableGraphComponent extends
     return this.chartConfiguration;
   }
 
-
   adjustYAxisConfig() {
     // Give labels to each series and make a map of x-values to y-values.
     this.yAxisConfig = {
       min: 0,
       max: 5,
       padding: {top: 0, bottom: 0},
-      tick: {
-        count: 5,
-        format: d => {
-          // We add padding to our y-axis tick labels so that all y-axes of the
-          // charts rendered on the page can be aligned.
-          return (d)
-              .toLocaleString(
-                  'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2})
-              .trim()
-              .padStart(12, '\xa0');
-        }
-      }
     };
   }
 
   // This is not relevant for the CustomizableGraph, so its implementation for
   // this class is empty.
   adjustDataDependent() {}
+
+  onRendered() {
+    (this.renderedChart as RenderedCustomizableChart)
+        .initialize(
+            (coords: [number, number], parentCoords: [number, number]) =>
+                this.addPoint(coords, parentCoords));
+  }
 }

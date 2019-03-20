@@ -2,7 +2,7 @@
   <ng-container class="legends-block">
     <ng-container *ngIf="uniqueDisplayGroups.length > 1">
       <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups"
-        (mouseover)="focusOnDisplayGroup(displayGroup, $event)" (mouseout)="resetChart(displayGroup, $event)">
+        (mouseover)="focusOnDisplayGroup(displayGroup, $event)" (mouseout)="resetChart()">
         <span [style.background-color]="displayGroup.fill.hsl().string()"
           [style.border]="displayGroup.outline.hsl().string()">
         </span>

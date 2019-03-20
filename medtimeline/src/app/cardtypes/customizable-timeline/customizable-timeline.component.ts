@@ -63,7 +63,7 @@ export class CustomizableTimelineComponent implements OnChanges {
 
   // Render the contained graph in the event of a resize.
   renderContainedGraph() {
-    if (this.containedGraph && this.containedGraph.chart) {
+    if (this.containedGraph) {
       this.inEditMode = false;
       this.containedGraph.generateFromScratch();
     }

@@ -12,22 +12,21 @@ import {getDataColors} from 'src/app/theme/bch_colors';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {GraphComponent} from '../graph/graph.component';
+import {RenderedChart} from '../graph/renderedchart';
 
 @Component({
   selector: 'app-stepgraph',
   templateUrl: '../graph/graph.component.html',
-  // TODO(b/117575935): These styles need to be extracted and generalized
   styleUrls: ['../graph.css'],
   providers: [
     {provide: GraphComponent, useExisting: forwardRef(() => StepGraphComponent)}
   ]
 })
-
 export class StepGraphComponent extends
     GraphComponent<StepGraphData|MicrobioGraphData> {
   types: {[key: string]: string} = {};
   constructor(readonly sanitizer: DomSanitizer) {
-    super(sanitizer);
+    super(sanitizer, (axis, id) => new RenderedChart(axis, id));
   }
 
   /**
@@ -38,7 +37,7 @@ export class StepGraphComponent extends
     this.generateBasicChart();
     this.adjustDataDependent();
 
-    if (!this.noDataPointsInDateRange) {
+    if (this.dataPointsInDateRange) {
       this.chartConfiguration.grid.y = {show: true};
     }
   }
@@ -79,8 +78,6 @@ export class StepGraphComponent extends
     // We need a slightly larger padding for step charts to be aligned with all
     // other charts.
     const stepGraphYAxisTickMax = 15;
-    this.yAxisTickDisplayValues =
-        yValues.map(value => this.data.yAxisMap.get(value));
     if (this.data.yAxisMap.size === 0) {
       this.data.yAxisMap.set(10, '');
     }
@@ -98,7 +95,7 @@ export class StepGraphComponent extends
         // We use an empty string placeholder for each label, so that the axis
         // does not get shifted over.
         format: d => {
-          return ''.trim().padStart(stepGraphYAxisTickMax, '\xa0');
+          return this.data.yAxisMap.get(d);
         },
         values: Array.from(this.data.yAxisMap.keys()),
       },
@@ -110,8 +107,8 @@ export class StepGraphComponent extends
    */
   adjustDataDependent() {
     // Check if there are any data points in the time range.
-    this.noDataPointsInDateRange =
-        !this.data.dataPointsInRange(this.xAxis.dateRange);
+    this.dataPointsInDateRange =
+        this.data.dataPointsInRange(this.xAxis.dateRange);
 
     // Don't draw lines between endpoints.
     this.chartConfiguration.data.types = this.types;

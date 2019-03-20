@@ -10,10 +10,11 @@ import {DisplayConfiguration, GraphData} from 'src/app/graphdatatypes/graphdata'
 
 import {DateTimeXAxis} from './datetimexaxis';
 import {GraphComponent} from './graph.component';
+import {RenderedChart} from './renderedchart';
 
 class StubGraphComponent extends GraphComponent<any> {
   constructor() {
-    super(TestBed.get(DomSanitizer));
+    super(TestBed.get(DomSanitizer), (axis, id) => new RenderedChart(axis, id));
     this.data = new GraphData([], new Map());
     this.data.c3DisplayConfiguration = new DisplayConfiguration(
         [
