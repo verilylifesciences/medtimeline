@@ -52,6 +52,7 @@ describe('GraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
+    component.yAxisConfig = {};
     component.generateBasicChart();
 
     expect(component.chartConfiguration['data']['xs']['Vanc Pk'])
@@ -88,6 +89,7 @@ describe('GraphComponent', () => {
   });
 
   it('regions displayed on y-axis', () => {
+    component.yAxisConfig = {};
     component.generateBasicChart();
 
     component.chartConfiguration =

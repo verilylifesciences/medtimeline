@@ -5,7 +5,6 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatDialog} from '@angular/material';
-import * as c3 from 'c3';
 import * as d3 from 'd3';
 import {DateTime, Interval} from 'luxon';
 import {of} from 'rxjs';
@@ -17,7 +16,6 @@ import {CustomizableGraphComponent} from './customizable-graph.component';
 describe('CustomizableGraphComponent', () => {
   let component: CustomizableGraphComponent;
   let fixture: ComponentFixture<CustomizableGraphComponent>;
-
 
   const annotationTime = DateTime.fromISO('2019-04-04T00:53:00');
 
