@@ -714,6 +714,7 @@ var CardcontainerComponent = /** @class */ (function () {
             .reduce(function (acc, val) { return acc.concat(val); }, []);
         this.setUpCards();
         this.setUpDrag(dragulaService);
+        console.warn(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].useDebugger);
     }
     CardcontainerComponent.prototype.setUpCards = function () {
         // Add a textbox at the top of the card list.
@@ -1260,6 +1261,9 @@ var CustomizableTimelineDialogComponent = /** @class */ (function () {
     // date range.
     CustomizableTimelineDialogComponent.prototype.dateNotInRange = function () {
         var dateTime = luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].fromJSDate(this.getSelectedDate());
+        if (!this.dateRange) {
+            return false;
+        }
         return !(this.dateRange.contains(dateTime));
     };
     CustomizableTimelineDialogComponent = __decorate([
@@ -2422,12 +2426,12 @@ var ResourceCodeManager = /** @class */ (function () {
             ];
             codeGroups.push(new ResourceCodesForCard(cbc, 'Complete Blood Count', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"]));
             var cbcWBC = [
-                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Neutrophil/Band', true, [0, 100], true)], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100], true),
+                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100]),
                 // TODO: add Immature Granulocytes
                 // TODO: add Lymphocyte
-                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Monocyte', false, [0, 100], true)], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100], true),
-                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Eosinophil', false, [0, 100], true)], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100], true),
-                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Basophil', false, [0, 100], true)], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100], true),
+                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100]),
+                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100]),
+                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].LINE, [0, 100]),
             ];
             codeGroups.push(new ResourceCodesForCard(cbcWBC, 'Complete Blood Count White Blood Cell', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"]));
             // TODO(b/118874488): Allow for configuration of RxNormCodeGroups.
@@ -2435,12 +2439,12 @@ var ResourceCodeManager = /** @class */ (function () {
             codeGroups.push(new ResourceCodesForCard([new _rx_norm_group__WEBPACK_IMPORTED_MODULE_8__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].STEP)], 'Vancomycin & Gentamicin Summary', _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"]));
             // Drug monitoring should be a scatterplot, and the related concepts
             // should be displayed on the same axes.
-            var vancRxNorm_1 = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_8__["RxNormCodeGroup"](this.fhirService, 'Vancomycin', [_rx_norm__WEBPACK_IMPORTED_MODULE_7__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].SCATTER);
+            var vancRxNorm_1 = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_8__["RxNormCodeGroup"](this.fhirService, 'Medication Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_7__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].SCATTER);
             // Drug monitoring should be a scatterplot, and the related concepts
             // should be displayed on the same axes.
             codeGroups.push(new ResourceCodesForCard([
                 vancRxNorm_1,
-                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Vancomycin Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].SCATTER, undefined, // no meaningful y-axis ranges
+                new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_6__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"].SCATTER, undefined, // no meaningful y-axis ranges
                 false, function (observation, dateRange) {
                     return vancRxNorm_1.getResourceSet(dateRange)
                         .then(function (rxNorms) {
@@ -3193,7 +3197,7 @@ var DebuggerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "{{browserVersion}}\n<div *ngFor=\"let error of debugService.errors\">\n  {{error}}\n</div>"
+module.exports = "<div style=\"background-color: white\">\n  Browser version: {{browserVersion}} <br />\n  Authentication information:<br />\n  URL Parameters: {{parameters}} <br />\n\n  Errors surfaced:<br />\n  <div *ngFor=\"let error of debugService.errors\">\n    {{error}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3207,12 +3211,11 @@ module.exports = "{{browserVersion}}\n<div *ngFor=\"let error of debugService.er
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DebuggerComponent", function() { return DebuggerComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../debugger.service */ "./src/app/debugger.service.ts");
-// Copyright 2018 Verily Life Sciences Inc.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
+/* harmony import */ var fhirclient__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fhirclient */ "./node_modules/fhirclient/fhir-client.js");
+/* harmony import */ var fhirclient__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fhirclient__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../debugger.service */ "./src/app/debugger.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3222,15 +3225,27 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+
 
 
 var DebuggerComponent = /** @class */ (function () {
-    function DebuggerComponent(debugService) {
+    function DebuggerComponent(debugService, route) {
+        var _this = this;
         this.debugService = debugService;
+        this.route = route;
+        this.parameters = new Array();
         this.browserVersion = navigator.appVersion;
+        this.route.queryParams.subscribe(function (params) {
+            _this.parameters.push(JSON.stringify(params));
+        });
     }
     DebuggerComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-debugger',
             template: __webpack_require__(/*! ./debugger.component.html */ "./src/app/debugger/debugger.component.html"),
         })
@@ -3239,7 +3254,7 @@ var DebuggerComponent = /** @class */ (function () {
          * UI.
          */
         ,
-        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_1__["DebuggerService"]])
+        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_3__["DebuggerService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], DebuggerComponent);
     return DebuggerComponent;
 }());
@@ -4981,7 +4996,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span *ngIf=\"!error\">Launching...</span>\n<span *ngIf=\"error\">Error: This app is not configured for this EHR.</span>"
+module.exports = "<span *ngIf=\"!error\">Launching authentication...</span>\n<div *ngIf=\"useDebugger\" style=\"background-color: white\">\n  Authentication Information<br />\n  Base URI: {{this.baseURL}}<br />\n  Redirect URI : {{this.redirectURL}}<br />\n  Scopes: {{this.scope}};<br />\n  URL parameters: {{this.parameters}} <br />\n  <button (click)=\"beginAuthenticationFlow()\">Click here to continue authentication.</button>\n</div>\n<span *ngIf=\"error\">Error: This app is not configured for this EHR.</span>\n"
 
 /***/ }),
 
@@ -5032,23 +5047,41 @@ var FhirLaunchComponent = /** @class */ (function () {
             'patient/DocumentReference.read', 'patient/DocumentReference.write',
             'patient/Encounter.read'
         ].join(' ');
+        this.parameters = new Array();
     }
     FhirLaunchComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].useMockServer) {
             this.router.navigate(['']);
         }
         else {
-            var clientId = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
-            if (!clientId) {
-                this.error = true;
-            }
-            else {
-                FHIR.oauth2.authorize({
-                    'client_id': clientId,
-                    'scope': this.scope,
-                    'redirect_uri': _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL
+            this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].useDebugger;
+            // If we're using the debugger, pause before authenticating and display
+            // all the credentials we're passing in.
+            if (this.useDebugger) {
+                this.clientId = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
+                this.baseURL = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].baseURL;
+                this.redirectURL = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL;
+                this.route.queryParams.subscribe(function (params) {
+                    _this.parameters.push(JSON.stringify(params));
                 });
             }
+            else {
+                this.beginAuthenticationFlow();
+            }
+        }
+    };
+    FhirLaunchComponent.prototype.beginAuthenticationFlow = function () {
+        var clientId = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
+        if (!clientId) {
+            this.error = true;
+        }
+        else {
+            FHIR.oauth2.authorize({
+                'client_id': clientId,
+                'scope': this.scope,
+                'redirect_uri': _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL
+            });
         }
     };
     FhirLaunchComponent = __decorate([
@@ -7123,6 +7156,95 @@ module.exports = "/* All the below styles apply to elements within the graphs. B
 
 /***/ }),
 
+/***/ "./src/app/graphtypes/graph/datetimexaxis.ts":
+/*!***************************************************!*\
+  !*** ./src/app/graphtypes/graph/datetimexaxis.ts ***!
+  \***************************************************/
+/*! exports provided: DateTimeXAxis */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateTimeXAxis", function() { return DateTimeXAxis; });
+/* harmony import */ var src_app_date_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/date_utils */ "./src/app/date_utils.ts");
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+var DateTimeXAxis = /** @class */ (function () {
+    function DateTimeXAxis(
+    /**
+     * The date range this x axis configuration should cover.
+     */
+    dateRange, maxXTicks) {
+        if (maxXTicks === void 0) { maxXTicks = 10; }
+        this.dateRange = dateRange;
+        this.maxXTicks = maxXTicks;
+        this.makeXAxis();
+    }
+    /**
+     * If the date range is changed, adjust the x-axis tick marks displayed. This
+     * method does not need to be called otherwise, as the x-axis should stay
+     * constant unless the date range is changed.
+     * @param maxXTicks The maximum number of labeled ticks to display. By
+     *     default, any date range lasting shorter than maxXTicks will show tick
+     *     marks with labels at each 24-hour mark, and tick marks without labels
+     *     at 12-hour marks.
+     */
+    DateTimeXAxis.prototype.makeXAxis = function () {
+        var daysInRange = Object(src_app_date_utils__WEBPACK_IMPORTED_MODULE_0__["getTickMarksForXAxis"])(this.dateRange, true);
+        // The ticks with labels displayed.
+        var ticksLabels = new Array();
+        // All ticks displayed.
+        var ticks = new Array();
+        if (Math.floor(daysInRange.length / 2) <= this.maxXTicks) {
+            // Ticks are separated by 1 day intervals, in which case we show ticks
+            // with no labels at the 12-hour mark.
+            ticks = daysInRange;
+            for (var i = 0; i < daysInRange.length; i += 2) {
+                ticksLabels.push(daysInRange[i]);
+            }
+        }
+        else {
+            // Ticks are separated by intervals > 1 day, in which case we show ticks
+            // with no labels at the day mark.
+            var iteration = Math.ceil(daysInRange.length / this.maxXTicks);
+            ticksLabels.push(daysInRange[0]);
+            var date = daysInRange[0];
+            while (date <= this.dateRange.end) {
+                date = date.plus({ days: iteration });
+                ticksLabels.push(date);
+            }
+            date = daysInRange[0];
+            ticks.push(date);
+            while (date <= this.dateRange.end) {
+                date = date.plus({ days: 1 });
+                ticks.push(date);
+            }
+        }
+        this.xAxisLabels = ticksLabels.map(function (x) { return x.toFormat('MM/dd HH:mm'); });
+        this.xAxisConfig = {
+            type: 'timeseries',
+            min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
+            max: this.dateRange.end.toLocal().endOf('day').toJSDate(),
+            localtime: true,
+            tick: {
+                // To reduce ambiguity we include the hour as well.
+                format: '%m/%d %H:%M',
+                multiline: true,
+                fit: true,
+                values: ticks.map(function (x) { return Number(x); })
+            }
+        };
+    };
+    return DateTimeXAxis;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/graphtypes/graph/graph.component.html":
 /*!*******************************************************!*\
   !*** ./src/app/graphtypes/graph/graph.component.html ***!
@@ -7155,8 +7277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _date_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../date_utils */ "./src/app/date_utils.ts");
-/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _datetimexaxis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7203,11 +7325,8 @@ var GraphComponent = /** @class */ (function () {
         // seriesTodisplayGroup. We need to hold them in separate maps for more
         // efficient access during legend interaction.
         this.displayGroupToSeries = new Map();
-        // The y-axis configuration for the chart.
-        this.yAxisConfig = {};
         // A map containing a color for each series displayed on the graph.
         this.colorsMap = {};
-        this.labels = [];
         // Generate a unique ID for this chart.
         var chartId = Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])();
         // Replace the dashes in the UUID to meet HTML requirements.
@@ -7249,7 +7368,7 @@ var GraphComponent = /** @class */ (function () {
                 this.dataChanged();
             }
             if (changes.dateRange) {
-                this.adjustXAxis();
+                this.xAxis = new _datetimexaxis__WEBPACK_IMPORTED_MODULE_7__["DateTimeXAxis"](this.dateRange);
             }
             if (changes.eventlines) {
                 this.updateEventlines();
@@ -7314,7 +7433,7 @@ var GraphComponent = /** @class */ (function () {
      */
     GraphComponent.prototype.generateBasicChart = function (maxXTicks) {
         if (maxXTicks === void 0) { maxXTicks = 10; }
-        this.adjustXAxis(maxXTicks);
+        this.xAxis = new _datetimexaxis__WEBPACK_IMPORTED_MODULE_7__["DateTimeXAxis"](this.dateRange);
         this.adjustColorMap();
         this.chartTypeString = 'line';
         if (this.chartType === ChartType.SCATTER) {
@@ -7340,7 +7459,7 @@ var GraphComponent = /** @class */ (function () {
                 colors: this.colorsMap,
             },
             regions: this.data.xRegions,
-            axis: { x: this.xAxisConfig, y: this.yAxisConfig },
+            axis: { x: this.xAxis.xAxisConfig, y: this.yAxisConfig },
             legend: { show: false },
             line: { connectNull: false },
             onrendered: function () {
@@ -7352,7 +7471,6 @@ var GraphComponent = /** @class */ (function () {
             grid: { x: { lines: gridlines } },
             tooltip: this.setTooltip()
         };
-        // chartConfiguration['tooltip'] = this.setTooltip();
         this.setCustomLegend(this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
         this.chartConfiguration = chartConfiguration;
     };
@@ -7385,67 +7503,6 @@ var GraphComponent = /** @class */ (function () {
         }
     };
     /**
-     * If the date range is changed, adjust the x-axis tick marks displayed. This
-     * method does not need to be called otherwise, as the x-axis should stay
-     * constant unless the date range is changed.
-     * @param maxXTicks The maximum number of labeled ticks to display. By
-     *     default, any date range lasting shorter than maxXTicks will show tick
-     *     marks with labels at each 24-hour mark, and tick marks without labels
-     *     at 12-hour marks.
-     */
-    GraphComponent.prototype.adjustXAxis = function (maxXTicks) {
-        if (maxXTicks === void 0) { maxXTicks = 10; }
-        var daysInRange = Object(_date_utils__WEBPACK_IMPORTED_MODULE_6__["getTickMarksForXAxis"])(this.dateRange, true);
-        // The ticks with labels displayed.
-        var ticksLabels = new Array();
-        // All ticks displayed.
-        var ticks = new Array();
-        if (Math.floor(daysInRange.length / 2) <= maxXTicks) {
-            // Ticks are separated by 1 day intervals, in which case we show ticks
-            // with no labels at the 12-hour mark.
-            ticks = daysInRange;
-            for (var i = 0; i < daysInRange.length; i += 2) {
-                ticksLabels.push(daysInRange[i]);
-            }
-        }
-        else {
-            // Ticks are separated by intervals > 1 day, in which case we show ticks
-            // with no labels at the day mark.
-            var iteration = Math.ceil(daysInRange.length / maxXTicks);
-            ticksLabels.push(daysInRange[0]);
-            var date = daysInRange[0];
-            while (date <= this.dateRange.end) {
-                date = date.plus({ days: iteration });
-                ticksLabels.push(date);
-            }
-            date = daysInRange[0];
-            ticks.push(date);
-            while (date <= this.dateRange.end) {
-                date = date.plus({ days: 1 });
-                ticks.push(date);
-            }
-        }
-        this.labels = ticksLabels.map(function (x) {
-            var date = x.toJSDate();
-            var formatTime = d3__WEBPACK_IMPORTED_MODULE_2__["timeFormat"]('%m/%d %H:%M');
-            return formatTime(date);
-        });
-        this.xAxisConfig = {
-            type: 'timeseries',
-            min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
-            max: this.dateRange.end.toLocal().endOf('day').toJSDate(),
-            localtime: true,
-            tick: {
-                // To reduce ambiguity we include the hour as well.
-                format: '%m/%d %H:%M',
-                multiline: true,
-                fit: true,
-                values: ticks.map(function (x) { return Number(x); })
-            },
-            padding: { left: 0, right: 0 }
-        };
-    };
-    /**
      * Sets the tooltip for the graph.
      * If the class has a tooltipMap set, then we look up the tooltip from that
      * map. If there's no tooltipMap, then we return a simple formatted tooltip
@@ -7475,7 +7532,7 @@ var GraphComponent = /** @class */ (function () {
                     // key, return an empty string so that there will just be no
                     // tooltip.
                     if (!_this.data.tooltipMap.has(keyToUse)) {
-                        return new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_7__["StandardTooltip"](pointData, color, self.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"] ? self.data.unit : '')
+                        return new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_6__["StandardTooltip"](pointData, color, self.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"] ? self.data.unit : '')
                             .getTooltip(undefined, _this.sanitizer);
                     }
                     return _this.data.tooltipMap.get(keyToUse);
@@ -7626,7 +7683,8 @@ var GraphComponent = /** @class */ (function () {
                     .style('font-weight', 'bolder');
                 // Only add the tick label text if it was meant to be
                 // displayed.
-                if (self_2.labels.length > 0 && self_2.labels.includes(text)) {
+                if (self_2.xAxis.xAxisLabels.length > 0 &&
+                    self_2.xAxis.xAxisLabels.includes(text)) {
                     tspan.text(textSplit[0]); // Set the 'bold' tspan's content as the date.
                     d3__WEBPACK_IMPORTED_MODULE_2__["select"](this).append('tspan').text(' ' + textSplit[1]); // Add an additional tspan for the time.
                 }
@@ -7796,12 +7854,19 @@ var LineGraphComponent = /** @class */ (function (_super) {
         }
         var yValues = this.chartConfiguration.axis.y.tick.values;
         var needToWrap = yValues.some(function (value) { return value.toString().length > _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["Y_AXIS_TICK_MAX"]; });
+        // Due to some weird c3 rendering, we need extra padding for tick marks less
+        // than 2 characters long.
+        var needExtraPadding = yValues.every(function (value) { return value.toString().length < 2; });
         // Replace the tick label's initially displayed values to padded empty
         // strings so that the axis is aligned. We only do this if we need to wrap
         // axis labels in the first place.
-        if (needToWrap) {
+        var extraPadding = 4;
+        var padding = needToWrap ?
+            _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["Y_AXIS_TICK_MAX"] :
+            (needExtraPadding ? _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["Y_AXIS_TICK_MAX"] + extraPadding : undefined);
+        if (padding) {
             this.chartConfiguration.axis.y.tick.format = function (d) {
-                return ''.trim().padStart(_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["Y_AXIS_TICK_MAX"], '\xa0');
+                return ''.trim().padStart(padding, '\xa0');
             };
             this.yAxisTickDisplayValues =
                 yValues.map(function (value) { return value.toLocaleString('en-us', {
@@ -8963,7 +9028,7 @@ module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div class=\"mainSetup\">\n  <div class=\"checkboxActions\">\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\">\n          {{element.label}}\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  <div class=\"checkboxActions\">\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\">\n          {{element.label}}\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -8981,8 +9046,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9002,6 +9068,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var SetupComponent = /** @class */ (function () {
     function SetupComponent(resourceCodeManager, route, router, setupDataService) {
         this.route = route;
@@ -9010,6 +9077,7 @@ var SetupComponent = /** @class */ (function () {
         this.allConcepts = [];
         this.checkedConcepts = new Map();
         this.chosenConcepts = [];
+        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].useDebugger;
         /**
          * This FormControl monitors changes in the user input typed in the
          * autocomplete.
@@ -9032,6 +9100,7 @@ var SetupComponent = /** @class */ (function () {
                 this.checkedConcepts[concept.label] = true;
             }
         }
+        console.warn(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].useDebugger);
     }
     SetupComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -9096,8 +9165,8 @@ var SetupComponent = /** @class */ (function () {
         // Users can choose which concepts to display, or pick the default
         // configuration.
         ,
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_5__["SetupDataService"]])
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_6__["SetupDataService"]])
     ], SetupComponent);
     return SetupComponent;
 }());
@@ -9642,7 +9711,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/os/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/xaxis/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })
