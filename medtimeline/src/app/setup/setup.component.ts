@@ -8,6 +8,7 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
@@ -26,6 +27,7 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly allConcepts: Array<ResourceCodesForCard> = [];
   readonly checkedConcepts = new Map<string, boolean>();
   readonly chosenConcepts: Array<ResourceCodesForCard> = [];
+  readonly useDebugger = environment.useDebugger;
 
   /**
    * This FormControl monitors changes in the user input typed in the
@@ -82,6 +84,7 @@ export class SetupComponent implements OnInit, OnDestroy {
         this.checkedConcepts[concept.label] = true;
       }
     }
+    console.warn(environment.useDebugger);
   }
 
   /**

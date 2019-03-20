@@ -2,8 +2,11 @@
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+import 'fhirclient';
 
 import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+
 import {DebuggerService} from '../debugger.service';
 
 @Component({
@@ -17,7 +20,14 @@ import {DebuggerService} from '../debugger.service';
  */
 export class DebuggerComponent {
   browserVersion: string;
-  constructor(readonly debugService: DebuggerService) {
+  parameters = new Array<string>();
+
+  constructor(
+      readonly debugService: DebuggerService, private route: ActivatedRoute) {
     this.browserVersion = navigator.appVersion;
+
+    this.route.queryParams.subscribe(params => {
+      this.parameters.push(JSON.stringify(params));
+    });
   }
 }

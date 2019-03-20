@@ -6,6 +6,9 @@
     </button>
   </div>
 </mat-toolbar>
+<div *ngIf="useDebugger">
+  <app-debugger></app-debugger>
+</div>
 <div class="mainSetup">
   <div class="checkboxActions">
     <button mat-raised-button (click)="selectAll()" id="continue">

@@ -24,12 +24,19 @@ declare var FHIR: any;
 export class FhirLaunchComponent implements OnInit {
   error = false;
 
-  private scope: string = [
+  scope: string = [
     'launch', 'patient/Observation.read', 'patient/Patient.read',
     'patient/MedicationOrder.read', 'patient/MedicationAdministration.read',
     'patient/DocumentReference.read', 'patient/DocumentReference.write',
     'patient/Encounter.read'
   ].join(' ');
+
+  // We hold these variables in-class for authentication debugging.
+  clientId: string;
+  baseURL: string;
+  redirectURL: string;
+  useDebugger: boolean;
+  parameters = new Array<string>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -37,16 +44,33 @@ export class FhirLaunchComponent implements OnInit {
     if (environment.useMockServer) {
       this.router.navigate(['']);
     } else {
-      const clientId = FhirConfig.credentials.client_id;
-      if (!clientId) {
-        this.error = true;
-      } else {
-        FHIR.oauth2.authorize({
-          'client_id': clientId,
-          'scope': this.scope,
-          'redirect_uri': FhirConfig.url.redirectURL
+      this.useDebugger = environment.useDebugger;
+
+      // If we're using the debugger, pause before authenticating and display
+      // all the credentials we're passing in.
+      if (this.useDebugger) {
+        this.clientId = FhirConfig.credentials.client_id;
+        this.baseURL = FhirConfig.url.baseURL;
+        this.redirectURL = FhirConfig.url.redirectURL;
+        this.route.queryParams.subscribe(params => {
+          this.parameters.push(JSON.stringify(params));
         });
+      } else {
+        this.beginAuthenticationFlow();
       }
+    }
+  }
+
+  beginAuthenticationFlow() {
+    const clientId = FhirConfig.credentials.client_id;
+    if (!clientId) {
+      this.error = true;
+    } else {
+      FHIR.oauth2.authorize({
+        'client_id': clientId,
+        'scope': this.scope,
+        'redirect_uri': FhirConfig.url.redirectURL
+      });
     }
   }
 }
