@@ -240,25 +240,22 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'Neutrophil/Band',
             [new LOINCCode(
-                '35332-6', labResult, 'Neutrophil/Band', true, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+                '35332-6', labResult, 'Neutrophil/Band', true, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
         // TODO: add Immature Granulocytes
         // TODO: add Lymphocyte
         new LOINCCodeGroup(
             this.fhirService, 'Monocyte',
-            [new LOINCCode(
-                '5905-5', labResult, 'Monocyte', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            [new LOINCCode('5905-5', labResult, 'Monocyte', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
         new LOINCCodeGroup(
             this.fhirService, 'Eosinophil',
-            [new LOINCCode(
-                '713-8', labResult, 'Eosinophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            [new LOINCCode('713-8', labResult, 'Eosinophil', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
         new LOINCCodeGroup(
             this.fhirService, 'Basophil',
-            [new LOINCCode(
-                '706-2', labResult, 'Basophil', false, [0, 100], true)],
-            labResult, ChartType.LINE, [0, 100], true),
+            [new LOINCCode('706-2', labResult, 'Basophil', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
 
       ];
       codeGroups.push(new ResourceCodesForCard(
