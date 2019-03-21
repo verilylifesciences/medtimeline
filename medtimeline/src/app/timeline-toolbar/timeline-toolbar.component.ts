@@ -14,6 +14,7 @@ import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
 @Component({
   selector: 'app-timeline-toolbar',
   templateUrl: './timeline-toolbar.component.html',
+  styleUrls: ['../cardcontainer/cardcontainer.component.css']
 })
 export class TimelineToolbarComponent {
   readonly displayGroupings: Array<[DisplayGrouping, ResourceCodesForCard[]]>;
