@@ -85,3 +85,8 @@ app-setup .mat-input-placeholder {
 .noResults {
   font-family: "Roboto", sans-serif;
 }
+
+::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
+  display: flex;
+  display: -ms-flexbox;
+}
