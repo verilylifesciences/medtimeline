@@ -18,7 +18,7 @@ describe('Card Container', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
   beforeEach(async () => {
     await browser.waitForAngularEnabled(false);
-    await browser.get('/');
+    await browser.get('/setup');
     index.navigateToMainPage();
     browser.driver.executeScript(disableCSSAnimation);
     // Disable CSS animations and transitions, to accurately test style changes
@@ -88,18 +88,18 @@ describe('Card Container', () => {
          'Body temperature',
          'Heart Rate',
          'Respiratory Rate',
+         'SpO2',
          'Blood Pressure',
-         'Oxygen Saturation',
          'C-Reactive Protein',
          'ESR',
          'BUN',
          'Creatinine',
-         'ALT',
-         'AST',
+         'Alanine Aminotransferase (ALT)',
+         'Aspartate Aminotransferase (AST)',
          'Alkaline Phosphatase',
          'Bilirubin, Direct',
          'Bilirubin, Total',
-         'CBC White Blood Cell',
+         'Complete Blood Count White Blood Cell',
          'Vancomycin & Gentamicin Summary',
          'Vancomycin',
          'Stool',

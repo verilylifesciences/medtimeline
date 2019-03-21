@@ -4,6 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 import {DebuggerComponent} from './debugger.component';
 
@@ -12,7 +14,12 @@ describe('DebuggerComponent', () => {
   let fixture: ComponentFixture<DebuggerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [DebuggerComponent]})
+    TestBed
+        .configureTestingModule({
+          declarations: [DebuggerComponent],
+          providers:
+              [{provide: ActivatedRoute, useValue: {queryParams: of({})}}],
+        })
         .compileComponents();
   }));
 
