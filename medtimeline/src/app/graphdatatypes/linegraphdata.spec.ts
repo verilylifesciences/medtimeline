@@ -17,7 +17,7 @@ import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
-import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
 import {makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
 
@@ -257,27 +257,6 @@ describe('LineGraphData', () => {
 
        expect(lgData.yAxisDisplayBounds).toEqual([0, 50]);
      });
-
-  it('fromObservationSetList should set abnormal value tooltip correctly.',
-     () => {
-       const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             100, DateTime.utc(1988, 3, 23), normalRange))),
-       ]);
-       const obsSetList = new Array(obsSet1);
-
-       const lgData = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
-       const params = {};
-       params['label'] = 'Hemoglobin';
-       params['value'] = 100;
-       params['timestamp'] = 575078400000;
-       expect(lgData.tooltipMap.size).toBe(1);
-       expect(lgData.tooltipMap.get('575078400000'))
-           .toEqual(new GenericAbnormalTooltip(true, d3.rgb(0, 48, 135))
-                        .getTooltip(params, TestBed.get(DomSanitizer)));
-     });
-
 
   it('fromMedicationOrderSet should have one data series' +
          ' for all the orders',

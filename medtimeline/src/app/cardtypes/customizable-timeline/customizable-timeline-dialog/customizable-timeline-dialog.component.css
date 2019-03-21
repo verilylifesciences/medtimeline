@@ -1,7 +1,6 @@
 .timelinePicker {
   width: 100%;
   display: flex;
-  display: -ms-flexbox;
 }
 
 .timelinePicker .mat-form-field {

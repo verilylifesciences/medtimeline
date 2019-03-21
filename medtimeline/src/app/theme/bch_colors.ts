@@ -45,8 +45,6 @@ export const BOSTON_RED = Color.rgb(246, 50, 62);
 // Material-light version of secondary color.
 export const SELECTED = Color('#d9ceed');
 
-export const ABNORMAL = Color.rgb(242, 69, 7);
-
 // Rules for which text colors can be used for which backgrounds
 const DO_NOT_USE_WHITE_TYPE = [BOSTON_YELLOW, BOSTON_MORNING, Color.WHITE];
 const DO_NOT_USE_BLACK_TYPE = [BOSTON_BLUE, BOSTON_PURPLE];

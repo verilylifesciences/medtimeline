@@ -47,10 +47,10 @@ export const microbio =
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
 export const posPrelimMB = new DisplayGrouping(
-    'Check Result Preliminary', Color('#e4e2e2'), BCHColors.ABNORMAL);
+    'Check Result Preliminary', Color('#e4e2e2'), BCHColors.BOSTON_YELLOW);
 export const negPrelimMB = new DisplayGrouping(
     'Negative Preliminary', Color('#e4e2e2'), BCHColors.BOSTON_BLUE);
 export const posFinalMB =
-    new DisplayGrouping('Check Result Final', BCHColors.ABNORMAL);
+    new DisplayGrouping('Check Result Final', BCHColors.BOSTON_YELLOW);
 export const negFinalMB =
     new DisplayGrouping('Negative Final', BCHColors.BOSTON_BLUE);

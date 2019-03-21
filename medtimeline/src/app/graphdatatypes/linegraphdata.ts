@@ -13,7 +13,7 @@ import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
-import {DiscreteObservationTooltip, GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {DiscreteObservationTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {getDataColors} from '../theme/bch_colors';
 
 import {GraphData} from './graphdata';
@@ -84,11 +84,8 @@ export class LineGraphData extends GraphData {
       maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
     }
 
-    let tooltipMap = LineGraphData.makeTooltipMap(
+    const tooltipMap = LineGraphData.makeTooltipMap(
         observationGroup, sanitizer, obsLabelToColor);
-
-    tooltipMap = LineGraphData.addAbnormalValueTooltips(
-        series, tooltipMap, obsLabelToColor, sanitizer);
 
     const allUnits =
         new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
@@ -133,62 +130,6 @@ export class LineGraphData extends GraphData {
                 new GenericAnnotatedObservationTooltip(
                     true, obsLabelToColor.get(obs.label))
                     .getTooltip(obs, sanitizer));
-          }
-        }
-      }
-    }
-    return tooltipMap;
-  }
-
-  /**
-   * Constructs a map of timestamps to GenericAbnormalTooltips for any point
-   * with an "abnormal" value. Currently, we only use the normal range as
-   * reference.
-   * TODO(b/129059213): Use Observation.interpretation to determine abnormality
-   * as well.
-   * @param series The series to construct the tooltip map for.
-   * @param tooltipMap The existing tooltips for the series.
-   * @param obsLabelToColor A map of Observation label to corresponding color.
-   * @param sanitizer A DOM sanitizer for use in tooltip construction
-   * @returns a map of timstamp strings to tooltips, with GenericObservation
-   *     tooltips replaced with GenericAbnormal tooltip if the value is
-   *     abnormal.
-   */
-  private static addAbnormalValueTooltips(
-      series: LabeledSeries[], tooltipMap: Map<string, string>,
-      obsLabelToColor: Map<string, Color>,
-      sanitizer: DomSanitizer): Map<string, string> {
-    if (series.length > 0) {
-      const yBounds = series[0].yNormalBounds;
-      if (series.length === 1 && yBounds) {
-        // Add a tooltip for any value with an abnormal y-value.
-        for (let i = 0; i < series[0].yValues.length; i++) {
-          const value = series[0].yValues[i];
-          const timestamp = series[0].xValues[i].toMillis().toString();
-          if (value < yBounds[0] || value > yBounds[1]) {
-            const params = {};
-            params['timestamp'] = series[0].xValues[i].toMillis();
-            params['value'] = value;
-            params['label'] = series[0].label;
-            params['unit'] = series[0].unit;
-            // The key for this tooltip is the timestamp.
-            // There may be multiple data points associated with the timestamp
-            // so we stack the administrations on top of one another in that
-            // case.
-            if (tooltipMap.get(timestamp)) {
-              tooltipMap.set(
-                  timestamp,
-                  tooltipMap.get(timestamp) +
-                      new GenericAbnormalTooltip(
-                          false, obsLabelToColor.get(series[0].label))
-                          .getTooltip(params, sanitizer));
-            } else {
-              tooltipMap.set(
-                  timestamp,
-                  new GenericAbnormalTooltip(
-                      true, obsLabelToColor.get(series[0].label))
-                      .getTooltip(params, sanitizer));
-            }
           }
         }
       }
