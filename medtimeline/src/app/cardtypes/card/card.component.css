@@ -9,6 +9,12 @@
   padding-left: 0px;
   transition: box-shadow .1s;
   background-color: rgb(248, 248, 248);
+  flex-direction: row;
+  -ms-flex-direction: row; /* For IE10 */
+  display: flex;
+  display: -ms-flexbox; /* For IE10 */
+  flex: 1 1 0%;
+  -ms-flex: 1 1 0%; /* For IE10 */
 }
 
 ::ng-deep .inEditMode .mat-card {
@@ -25,6 +31,18 @@
   min-width: 24px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  flex-direction: column;
+  -ms-flex-direction: column; /* For IE10 */
+  display: flex;
+  display: -ms-flexbox; /* For IE10 */
+  flex: 0 0 0%;
+  -ms-flex: 0 0 0%; /* For IE10 */
+  align-content: center;
+  -ms-flex-line-pack: center; /* Align content: center conversion for IE10 */
+  justify-content: center;
+  -ms-flex-pack: center;  /* Justify content: center conversion for IE10 */
+  align-self: stretch;
+  -ms-flex-item-align: stretch;  /* Align self: stretch conversion for IE10 */
 }
 
 .mat-icon {
@@ -53,6 +71,12 @@
 
 .labelColumn{
   padding: 3px;
+  flex-direction: column;
+  -ms-flex-direction: column; /* For IE10 */
+  display: flex;
+  display: -ms-flexbox; /* For IE10 */
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto; /* For IE10 */
 }
 
 .label {
@@ -60,6 +84,8 @@
   min-width: 200px;
   word-wrap: break-word;
   font-family: 'Quicksand', sans-serif;
+  flex: 1 1 auto;
+  -ms-flex: 1 1 auto; /* For IE10 */
 }
 
 ::ng-deep .mat-input-element:disabled{

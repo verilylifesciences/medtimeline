@@ -10,3 +10,18 @@
   vertical-align: center;
   width: 7px;
 }
+
+/* This is a specific style for MultiGraphCard. */
+.contents-block {
+  flex-direction: column;
+  -ms-flex-direction: column; /* For IE10 */
+  display: flex;
+  display: -ms-flexbox; /* For IE10 */
+  flex: 1 1 0%;
+  -ms-flex: 1 1 0%; /* For IE10 */
+}
+
+ .axis {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto; /* For IE10 */
+} 

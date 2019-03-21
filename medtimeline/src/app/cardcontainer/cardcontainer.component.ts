@@ -13,7 +13,6 @@ import {v4 as uuid} from 'uuid';
 import {environment} from '../../environments/environment';
 import {CardComponent} from '../cardtypes/card/card.component';
 import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
-import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
@@ -69,11 +68,8 @@ export class CardcontainerComponent {
     number, {[key: string]: ResourceCodesForCard | string | CustomizableData}
   ];
 
-  // The reference for the Delete Card Dialog opened.
+  // The reference for the Dialog opened.
   private deleteDialogRef: MatDialogRef<DeleteDialogComponent>;
-
-  // The reference for the Save Snapshot Dialog opened.
-  private saveDialogRef: MatDialogRef<ConfirmSaveComponent>;
 
   // A map of custom timeline id to the event lines corresponding to that
   // timeline.
@@ -86,8 +82,7 @@ export class CardcontainerComponent {
       dragulaService: DragulaService, private fhirService: FhirService,
       resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
-      private setupDataService: SetupDataService,
-      private saveDialog: MatDialog) {
+      private setupDataService: SetupDataService) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
@@ -174,20 +169,9 @@ export class CardcontainerComponent {
 
   // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.
   snapshot() {
-    const html = document.getElementsByClassName('cardContainer')[0].innerHTML;
-    this.saveDialogRef =
-        this.saveDialog.open(ConfirmSaveComponent, {data: html, height: '80%'});
-    this.saveDialogRef.afterClosed().subscribe(result => {
-      // Only save the snapshot to the EHR if the user confirmed the save.
-      if (result) {
-        const date = DateTime.fromJSDate(new Date()).toISO();
-        this.fhirService.saveStaticNote(html, date);
-        this.snackBar.open('Snapshot saved to PowerChart', 'Dismiss', {
-          duration: this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the
-                                        // snack bar.
-        });
-      }
-    });
+    this.fhirService.saveStaticNote(
+        document.getElementsByClassName('cardContainer')[0].innerHTML,
+        DateTime.fromJSDate(new Date()).toISO());
   }
 
   // Listen for an event indicating that a "delete" button has been clicked on a
