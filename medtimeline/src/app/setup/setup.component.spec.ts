@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
+import {DebuggerComponent} from '../debugger/debugger.component';
 import {StubFhirService} from '../test_utils';
 
 import {SetupComponent} from './setup.component';
@@ -23,7 +24,7 @@ describe('SetupComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          declarations: [SetupComponent],
+          declarations: [SetupComponent, DebuggerComponent],
           imports: [
             MatToolbarModule, MatCheckboxModule, MatFormFieldModule,
             ReactiveFormsModule, FormsModule, MatInputModule,

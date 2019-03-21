@@ -19,7 +19,7 @@ describe('Data Selector', () => {
   const subMenu = dataSelector.getSubMenu(1);
 
   beforeEach(async () => {
-    await browser.get('/');
+    await browser.get('/setup');
     await index.navigateToMainPage();
     await index.expectToExist('.mat-menu-panel', false);
     const dataSelectorButton = dataSelector.getAddCardButton();
@@ -100,11 +100,11 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
-          'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine',
-          'Alanine Aminotransferase (ALT)', 'Aspartate Aminotransferase (AST)',
-          'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total',
-          'Uric acid', 'Complete Blood Count',
-          'Complete Blood Count White Blood Cell', 'Urinalysis'
+          'Alanine Aminotransferase (ALT)', 'Alkaline Phosphatase',
+          'Aspartate Aminotransferase (AST)', 'Bilirubin, Direct',
+          'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
+          'Complete Blood Count', 'Complete Blood Count White Blood Cell',
+          'Creatinine', 'CSF', 'ESR', 'Other Fluid', 'Uric acid', 'Urinalysis'
         ]));
   });
 
@@ -120,9 +120,9 @@ describe('Data Selector', () => {
     const medsMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(medsMenu).getText();
 
-    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
-      'Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin'
-    ]);
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set(
+            ['Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin']));
     expect(itemsText.length).toEqual(3);
   });
 
@@ -138,9 +138,8 @@ describe('Data Selector', () => {
     const mbMenu = await dataSelector.getSubMenu(2);
     const itemsText: any = await dataSelector.getItems(mbMenu).getText();
 
-    expect(itemsText.map(item => item.split('No')[0].trim())).toEqual([
-      'Stool', 'NP Swab'
-    ]);
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set(['Stool', 'NP Swab']));
     expect(itemsText.length).toEqual(2);
   });
 

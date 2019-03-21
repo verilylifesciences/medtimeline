@@ -21,7 +21,7 @@ describe('Customizable Timeline', () => {
   const deleteId = '[id*="delete-"]';
 
   beforeEach(async () => {
-    await browser.get('/');
+    await browser.get('/setup');
     await index.navigateToMainPage();
     const timeline = customTimeline.getGraph();
     const editIcon = customTimeline.getEditIcon();

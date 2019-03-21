@@ -86,9 +86,6 @@ export class IndexPage {
   }
 
   async navigateToMainPage() {
-    const defaultConfigButton = element(by.css('#defaultConfig'));
-    await defaultConfigButton.click();
-
     const continueButton = element(by.css('#continue'));
     await continueButton.click();
   }
