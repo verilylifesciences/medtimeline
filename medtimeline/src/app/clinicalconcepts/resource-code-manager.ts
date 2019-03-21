@@ -79,7 +79,6 @@ export class ResourceCodesForCard {
  * ResourceCodeManager is the centralized class where other components can
  * look to find an exhaustive listing of all the resource code groups that the
  * application may display.
- * TODO(b/119185198): Eventually RxNorms should be listed here, too.
  */
 @Injectable()
 export class ResourceCodeManager {
@@ -112,36 +111,56 @@ export class ResourceCodeManager {
   ];
 
   private static readonly gentMonitoring = [
-    new LOINCCode('35668-3', labResult, 'Gent Level'),
-    new LOINCCode('3663-2', labResult, 'Gent Pk'),
-    new LOINCCode('31092-0', labResult, 'Gent Tr')
-    // TODO: add Gentamicin, Peak/Post Q24H
+    new LOINCCode('31091-2', labResult, 'Gentamicin, Peak/Post Q24H'),
+    new LOINCCode('3663-2', labResult, 'Gentamicin, Peak/Post Q8H'),
+    new LOINCCode('31092-0', labResult, 'Gentamicin, Trough/Pre Q24H'),
+    new LOINCCode('3665-7', labResult, 'Gentamicin, Trough/Pre Q8H')
   ];
 
   private static readonly vancMonitoring = [
-    new LOINCCode('20578-1', labResult, 'Vanc Level', true),
-    new LOINCCode('4092-3', labResult, 'Vanc Tr', true),
-    // TODO: add Vanc Peak
+    new LOINCCode('20578-1', labResult, 'Vancomycin Level, Random', true),
+    new LOINCCode('4092-3', labResult, 'Vancomycin Level, Trough/Pre', true),
   ];
-
 
   private static readonly urineGroup = [
     new LOINCCode('5769-5', labResult, 'Bacteria, Urinalysis'),
     new LOINCCode('50551-1', labResult, 'Bilirubin, Urinalysis'),
     new LOINCCode('5794-3', labResult, 'Blood, Urinalysis'),
     new LOINCCode('21033-6', labResult, 'Budding Yeast, Urinalysis'),
+    new LOINCCode('41865-7', labResult, 'Hyphal Yeast, Urinalysis'),
     new LOINCCode('25157-9', labResult, 'Epithelial Cast, Urinalysis'),
     new LOINCCode('50558-6', labResult, 'Nitrite, Urinalysis'),
-    // TODO: add Protein, Urinalysis
+    new LOINCCode('57735-3', labResult, 'Protein, Urinalysis'),
     new LOINCCode('58449-0', labResult, 'Red Blood Cell Clump, Urinalysis'),
     new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis'),
-    // TODO: add Squamous Epithelial, Urinalysis
+    new LOINCCode('11277-1', labResult, 'Squamous Epithelial, Urinalysis'),
     new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis'),
     new LOINCCode('5799-2', labResult, 'White Blood Cell Enzyme, Urinalysis'),
     new LOINCCode('33825-1', labResult, 'White Blood Cell Clump, Urinalysis'),
-    // TODO: add White Cells, Urinalysis
-    // TODO: add yeast, Urinalysis
+    new LOINCCode('20408-1', labResult, 'White Cells, Urinalysis'),
   ];
+
+  private static readonly csfGroup = [
+    new LOINCCode('10333-3', labResult, 'Appearance, CSF'),
+    new LOINCCode('13517-8', labResult, 'Atypical Lymph, CSF'),
+    new LOINCCode('12278-8', labResult, 'Band, CSF'),
+    new LOINCCode('30374-3', labResult, 'Basophil, CSF'),
+    new LOINCCode('12208-5', labResult, 'Eosinophil, CSF'),
+    new LOINCCode('2342-4', labResult, 'Glucose, CSF'),
+    new LOINCCode('10328-3', labResult, 'Lymphocyte, CSF'),
+    new LOINCCode('10329-1', labResult, 'Monocyte, CSF'),
+    new LOINCCode('12278-8', labResult, 'Neutrophil/Band, CSF')
+  ];
+
+  private static readonly otherFluidGroup = [
+    new LOINCCode('9335-1', labResult, 'Appearance, Other Fluid'),
+    new LOINCCode('31208-2', labResult, 'Cell Count Source, Other Fluid'),
+    new LOINCCode('47938-6', labResult, 'Cell Count, Other Source'),
+    new LOINCCode('38256-4', labResult, 'Cells Counted, Other Fluid'),
+    new LOINCCode('6824-7', labResult, 'Color, Other Fluid'),
+    new LOINCCode('12209-3', labResult, 'Eosinophil, Other Fluid')
+  ];
+
 
   // TODO(b/117431412): Figure out which microbio concepts to display.
   private static stoolGroup = [
@@ -227,7 +246,10 @@ export class ResourceCodeManager {
             this.fhirService, 'Hemoglobin',
             [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
             labResult, ChartType.LINE, [0.5, 30]),
-        // TODO: add Platelet
+        new LOINCCodeGroup(
+            this.fhirService, 'Platelet',
+            [new LOINCCode('777-3', labResult, 'Platelet', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
         new LOINCCodeGroup(
             this.fhirService, 'White Blood Cell',
             [new LOINCCode('26464-8', labResult, 'White Blood Cell', false)],
@@ -319,6 +341,19 @@ export class ResourceCodeManager {
               this.fhirService, 'Urinalysis', ResourceCodeManager.urineGroup,
               labResult, ChartType.SCATTER)],
           'Urinalysis', labResult));
+
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'CSF', ResourceCodeManager.csfGroup, labResult,
+              ChartType.SCATTER)],
+          'CSF', labResult));
+
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'Other Fluid',
+              ResourceCodeManager.otherFluidGroup, labResult,
+              ChartType.SCATTER)],
+          'Other Fluid', labResult));
 
       codeGroups.push(new ResourceCodesForCard(
           [new BCHMicrobioCodeGroup(
