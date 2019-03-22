@@ -8,6 +8,12 @@ import {DateTime, Duration, Interval} from 'luxon';
 export const APP_TIMESPAN = Interval.fromDateTimes(
     DateTime.utc().minus(Duration.fromObject({months: 6})), DateTime.utc());
 
+/**
+ * Do not consider any encounters with a start date earlier than a year from
+ * now.
+ */
+export const EARLIEST_ENCOUNTER_START_DATE = DateTime.utc().minus({years: 1});
+
 /** Constants used for FHIR resource types. */
 export enum FhirResourceType {
   Encounter = 'Encounter',

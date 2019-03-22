@@ -95,7 +95,6 @@ export class CardcontainerComponent {
                                 .reduce((acc, val) => acc.concat(val), []);
     this.setUpCards();
     this.setUpDrag(dragulaService);
-    console.warn(environment.useDebugger);
   }
 
   private setUpCards() {
