@@ -15,6 +15,7 @@ import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {v4 as uuid} from 'uuid';
 
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import * as BCHColors from '../../theme/bch_colors';
 import {StandardTooltip} from '../tooltips/tooltip';
 import {DateTimeXAxis} from './datetimexaxis';
 
@@ -354,6 +355,18 @@ export abstract class GraphComponent<T extends GraphData> implements
       basicChart['regions'] = [];
     }
     basicChart['regions'].push({axis: 'y', start: yBounds[0], end: yBounds[1]});
+    // Ensure that points outside of the normal range are colored distinctly to
+    // match abnormal results.
+    // Since a y-region is only added when there is one series on the chart, we
+    // do not have to worry about coloring points from different series with the
+    // same color.
+    if (basicChart.data) {
+      basicChart.data.color = function(color, d) {
+        return (d.value && (d.value < yBounds[0] || d.value > yBounds[1])) ?
+            BCHColors.ABNORMAL.toString() :
+            color;
+      };
+    }
     return basicChart;
   }
 

@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="toolbar">
   <app-timeline-controller (changeDateRange)="changeDateRange($event)"></app-timeline-controller>
   <!--Push the buttons to the right and left sides.-->
-  <div fxFlex></div>
+  <div fxFlex class="flexSpacer"></div>
   <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()"></app-timeline-toolbar>
 </mat-toolbar>
 <div *ngIf="useDebugger">

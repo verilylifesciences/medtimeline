@@ -32,6 +32,7 @@ import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/c
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
 import {ResourceCodeManager} from './clinicalconcepts/resource-code-manager';
+import {ConfirmSaveComponent} from './confirm-save/confirm-save.component';
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from './data-selector-menu/data-selector-menu.component';
 import {DebuggerComponent} from './debugger/debugger.component';
@@ -74,6 +75,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     DeleteDialogComponent,
     DebuggerComponent,
     SetupComponent,
+    ConfirmSaveComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
   bootstrap: [AppComponent],
   entryComponents: [
     CustomizableTimelineDialogComponent, HelpDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent, ConfirmSaveComponent
   ]
 })
 export class AppModule {

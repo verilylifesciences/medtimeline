@@ -32,6 +32,11 @@ const salmonella = new BCHMicrobioCode(
     'SALMONELLAANDSHIGELLACULTURE', microbio, 'Salmonella and Shigella Culture',
     false);
 
+export const diastolicBP = new LOINCCode(
+    '8462-4', vitalSign, 'Diastolic Blood Pressure', true, [25, 150]);
+export const systolicBP = new LOINCCode(
+    '8480-6', vitalSign, 'Systolic Blood Pressure', true, [30, 250]);
+
 export class ResourceCodesForCard {
   // Each ResourceCodeGroup represents data series on one axis. The type of
   // ResourceCodeGroups can be mixed here, hence the vague typing.
@@ -101,22 +106,8 @@ export class ResourceCodeManager {
     new LOINCCode('8310-5', vitalSign, 'Body temperature', true, [35, 41]),
     new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
     new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
+    new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true, [25, 250]),
     new LOINCCode('59408-5', vitalSign, 'SpO2', true, [5, 100], true)
-  ];
-
-  /**
-   * Although these two measurements have independent LOINC codes they only ever
-   * appear as sub-measurements of the larger entity for "blood pressure" in the
-   * way that BCH data shows up.
-   */
-  private static readonly diastolicBP = new LOINCCode(
-      '8462-4', vitalSign, 'Diastolic Blood Pressure', true, [25, 150]);
-  private static readonly systolicBP = new LOINCCode(
-      '8480-6', vitalSign, 'Systolic Blood Pressure', true, [30, 250]);
-
-  private static readonly bloodPressureLoincs = [
-    new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true),
-    new LOINCCode('76214-6', vitalSign, 'Mean Arterial Pressure', true)
   ];
 
   private static readonly gentMonitoring = [
@@ -211,29 +202,40 @@ export class ResourceCodeManager {
         }
       }
 
+      const bpIndex = codeGroups.findIndex(
+          codeGroup => codeGroup.label === 'Blood Pressure');
+      // Mean Arterial Pressure is recorded as a separate LOINCCode, but include
+      // it on the same axis as Systolic/Diastolic BP.
+      codeGroups[bpIndex].resourceCodeGroups[0].resourceCodes.push(
+          new LOINCCode('76214-6', vitalSign, 'Mean Arterial Pressure', true));
+
+      // Make a LOINCodeGroup for Blood pressure location.
       const bpLocation = new LOINCCodeGroup(
           this.fhirService, 'Blood Pressure Details',
           [new LOINCCode(
               '41904-4', vitalSign, 'Blood Pressure Location', true)],
           vitalSign, ChartType.SCATTER);
-      // Add the blood pressure LOINCs.
-      codeGroups.push(new ResourceCodesForCard(
-          [new LOINCCodeGroup(
-              this.fhirService, 'Blood Pressure',
-              ResourceCodeManager.bloodPressureLoincs, vitalSign,
-              ChartType.LINE, [25, 200], false,
-              (observation: Observation, dateRange: Interval):
-                  Promise<AnnotatedObservation> => {
-                    return bpLocation.getResourceSet(dateRange).then(obsSet => {
-                      return AnnotatedObservation.forBloodPressure(
-                          observation,
-                          // We only pass in the first ObservationSet, since we
-                          // know there is only one code whose observations we
-                          // care about.
-                          obsSet[0]);
-                    });
-                  })],
-          'Blood Pressure', vitalSign));
+      // Modify the existing BP LOINCCodeGroup to included annotated
+      // Observations containing the BP locations.
+      const bpLoincGroup = new LOINCCodeGroup(
+          this.fhirService, 'Blood Pressure',
+          codeGroups[bpIndex].resourceCodeGroups[0].resourceCodes, vitalSign,
+          ChartType.LINE, undefined,  // No display bounds
+          false,
+          (observation: Observation,
+           dateRange: Interval): Promise<AnnotatedObservation> => {
+            return bpLocation.getResourceSet(dateRange).then(obsSet => {
+              return AnnotatedObservation.forBloodPressure(
+                  observation,
+                  // We only pass in the first ObservationSet, since we know
+                  // there is only one code whose observations we care about.
+                  obsSet[0]);
+            });
+          });
+      // Replace (in place) the original BP ResourceCodesForCard with the
+      // modified information.
+      codeGroups[bpIndex] = new ResourceCodesForCard(
+          [bpLoincGroup], codeGroups[bpIndex].label, vitalSign);
 
       const cbc = [
         new LOINCCodeGroup(
