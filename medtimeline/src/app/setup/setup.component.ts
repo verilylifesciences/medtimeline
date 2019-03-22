@@ -84,7 +84,6 @@ export class SetupComponent implements OnInit, OnDestroy {
         this.checkedConcepts[concept.label] = true;
       }
     }
-    console.warn(environment.useDebugger);
   }
 
   /**

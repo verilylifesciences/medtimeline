@@ -7,7 +7,7 @@ import {Inject, Injectable, SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
-import {APP_TIMESPAN, FhirResourceType} from '../constants';
+import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../constants';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
@@ -214,8 +214,9 @@ export class FhirHttpService extends FhirService {
     }
     // The Cerner implementation of the Encounter search does not offer any
     // filtering by date at this point, so we grab all the encounters
-    // then filter them.
-
+    // then filter them down to those which intersect with the date range
+    // we query, and those that have a start date no earlier than a year prior
+    // to now.
     return this.smartApiPromise.then(
         smartApi => smartApi.patient.api.fetchAll(queryParams)
                         .then(
@@ -228,7 +229,10 @@ export class FhirHttpService extends FhirService {
                                       .filter(
                                           encounter =>
                                               dateRange.intersection(
-                                                  encounter.period) !== null);
+                                                  encounter.period) !== null)
+                                      .filter(
+                                          encounter => encounter.period.start >=
+                                              EARLIEST_ENCOUNTER_START_DATE);
                               return results;
                             },
                             rejection => {
