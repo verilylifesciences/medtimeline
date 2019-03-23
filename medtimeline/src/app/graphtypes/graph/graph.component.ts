@@ -93,28 +93,6 @@ export abstract class GraphComponent<T extends GraphData> implements
     this.chartDivId = 'chart' + chartId.replace(re, '');
   }
 
-  /*
-   * Returns whether or not there are any data points in the series that fall
-   * inside the date range provided.
-   * @param series The LabeledSeries to find data points in the date range.
-   * @param dateRange The date range in which to see if there are any data
-   *     points.
-   */
-  static dataPointsInRange(series: LabeledSeries[], dateRange: Interval):
-      boolean {
-    const entireRange = Interval.fromDateTimes(
-        dateRange.start.toLocal().startOf('day'),
-        dateRange.end.toLocal().endOf('day'));
-    for (const s of series) {
-      for (const x of s.xValues) {
-        if (entireRange.contains(x)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   // The chart can't find the element to bind to until after the view is
   // initialized so we need to regenerate the chart here.
   ngAfterViewInit() {

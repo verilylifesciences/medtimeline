@@ -111,10 +111,7 @@ export class StepGraphComponent extends
   adjustDataDependent() {
     // Check if there are any data points in the time range.
     this.noDataPointsInDateRange =
-        !GraphComponent.dataPointsInRange(
-            this.data.series, this.xAxis.dateRange) &&
-        !GraphComponent.dataPointsInRange(
-            this.data.endpointSeries, this.xAxis.dateRange);
+        !this.data.dataPointsInRange(this.xAxis.dateRange);
 
     // Don't draw lines between endpoints.
     this.chartConfiguration.data.types = this.types;
