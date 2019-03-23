@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {LabeledSeries} from './labeled-series';
 
@@ -119,5 +119,26 @@ export class GraphData {
     }
     return new DisplayConfiguration(
         allColumns, columnMap, ySeriesLabelToDisplayGroup);
+  }
+
+  /*
+   * Returns whether or not there are any data points in the series that fall
+   * inside the date range provided.
+   * @param series The LabeledSeries to find data points in the date range.
+   * @param dateRange The date range in which to see if there are any data
+   *     points.
+   */
+  dataPointsInRange(dateRange: Interval): boolean {
+    const entireRange = Interval.fromDateTimes(
+        dateRange.start.toLocal().startOf('day'),
+        dateRange.end.toLocal().endOf('day'));
+    for (const s of this.series) {
+      for (const x of s.xValues) {
+        if (entireRange.contains(x)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
