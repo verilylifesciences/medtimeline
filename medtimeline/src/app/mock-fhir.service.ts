@@ -63,13 +63,7 @@ export class MockFhirService extends FhirService {
   private mapAllData(): Promise<void[]> {
     return Promise.all(this.allFilePaths.map(filePath => {
       return this.http.get(filePath).toPromise<any>().then(data => {
-        let entry = data.entry;
-        // Sometimes data comes to us in bundles, and then we want to flatten
-        // it into a series of resources.
-        if (data.length > 0) {
-          entry = data.map(bundle => bundle.entry).flat();
-        }
-        for (const json of entry) {
+        for (const json of data.entry) {
           const resourceType = json.resource.resourceType;
           if (resourceType === FhirResourceType.Observation) {
             this.constructResourceMap(

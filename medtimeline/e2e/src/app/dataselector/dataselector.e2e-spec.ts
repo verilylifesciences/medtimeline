@@ -106,7 +106,6 @@ describe('Data Selector', () => {
           'Uric acid', 'Complete Blood Count',
           'Complete Blood Count White Blood Cell', 'Urinalysis'
         ]));
-    expect(itemsText.length).toEqual(13);
   });
 
   it('vanc and gent option menu should have correct options', async () => {

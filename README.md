@@ -1,7 +1,6 @@
 # MedTimeLine
 
 [See the online demo here!](https://verilylifesciences.github.io/medtimeline/)
-This demo was automatically built using ./build_demo.sh
 
 ## Disclaimer
 This is not an official Verily product.
@@ -21,10 +20,9 @@ new clinical concepts, and changing the timeframe of the visualized data.
 1. Clone this repository.
 1. Change into the `medtimeline` directory.
 1. Run `npm install` to install all dependencies.
-1. Run `ng serve --port 8000 --configuration dev_mock_DemoMockData` to run the application
+1. Run `ng serve --port 8000 --configuration dev_mock_synth_data` to run the application
    against the included mock data (note there is not data for all clinical
    concepts).
-1. Visit http://localhost:8000 in your browser.
 
 ## Configuring your own server
 
@@ -90,11 +88,9 @@ to run the application.
 
 ### Running against mock data
 
-If instead you want to run against the mock data, you have your pick of test data sets to run against.
-Look in src/assets/demo_data. There is a readme describing available data sets.
-Here is an example of running against one of them.
+If instead you want to run against the mock data, found in `src/assets/test_bmedtimeA`, run this command:
 
-`ng serve --port 8000 --configuration=dev_test_bmedtimeA`
+`ng serve --port 8000 --configuration=dev_mock_synth_data`
 
 Navigate to `http://localhost:8000/` to see the application.
 

@@ -10,8 +10,8 @@ import {IndexPage} from '../index.po';
 import {CardContainerPage} from './cardcontainer.po';
 
 describe('Card Container', () => {
-  const page: CardContainerPage = new CardContainerPage();
-  const index: IndexPage = new IndexPage();
+  const page = new CardContainerPage();
+  const index = new IndexPage();
   const cards = page.getCards();
   const intialBackgroundColor = 'rgba(248, 248, 248, 1)';
   const finalBackgroundColor = 'rgba(240, 240, 240, 1)';
@@ -153,24 +153,6 @@ describe('Card Container', () => {
       const finalDeleteIconOpacity =
           await index.getStyle(deleteIcon, 'opacity');
       expect(Number(finalDeleteIconOpacity)).toEqual(0.8);
-    });
-  });
-
-  it('drag icons should only appear on hover', async () => {
-    await cards.each(async function(el) {
-      if (await index.hasInnerElement(el, '.dragCardIcon')) {
-        const card = await index.getElement(el, 'mat-card');
-
-        const dragIcon = await index.getElement(card, '.dragCardIcon');
-        const initialDragIconOpacity =
-            await index.getStyle(dragIcon, 'opacity');
-        expect(initialDragIconOpacity).toEqual('0');
-
-        await index.hoverOverElement(card);
-
-        const finalDragIconOpacity = await index.getStyle(dragIcon, 'opacity');
-        expect(finalDragIconOpacity).toEqual('0.4');
-      }
     });
   });
 

@@ -47,43 +47,19 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "dev_mock_DemoMockData": {
+            "dev_mock_old_data": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_DemoMockData.ts"
+                  "with": "src/environments/environment_old.mock.ts"
                 }
               ]
             },
-            "dev_mock_test_bMedtimeA": {
+            "dev_mock_synth_data": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_test_bmedtimeA.ts"
-                }
-              ]
-            },
-            "dev_mock_test_bMedtimeB": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_test_bmedtimeB.ts"
-                }
-              ]
-            },
-            "dev_mock_test_bMedtimeC": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_test_bmedtimeC.ts"
-                }
-              ]
-            },
-            "dev_mock_test_bMedtimeD": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_test_bmedtimeD.ts"
+                  "with": "src/environments/environment_synth.mock.ts"
                 }
               ]
             },
@@ -114,20 +90,8 @@
             "production": {
               "browserTarget": "medtimeline:build:production"
             },
-            "dev_mock_DemoMockData": {
-              "browserTarget": "medtimeline:build:dev_mock_DemoMockData"
-            },
-            "dev_mock_test_bMedtimeA": {
-              "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeA"
-            },
-            "dev_mock_test_bMedtimeB": {
-              "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeB"
-            },
-            "dev_mock_test_bMedtimeC": {
-              "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeC"
-            },
-            "dev_mock_test_bMedtimeD": {
-              "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeD"
+            "dev_mock_old_data": {
+              "browserTarget": "medtimeline:build:dev_mock_old_data"
             },
             "dev_mock_synth_data": {
               "browserTarget": "medtimeline:build:dev_mock_synth_data"
