@@ -35,6 +35,10 @@ export class CustomizableGraphComponent extends
   @Input() inEditMode: boolean;
   // Whether or not the user is hovering over any point on the chart.
   private hoveringOverPoint = false;
+  // The width and height of the dialog box that appears when the user clicks on
+  // the chart.
+  readonly dialogWidth = '450px';
+  readonly dialogHeight = '375px';
 
   // The reference for the Dialog opened.
   private dialogRef: any;
@@ -182,11 +186,13 @@ export class CustomizableGraphComponent extends
   addPoint(clickCoordinates: [number, number], parentCoordinates: [
     number, number
   ]) {
-    this.dialogRef = this.openDialog(clickCoordinates);
+    const dialogCoordinates = this.findDialogCoordinates(
+        parentCoordinates[0] + 10, parentCoordinates[1] + 10);
+    this.dialogRef = this.openDialog(clickCoordinates, dialogCoordinates);
   }
 
   private openDialog(
-      clickCoordinates: [number, number],
+      clickCoordinates: [number, number], dialogCoordinates: [number, number],
       editedAnnotation?: CustomizableGraphAnnotation) {
     const chart = this.chart as any;
     const xCoordinate = chart.internal.x.invert(clickCoordinates[0]);
@@ -203,8 +209,13 @@ export class CustomizableGraphComponent extends
                                       dateRange: this.xAxis.dateRange,
                                     };
 
-    this.dialogRef =
-        this.dialog.open(CustomizableTimelineDialogComponent, {data: data});
+    this.dialogRef = this.dialog.open(CustomizableTimelineDialogComponent, {
+      width: this.dialogWidth,
+      height: this.dialogHeight,
+      position:
+          {top: dialogCoordinates[1] + 'px', left: dialogCoordinates[0] + 'px'},
+      data: data
+    });
     this.dialogRef.afterClosed().subscribe(r => {
       if (r) {
         if (editedAnnotation) {
@@ -317,9 +328,33 @@ export class CustomizableGraphComponent extends
 
     editIcon.on('click', function() {
       const parentCoordinates = d3.mouse(document.body);
+      const dialogCoordinates = self.findDialogCoordinates(
+          parentCoordinates[0] + 10, parentCoordinates[1] + 0);
 
-      self.dialogRef = self.openDialog(parentCoordinates, currAnnotation);
+      self.dialogRef =
+          self.openDialog(parentCoordinates, dialogCoordinates, currAnnotation);
     });
+  }
+
+  /**
+   * Change the coordinates of the dialog's position if the dialog will go past
+   * the edges of the screen.
+   * @param xCoordinate The x coordinate to change, if necessary.
+   * @param yCoordinate The y coordinate to change, if necessary.
+   */
+  findDialogCoordinates(xCoordinate: number, yCoordinate: number):
+      [number, number] {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const dialogWidth = Number(this.dialogWidth.replace('px', ''));
+    const dialogHeight = Number(this.dialogHeight.replace('px', ''));
+    if ((xCoordinate + dialogWidth) > windowWidth) {
+      xCoordinate -= ((xCoordinate + dialogWidth) - windowWidth);
+    }
+    if ((yCoordinate + dialogHeight) > windowHeight) {
+      yCoordinate -= ((yCoordinate + dialogHeight) - windowHeight);
+    }
+    return [xCoordinate, yCoordinate];
   }
 
   /**

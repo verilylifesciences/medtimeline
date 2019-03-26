@@ -11,15 +11,17 @@ import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
 
-/**
- * The customizable timeline lets the user plot any events they'd like to keep
- * track of as little flags along a timeline.
- */
+
 @Component({
   selector: 'app-customizable-timeline',
   templateUrl: './customizable-timeline.component.html',
   styleUrls: ['./customizable-timeline.component.css']
 })
+
+/**
+ * The customizable timeline lets the user plot any events they'd like to keep
+ * track of as little flags along a timeline.
+ */
 export class CustomizableTimelineComponent implements OnChanges {
   // The GraphComponent this card holds.
   @ViewChild(GraphComponent) containedGraph!: GraphComponent<GraphData>;

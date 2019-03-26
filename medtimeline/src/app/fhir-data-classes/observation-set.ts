@@ -25,10 +25,10 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
   readonly unit: string;
 
   /**
-   * Whether or not all Observations belonging to this ObservationSet contain
-   * all qualitative results rather than numerical values.
+   * Whether or not any Observations belonging to this ObservationSet contain
+   * qualitative results rather than numerical values.
    */
-  readonly allQualitative: boolean = false;
+  readonly anyQualitative: boolean = false;
 
   /**
    * Constructor for ObservationSet.
@@ -72,7 +72,7 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
       this.unit = fixUnitAbbreviations(firstUnit);
     }
 
-    this.allQualitative = observationList.every(
+    this.anyQualitative = observationList.some(
         obs => (obs.observation.result !== null && !obs.observation.value));
   }
 }
