@@ -63,7 +63,6 @@ export class Axis {
    */
   isResolved = false;
 
-
   /*
    * The label for this axis.
    */
@@ -165,24 +164,18 @@ export class Axis {
           .then(
               obsSetList => {
                 if (obsSetList) {
-                  // We only draw the Line charts if all ObservationSets are of
-                  // the same type of y-value: continuous or discrete.
-                  if (obsSetList.every(obsSet => obsSet.allQualitative)) {
+                  // If the observation set contains any qualitative
+                  // values, even if it's mixed in with quantitative values,
+                  // we display the discrete linegraph.
+                  if (obsSetList.some(obsSet => obsSet.anyQualitative)) {
                     this.showTicks = false;
                     return LineGraphData.fromObservationSetListDiscrete(
                         this.displayConcept.label, obsSetList, this.sanitizer,
                         this.encounters);
                   }
-
-                  if (obsSetList.every(obsSet => !obsSet.allQualitative)) {
-                    return LineGraphData.fromObservationSetList(
-                        this.displayConcept.label, obsSetList,
-                        this.resourceGroup, this.sanitizer, this.encounters);
-                  }
-
-                  throw Error(
-                      'ObservationSets must all be continuous ' +
-                      'or discrete-valued.');
+                  return LineGraphData.fromObservationSetList(
+                      this.displayConcept.label, obsSetList, this.resourceGroup,
+                      this.sanitizer, this.encounters);
                 }
               },
               rejection => {

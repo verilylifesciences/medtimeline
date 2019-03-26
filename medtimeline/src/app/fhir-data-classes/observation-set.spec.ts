@@ -81,7 +81,7 @@ describe('ObservationSet', () => {
     const obsSet = new ObservationSet(observations);
     expect(obsSet.label).toBe('Temperature');
   });
-  it('should set allQualitative as true if all Observations have all qualitative results',
+  it('should set anyQualitative as true if any Observations have qualitative results',
      () => {
        const observations = [
          new AnnotatedObservation(new Observation({
@@ -90,26 +90,26 @@ describe('ObservationSet', () => {
          })),
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           valueCodeableConcept: {text: 'yellow'}
+           valueQuantity: {value: 101},
          }))
        ];
        const obsSet = new ObservationSet(observations);
-       expect(obsSet.allQualitative).toBeTruthy();
+       expect(obsSet.anyQualitative).toBeTruthy();
      });
 
-  it('should set allQualitative as false if all Observations do not have all qualitative results',
+  it('should set anyQualitative as false if all Observations do not have qualitative results',
      () => {
        const observations = [
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           valueCodeableConcept: {text: 'red'}
+           valueQuantity: {value: 102},
          })),
          new AnnotatedObservation(new Observation({
            ...observationCodingString,
-           'valueQuantity': {'value': 101},
+           valueQuantity: {value: 101},
          }))
        ];
        const obsSet = new ObservationSet(observations);
-       expect(obsSet.allQualitative).toBeFalsy();
+       expect(obsSet.anyQualitative).toBeFalsy();
      });
 });
