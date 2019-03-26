@@ -61,6 +61,13 @@ export class ResourceCodeGroup {
   // trailing zeros.
   precision = 0;
 
+  /**
+   * When we've decided whether this resource code group has data available
+   * in the app, it doesn't change over the course of the app lifetime, so we
+   * cache it.
+   */
+  resolvedDataAvailableInAppTimeScope: boolean = undefined;
+
   constructor(
       readonly fhirService: FhirService,
       /** The label for this resource code group. */
@@ -86,10 +93,17 @@ export class ResourceCodeGroup {
    * the fixed timescope of this app.
    */
   dataAvailableInAppTimeScope(): Promise<boolean> {
+    if (this.resolvedDataAvailableInAppTimeScope !== undefined) {
+      return Promise.resolve(this.resolvedDataAvailableInAppTimeScope);
+    }
     return Promise
         .all(this.resourceCodes.map(
             rc => rc.dataAvailableInAppTimeScope(this.fhirService)))
-        .then(bools => bools.reduce((result, next) => result = result || next));
+        .then(bools => {
+          this.resolvedDataAvailableInAppTimeScope =
+              bools.reduce((result, next) => result = result || next);
+          return this.resolvedDataAvailableInAppTimeScope;
+        });
   }
 }
 
