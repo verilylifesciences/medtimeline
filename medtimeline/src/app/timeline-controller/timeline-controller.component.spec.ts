@@ -35,12 +35,6 @@ describe('TimelineControllerComponent with encounters', () => {
   let component: TimelineControllerComponent;
   let fixture: ComponentFixture<TimelineControllerComponent>;
 
-  class StubFhirServiceWithEncounters extends StubFhirService {
-    getEncountersForPatient(dateRange: Interval) {
-      return Promise.resolve(encounters);
-    }
-  }
-
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
@@ -50,10 +44,6 @@ describe('TimelineControllerComponent with encounters', () => {
             FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot()
           ],
           declarations: [TimelineControllerComponent],
-          providers: [{
-            provide: FhirService,
-            useValue: new StubFhirServiceWithEncounters()
-          }]
         })
         .compileComponents();
   }));
@@ -61,18 +51,10 @@ describe('TimelineControllerComponent with encounters', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimelineControllerComponent);
     component = fixture.componentInstance;
+    component.encounters = encounters;
     fixture.detectChanges();
   });
 
-  it('should not allow calendar to go back before date range covered by encounters',
-     (done: DoneFn) => {
-       fixture.whenStable().then(x => {
-         // Earliest encounter is 5/13 UTC, which is 5/12 local
-         expect(component.earliestAvailableDate.toISOString())
-             .toBe('1987-05-12T04:00:00.000Z');
-         done();
-       });
-     });
   it('should not allow calendar to advance after current date',
      (done: DoneFn) => {
        fixture.whenStable().then(x => {
@@ -99,11 +81,11 @@ describe('TimelineControllerComponent with encounters', () => {
                '-' +
                moment(encounter.period.end.startOf('day').toJSDate())
                    .format('MM/DD/YYYY');
-           expect(component.ranges[label]).toBeDefined();
-           expect(component.ranges[label][0].valueOf())
+           expect(component.datePickerRanges[label]).toBeDefined();
+           expect(component.datePickerRanges[label][0].valueOf())
                .toEqual(encounter.period.start.startOf('day').toMillis());
-           expect(component.ranges[label][1].valueOf())
-               .toEqual(encounter.period.end.startOf('day').toMillis());
+           expect(component.datePickerRanges[label][1].valueOf())
+               .toEqual(encounter.period.end.endOf('day').toMillis());
          }
          done();
        });

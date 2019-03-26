@@ -11,7 +11,24 @@
 </div>
 <div class="mainSetup">
   {{browserString}}
+  <div>
+    <h1 class="title">Which date range would you like to see first?</h1>
+    <mat-radio-group aria-label="Choose one of the following date ranges to begin with.">
+      <div *ngFor="let encounter of encounters">
+        <mat-radio-button [value]="encounter">
+          {{encounter.period.toFormat('MM/dd/yyyy')}} (hospital visit)
+        </mat-radio-button>
+      </div>
+      <div>
+        <mat-radio-button value="undefined" [checked]="true">
+          Last seven days
+        </mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+
   <div class="checkboxActions">
+    <h1 class="title">Which timelines would you like to see first?</h1>
     <button mat-raised-button (click)="selectAll()" id="continue">
       Select All
     </button>
@@ -29,8 +46,10 @@
         {{entry[0].label}}
       </div>
       <div *ngFor="let element of entry[1].sort(sortResources)">
-        <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}">
-          {{element.label}}
+        <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
+          [disabled]="!codeGroupAvailable.get(element.label)">
+          {{element.label}} <span class="grayout" *ngIf="!codeGroupAvailable.get(element.label)">(No data
+            available in the past 6 months)</span>
         </mat-checkbox>
       </div>
     </div>

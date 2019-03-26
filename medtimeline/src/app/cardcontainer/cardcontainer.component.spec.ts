@@ -22,7 +22,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {By, DomSanitizer} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {of} from 'rxjs';
@@ -71,24 +71,12 @@ describe('CardcontainerComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            MatCardModule,
-            MatIconModule,
-            MatListModule,
-            MatDividerModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            MatAutocompleteModule,
-            MatInputModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserModule,
-            BrowserAnimationsModule,
-            MatProgressSpinnerModule,
-            MatMenuModule,
-            NgxDaterangepickerMd.forRoot(),
-            MatToolbarModule,
-            MatSnackBarModule,
-            MatCheckboxModule,
+            MatCardModule, MatIconModule, MatListModule, MatDividerModule,
+            MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule,
+            MatInputModule, FormsModule, ReactiveFormsModule, BrowserModule,
+            BrowserAnimationsModule, MatProgressSpinnerModule, MatMenuModule,
+            NgxDaterangepickerMd.forRoot(), MatToolbarModule, MatSnackBarModule,
+            MatCheckboxModule, MatRadioModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,
@@ -102,8 +90,15 @@ describe('CardcontainerComponent', () => {
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}},
-            {provide: SetupDataService, useValue: {selectedConcepts: []}}
+            DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}}, {
+              provide: SetupDataService,
+              useValue: {
+                selectedConcepts: [],
+                encounters: [],
+                selectedEncounter: Interval.fromDateTimes(
+                    DateTime.utc().minus({days: 7}), DateTime.utc())
+              }
+            }
           ],
         })
         .compileComponents();

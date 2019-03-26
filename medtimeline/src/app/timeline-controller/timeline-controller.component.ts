@@ -3,13 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
 import {DateTime, Duration, Interval} from 'luxon';
 import * as moment from 'moment';
 import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
 import {APP_TIMESPAN} from 'src/constants';
 
 import {getDaysForIntervalSet} from '../date_utils';
+import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
 
 /**
@@ -26,19 +27,28 @@ import {FhirService} from '../fhir.service';
   templateUrl: './timeline-controller.component.html',
   styleUrls: ['./timeline-controller.component.css']
 })
-export class TimelineControllerComponent implements OnInit {
+export class TimelineControllerComponent {
   @Output() changeDateRange = new EventEmitter<Interval>();
   @ViewChild(DaterangepickerDirective)
   pickerDirective: DaterangepickerDirective;
 
-  selected: {startDate: moment.Moment, endDate: moment.Moment};
+  /**
+   * Holds the encounters for this patient.
+   */
+  @Input() encounters: Encounter[];
+
+  /**
+   * Holds the encounter to default to on initial setup. If unset, we'll
+   * default to the last seven days.
+   */
+  @Input() selectedEncounter: Encounter;
 
   /**
    * Holds all the ISO strings for days covered by all the patient encounters
    * above. Used to gray out datepicker options that are not part of
    * a patient's encounter.
    */
-  daysCoveredByAnEncounter = new Set<string>();
+  private daysCoveredByAnEncounter = new Set<string>();
 
   /** Bounds the dates that may be selected. */
   earliestAvailableDate = moment.utc(APP_TIMESPAN.start.toJSDate());
@@ -51,88 +61,83 @@ export class TimelineControllerComponent implements OnInit {
     endDate: moment.utc(DateTime.utc())
   };
 
+  /**
+   * The date range picker binds to this variable.
+   */
+  selected: {startDate: moment.Moment, endDate: moment.Moment};
+
   /** The list of encounters to display as available ranges to select. */
-  ranges = {};
+  readonly datePickerRanges = {};
 
   /**
-   * Whether there was any error in retrieving the encounters for this patient.
+   * Whether there was an encounter input into this component.
    */
   encounterError = false;
 
-  constructor(private renderer: Renderer2, private fhirService: FhirService) {}
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit() {
-    this.fhirService.getEncountersForPatient(APP_TIMESPAN)
-        .then(
-            encounters => {
-              this.encounterError = false;
-              if (encounters.length > 0) {
-                // Encounters come in local time.
-                encounters = encounters.sort(
-                    (a, b) =>
-                        a.period.start.toMillis() - b.period.start.toMillis());
+    // Set the initial date range selection and fire off a change event.
+    let selectedRange = this.defaultDateRange;
+    if (this.selectedEncounter && this.selectedEncounter.period) {
+      selectedRange = {
+        startDate: moment(
+            this.selectedEncounter.period.start.startOf('day').toJSDate()),
+        endDate:
+            moment(this.selectedEncounter.period.end.startOf('day').toJSDate())
+      };
+    }
+    this.selected = selectedRange;
+    this.datesUpdated(selectedRange);
 
-                const latestEncounter =
-                    encounters[encounters.length - 1].period;
-                // Make the default selection the latest encounter. It's safe to
-                // not pin this to a date boundary since there should be no data
-                // points that fall outside the time range of the encounter.
-                // We set the time of the dates of the encounter to be 00:00.
-                this.datesUpdated({
-                  startDate: moment(
-                      latestEncounter.start.startOf('day').toUTC().toJSDate()),
-                  endDate: moment.utc(
-                      latestEncounter.end.startOf('day').toUTC().toJSDate())
-                });
+    // Set up the encounters in the date picker.
+    if (this.encounters && this.encounters.length > 0) {
+      this.encounterError = false;
 
-                // Set the minimum date to select to be the beginning of the
-                // earliest encounter that had days that fell inside the app
-                // timespan, in UTC.
-                this.earliestAvailableDate =
-                    moment(encounters[0]
-                               .period.start.startOf('day')
-                               .toUTC()
-                               .toJSDate());
+      this.encounters = this.encounters.sort(
+          (a, b) => a.period.start.toMillis() - b.period.start.toMillis());
 
-                // We have to store everything as an ISO string because if we
-                // store as objects the set membership check doesn't work.
-                this.daysCoveredByAnEncounter = new Set<string>(
-                    getDaysForIntervalSet(encounters.map(x => x.period))
-                        .map(x => x.toISO().slice(0, 10)));
+      // Set the minimum date to select to be the beginning of the
+      // earliest encounter that had days that fell inside the app
+      // timespan, in UTC.
+      this.earliestAvailableDate = moment(
+          this.encounters[0].period.start.startOf('day').toUTC().toJSDate());
 
-                // We manually update the ranges stored in the daterangepicker
-                // so that the list of encounters is displayed.
-                // We store these in local time to prevent errors with
-                // displaying a date different than the dates of the encounter.
-                // While being communicated with charts, the interval will be
-                // converted to UTC.
-                for (const encounter of encounters) {
-                  const start =
-                      moment(encounter.period.start.startOf('day').toJSDate());
-                  const end =
-                      moment(encounter.period.end.startOf('day').toJSDate());
-                  const label = start.format('MM/DD/YYYY') + '-' +
-                      end.format('MM/DD/YYYY');
+      // We have to store everything as an ISO string because if we
+      // store as objects the set membership check doesn't work.
+      this.daysCoveredByAnEncounter = new Set<string>(
+          getDaysForIntervalSet(this.encounters.map(x => x.period))
+              .map(x => x.toISO().slice(0, 10)));
 
-                  this.pickerDirective.ranges[label] = [start, end];
-                  this.pickerDirective.picker.ranges[label] = [start, end];
-                  this.ranges[label] = [start, end];
-                  this.pickerDirective.picker.rangesArray.push(label);
-                }
-              } else {
-                this.datesUpdated(this.defaultDateRange);
-              }
-            },
-            reject => {
-              // points that fall outside the time range of the encounter.
-              this.datesUpdated(this.defaultDateRange);
-              this.encounterError = true;
-            });
+      // We manually update the ranges stored in the daterangepicker
+      // so that the list of encounters is displayed.
+      // We store these in local time to prevent errors with
+      // displaying a date different than the dates of the encounter.
+      // While being communicated with charts, the interval will be
+      // converted to UTC.
+      for (const encounter of this.encounters) {
+        const start = moment(encounter.period.start.startOf('day').toJSDate());
+        const end = moment(encounter.period.end.endOf('day').toJSDate());
+        const label =
+            start.format('MM/DD/YYYY') + '-' + end.format('MM/DD/YYYY');
+        this.datePickerRanges[label] = [start, end];
+      }
+
+      this.datePickerRanges['Last seven days'] =
+          [this.defaultDateRange.startDate, this.defaultDateRange.endDate];
+
+    } else {
+      this.encounterError = true;
+    }
   }
 
-  // Clearly differentiate between dates inside and outside of encounters.
+  /**
+   * Used to add a style to dates in the date picker so that the user can
+   * differentiate between dates inside and outside of encounters.
+   */
   addCustomClass =
       (m: moment.Moment) => {
+        // The slice gets jus tthe date portion of the ISO string.
         return this.daysCoveredByAnEncounter.has(m.toISOString().slice(0, 10)) ?
             'inEncounter' :
             'notInEncounter';

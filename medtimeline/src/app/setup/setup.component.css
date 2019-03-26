@@ -82,6 +82,14 @@ app-setup .mat-input-placeholder {
   border-color: white;
 }
 
+::ng-deep app-setup .mat-radio-outer-circle {
+  border-color: white;
+}
+
+::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {
+  color: gray;
+}
+
 .noResults {
   font-family: "Roboto", sans-serif;
 }

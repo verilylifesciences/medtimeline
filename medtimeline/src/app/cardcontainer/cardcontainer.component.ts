@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, QueryList, ViewChildren} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
@@ -11,7 +11,6 @@ import {Subscription} from 'rxjs';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
-import {CardComponent} from '../cardtypes/card/card.component';
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
@@ -94,7 +93,7 @@ export class CardcontainerComponent {
       dragulaService: DragulaService, private fhirService: FhirService,
       resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
-      private setupDataService: SetupDataService,
+      readonly setupDataService: SetupDataService,
       private saveDialog: MatDialog) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a

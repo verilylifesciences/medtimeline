@@ -15,12 +15,18 @@ import {Axis} from './axis';
  * there is data available for the AxisGroup within the time span of the
  * application. When the promise returns, its result is stored in the
  * dataAvailable class variable.
+ *
+ * None of the information in AxisGroup changes over the application's
+ * lifecycle.
  */
 export class AxisGroup {
   /**
    * Whether there is data available in the app timescope for this axis group.
+   * Marked as public because Angular templates need to get to it, and marked
+   * as mutable since it's changed by a promise result, but its value is only
+   * set once.
    */
-  dataAvailable: boolean;
+  dataAvailable: boolean = undefined;
 
   /**
    * Constructs an AxisGroup.
@@ -75,6 +81,9 @@ export class AxisGroup {
    * within the time scope of the app.
    */
   dataAvailableInAppTimeScope(): Promise<boolean> {
+    if (this.dataAvailable !== undefined) {
+      return Promise.resolve(this.dataAvailable);
+    }
     return Promise
         .all(this.axes.map(axis => axis.dataAvailableInAppTimeScope()))
         .then(rsc => {

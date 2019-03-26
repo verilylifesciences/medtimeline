@@ -5,14 +5,16 @@
 
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from '@angular/material';
+import {MatCheckboxModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
+import {FhirService} from '../fhir.service';
 import {StubFhirService} from '../test_utils';
 
 import {SetupComponent} from './setup.component';
@@ -30,12 +32,14 @@ describe('SetupComponent', () => {
           imports: [
             MatToolbarModule, MatCheckboxModule, MatFormFieldModule,
             ReactiveFormsModule, FormsModule, MatInputModule,
-            BrowserAnimationsModule, MatIconModule
+            BrowserAnimationsModule, MatIconModule, MatRadioModule
           ],
           providers: [
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
             {provide: ActivatedRoute, useValue: {}},
-            {provide: Router, useValue: {}}
+            {provide: Router, useValue: {}},
+            {provide: FhirService, useValue: new StubFhirService()},
+            {provide: DeviceDetectorService, useValue: {getDeviceInfo() {}}}
           ]
         })
         .compileComponents();
