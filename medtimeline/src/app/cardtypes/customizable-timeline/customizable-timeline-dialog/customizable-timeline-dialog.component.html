@@ -1,9 +1,7 @@
-<div class="timelinePicker">
-  <div class="clock">
-    <mat-icon>access_time</mat-icon>
-  </div>
-  <div class="timelineInputs">
-    <mat-form-field>
+<div fxLayout="column" fxLayoutAlign="space-around start">
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px" fxFlex>
+    <mat-icon fxFlex>access_time</mat-icon>
+    <mat-form-field fxFlex>
       <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
         (click)="datePicker.open()" required>
       <mat-error *ngIf="dateFormControl.invalid">Invalid date</mat-error>
@@ -12,34 +10,35 @@
       </mat-hint>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-      <input type="time" matInput [formControl]="timeFormControl" placeholder="Time" [matAutocomplete]="auto" required>
+    <mat-form-field fxFlex>
+      <input matInput [formControl]="timeFormControl" placeholder="Time" [matAutocomplete]="auto" required>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let time of listOfTimes" [value]="time[24]">
-          {{time[12]}}
+          {{time[24]}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </div>
-</div>
-<div mat-dialog-content>
-  <mat-form-field class="inputTitle">
-    <input matInput [(ngModel)]="userTitle" placeholder="Add title" required id="dialogTitle">
-    <mat-error>Please enter a title.</mat-error>
-  </mat-form-field>
-  <mat-form-field class="inputDescription">
-    <textarea matInput [(ngModel)]="userDescription" placeholder="Add description" id="dialogDescription"></textarea>
-  </mat-form-field>
-  <div class="colorPicker">
-    <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="selectedColor" value="BOSTON_YELLOW">
-      <mat-button-toggle *ngFor="let color of listOfColors" [value]="color">
-        <mat-card style.backgroundColor="{{color}}"></mat-card>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+  <div fxLayout="column" fxFlex>
+    <mat-form-field class="inputTitle">
+      <input matInput [(ngModel)]="userTitle" placeholder="Add title" required id="dialogTitle">
+      <mat-error>Please enter a title.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="inputDescription">
+      <textarea matInput [(ngModel)]="userDescription" placeholder="Add description" id="dialogDescription"></textarea>
+    </mat-form-field>
+    <div class="colorPicker" fxLayout="row" fxLayoutGap="5px">
+      <mat-label class="mat-body">Flag color</mat-label>
+      <mat-button-toggle-group style="border: 0px" #group="matButtonToggleGroup" [(ngModel)]="selectedColor"
+        value="BOSTON_YELLOW">
+        <mat-button-toggle *ngFor="let color of listOfColors" [value]="color">
+          <mat-card style.backgroundColor="{{color}}"></mat-card>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onCancel()" id="cancelButton" class="cancelButton">Cancel</button>
+      <button [disabled]="findIncompleteFields()" mat-raised-button (click)="onSave()" color="primary"
+        id="saveButton">Save</button>
+    </div>
   </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()" id="cancelButton" class="cancelButton">Cancel</button>
-  <button [disabled]="findIncompleteFields()" mat-raised-button (click)="onSave()" color="primary"
-    id="saveButton">Save</button>
-</div>

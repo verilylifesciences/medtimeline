@@ -5,7 +5,7 @@
 
 import {Component, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
@@ -13,17 +13,14 @@ import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph
 // tslint:disable-next-line:max-line-length
 import {BOSTON_BAY, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_LAVENDER, BOSTON_PINK, BOSTON_PURPLE, BOSTON_YELLOW} from 'src/app/theme/bch_colors';
 
-@Component({
-  selector: 'app-customizable-timeline-dialog',
-  templateUrl: './customizable-timeline-dialog.component.html',
-  styleUrls: ['./customizable-timeline-dialog.component.css']
-})
-
 /**
  * A Dialog with a textarea input, used to set the description of points on the
  * CustomizableTimeline.
  */
-// TODO(b/121324544): Use existing libraries for the color and time picker.
+@Component({
+  selector: 'app-customizable-timeline-dialog',
+  templateUrl: './customizable-timeline-dialog.component.html',
+})
 export class CustomizableTimelineDialogComponent {
   // The text input for this dialog box.
   userTitle: string;
@@ -111,10 +108,7 @@ export class CustomizableTimelineDialogComponent {
     for (let time = 0; time <= 24 * 60; time += interval) {
       date.setHours(time / 60);
       date.setMinutes(time % 60);
-      // We need the time to be in 12-hour format for the display, but 24-hour
-      // format for the actual value passed into the input of type "time".
       this.listOfTimes.push({
-        12: date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
         24: date.toLocaleTimeString(
             [], {hour12: false, hour: '2-digit', minute: '2-digit'})
       });
