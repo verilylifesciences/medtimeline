@@ -1,3 +1,7 @@
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
@@ -8,19 +12,18 @@ import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
-import {makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
+import {makeSampleDiscreteObservationJson, makeSampleObservationJson, StubFhirService} from '../test_utils';
 
 import {Axis} from './axis';
 import {ChartType} from './graph/graph.component';
 
 
 describe('Axis', () => {
-  let fhirServiceStub: any;
+  let fhirServiceStub: any = new StubFhirService();
   const dateRangeStart = '2018-09-09T00:00:00.00';
   const dateRangeEnd = '2018-09-18T00:00:00.00';
   const dateRange = Interval.fromDateTimes(
       DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
-  const getDataFromFhir = () => {};
 
   beforeEach(async(() => {
     TestBed
