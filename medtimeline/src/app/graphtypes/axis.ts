@@ -34,11 +34,6 @@ import {ChartType} from './graph/graph.component';
  */
 export class Axis {
   /**
-   * The ResourceCodeGroup for this axis.
-   */
-  readonly resourceGroup: ResourceCodeGroup;
-
-  /**
    * The chart type for this graph.
    */
   readonly chartType: ChartType;
@@ -52,11 +47,6 @@ export class Axis {
    * The associated DisplayGrouping for this graph.
    */
   displayConcept: DisplayGrouping;
-
-  /*
-   * The date range the graph should display data for.
-   */
-  readonly dateRange: Interval;
 
   /*
    * Whether or not the data fetch promise has resolved.
@@ -88,13 +78,28 @@ export class Axis {
    * @param label?: The optional y-axis label for this axis.
    */
   constructor(
-      private fhirService: FhirService, resourceGroup: ResourceCodeGroup,
-      dateRange: Interval, private sanitizer: DomSanitizer, label?: string) {
+      private fhirService: FhirService,
+      /**
+       * The ResourceCodeGroup for this axis.
+       */
+      readonly resourceGroup: ResourceCodeGroup,
+
+      /*
+       * The date range the graph should display data for.
+       */
+      readonly dateRange: Interval,
+
+      private sanitizer: DomSanitizer,
+
+      /*
+       * The label for this axis.
+       */
+      label?: string) {
     this.dateRange = dateRange;
     this.chartType = resourceGroup.chartType;
     this.displayConcept = resourceGroup.displayGrouping;
-    this.resourceGroup = resourceGroup;
     this.label = label;
+
     this.getDataFromFhir().then(
         res => {
           this.data = res;
@@ -106,6 +111,20 @@ export class Axis {
           // TODO(b/126227729): Revise this language.
           this.errorMessage = rejection;
           // 'Invalid data received. Please check the medical record.';
+        });
+  }
+
+  /**
+   * Returns whether there is data available for this axis within the
+   * application's time scope.
+   */
+  dataAvailableInAppTimeScope(): Promise<boolean> {
+    return Promise
+        .all(this.resourceGroup.resourceCodes.map(
+            rsc => rsc.dataAvailableInAppTimeScope(this.fhirService)))
+        .then(rsc => {
+          const flattened: boolean[] = [].concat.apply([], rsc);
+          return flattened.reduce((prev, curr) => prev || curr, false);
         });
   }
 
