@@ -41,7 +41,7 @@ export class Axis {
   /**
    * The date range the data is currently loaded for.
    */
-  private dateRange: Interval;
+  dateRange: Interval;
 
   /**
    * Holds the GraphData already resolved for the class's current date range,

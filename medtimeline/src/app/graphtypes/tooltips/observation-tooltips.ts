@@ -47,9 +47,6 @@ export class GenericAnnotatedObservationTooltip extends
    */
   getTooltip(observation: AnnotatedObservation, sanitizer: DomSanitizer): string
       |undefined {
-    if (observation.annotationValues.length === 0) {
-      return undefined;
-    }
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(
@@ -96,15 +93,10 @@ export class GenericAbnormalTooltip extends
     const table = Tooltip.createNewTable();
     const millis: any = params['timestamp'];
     const timestamp = DateTime.fromMillis(millis);
-    const value = params['value'];
-    const label = params['label'];
-    const unit = params['unit'];
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
 
-    Tooltip.addRow(
-        table, ['' + label, value + ' ' + unit], sanitizer, this.color);
     Tooltip.addHeader('Caution: value outside normal range', table, sanitizer);
     return table.outerHTML;
   }

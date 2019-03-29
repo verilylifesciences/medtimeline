@@ -47,13 +47,6 @@ export const SELECTED = Color('#d9ceed');
 
 export const ABNORMAL = Color.rgb(242, 69, 7);
 
-// Rules for which text colors can be used for which backgrounds
-const DO_NOT_USE_WHITE_TYPE = [BOSTON_YELLOW, BOSTON_MORNING, Color.WHITE];
-const DO_NOT_USE_BLACK_TYPE = [BOSTON_BLUE, BOSTON_PURPLE];
-const CAN_USE_BOSTON_BLUE_TYPE =
-    [BOSTON_SKY, Color.WHITE, BOSTON_MORNING, BOSTON_MEADOW, BOSTON_WARM_GRAY];
-const CAN_USE_BOSTON_SKY_TYPE = [BOSTON_BLUE];
-
 /**
  * Returns all the colors that are acceptable for data points to be plotted in.
  */

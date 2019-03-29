@@ -5,9 +5,11 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from '../clinicalconcepts/display-grouping';
+import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
+import {CHECK_RESULT_CODE} from '../fhir-data-classes/observation-interpretation-valueset';
 import {LegendInfo} from '../graphtypes/legend-info';
 
 import {MedicationOrder, MedicationOrderSet} from './../fhir-data-classes/medication-order';
@@ -307,14 +309,40 @@ export class LabeledSeries {
     }
     // Make a LabeledSeries for each interpretation.
     for (const interpretation of Array.from(interpretationMap.keys())) {
+      const seriesLabel =
+          report.id + '-' + interpretation + '-' + report.status;
+      const isPositive = seriesLabel.includes(CHECK_RESULT_CODE);
       series.push(new LabeledSeries(
           // Encode the status and interpretation into the series name so that
           // we can use d3 later on to filter the data points and display them
           // with the correct styling.
-          report.id + '-' + interpretation + '-' + report.status,
-          interpretationMap.get(interpretation)));
+          seriesLabel, interpretationMap.get(interpretation),
+          undefined,  // unit
+          undefined,  // yNormalBounds
+          LabeledSeries.getLegendInfoFromResult(report.status, isPositive)));
     }
     return series;
+  }
+
+  /**
+   * Returns the correct legend info for a diagnostic report.
+   * @param status The DiagnosticReport's status.
+   * @param isPositive Whether the report appears to be positive.
+   * @returns The correct legend info for the report.
+   */
+  private static getLegendInfoFromResult(
+      status: DiagnosticReportStatus, isPositive: boolean): LegendInfo {
+    if (isPositive) {
+      if (status === DiagnosticReportStatus.Preliminary) {
+        return posPrelimMB;
+      } else if (status === DiagnosticReportStatus.Final) {
+        return posFinalMB;
+      }
+    } else if (status === DiagnosticReportStatus.Preliminary) {
+      return negPrelimMB;
+    } else if (status === DiagnosticReportStatus.Final) {
+      return negFinalMB;
+    }
   }
 
   private static getYPositionForMed(

@@ -14,7 +14,6 @@ import {DateTime, Interval} from 'luxon';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {FhirService} from 'src/app/fhir.service';
-import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {Axis} from 'src/app/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
@@ -63,7 +62,7 @@ describe('MultiGraphCardComponent', () => {
     component = fixture.componentInstance;
     component.xAxis = new DateTimeXAxis(
         Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
-    component.resourceCodeGroups = new AxisGroup([new Axis(
+    component.axisGroup = new AxisGroup([new Axis(
         new StubFhirService(), TestBed.get(DomSanitizer), hemoglobin,
         'Hemoglobin')]);
     component.id = 'id';
@@ -80,11 +79,11 @@ describe('MultiGraphCardComponent', () => {
     component.ngOnChanges({xAxis: new SimpleChange(null, xAxis, true)});
 
     Promise
-        .all(component.resourceCodeGroups.axes.map(
+        .all(component.axisGroup.axes.map(
             axis => axis.updateDateRange(xAxis.dateRange)))
         .then(() => {
           fixture.detectChanges();
-          const axis = component.resourceCodeGroups.axes[0];
+          const axis = component.axisGroup.axes[0];
           expect(axis.displayConcept).toEqual(labResult);
           expect(axis.label).toEqual('Hemoglobin');
           done();
