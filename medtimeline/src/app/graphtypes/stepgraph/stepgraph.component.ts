@@ -8,7 +8,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
 import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
-import {getDataColors} from 'src/app/theme/bch_colors';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {GraphComponent} from '../graph/graph.component';
@@ -51,11 +50,8 @@ export class StepGraphComponent extends
     // Populate the stepgraphcard with data according to c3 format.
     for (const series of this.data.series) {
       const label = series.label;
-      if (series.concept) {
-        this.colorsMap[label] = series.concept.fill;
-      } else {
-        this.colorsMap[label] = getDataColors()[0];
-      }
+
+      this.colorsMap[label] = series.legendInfo.fill;
     }
     for (const endpointSeries of this.data.endpointSeries) {
       const endpointSeriesId = endpointSeries.label;
