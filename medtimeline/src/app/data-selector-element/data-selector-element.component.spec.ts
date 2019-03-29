@@ -4,10 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatListModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
-import {ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
+import {AxisGroup} from '../graphtypes/axis-group';
 
 import {DataSelectorElementComponent} from './data-selector-element.component';
 
@@ -27,8 +27,7 @@ describe('DataSelectorElementComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DataSelectorElementComponent);
     component = fixture.componentInstance;
-    component.resourceCodesForCard =
-        new ResourceCodesForCard([], 'Label', labResult);
+    component.resourceCodesForCard = new AxisGroup([], 'Label', labResult);
     component.conceptGroupKey = labResult;
     fixture.detectChanges();
   });
@@ -41,7 +40,10 @@ describe('DataSelectorElementComponent', () => {
     expect(component.resourceCodesForCard.label).toEqual('Label');
   });
 
-  it('should display No Data available if there is no data', () => {
-    expect(component.resourceCodesForCard.dataAvailable).toBeFalsy();
+  it('should display No Data available if there is no data', (done: DoneFn) => {
+    component.resourceCodesForCard.dataAvailableInAppTimeScope().then(res => {
+      expect(res).toBeFalsy();
+      done();
+    });
   });
 });

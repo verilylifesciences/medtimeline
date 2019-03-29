@@ -9,7 +9,9 @@ import * as wordwrap from 'wordwrap';
 
 import {DateTimeXAxis} from './datetimexaxis';
 
-// The maximum characters for a y-axis tick label.
+/**
+ * The maximum characters for a y-axis tick label.
+ */
 export const Y_AXIS_TICK_MAX = 15;
 
 /**
@@ -18,6 +20,7 @@ export const Y_AXIS_TICK_MAX = 15;
  */
 export class RenderedChart {
   protected generatedChart: c3.ChartAPI;
+  private yAxisAlreadyWrapped = false;
 
   constructor(
       private readonly xAxis: DateTimeXAxis, private readonly chartDivId) {}
@@ -69,15 +72,14 @@ export class RenderedChart {
                            .style('opacity', 0);
   }
 
-  alreadyDone: boolean = false;
   /**
    * Inserts wrapped y-axis tick labels.
    */
   private wrapYAxisLabels() {
-    if (this.alreadyDone) {
+    if (this.yAxisAlreadyWrapped) {
       return;
     }
-    this.alreadyDone = true;
+    this.yAxisAlreadyWrapped = true;
     d3.select('#' + this.chartDivId)
         .selectAll('.c3-axis-y')
         .selectAll('.tick text')

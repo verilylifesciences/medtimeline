@@ -6,10 +6,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
+import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {StubFhirService} from 'src/app/test_utils';
 
 import {CardComponent} from '../card/card.component';
@@ -44,6 +45,8 @@ describe('CustomizableTimelineComponent', () => {
     customGraph =
         fixture.debugElement.query(By.directive(CustomizableGraphComponent))
             .componentInstance;
+    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
+        DateTime.local(2012, 8, 4, 12), DateTime.local(2012, 8, 15, 12)));
     fixture.detectChanges();
   });
 
@@ -51,28 +54,24 @@ describe('CustomizableTimelineComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should listen for event to update eventlines', async(() => {
+  it('should listen for event to update eventlines', (() => {
        fixture.detectChanges();
        const dateTime = DateTime.fromISO('2012-08-04T11:00:00.000Z');
        spyOn(component.updateEventLines, 'emit');
        customGraph.data.addPointToSeries(
            new CustomizableGraphAnnotation(dateTime, 'title!'));
        customGraph.pointsChanged.emit(customGraph.data);
-       fixture.whenStable().then(() => {
-         expect(component.updateEventLines.emit)
-             .toHaveBeenCalledWith({id: component.id, data: component.data});
-       });
+       expect(component.updateEventLines.emit)
+           .toHaveBeenCalledWith({id: component.id, data: component.data});
      }));
 
-  it('should emit event to remove card', async(() => {
+  it('should emit event to remove card', (() => {
        fixture.detectChanges();
        spyOn(component.removeEvent, 'emit');
        const button = fixture.debugElement.nativeElement.querySelector(
            'mat-icon.removeCardButton');
        button.click();
-       fixture.whenStable().then(() => {
-         expect(component.removeEvent.emit)
-             .toHaveBeenCalledWith({id: component.id, value: component.data});
-       });
+       expect(component.removeEvent.emit)
+           .toHaveBeenCalledWith({id: component.id, value: component.data});
      }));
 });

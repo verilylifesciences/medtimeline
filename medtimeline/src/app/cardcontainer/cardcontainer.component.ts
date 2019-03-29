@@ -8,16 +8,16 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
-import {APP_TIMESPAN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
 import {CardComponent} from '../cardtypes/card/card.component';
-import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
+import {AxisGroup} from '../graphtypes/axis-group';
 import {DateTimeXAxis} from '../graphtypes/graph/datetimexaxis';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {SetupDataService} from '../setup-data.service';
@@ -49,11 +49,10 @@ export class CardcontainerComponent {
   // clicking the trashcan icon.
 
   readonly displayedConcepts:
-      Array<{[key: string]: ResourceCodesForCard | string | CustomizableData}> =
-          [];
+      Array<{[key: string]: AxisGroup | string | CustomizableData}> = [];
 
   // The original concepts to duplicate, if necessary.
-  readonly originalConcepts: ResourceCodesForCard[];
+  readonly originalConcepts: AxisGroup[];
 
   // Hold an instance of this enum so that the HTML template can access it.
   readonly chartType = ChartType;
@@ -75,9 +74,8 @@ export class CardcontainerComponent {
 
   // Holds the most recently removed card from the container, mapping the index
   // of the displayed card to the displayedConcept value.
-  private recentlyRemoved: [
-    number, {[key: string]: ResourceCodesForCard | string | CustomizableData}
-  ];
+  private recentlyRemoved:
+      [number, {[key: string]: AxisGroup | string | CustomizableData}];
 
   // The reference for the Delete Card Dialog opened.
   private deleteDialogRef: MatDialogRef<DeleteDialogComponent>;

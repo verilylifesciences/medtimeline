@@ -4,11 +4,12 @@
 // license that can be found in the LICENSE file.
 
 import {Component, EventEmitter, Output} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
+import {AxisGroup} from '../graphtypes/axis-group';
 import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
 
 @Component({
@@ -17,7 +18,7 @@ import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
   styleUrls: ['../cardcontainer/cardcontainer.component.css']
 })
 export class TimelineToolbarComponent {
-  readonly displayGroupings: Array<[DisplayGrouping, ResourceCodesForCard[]]>;
+  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
   readonly showMockDataMessage = environment.useMockServer;
 
   @Output() saveSnapshot = new EventEmitter<null>();

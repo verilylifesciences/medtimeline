@@ -5,16 +5,18 @@
 
 import {SimpleChange} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatProgressSpinnerModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
-import {ResourceCodesForCard} from 'src/app/clinicalconcepts/resource-code-manager';
 import {FhirService} from 'src/app/fhir.service';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
+import {Axis} from 'src/app/graphtypes/axis';
+import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {ChartType} from 'src/app/graphtypes/graph/graph.component';
 import {LineGraphComponent} from 'src/app/graphtypes/linegraph/linegraph.component';
@@ -61,8 +63,9 @@ describe('MultiGraphCardComponent', () => {
     component = fixture.componentInstance;
     component.xAxis = new DateTimeXAxis(
         Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
-    component.resourceCodeGroups =
-        new ResourceCodesForCard([hemoglobin], '', labResult);
+    component.resourceCodeGroups = new AxisGroup([new Axis(
+        new StubFhirService(), TestBed.get(DomSanitizer), hemoglobin,
+        'Hemoglobin')]);
     component.id = 'id';
     fixture.detectChanges();
   });
@@ -76,22 +79,14 @@ describe('MultiGraphCardComponent', () => {
         Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
     component.ngOnChanges({xAxis: new SimpleChange(null, xAxis, true)});
 
-    Promise.all(component.card.axes.map(axis => axis.getDataFromFhir()))
+    Promise
+        .all(component.resourceCodeGroups.axes.map(
+            axis => axis.updateDateRange(xAxis.dateRange)))
         .then(() => {
           fixture.detectChanges();
-          expect(component.card.axes.length).toEqual(1);
-
-          const axis = component.card.axes[0];
+          const axis = component.resourceCodeGroups.axes[0];
           expect(axis.displayConcept).toEqual(labResult);
-          expect(axis.dateRange).toEqual(component.xAxis.dateRange);
-          expect(axis.label).toEqual('lbl');
-          expect(component.containedGraphs.length).toEqual(1);
-
-          const containedGraph = component.containedGraphs.first;
-          expect(containedGraph.xAxis).toEqual(component.xAxis);
-          expect(containedGraph.data.series.length).toEqual(1);
-          expect(containedGraph.data.series[0])
-              .toEqual(new LabeledSeries('Lab Results', []));
+          expect(axis.label).toEqual('Hemoglobin');
           done();
         });
   });
