@@ -1,17 +1,17 @@
 <app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel" (removeEvent)="remove()">
   <ng-container class="legends-block">
-    <ng-container *ngIf="uniqueDisplayGroups.length > 1">
-      <div fxLayout="row" class="legend" *ngFor="let displayGroup of uniqueDisplayGroups"
-        (mouseover)="focusOnDisplayGroup(displayGroup, $event)" (mouseout)="resetChart()">
-        <span [style.background-color]="displayGroup.fill.hsl().string()"
-          [style.border]="displayGroup.outline.hsl().string()">
+    <ng-container *ngFor="let series of legendToSeries | keyvalue">
+      <div fxLayout="row" class="legend" *ngIf="hasData(series.value)" (mouseover)="focusOnSeries(series.value)"
+        (mouseout)="resetChart()">
+        <span [style.background-color]="series.key.fill.hsl().string()"
+          [style.border]="series.key.outline.hsl().string()">
         </span>
-        <div fxFlex class="mat-body">{{displayGroup.label}}</div>
+        <div fxFlex class="mat-body">{{series.key.label}}</div>
       </div>
     </ng-container>
   </ng-container>
-  <div fxFlex fxLayout="column" class="contents-block">
-    <div fxFlex *ngFor="let axis of resourceCodeGroups.axes" fxShrink="0" fxGrow="0" class="axis">
+  <div fxFlex *ngIf="axisGroup" fxLayout="column" class="contents-block">
+    <div fxFlex *ngFor="let axis of axisGroup.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.alreadyResolvedData" [diameter]="30"></mat-spinner>
       <div *ngIf="axis.alreadyResolvedData && axis.errorMessage">
         {{axis.errorMessage}}

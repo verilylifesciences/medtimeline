@@ -26,7 +26,10 @@ export class CustomizableData extends GraphData {
        */
       readonly annotations: Map<number, CustomizableGraphAnnotation>,
       regions?: any[]) {
-    super([series], new Map(), undefined, undefined, regions);
+    super(
+        [series], undefined,  // tooltip map
+        undefined,            // tooltip key function
+        regions);
     this.annotations = annotations;
     this.yAxisDisplayBounds = [0, 10];
   }
@@ -68,7 +71,7 @@ export class CustomizableData extends GraphData {
     this.series[0].xValues.push(annotation.timestamp);
     this.series[0].yValues.push(0);
     this.annotations.set(annotation.timestamp.toMillis(), annotation);
-    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
+    this.c3DisplayConfiguration = this.generateColumnMapping();
   }
 
   /**
@@ -82,6 +85,6 @@ export class CustomizableData extends GraphData {
     this.series[0].xValues.splice(index, 1);
     this.series[0].yValues.splice(index, 1);
     this.annotations.delete(date.toMillis());
-    this.c3DisplayConfiguration = this.generateColumnMapping(new Map());
+    this.c3DisplayConfiguration = this.generateColumnMapping();
   }
 }

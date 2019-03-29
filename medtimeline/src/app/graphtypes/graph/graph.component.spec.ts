@@ -24,7 +24,7 @@ class StubGraphComponent extends GraphComponent<any> {
           ],
           ['Vanc Pk', 15, 20]
         ],
-        {'Vanc Pk': 'x_Vanc Pk'}, new Map());
+        {'Vanc Pk': 'x_Vanc Pk'});
   }
   generateChart() {
     return this.generateBasicChart();

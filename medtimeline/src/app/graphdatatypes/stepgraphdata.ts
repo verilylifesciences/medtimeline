@@ -34,12 +34,9 @@ export class StepGraphData extends GraphData {
        * The map of y values to discrete labels to display on the y axis of the
        * stepgraph.
        */
-      readonly yAxisMap: Map<number, string>,
-      seriesToDisplayGroup: Map<LabeledSeries, DisplayGrouping>,
-      tooltipMap: Map<string, string>, keyFn: (data: string) => string) {
-    super(
-        dataSeries.concat(endpointSeries), seriesToDisplayGroup, tooltipMap,
-        keyFn);
+      readonly yAxisMap: Map<number, string>, tooltipMap: Map<string, string>,
+      keyFn: (data: string) => string) {
+    super(dataSeries.concat(endpointSeries), tooltipMap, keyFn);
   }
 
   /**
@@ -56,7 +53,6 @@ export class StepGraphData extends GraphData {
     // Give labels to each series and make a map of x-values to y-values.
     const yAxisMap = new Map<number, string>();
     let currYPosition = StepGraphData.Y_AXIS_SPACING;
-    const seriesToDisplayGroup = new Map<LabeledSeries, DisplayGrouping>();
     medicationOrderListGroup = medicationOrderListGroup.sort((a, b) => {
       return a.resourceList[a.resourceList.length - 1]
                  .lastAdmininistration.timestamp.toMillis() -
@@ -77,12 +73,6 @@ export class StepGraphData extends GraphData {
         endpoints.push(endpointSeries);
         yAxisMap.set(currYPosition, medOrder.administrationsForOrder.label);
 
-        // Set up maps of the series to the concepts for the custom legend.
-        seriesToDisplayGroup.set(
-            endpointSeries, medOrder.rxNormCode.displayGrouping);
-        seriesToDisplayGroup.set(
-            administrationSeries, medOrder.rxNormCode.displayGrouping);
-
         // For this custom tooltip, the key is the series ID, and the value is
         // the medication tooltip that shows the first and last doses for the
         // medication.
@@ -101,7 +91,7 @@ export class StepGraphData extends GraphData {
       series.unit = undefined;
     }
     return new StepGraphData(
-        data, endpoints, yAxisMap, seriesToDisplayGroup, tooltipMap,
+        data, endpoints, yAxisMap, tooltipMap,
         // Our tooltip key here is the series ID, so we pass in a
         // custom key function.
         (seriesObj: any) => {

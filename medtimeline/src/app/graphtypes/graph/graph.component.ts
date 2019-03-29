@@ -7,15 +7,15 @@ import {AfterViewInit, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
-import {Color} from 'd3';
 import {DateTime} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
+import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
+import {ABNORMAL} from 'src/app/theme/bch_colors';
 import {v4 as uuid} from 'uuid';
 
-import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
-import * as BCHColors from '../../theme/bch_colors';
 import {StandardTooltip} from '../tooltips/tooltip';
+
 import {DateTimeXAxis} from './datetimexaxis';
 import {RenderedChart} from './renderedchart';
 import {RenderedCustomizableChart} from './renderedcustomizablechart';
@@ -26,14 +26,6 @@ export enum ChartType {
   STEP,
   MICROBIO
 }
-
-const BASE_CHART_HEIGHT_PX = 150;
-/**
- * The amount of padding to add to the left of the graph. This goes hand in
- * hand with how we choose to wrap the labels in the rendered chart, so if
- * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
- */
-const Y_AXIS_LEFT_PADDING = 125;
 
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
@@ -56,15 +48,6 @@ export abstract class GraphComponent<T extends GraphData> implements
   // What type of chart this is. Line chart by default.
   chartType: ChartType = ChartType.LINE;
 
-  // Maps for making a custom legend. We assume that the custom legend does not
-  // change over the lifetime of this rendered graph.
-  private customLegendSet = false;
-
-  // These two variables are different views on the data held in
-  // seriesTodisplayGroup. We need to hold them in separate maps for more
-  // efficient access during legend interaction.
-  readonly displayGroupToSeries = new Map<DisplayGrouping, string[]>();
-
   // Indicating whether are not there are any data points for the current time
   // interval.
   dataPointsInDateRange: boolean;
@@ -84,6 +67,17 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The default chart type for this chart.
   chartTypeString: string;
 
+  /**
+   * The base chart height to use when rendering.
+   */
+  private readonly BASE_CHART_HEIGHT_PX = 150;
+
+  /**
+   * The amount of padding to add to the left of the graph. This goes hand in
+   * hand with how we choose to wrap the labels in the rendered chart, so if
+   * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
+   */
+  private readonly Y_AXIS_LEFT_PADDING = 125;
 
   constructor(
       readonly sanitizer: DomSanitizer,
@@ -121,7 +115,6 @@ export abstract class GraphComponent<T extends GraphData> implements
    * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
    */
   generateBasicChart(maxXTicks = 10) {
-    this.adjustColorMap();
     this.chartTypeString = 'line';
 
     if (this.chartType === ChartType.SCATTER) {
@@ -130,7 +123,6 @@ export abstract class GraphComponent<T extends GraphData> implements
       throw Error('Unsupported chart type: ' + this.chartType);
     }
 
-    this.adjustYAxisConfig();
     // Show the y-axis label on the chart.
     this.yAxisConfig['label'] = {
       text: (this.axisLabel ? this.axisLabel : ''),
@@ -141,12 +133,12 @@ export abstract class GraphComponent<T extends GraphData> implements
     const self = this;
     const chartConfiguration = {
       bindto: '#' + this.chartDivId,
-      size: {height: BASE_CHART_HEIGHT_PX},
+      size: {height: this.BASE_CHART_HEIGHT_PX},
       data: {
         columns: this.data.c3DisplayConfiguration.allColumns,
         xs: this.data.c3DisplayConfiguration.columnMap,
         type: this.chartTypeString,
-        colors: this.colorsMap,
+        colors: this.makeColorMap(),
       },
       regions: this.data.xRegions,
       axis: {x: this.xAxis.xAxisConfig, y: this.yAxisConfig},
@@ -156,16 +148,13 @@ export abstract class GraphComponent<T extends GraphData> implements
         self.renderedChart.adjustStyle(self.dataPointsInDateRange);
         self.onRendered(this);
       },
-      padding: {left: Y_AXIS_LEFT_PADDING},
+      padding: {left: this.Y_AXIS_LEFT_PADDING},
       grid: {x: {lines: gridlines}},
       tooltip: this.setTooltip()
     };
 
-    this.setCustomLegend(
-        this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup);
     this.chartConfiguration = chartConfiguration;
   }
-
 
   /**
    * Called every time the graph is rendered. If subclass graphs want to do
@@ -177,9 +166,8 @@ export abstract class GraphComponent<T extends GraphData> implements
     this.renderedChart.resetChart();
   }
 
-  focusOnDisplayGroup(displayGroup: DisplayGrouping) {
-    this.renderedChart.focusOnSeries(
-        this.displayGroupToSeries.get(displayGroup));
+  focusOnSeries(labeledSeries: LabeledSeries[]) {
+    this.renderedChart.focusOnSeries(labeledSeries.map(series => series.label));
   }
 
   // If only the data is updated, there is no need to re-configure the chart
@@ -190,21 +178,16 @@ export abstract class GraphComponent<T extends GraphData> implements
       columns: this.data.c3DisplayConfiguration.allColumns,
       xs: this.data.c3DisplayConfiguration.columnMap,
       type: this.chartTypeString,
-      colors: this.colorsMap,
+      colors: this.makeColorMap(),
     };
   }
 
-  // Adjust the color map for the data belonging to the chart.
-  adjustColorMap() {
-    for (const key of Object.keys(this.data.c3DisplayConfiguration.columnMap)) {
-      if (this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(
-              key)) {
-        const lookupColor: Color =
-            this.data.c3DisplayConfiguration.ySeriesLabelToDisplayGroup.get(key)
-                .fill;
-        this.colorsMap[key] = lookupColor.toString();
-      }
+  private makeColorMap() {
+    const colorMap: {[key: string]: string} = {};
+    for (const series of this.data.series) {
+      colorMap[series.label] = series.legendInfo.fill.toString();
     }
+    return colorMap;
   }
 
   /**
@@ -265,7 +248,8 @@ export abstract class GraphComponent<T extends GraphData> implements
 
   /**
    * Adds a shaded region on the chart across all x values, between the two
-   * y values specified by yBounds.
+   * y values specified by yBounds. Also marks any points falling outside the
+   * normal range as abnormal.
    * @param basicChart The chart to add the region to
    * @param yBounds The y-bounds of the region to display
    */
@@ -289,37 +273,11 @@ export abstract class GraphComponent<T extends GraphData> implements
     if (basicChart.data) {
       basicChart.data.color = function(color, d) {
         return (d.value && (d.value < yBounds[0] || d.value > yBounds[1])) ?
-            BCHColors.ABNORMAL.toString() :
+            ABNORMAL.toString() :
             color;
       };
     }
     return basicChart;
-  }
-
-  /**
-   * Sets a custom legend.
-   * To simplify rendering logic, we assume that we only set up a custom legend
-   * once over the lifetime of this graph.
-   *
-   * @param customLegendMap If you want a custom legend grouping multiple series
-   *   together, pass a map with keys of
-   *   series names and values of the ClinicalConcepts they should correspond
-   *   to in a legend.
-   */
-  setCustomLegend(seriesToDisplayGroup: Map<string, DisplayGrouping>) {
-    if (!this.customLegendSet) {
-      for (const [seriesLbl, displayGroup] of Array.from(
-               seriesToDisplayGroup.entries())) {
-        if (!this.displayGroupToSeries.has(displayGroup)) {
-          this.displayGroupToSeries.set(displayGroup, new Array(seriesLbl));
-        } else {
-          const appendedArray =
-              this.displayGroupToSeries.get(displayGroup).concat(seriesLbl);
-          this.displayGroupToSeries.set(displayGroup, appendedArray);
-        }
-      }
-      this.customLegendSet = true;
-    }
   }
 
   /**

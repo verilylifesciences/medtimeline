@@ -118,12 +118,6 @@ describe('GenericAbnormalTooltip', () => {
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 22)) + '</th></tr>' +
-            '<tr>' +
-            '<td class="name">' +
-            '<span style="background-color: rgb(12, 67, 199); ' +
-            'display: inline-block; height: 10px; width: 10px;">' +
-            '</span><div style="display: inline-block;">Hemoglobin</div></td>' +
-            '<td class="value">100 undefined</td></tr>' +
             '<tr><th colspan="2">Caution: value outside normal range</th></tr>' +
             '</tbody></table>');
   });
