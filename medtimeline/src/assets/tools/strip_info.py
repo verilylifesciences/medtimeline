@@ -29,6 +29,9 @@ def main():
             with open(src, "r") as f:
                 # Remove HTTP header
                 whole_file_str = f.read()
+                first_bracket = whole_file_str.find('{')
+                if first_bracket != 0:
+                    whole_file_str = whole_file_str[first_bracket - 1:]
                 # Parse the rest as JSON
                 parsed_json = json.loads(whole_file_str)
                 # Strip out identifying URLs
@@ -37,12 +40,7 @@ def main():
                         if "url" in val:
                             val["url"] = "https://xxxxxxxx"
 
-                if "entry" in parsed_json:
-                  json_entries = parsed_json['entry']
-                else:
-                  json_entries = parsed_json[0]['entry']
-
-                for entry in json_entries:
+                for entry in parsed_json["entry"]:
                     if "fullUrl" in entry:
                         entry["fullUrl"] = "https://xxxxxxxx"
                     # Strip out names

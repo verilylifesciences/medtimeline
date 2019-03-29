@@ -7,10 +7,9 @@ export const environment = {
   useMockServer: true,
   mockDataFolder: 'demo_data/test_bmedtimeB',
   mockDataFiles: [
-    'BMedTimeB_Encounter',
     'BMedTimeB_Obs_labs',
     'BMedTimeB_Obs_vitals',
-    'BMedtimeB_MB_data',
+    'test_bmedtimeA_encounters',
   ],
   useDebugger: false,
 };

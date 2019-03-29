@@ -9,7 +9,7 @@ export const environment = {
   mockDataFiles: [
     'BMedTimeD_Obs_labs',
     'BMedTimeD_Obs_vitals',
-    'BMedTimeD_Encounter',
+    'test_bmedtimeA_encounters',
   ],
   useDebugger: false,
 };
