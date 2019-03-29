@@ -53,21 +53,6 @@ export class CardContainerPage {
   // Return the cancel button in the CustomizableTimelineDialog.
   getCancelButton() {
     return element(by.css('mat-dialog-container'))
-        .element(by.id('noCancelButton'));
-  }
-
-  // Return the cancel button in the CustomizableTimelineDialog.
-  getDeleteButton() {
-    return element(by.css('mat-dialog-container'))
-        .element(by.id('yesRemoveButton'));
-  }
-
-  async waitForSnackbar() {
-    await this.index.waitForElement('.mat-simple-snackbar');
-  }
-
-  getUndoButton() {
-    return element(by.css('.mat-simple-snackbar'))
         .element(by.css('.mat-button'));
   }
 }

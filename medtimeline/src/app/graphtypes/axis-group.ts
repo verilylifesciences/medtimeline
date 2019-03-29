@@ -10,8 +10,18 @@ import {Axis} from './axis';
 /**
  * An AxisGroup is a set of Axes that should be rendered on a single card
  * together.
+ *
+ * Upon construction, the AxisGroup kicks off a FHIR call to determine whether
+ * there is data available for the AxisGroup within the time span of the
+ * application. When the promise returns, its result is stored in the
+ * dataAvailable class variable.
  */
 export class AxisGroup {
+  /**
+   * Whether there is data available in the app timescope for this axis group.
+   */
+  dataAvailable: boolean;
+
   /**
    * Constructs an AxisGroup.
    *
@@ -67,6 +77,9 @@ export class AxisGroup {
   dataAvailableInAppTimeScope(): Promise<boolean> {
     return Promise
         .all(this.axes.map(axis => axis.dataAvailableInAppTimeScope()))
-        .then(rsc => rsc.some(rsc => rsc === true));
+        .then(rsc => {
+          this.dataAvailable = rsc.some(r => r === true);
+          return this.dataAvailable;
+        });
   }
 }
