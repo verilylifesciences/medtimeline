@@ -12,6 +12,7 @@
     </mat-form-field>
     <mat-form-field fxFlex>
       <input matInput [formControl]="timeFormControl" placeholder="Time" [matAutocomplete]="auto" required>
+      <mat-error *ngIf="timeFormControl.invalid">Invalid time</mat-error>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let time of listOfTimes" [value]="time[24]">
           {{time[24]}}
