@@ -56,8 +56,9 @@ export class RenderedChart {
     const emptyContainer =
         d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
     emptyContainer.text(
-        'No data for ' + this.xAxis.dateRange.start.toLocaleString() + '-' +
-        this.xAxis.dateRange.end.toLocaleString());
+        'No data for ' +
+        this.xAxis.dateRange.start.toLocal().startOf('day').toLocaleString() +
+        '-' + this.xAxis.dateRange.end.toLocal().endOf('day').toLocaleString());
     emptyContainer.attr('class', 'c3-text c3-empty noData');
     // We set the opacity of the y-axis ticks of empty charts to 0 after
     // setting the tick values. We do this instead of not displaying the

@@ -87,14 +87,6 @@
                 }
               ]
             },
-            "dev_mock_test_bMedtimeE": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment_test_bmedtimeE.ts"
-                }
-              ]
-            },
             "dev_http": {
               "fileReplacements": [
                 {
@@ -136,9 +128,6 @@
             },
             "dev_mock_test_bMedtimeD": {
               "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeD"
-            },
-            "dev_mock_test_bMedtimeE": {
-              "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeE"
             },
             "dev_mock_synth_data": {
               "browserTarget": "medtimeline:build:dev_mock_synth_data"

@@ -235,9 +235,8 @@ export class CardcontainerComponent {
     // Undo the most recent deletion according to what is stored in
     // recentlyRemoved.
     snackBarRef.onAction().subscribe(() => {
-      const index = this.recentlyRemoved[0];
-      this.displayedConcepts.splice(index, 0, this.recentlyRemoved[1]);
-      if (this.displayedConcepts[index].concept === 'customTimeline') {
+      this.displayedConcepts.splice(0, 0, this.recentlyRemoved[1]);
+      if (this.displayedConcepts[0].concept === 'customTimeline') {
         this.updateEventLines({
           id: this.displayedConcepts[0].id,
           data: this.displayedConcepts[0].value
