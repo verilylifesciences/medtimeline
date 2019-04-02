@@ -9,7 +9,9 @@ import * as wordwrap from 'wordwrap';
 
 import {DateTimeXAxis} from './datetimexaxis';
 
-// The maximum characters for a y-axis tick label.
+/**
+ * The maximum characters for a y-axis tick label.
+ */
 export const Y_AXIS_TICK_MAX = 15;
 
 /**
@@ -18,6 +20,7 @@ export const Y_AXIS_TICK_MAX = 15;
  */
 export class RenderedChart {
   protected generatedChart: c3.ChartAPI;
+  private yAxisAlreadyWrapped = false;
 
   constructor(
       private readonly xAxis: DateTimeXAxis, private readonly chartDivId) {}
@@ -56,9 +59,8 @@ export class RenderedChart {
     const emptyContainer =
         d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
     emptyContainer.text(
-        'No data for ' +
-        this.xAxis.dateRange.start.toLocal().startOf('day').toLocaleString() +
-        '-' + this.xAxis.dateRange.end.toLocal().endOf('day').toLocaleString());
+        'No data for ' + this.xAxis.dateRange.start.toLocaleString() + '-' +
+        this.xAxis.dateRange.end.toLocaleString());
     emptyContainer.attr('class', 'c3-text c3-empty noData');
     // We set the opacity of the y-axis ticks of empty charts to 0 after
     // setting the tick values. We do this instead of not displaying the
@@ -70,15 +72,14 @@ export class RenderedChart {
                            .style('opacity', 0);
   }
 
-  alreadyDone: boolean = false;
   /**
    * Inserts wrapped y-axis tick labels.
    */
   private wrapYAxisLabels() {
-    if (this.alreadyDone) {
+    if (this.yAxisAlreadyWrapped) {
       return;
     }
-    this.alreadyDone = true;
+    this.yAxisAlreadyWrapped = true;
     d3.select('#' + this.chartDivId)
         .selectAll('.c3-axis-y')
         .selectAll('.tick text')

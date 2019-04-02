@@ -5,7 +5,7 @@
 
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {FhirResourceType} from 'src/constants';
 
 import {environment} from '../environments/environment';
@@ -63,54 +63,61 @@ export class MockFhirService extends FhirService {
   private mapAllData(): Promise<void[]> {
     return Promise.all(this.allFilePaths.map(filePath => {
       return this.http.get(filePath).toPromise<any>().then(data => {
-        let entry = data.entry;
-        // Sometimes data comes to us in bundles, and then we want to flatten
-        // it into a series of resources.
-        if (data.length > 0) {
-          entry = data.map(bundle => bundle.entry).flat();
-        }
-        for (const json of entry) {
-          const resourceType = json.resource.resourceType;
-          if (resourceType === FhirResourceType.Observation) {
-            this.constructResourceMap(
-                json, this.loincMap, (x: any) => new Observation(x),
-                (obs) => obs.codes);
+        try {
+          let entry = data.entry;
+          // Sometimes data comes to us in bundles, and then we want to flatten
+          // it into a series of resources.
+          if (data.length > 0) {
+            entry = data.map(bundle => bundle.entry).flat();
           }
+          for (const json of entry) {
+            const resourceType = json.resource.resourceType;
+            if (resourceType === FhirResourceType.Observation) {
+              this.constructResourceMap(
+                  json, this.loincMap, (x: any) => new Observation(x),
+                  (obs) => obs.codes);
+            }
 
-          if (resourceType === FhirResourceType.MedicationAdministration) {
-            this.constructResourceMap(
-                json, this.medicationAdministrationMapByCode,
-                (d) => new MedicationAdministration(d),
-                (admin) => [admin.rxNormCode]);
+            if (resourceType === FhirResourceType.MedicationAdministration) {
+              this.constructResourceMap(
+                  json, this.medicationAdministrationMapByCode,
+                  (d) => new MedicationAdministration(d),
+                  (admin) => [admin.rxNormCode]);
 
-            this.constructResourceMap(
-                json, this.medicationAdministrationMapByOrderId,
-                (d) => new MedicationAdministration(d),
-                (admin) => [admin.medicationOrderId]);
+              this.constructResourceMap(
+                  json, this.medicationAdministrationMapByOrderId,
+                  (d) => new MedicationAdministration(d),
+                  (admin) => [admin.medicationOrderId]);
+            }
+
+            if (resourceType === FhirResourceType.MedicationOrder) {
+              this.constructResourceMap(
+                  json, this.medicationOrderMap, (d) => new MedicationOrder(d),
+                  (order) => [order.orderId]);
+            }
+
+            if (resourceType === FhirResourceType.Encounter) {
+              const encounter = new Encounter(json.resource);
+              this.encounters.push(encounter);
+            }
+
+            if (resourceType === FhirResourceType.DiagnosticReport) {
+              this.constructResourceMap(
+                  json, this.diagnosticReportMap,
+                  (d) => new DiagnosticReport(d),
+                  (report) =>
+                      report.results.map(x => x.codes)
+                          .reduce(
+                              (prev: ResourceCode[], curr: ResourceCode[]) => {
+                                return prev.concat(curr);
+                              },
+                              []));
+            }
           }
-
-          if (resourceType === FhirResourceType.MedicationOrder) {
-            this.constructResourceMap(
-                json, this.medicationOrderMap, (d) => new MedicationOrder(d),
-                (order) => [order.orderId]);
-          }
-
-          if (resourceType === FhirResourceType.Encounter) {
-            const encounter = new Encounter(json.resource);
-            this.encounters.push(encounter);
-          }
-
-          if (resourceType === FhirResourceType.DiagnosticReport) {
-            this.constructResourceMap(
-                json, this.diagnosticReportMap, (d) => new DiagnosticReport(d),
-                (report) =>
-                    report.results.map(x => x.codes)
-                        .reduce(
-                            (prev: ResourceCode[], curr: ResourceCode[]) => {
-                              return prev.concat(curr);
-                            },
-                            []));
-          }
+        } catch {
+          console.warn(
+              'Trouble reading file: ' + filePath +
+              '. Continuing on since this is the mock server.');
         }
       });
     }));
@@ -197,7 +204,8 @@ export class MockFhirService extends FhirService {
   getEncountersForPatient(dateRange: Interval): Promise<Encounter[]> {
     return this.allDataPromise.then(
         x => this.encounters.filter(
-            encounter => dateRange.intersection(encounter.period) !== null));
+            encounter => dateRange.intersection(encounter.period) !== null &&
+                encounter.period.start >= DateTime.utc().minus({years: 1})));
   }
 
   /**

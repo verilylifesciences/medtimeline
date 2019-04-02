@@ -1,11 +1,10 @@
 <div class="timelineToolbarMain" fxLayout="row">
   <div *ngIf="showMockDataMessage">This is synthesized data used for demo purposes only.</div>
-  <button mat-icon-button matTooltip="Launch Tutorial" (click)="openHelpDialog()">
-    <mat-icon class="toolbarButton">help_outline</mat-icon>
+  <button mat-icon-button matTooltip="Launch Tutorial">
+    <mat-icon class="toolbarButton" (click)="openHelpDialog()">help_outline</mat-icon>
   </button>
-  <button mat-icon-button matTooltip="Save a static image of this page to a PowerChart clinical note"
-    (click)="snapshot()">
-    <mat-icon class="toolbarButton">
+  <button mat-icon-button matTooltip="Save a static image of this page to a PowerChart clinical note">
+    <mat-icon class="toolbarButton" (click)="snapshot()">
       save
     </mat-icon>
   </button>

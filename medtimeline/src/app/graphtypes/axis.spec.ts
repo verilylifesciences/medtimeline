@@ -4,7 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {async, TestBed} from '@angular/core/testing';
-import {DateTime, Interval} from 'luxon';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Interval} from 'luxon';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
@@ -20,10 +21,6 @@ import {ChartType} from './graph/graph.component';
 
 describe('Axis', () => {
   let fhirServiceStub: any = new StubFhirService();
-  const dateRangeStart = '2018-09-09T00:00:00.00';
-  const dateRangeEnd = '2018-09-18T00:00:00.00';
-  const dateRange = Interval.fromDateTimes(
-      DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
 
   beforeEach(async(() => {
     TestBed
@@ -44,7 +41,7 @@ describe('Axis', () => {
     };
   }));
 
-  it('Axis should throw error if resource codes do not match.', () => {
+  it('should throw error if resource code types do not match.', () => {
     const resourceCodeList = [
       new LOINCCode(
           '44123', new DisplayGrouping('concept', 'red'), 'label1', true),
@@ -54,35 +51,12 @@ describe('Axis', () => {
 
     const constructor = () => {
       const axis = new Axis(
-          fhirServiceStub,
+          fhirServiceStub, TestBed.get(DomSanitizer),
           new ResourceCodeGroup(
               fhirServiceStub, 'lbl', resourceCodeList,
               new DisplayGrouping('concept', 'red'), ChartType.LINE),
-          dateRange, this.domSanitizer);
+          'lbl');
     };
     expect(constructor).toThrowError();
   });
-
-
-  it('Axis should throw error if Observations returned for the' +
-         ' resource groups are of mixed y-value types.',
-     () => {
-       const resourceCodeList = [
-         new LOINCCode(
-             '44123', new DisplayGrouping('concept', 'red'), 'label1', true),
-         new LOINCCode(
-             '308182', new DisplayGrouping('concept', 'red'), 'label1', true)
-       ];
-       const graphType = ChartType.LINE;
-       const displayConcept = new DisplayGrouping('concept', 'red');
-       const resourceCodeGroup = new ResourceCodeGroup(
-           fhirServiceStub, 'group', resourceCodeList, displayConcept,
-           graphType);
-
-       const constructor = () => {
-         const axis = new Axis(
-             fhirServiceStub, resourceCodeGroup, dateRange, this.domSanitizer);
-       };
-       expect(constructor).toThrowError();
-     });
 });

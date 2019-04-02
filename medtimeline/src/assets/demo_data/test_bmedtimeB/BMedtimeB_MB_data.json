@@ -1,0 +1,1296 @@
+{
+    "entry": [
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-15T16:53:35-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "EPSTEINBARRVIRUSPCRQUANT",
+                                    "display": "Epstein-Barr Virus PCR, QuaNT",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795109054",
+                "issued": "2019-02-15T11:55:26.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-15T16:53:35-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "CVL Tip"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "CATHETERTIPTUBINGFOREIGNBODYCULTURE",
+                                    "display": "Catheter Tip/Tubing/Foreign Body Culture",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795109053",
+                "issued": "2019-02-15T11:55:17.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-15T16:53:35-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "BLOODCULTUREAEROBICANDANAEROBIC",
+                                    "display": "Blood Culture, Aerobic and Anaerobic",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795109046",
+                "issued": "2019-02-15T11:55:03.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "CYTOMEGALOVIRUSPCRQUANT",
+                                    "display": "Cytomegalovirus PCR, QuaNT",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108055",
+                "issued": "2019-02-14T12:48:09.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "VIRALDFARESPIRATORY",
+                                    "display": "Viral DFA Respiratory",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108051",
+                "issued": "2019-02-14T12:47:01.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "ADENOVIRUSPCRRESPQUAL",
+                                    "display": "Adenovirus PCR, Resp, QuaL",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108047",
+                "issued": "2019-02-14T12:38:18.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "bodySite": {
+                                "text": "NA - Not Applicable"
+                            },
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "VIRALCULTURENONRESPIRATORY",
+                                    "display": "Viral Culture, Non Respiratory",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108043",
+                "issued": "2019-02-14T12:38:05.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "partial",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "INFLUENZAABRSVPCRWASUBTYPEQUAL",
+                                    "display": "Influenza A/B, RSV PCR w/A Subtype, QuaL",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108039",
+                "issued": "2019-02-14T12:37:53.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "NOCARDIACULTUREANDSTAIN",
+                                    "display": "Nocardia Culture and Stain",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108035",
+                "issued": "2019-02-14T12:37:41.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "partial",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "PNEUMOCYSTISCARINIIJIROVECIISTAIN",
+                                    "display": "Pneumocystis carinii/jirovecii Stain",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108031",
+                "issued": "2019-02-14T12:37:29.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "ASPERGILLUSGALACTOMANNANEIA",
+                                    "display": "Aspergillus galactomannan EIA",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108027",
+                "issued": "2019-02-14T12:37:18.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "bodySite": {
+                                "text": "NA - Not Applicable"
+                            },
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "AFBCULTUREANDSTAIN",
+                                    "display": "AFB Culture and Stain",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108023",
+                "issued": "2019-02-14T12:37:06.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "partial",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "KOHFUNGALSTAIN",
+                                    "display": "KOH Fungal Stain",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108019",
+                "issued": "2019-02-14T12:36:50.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "FUNGUSCULTURE",
+                                    "display": "Fungus Culture",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108015",
+                "issued": "2019-02-14T12:36:30.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "partial",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-14T17:34:43-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "BAL"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "RESPIRATORYCULTUREANDGRAMSTAIN",
+                                    "display": "Respiratory Culture and Gram Stain",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "CHECKRESULT",
+                                    "display": "Check Result",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795108014",
+                "issued": "2019-02-14T12:35:59.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-13T11:00:00-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "BLOODCULTUREAEROBICANDANAEROBIC",
+                                    "display": "Blood Culture, Aerobic and Anaerobic",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "CHECKRESULT",
+                                    "display": "Check Result",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795107312",
+                "issued": "2019-02-13T11:53:47.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-12T13:00:00-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "BLOODCULTUREAEROBICANDANAEROBIC",
+                                    "display": "Blood Culture, Aerobic and Anaerobic",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795107196",
+                "issued": "2019-02-13T11:16:29.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-13T11:00:00-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "ASPERGILLUSGALACTOMANNANEIA",
+                                    "display": "Aspergillus galactomannan EIA",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795107190",
+                "issued": "2019-02-13T11:15:05.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        },
+        {
+            "fullUrl": "https://xxxxxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-12T16:00:00-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "BLOODCULTUREAEROBICANDANAEROBIC",
+                                    "display": "Blood Culture, Aerobic and Anaerobic",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367178"
+                },
+                "id": "4795107189",
+                "issued": "2019-02-13T11:10:36.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "corrected",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        }
+    ],
+    "id": "8cc4a104-e983-40fe-9068-c6db20b4e7aa",
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://xxxxxxxx"
+        }
+    ],
+    "meta": {
+        "lastUpdated": "2019-03-30T16:00:28.542-04:00"
+    },
+    "resourceType": "Bundle",
+    "total": 19,
+    "type": "searchset"
+}

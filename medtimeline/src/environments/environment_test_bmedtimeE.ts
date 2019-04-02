@@ -5,11 +5,12 @@
 export const environment = {
   production: false,
   useMockServer: true,
-  mockDataFolder: 'demo_data/test_bmedtimeD',
+  mockDataFolder: 'demo_data/test_bmedtimeE',
   mockDataFiles: [
-    'BMedTimeD_Obs_labs',
-    'BMedTimeD_Obs_vitals',
-    'BMedTimeD_Encounter',
+    'BMedTimeE_Obs_labs',
+    'BMedTimeE_Obs_vitals',
+    'BMedTimeE_Encounter',
+    'BMedtimeE_MB_data',
   ],
   useDebugger: false,
 };

@@ -4,12 +4,13 @@
 // license that can be found in the LICENSE file.
 
 import {Injectable} from '@angular/core';
-import {ResourceCodesForCard} from './clinicalconcepts/resource-code-manager';
+import {AxisGroup} from './graphtypes/axis-group';
 
+/**
+ * This class is a service that communicates the user-selected concepts on the
+ * configuration page (SetupComponent) to CardContainerComponent.
+ */
 @Injectable({providedIn: 'root'})
-
-// This class is a service that communicates the user-selected concepts on the
-// configuration page (SetupComponent) to CardContainerComponent.
 export class SetupDataService {
-  public selectedConcepts: ResourceCodesForCard[];
+  public selectedConcepts: AxisGroup[];
 }
