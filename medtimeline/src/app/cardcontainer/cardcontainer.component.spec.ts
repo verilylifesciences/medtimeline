@@ -10,7 +10,7 @@ import {MAT_DIALOG_DATA, MatAutocompleteModule, MatCheckboxModule, MatDatepicker
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {By, DomSanitizer} from '@angular/platform-browser';
+import {By} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime} from 'luxon';
@@ -42,8 +42,7 @@ import {TimelineToolbarComponent} from '../timeline-toolbar/timeline-toolbar.com
 
 import {CardcontainerComponent} from './cardcontainer.component';
 
-const resourceCodeManagerStub =
-    new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
+const resourceCodeManagerStub = new ResourceCodeManager(new StubFhirService());
 
 describe('CardcontainerComponent', () => {
   let component: CardcontainerComponent;
@@ -123,8 +122,8 @@ describe('CardcontainerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', (() => {
-       expect(component).toBeTruthy();
+  it('should create', async(() => {
+       fixture.whenStable().then(x => expect(component).toBeTruthy());
      }));
 
   it('should listen for event to add card', () => {

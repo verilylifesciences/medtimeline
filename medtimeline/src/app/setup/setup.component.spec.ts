@@ -7,7 +7,6 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -17,8 +16,7 @@ import {StubFhirService} from '../test_utils';
 
 import {SetupComponent} from './setup.component';
 
-const resourceCodeManagerStub =
-    new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
+const resourceCodeManagerStub = new ResourceCodeManager(new StubFhirService());
 describe('SetupComponent', () => {
   let component: SetupComponent;
   let fixture: ComponentFixture<SetupComponent>;

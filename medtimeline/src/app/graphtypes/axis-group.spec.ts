@@ -5,7 +5,6 @@
 // license that can be found in the LICENSE file.
 
 import {async, TestBed} from '@angular/core/testing';
-import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {labResult, vitalSign} from '../clinicalconcepts/display-grouping';
@@ -33,7 +32,7 @@ describe('AxisGroup', () => {
         .compileComponents();
   }));
 
-  it('should prefer constructor values for label and display group ' +
+  it('AxisGroup should prefer constructor values for label and display group ' +
          ' over those provided in axes',
      () => {
        const resourceCodeList = [
@@ -42,10 +41,11 @@ describe('AxisGroup', () => {
        ];
 
        const axis1 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           fhirServiceStub,
            new LOINCCodeGroup(
                fhirServiceStub, 'lbl', resourceCodeList, labResult,
-               ChartType.LINE));
+               ChartType.LINE),
+           dateRange, this.domSanitizer);
 
        const axis = new AxisGroup([axis1], 'constructor label', vitalSign);
 
@@ -53,70 +53,73 @@ describe('AxisGroup', () => {
        expect(axis.displayGroup).toEqual(vitalSign);
      });
 
-  it('should set label from contained axes if not provided', () => {
+  it('AxisGroup should set label from contained axes if not provided', () => {
     const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'loincLabel', true),
-      new LOINCCode('44123', labResult, 'loincLabel', true),
+      new LOINCCode('44123', labResult, 'label1', true),
+      new LOINCCode('44123', labResult, 'label1', true),
     ];
 
     const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
+        fhirServiceStub,
         new LOINCCodeGroup(
-            fhirServiceStub, 'loincCodeLabel', resourceCodeList, labResult,
+            fhirServiceStub, 'lbl', resourceCodeList, labResult,
             ChartType.LINE),
-        'axisLbl');
+        dateRange, this.domSanitizer, 'axislbl');
 
     const axis = new AxisGroup([axis1]);
 
-    expect(axis.label).toEqual('axisLbl');
+    expect(axis.label).toEqual('axislbl');
   });
 
-  it('should set display group from contained axes if not provided', () => {
-    const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'label1', true),
-      new LOINCCode('44123', labResult, 'label1', true),
-    ];
+  it('AxisGroup should set display group from contained axes if not provided',
+     () => {
+       const resourceCodeList = [
+         new LOINCCode('44123', labResult, 'label1', true),
+         new LOINCCode('44123', labResult, 'label1', true),
+       ];
 
-    const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
-        new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
-            ChartType.LINE));
+       const axis1 = new Axis(
+           fhirServiceStub,
+           new LOINCCodeGroup(
+               fhirServiceStub, 'lbl', resourceCodeList, labResult,
+               ChartType.LINE),
+           dateRange, this.domSanitizer);
 
-    const axis = new AxisGroup([axis1], 'label');
+       const axis = new AxisGroup([axis1], 'label');
 
-    expect(axis.displayGroup).toEqual(labResult);
-  });
-
-
-  it('should throw error if no label provided and labels do not match', () => {
-    const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'label1', true),
-      new LOINCCode('44123', labResult, 'label1', true),
-    ];
-
-    const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
-        new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
-            ChartType.LINE),
-        'Label A');
-
-    const axis2 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
-        new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
-            ChartType.LINE),
-        'Label B');
-
-    const constructor = () => {
-      const axis = new AxisGroup([axis1, axis2]);
-    };
-    expect(constructor).toThrowError();
-  });
+       expect(axis.displayGroup).toEqual(labResult);
+     });
 
 
-  it('should throw error if no display group provided ' +
+  it('AxisGroup should throw error if no label provided and labels do not match',
+     () => {
+       const resourceCodeList = [
+         new LOINCCode('44123', labResult, 'label1', true),
+         new LOINCCode('44123', labResult, 'label1', true),
+       ];
+
+       const axis1 = new Axis(
+           fhirServiceStub,
+           new LOINCCodeGroup(
+               fhirServiceStub, 'lbl', resourceCodeList, labResult,
+               ChartType.LINE),
+           dateRange, this.domSanitizer, 'Label A');
+
+       const axis2 = new Axis(
+           fhirServiceStub,
+           new LOINCCodeGroup(
+               fhirServiceStub, 'lbl', resourceCodeList, labResult,
+               ChartType.LINE),
+           dateRange, this.domSanitizer, 'Label B');
+
+       const constructor = () => {
+         const axis = new AxisGroup([axis1, axis2]);
+       };
+       expect(constructor).toThrowError();
+     });
+
+
+  it('AxisGroup should throw error if no display group provided ' +
          'and display groups do not match.',
      () => {
        const resourceCodeList1 = [
@@ -128,18 +131,18 @@ describe('AxisGroup', () => {
        ];
 
        const axis1 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           fhirServiceStub,
            new LOINCCodeGroup(
                fhirServiceStub, 'lbl', resourceCodeList1, labResult,
                ChartType.LINE),
-           'Label A');
+           dateRange, this.domSanitizer, 'Label A');
 
        const axis2 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           fhirServiceStub,
            new LOINCCodeGroup(
                fhirServiceStub, 'lbl', resourceCodeList2, vitalSign,
                ChartType.LINE),
-           'Label A');
+           dateRange, this.domSanitizer, 'Label A');
 
        const constructor = () => {
          const axis = new AxisGroup([axis1, axis2]);

@@ -10,17 +10,17 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
-import {AxisGroup} from '../graphtypes/axis-group';
+import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 
-/**
- * Shows a button with expanding menus for selecting data elements to display.
- */
 @Component({
   selector: 'app-data-selector-menu',
   templateUrl: './data-selector-menu.component.html',
   styleUrls: ['./data-selector-menu.component.css']
 })
+
+/**
+ * Shows a button with expanding menus for selecting data elements to display.
+ */
 export class DataSelectorMenuComponent implements OnInit {
   // The trigger for the main menu displayed.
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
@@ -28,9 +28,9 @@ export class DataSelectorMenuComponent implements OnInit {
   @ViewChild(MatAutocompleteTrigger)
   autocompleteTrigger: MatAutocompleteTrigger;
 
-  // An array of DisplayGroupings and AxisGroup that belong to that
+  // An array of DisplayGroupings and ResourceCodesForCard that belong to that
   // grouping.
-  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
+  readonly displayGroupings: Array<[DisplayGrouping, ResourceCodesForCard[]]>;
 
   // An event that is emitted when the user requests to add a new card.
   @Output() addCard = new EventEmitter<string>();
@@ -39,13 +39,13 @@ export class DataSelectorMenuComponent implements OnInit {
   // An event that is emitted when the user requests to add a custom timeline.
   @Output() addCustomTimeline = new EventEmitter<null>();
 
-  // All AxisGroup that correspond to cards displayed on the page.
-  readonly allConcepts: AxisGroup[];
+  // All ResourceCodesForCard that correspond to cards displayed on the page.
+  readonly allConcepts: Array<ResourceCodesForCard>;
 
   // The FormControl used to monitor changes in the user input of the
   // autocomplete field.
   readonly conceptCtrl = new FormControl();
-  filteredConcepts: Observable<AxisGroup[]>;
+  filteredConcepts: Observable<ResourceCodesForCard[]>;
   constructor(private resourceCodeManager: ResourceCodeManager) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     const temp = Array.from(displayGroups.values());
@@ -79,7 +79,7 @@ export class DataSelectorMenuComponent implements OnInit {
   }
 
   // Filter the concepts shown on the autocomplete menu.
-  filter(concept): AxisGroup[] {
+  filter(concept): ResourceCodesForCard[] {
     return this.allConcepts.filter(
         option =>
             option.label.toLowerCase().indexOf(concept.toLowerCase()) === 0);

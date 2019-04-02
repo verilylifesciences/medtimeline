@@ -4,20 +4,18 @@
 // license that can be found in the LICENSE file.
 
 import {Injectable} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
-import {Axis} from '../graphtypes/axis';
-import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
 import {DisplayGrouping, document, labResult, med, microbio, vitalSign} from './display-grouping';
 import {LOINCCode} from './loinc-code';
+import {ResourceCodeGroup} from './resource-code-group';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
 
@@ -34,6 +32,44 @@ const salmonella = new BCHMicrobioCode(
     'SALMONELLAANDSHIGELLACULTURE', microbio, 'Salmonella and Shigella Culture',
     false);
 
+export class ResourceCodesForCard {
+  // Each ResourceCodeGroup represents data series on one axis. The type of
+  // ResourceCodeGroups can be mixed here, hence the vague typing.
+  readonly resourceCodeGroups: ResourceCodeGroup[];
+
+  // The label for the card.
+  readonly label: string;
+
+  // The display grouping for the card.
+  readonly displayGrouping: DisplayGrouping;
+
+  // Whether there is data to display for any of the resource code groups.
+  dataAvailable: boolean;
+
+  constructor(
+      resourceCodeGroups: ResourceCodeGroup[], label: string,
+      displayGrouping: DisplayGrouping) {
+    // Throw an error if the DisplayGroupings don't match each other or the
+    // provided DisplayGrouping for the card.
+    if (!resourceCodeGroups.every(x => x.displayGrouping === displayGrouping)) {
+      throw Error(
+          'All ResourceCodeGroups in the same card must ' +
+          'have the same DisplayGrouping');
+    }
+    this.resourceCodeGroups = resourceCodeGroups;
+    this.label = label;
+    this.displayGrouping = displayGrouping;
+    Promise
+        .all(this.resourceCodeGroups.map(
+            rsc => rsc.dataAvailableInAppTimeScope()))
+        .then(rsc => {
+          const flattened: boolean[] = [].concat.apply([], rsc);
+          this.dataAvailable =
+              flattened.reduce((prev, curr) => prev || curr, false);
+        });
+  }
+}
+
 /**
  * ResourceCodeManager is the centralized class where other components can
  * look to find an exhaustive listing of all the resource code groups that the
@@ -41,8 +77,9 @@ const salmonella = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
-  private static axisGroups: AxisGroup[];
-  private static displayGroupMapping: Map<DisplayGrouping, AxisGroup[]>;
+  private static resourceCodeGroups: ResourceCodesForCard[];
+  private static displayGroupMapping:
+      Map<DisplayGrouping, ResourceCodesForCard[]>;
 
   private static readonly labLoincs = [
     // Pull all the defaults to the top.
@@ -158,211 +195,189 @@ export class ResourceCodeManager {
     [labResult, ResourceCodeManager.labLoincs],
   ];
 
-  constructor(
-      private fhirService: FhirService, private sanitizer: DomSanitizer) {
-    if (ResourceCodeManager.axisGroups) {
-      return;
-    }
-
-
-    const codeGroups = new Array<AxisGroup>();
-    // All the labs and vitals are linecharts and displayed on
-    // independent axes.
-    for (const [conceptGroup, codePairs] of ResourceCodeManager.typeToPairs) {
-      for (const loinc of codePairs) {
-        codeGroups.push(new AxisGroup([new Axis(
-            this.fhirService, this.sanitizer,
-            new LOINCCodeGroup(
-                this.fhirService, loinc.label, new Array(loinc), conceptGroup,
-                ChartType.LINE, loinc.displayBounds, loinc.forceDisplayBounds),
-            loinc.label)]));
+  constructor(private fhirService: FhirService) {
+    if (!ResourceCodeManager.resourceCodeGroups) {
+      const codeGroups: ResourceCodesForCard[] = [];
+      // All the labs and vitals are linecharts and displayed on
+      // independent axes.
+      for (const [conceptGroup, codePairs] of ResourceCodeManager.typeToPairs) {
+        for (const loinc of codePairs) {
+          codeGroups.push(new ResourceCodesForCard(
+              [new LOINCCodeGroup(
+                  this.fhirService, loinc.label, new Array(loinc), conceptGroup,
+                  ChartType.LINE, loinc.displayBounds,
+                  loinc.forceDisplayBounds)],
+              loinc.label, conceptGroup));
+        }
       }
-    }
 
-    const bpLocation = new LOINCCodeGroup(
-        this.fhirService, 'Blood Pressure Details',
-        [new LOINCCode('41904-4', vitalSign, 'Blood Pressure Location', true)],
-        vitalSign, ChartType.SCATTER);
-    // Add the blood pressure LOINCs.
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new LOINCCodeGroup(
-            this.fhirService, 'Blood Pressure',
-            ResourceCodeManager.bloodPressureLoincs, vitalSign, ChartType.LINE,
-            [25, 200], false,
-            (observation: Observation, dateRange: Interval):
-                Promise<AnnotatedObservation> => {
-                  return bpLocation.getResourceSet(dateRange).then(obsSet => {
-                    return AnnotatedObservation.forBloodPressure(
-                        observation,
-                        // We only pass in the first ObservationSet, since we
-                        // know there is only one code whose observations we
-                        // care about.
-                        obsSet[0]);
-                  });
-                }),
-        'Blood Pressure')]));
-
-    const cbc = [
-      new LOINCCodeGroup(
-          this.fhirService, 'Hematocrit',
-          [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
-          labResult, ChartType.LINE, [10, 70]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Hemoglobin',
-          [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-          labResult, ChartType.LINE, [0.5, 30]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Platelet',
-          [new LOINCCode('777-3', labResult, 'Platelet', false, [0.5, 30])],
-          labResult, ChartType.LINE, [0.5, 30]),
-      new LOINCCodeGroup(
-          this.fhirService, 'White Blood Cell',
-          [new LOINCCode('26464-8', labResult, 'White Blood Cell', false)],
-          labResult, ChartType.LINE),
-    ];
-
-    codeGroups.push(new AxisGroup(
-        cbc.map(
-            codeGroup => new Axis(
-                this.fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Complete Blood Count'));
-
-    const cbcWBC = [
-      new LOINCCodeGroup(
-          this.fhirService, 'Neutrophil/Band',
+      const bpLocation = new LOINCCodeGroup(
+          this.fhirService, 'Blood Pressure Details',
           [new LOINCCode(
-              '35332-6', labResult, 'Neutrophil/Band', true, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
-      // TODO: add Immature Granulocytes
-      // TODO: add Lymphocyte
-      new LOINCCodeGroup(
-          this.fhirService, 'Monocyte',
-          [new LOINCCode('5905-5', labResult, 'Monocyte', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Eosinophil',
-          [new LOINCCode('713-8', labResult, 'Eosinophil', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Basophil',
-          [new LOINCCode('706-2', labResult, 'Basophil', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
-
-    ];
-    codeGroups.push(new AxisGroup(
-        cbcWBC.map(
-            codeGroup => new Axis(
-                this.fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Complete Blood Count White Blood Cell'));
-
-    const medsSummaryGroup = RXNORM_CODES;
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new RxNormCodeGroup(
-            this.fhirService, 'Vancomycin & Gentamicin Summary',
-            medsSummaryGroup, med, ChartType.STEP),
-        'Vancomycin & Gentamicin Summary')]));
-
-    // Drug monitoring should be a scatterplot, and the related concepts
-    // should be displayed on the same axes.
-    const vancRxNorm = new RxNormCodeGroup(
-        this.fhirService, 'Medication Administrations',
-        [RxNormCode.fromCodeString('11124')], med, ChartType.SCATTER);
-
-    // Drug monitoring should be a scatterplot, and the related concepts
-    // should be displayed on the same axes.
-
-    const vancMonitoring = [
-      vancRxNorm,
-      new LOINCCodeGroup(
-          this.fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring,
-          med, ChartType.SCATTER,
-          undefined,  // no meaningful y-axis ranges
-          false,
-          (observation: Observation, dateRange: Interval):
-              Promise<AnnotatedObservation> => {
-                return vancRxNorm.getResourceSet(dateRange)
-                    .then(rxNorms => {
-                      // We know that we're only pushing in one RxNorm
-                      // so it's safe to grab the first (and only) one in
-                      // the list.
-                      return rxNorms[0].orders;
-                    })
-                    .then(orderSet => {
-                      return AnnotatedObservation.forMedicationMonitoring(
-                          observation, orderSet);
+              '41904-4', vitalSign, 'Blood Pressure Location', true)],
+          vitalSign, ChartType.SCATTER);
+      // Add the blood pressure LOINCs.
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'Blood Pressure',
+              ResourceCodeManager.bloodPressureLoincs, vitalSign,
+              ChartType.LINE, [25, 200], false,
+              (observation: Observation, dateRange: Interval):
+                  Promise<AnnotatedObservation> => {
+                    return bpLocation.getResourceSet(dateRange).then(obsSet => {
+                      return AnnotatedObservation.forBloodPressure(
+                          observation,
+                          // We only pass in the first ObservationSet, since we
+                          // know there is only one code whose observations we
+                          // care about.
+                          obsSet[0]);
                     });
-              })
+                  })],
+          'Blood Pressure', vitalSign));
 
-    ];
+      const cbc = [
+        new LOINCCodeGroup(
+            this.fhirService, 'Hematocrit',
+            [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
+            labResult, ChartType.LINE, [10, 70]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Hemoglobin',
+            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Platelet',
+            [new LOINCCode('777-3', labResult, 'Platelet', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
+        new LOINCCodeGroup(
+            this.fhirService, 'White Blood Cell',
+            [new LOINCCode('26464-8', labResult, 'White Blood Cell', false)],
+            labResult, ChartType.LINE),
+      ];
+      codeGroups.push(
+          new ResourceCodesForCard(cbc, 'Complete Blood Count', labResult));
 
-    codeGroups.push(new AxisGroup(
-        vancMonitoring.map(
-            codeGroup => new Axis(
-                this.fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Vancomycin'));
+      const cbcWBC = [
+        new LOINCCodeGroup(
+            this.fhirService, 'Neutrophil/Band',
+            [new LOINCCode(
+                '35332-6', labResult, 'Neutrophil/Band', true, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
+        // TODO: add Immature Granulocytes
+        // TODO: add Lymphocyte
+        new LOINCCodeGroup(
+            this.fhirService, 'Monocyte',
+            [new LOINCCode('5905-5', labResult, 'Monocyte', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Eosinophil',
+            [new LOINCCode('713-8', labResult, 'Eosinophil', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Basophil',
+            [new LOINCCode('706-2', labResult, 'Basophil', false, [0, 100])],
+            labResult, ChartType.LINE, [0, 100]),
 
-    const gentMonitoring = [
-      new RxNormCodeGroup(
+      ];
+      codeGroups.push(new ResourceCodesForCard(
+          cbcWBC, 'Complete Blood Count White Blood Cell', labResult));
+
+      // TODO(b/118874488): Allow for configuration of RxNormCodeGroups.
+      const medsSummaryGroup = RXNORM_CODES;
+      codeGroups.push(new ResourceCodesForCard(
+          [new RxNormCodeGroup(
+              this.fhirService, 'Vancomycin & Gentamicin Summary',
+              medsSummaryGroup, med, ChartType.STEP)],
+          'Vancomycin & Gentamicin Summary', med));
+
+      // Drug monitoring should be a scatterplot, and the related concepts
+      // should be displayed on the same axes.
+      const vancRxNorm = new RxNormCodeGroup(
           this.fhirService, 'Medication Administrations',
-          [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
-      new LOINCCodeGroup(
-          this.fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring,
-          med, ChartType.SCATTER)
-    ];
+          [RxNormCode.fromCodeString('11124')], med, ChartType.SCATTER);
 
-    codeGroups.push(new AxisGroup(
-        gentMonitoring.map(
-            codeGroup => new Axis(
-                this.fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Gentamicin'));
+      // Drug monitoring should be a scatterplot, and the related concepts
+      // should be displayed on the same axes.
+      codeGroups.push(new ResourceCodesForCard(
+          [
+            vancRxNorm,
+            new LOINCCodeGroup(
+                this.fhirService, 'Monitoring',
+                ResourceCodeManager.vancMonitoring, med, ChartType.SCATTER,
+                undefined,  // no meaningful y-axis ranges
+                false,
+                (observation: Observation, dateRange: Interval):
+                    Promise<AnnotatedObservation> => {
+                      return vancRxNorm.getResourceSet(dateRange).then(
+                          rxNorms => {
+                            if (rxNorms.length === 0) {
+                              return new AnnotatedObservation(observation, []);
+                            }
+                            // We know that we're only pushing in one RxNorm
+                            // so it's safe to grab the first (and only) one
+                            // in the list.
+                            return AnnotatedObservation.forMedicationMonitoring(
+                                observation, rxNorms[0].orders);
+                          });
+                    })
+          ],
+          'Vancomycin', med));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new LOINCCodeGroup(
-            this.fhirService, 'Urinalysis', ResourceCodeManager.urineGroup,
-            labResult, ChartType.SCATTER),
-        'Urinalysis')]));
+      codeGroups.push(new ResourceCodesForCard(
+          [
+            new RxNormCodeGroup(
+                this.fhirService, 'Medication Administrations',
+                [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
+            new LOINCCodeGroup(
+                this.fhirService, 'Monitoring',
+                ResourceCodeManager.gentMonitoring, med, ChartType.SCATTER)
+          ],
+          'Gentamicin', med));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new LOINCCodeGroup(
-            this.fhirService, 'CSF', ResourceCodeManager.csfGroup, labResult,
-            ChartType.SCATTER),
-        'CSF')]));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new LOINCCodeGroup(
-            this.fhirService, 'Other Fluid',
-            ResourceCodeManager.otherFluidGroup, labResult, ChartType.SCATTER),
-        'Other Fluid')]));
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'Urinalysis', ResourceCodeManager.urineGroup,
+              labResult, ChartType.SCATTER)],
+          'Urinalysis', labResult));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            this.fhirService, 'Stool', ResourceCodeManager.stoolGroup, microbio,
-            ChartType.MICROBIO),
-        'Stool')]));
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'CSF', ResourceCodeManager.csfGroup, labResult,
+              ChartType.SCATTER)],
+          'CSF', labResult));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            this.fhirService, 'NP Swab', ResourceCodeManager.npSwabGroup,
-            microbio, ChartType.MICROBIO),
-        'NP Swab')]));
-    ResourceCodeManager.axisGroups = codeGroups;
+      codeGroups.push(new ResourceCodesForCard(
+          [new LOINCCodeGroup(
+              this.fhirService, 'Other Fluid',
+              ResourceCodeManager.otherFluidGroup, labResult,
+              ChartType.SCATTER)],
+          'Other Fluid', labResult));
 
-    const mapping = new Map<DisplayGrouping, AxisGroup[]>();
-    for (const group of this.getResourceCodeGroups()) {
-      if (mapping.has(group.displayGroup)) {
-        mapping.get(group.displayGroup).push(group);
-      } else {
-        mapping.set(group.displayGroup, [group]);
-      }
+      codeGroups.push(new ResourceCodesForCard(
+          [new BCHMicrobioCodeGroup(
+              this.fhirService, 'Stool', ResourceCodeManager.stoolGroup,
+              microbio, ChartType.MICROBIO)],
+          'Stool', microbio));
+
+      codeGroups.push(new ResourceCodesForCard(
+          [new BCHMicrobioCodeGroup(
+              this.fhirService, 'NP Swab', ResourceCodeManager.npSwabGroup,
+              microbio, ChartType.MICROBIO)],
+          'NP Swab', microbio));
+      ResourceCodeManager.resourceCodeGroups = codeGroups;
     }
-    ResourceCodeManager.displayGroupMapping = mapping;
+
+    if (!ResourceCodeManager.displayGroupMapping) {
+      const mapping = new Map<DisplayGrouping, ResourceCodesForCard[]>();
+      for (const group of this.getResourceCodeGroups()) {
+        if (mapping.has(group.displayGrouping)) {
+          mapping.get(group.displayGrouping).push(group);
+        } else {
+          mapping.set(group.displayGrouping, [group]);
+        }
+      }
+      ResourceCodeManager.displayGroupMapping = mapping;
+    }
   }
 
   /**
@@ -371,15 +386,15 @@ export class ResourceCodeManager {
    * If not, constructs the maps and saves them into the static class variable,
    * then returns.
    */
-  getResourceCodeGroups(): AxisGroup[] {
-    return ResourceCodeManager.axisGroups;
+  getResourceCodeGroups(): ResourceCodesForCard[] {
+    return ResourceCodeManager.resourceCodeGroups;
   }
 
   /**
    * Returns a map where the key is a clinical concept group and the value is
    * a list of LOINC code groups belonging to the clinical concept group.
    */
-  getDisplayGroupMapping(): Map<DisplayGrouping, AxisGroup[]> {
+  getDisplayGroupMapping(): Map<DisplayGrouping, ResourceCodesForCard[]> {
     return ResourceCodeManager.displayGroupMapping;
   }
 }

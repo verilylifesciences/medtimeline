@@ -8,27 +8,25 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
 import {environment} from '../../environments/environment';
+
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
-import {AxisGroup} from '../graphtypes/axis-group';
+import {ResourceCodeManager, ResourceCodesForCard} from '../clinicalconcepts/resource-code-manager';
 import {SetupDataService} from '../setup-data.service';
 
-/**
- * This class contains the intial configuration options for the MedTimeLine.
- * Users can choose which concepts to display, or pick the default
- * configuration.
- */
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.css']
 })
+
+// This class contains the intial configuration options for the MedTimeLine.
+// Users can choose which concepts to display, or pick the default
+// configuration.
 export class SetupComponent implements OnInit, OnDestroy {
-  readonly allConcepts: Array<AxisGroup> = [];
+  readonly allConcepts: Array<ResourceCodesForCard> = [];
   readonly checkedConcepts = new Map<string, boolean>();
-  readonly chosenConcepts: Array<AxisGroup> = [];
+  readonly chosenConcepts: Array<ResourceCodesForCard> = [];
   readonly useDebugger = environment.useDebugger;
 
   /**
@@ -37,18 +35,19 @@ export class SetupComponent implements OnInit, OnDestroy {
    */
   readonly conceptCtrl = new FormControl();
   /**
-   * An Observable of filtered [DisplayGrouping, AxisGroup[] pairings
+   * An Observable of filtered [DisplayGrouping, ResourceCodesForCard[] pairings
    * based on user input in the autocomplete. Each element of the array contains
-   * a DisplayGrouping and filtered AxisGroups that belong  to that
+   * a DisplayGrouping and filtered ResourceCodesForCards that belong  to that
    * DisplayGrouping.
    */
-  displayGroupingOptions: Observable<Array<[DisplayGrouping, AxisGroup[]]>>;
+  displayGroupingOptions:
+      Observable<Array<[DisplayGrouping, ResourceCodesForCard[]]>>;
 
   /**
-   * An array of DisplayGroupings and AxisGroup that belong to that
+   * An array of DisplayGroupings and ResourceCodesForCard that belong to that
    * grouping.
    */
-  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
+  readonly displayGroupings: Array<[DisplayGrouping, ResourceCodesForCard[]]>;
 
   sortResources = (function(a, b) {
     return a.label.localeCompare(b.label);
@@ -66,6 +65,7 @@ export class SetupComponent implements OnInit, OnDestroy {
     this.setupDataService.selectedConcepts = this.chosenConcepts;
   }
 
+
   constructor(
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
       private router: Router, private setupDataService: SetupDataService) {
@@ -79,7 +79,7 @@ export class SetupComponent implements OnInit, OnDestroy {
     for (const concept of this.allConcepts) {
       this.checkedConcepts[concept.label] = false;
       const showByDefault =
-          concept.axes.some(axis => axis.resourceGroup.showByDefault);
+          concept.resourceCodeGroups.some(x => x.showByDefault);
       if (showByDefault) {
         this.checkedConcepts[concept.label] = true;
       }

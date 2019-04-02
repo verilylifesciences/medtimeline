@@ -7,7 +7,6 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
 import {MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
@@ -21,7 +20,7 @@ describe('DataSelectorMenuComponent', () => {
   let component: DataSelectorMenuComponent;
   let fixture: ComponentFixture<DataSelectorMenuComponent>;
   const resourceCodeManagerStub =
-      new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
+      new ResourceCodeManager(new StubFhirService());
 
   beforeEach(async(() => {
     TestBed
