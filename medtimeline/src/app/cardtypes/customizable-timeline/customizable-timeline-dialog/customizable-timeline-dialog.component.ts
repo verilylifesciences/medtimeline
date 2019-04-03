@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Component, Inject} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
@@ -60,7 +60,10 @@ export class CustomizableTimelineDialogComponent {
     this.dateFormControl = new FormControl(this.date);
     const timeString = this.date.toLocaleTimeString(
         [], {hour12: false, hour: '2-digit', minute: '2-digit'});
-    this.timeFormControl = new FormControl(timeString);
+    // Since we do not have an input of type "time" due to IE restrictions, we
+    // manually check whether the input is a valid time string using regex.
+    this.timeFormControl = new FormControl(
+        timeString, Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]'));
     this.generateListOfTimes();
     // Set the default selected color as yellow if unset, or find the BCH Color
     // matching the selected color passed in.
@@ -117,10 +120,13 @@ export class CustomizableTimelineDialogComponent {
 
   // Constructs a new Date based on user input.
   private getSelectedDate(): Date {
-    const dateString =
-        new Date(this.dateFormControl.value).toLocaleDateString();
-    const date = new Date(dateString + ' ' + this.timeFormControl.value);
-    return date;
+    const dateTime = new Date(this.dateFormControl.value);
+    // For date parsing to work in IE, we must remove all extraneous non-ASCII
+    // characters added, and manually change the time.
+    const time =
+        this.timeFormControl.value.replace(/[^\x00-x7F]/g, '').split(':');
+    dateTime.setHours(Number(time[0]), Number(time[1]));
+    return dateTime;
   }
 
   // Finds incomplete fields that are required and disables saving.
@@ -128,7 +134,8 @@ export class CustomizableTimelineDialogComponent {
     return !this.userTitle ||
         (this.userTitle && this.userTitle.trim().length === 0) ||
         this.dateFormControl.hasError('required') ||
-        this.timeFormControl.hasError('required');
+        this.timeFormControl.hasError('required') ||
+        this.timeFormControl.invalid || this.dateFormControl.invalid;
   }
 
   // Returns whether the date selected by the user falls outside the current
