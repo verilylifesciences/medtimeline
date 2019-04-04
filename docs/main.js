@@ -2857,7 +2857,7 @@ module.exports = ".configurationCard {\n  background-color: transparent;\n  bord
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{axisGroup.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!resourceCodesForCard.dataAvailable\">\n          No data between\n          {{appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>\n"
+module.exports = "<div class=\"configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{axisGroup.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!axisGroup.dataAvailable\">\n          No data between\n          {{appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>\n"
 
 /***/ }),
 
