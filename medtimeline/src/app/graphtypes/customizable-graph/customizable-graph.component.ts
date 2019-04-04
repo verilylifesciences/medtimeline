@@ -113,7 +113,9 @@ export class CustomizableGraphComponent extends
   addPoint(clickCoordinates: [number, number], parentCoordinates: [
     number, number
   ]) {
-    this.dialogRef = this.openDialog(clickCoordinates);
+    if (this.inEditMode) {
+      this.dialogRef = this.openDialog(clickCoordinates);
+    }
   }
 
   private openDialog(

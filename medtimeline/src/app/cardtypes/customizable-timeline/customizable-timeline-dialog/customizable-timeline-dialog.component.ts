@@ -140,7 +140,7 @@ export class CustomizableTimelineDialogComponent {
 
   // Returns whether the date selected by the user falls outside the current
   // date range.
-  private dateNotInRange(): boolean {
+  dateNotInRange(): boolean {
     const dateTime = DateTime.fromJSDate(this.getSelectedDate());
     if (!this.dateRange) {
       return false;
