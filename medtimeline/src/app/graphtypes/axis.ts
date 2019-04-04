@@ -73,7 +73,7 @@ export class Axis {
   errorMessage: string;
 
   // The encounters for the date range.
-  encounters: Encounter[] = [];
+  private encounters: Encounter[] = [];
 
   // Holds the grouping of the resource codes for this axis.
   private allLoinc: boolean;
@@ -255,5 +255,21 @@ export class Axis {
               new MedicationOrderSet(orders), dateRange, this.sanitizer,
               this.encounters);
         });
+  }
+
+  /**
+   * Gets the x regions from the data for this axis.
+   */
+  getXRegions(): Promise<any[]> {
+    return this.getDataFromFhir(this.dateRange).then(data => {
+      return data.xRegions ? data.xRegions : [];
+    });
+  }
+
+  /**
+   * Returns whether there's resolved data for this axis.
+   */
+  dataResolved(): boolean {
+    return this.alreadyResolvedData ? true : false;
   }
 }

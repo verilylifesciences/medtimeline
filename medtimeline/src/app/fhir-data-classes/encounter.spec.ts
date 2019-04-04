@@ -108,8 +108,8 @@ describe('Encounter', () => {
       id: '4027918',
       patient: {display: 'Smart, Joe', reference: 'Patient/4342010'},
       period: {
-        start: '2018-09-01T06:00:00.000Z',
-        end: '2018-10-01T06:00:00.000Z',
+        start: '2018-10-01T06:00:00.000Z',
+        end: '2018-09-01T06:00:00.000Z',
       },
       resourceType: 'Encounter',
     };

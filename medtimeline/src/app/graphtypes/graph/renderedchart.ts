@@ -20,14 +20,34 @@ export const Y_AXIS_TICK_MAX = 15;
  */
 export class RenderedChart {
   protected generatedChart: c3.ChartAPI;
-  private yAxisAlreadyWrapped = false;
+
+  /**
+   * Holds functions to execute upon next render.
+   */
+  private nextRenderQueue = new Array<() => void>();
 
   constructor(
       private readonly xAxis: DateTimeXAxis, private readonly chartDivId) {}
 
 
+  /**
+   * Adds a function to the queue to be executed on the next render.
+   */
+  addToRenderQueue(fn: () => void) {
+    this.nextRenderQueue.push(fn);
+  }
+
   generate(configuration: c3.ChartConfiguration, dataPointsInRange: boolean) {
     this.generatedChart = c3.generate(configuration);
+
+    // Execute all the functions queued up for the next render, and clear the
+    // queue.
+    for (const fn of this.nextRenderQueue) {
+      fn();
+    }
+    this.nextRenderQueue = new Array<() => void>();
+
+    // Put all the final touches on the graph.
     this.adjustStyle(dataPointsInRange);
   }
 
@@ -43,7 +63,7 @@ export class RenderedChart {
    * Called after some, or all, parts of the chart are changed, to ensure that
    * the style stays.
    */
-  adjustStyle(dataPointsInRange: boolean) {
+  private adjustStyle(dataPointsInRange: boolean) {
     if (!dataPointsInRange) {
       this.showNoData();
     }
@@ -77,10 +97,6 @@ export class RenderedChart {
    * Inserts wrapped y-axis tick labels.
    */
   private wrapYAxisLabels() {
-    if (this.yAxisAlreadyWrapped) {
-      return;
-    }
-    this.yAxisAlreadyWrapped = true;
     d3.select('#' + this.chartDivId)
         .selectAll('.c3-axis-y')
         .selectAll('.tick text')
@@ -149,10 +165,8 @@ export class RenderedChart {
    * Let all points show with full opacity.
    */
   private fixOpacity() {
-    d3.select('#' + this.chartDivId).selectAll('.c3-circle').each(function(d) {
-      if (d3.select(this).style('opacity') === '0.5') {
-        d3.select(this).style('opacity', 1);
-      }
+    d3.select('#' + this.chartDivId).selectAll('circle').each(function(d) {
+      d3.select(this).style('opacity', 1);
     });
   }
 
@@ -161,5 +175,30 @@ export class RenderedChart {
    */
   updateEventlines(eventLines) {
     this.generatedChart.xgrids(eventLines.currentValue);
+  }
+
+  /**
+   * Set X regions on the chart.
+   */
+  setXRegions(xRegions: any[]) {
+    this.generatedChart.regions(xRegions);
+  }
+
+  /**
+   * Add y region on chart.
+   */
+  addYRegion(yRegion: any) {
+    this.generatedChart.regions.add(yRegion);
+  }
+
+  /**
+   * Set lines and labels for y-boundaries.
+   */
+  setYNormalBoundMarkers(yBounds: [number, number]) {
+    d3.select('#' + this.chartDivId).selectAll('.c3-ygrid-line').remove();
+    this.generatedChart.ygrids([
+      {value: yBounds[0], text: 'low normal bound: ' + yBounds[0]},
+      {value: yBounds[1], text: 'high normal bound: ' + yBounds[1]}
+    ]);
   }
 }

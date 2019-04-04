@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 
 import {GraphComponent} from '../graph/graph.component';
-import {RenderedChart, Y_AXIS_TICK_MAX} from '../graph/renderedchart';
+import {RenderedChart} from '../graph/renderedchart';
 
 @Component({
   selector: 'app-linegraph',
@@ -77,19 +77,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    * Adjusts the data-dependent fields of the chart's configuration.
    */
   adjustDataDependent() {
-    // Some things are only valid if there are y-axis normal bounds. We
-    // also only show normal bounds if there's one data series on the
-    // axis.
-    // These customizations are based on this.data, which is a type specific for
-    // LineGraphData, and could not be generalized in the abstract GraphCard
-    // class.
-    if (this.data.series.length > 0) {
-      const yBounds = this.data.series[0].yNormalBounds;
-      if (this.data.series.length === 1 && yBounds) {
-        this.chartConfiguration =
-            this.addYRegionOnChart(this.chartConfiguration, yBounds);
-      }
-    }
     // Check if there are any data points in the time range.
     this.dataPointsInDateRange =
         this.data.dataPointsInRange(this.xAxis.dateRange);
@@ -126,5 +113,35 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
           .selectAll('.c3-axis-y .tick')
           .style('display', 'none');
     }
+    this.addYNormalRange();
+  }
+
+  /**
+   * Adds y normal ranges to the graph.
+   */
+  private addYNormalRange() {
+    // Only LineGraphData has y normal bounds.
+    if (!(this.data instanceof LineGraphData)) {
+      return;
+    }
+    // If there's more than one series on this graph we don't mark a normal
+    // region because they might not be the same.
+    if (this.data.series.length !== 1) {
+      return;
+    }
+    const yBounds = this.data.series[0].yNormalBounds;
+    // If there aren't bounds, there's nothing to add.
+    if (!yBounds) {
+      return;
+    }
+
+    const self = this;
+    this.renderedChart.addToRenderQueue(() => {
+      self.renderedChart.setYNormalBoundMarkers(yBounds);
+    });
+    this.renderedChart.addToRenderQueue(() => {
+      self.renderedChart.addYRegion(
+          {axis: 'y', start: yBounds[0], end: yBounds[1]});
+    });
   }
 }
