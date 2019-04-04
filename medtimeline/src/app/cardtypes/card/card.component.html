@@ -11,7 +11,7 @@ functionality, then space for a label & legend, then space for other contents. -
     <!--Ensure that the dragger icon is always at the center of the color bar.-->
     <div style="margin-bottom: 12px"></div>
   </div>
-  <div *ngIf="label" fxFlex="0 0 auto" fxLayout="column" fxFlexAlign="stretch" class="labelColumn">
+  <div *ngIf="label" fxFlex="0 0 15" fxLayout="column" fxFlexAlign="stretch" class="labelColumn">
     <div fxFlex class="mat-title label">{{label}}</div>
     <!--Give the div that you want to appear here the class "legends-block".-->
     <ng-content select=".legends-block"></ng-content>
