@@ -27,11 +27,8 @@ export class MicrobioGraphComponent extends StepGraphComponent {
     super(sanitizer);
   }
 
-  /**
-   * @override
-   */
-  generateChart() {
-    super.generateChart();
+  adjustGeneratedChartConfiguration() {
+    super.adjustGeneratedChartConfiguration();
     this.chartConfiguration.data.type = 'scatter';
     this.chartConfiguration.point = {r: 5};
   }
@@ -41,16 +38,17 @@ export class MicrobioGraphComponent extends StepGraphComponent {
    * points and make sure their fill is transparent and there is a border
    * around it.
    */
-  onRendered(graphObject) {
-    // Apply colors. This will be handled better when we work on the legends.
+  onRendered() {
+    const circles: d3.Selection<any, any, any, any> =
+        d3.select('#' + this.chartDivId).selectAll('.c3-target');
     const posCircles: d3.Selection<any, any, any, any> =
-        graphObject.getCircles()
+        circles
             .filter((d) => {
               return d.id.includes(CHECK_RESULT_CODE);
             })
             .style('fill', posFinalMB.fill.toString());
     const negCircles: d3.Selection<any, any, any, any> =
-        graphObject.getCircles()
+        circles
             .filter((d) => {
               return !d.id.includes(CHECK_RESULT_CODE);
             })
@@ -58,7 +56,7 @@ export class MicrobioGraphComponent extends StepGraphComponent {
 
     // Make prelim circles transparent-filled.
     const prelimCircles: d3.Selection<any, any, any, any> =
-        graphObject.getCircles()
+        circles
             .filter((d) => {
               return d.id.includes(
                   DiagnosticReportStatus.Preliminary.toString());
@@ -75,5 +73,6 @@ export class MicrobioGraphComponent extends StepGraphComponent {
           return !d.id.includes(CHECK_RESULT_CODE);
         })
         .style('stroke', negPrelimMB.outline.toString());
+    circles.style('opacity', 1);
   }
 }

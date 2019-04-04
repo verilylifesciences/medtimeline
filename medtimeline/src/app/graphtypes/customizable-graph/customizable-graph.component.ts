@@ -58,12 +58,12 @@ export class CustomizableGraphComponent extends
       (this.renderedChart as RenderedCustomizableChart).inEditMode =
           changes.inEditMode.currentValue;
     } else {
-      this.generateFromScratch();
+      this.generateChart();
     }
   }
 
-  generateFromScratch() {
-    super.generateFromScratch();
+  generateChart() {
+    super.generateChart();
     // Once the chart is rendered, only display the data points in the current
     // date range. This is due to a C3 bug that plots some points
     // outside of the x-axis/y-axis boundaries upon loading additional data.
@@ -142,7 +142,7 @@ export class CustomizableGraphComponent extends
           this.data.removePointFromSeries(
               DateTime.fromMillis(editedAnnotation.timestamp.toMillis()));
           this.removeAnnotation(editedAnnotation.timestamp.toMillis());
-          this.generateFromScratch();
+          this.generateChart();
         }
 
         const result: CustomizableGraphAnnotation =
@@ -229,7 +229,7 @@ export class CustomizableGraphComponent extends
     deleteIcon.on('click', function() {
       const time = DateTime.fromMillis(millis);
       self.data.removePointFromSeries(time);
-      self.generateFromScratch();
+      self.generateCustomChart();
       self.pointsChanged.emit(self.data);
     });
   }
@@ -255,8 +255,8 @@ export class CustomizableGraphComponent extends
    * @returns the c3.ChartConfiguration object to generate the c3 chart.
    * @override
    */
-  generateChart(): c3.ChartConfiguration {
-    this.generateBasicChart();
+  generateCustomChart(): c3.ChartConfiguration {
+    this.generateChart();
 
     this.chartConfiguration.data.type = 'scatter';
     const self = this;

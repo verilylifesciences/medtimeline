@@ -26,16 +26,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
   constructor(readonly sanitizer: DomSanitizer) {
     super(sanitizer, (axis, id) => new RenderedChart(axis, id));
   }
-  /**
-   * @override
-   */
-  generateChart() {
-    this.generateBasicChart();
-    this.adjustDataDependent();
-
-    // Ensure that a line is not drawn through points with "null" values.
-    this.chartConfiguration.line = {connectNull: false};
-  }
 
   prepareForChartConfiguration() {
     if (this.data.yAxisDisplayBounds) {
@@ -44,13 +34,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     }
   }
 
-  /**
-   * Adjusts the data-dependent fields of the chart's configuration.
-   */
-  adjustDataDependent() {
-    // Check if there are any data points in the time range.
-    this.dataPointsInDateRange =
-        this.data.dataPointsInRange(this.xAxis.dateRange);
+  adjustGeneratedChartConfiguration() {
     // If tick values aren't set, calculate the values.
     if (!this.chartConfiguration.axis.y.tick.values) {
       this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(

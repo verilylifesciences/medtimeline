@@ -91,7 +91,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
         DateTime.utc().minus({days: 2}), DateTime.utc()));
-    component.generateFromScratch();
+    component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -121,7 +121,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
         DateTime.utc().minus({days: 2}), DateTime.utc()));
-    component.generateFromScratch();
+    component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
