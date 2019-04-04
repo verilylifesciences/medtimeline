@@ -256,7 +256,6 @@ export class CustomizableGraphComponent extends
    * @override
    */
   generateChart(): c3.ChartConfiguration {
-    this.adjustYAxisConfig();
     this.generateBasicChart();
 
     this.chartConfiguration.data.type = 'scatter';
@@ -286,15 +285,6 @@ export class CustomizableGraphComponent extends
     this.chartConfiguration
         .point = {show: true, r: 5, focus: {expand: {enabled: false}}};
     return this.chartConfiguration;
-  }
-
-  adjustYAxisConfig() {
-    // Give labels to each series and make a map of x-values to y-values.
-    this.yAxisConfig = {
-      min: 0,
-      max: 5,
-      padding: {top: 0, bottom: 0},
-    };
   }
 
   // This is not relevant for the CustomizableGraph, so its implementation for

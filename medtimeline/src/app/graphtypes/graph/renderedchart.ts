@@ -91,6 +91,9 @@ export class RenderedChart {
                            .selectAll('.c3-axis-y')
                            .selectAll('.tick')
                            .style('opacity', 0);
+    const yAxisLines = d3.select('#' + this.chartDivId)
+                           .selectAll('.c3-ygrid')
+                           .style('opacity', 0);
   }
 
   /**

@@ -53,7 +53,6 @@ describe('GraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
-    component.yAxisConfig = {};
     component.generateBasicChart();
 
     expect(component.chartConfiguration['data']['xs']['Vanc Pk'])
@@ -71,18 +70,8 @@ describe('GraphComponent', () => {
   });
 
   it('y axis bounds passed in okay', () => {
-    component.yAxisConfig = {
-      min: 12,
-      max: 81,
-      padding: {top: 20, bottom: 20},
-      tick: {
-        count: 5,
-        format: d => {
-          return (d).toLocaleString(
-              'en-us', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        }
-      }
-    };
+    component.yAxisConfig.min = 12;
+    component.yAxisConfig.max = 81;
     component.generateBasicChart();
 
     expect(component.chartConfiguration['axis']['y'])

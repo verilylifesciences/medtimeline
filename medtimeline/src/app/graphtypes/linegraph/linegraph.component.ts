@@ -30,7 +30,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    * @override
    */
   generateChart() {
-    this.adjustYAxisConfig();
     this.generateBasicChart();
     this.adjustDataDependent();
 
@@ -38,40 +37,11 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     this.chartConfiguration.line = {connectNull: false};
   }
 
-  /**
-   * Adjusts the y-axis configuration for the chart.
-   */
-  adjustYAxisConfig() {
-    // Give labels to each series and make a map of x-values to y-values.
-    let min;
-    let max;
-    if (this.data.yAxisDisplayBounds[0] > this.data.yAxisDisplayBounds[1]) {
-      // No min or max set due to no data.
-      min = 0;
-      max = 10;
-    } else {
-      min = this.data.yAxisDisplayBounds[0];
-      max = this.data.yAxisDisplayBounds[1];
+  prepareForChartConfiguration() {
+    if (this.data.yAxisDisplayBounds) {
+      this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
+      this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
     }
-
-    this.yAxisConfig = {
-      min: min,
-      max: max,
-      padding: {top: 20, bottom: 20},
-      tick: {
-        count: 5,
-        format: d => {
-          // We add padding to our y-axis tick labels so that all y-axes of the
-          // charts rendered on the page can be aligned.
-          return (d)
-              .toLocaleString('en-us', {
-                minimumFractionDigits: this.data.precision,
-                maximumFractionDigits: this.data.precision
-              })
-              .trim();
-        }
-      },
-    };
   }
 
   /**

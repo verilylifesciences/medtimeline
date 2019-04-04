@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {AfterViewInit, Input, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
@@ -30,7 +30,7 @@ export enum ChartType {
  * Displays a graph. T is the data type the graph is equipped to display.
  */
 export abstract class GraphComponent<T extends GraphData> implements
-    AfterViewInit {
+    AfterViewInit, OnChanges {
   // The x-axis eventlines to display on the chart.
   @Input() eventlines: Array<{[key: string]: number | string}>;
   /**
@@ -62,8 +62,24 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The rendered chart's configuration.
   chartConfiguration: c3.ChartConfiguration;
 
-  // The y-axis configuration for the chart.
-  yAxisConfig: c3.YAxisConfiguration;
+  /** The default y-axis configuration for the chart. */
+  readonly yAxisConfig: c3.YAxisConfiguration = {
+    label: {text: '', position: 'outer-middle'},
+    tick: {
+      count: 5,
+      format:
+          d => {
+            // We add padding to our y-axis tick labels so that all y-axes of
+            // the charts rendered on the page can be aligned.
+            return (d)
+                .toLocaleString('en-us', {
+                  minimumFractionDigits: this.data.precision,
+                  maximumFractionDigits: this.data.precision
+                })
+                .trim();
+          }
+    }
+  };
 
   // A map containing a color for each series displayed on the graph.
   colorsMap: {[key: string]: string} = {};
@@ -113,6 +129,7 @@ export abstract class GraphComponent<T extends GraphData> implements
   // the chart to display.
   generateFromScratch() {
     if (this.data && this.xAxis) {
+      this.prepareForChartConfiguration();
       this.generateChart();
       this.renderedChart =
           this.renderedConstructor(this.xAxis, this.chartDivId);
@@ -120,6 +137,13 @@ export abstract class GraphComponent<T extends GraphData> implements
           this.chartConfiguration, this.dataPointsInDateRange);
     }
   }
+
+  /**
+   * Lines up any extra things needed to generate the ChartConfiguration.
+   * This may include things like adding atypical data series, custom-setting
+   * colors, etc.
+   */
+  prepareForChartConfiguration() {}
 
   /**
    * Sets up a generalized c3.ChartConfig for the data passed in. See the
@@ -144,15 +168,15 @@ export abstract class GraphComponent<T extends GraphData> implements
 
     const self = this;
     const chartConfiguration = {
+      axis: {x: this.xAxis.xAxisConfig, y: this.yAxisConfig},
       bindto: '#' + this.chartDivId,
-      size: {height: this.BASE_CHART_HEIGHT_PX},
       data: {
         columns: this.data.c3DisplayConfiguration.allColumns,
         xs: this.data.c3DisplayConfiguration.columnMap,
         type: this.chartTypeString,
         colors: this.makeColorMap(),
       },
-      axis: {x: this.xAxis.xAxisConfig, y: this.yAxisConfig},
+      grid: {y: {}, x: {}},
       legend: {show: false},  // There's always a custom legend
       line: {connectNull: false},
       onrendered: function() {
@@ -161,13 +185,14 @@ export abstract class GraphComponent<T extends GraphData> implements
         });
         self.renderedChart.addToRenderQueue(() => {
           self.renderedChart.updateEventlines(self.eventlines);
-        })
+        });
         self.renderedChart.addToRenderQueue(() => {
           self.onRendered(this);
         });
       },
       padding: {left: this.Y_AXIS_LEFT_PADDING},
-      tooltip: this.setTooltip()
+      size: {height: this.BASE_CHART_HEIGHT_PX},
+      tooltip: this.setTooltip(),
     };
 
     this.chartConfiguration = chartConfiguration;
@@ -256,12 +281,6 @@ export abstract class GraphComponent<T extends GraphData> implements
    * @param chartHeight The height of the chart in pixels.
    */
   abstract generateChart(chartHeight?: number);
-
-  /**
-   * Generates the y-axis configuration for the chart specified by the extending
-   * class.
-   */
-  abstract adjustYAxisConfig();
 
   /**
    * Adjusts the data-dependent fields of the chart's configuration specified by
