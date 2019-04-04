@@ -172,9 +172,20 @@ export class RenderedChart {
 
   /**
    * Update to show event lines on the rendered chart.
+   *
+   * These open bugs:
+   *
+   * https://github.com/c3js/c3/issues/2185
+   * https://github.com/c3js/c3/issues/1459
+   * https://github.com/c3js/c3/issues/1458
+   *
+   * makes this function more complicated than it should be. Something about the
+   * xgrids.add and xgrids.remove function is weird so we manually remove the
+   * lines using d3 and then set the xgrids using c3.
    */
-  updateEventlines(eventLines) {
-    this.generatedChart.xgrids(eventLines.currentValue);
+  updateEventlines(eventLines: any[]) {
+    d3.select('#' + this.chartDivId).selectAll('.c3-xgrid-line').remove();
+    this.generatedChart.xgrids(eventLines);
   }
 
   /**

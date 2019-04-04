@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {AfterViewInit, Input} from '@angular/core';
+import {AfterViewInit, Input, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
@@ -11,7 +11,6 @@ import {DateTime} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
-import {ABNORMAL} from 'src/app/theme/bch_colors';
 import {v4 as uuid} from 'uuid';
 
 import {StandardTooltip} from '../tooltips/tooltip';
@@ -101,6 +100,15 @@ export abstract class GraphComponent<T extends GraphData> implements
     this.generateFromScratch();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.renderedChart) {
+      return;
+    }
+    if (changes.eventlines) {
+      this.renderedChart.updateEventlines(changes.eventlines.currentValue);
+    }
+  }
+
   // If there is not yet a chart or chart configuration, configure and generate
   // the chart to display.
   generateFromScratch() {
@@ -134,7 +142,6 @@ export abstract class GraphComponent<T extends GraphData> implements
       position: 'outer-middle'
     };
 
-    const gridlines: any = this.eventlines ? this.eventlines : [];
     const self = this;
     const chartConfiguration = {
       bindto: '#' + this.chartDivId,
@@ -153,11 +160,13 @@ export abstract class GraphComponent<T extends GraphData> implements
           self.renderedChart.setXRegions(self.xRegions);
         });
         self.renderedChart.addToRenderQueue(() => {
+          self.renderedChart.updateEventlines(self.eventlines);
+        })
+        self.renderedChart.addToRenderQueue(() => {
           self.onRendered(this);
         });
       },
       padding: {left: this.Y_AXIS_LEFT_PADDING},
-      grid: {x: {lines: gridlines}},
       tooltip: this.setTooltip()
     };
 
