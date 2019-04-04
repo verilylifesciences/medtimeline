@@ -2857,7 +2857,7 @@ module.exports = ".configurationCard {\n  background-color: transparent;\n  bord
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"configurationCard {{resourceCodesForCard.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"resourceCodesForCard.dataAvailable ? conceptGroupKey.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{resourceCodesForCard.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!resourceCodesForCard.dataAvailable\">\n          No data between\n          {{appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>"
+module.exports = "<div class=\"configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{axisGroup.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!resourceCodesForCard.dataAvailable\">\n          No data between\n          {{appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>\n"
 
 /***/ }),
 
@@ -2873,8 +2873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataSelectorElementComponent", function() { return DataSelectorElementComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
+/* harmony import */ var _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -2891,25 +2890,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 /**
- * This class represents one element in a list or menu of AxisGroups
+ * Represents one element in a list or menu of ResourceCodesForCards
  * that can be added to the main CardContainer.
  */
 var DataSelectorElementComponent = /** @class */ (function () {
     function DataSelectorElementComponent() {
-        // Hold an instance of the app time interval so we can display it in the HTML
+        /**
+         *  Hold an instance of the app time interval so we can display it in the HTML
+         */
         this.appTimeIntervalString = src_constants__WEBPACK_IMPORTED_MODULE_1__["APP_TIMESPAN"].start.toFormat('MM/dd/yyyy') +
             ' and ' + src_constants__WEBPACK_IMPORTED_MODULE_1__["APP_TIMESPAN"].end.toFormat('MM/dd/yyyy');
+        /**
+         * Whether there is data available within the app timespan for this card.
+         */
+        this.dataAvailable = true;
     }
+    DataSelectorElementComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        // We have to wait until after view initialization so that the @Input
+        // element binding happens.
+        this.axisGroup.dataAvailableInAppTimeScope().then(function (available) {
+            _this.dataAvailable = available;
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_3__["AxisGroup"])
-    ], DataSelectorElementComponent.prototype, "resourceCodesForCard", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_2__["DisplayGrouping"])
-    ], DataSelectorElementComponent.prototype, "conceptGroupKey", void 0);
+        __metadata("design:type", _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_2__["AxisGroup"])
+    ], DataSelectorElementComponent.prototype, "axisGroup", void 0);
     DataSelectorElementComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-data-selector-element',
@@ -2942,7 +2950,7 @@ module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"Add card here\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>add_comment</mat-icon>\n      <span>Add Blank Annotation</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>Add Custom Timeline</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>Add Chart</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      Search for a concept\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [resourceCodesForCard]=\"concept\" [conceptGroupKey]=\"concept.displayGrouping\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let resourceCodesForCard of entry[1]\" (click)=\"addConceptCard(resourceCodesForCard.label)\"\n            class=\"conceptSelector\" mat-menu-item>\n            <app-data-selector-element [resourceCodesForCard]=\"resourceCodesForCard\" [conceptGroupKey]=\"entry[0]\"></app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n</mat-menu>"
+module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"Add card here\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>comment</mat-icon>\n      <span>Add Blank Annotation</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>Add Custom Timeline</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>Add Chart</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      Search for a concept\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [axisGroup]=\"concept\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let axisGroup of entry[1]\" (click)=\"addConceptCard(axisGroup.label)\" class=\"conceptSelector\"\n            mat-menu-item>\n            <app-data-selector-element [axisGroup]=\"axisGroup\">\n            </app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n</mat-menu>\n"
 
 /***/ }),
 
