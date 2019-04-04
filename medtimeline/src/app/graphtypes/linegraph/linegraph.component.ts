@@ -7,6 +7,7 @@ import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as d3 from 'd3';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
+import {ABNORMAL} from 'src/app/theme/bch_colors';
 
 import {GraphComponent} from '../graph/graph.component';
 import {RenderedChart} from '../graph/renderedchart';
@@ -92,6 +93,23 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       for (let i = 0; i < 5; i++) {
         this.chartConfiguration.axis.y.tick.values.push(i);
       }
+    }
+
+    if (this.data.yAxisDisplayBounds) {
+      this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
+      this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
+    }
+
+    // If there's just one data series and it has normal bounds, let the colors
+    // get set for abnormal points in the series.
+    if (this.data.series.length === 1 && this.data.series[0].yNormalBounds) {
+      this.chartConfiguration.data.color = (color, d) => {
+        return (d.value !== undefined &&
+                (d.value < this.data.series[0].yNormalBounds[0] ||
+                 d.value > this.data.series[0].yNormalBounds[1])) ?
+            ABNORMAL.toString() :
+            color;
+      };
     }
   }
 
