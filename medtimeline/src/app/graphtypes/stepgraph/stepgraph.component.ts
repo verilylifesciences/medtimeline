@@ -29,14 +29,6 @@ export class StepGraphComponent extends
   }
 
   /**
-   * @override
-   */
-  generateChart() {
-    this.generateBasicChart();
-    this.adjustDataDependent();
-  }
-
-  /**
    * Adjusts the y-axis configuration for the chart.
    */
   prepareForChartConfiguration() {
@@ -66,12 +58,7 @@ export class StepGraphComponent extends
     };
   }
 
-  adjustDataDependent() {
-    // Check if there are any data points in the time range.
-    this.dataPointsInDateRange =
-        this.data.dataPointsInRange(this.xAxis.dateRange);
-    if (this.dataPointsInDateRange) {
-      this.chartConfiguration.grid.y = {show: true};
-    }
+  adjustGeneratedChartConfiguration() {
+    this.chartConfiguration.grid.y = {show: true};
   }
 }

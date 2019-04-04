@@ -65,7 +65,7 @@ export class CustomizableTimelineComponent implements OnChanges {
   renderContainedGraph() {
     if (this.containedGraph) {
       this.inEditMode = false;
-      this.containedGraph.generateFromScratch();
+      this.containedGraph.generateChart();
     }
   }
 

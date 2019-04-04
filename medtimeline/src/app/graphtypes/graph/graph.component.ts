@@ -113,7 +113,7 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The chart can't find the element to bind to until after the view is
   // initialized so we need to regenerate the chart here.
   ngAfterViewInit() {
-    this.generateFromScratch();
+    this.generateChart();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -125,12 +125,32 @@ export abstract class GraphComponent<T extends GraphData> implements
     }
   }
 
-  // If there is not yet a chart or chart configuration, configure and generate
-  // the chart to display.
-  generateFromScratch() {
+
+  /**
+   * When the component gets initialized, it calls this function to make the
+   * c3 chart configuration and render it. As outlined in the function below,
+   * there are several steps along the way (please see individual function-level
+   * comments for more details):
+   *
+   * 1) prepareForChartConfiguration: an overrideable function in which
+   * subclasses can get things ready for the chart configuration to get
+   * generated
+   * 2) generateBasicChart: make the chart configuration and store
+   * it in this class
+   * 3) adjustGeneratedChartConfiguration: make any tweaks to the chart
+   *    configuration
+   * 4) Work with the renderedChart class variable to render
+   * the chart via c3 and do some generic styling of the chart
+   * 5) onRender callback runs for the graph generated.
+   */
+
+  generateChart() {
     if (this.data && this.xAxis) {
+      this.dataPointsInDateRange =
+          this.data.dataPointsInRange(this.xAxis.dateRange);
       this.prepareForChartConfiguration();
-      this.generateChart();
+      this.generateBasicChart();
+      this.adjustGeneratedChartConfiguration();
       this.renderedChart =
           this.renderedConstructor(this.xAxis, this.chartDivId);
       this.renderedChart.generate(
@@ -144,6 +164,21 @@ export abstract class GraphComponent<T extends GraphData> implements
    * colors, etc.
    */
   prepareForChartConfiguration() {}
+
+
+  /**
+   * Takes the generated chart configuration (in this.chartConfiguration) and
+   * tweaks it. Override this function to modify the defaults of the chart
+   * configuration.
+   */
+  adjustGeneratedChartConfiguration() {}
+
+  /**
+   * Called every time the graph is rendered. If subclass graphs want to do
+   * something special upon rendering, they can override this function.
+   */
+  onRendered(graphObject): void {}
+
 
   /**
    * Sets up a generalized c3.ChartConfig for the data passed in. See the
@@ -197,12 +232,6 @@ export abstract class GraphComponent<T extends GraphData> implements
 
     this.chartConfiguration = chartConfiguration;
   }
-
-  /**
-   * Called every time the graph is rendered. If subclass graphs want to do
-   * something special upon rendering, they can override this function.
-   */
-  onRendered(graphObject): void {}
 
   resetChart() {
     this.renderedChart.resetChart();
@@ -275,16 +304,4 @@ export abstract class GraphComponent<T extends GraphData> implements
       };
     }
   }
-
-  /**
-   * Generates the chart specified by the extending class.
-   * @param chartHeight The height of the chart in pixels.
-   */
-  abstract generateChart(chartHeight?: number);
-
-  /**
-   * Adjusts the data-dependent fields of the chart's configuration specified by
-   * the extending class.
-   */
-  abstract adjustDataDependent();
 }
