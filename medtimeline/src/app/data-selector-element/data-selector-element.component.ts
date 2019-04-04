@@ -3,14 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {APP_TIMESPAN} from 'src/constants';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {AxisGroup} from '../graphtypes/axis-group';
 
 /**
- * This class represents one element in a list or menu of AxisGroups
+ * Represents one element in a list or menu of ResourceCodesForCards
  * that can be added to the main CardContainer.
  */
 @Component({
@@ -18,12 +18,28 @@ import {AxisGroup} from '../graphtypes/axis-group';
   templateUrl: './data-selector-element.component.html',
   styleUrls: ['./data-selector-element.component.css']
 })
-export class DataSelectorElementComponent {
-  // The ResourceCodes for the card represented by this DataSelectorElement.
-  @Input() resourceCodesForCard: AxisGroup;
-  // The DisplayGrouping for the card represented by this DataSelectorElement.
-  @Input() conceptGroupKey: DisplayGrouping;
-  // Hold an instance of the app time interval so we can display it in the HTML
+export class DataSelectorElementComponent implements AfterViewInit {
+  /**
+   *  The ResourceCodes for the card represented by this DataSelectorElement.
+   */
+  @Input() axisGroup: AxisGroup;
+
+  /**
+   *  Hold an instance of the app time interval so we can display it in the HTML
+   */
   readonly appTimeIntervalString = APP_TIMESPAN.start.toFormat('MM/dd/yyyy') +
       ' and ' + APP_TIMESPAN.end.toFormat('MM/dd/yyyy');
+
+  /**
+   * Whether there is data available within the app timespan for this card.
+   */
+  dataAvailable: boolean = true;
+
+  ngAfterViewInit() {
+    // We have to wait until after view initialization so that the @Input
+    // element binding happens.
+    this.axisGroup.dataAvailableInAppTimeScope().then(available => {
+      this.dataAvailable = available;
+    });
+  }
 }
