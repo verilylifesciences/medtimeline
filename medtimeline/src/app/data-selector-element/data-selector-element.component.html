@@ -1,11 +1,11 @@
-<div class="configurationCard {{resourceCodesForCard.dataAvailable ? 'enableDragging': 'disableDragging'}}"
-  [style.border-left-color]="resourceCodesForCard.dataAvailable ? conceptGroupKey.fill.hsl().string(): 'rgb(197, 185, 172)'">
+<div class="configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}"
+  [style.border-left-color]="axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'">
   <!-- BOSTON_WARM_GRAY -->
   <mat-list-item>
     <div class="listItem">
       <div style="display:inline-block; vertical-align: middle;">
         <div class="label">
-          {{resourceCodesForCard.label}}
+          {{axisGroup.label}}
         </div>
         <div class="tinytext" *ngIf="!resourceCodesForCard.dataAvailable">
           No data between

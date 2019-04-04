@@ -8,7 +8,7 @@
 <mat-menu #masterMenu="matMenu" [overlapTrigger]="false">
   <ng-template matMenuContent>
     <button mat-menu-item (click)="textbox()">
-      <mat-icon>add_comment</mat-icon>
+      <mat-icon>comment</mat-icon>
       <span>Add Blank Annotation</span>
     </button>
     <button mat-menu-item (click)="customTimeline()">
@@ -38,7 +38,7 @@
           <mat-icon matPrefix>search</mat-icon>
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOption($event)">
             <mat-option *ngFor="let concept of filteredConcepts | async" [value]="concept.label">
-              <app-data-selector-element [resourceCodesForCard]="concept" [conceptGroupKey]="concept.displayGrouping"></app-data-selector-element>
+              <app-data-selector-element [axisGroup]="concept"></app-data-selector-element>
               <mat-divider></mat-divider>
             </mat-option>
           </mat-autocomplete>
@@ -53,9 +53,10 @@
       <mat-divider></mat-divider>
       <mat-menu #subConceptSelectorMenu="matMenu">
         <ng-template matMenuContent>
-          <button *ngFor="let resourceCodesForCard of entry[1]" (click)="addConceptCard(resourceCodesForCard.label)"
-            class="conceptSelector" mat-menu-item>
-            <app-data-selector-element [resourceCodesForCard]="resourceCodesForCard" [conceptGroupKey]="entry[0]"></app-data-selector-element>
+          <button *ngFor="let axisGroup of entry[1]" (click)="addConceptCard(axisGroup.label)" class="conceptSelector"
+            mat-menu-item>
+            <app-data-selector-element [axisGroup]="axisGroup">
+            </app-data-selector-element>
             <mat-divider></mat-divider>
           </button>
         </ng-template>
