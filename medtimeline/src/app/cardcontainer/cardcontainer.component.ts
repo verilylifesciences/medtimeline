@@ -35,8 +35,6 @@ export class CardcontainerComponent {
   // Whether or not to display the debugger.
   useDebugger = environment.useDebugger;
 
-  @ViewChildren(CardComponent) containedCards!: QueryList<CardComponent>;
-
   // The format of each object in the array is an object representing a line
   // drawn on the chart, that has a value, text, and class field. The value
   // field represents the x-position of the line to be drawn, while the class
@@ -276,13 +274,8 @@ export class CardcontainerComponent {
   updateEventLines($event) {
     let times = [];
     if ($event.data) {
-      times = Array.from($event.data.annotations.keys())
-                  .map(x => Number(x))
-                  .sort((a, b) => a - b);
+      times = Array.from($event.data.annotations.keys()).map(x => Number(x));
     }
-    // Remove the first point (with the earliest possible date) that was added
-    // in order to display the x-axis.
-    times.shift();
     const eventlines = times.map(x => {
       return {
         value: x,

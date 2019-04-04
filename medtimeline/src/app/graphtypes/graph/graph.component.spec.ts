@@ -89,19 +89,6 @@ describe('GraphComponent', () => {
         .toEqual(component.yAxisConfig);
   });
 
-  it('regions displayed on y-axis', () => {
-    component.yAxisConfig = {};
-    component.generateBasicChart();
-
-    component.chartConfiguration =
-        component.addYRegionOnChart(component.chartConfiguration, [11, 101]);
-
-    expect(component.chartConfiguration['regions'].length).toEqual(1);
-    expect(component.chartConfiguration['regions'][0]['axis']).toEqual('y');
-    expect(component.chartConfiguration['regions'][0]['start']).toEqual(11);
-    expect(component.chartConfiguration['regions'][0]['end']).toEqual(101);
-  });
-
   it('should add point to data set if data is empty', () => {
     component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
         DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0)));

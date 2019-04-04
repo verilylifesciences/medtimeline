@@ -58,7 +58,7 @@ export class CustomizableGraphComponent extends
       (this.renderedChart as RenderedCustomizableChart).inEditMode =
           changes.inEditMode.currentValue;
     } else {
-      this.generateFromScratch();
+      // this.generateFromScratch();
     }
   }
 

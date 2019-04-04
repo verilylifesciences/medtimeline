@@ -5,7 +5,6 @@
 
 // tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
@@ -13,7 +12,6 @@ import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {LegendInfo} from 'src/app/graphtypes/legend-info';
 
-import {FhirService} from '../../fhir.service';
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
 import * as Colors from '../../theme/bch_colors';
 
@@ -52,6 +50,8 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    */
   @Input() eventlines: Array<{[key: string]: number | string}>;
 
+  xRegions: any[];
+
   /** Propogate remove events up to the card container.  */
   @Output() removeEvent = new EventEmitter();
 
@@ -78,9 +78,6 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    */
   readonly legendToSeries = new Map<LegendInfo, LabeledSeries[]>();
 
-  constructor(
-      private fhirService: FhirService, private sanitizer: DomSanitizer) {}
-
   /**
    * Sets up the class variables that are dependent on the @Input parameter to
    * this component, resourceCodeGroups.
@@ -98,7 +95,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const axisChange = changes['xAxis'];
+    const axisChange = changes.xAxis;
     if (axisChange && axisChange.previousValue !== axisChange.currentValue) {
       this.loadNewData();
     }
@@ -131,8 +128,10 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
             }
           }
 
-          // Set x-regions on each section of the graph.
-          this.setRegions();
+          // Kick off the promise to get all the x-regions. It will update
+          // the class variable and then everything bound to it will update,
+          // too.
+          this.getAllXRegions();
         });
   }
 
@@ -140,7 +139,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    * Gets the label text for this card. If the axes have all matching units,
    * it returns the units; otherwise it returns a blank string.
    */
-  getLabelText(): Promise<string> {
+  private getLabelText(): Promise<string> {
     return Promise
         .all(this.axisGroup.axes.map(
             axis => axis.updateDateRange(this.xAxis.dateRange)))
@@ -162,10 +161,20 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   }
 
   /**
+   * Gets all the X regions for the axes contained in this group.
+   */
+  private getAllXRegions() {
+    return Promise.all(this.axisGroup.axes.map(axis => axis.getXRegions()))
+        .then(nestedXRegions => {
+          this.xRegions = [].concat(...nestedXRegions);
+        });
+  }
+
+  /**
    * If the axes on this card have different units, make sure that each
    * axis displays its units on the y-axis, for clarity.
    */
-  updateAxisLabels() {
+  private updateAxisLabels() {
     for (const axis of this.axisGroup.axes) {
       axis.updateDateRange(this.xAxis.dateRange).then(axisData => {
         if (axisData && axis.label && axisData.series &&
@@ -178,46 +187,6 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
         }
       });
     }
-  }
-
-  /**
-   * Get all the regions for the axes on this card, and plot all the regions on
-   * every axis of the card.
-   */
-  setRegions() {
-    let allRegions = [];
-    const self = this;
-    Promise
-        .all(this.axisGroup.axes.map(
-            axis => axis.updateDateRange(this.xAxis.dateRange)))
-        .then(data => {
-          if (data.length > 1) {
-            for (const dataAxis of data) {
-              if (dataAxis.xRegions) {
-                allRegions = allRegions.concat(dataAxis.xRegions);
-              }
-            }
-          }
-        })
-        .then(x => {
-          return Promise
-              .all(this.axisGroup.axes.map(async function(axis) {
-                return {
-                  data: await axis.updateDateRange(self.xAxis.dateRange),
-                  axis: axis
-                };
-              }))
-              .then(d => {
-                d.forEach(data => {
-                  data.data.xRegions =
-                      allRegions.filter(region => (region.axis === 'x'));
-                  // TODO(b/129284629): handle this post-rendering
-                  data.axis.alreadyResolvedData = data.data;
-                });
-                this.containedGraphs.forEach(
-                    graph => graph.generateFromScratch());
-              });
-        });
   }
 
   /**

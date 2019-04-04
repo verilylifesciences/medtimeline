@@ -59,8 +59,8 @@ export class FhirLaunchComponent implements OnInit {
             this.clientId = FhirConfig.credentials.client_id;
             this.baseURL = FhirConfig.url.baseURL;
             this.redirectURL = FhirConfig.url.redirectURL;
-            this.route.queryParams.subscribe(params => {
-              this.parameters.push(JSON.stringify(params));
+            this.route.queryParams.subscribe(pms => {
+              this.parameters.push(JSON.stringify(pms));
             });
             return;
           }

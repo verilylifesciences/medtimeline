@@ -42,6 +42,11 @@ export abstract class GraphComponent<T extends GraphData> implements
   // The y-axis label to display.
   @Input() axisLabel: string;
 
+  /**
+   * The x regions to mark on this graph.
+   */
+  @Input() xRegions: any[];
+
   // A unique identifier for the element to bind the graph to.
   chartDivId: string;
 
@@ -140,13 +145,16 @@ export abstract class GraphComponent<T extends GraphData> implements
         type: this.chartTypeString,
         colors: this.makeColorMap(),
       },
-      regions: this.data.xRegions,
       axis: {x: this.xAxis.xAxisConfig, y: this.yAxisConfig},
       legend: {show: false},  // There's always a custom legend
       line: {connectNull: false},
       onrendered: function() {
-        self.renderedChart.adjustStyle(self.dataPointsInDateRange);
-        self.onRendered(this);
+        self.renderedChart.addToRenderQueue(() => {
+          self.renderedChart.setXRegions(self.xRegions);
+        });
+        self.renderedChart.addToRenderQueue(() => {
+          self.onRendered(this);
+        });
       },
       padding: {left: this.Y_AXIS_LEFT_PADDING},
       grid: {x: {lines: gridlines}},
@@ -168,18 +176,6 @@ export abstract class GraphComponent<T extends GraphData> implements
 
   focusOnSeries(labeledSeries: LabeledSeries[]) {
     this.renderedChart.focusOnSeries(labeledSeries.map(series => series.label));
-  }
-
-  // If only the data is updated, there is no need to re-configure the chart
-  // configurations that stay constant. Instead, just rework the
-  // ChartConfiguration's data field.
-  updateData() {
-    this.chartConfiguration.data = {
-      columns: this.data.c3DisplayConfiguration.allColumns,
-      xs: this.data.c3DisplayConfiguration.columnMap,
-      type: this.chartTypeString,
-      colors: this.makeColorMap(),
-    };
   }
 
   private makeColorMap() {
@@ -244,40 +240,6 @@ export abstract class GraphComponent<T extends GraphData> implements
         }
       };
     }
-  }
-
-  /**
-   * Adds a shaded region on the chart across all x values, between the two
-   * y values specified by yBounds. Also marks any points falling outside the
-   * normal range as abnormal.
-   * @param basicChart The chart to add the region to
-   * @param yBounds The y-bounds of the region to display
-   */
-  addYRegionOnChart(basicChart: c3.ChartConfiguration, yBounds: [
-    number, number
-  ]): c3.ChartConfiguration {
-    if (!basicChart.axis.y.tick) {
-      basicChart.axis.y['tick'] = {};
-    }
-
-    basicChart.axis.y.tick['values'] = yBounds;
-    if (!basicChart['regions']) {
-      basicChart['regions'] = [];
-    }
-    basicChart['regions'].push({axis: 'y', start: yBounds[0], end: yBounds[1]});
-    // Ensure that points outside of the normal range are colored distinctly to
-    // match abnormal results.
-    // Since a y-region is only added when there is one series on the chart, we
-    // do not have to worry about coloring points from different series with the
-    // same color.
-    if (basicChart.data) {
-      basicChart.data.color = function(color, d) {
-        return (d.value && (d.value < yBounds[0] || d.value > yBounds[1])) ?
-            ABNORMAL.toString() :
-            color;
-      };
-    }
-    return basicChart;
   }
 
   /**

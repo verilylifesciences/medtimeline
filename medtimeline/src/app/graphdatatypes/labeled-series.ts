@@ -92,15 +92,6 @@ export class LabeledSeries {
     }
   }
 
-  hasPointInRange(dateRange: Interval) {
-    for (const x of this.xValues) {
-      if (dateRange.contains(x)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   /**
    * Generates a LabeledSeries from the given ObservationSet.
    * @param observationSet The ObservationSet to chart.
@@ -367,5 +358,14 @@ export class LabeledSeries {
       }
     }
     return coordinates;
+  }
+
+  hasPointInRange(dateRange: Interval) {
+    for (const x of this.xValues) {
+      if (dateRange.contains(x)) {
+        return true;
+      }
+    }
+    return false;
   }
 }

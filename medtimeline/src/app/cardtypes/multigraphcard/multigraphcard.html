@@ -13,19 +13,22 @@
   <div fxFlex *ngIf="axisGroup" fxLayout="column" class="contents-block">
     <div fxFlex *ngFor="let axis of axisGroup.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.alreadyResolvedData" [diameter]="30"></mat-spinner>
-      <div *ngIf="axis.alreadyResolvedData && axis.errorMessage">
+      <div *ngIf="axis.dataResolved() && axis.errorMessage">
         {{axis.errorMessage}}
       </div>
-      <ng-container *ngIf="axis.alreadyResolvedData && !axis.errorMessage" [ngSwitch]="axis.chartType">
+      <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage" [ngSwitch]="axis.chartType">
         <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.alreadyResolvedData" [xAxis]="this.xAxis"
-          [eventlines]="this.eventlines" [axisLabel]="axis.label" [showTicks]="axis.showTicks"></app-linegraph>
+          [eventlines]="this.eventlines" [xRegions]="this.xRegions" [axisLabel]="axis.label"
+          [showTicks]="axis.showTicks"></app-linegraph>
         <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.alreadyResolvedData" [xAxis]="this.xAxis"
-          [eventlines]="this.eventlines" [axisLabel]="axis.label" [showTicks]="axis.showTicks"></app-scatterplot>
+          [eventlines]="this.eventlines" [xRegions]="this.xRegions" [axisLabel]="axis.label"
+          [showTicks]="axis.showTicks"></app-scatterplot>
         <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.alreadyResolvedData"
-          [xAxis]="this.xAxis" [eventlines]="this.eventlines" [axisLabel]="axis.label">
+          [xAxis]="this.xAxis" [eventlines]="this.eventlines" [xRegions]="this.xRegions" [axisLabel]="axis.label">
         </app-stepgraph>
         <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.alreadyResolvedData" [xAxis]="this.xAxis"
-          [eventlines]="this.eventlines" [axisLabel]="axis.label"></app-microbio-graph>
+          [eventlines]="this.eventlines" [xRegions]="this.xRegions" [axisLabel]="axis.label">
+        </app-microbio-graph>
       </ng-container>
     </div>
   </div>
