@@ -35,11 +35,13 @@ export class CardcontainerComponent {
   // Whether or not to display the debugger.
   useDebugger = environment.useDebugger;
 
-  // The format of each object in the array is an object representing a line
-  // drawn on the chart, that has a value, text, and class field. The value
-  // field represents the x-position of the line to be drawn, while the class
-  // represents the class name, and the text represents the text displayed near
-  // the line.
+  /**
+   * The format of each object in the array is an object representing a line
+   * drawn on the chart, that has a value, text, and class field. The value
+   * field represents the x-position of the line to be drawn, while the class
+   * represents the class name, and the text represents the text displayed near
+   * the line.
+   */
   eventlines: Array<{[key: string]: number | string}> = [];
 
   // The concepts that are actually being displayed on the page.

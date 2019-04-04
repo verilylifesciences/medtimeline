@@ -63,7 +63,6 @@ describe('LineGraphData', () => {
         'lbl', new Array(new ObservationSet([obs1, obs2])), loincCodeGroup,
         TestBed.get(DomSanitizer), []);
 
-    console.warn(lgData.tooltipMap);
     expect(lgData.tooltipMap.size).toBe(2);
 
     const seriesColor = lgData.series[0].legendInfo.fill;
