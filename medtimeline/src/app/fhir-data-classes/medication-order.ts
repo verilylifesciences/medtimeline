@@ -54,22 +54,7 @@ export class MedicationOrder extends LabeledClass {
     }
     this.orderId = json.id;
 
-    if (json.medicationCodeableConcept) {
-      if (json.medicationCodeableConcept.coding) {
-        this.rxNormCode =
-            (json.medicationCodeableConcept.coding
-                 .map(
-                     // Map the codes to a boolean that is true only if the
-                     // encoding is an RxNorm encoding, and the RxNorm code
-                     // appears in our RxNormCode list that we care about.
-                     (coding) => (!coding.system ||
-                                  coding.system.indexOf(
-                                      RxNormCode.CODING_STRING) !== -1) &&
-                         RxNormCode.fromCodeString(coding.code))
-                 // Filter out any codes that are not RxNorm codes.
-                 .filter((code) => !!code))[0];
-      }
-    }
+    this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
 
     if (!(this.rxNormCode && this.label)) {
       throw Error(

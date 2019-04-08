@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
+import {FhirResourceType} from 'src/constants';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
@@ -39,22 +40,7 @@ export class MedicationAdministration extends LabeledClass {
                                    json.medicationCodeableConcept ?
                                    json.medicationCodeableConcept.text :
                                    null);
-    if (json.medicationCodeableConcept) {
-      if (json.medicationCodeableConcept.coding) {
-        this.rxNormCode =
-            (json.medicationCodeableConcept.coding
-                 .map(
-                     // Map the codes to a boolean that is true only if the
-                     // encoding is an RxNorm encoding, and the RxNorm code
-                     // appears in our RxNormCode list that we care about.
-                     (coding) => (!coding.system ||
-                                  coding.system.indexOf(
-                                      RxNormCode.CODING_STRING) !== -1) &&
-                         RxNormCode.fromCodeString(coding.code))
-                 // Filter out any codes that are not RxNorm codes.
-                 .filter((code) => !!code))[0];
-      }
-    }
+    this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
 
     // TODO(b/111990521): If there are hours and minutes then we can guarantee
     // timezone is specified, but if not, then the timezone might not be
@@ -68,8 +54,10 @@ export class MedicationAdministration extends LabeledClass {
 
     this.dosage = new Dosage(json);
     this.wasNotGiven = json.wasNotGiven;
-    this.medicationOrderId =
-        json.prescription ? json.prescription.reference : null;
+    this.medicationOrderId = json.prescription && json.prescription.reference ?
+        json.prescription.reference.replace(
+            FhirResourceType.MedicationOrder + '/', '') :
+        null;
 
     if (json.contained && json.contained.length > 0) {
       // We first find the element that lists the "ingredients" of this
@@ -124,17 +112,6 @@ export class MedicationAdministration extends LabeledClass {
             JSON.stringify(json));
       }
     }
-    // TODO(b/b/119673528): Replace checks for LOINC and RxNorm labels.
-    // if (this.rxNormCode) {
-    //   // Check this MedicationOrder label against the RxNorm label.
-    //   // Check the observation label against the LOINC code label.
-    //   if (this.label.toLowerCase() !== this.rxNormCode.label.toLowerCase()) {
-    //     throw Error(
-    //         'The label for this MedicationAdministration\'s RxNorm code' +
-    //         ' doesn\'t match the label in the data. MedicationOrder label: '
-    //         + this.label + ' RxNorm label: ' + this.rxNormCode.label);
-    //   }
-    // }
   }
 }
 

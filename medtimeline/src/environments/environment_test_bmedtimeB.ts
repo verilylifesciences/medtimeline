@@ -11,6 +11,8 @@ export const environment = {
     'BMedTimeB_Obs_labs',
     'BMedTimeB_Obs_vitals',
     'BMedtimeB_MB_data',
+    'BMedTimeB_Med_Admins',
+    'BMedTimeB_Med_Orders',
   ],
   useDebugger: false,
 };

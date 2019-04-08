@@ -27,8 +27,7 @@ describe('DataSelectorElementComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DataSelectorElementComponent);
     component = fixture.componentInstance;
-    component.resourceCodesForCard = new AxisGroup([], 'Label', labResult);
-    component.conceptGroupKey = labResult;
+    component.axisGroup = new AxisGroup([], 'Label', labResult);
     fixture.detectChanges();
   });
 
@@ -37,11 +36,11 @@ describe('DataSelectorElementComponent', () => {
   });
 
   it('should display correct title', () => {
-    expect(component.resourceCodesForCard.label).toEqual('Label');
+    expect(component.axisGroup.label).toEqual('Label');
   });
 
   it('should display No Data available if there is no data', (done: DoneFn) => {
-    component.resourceCodesForCard.dataAvailableInAppTimeScope().then(res => {
+    component.axisGroup.dataAvailableInAppTimeScope().then(res => {
       expect(res).toBeFalsy();
       done();
     });

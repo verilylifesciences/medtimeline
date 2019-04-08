@@ -272,7 +272,6 @@ export class ResourceCodeManager {
 
     // Drug monitoring should be a scatterplot, and the related concepts
     // should be displayed on the same axes.
-
     const vancMonitoring = [
       vancRxNorm,
       new LOINCCodeGroup(
@@ -284,6 +283,7 @@ export class ResourceCodeManager {
               Promise<AnnotatedObservation> => {
                 return vancRxNorm.getResourceSet(dateRange)
                     .then(rxNorms => {
+                      console.warn(rxNorms);
                       // We know that we're only pushing in one RxNorm
                       // so it's safe to grab the first (and only) one in
                       // the list.
@@ -294,7 +294,6 @@ export class ResourceCodeManager {
                           observation, orderSet);
                     });
               })
-
     ];
 
     codeGroups.push(new AxisGroup(
