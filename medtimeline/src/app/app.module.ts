@@ -16,9 +16,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserModule} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule} from '@angular/router';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 import {environment} from '../environments/environment';
 
@@ -104,12 +104,14 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     MatNativeDateModule,
     MatCheckboxModule,
     DragulaModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    DeviceDetectorModule.forRoot(),
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by
-    // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
-    // injected into the service that uses it to allow for easier testing.
+    // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it
+    // can be injected into the service that uses it to allow for easier
+    // testing.
     {provide: SMART_ON_FHIR_CLIENT, useValue: FHIR}, {
       provide: FhirService,
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
