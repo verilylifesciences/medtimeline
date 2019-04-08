@@ -2,7 +2,7 @@
     {
         "entry": [
             {
-                "fullUrl": "https://xxxxxxxx",
+                "fullUrl": "https://xxxxx",
                 "resource": {
                     "class": "inpatient",
                     "hospitalization": {
@@ -264,7 +264,7 @@
                 }
             },
             {
-                "fullUrl": "https://xxxxxxxx",
+                "fullUrl": "https://xxxxx",
                 "resource": {
                     "class": "outpatient",
                     "hospitalization": {
@@ -324,7 +324,7 @@
                 }
             },
             {
-                "fullUrl": "https://xxxxxxxx",
+                "fullUrl": "https://xxxxx",
                 "resource": {
                     "class": "outpatient",
                     "hospitalization": {
@@ -384,7 +384,7 @@
                 }
             },
             {
-                "fullUrl": "https://xxxxxxxx",
+                "fullUrl": "https://xxxxx",
                 "resource": {
                     "class": "outpatient",
                     "hospitalization": {

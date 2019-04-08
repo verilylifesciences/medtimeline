@@ -1,64 +1,63 @@
 {
   "resourceType": "Bundle",
-  "id": "619b6899-8192-4e64-8fd0-5c99f21ddb25",
+  "id": "c7e853a4-9822-4fa0-961f-b0d58d1040fd",
   "type": "searchset",
   "total": 3,
   "link": [
     {
       "relation": "self",
-      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder?patient=26494257&_count=25"
+      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder?patient=26494264&_count=25"
     }
   ],
   "entry": [
     {
-      "fullUrl: ": "https://xxxxx",
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509407",
       "resource": {
         "resourceType": "MedicationOrder",
-        "id": "2661507625",
+        "id": "2661509407",
         "meta": {
-          "versionId": "0",
-          "lastUpdated": "2019-04-05T18:38:49.000Z"
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
         },
         "text": {
           "status": "generated",
-          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 600 mg, IV, Q8hr</p><p><b>Status</b>: Active</p></div>"
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: cefTRIAXone</p><p><b>Dosage Instructions</b>: 2,000 mg, IV, Q24hr</p><p><b>Status</b>: Active</p></div>"
         },
-        "dateWritten": "2019-04-05T14:36:47.000-04:00",
+        "dateWritten": "2019-04-05T15:46:00.000-04:00",
         "status": "active",
         "patient": {
-          "reference": "Patient/26494257",
-          "display": "TEST, BMEDTIMEA"
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
         },
         "prescriber": {
           "reference": "Practitioner/24699304",
           "display": "OIAKWSQ MTMPO, XSHOVU E"
         },
         "encounter": {
-          "reference": "Encounter/80367166"
+          "reference": "Encounter/80367190"
         },
-        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "cefTRIAXone"
         },
         "dosageInstruction": [
           {
-            "text": "600 mg, IV, Q8hr",
+            "text": "2,000 mg, IV, Q24hr",
             "_text": {
               "extension": [
                 {
                   "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
-                  "valueString": "600 Milligram intravenous every 8 hours. Refills: 0."
+                  "valueString": "2,000 Milligram intravenous every 24 hours. Refills: 0."
                 }
               ]
             },
             "timing": {
               "repeat": {
                 "boundsPeriod": {
-                  "start": "2019-02-15T12:00:00.000-05:00"
+                  "start": "2019-02-13T04:00:00.000-05:00"
                 }
               },
               "code": {
-                "text": "Q8hr"
+                "text": "Q24hr"
               }
             },
             "route": {
@@ -73,7 +72,7 @@
               "text": "IV"
             },
             "doseQuantity": {
-              "value": 600,
+              "value": 2000,
               "unit": "mg",
               "system": "http://unitsofmeasure.org",
               "code": "mg"
@@ -82,65 +81,60 @@
         ],
         "dispenseRequest": {
           "validityPeriod": {
-            "start": "2019-04-05T14:36:47.000-04:00"
+            "start": "2019-04-05T15:46:00.000-04:00"
           }
         }
       }
     },
     {
-      "fullUrl: ": "https://xxxxx",
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509403",
       "resource": {
         "resourceType": "MedicationOrder",
-        "id": "2661474541",
+        "id": "2661509403",
         "meta": {
-          "versionId": "2",
-          "lastUpdated": "2019-04-05T18:38:48.000Z"
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
         },
         "text": {
           "status": "generated",
-          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 700 mg, IV, Q8hr</p><p><b>Status</b>: Stopped</p></div>"
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: gentamicin</p><p><b>Dosage Instructions</b>: 330 mg, IV, Q24hr</p><p><b>Status</b>: Active</p></div>"
         },
-        "dateWritten": "2019-02-20T09:47:59.000-05:00",
-        "status": "stopped",
-        "dateEnded": "2019-04-05T14:38:48.000-04:00",
+        "dateWritten": "2019-04-05T15:45:37.000-04:00",
+        "status": "active",
         "patient": {
-          "reference": "Patient/26494257",
-          "display": "TEST, BMEDTIMEA"
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
         },
         "prescriber": {
-          "reference": "Practitioner/6992382",
-          "display": "CHBP MD, MD"
-        },
-        "priorPrescription": {
-          "reference": "MedicationOrder/2661473945"
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
         },
         "encounter": {
-          "reference": "Encounter/80367166"
+          "reference": "Encounter/80367190"
         },
-        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "note": "Order Comment: Peak and trough monitoring recommended",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "gentamicin"
         },
         "dosageInstruction": [
           {
-            "text": "700 mg, IV, Q8hr",
+            "text": "330 mg, IV, Q24hr",
             "_text": {
               "extension": [
                 {
                   "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
-                  "valueString": "700 Milligram intravenous every 8 hours. Refills: 0."
+                  "valueString": "330 Milligram intravenous every 24 hours. Refills: 0."
                 }
               ]
             },
             "timing": {
               "repeat": {
                 "boundsPeriod": {
-                  "start": "2019-02-15T00:00:00.000-05:00",
-                  "end": "2019-04-05T14:38:48.000-04:00"
+                  "start": "2019-02-13T04:00:00.000-05:00"
                 }
               },
               "code": {
-                "text": "Q8hr"
+                "text": "Q24hr"
               }
             },
             "route": {
@@ -155,7 +149,7 @@
               "text": "IV"
             },
             "doseQuantity": {
-              "value": 700,
+              "value": 330,
               "unit": "mg",
               "system": "http://unitsofmeasure.org",
               "code": "mg"
@@ -164,37 +158,36 @@
         ],
         "dispenseRequest": {
           "validityPeriod": {
-            "start": "2019-02-20T09:47:59.000-05:00"
+            "start": "2019-04-05T15:45:37.000-04:00"
           }
         }
       }
     },
     {
-      "fullUrl: ": "https://xxxxx",
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509401",
       "resource": {
         "resourceType": "MedicationOrder",
-        "id": "2661473945",
+        "id": "2661509401",
         "meta": {
-          "versionId": "3",
-          "lastUpdated": "2019-02-20T14:49:27.000Z"
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
         },
         "text": {
           "status": "generated",
-          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 750 mg, IV, Q8hr</p><p><b>Status</b>: Stopped</p></div>"
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 750 mg, IV, Q8hr</p><p><b>Status</b>: Active</p></div>"
         },
-        "dateWritten": "2019-02-19T12:37:13.000-05:00",
-        "status": "stopped",
-        "dateEnded": "2019-02-20T09:48:43.000-05:00",
+        "dateWritten": "2019-04-05T15:45:26.000-04:00",
+        "status": "active",
         "patient": {
-          "reference": "Patient/26494257",
-          "display": "TEST, BMEDTIMEA"
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
         },
         "prescriber": {
           "reference": "Practitioner/24699304",
           "display": "OIAKWSQ MTMPO, XSHOVU E"
         },
         "encounter": {
-          "reference": "Encounter/80367166"
+          "reference": "Encounter/80367190"
         },
         "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
@@ -214,8 +207,7 @@
             "timing": {
               "repeat": {
                 "boundsPeriod": {
-                  "start": "2019-02-13T16:00:00.000-05:00",
-                  "end": "2019-02-20T09:48:43.000-05:00"
+                  "start": "2019-02-13T04:00:00.000-05:00"
                 }
               },
               "code": {
@@ -243,7 +235,7 @@
         ],
         "dispenseRequest": {
           "validityPeriod": {
-            "start": "2019-02-19T12:37:13.000-05:00"
+            "start": "2019-04-05T15:45:26.000-04:00"
           }
         }
       }

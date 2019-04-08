@@ -10,6 +10,8 @@ export const environment = {
     'BMedTimeC_Encounter',
     'BMedTimeC_Obs_vitals',
     'BMedTimeC_Obs_labs',
+    'BMedTimeC_Med_Admins',
+    'BMedTimeC_Med_Orders',
   ],
   useDebugger: false,
 };

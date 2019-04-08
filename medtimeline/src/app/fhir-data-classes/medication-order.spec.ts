@@ -79,6 +79,14 @@ describe('MedicationOrder', () => {
     expect(medicationOrder.label).toEqual('vancomycin');
   });
 
+  it('should get rxnorm code from label if it\'s not encoded', () => {
+    const medicationOrder =
+        new MedicationOrder({medicationCodeableConcept: {text: 'Vancomycin'}});
+    expect(medicationOrder.rxNormCode).toBeDefined();
+    expect(medicationOrder.rxNormCode as ResourceCode)
+        .toBe(RxNormCode.fromCodeString('11124'));
+  });
+
   it('should get dosage instruction from json', () => {
     const medicationOrder = new MedicationOrder({
       medicationReference: {display: 'vancomycin'},

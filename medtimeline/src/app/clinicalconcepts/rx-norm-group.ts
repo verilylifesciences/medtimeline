@@ -126,6 +126,8 @@ export class RxNormCodeGroup extends CachedResourceCodeGroup<RxNormCode> {
                 // specified time window, so we have to search again for all the
                 // MedicationAdministrations present for this order and assign
                 // them to the order.
+                // We assume that an administration will always have a
+                // corresponding order.
                 return order.setMedicationAdministrations(this.fhirService);
               },
               rejection => {
