@@ -6,6 +6,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DeviceDetectorService} from 'ngx-device-detector';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -30,6 +31,8 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly checkedConcepts = new Map<string, boolean>();
   readonly chosenConcepts: Array<AxisGroup> = [];
   readonly useDebugger = environment.useDebugger;
+
+  browserString: string = '';
 
   /**
    * This FormControl monitors changes in the user input typed in the
@@ -68,7 +71,8 @@ export class SetupComponent implements OnInit, OnDestroy {
 
   constructor(
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
-      private router: Router, private setupDataService: SetupDataService) {
+      private router: Router, private setupDataService: SetupDataService,
+      private deviceService: DeviceDetectorService) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
@@ -84,6 +88,11 @@ export class SetupComponent implements OnInit, OnDestroy {
         this.checkedConcepts[concept.label] = true;
       }
     }
+
+    // Put up a warning if the browser is different than we intend.
+    this.deviceService.getDeviceInfo();
+    this.browserString = 'Browser: ' + this.deviceService.browser +
+        ' version: ' + this.deviceService.browser_version;
   }
 
   /**
