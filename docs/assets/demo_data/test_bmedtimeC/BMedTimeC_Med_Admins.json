@@ -1,0 +1,1722 @@
+{
+  "resourceType": "Bundle",
+  "id": "35ca5a3c-9324-4dea-952d-6fd05b926b78",
+  "type": "searchset",
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration?patient=26494264"
+    },
+    {
+      "relation": "next",
+      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration?patient=26494264&-pageContext=H4sIAAAAAAAAAKtWKkhMT1WyUvJzjQhR0gHyilLzSnxTUxxTcjPznEtL8tPSgLKlRXlWyalFealFVrmZKVbJGYlFJXqpZUClVklmJuZ6yRk5KfG5iXoQNYnFBXrJ-blWJuaWpoZGxhZmpkCTU_NSXEpCcmFGGpqaGhiYWJgYgEAtAFWe-wOHAAAA&-pageDirection=NEXT"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123953",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123953",
+        "meta": {
+          "versionId": "4795123954",
+          "lastUpdated": "2019-04-05T20:02:44.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 18, 2019  5:00 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-18T17:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123885",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123885",
+        "meta": {
+          "versionId": "4795123886",
+          "lastUpdated": "2019-04-05T19:53:24.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 18, 2019  9:21 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-18T09:21:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123861",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123861",
+        "meta": {
+          "versionId": "4795123862",
+          "lastUpdated": "2019-04-05T19:50:18.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 18, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-18T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123949",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123949",
+        "meta": {
+          "versionId": "4795123950",
+          "lastUpdated": "2019-04-05T20:02:27.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 18, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-18T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123945",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123945",
+        "meta": {
+          "versionId": "4795123946",
+          "lastUpdated": "2019-04-05T20:02:08.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 18, 2019  1:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-18T01:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123941",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123941",
+        "meta": {
+          "versionId": "4795123942",
+          "lastUpdated": "2019-04-05T20:01:45.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 17, 2019  5:00 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-17T17:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123857",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123857",
+        "meta": {
+          "versionId": "4795123858",
+          "lastUpdated": "2019-04-05T19:50:04.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 17, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-17T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123881",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123881",
+        "meta": {
+          "versionId": "4795123882",
+          "lastUpdated": "2019-04-05T19:53:02.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 17, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-17T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123937",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123937",
+        "meta": {
+          "versionId": "4795123938",
+          "lastUpdated": "2019-04-05T20:01:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 17, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-17T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123933",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123933",
+        "meta": {
+          "versionId": "4795123934",
+          "lastUpdated": "2019-04-05T20:01:09.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 17, 2019  1:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-17T01:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123929",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123929",
+        "meta": {
+          "versionId": "4795123930",
+          "lastUpdated": "2019-04-05T20:00:36.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 16, 2019  5:03 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-16T17:03:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123853",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123853",
+        "meta": {
+          "versionId": "4795123854",
+          "lastUpdated": "2019-04-05T19:49:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 16, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-16T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123877",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123877",
+        "meta": {
+          "versionId": "4795123878",
+          "lastUpdated": "2019-04-05T19:52:45.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 16, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-16T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123925",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123925",
+        "meta": {
+          "versionId": "4795123926",
+          "lastUpdated": "2019-04-05T20:00:22.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 16, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-16T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123921",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123921",
+        "meta": {
+          "versionId": "4795123922",
+          "lastUpdated": "2019-04-05T20:00:07.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 16, 2019  1:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-16T01:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123917",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123917",
+        "meta": {
+          "versionId": "4795123918",
+          "lastUpdated": "2019-04-05T19:59:41.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 15, 2019  5:00 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-15T17:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123913",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123913",
+        "meta": {
+          "versionId": "4795123914",
+          "lastUpdated": "2019-04-05T19:59:24.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 15, 2019  9:05 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-15T09:05:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123849",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123849",
+        "meta": {
+          "versionId": "4795123850",
+          "lastUpdated": "2019-04-05T19:49:32.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 15, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-15T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123873",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123873",
+        "meta": {
+          "versionId": "4795123874",
+          "lastUpdated": "2019-04-05T19:51:42.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 15, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-15T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123909",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123909",
+        "meta": {
+          "versionId": "4795123910",
+          "lastUpdated": "2019-04-05T19:58:35.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 15, 2019  1:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-15T01:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123905",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123905",
+        "meta": {
+          "versionId": "4795123906",
+          "lastUpdated": "2019-04-05T19:58:03.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 14, 2019  4:23 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-14T16:23:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123845",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123845",
+        "meta": {
+          "versionId": "4795123846",
+          "lastUpdated": "2019-04-05T19:49:14.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 14, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-14T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123869",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123869",
+        "meta": {
+          "versionId": "4795123870",
+          "lastUpdated": "2019-04-05T19:51:24.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 14, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-14T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123901",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123901",
+        "meta": {
+          "versionId": "4795123902",
+          "lastUpdated": "2019-04-05T19:57:46.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 14, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-14T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123897",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123897",
+        "meta": {
+          "versionId": "4795123898",
+          "lastUpdated": "2019-04-05T19:54:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 14, 2019  1:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-14T01:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123893",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123893",
+        "meta": {
+          "versionId": "4795123894",
+          "lastUpdated": "2019-04-05T19:54:20.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 13, 2019  5:00 P.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-13T17:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123889",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123889",
+        "meta": {
+          "versionId": "4795123890",
+          "lastUpdated": "2019-04-05T19:53:48.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 750 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 13, 2019  9:05 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509401"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-13T09:05:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "note": "Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "dosage": {
+          "text": "750 mg IV Q8hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 750,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123841",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123841",
+        "meta": {
+          "versionId": "4795123842",
+          "lastUpdated": "2019-04-05T19:48:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: cefTRIAXone</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 2000 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 13, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509407"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-13T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosage": {
+          "text": "2000 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 2000,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationAdministration/4795123865",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "4795123865",
+        "meta": {
+          "versionId": "4795123866",
+          "lastUpdated": "2019-04-05T19:50:58.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Display</b>: gentamicin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 330 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Feb 13, 2019  9:00 A.M. UTC</p></div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "practitioner": {
+          "reference": "Practitioner/13320825",
+          "display": "EOC , aqkq"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/2661509403"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2019-02-13T09:00:00.000Z",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "note": "Peak and trough monitoring recommended",
+        "dosage": {
+          "text": "330 mg IV Q24hr",
+          "siteCodeableConcept": {
+            "text": "PICC"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 330,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    }
+  ]
+}

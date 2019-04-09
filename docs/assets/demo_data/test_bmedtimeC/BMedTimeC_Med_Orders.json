@@ -1,0 +1,244 @@
+{
+  "resourceType": "Bundle",
+  "id": "c7e853a4-9822-4fa0-961f-b0d58d1040fd",
+  "type": "searchset",
+  "total": 3,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder?patient=26494264&_count=25"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509407",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661509407",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: cefTRIAXone</p><p><b>Dosage Instructions</b>: 2,000 mg, IV, Q24hr</p><p><b>Status</b>: Active</p></div>"
+        },
+        "dateWritten": "2019-04-05T15:46:00.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "prescriber": {
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "medicationCodeableConcept": {
+          "text": "cefTRIAXone"
+        },
+        "dosageInstruction": [
+          {
+            "text": "2,000 mg, IV, Q24hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "2,000 Milligram intravenous every 24 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-13T04:00:00.000-05:00"
+                }
+              },
+              "code": {
+                "text": "Q24hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 2000,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-04-05T15:46:00.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509403",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661509403",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: gentamicin</p><p><b>Dosage Instructions</b>: 330 mg, IV, Q24hr</p><p><b>Status</b>: Active</p></div>"
+        },
+        "dateWritten": "2019-04-05T15:45:37.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "prescriber": {
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "note": "Order Comment: Peak and trough monitoring recommended",
+        "medicationCodeableConcept": {
+          "text": "gentamicin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "330 mg, IV, Q24hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "330 Milligram intravenous every 24 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-13T04:00:00.000-05:00"
+                }
+              },
+              "code": {
+                "text": "Q24hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 330,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-04-05T15:45:37.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder/2661509401",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661509401",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2019-04-05T19:47:42.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEC</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 750 mg, IV, Q8hr</p><p><b>Status</b>: Active</p></div>"
+        },
+        "dateWritten": "2019-04-05T15:45:26.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/26494264",
+          "display": "TEST, BMEDTIMEC"
+        },
+        "prescriber": {
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
+        },
+        "encounter": {
+          "reference": "Encounter/80367190"
+        },
+        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "750 mg, IV, Q8hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "750 Milligram intravenous every 8 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-13T04:00:00.000-05:00"
+                }
+              },
+              "code": {
+                "text": "Q8hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 750,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-04-05T15:45:26.000-04:00"
+          }
+        }
+      }
+    }
+  ]
+}

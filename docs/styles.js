@@ -614,19 +614,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!************************************************************************************************!*\
   !*** multi ./src/styles.scss ./node_modules/c3/c3.css ./node_modules/dragula/dist/dragula.css ***!
   \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/src/styles.scss */"./src/styles.scss");
-__webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/node_modules/c3/c3.css */"./node_modules/c3/c3.css");
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/node_modules/dragula/dist/dragula.css */"./node_modules/dragula/dist/dragula.css");
+__webpack_require__(/*! /usr/local/google/home/laurendukes/data/bch/medtimeline/src/styles.scss */"./src/styles.scss");
+__webpack_require__(/*! /usr/local/google/home/laurendukes/data/bch/medtimeline/node_modules/c3/c3.css */"./node_modules/c3/c3.css");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/data/bch/medtimeline/node_modules/dragula/dist/dragula.css */"./node_modules/dragula/dist/dragula.css");
 
 
 /***/ })
 
-},[[2,"runtime"]]]);
+},[[3,"runtime"]]]);
 //# sourceMappingURL=styles.js.map
