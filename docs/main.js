@@ -442,35 +442,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var ng2_dragula__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ng2-dragula */ "./node_modules/ng2-dragula/dist/fesm5/ng2-dragula.js");
 /* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
-/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
-/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
-/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
-/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
-/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
-/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
-/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
-/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
+/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
+/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
+/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
+/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
+/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
+/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
+/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
+/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -487,6 +489,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // tslint:disable-next-line:max-line-length
+
 
 
 
@@ -531,28 +534,28 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
-                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_29__["FhirLaunchComponent"],
-                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_16__["CardcontainerComponent"],
-                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_21__["TextboxcardComponent"],
-                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_32__["LineGraphComponent"],
-                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_34__["ScatterplotComponent"],
-                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_35__["StepGraphComponent"],
-                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_20__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_40__["TimelineControllerComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_19__["CustomizableTimelineComponent"],
-                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_31__["CustomizableGraphComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_18__["CustomizableTimelineDialogComponent"],
-                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_33__["MicrobioGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_41__["TimelineToolbarComponent"],
-                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_24__["DataSelectorElementComponent"],
-                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_25__["DataSelectorMenuComponent"],
-                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_36__["HelpDialogComponent"],
-                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_17__["CardComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_27__["DeleteDialogComponent"],
-                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_26__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_38__["SetupComponent"],
-                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_23__["ConfirmSaveComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
+                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_30__["FhirLaunchComponent"],
+                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_17__["CardcontainerComponent"],
+                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_22__["TextboxcardComponent"],
+                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_33__["LineGraphComponent"],
+                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_35__["ScatterplotComponent"],
+                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_36__["StepGraphComponent"],
+                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_21__["MultiGraphCardComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_41__["TimelineControllerComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineComponent"],
+                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_32__["CustomizableGraphComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__["CustomizableTimelineDialogComponent"],
+                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_34__["MicrobioGraphComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_42__["TimelineToolbarComponent"],
+                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_25__["DataSelectorElementComponent"],
+                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_26__["DataSelectorMenuComponent"],
+                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__["HelpDialogComponent"],
+                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_18__["CardComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__["DeleteDialogComponent"],
+                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_27__["DebuggerComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_39__["SetupComponent"],
+                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__["ConfirmSaveComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -581,22 +584,24 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_11__["DragulaModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
+                ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__["DeviceDetectorModule"].forRoot(),
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
-                // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
-                // injected into the service that uses it to allow for easier testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_39__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
-                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_30__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_13__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_37__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_28__["FhirHttpService"]
+                // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it
+                // can be injected into the service that uses it to allow for easier
+                // testing.
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_40__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_31__["FhirService"],
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_29__["FhirHttpService"]
                 },
-                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_22__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_22__["ResourceCodeManager"] }
+                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__["ResourceCodeManager"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_18__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_36__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_27__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_23__["ConfirmSaveComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__["HelpDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__["ConfirmSaveComponent"]
             ]
         })
     ], AppModule);
@@ -2316,6 +2321,7 @@ var ResourceCodeManager = /** @class */ (function () {
             false, function (observation, dateRange) {
                 return vancRxNorm.getResourceSet(dateRange)
                     .then(function (rxNorms) {
+                    console.warn(rxNorms);
                     // We know that we're only pushing in one RxNorm
                     // so it's safe to grab the first (and only) one in
                     // the list.
@@ -2611,6 +2617,8 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
                 // specified time window, so we have to search again for all the
                 // MedicationAdministrations present for this order and assign
                 // them to the order.
+                // We assume that an administration will always have a
+                // corresponding order.
                 return order.setMedicationAdministrations(_this.fhirService);
             }, function (rejection) {
                 // If there are any errors constructing MedicationOrders for
@@ -3718,7 +3726,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedAdministration", function() { return AnnotatedAdministration; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 /* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
 /* harmony import */ var _dosage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dosage */ "./src/app/fhir-data-classes/dosage.ts");
@@ -3768,21 +3776,7 @@ var MedicationAdministration = /** @class */ (function (_super) {
         _this.json = json;
         _this.MED_RESOURCE_TYPE = 'Medication';
         _this.containedMedications = [];
-        if (json.medicationCodeableConcept) {
-            if (json.medicationCodeableConcept.coding) {
-                _this.rxNormCode =
-                    (json.medicationCodeableConcept.coding
-                        .map(
-                    // Map the codes to a boolean that is true only if the
-                    // encoding is an RxNorm encoding, and the RxNorm code
-                    // appears in our RxNormCode list that we care about.
-                    function (coding) { return (!coding.system ||
-                        coding.system.indexOf(_clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_1__["RxNormCode"].CODING_STRING) !== -1) &&
-                        _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_1__["RxNormCode"].fromCodeString(coding.code); })
-                        // Filter out any codes that are not RxNorm codes.
-                        .filter(function (code) { return !!code; }))[0];
-            }
-        }
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["LabeledClass"].extractMedicationEncoding(json);
         // TODO(b/111990521): If there are hours and minutes then we can guarantee
         // timezone is specified, but if not, then the timezone might not be
         // specified! I'm not sure how to best handle that.
@@ -3794,8 +3788,9 @@ var MedicationAdministration = /** @class */ (function (_super) {
                 null);
         _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_4__["Dosage"](json);
         _this.wasNotGiven = json.wasNotGiven;
-        _this.medicationOrderId =
-            json.prescription ? json.prescription.reference : null;
+        _this.medicationOrderId = json.prescription && json.prescription.reference ?
+            json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
+            null;
         if (json.contained && json.contained.length > 0) {
             // We first find the element that lists the "ingredients" of this
             // MedicationAdministration with each corresponding dosage and reference
@@ -3846,17 +3841,6 @@ var MedicationAdministration = /** @class */ (function (_super) {
             }
         }
         return _this;
-        // TODO(b/b/119673528): Replace checks for LOINC and RxNorm labels.
-        // if (this.rxNormCode) {
-        //   // Check this MedicationOrder label against the RxNorm label.
-        //   // Check the observation label against the LOINC code label.
-        //   if (this.label.toLowerCase() !== this.rxNormCode.label.toLowerCase()) {
-        //     throw Error(
-        //         'The label for this MedicationAdministration\'s RxNorm code' +
-        //         ' doesn\'t match the label in the data. MedicationOrder label: '
-        //         + this.label + ' RxNorm label: ' + this.rxNormCode.label);
-        //   }
-        // }
     }
     return MedicationAdministration;
 }(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["LabeledClass"]));
@@ -3927,10 +3911,9 @@ var AnnotatedAdministration = /** @class */ (function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrder", function() { return MedicationOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderSet", function() { return MedicationOrderSet; });
-/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
-/* harmony import */ var _medication_administration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
+/* harmony import */ var _medication_administration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3948,10 +3931,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-// Disable this check because it's for IE 11 compatibility and we're not worried
-// about that in our testing code.
-/* tslint:disable:object-literal-shorthand*/
-
 
 
 
@@ -3990,21 +3969,7 @@ var MedicationOrder = /** @class */ (function (_super) {
             _this.dosageInstruction = json.dosageInstruction[0].text;
         }
         _this.orderId = json.id;
-        if (json.medicationCodeableConcept) {
-            if (json.medicationCodeableConcept.coding) {
-                _this.rxNormCode =
-                    (json.medicationCodeableConcept.coding
-                        .map(
-                    // Map the codes to a boolean that is true only if the
-                    // encoding is an RxNorm encoding, and the RxNorm code
-                    // appears in our RxNormCode list that we care about.
-                    function (coding) { return (!coding.system ||
-                        coding.system.indexOf(_clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RxNormCode"].CODING_STRING) !== -1) &&
-                        _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RxNormCode"].fromCodeString(coding.code); })
-                        // Filter out any codes that are not RxNorm codes.
-                        .filter(function (code) { return !!code; }))[0];
-            }
-        }
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["LabeledClass"].extractMedicationEncoding(json);
         if (!(_this.rxNormCode && _this.label)) {
             throw Error('JSON must include RxNormCode and a label' +
                 ' to be included as a MedicationOrder. JSON: ' +
@@ -4042,11 +4007,11 @@ var MedicationOrder = /** @class */ (function (_super) {
                 // add 1 to the day count and the index for the dose.
                 var dayCount = admin.timestamp.diff(_this.firstAdministration.timestamp)
                     .as('day') + 1;
-                var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["AnnotatedAdministration"](admin, i + 1 /* dose in order starts at 1 */, dayCount, i > 0 ? admins[i - 1] : undefined);
+                var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_2__["AnnotatedAdministration"](admin, i + 1 /* dose in order starts at 1 */, dayCount, i > 0 ? admins[i - 1] : undefined);
                 admins.push(annotated);
             }
             _this.administrationsForOrder =
-                new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["MedicationAdministrationSet"](admins);
+                new _medication_administration__WEBPACK_IMPORTED_MODULE_2__["MedicationAdministrationSet"](admins);
             return _this;
         }, function (rejection) {
             // Throw an error if the construction of the
@@ -4055,7 +4020,7 @@ var MedicationOrder = /** @class */ (function (_super) {
         });
     };
     return MedicationOrder;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["LabeledClass"]));
 
 /**
  * A set of MedicationOrders that belong together as part of the same
@@ -4102,12 +4067,12 @@ var MedicationOrderSet = /** @class */ (function (_super) {
             if (units.size > 1) {
                 throw Error('Different units in the order set: ' + Array.from(units.values()));
             }
-            _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_2__["fixUnitAbbreviations"])(Array.from(units.values())[0]);
+            _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_1__["fixUnitAbbreviations"])(Array.from(units.values())[0]);
         }
         return _this;
     }
     return MedicationOrderSet;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["FhirResourceSet"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["FhirResourceSet"]));
 
 /* tslint:enable:object-literal-shorthand*/
 
@@ -5137,6 +5102,8 @@ var FhirLaunchComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabeledClass", function() { return LabeledClass; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceSet", function() { return FhirResourceSet; });
+/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5148,6 +5115,41 @@ var LabeledClass = /** @class */ (function () {
     function LabeledClass(label) {
         this.label = label;
     }
+    /**
+     * Parses the passed-in JSON and gets out a RxNormCode.
+     *
+     * This function prefers to directly get the RxNorm code from the resource's
+     * encoding. If it can't get that, it will get the prescription's label,
+     * then try to map it back to a RxNorm code. If it can't find a suitable
+     * RxNorm code, it will pass back an undefined object.
+     */
+    LabeledClass.extractMedicationEncoding = function (json) {
+        var rxNormCode;
+        if (json.medicationCodeableConcept) {
+            if (json.medicationCodeableConcept.coding) {
+                rxNormCode =
+                    (json.medicationCodeableConcept.coding
+                        .map(
+                    // Map the codes to a boolean that is true only if the
+                    // encoding is an RxNorm encoding, and the RxNorm code
+                    // appears in our RxNormCode list that we care about.
+                    function (coding) { return (!coding.system ||
+                        coding.system.indexOf(_clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RxNormCode"].CODING_STRING) !== -1) &&
+                        _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RxNormCode"].fromCodeString(coding.code); })
+                        // Filter out any codes that are not RxNorm codes.
+                        .filter(function (code) { return !!code; }))[0];
+            }
+            else if (json.medicationCodeableConcept.text) {
+                // MedicationAdministrations do not come out of the BCH system with a
+                // RxNorm code on at this point, so if we don't get a RxNorm code,
+                // as a stopgap we reverse lookup based on the string name.
+                var rxNormString_1 = json.medicationCodeableConcept.text;
+                var codesWithName = _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RXNORM_CODES"].filter(function (x) { return x.label.toLowerCase() === rxNormString_1.toLowerCase(); });
+                rxNormCode = codesWithName.length === 1 ? codesWithName[0] : undefined;
+            }
+        }
+        return rxNormCode;
+    };
     return LabeledClass;
 }());
 
@@ -9198,11 +9200,13 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
         var _this = this;
-        return this.allDataPromise.then(function (x) { return _this.medicationAdministrationMapByCode.has(code) ?
-            _this.medicationAdministrationMapByCode.get(code)
-                .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .slice(0, limitCount ? limitCount : undefined) :
-            []; });
+        return this.allDataPromise.then(function (x) {
+            return _this.medicationAdministrationMapByCode.has(code) ?
+                _this.medicationAdministrationMapByCode.get(code)
+                    .filter(function (obs) { return dateRange.contains(obs.timestamp); })
+                    .slice(0, limitCount ? limitCount : undefined) :
+                [];
+        });
     };
     /**
      * Returns arbitrary orders for current mock medications.
@@ -9338,7 +9342,7 @@ module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  <div class=\"checkboxActions\">\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\">\n          {{element.label}}\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  {{browserString}}\n  <div class=\"checkboxActions\">\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\">\n          {{element.label}}\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9355,10 +9359,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9379,20 +9385,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 /**
  * This class contains the intial configuration options for the MedTimeLine.
  * Users can choose which concepts to display, or pick the default
  * configuration.
  */
 var SetupComponent = /** @class */ (function () {
-    function SetupComponent(resourceCodeManager, route, router, setupDataService) {
+    function SetupComponent(resourceCodeManager, route, router, setupDataService, deviceService) {
         this.route = route;
         this.router = router;
         this.setupDataService = setupDataService;
+        this.deviceService = deviceService;
         this.allConcepts = [];
         this.checkedConcepts = new Map();
         this.chosenConcepts = [];
-        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].useDebugger;
+        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].useDebugger;
+        this.browserString = '';
         /**
          * This FormControl monitors changes in the user input typed in the
          * autocomplete.
@@ -9415,12 +9424,16 @@ var SetupComponent = /** @class */ (function () {
                 this.checkedConcepts[concept.label] = true;
             }
         }
+        // Put up a warning if the browser is different than we intend.
+        this.deviceService.getDeviceInfo();
+        this.browserString = 'Browser: ' + this.deviceService.browser +
+            ' version: ' + this.deviceService.browser_version;
     }
     SetupComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Watch for changes to the user input on the autocomplete panel.
-        this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), // The autocomplete input starts with nothing typed in.
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (concept) { return concept ? _this.filter(concept) :
+        this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), // The autocomplete input starts with nothing typed in.
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (concept) { return concept ? _this.filter(concept) :
             _this.displayGroupings.slice(); }));
     };
     SetupComponent.prototype.ngOnDestroy = function () {
@@ -9475,8 +9488,9 @@ var SetupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./setup.component.html */ "./src/app/setup/setup.component.html"),
             styles: [__webpack_require__(/*! ./setup.component.css */ "./src/app/setup/setup.component.css")]
         }),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_6__["SetupDataService"]])
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_7__["SetupDataService"],
+            ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__["DeviceDetectorService"]])
     ], SetupComponent);
     return SetupComponent;
 }());
@@ -10025,7 +10039,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/data/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })

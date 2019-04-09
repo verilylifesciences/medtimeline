@@ -14,7 +14,7 @@
   ],
   "entry": [
     {
-      "fullUrl": "http://XXXXXXX",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795107183",
@@ -84,7 +84,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795106415",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795106415",
@@ -154,7 +154,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795106412",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795106412",
@@ -221,7 +221,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795106243",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795106243",
@@ -291,7 +291,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795105987",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795105987",
@@ -358,7 +358,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795105974",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795105974",
@@ -425,7 +425,7 @@
       }
     },
     {
-      "fullUrl": "XXXXXXX/4795105971",
+      "fullUrl": "https://xxxxx",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "4795105971",
