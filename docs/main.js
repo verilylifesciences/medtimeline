@@ -583,6 +583,7 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonToggleModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_11__["DragulaModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
                 ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__["DeviceDetectorModule"].forRoot(),
@@ -630,7 +631,7 @@ module.exports = ".cardContainer {\n  background-color: #002356; /* PRIMARY_COLO
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\"></app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\" [xAxis]=\"xAxis\"\n        [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [xAxis]=\"xAxis\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedEncounter]=\"this.setupDataService.selectedEncounter\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\" [xAxis]=\"xAxis\"\n        [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [xAxis]=\"xAxis\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2148,6 +2149,12 @@ var ResourceCodeGroup = /** @class */ (function () {
         // resource group. The default is 0, to minimize errors caused by unnecessary
         // trailing zeros.
         this.precision = 0;
+        /**
+         * When we've decided whether this resource code group has data available
+         * in the app, it doesn't change over the course of the app lifetime, so we
+         * cache it.
+         */
+        this.resolvedDataAvailableInAppTimeScope = undefined;
         this.showByDefault = this.resourceCodes.some(function (code) { return code.showByDefault; });
     }
     /**
@@ -2156,9 +2163,16 @@ var ResourceCodeGroup = /** @class */ (function () {
      */
     ResourceCodeGroup.prototype.dataAvailableInAppTimeScope = function () {
         var _this = this;
+        if (this.resolvedDataAvailableInAppTimeScope !== undefined) {
+            return Promise.resolve(this.resolvedDataAvailableInAppTimeScope);
+        }
         return Promise
             .all(this.resourceCodes.map(function (rc) { return rc.dataAvailableInAppTimeScope(_this.fhirService); }))
-            .then(function (bools) { return bools.reduce(function (result, next) { return result = result || next; }); });
+            .then(function (bools) {
+            _this.resolvedDataAvailableInAppTimeScope =
+                bools.reduce(function (result, next) { return result = result || next; });
+            return _this.resolvedDataAvailableInAppTimeScope;
+        });
     };
     return ResourceCodeGroup;
 }());
@@ -6457,6 +6471,9 @@ __webpack_require__.r(__webpack_exports__);
  * there is data available for the AxisGroup within the time span of the
  * application. When the promise returns, its result is stored in the
  * dataAvailable class variable.
+ *
+ * None of the information in AxisGroup changes over the application's
+ * lifecycle.
  */
 var AxisGroup = /** @class */ (function () {
     /**
@@ -6484,6 +6501,13 @@ var AxisGroup = /** @class */ (function () {
         this.axes = axes;
         this.label = label;
         this.displayGroup = displayGroup;
+        /**
+         * Whether there is data available in the app timescope for this axis group.
+         * Marked as public because Angular templates need to get to it, and marked
+         * as mutable since it's changed by a promise result, but its value is only
+         * set once.
+         */
+        this.dataAvailable = undefined;
         if (!label) {
             var labelSet = new Set(axes.map(function (axis) { return axis.label; }));
             if (labelSet.size !== 1) {
@@ -6509,6 +6533,9 @@ var AxisGroup = /** @class */ (function () {
      */
     AxisGroup.prototype.dataAvailableInAppTimeScope = function () {
         var _this = this;
+        if (this.dataAvailable !== undefined) {
+            return Promise.resolve(this.dataAvailable);
+        }
         return Promise
             .all(this.axes.map(function (axis) { return axis.dataAvailableInAppTimeScope(); }))
             .then(function (rsc) {
@@ -9312,10 +9339,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
  * configuration page (SetupComponent) to CardContainerComponent.
  */
 var SetupDataService = /** @class */ (function () {
+    // This class is a service that communicates the user-selected concepts on the
+    // configuration page (SetupComponent) to CardContainerComponent.
     function SetupDataService() {
     }
     SetupDataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' })
+        // This class is a service that communicates the user-selected concepts on the
+        // configuration page (SetupComponent) to CardContainerComponent.
     ], SetupDataService);
     return SetupDataService;
 }());
@@ -9331,7 +9362,7 @@ var SetupDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-stroked-button {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-raised-button {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\nbutton {\n  margin-right: 10px;\n}\n\n.description {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-dialog-title {\n  margin-bottom: 0px;\n}\n\n.category {\n  font-family: 'Quicksand', sans-serif;\n  margin-top: 10px;\n}\n\nmat-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n  background-color:#002356; /* PRIMARY_COLOR */\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.mat-toolbar {\n  background-color: #00002d; /* PRIMARY_COLOR, dark variant */\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n.noResults {\n  font-family: \"Roboto\", sans-serif;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n}"
+module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-stroked-button {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-raised-button {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\nbutton {\n  margin-right: 10px;\n}\n\n.description {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-dialog-title {\n  margin-bottom: 0px;\n}\n\n.category {\n  font-family: 'Quicksand', sans-serif;\n  margin-top: 10px;\n}\n\nmat-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n  background-color:#002356; /* PRIMARY_COLOR */\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.mat-toolbar {\n  background-color: #00002d; /* PRIMARY_COLOR, dark variant */\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n.noResults {\n  font-family: \"Roboto\", sans-serif;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n}\n"
 
 /***/ }),
 
@@ -9342,7 +9373,7 @@ module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  {{browserString}}\n  <div class=\"checkboxActions\">\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\">\n          {{element.label}}\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  {{browserString}}\n  <div>\n    <h1 class=\"title\">Which date range would you like to see first?</h1>\n    <mat-radio-group aria-label=\"Choose one of the following date ranges to begin with.\">\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} (hospital visit)\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button value=\"undefined\" [checked]=\"true\">\n          Last seven days\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n\n  <div class=\"checkboxActions\">\n    <h1 class=\"title\">Which timelines would you like to see first?</h1>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"!codeGroupAvailable.get(element.label)\">\n          {{element.label}} <span class=\"grayout\" *ngIf=\"!codeGroupAvailable.get(element.label)\">(No data\n            available in the past 6 months)</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9358,13 +9389,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetupComponent", function() { return SetupComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
-/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm5/radio.es5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9386,36 +9422,63 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 /**
- * This class contains the intial configuration options for the MedTimeLine.
+ * Contains the intial configuration options for the MedTimeLine.
  * Users can choose which concepts to display, or pick the default
  * configuration.
  */
 var SetupComponent = /** @class */ (function () {
-    function SetupComponent(resourceCodeManager, route, router, setupDataService, deviceService) {
+    function SetupComponent(resourceCodeManager, route, router, setupDataService, fhirService, deviceService) {
         this.route = route;
         this.router = router;
         this.setupDataService = setupDataService;
+        this.fhirService = fhirService;
         this.deviceService = deviceService;
-        this.allConcepts = [];
+        this.allConcepts = new Array();
         this.checkedConcepts = new Map();
-        this.chosenConcepts = [];
-        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].useDebugger;
-        this.browserString = '';
+        this.chosenConcepts = new Array();
+        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].useDebugger;
         /**
          * This FormControl monitors changes in the user input typed in the
          * autocomplete.
          */
         this.conceptCtrl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
+        /**
+         * Holds whether there's any data available for each resource code group.
+         */
+        this.codeGroupAvailable = new Map();
+        /** A string that displays the browser. Used for debugging; to be removed. */
+        this.browserString = '';
         this.sortResources = (function (a, b) {
             return a.label.localeCompare(b.label);
         });
+        // Set up jut a couple things so we don't have to hold on to them as
+        // unnecessary class variables.
         var displayGroups = resourceCodeManager.getDisplayGroupMapping();
         /* Load in the concepts to display, flattening them all into a
          * single-depth array. */
         this.allConcepts = Array.from(displayGroups.values())
             .reduce(function (acc, val) { return acc.concat(val); }, []);
         this.displayGroupings = Array.from(displayGroups.entries());
+    }
+    SetupComponent.prototype.ngOnDestroy = function () {
+        // Pass the selected information through to the setup data service.
+        this.setupDataService.selectedConcepts = this.chosenConcepts;
+        this.setupDataService.encounters = this.encounters;
+        this.setupDataService.selectedEncounter = this.selectedEncounter.value ?
+            this.selectedEncounter.value :
+            luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].utc().minus({ days: 7 }), luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].utc());
+    };
+    SetupComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // Watch for changes to the user input on the autocomplete panel.
+        this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["startWith"])(''), // The autocomplete input starts with nothing typed in.
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (concept) { return concept ? _this.filter(concept) :
+            _this.displayGroupings.slice(); }));
         for (var _i = 0, _a = this.allConcepts; _i < _a.length; _i++) {
             var concept = _a[_i];
             this.checkedConcepts[concept.label] = false;
@@ -9428,16 +9491,26 @@ var SetupComponent = /** @class */ (function () {
         this.deviceService.getDeviceInfo();
         this.browserString = 'Browser: ' + this.deviceService.browser +
             ' version: ' + this.deviceService.browser_version;
-    }
-    SetupComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        // Watch for changes to the user input on the autocomplete panel.
-        this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), // The autocomplete input starts with nothing typed in.
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (concept) { return concept ? _this.filter(concept) :
-            _this.displayGroupings.slice(); }));
-    };
-    SetupComponent.prototype.ngOnDestroy = function () {
-        this.setupDataService.selectedConcepts = this.chosenConcepts;
+        // Retrieve the patient encounters. When they load in asynchronously,
+        // the radio buttons for encounter selection will show up.
+        this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_7__["APP_TIMESPAN"]).then(function (encounters) {
+            if (encounters.length > 0) {
+                _this.encounters = encounters.sort(function (a, b) { return a.period.start.toMillis() - b.period.start.toMillis(); });
+            }
+        });
+        // Check to see which clinical concepts have any data, and enable/disable
+        // on that basis.
+        this.displayGroupings.forEach(function (grouping) {
+            var resourceCodes = grouping[1];
+            resourceCodes.forEach(function (rsc) {
+                rsc.dataAvailableInAppTimeScope().then(function (available) {
+                    if (!available) {
+                        _this.checkedConcepts[rsc.label] = false;
+                    }
+                    _this.codeGroupAvailable.set(rsc.label, available);
+                });
+            });
+        });
     };
     /**
      * The user wishes to continue to the main screen of MedTimeLine, with all
@@ -9482,15 +9555,20 @@ var SetupComponent = /** @class */ (function () {
             return [displayGrouping, resourceCodesFiltered];
         });
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material_radio__WEBPACK_IMPORTED_MODULE_2__["MatRadioGroup"]),
+        __metadata("design:type", _angular_material_radio__WEBPACK_IMPORTED_MODULE_2__["MatRadioGroup"])
+    ], SetupComponent.prototype, "selectedEncounter", void 0);
     SetupComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-setup',
             template: __webpack_require__(/*! ./setup.component.html */ "./src/app/setup/setup.component.html"),
             styles: [__webpack_require__(/*! ./setup.component.css */ "./src/app/setup/setup.component.css")]
         }),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_7__["SetupDataService"],
-            ngx_device_detector__WEBPACK_IMPORTED_MODULE_3__["DeviceDetectorService"]])
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_11__["SetupDataService"],
+            _fhir_service__WEBPACK_IMPORTED_MODULE_10__["FhirService"],
+            ngx_device_detector__WEBPACK_IMPORTED_MODULE_5__["DeviceDetectorService"]])
     ], SetupComponent);
     return SetupComponent;
 }());
@@ -9621,7 +9699,7 @@ module.exports = ".datePicker {\n  background-color: white;\n  padding-top: 20px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"ranges\" [alwaysShowCalendars]=\"true\"\n    [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"Change date range\" />\n  <mat-icon *ngIf=\"encounterError\" class=\"errorIcon\"\n    matTooltip=\"Unable to retrieve hospital visit dates for this patient. You can select any time period in the past six months.\">\n    warning</mat-icon>\n</div>"
+module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"datePickerRanges\"\n    [alwaysShowCalendars]=\"true\" [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"Change date range\" />\n  <mat-icon *ngIf=\"encounterError\" class=\"errorIcon\"\n    matTooltip=\"Unable to retrieve hospital visit dates for this patient. You can select any time period in the past six months.\">\n    warning</mat-icon>\n</div>\n"
 
 /***/ }),
 
@@ -9643,7 +9721,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _date_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../date_utils */ "./src/app/date_utils.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9674,10 +9752,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * several places.
  */
 var TimelineControllerComponent = /** @class */ (function () {
-    function TimelineControllerComponent(renderer, fhirService) {
+    function TimelineControllerComponent(renderer) {
         var _this = this;
         this.renderer = renderer;
-        this.fhirService = fhirService;
         this.changeDateRange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Holds all the ISO strings for days covered by all the patient encounters
@@ -9694,75 +9771,64 @@ var TimelineControllerComponent = /** @class */ (function () {
             endDate: moment__WEBPACK_IMPORTED_MODULE_2__["utc"](luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc())
         };
         /** The list of encounters to display as available ranges to select. */
-        this.ranges = {};
+        this.datePickerRanges = {};
         /**
-         * Whether there was any error in retrieving the encounters for this patient.
+         * Whether there was an encounter input into this component.
          */
         this.encounterError = false;
-        // Clearly differentiate between dates inside and outside of encounters.
+        /**
+         * Used to add a style to dates in the date picker so that the user can
+         * differentiate between dates inside and outside of encounters.
+         */
         this.addCustomClass = function (m) {
+            // The slice gets jus tthe date portion of the ISO string.
             return _this.daysCoveredByAnEncounter.has(m.toISOString().slice(0, 10)) ?
                 'inEncounter' :
                 'notInEncounter';
         };
     }
     TimelineControllerComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_4__["APP_TIMESPAN"])
-            .then(function (encounters) {
-            _this.encounterError = false;
-            if (encounters.length > 0) {
-                // Encounters come in local time.
-                encounters = encounters.sort(function (a, b) {
-                    return a.period.start.toMillis() - b.period.start.toMillis();
-                });
-                var latestEncounter = encounters[encounters.length - 1].period;
-                // Make the default selection the latest encounter. It's safe to
-                // not pin this to a date boundary since there should be no data
-                // points that fall outside the time range of the encounter.
-                // We set the time of the dates of the encounter to be 00:00.
-                _this.datesUpdated({
-                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__(latestEncounter.start.startOf('day').toUTC().toJSDate()),
-                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__["utc"](latestEncounter.end.startOf('day').toUTC().toJSDate())
-                });
-                // Set the minimum date to select to be the beginning of the
-                // earliest encounter that had days that fell inside the app
-                // timespan, in UTC.
-                _this.earliestAvailableDate =
-                    moment__WEBPACK_IMPORTED_MODULE_2__(encounters[0]
-                        .period.start.startOf('day')
-                        .toUTC()
-                        .toJSDate());
-                // We have to store everything as an ISO string because if we
-                // store as objects the set membership check doesn't work.
-                _this.daysCoveredByAnEncounter = new Set(Object(_date_utils__WEBPACK_IMPORTED_MODULE_5__["getDaysForIntervalSet"])(encounters.map(function (x) { return x.period; }))
-                    .map(function (x) { return x.toISO().slice(0, 10); }));
-                // We manually update the ranges stored in the daterangepicker
-                // so that the list of encounters is displayed.
-                // We store these in local time to prevent errors with
-                // displaying a date different than the dates of the encounter.
-                // While being communicated with charts, the interval will be
-                // converted to UTC.
-                for (var _i = 0, encounters_1 = encounters; _i < encounters_1.length; _i++) {
-                    var encounter = encounters_1[_i];
-                    var start = moment__WEBPACK_IMPORTED_MODULE_2__(encounter.period.start.startOf('day').toJSDate());
-                    var end = moment__WEBPACK_IMPORTED_MODULE_2__(encounter.period.end.startOf('day').toJSDate());
-                    var label = start.format('MM/DD/YYYY') + '-' +
-                        end.format('MM/DD/YYYY');
-                    _this.pickerDirective.ranges[label] = [start, end];
-                    _this.pickerDirective.picker.ranges[label] = [start, end];
-                    _this.ranges[label] = [start, end];
-                    _this.pickerDirective.picker.rangesArray.push(label);
-                }
+        // Set the initial date range selection and fire off a change event.
+        var selectedRange = this.defaultDateRange;
+        if (this.selectedEncounter && this.selectedEncounter.period) {
+            selectedRange = {
+                startDate: moment__WEBPACK_IMPORTED_MODULE_2__(this.selectedEncounter.period.start.startOf('day').toJSDate()),
+                endDate: moment__WEBPACK_IMPORTED_MODULE_2__(this.selectedEncounter.period.end.startOf('day').toJSDate())
+            };
+        }
+        this.selected = selectedRange;
+        this.datesUpdated(selectedRange);
+        // Set up the encounters in the date picker.
+        if (this.encounters && this.encounters.length > 0) {
+            this.encounterError = false;
+            this.encounters = this.encounters.sort(function (a, b) { return a.period.start.toMillis() - b.period.start.toMillis(); });
+            // Set the minimum date to select to be the beginning of the
+            // earliest encounter that had days that fell inside the app
+            // timespan, in UTC.
+            this.earliestAvailableDate = moment__WEBPACK_IMPORTED_MODULE_2__(this.encounters[0].period.start.startOf('day').toUTC().toJSDate());
+            // We have to store everything as an ISO string because if we
+            // store as objects the set membership check doesn't work.
+            this.daysCoveredByAnEncounter = new Set(Object(_date_utils__WEBPACK_IMPORTED_MODULE_5__["getDaysForIntervalSet"])(this.encounters.map(function (x) { return x.period; }))
+                .map(function (x) { return x.toISO().slice(0, 10); }));
+            // We manually update the ranges stored in the daterangepicker
+            // so that the list of encounters is displayed.
+            // We store these in local time to prevent errors with
+            // displaying a date different than the dates of the encounter.
+            // While being communicated with charts, the interval will be
+            // converted to UTC.
+            for (var _i = 0, _a = this.encounters; _i < _a.length; _i++) {
+                var encounter = _a[_i];
+                var start = moment__WEBPACK_IMPORTED_MODULE_2__(encounter.period.start.startOf('day').toJSDate());
+                var end = moment__WEBPACK_IMPORTED_MODULE_2__(encounter.period.end.endOf('day').toJSDate());
+                var label = start.format('MM/DD/YYYY') + '-' + end.format('MM/DD/YYYY');
+                this.datePickerRanges[label] = [start, end];
             }
-            else {
-                _this.datesUpdated(_this.defaultDateRange);
-            }
-        }, function (reject) {
-            // points that fall outside the time range of the encounter.
-            _this.datesUpdated(_this.defaultDateRange);
-            _this.encounterError = true;
-        });
+            this.datePickerRanges['Last seven days'] =
+                [this.defaultDateRange.startDate, this.defaultDateRange.endDate];
+        }
+        else {
+            this.encounterError = true;
+        }
     };
     /**
      * Emits the date range picked in the date picker as an event.
@@ -9789,13 +9855,21 @@ var TimelineControllerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_3__["DaterangepickerDirective"]),
         __metadata("design:type", ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_3__["DaterangepickerDirective"])
     ], TimelineControllerComponent.prototype, "pickerDirective", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Array)
+    ], TimelineControllerComponent.prototype, "encounters", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_6__["Encounter"])
+    ], TimelineControllerComponent.prototype, "selectedEncounter", void 0);
     TimelineControllerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-timeline-controller',
             template: __webpack_require__(/*! ./timeline-controller.component.html */ "./src/app/timeline-controller/timeline-controller.component.html"),
             styles: [__webpack_require__(/*! ./timeline-controller.component.css */ "./src/app/timeline-controller/timeline-controller.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _fhir_service__WEBPACK_IMPORTED_MODULE_6__["FhirService"]])
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]])
     ], TimelineControllerComponent);
     return TimelineControllerComponent;
 }());
@@ -10039,7 +10113,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/data/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/setup/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })
