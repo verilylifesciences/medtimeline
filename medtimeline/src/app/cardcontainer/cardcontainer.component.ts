@@ -279,8 +279,7 @@ export class CardcontainerComponent {
       return {
         value: x,
         text: $event.data.annotations.get(x).title,
-        class: 'color' +
-            $event.data.annotations.get(x).color.hex().replace('#', '')
+        color: $event.data.annotations.get(x).color.hex()
       };
     });
     this.eventsForCustomTimelines.set($event.id, eventlines);

@@ -61,6 +61,5 @@ export class StepGraphComponent extends
 
     this.chartOptions.scales.yAxes[0]['labels'] = allLabels;
   }
-
   adjustGeneratedChartConfiguration() {}
 }

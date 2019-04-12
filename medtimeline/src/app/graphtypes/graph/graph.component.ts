@@ -3,12 +3,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import {DateTime, Interval} from 'luxon';
-import {Color} from 'ng2-charts';
+import {BaseChartDirective, Color} from 'ng2-charts';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
@@ -26,7 +26,8 @@ export enum ChartType {
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
  */
-export abstract class GraphComponent<T extends GraphData> implements OnChanges {
+export abstract class GraphComponent<T extends GraphData> implements OnInit,
+                                                                     OnChanges {
   /** Dummy data series label. */
   private static readonly DEFAULT_BLANK_DATA_LABEL = 'blankdatalabel';
 
@@ -48,6 +49,16 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   /** The base chart height to use when rendering. */
   readonly BASE_CHART_HEIGHT_PX = 150;
 
+  /** The eventline annotations to keep track of. */
+  annotations = [];
+
+  /**
+   * The entire interval represented by the current date range. This Interval
+   * goes from the beginning of the first day of the date range, to the end of
+   * the last day of the date range.
+   */
+  entireInterval: Interval;
+
   /*****************************************
    * Bound input variables
    */
@@ -67,8 +78,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
    * Variables the chart.js directive binds to.
    */
 
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   /** Plugins for chart.js. */
-  lineChartPlugins = [pluginAnnotations];
+  chartPlugins = [pluginAnnotations];
 
   /**
    * Sets the tooltip for the graph.
@@ -77,29 +89,34 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
    * of just the string representing the data plus the appropriate units for
    * a linegraph, or just the unedited value if it's a different kind of graph.
    */
-  readonly customTooltips = (tooltipContext) => {
-    // Get, or construct, a tooltip element to put all the tooltip HTML into.
-    const canvas = document.getElementById(this.chartDivId);
-    const tooltipEl = this.findOrCreateTooltipElement(canvas);
+  readonly customTooltips =
+      (tooltipContext) => {
+        console.log(tooltipContext);
+        // Get, or construct, a tooltip element to put all the tooltip HTML
+        // into.
+        const canvas = document.getElementById(this.chartDivId);
+        const tooltipEl = this.findOrCreateTooltipElement(
+            canvas, 'chartjs-tooltip' + this.chartDivId);
 
-    // Hide the element if there is no tooltip-- this function gets called
-    // back whether you're hovering over an element or not.
-    if (tooltipContext.opacity === 0) {
-      tooltipEl.style.opacity = '0';
-      return;
-    }
+        // Hide the element if there is no tooltip-- this function gets called
+        // back whether you're hovering over an element or not.
+        if (tooltipContext.opacity === 0) {
+          tooltipEl.style.opacity = '0';
+          return;
+        }
 
-    if (tooltipContext.body) {
-      tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
-    }
+        if (tooltipContext.body) {
+          tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
+          console.log(tooltipEl.innerHTML);
+        }
 
-    // Display the tooltip lined up with the data point.
-    const positionY = canvas.offsetTop;
-    const positionX = canvas.offsetLeft;
-    tooltipEl.style.opacity = '1';
-    tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
-    tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
-  };
+        // Display the tooltip lined up with the data point.
+        const positionY = canvas.offsetTop;
+        const positionX = canvas.offsetLeft;
+        tooltipEl.style.opacity = '1';
+        tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
+        tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
+      }
 
   // The bindings are unhappy when you provide an empty data array, so we
   // give it a fake series to render.
@@ -176,10 +193,16 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.eventlines) {
-      // TODO(laurendukes): update event lines by adding annotations
+      this.updateEventlines(changes.eventlines.currentValue);
     }
     if (changes.dateRange) {
       this.chartOptions.scales.xAxes = [this.generateXAxis()];
+      this.entireInterval = Interval.fromDateTimes(
+          this.dateRange.start.toLocal().startOf('day'),
+          this.dateRange.end.toLocal().endOf('day'));
+    }
+    if (changes.xRegions) {
+      this.showXRegions();
     }
   }
 
@@ -199,10 +222,71 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
     if (this.data && this.dateRange) {
       this.chartData =
           [{data: [], label: GraphComponent.DEFAULT_BLANK_DATA_LABEL}];
+      this.entireInterval = Interval.fromDateTimes(
+          this.dateRange.start.toLocal().startOf('day'),
+          this.dateRange.end.toLocal().endOf('day'));
       this.dataPointsInDateRange = this.data.dataPointsInRange(this.dateRange);
       this.prepareForChartConfiguration();
       this.generateBasicChart(focusOnSeries);
       this.adjustGeneratedChartConfiguration();
+
+      // Don't let point style change on hover.
+      // For some reason this does better after data binding instead of inline.
+      // for (let i = 0; i < this.data.series.length; i++) {
+      //   const chartjsSeries = this.chartData[i];
+      //   const labeledSeries = this.data.series[i];
+      //   try {
+      //     chartjsSeries.pointHoverBackgroundColor =
+      //         labeledSeries.legendInfo.fill;
+      //     chartjsSeries.pointHoverBorderColor =
+      //         labeledSeries.legendInfo.outline;
+      //   } catch {
+      //   }
+      // }
+    }
+  }
+
+  updateEventlines(eventlines: Array<{[key: string]: number | string}>) {
+    const currentInterval = Interval.fromDateTimes(
+        this.dateRange.start.toLocal().startOf('day'),
+        this.dateRange.end.toLocal().endOf('day'));
+    this.chartOptions.annotation.annotations =
+        this.chartOptions.annotation.annotations.filter(
+            a => !(a.id && a.id.includes('eventline')));
+    if (this.chart) {
+      for (const eventline of eventlines) {
+        const currentDate = DateTime.fromMillis(Number(eventline.value));
+        if (currentInterval.contains(currentDate)) {
+          const line = {
+            type: 'line',
+            mode: 'vertical',
+            id: 'eventline' + eventline.value,
+            scaleID: GraphComponent.X_AXIS_ID,
+            value: currentDate.toJSDate(),
+            borderColor: eventline.color,
+            borderWidth: 2,
+            label: {
+              fontColor: 'grey',
+              fontSize: 8,
+              position: 'center',
+              enabled: true,
+              content: eventline.text
+            }
+          };
+          this.chartOptions.annotation.annotations.push(line);
+        }
+      }
+      this.reloadChart();
+    }
+  }
+
+  reloadChart() {
+    if (this.chart !== undefined && this.chart.chart !== undefined) {
+      this.chart.chart.destroy();
+
+      this.chart.datasets = this.chartData;
+      this.chart.options = this.chartOptions;
+      this.chart.ngOnInit();
     }
   }
 
@@ -234,25 +318,23 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
       if (focusOnSeries !== undefined && focusOnSeries.includes(series)) {
         lineWidth = GraphComponent.THICK_LINE;
       }
-      data.push({
-        data: series.coordinates.map(pt => {
-          return {x: pt[0].toISO(), y: pt[1]};
-        }),
-        label: series.label,
-        // Do not fill the area under the line.
-        fill: false,
-        borderWidth: lineWidth,
-        pointBorderWidth: 2,
-        pointRadius: 3,
-        backgroundColor: series.legendInfo.fill,
-        borderColor: series.legendInfo.fill,
-        pointBackgroundColor: series.legendInfo.fill,
-        pointBorderColor: series.legendInfo.outline,
-      });
-      this.chartColors.push({
-        backgroundColor: series.legendInfo.fill,
-        borderColor: series.legendInfo.fill,
-      });
+      if (series.coordinates.length > 0) {
+        data.push({
+          data: series.coordinates.map(pt => {
+            return {x: pt[0].toISO(), y: pt[1]};
+          }),
+          label: series.label,
+          // Do not fill the area under the line.
+          fill: false,
+          borderWidth: lineWidth,
+          pointBorderWidth: 2,
+          pointRadius: 3,
+          backgroundColor: series.legendInfo.fill,
+          borderColor: series.legendInfo.fill,
+          pointBackgroundColor: series.legendInfo.fill,
+          pointBorderColor: series.legendInfo.outline,
+        });
+      }
     }
 
     // The subclasses may have already put series in lineChartData, and
@@ -282,7 +364,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
     if (!this.xRegions) {
       return;
     }
-
     for (const region of this.xRegions) {
       const annotation = {
         // Show the region underneath the data points.
@@ -327,7 +408,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
    * @param uniqueId The unique ID to give to this element. If not provided,
    *     will use 'chartjs-tooltip' + the chart div ID.
    */
-  protected findOrCreateTooltipElement(canvas: HTMLElement, uniqueId?: string):
+  protected findOrCreateTooltipElement(canvas: HTMLElement, uniqueId: string):
       HTMLElement {
     const tooltipTag =
         uniqueId ? uniqueId : 'chartjs-tooltip' + this.chartDivId;
@@ -380,7 +461,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   /*************************
    * Helper functions for other chart options
    */
-  private generateXAxis(): ChartXAxe {
+  protected generateXAxis(): ChartXAxe {
     return {
       id: GraphComponent.X_AXIS_ID,
       type: 'time',

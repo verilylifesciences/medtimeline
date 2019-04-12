@@ -184,10 +184,10 @@ describe('CardcontainerComponent', () => {
         {data: initialData, id: component.displayedConcepts[0].id});
     // There should be the original point needed to show the x-axis,
     // plus the new point.
-    expect(component.eventlines.length).toEqual(2);
-    expect(component.eventlines[1])
+    expect(component.eventlines.length).toEqual(1);
+    expect(component.eventlines[0])
         .toEqual(
-            {class: 'color000000', text: 'title!', value: dateTime.toMillis()});
+            {color: '#000000', text: 'title!', value: dateTime.toMillis()});
   });
 
   it('should calculate eventlines correctly with more than one custom timeline',
@@ -201,14 +201,12 @@ describe('CardcontainerComponent', () => {
            {data: initialData, id: component.displayedConcepts[0].id});
        // There should be the original point needed to show the x-axis,
        // plus the new point.
-       expect(component.eventlines.length).toEqual(2);
+       expect(component.eventlines.length).toEqual(1);
        // Drop the first point (which anchors the x-axis but isn't ever
        // rendered) for comparison.
-       expect(component.eventlines).toContain({
-         class: 'color000000',
-         text: 'title!',
-         value: dateTime1.toMillis()
-       });
+       expect(component.eventlines)
+           .toContain(
+               {color: '#000000', text: 'title!', value: dateTime1.toMillis()});
 
        component.displayedConcepts.push(
            {concept: 'customTimeline', id: 'uniqueID'});
@@ -219,16 +217,14 @@ describe('CardcontainerComponent', () => {
        component.updateEventLines({data: data2, id: 'uniqueID'});
 
 
-       expect(component.eventlines.length).toEqual(4);
+       expect(component.eventlines.length).toEqual(2);
        // Drop the first point (which anchors the x-axis but isn't ever
        // rendered) for comparison.
+       expect(component.eventlines)
+           .toContain(
+               {color: '#000000', text: 'title!', value: dateTime1.toMillis()});
        expect(component.eventlines).toContain({
-         class: 'color000000',
-         text: 'title!',
-         value: dateTime1.toMillis()
-       });
-       expect(component.eventlines).toContain({
-         class: 'color000000',
+         color: '#000000',
          text: 'another title!',
          value: dateTime2.toMillis()
        });

@@ -55,7 +55,6 @@ export class CustomizableTimelineComponent implements OnChanges {
       private fhirService: FhirService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     this.data = CustomizableData.defaultEmptySeries();
-    this.renderContainedGraph();
   }
 
   ngOnChanges(changes: SimpleChanges) {
