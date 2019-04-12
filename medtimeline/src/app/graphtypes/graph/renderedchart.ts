@@ -192,20 +192,6 @@ export class RenderedChart {
   }
 
   /**
-   * Set X regions on the chart.
-   */
-  setXRegions(xRegions: any[]) {
-    this.generatedChart.regions(xRegions);
-  }
-
-  /**
-   * Add y region on chart.
-   */
-  addYRegion(yRegion: any) {
-    this.generatedChart.regions.add(yRegion);
-  }
-
-  /**
    * Set lines and labels for y-boundaries.
    */
   setYNormalBoundMarkers(yBounds: [number, number]) {

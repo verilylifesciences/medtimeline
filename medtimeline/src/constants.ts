@@ -4,9 +4,16 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Duration, Interval} from 'luxon';
+import {environment} from './environments/environment';
+
 /** The period of time this app will search for patient encounters in.  */
-export const APP_TIMESPAN = Interval.fromDateTimes(
-    DateTime.utc().minus(Duration.fromObject({months: 6})), DateTime.utc());
+export const APP_TIMESPAN = environment.production ?
+    Interval.fromDateTimes(
+        DateTime.utc().minus(Duration.fromObject({months: 6})),
+        DateTime.utc()) :
+    Interval.fromDateTimes(
+        DateTime.utc().minus(Duration.fromObject({months: 60})),
+        DateTime.utc());
 
 /**
  * Do not consider any encounters with a start date earlier than a year from

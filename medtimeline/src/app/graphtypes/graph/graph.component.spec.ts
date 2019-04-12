@@ -14,7 +14,7 @@ import {RenderedChart} from './renderedchart';
 
 class StubGraphComponent extends GraphComponent<any> {
   constructor() {
-    super(TestBed.get(DomSanitizer), (axis, id) => new RenderedChart(axis, id));
+    super(TestBed.get(DomSanitizer));
     this.data = new GraphData([], new Map());
     this.data.c3DisplayConfiguration = new DisplayConfiguration(
         [
@@ -25,9 +25,6 @@ class StubGraphComponent extends GraphComponent<any> {
           ['Vanc Pk', 15, 20]
         ],
         {'Vanc Pk': 'x_Vanc Pk'});
-  }
-  generateChart() {
-    return this.generateBasicChart();
   }
   adjustYAxisConfig() {}
   adjustDataDependent() {}
@@ -45,7 +42,7 @@ describe('GraphComponent', () => {
 
   beforeEach(() => {
     component = new StubGraphComponent();
-    component.xAxis = new DateTimeXAxis(dateRange);
+    component.dateRange = dateRange;
   });
 
   it('should create', () => {

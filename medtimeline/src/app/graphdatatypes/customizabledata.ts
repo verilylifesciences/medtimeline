@@ -9,11 +9,33 @@ import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/cust
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
 
+
+
+export class DisplayConfiguration {
+  constructor(
+      /**
+       * These columns feed in to c3 as data. Each item in allColumns is
+       * an array of data. The first entry is the series label and the following
+       * entries are the data for that series.
+       */
+
+      readonly allColumns: any[],
+      /**
+       * The keys of this map are the name of the y-series as stored in
+       * allColumns, and the values are their corresponding x-series names.
+       */
+      readonly columnMap: {}) {}
+}
+
 /**
  * CustomizableData holds a time-based series to which a user can add more
  * points.
  */
 export class CustomizableData extends GraphData {
+  // The DisplayConfiguration, including data and column names, for this
+  // GraphData.
+  c3DisplayConfiguration: DisplayConfiguration;
+
   /** The display bounds of the y-axis. */
   readonly yAxisDisplayBounds: [number, number];
 
@@ -68,10 +90,8 @@ export class CustomizableData extends GraphData {
    */
   addPointToSeries(annotation: CustomizableGraphAnnotation) {
     // This method assumes there is only 1 series.
-    this.series[0].xValues.push(annotation.timestamp);
-    this.series[0].yValues.push(0);
+    this.series[0].coordinates.push([annotation.timestamp, 0]);
     this.annotations.set(annotation.timestamp.toMillis(), annotation);
-    this.c3DisplayConfiguration = this.generateColumnMapping();
   }
 
   /**
@@ -80,11 +100,9 @@ export class CustomizableData extends GraphData {
    * @param date The date for this point to remove.
    */
   removePointFromSeries(date: DateTime) {
-    const index =
-        this.series[0].xValues.findIndex(x => x.toMillis() === date.toMillis());
-    this.series[0].xValues.splice(index, 1);
-    this.series[0].yValues.splice(index, 1);
+    const index = this.series[0].coordinates.findIndex(
+        c => c[0].toMillis() === date.toMillis());
+    this.series[0].coordinates.splice(index, 1);
     this.annotations.delete(date.toMillis());
-    this.c3DisplayConfiguration = this.generateColumnMapping();
   }
 }

@@ -50,6 +50,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    */
   @Input() eventlines: Array<{[key: string]: number | string}>;
 
+  /** The x-regions to draw for this graph. */
   xRegions: any[];
 
   /** Propogate remove events up to the card container.  */
