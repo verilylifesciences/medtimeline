@@ -5,7 +5,7 @@
 
 import {Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ChartDataSets, ChartOptions} from 'chart.js';
+import {ChartDataSets, ChartOptions, ChartYAxe} from 'chart.js';
 import {ChartXAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import {DateTime, Interval, IntervalObject} from 'luxon';
@@ -16,10 +16,6 @@ import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {v4 as uuid} from 'uuid';
 
 import {StandardTooltip} from '../tooltips/tooltip';
-
-import {DateTimeXAxis} from './datetimexaxis';
-import {RenderedChart} from './renderedchart';
-import {RenderedCustomizableChart} from './renderedcustomizablechart';
 
 export enum ChartType {
   SCATTER,
@@ -107,123 +103,48 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   };
 
   // The bindings are unhappy when you provide an empty data array, so we
-  // give it a fake label.
+  // give it a fake series to render.
+  /**
+   * The chart data sets to render.
+   */
   chartData: ChartDataSets[] = [
     {data: [], label: GraphComponent.DEFAULT_BLANK_DATA_LABEL},
   ];
 
-  private generateXAxis(): ChartXAxe {
-    return {
-      id: GraphComponent.X_AXIS_ID,
-      type: 'time',
-      gridLines: {
-        display: false,
-      },
-      time: {
-        // This sets the bounds of the x-axis. The default values of 0 and 10
-        // are nonsensical but necessary since the graph is first rendered
-        // before xAxis is bound.
-        min: this.dateRange ? this.dateRange.start.toISO() :
-                              DateTime.utc().toISO(),
-        max: this.dateRange ? this.dateRange.end.toISO() :
-                              DateTime.utc().toISO(),
-        displayFormats: {
-          minute: 'MM/DD H:mm',
-          hour: 'MM/DD H:mm',
-          day: 'MM/DD H:mm',
-          week: 'MM/DD H:mm',
-          month: 'MM/DD H:mm',
-          quarter: 'MM/DD H:mm',
-          year: 'MM/DD H:mm'
-        }
-      },
-      ticks: {
-        // Only show as many tick labels will fit neatly on the axis.
-        autoSkip: true,
-      }
-    };
-  }
-
-  chartOptions:
-      (ChartOptions&{annotation: any}) = {
-        // Draw straight lines between points instead of curves.
-        elements: {line: {tension: 0}},
-        layout: {padding: {top: 15}},
-        // We make our own legend so we don't show the built-in one.
-        legend: {display: false},
-        scales:
-            {
-              xAxes: [{
-                id: GraphComponent.X_AXIS_ID,
-                type: 'time',
-                gridLines: {
-                  display: false,
-                },
-                time: {
-                  // This sets the bounds of the x-axis. The default values of
-                  // 0 and 10
-                  // are nonsensical but necessary since the graph is first
-                  // rendered
-                  // before xAxis is bound.
-                  min: this.dateRange? this.dateRange.start.toISO():
-                         DateTime.utc().toISO(),
-                  max: this.dateRange? this.dateRange.end.toISO():
-                         DateTime.utc().toISO()
-                },
-                ticks: {
-                  // Only show as many tick labels will fit neatly on the axis.
-                  autoSkip: true,
-                }
-              }],
-              yAxes:
-                  [
-                    {
-                      id: GraphComponent.Y_AXIS_ID,
-                      position: 'left',
-                      gridLines: {
-                        display: false,
-                      },
-                      scaleLabel: {
-                        display: true,
-                        labelString: '',
-                      },
-                      ticks:
-                          {
-                            autoSkip: true,
-                            callback:
-                                (value, index, values) => {
-                                  return (value).toLocaleString('en-us', {
-                                    minimumFractionDigits: this.data.precision,
-                                    maximumFractionDigits: this.data.precision
-                                  });
-                                }
-                          }
-                    },
-                  ]
-            },
-        responsive: false,
-        maintainAspectRatio: false,
-        // Set up the custom callback for the tooltips.
-        tooltips: {
-          enabled: false,
-          mode: 'x',
-          position: 'nearest',
-          custom: this.customTooltips
-        },
-        annotation: {
-          // Array of annotation configuration objects to be filled in.
-          annotations: []
-        },
-        /** The settings below are just for better performance. */
-        animation: {duration: 0},
-        hover: {animationDuration: 0},
-        responsiveAnimationDuration: 0
-      };
+  /**
+   * Chart options to be rendered.
+   */
+  chartOptions: (ChartOptions&{annotation: any}) = {
+    // Draw straight lines between points instead of curves.
+    elements: {line: {tension: 0}},
+    layout: {padding: {top: 15}},
+    // We make our own legend so we don't show the built-in one.
+    legend: {display: false},
+    scales: {xAxes: [this.generateXAxis()], yAxes: [this.generateYAxis()]},
+    // Needed to grow the graph to fit the space.
+    responsive: true,
+    maintainAspectRatio: false,
+    // Set up the custom callback for the tooltips.
+    tooltips: {
+      enabled: false,
+      mode: 'x',
+      position: 'nearest',
+      custom: this.customTooltips
+    },
+    annotation: {
+      // Array of annotation configuration objects to be filled in.
+      annotations: []
+    },
+    /** The settings below are just for better performance. */
+    animation: {duration: 0},
+    hover: {animationDuration: 0},
+    responsiveAnimationDuration: 0
+  };
 
   /**
-   * The sequence of colors to use for rendering the LabeledSeries for this
-   * chart's data. The ordering of this color array should be in parallel
-   * to the ordering of the LabeledSeries in this chart's data.
+   * The sequence of colors to use for rendering the LabeledSeries for
+   * this chart's data. The ordering of this color array should be in
+   * parallel to the ordering of the LabeledSeries in this chart's data.
    */
   chartColors: Color[] = [];
 
@@ -236,8 +157,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
    */
   chartTypeString = 'line';
 
-  // Indicating whether are not there are any data points for the current time
-  // interval.
+  /**
+   * Indicating whether are not there are any data points for the
+   * current time interval.
+   */
   private dataPointsInDateRange: boolean;
 
   constructor(readonly sanitizer: DomSanitizer) {
@@ -253,33 +176,24 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.eventlines && this.renderedChart) {
-      this.renderedChart.updateEventlines(changes.eventlines.currentValue);
+    if (changes.eventlines) {
+      // TODO(laurendukes): update event lines by adding annotations
     }
     if (changes.dateRange) {
       this.chartOptions.scales.xAxes = [this.generateXAxis()];
     }
   }
 
-  chartConfiguration: any;
-  renderedChart: RenderedChart|RenderedCustomizableChart;
-
   /**
-   * When the component gets initialized, it calls this function to make the
-   * c3 chart configuration and render it. As outlined in the function below,
-   * there are several steps along the way (please see individual function-level
-   * comments for more details):
+   * When the component gets initialized and upon updates, this series of calls
+   * modifies the data-bound variables so that the correct chart gets rendered.
    *
    * 1) prepareForChartConfiguration: an overrideable function in which
-   * subclasses can get things ready for the chart configuration to get
-   * generated
-   * 2) generateBasicChart: make the chart configuration and store
-   * it in this class
+   *    subclasses can get things ready for the chart to load in data
+   * 2) generateBasicChart: load in the chart data and do formatting that all
+   *    subclasses share in common
    * 3) adjustGeneratedChartConfiguration: make any tweaks to the chart
-   *    configuration
-   * 4) Work with the renderedChart class variable to render
-   * the chart via c3 and do some generic styling of the chart
-   * 5) onRender callback runs for the graph generated.
+   *    that couldn't be made until the data got loaded in
    */
 
   generateChart(focusOnSeries?: LabeledSeries[]) {
@@ -294,31 +208,24 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   }
 
   /**
-   * Lines up any extra things needed to generate the ChartConfiguration.
-   * This may include things like adding atypical data series, custom-setting
-   * colors, etc.
+   * Lines up any extra things needed to generate the
+   * chart. Override this function when you need to make changes before the data
+   * is loaded into the chart or when you need to load more data into the chart.
    */
   prepareForChartConfiguration() {}
 
   /**
-   * Takes the generated chart configuration (in this.chartConfiguration) and
-   * tweaks it. Override this function to modify the defaults of the chart
-   * configuration.
+   * Tweaks the generated chart. Override this function when you need to make
+   * changes based on the data loaded into the chart.
    */
   adjustGeneratedChartConfiguration() {}
 
   /**
-   * Called every time the graph is rendered. If subclass graphs want to do
-   * something special upon rendering, they can override this function.
-   */
-  onRendered(graphObject): void {}
-
-
-  /**
-   * Sets up a generalized c3.ChartConfig for the data passed in. See the
-   * type definition at:
+   * Sets up a generalized c3.ChartConfig for the data passed in. See
+   * the type definition at:
    * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
-   * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
+   * @param maxXTicks: The maximum number of tick-marks to include on
+   *     the x-axis
    */
   private generateBasicChart(focusOnSeries?: LabeledSeries[]) {
     // Transform the data into a format that chart.js can render it.
@@ -343,10 +250,11 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
       });
     }
 
-    // The subclasses may have already put series in lineChartData, and we don't
-    // want to remove them, so we just append them to the series. On the other
-    // hand, if there's a blank series in lineChartData, we want to get rid of
-    // it before putting everything else in.
+    // The subclasses may have already put series in lineChartData, and
+    // we don't want to remove them, so we just append them to the
+    // series. On the other hand, if there's a blank series in
+    // lineChartData, we want to get rid of it before putting everything
+    // else in.
     if (data.length > 0 && this.onlyDefaultDataPresent()) {
       this.chartData = data;
     } else {
@@ -423,11 +331,12 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
 
   /**
    * Gets the tooltip text for the given context.
-   * @param tooltipContext The tooltip context passed into the tooltip callback
+   * @param tooltipContext The tooltip context passed into the tooltip
+   *     callback
    */
   private getTooltipInnerHtml(tooltipContext: any): string {
-    // We squish together all points at the same timestamp preemptively in
-    // our tooltip creation so that we just find the index of the
+    // We squish together all points at the same timestamp preemptively
+    // in our tooltip creation so that we just find the index of the
     // tooltip based on the first point's x-value.
     const xValue = tooltipContext.dataPoints[0].label;
 
@@ -453,5 +362,63 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
       tooltipText = this.data.tooltipMap.get(keyToUse);
     }
     return tooltipText;
+  }
+
+  /*************************
+   * Helper functions for other chart options
+   */
+  private generateXAxis(): ChartXAxe {
+    return {
+      id: GraphComponent.X_AXIS_ID,
+      type: 'time',
+      gridLines: {display: true, drawOnChartArea: false},
+      time: {
+        // This sets the bounds of the x-axis. The default values of 0 and 10
+        // are nonsensical but necessary since the graph is first rendered
+        // before xAxis is bound.
+        min: this.dateRange ? this.dateRange.start.toISO() :
+                              DateTime.utc().toISO(),
+        max: this.dateRange ? this.dateRange.end.toISO() :
+                              DateTime.utc().toISO(),
+        displayFormats: {
+          // No matter what tick frequency it picks, we want to show the label
+          // in the same format.
+          minute: 'MM/DD H:mm',
+          hour: 'MM/DD H:mm',
+          day: 'MM/DD H:mm',
+          week: 'MM/DD H:mm',
+          month: 'MM/DD H:mm',
+          quarter: 'MM/DD H:mm',
+          year: 'MM/DD H:mm'
+        }
+      },
+      ticks: {
+        // Only show as many tick labels will fit neatly on the axis.
+        autoSkip: true,
+        display: true
+      }
+    };
+  }
+
+  private generateYAxis(): ChartYAxe {
+    return {
+      id: GraphComponent.Y_AXIS_ID,
+      position: 'left',
+      // Show tick marks but not grid lines.
+      gridLines: {display: true, drawOnChartArea: false},
+      scaleLabel: {
+        display: true,
+        labelString: '',
+      },
+      ticks: {
+        autoSkip: true,
+        callback: (value, index, values) => {
+          return (value).toLocaleString('en-us', {
+            minimumFractionDigits: this.data.precision,
+            maximumFractionDigits: this.data.precision
+          });
+        }
+      }
+    };
   }
 }

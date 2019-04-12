@@ -217,11 +217,7 @@ export class LineGraphData extends GraphData {
         yAxisDisplayMin === Number.MAX_VALUE ? 0 : yAxisDisplayMin;
     yAxisDisplayMax =
         yAxisDisplayMax === Number.MIN_VALUE ? 100 : yAxisDisplayMax;
-    // Add a bit of cushion so that there's padding at the top and bottom
-    // of the graph.
-    const padding = (yAxisDisplayMax - yAxisDisplayMin) *
-        LineGraphData.Y_AXIS_PADDING_RATIO;
-    return [yAxisDisplayMin - padding, yAxisDisplayMax + padding];
+    return [yAxisDisplayMin, yAxisDisplayMax];
   }
 
   /**

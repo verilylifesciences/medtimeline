@@ -21,9 +21,8 @@ import {StepGraphData} from './stepgraphdata';
 
 export class MicrobioGraphData extends StepGraphData {
   private constructor(
-      series: LabeledSeries[], endpointSeries: LabeledSeries[],
-      tooltipMap: Map<string, string>) {
-    super(series, endpointSeries, tooltipMap, undefined);
+      endpointSeries: LabeledSeries[], tooltipMap: Map<string, string>) {
+    super(endpointSeries, tooltipMap, undefined);
   }
 
   /**
@@ -67,8 +66,6 @@ export class MicrobioGraphData extends StepGraphData {
       }
     }
 
-    return new MicrobioGraphData(
-        [],  // No series representing "lines" on this chart
-        points, tooltipMap);
+    return new MicrobioGraphData(points, tooltipMap);
   }
 }

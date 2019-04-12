@@ -89,13 +89,14 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
 
     // Draw label lines for the high and low bounds of the normal range.
     const lines = [
-      ['High normal boundary: ', yNormalBounds[1]],
-      ['Low normal boundary: ', yNormalBounds[0]]
+      ['High normal boundary: ', yNormalBounds[1], -8],
+      ['Low normal boundary: ', yNormalBounds[0], 8]
     ];
 
     for (const line of lines) {
       const lbl = line[0];
       const val = line[1];
+      const yOffsetPx = line[2];
       const bound = {
         type: 'line',
         mode: 'horizontal',
@@ -105,9 +106,15 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         borderWidth: 2,
         label: {
           enabled: true,
-          fontColor: 'rgba(64, 191, 128, 1)',
+          // Clear background color.
+          backgroundColor: 'rgba(0,0,0,0.0)',
+          // Black text for label.
+          fontColor: 'rgba(0, 0, 0, 0.8)',
           content: lbl + val.toString() + ' ' + this.data.unit,
-          position: 'right'
+          // Shift the text above or below the line, and to the right side of
+          // the axis.
+          position: 'right',
+          yAdjust: yOffsetPx
         }
       };
 
@@ -139,7 +146,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         if (pt.hasOwnProperty('y')) {
           pt = pt as ChartPoint;
           if (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]) {
-            pointBackgroundColors.push(ABNORMAL.rgb().string());
+            pointBackgroundColors.push(seriesLegend.fill.rgb().string());
             pointBorderColors.push(ABNORMAL.rgb().string());
           } else {
             pointBackgroundColors.push(seriesLegend.fill.rgb().string());
