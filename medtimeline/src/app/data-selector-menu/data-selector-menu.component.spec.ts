@@ -9,7 +9,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
@@ -43,7 +42,6 @@ describe('DataSelectorMenuComponent', () => {
           ],
           providers: [
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
         .compileComponents();

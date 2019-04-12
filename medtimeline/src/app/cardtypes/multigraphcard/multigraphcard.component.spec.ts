@@ -8,7 +8,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
@@ -24,7 +23,6 @@ import {MicrobioGraphComponent} from 'src/app/graphtypes/microbio-graph/microbio
 import {ScatterplotComponent} from 'src/app/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphtypes/stepgraph/stepgraph.component';
 import {StubFhirService} from 'src/app/test_utils';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../card/card.component';
 
@@ -43,7 +41,7 @@ describe('MultiGraphCardComponent', () => {
         .configureTestingModule({
           imports: [
             BrowserAnimationsModule, MatCardModule, MatIconModule,
-            MatProgressSpinnerModule, ChartsModule, MatTooltipModule
+            MatProgressSpinnerModule, ChartsModule
           ],
           declarations: [
             MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,
@@ -51,7 +49,6 @@ describe('MultiGraphCardComponent', () => {
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ],
         })
         .compileComponents();

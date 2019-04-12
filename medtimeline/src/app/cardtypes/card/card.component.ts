@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import * as Color from 'color';
 import {BOSTON_WARM_GRAY} from 'src/app/theme/bch_colors';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 /**
  * This is the base template for all the cards in this app. It will show a
@@ -32,8 +31,6 @@ export class CardComponent {
   @Output() saveEvent = new EventEmitter();
 
   inEditMode = false;
-
-  constructor(@Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {}
 
   // The events below need to get propogated up to the card container.
 

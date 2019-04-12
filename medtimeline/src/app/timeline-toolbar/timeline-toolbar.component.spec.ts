@@ -10,7 +10,6 @@ import {MatAutocompleteModule, MatDialog, MatDialogRef, MatFormFieldModule, MatI
 import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
@@ -39,7 +38,6 @@ describe('TimelineToolbarComponent', () => {
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
             {provide: MatDialogRef, useValue: {}},
             {provide: MatDialog, useValue: {}},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
         .compileComponents();

@@ -5,7 +5,6 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatListModule} from '@angular/material/list';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
 import {AxisGroup} from '../graphtypes/axis-group';
@@ -20,8 +19,7 @@ describe('DataSelectorElementComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [MatListModule],
-          declarations: [DataSelectorElementComponent],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
+          declarations: [DataSelectorElementComponent]
         })
         .compileComponents();
   }));

@@ -3,12 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
@@ -85,15 +84,11 @@ export class CardcontainerComponent {
   // TODO(b/119251288): Extract out the constants to somewhere shared between
   // the ts files and html files.
   constructor(
-      dragulaService: DragulaService,
-      private fhirService: FhirService,
-      resourceCodeManager: ResourceCodeManager,
-      private snackBar: MatSnackBar,
+      dragulaService: DragulaService, private fhirService: FhirService,
+      resourceCodeManager: ResourceCodeManager, private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
       readonly setupDataService: SetupDataService,
-      private saveDialog: MatDialog,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any,
-  ) {
+      private saveDialog: MatDialog) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     /* Load in the concepts to display, flattening them all into a
      * single-depth array. */
@@ -187,11 +182,10 @@ export class CardcontainerComponent {
       if (result) {
         const date = DateTime.fromJSDate(new Date()).toISO();
         this.fhirService.saveStaticNote(html, date);
-        this.snackBar.open(
-            this.uiConstants.SAVED_TO_POWERCHART, this.uiConstants.DISMISS, {
-              duration: this.DISPLAY_TIME,  // Wait 6 seconds before dismissing
-                                            // the snack bar.
-            });
+        this.snackBar.open('Snapshot saved to PowerChart', 'Dismiss', {
+          duration: this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the
+                                        // snack bar.
+        });
       }
     });
   }
@@ -222,8 +216,8 @@ export class CardcontainerComponent {
   // Open a snack bar allowing for the user to potentially reverse the removal
   // of cards from the page. Only one snack bar can be opened at a time.
   private openSnackBar() {
-    const message = this.uiConstants.CARD_REMOVED;
-    const snackBarRef = this.snackBar.open(message, this.uiConstants.UNDO, {
+    const message = 'Card removed.';
+    const snackBarRef = this.snackBar.open(message, 'Undo', {
       duration:
           this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the snack bar.
     });
@@ -279,8 +273,7 @@ export class CardcontainerComponent {
       return {
         value: x,
         text: $event.data.annotations.get(x).title,
-        class: 'color' +
-            $event.data.annotations.get(x).color.hex().replace('#', '')
+        color: $event.data.annotations.get(x).color.hex()
       };
     });
     this.eventsForCustomTimelines.set($event.id, eventlines);

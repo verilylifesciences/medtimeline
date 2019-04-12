@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 
 import {environment} from '../../environments/environment';
 
-import * as FhirConfig from './../fhir_config';
+import * as FhirConfig from './../fhir_config.js';
 
 /* Type definition for SMART on FHIR client (from assets/fhir-client.min.js) */
 declare var FHIR: any;
@@ -21,6 +21,7 @@ declare var FHIR: any;
   templateUrl: './fhir-launch.component.html',
   styleUrls: ['./fhir-launch.component.css']
 })
+
 export class FhirLaunchComponent implements OnInit {
   error = false;
 

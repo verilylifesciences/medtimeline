@@ -3,11 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, Inject, Input, Output, Renderer2, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
 import {DateTime, Duration, Interval} from 'luxon';
 import * as moment from 'moment';
 import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
-import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {APP_TIMESPAN} from 'src/constants';
 
 import {getDaysForIntervalSet} from '../date_utils';
 import {Encounter} from '../fhir-data-classes/encounter';
@@ -74,9 +74,7 @@ export class TimelineControllerComponent {
    */
   encounterError = false;
 
-  constructor(
-      private renderer: Renderer2,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {}
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit() {
     // Set the initial date range selection and fire off a change event.

@@ -20,7 +20,6 @@ import {ChartsModule} from 'ng2-charts';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {DeviceDetectorModule} from 'ngx-device-detector';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../environments/environment';
 
@@ -119,8 +118,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
       provide: FhirService,
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },
-    {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-    {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+    {provide: ResourceCodeManager, useClass: ResourceCodeManager}
   ],
   bootstrap: [AppComponent],
   entryComponents: [

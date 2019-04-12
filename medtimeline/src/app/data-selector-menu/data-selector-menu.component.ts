@@ -3,12 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, Inject, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteTrigger, MatMenuTrigger} from '@angular/material';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
@@ -47,9 +46,7 @@ export class DataSelectorMenuComponent implements OnInit {
   // autocomplete field.
   readonly conceptCtrl = new FormControl();
   filteredConcepts: Observable<AxisGroup[]>;
-  constructor(
-      private resourceCodeManager: ResourceCodeManager,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+  constructor(private resourceCodeManager: ResourceCodeManager) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     const temp = Array.from(displayGroups.values());
     this.allConcepts = [].concat.apply([], temp);

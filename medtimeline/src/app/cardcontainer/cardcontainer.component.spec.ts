@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule, MatRadioModule, MatTooltipModule} from '@angular/material';
+import {MatNativeDateModule, MatRadioModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -27,7 +27,6 @@ import {ChartsModule} from 'ng2-charts';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {of} from 'rxjs';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../cardtypes/card/card.component';
 import {CustomizableTimelineComponent} from '../cardtypes/customizable-timeline/customizable-timeline.component';
@@ -92,7 +91,6 @@ describe('CardcontainerComponent', () => {
             MatSnackBarModule,
             MatCheckboxModule,
             MatRadioModule,
-            MatTooltipModule,
             ChartsModule
           ],
           declarations: [
@@ -107,7 +105,6 @@ describe('CardcontainerComponent', () => {
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}}, {
               provide: SetupDataService,
               useValue: {
@@ -184,10 +181,10 @@ describe('CardcontainerComponent', () => {
         {data: initialData, id: component.displayedConcepts[0].id});
     // There should be the original point needed to show the x-axis,
     // plus the new point.
-    expect(component.eventlines.length).toEqual(2);
-    expect(component.eventlines[1])
+    expect(component.eventlines.length).toEqual(1);
+    expect(component.eventlines[0])
         .toEqual(
-            {class: 'color000000', text: 'title!', value: dateTime.toMillis()});
+            {color: '#000000', text: 'title!', value: dateTime.toMillis()});
   });
 
   it('should calculate eventlines correctly with more than one custom timeline',
@@ -201,14 +198,12 @@ describe('CardcontainerComponent', () => {
            {data: initialData, id: component.displayedConcepts[0].id});
        // There should be the original point needed to show the x-axis,
        // plus the new point.
-       expect(component.eventlines.length).toEqual(2);
+       expect(component.eventlines.length).toEqual(1);
        // Drop the first point (which anchors the x-axis but isn't ever
        // rendered) for comparison.
-       expect(component.eventlines).toContain({
-         class: 'color000000',
-         text: 'title!',
-         value: dateTime1.toMillis()
-       });
+       expect(component.eventlines)
+           .toContain(
+               {color: '#000000', text: 'title!', value: dateTime1.toMillis()});
 
        component.displayedConcepts.push(
            {concept: 'customTimeline', id: 'uniqueID'});
@@ -219,16 +214,14 @@ describe('CardcontainerComponent', () => {
        component.updateEventLines({data: data2, id: 'uniqueID'});
 
 
-       expect(component.eventlines.length).toEqual(4);
+       expect(component.eventlines.length).toEqual(2);
        // Drop the first point (which anchors the x-axis but isn't ever
        // rendered) for comparison.
+       expect(component.eventlines)
+           .toContain(
+               {color: '#000000', text: 'title!', value: dateTime1.toMillis()});
        expect(component.eventlines).toContain({
-         class: 'color000000',
-         text: 'title!',
-         value: dateTime1.toMillis()
-       });
-       expect(component.eventlines).toContain({
-         class: 'color000000',
+         color: '#000000',
          text: 'another title!',
          value: dateTime2.toMillis()
        });

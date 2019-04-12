@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="toolbar">
-  <h1 class="title">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>
+  <h1 class="title">Select Initial Configuration</h1>
   <div class="actions">
     <button mat-raised-button (click)="onContinue()" cdkFocusInitial id="continue">
-      {{uiConstants.CONTINUE}}
+      Continue
     </button>
   </div>
 </mat-toolbar>
@@ -10,17 +10,18 @@
   <app-debugger></app-debugger>
 </div>
 <div class="mainSetup">
+  {{browserString}}
   <div>
-    <h1 class="title">{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h1>
-    <mat-radio-group>
+    <h1 class="title">Which date range would you like to see first?</h1>
+    <mat-radio-group aria-label="Choose one of the following date ranges to begin with.">
       <div *ngFor="let encounter of encounters">
         <mat-radio-button [value]="encounter">
-          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}
+          {{encounter.period.toFormat('MM/dd/yyyy')}} (hospital visit)
         </mat-radio-button>
       </div>
       <div>
         <mat-radio-button value="undefined" [checked]="true">
-          {{uiConstants.LAST_SEVEN_DAYS}}
+          Last seven days
         </mat-radio-button>
       </div>
     </mat-radio-group>
@@ -29,15 +30,15 @@
   <div class="checkboxActions">
     <h1 class="title">Which timelines would you like to see first?</h1>
     <button mat-raised-button (click)="selectAll()" id="continue">
-      {{uiConstants.SELECT_ALL}}
+      Select All
     </button>
     <button mat-raised-button (click)="clearAll()" id="continue">
-      {{uiConstants.CLEAR_SELECTION}}
+      Clear Selection
     </button>
   </div>
   <form class="conceptForm">
     <mat-form-field class="conceptFormField">
-      <input matInput placeholder="{{uiConstants.SEARCH_FOR_A_CONCEPT}}" [formControl]="conceptCtrl">
+      <input matInput placeholder="Search for a concept" aria-label="Search for a concept" [formControl]="conceptCtrl">
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div *ngFor="let entry of displayGroupingOptions | async">
@@ -47,13 +48,13 @@
       <div *ngFor="let element of entry[1].sort(sortResources)">
         <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
           [disabled]="!codeGroupAvailable.get(element.label)">
-          {{element.label}} <span class="grayout"
-            *ngIf="!codeGroupAvailable.get(element.label)">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>
+          {{element.label}} <span class="grayout" *ngIf="!codeGroupAvailable.get(element.label)">(No data
+            available in the past 6 months)</span>
         </mat-checkbox>
       </div>
     </div>
     <div *ngIf="(displayGroupingOptions | async).length === 0" class="noResults">
-      {{uiConstants.NO_RESULTS}}
+      No results found
     </div>
   </form>
 </div>

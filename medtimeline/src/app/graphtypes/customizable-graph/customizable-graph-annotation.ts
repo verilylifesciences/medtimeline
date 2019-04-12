@@ -38,13 +38,14 @@ export class CustomizableGraphAnnotation {
     this.timestamp = timestamp;
   }
 
-  addAnnotation(): HTMLElement {
+  addAnnotation(chartDivId: string): HTMLElement {
     const self = this;
     this.showDetails = false;
     const millis = this.timestamp.toMillis();
 
     const tooltipContainer = document.createElement('div');
-    tooltipContainer.setAttribute('class', 'tooltip-custom-' + millis);
+    tooltipContainer.setAttribute(
+        'class', 'tooltip-custom-' + chartDivId + millis);
     tooltipContainer.style.left = '0px';
     tooltipContainer.style.borderColor = 'grey';
     tooltipContainer.style.backgroundColor = this.color;
@@ -53,30 +54,34 @@ export class CustomizableGraphAnnotation {
     const tooltipTitleContainer = document.createElement('div');
     tooltipContainer.appendChild(tooltipTitleContainer);
 
-    this.expandIcon = this.makeIcon('expand-' + millis, 'expand_more');
+    this.expandIcon =
+        this.makeIcon('expand-' + chartDivId + millis, 'expand_more');
     this.expandIcon.style.cursor = 'pointer';
     tooltipTitleContainer.append(this.expandIcon);
 
     const tooltipTitle = document.createElement('h6');
-    tooltipTitle.setAttribute('class', 'tooltip-title-custom-' + millis);
+    tooltipTitle.setAttribute(
+        'class', 'tooltip-title-custom-' + chartDivId + millis);
     tooltipTitle.innerText = this.title;
     tooltipTitleContainer.appendChild(tooltipTitle);
 
 
-    this.deleteIcon = this.makeIcon('delete-' + millis, 'clear');
+    this.deleteIcon = this.makeIcon('delete-' + chartDivId + millis, 'clear');
     this.deleteIcon.style.cursor = 'pointer';
     tooltipTitleContainer.append(this.deleteIcon);
 
     const tooltipDetails = document.createElement('div');
-    tooltipDetails.setAttribute('class', 'tooltip-details-custom-' + millis);
+    tooltipDetails.setAttribute(
+        'class', 'tooltip-details-custom-' + chartDivId + millis);
     tooltipContainer.appendChild(tooltipDetails);
 
     const tooltipDetailsText = document.createElement('div');
     tooltipDetailsText.innerText = this.description;
-    tooltipDetailsText.setAttribute('class', 'tooltip-details-text-' + millis);
+    tooltipDetailsText.setAttribute(
+        'class', 'tooltip-details-text-' + chartDivId + millis);
     tooltipDetails.appendChild(tooltipDetailsText);
 
-    this.editIcon = this.makeIcon('edit-' + millis, 'edit');
+    this.editIcon = this.makeIcon('edit-' + chartDivId + millis, 'edit');
     this.editIcon.style.cursor = 'pointer';
     tooltipDetails.append(this.editIcon);
 
@@ -86,13 +91,15 @@ export class CustomizableGraphAnnotation {
     tooltipTitle.onclick = ((e: MouseEvent) => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
+      self.showDetailsToggle(
+          millis, self.showDetails, tooltipContainer, chartDivId);
     });
 
     this.expandIcon.onclick = ((e: MouseEvent) => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
+      self.showDetailsToggle(
+          millis, self.showDetails, tooltipContainer, chartDivId);
     });
 
 
@@ -110,9 +117,9 @@ export class CustomizableGraphAnnotation {
     return tooltipContainer;
   }
 
-  removeAnnotation() {
+  removeAnnotation(chartDivId: string) {
     const annotation = document.getElementsByClassName(
-        'tooltip-whole-' + this.timestamp.toMillis())[0];
+        'tooltip-whole-' + chartDivId + this.timestamp.toMillis())[0];
     annotation.remove();
   }
 
@@ -125,11 +132,13 @@ export class CustomizableGraphAnnotation {
     return icon;
   }
   // Toggles whether or not the full annotation is shown.
-  private showDetailsToggle(millis: number, toggle: boolean, element: any) {
+  private showDetailsToggle(
+      millis: number, toggle: boolean, element: any, chartDivId: string) {
     const detailsElement =
         document.getElementsByClassName(
-            'tooltip-details-custom-' + millis)[0] as HTMLElement;
-    const expandElement = document.getElementById('expand-' + millis);
+            'tooltip-details-custom-' + chartDivId + millis)[0] as HTMLElement;
+    const expandElement =
+        document.getElementById('expand-' + chartDivId + millis);
     if (toggle) {
       detailsElement.style.display = 'inline-block';
       expandElement.innerHTML = 'expand_less';

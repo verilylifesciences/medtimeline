@@ -6,12 +6,13 @@
 import {DebugElement} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInput, MatInputModule, MatNativeDateModule, MatTooltipModule} from '@angular/material';
+import {MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInput, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {Interval} from 'luxon';
 import * as moment from 'moment';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
-import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {APP_TIMESPAN} from 'src/constants';
 
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
@@ -40,11 +41,9 @@ describe('TimelineControllerComponent with encounters', () => {
           imports: [
             MatDatepickerModule, MatNativeDateModule, MatInputModule,
             ReactiveFormsModule, NoopAnimationsModule, MatFormFieldModule,
-            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot(),
-            MatTooltipModule
+            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot()
           ],
           declarations: [TimelineControllerComponent],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
         })
         .compileComponents();
   }));
@@ -103,14 +102,10 @@ describe('TimelineControllerComponent without encounters', () => {
           imports: [
             MatDatepickerModule, MatNativeDateModule, MatInputModule,
             ReactiveFormsModule, NoopAnimationsModule, MatFormFieldModule,
-            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot(),
-            MatTooltipModule
+            FormsModule, MatIconModule, NgxDaterangepickerMd.forRoot()
           ],
           declarations: [TimelineControllerComponent],
-          providers: [
-            {provide: FhirService, useValue: new StubFhirService()},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
-          ]
+          providers: [{provide: FhirService, useValue: new StubFhirService()}]
         })
         .compileComponents();
   }));

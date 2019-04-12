@@ -1,5 +1,5 @@
 <div fxFlex fxLayout="row" fxLayoutAlign="start center" class="addCardInline">
-  <button mat-icon-button [matMenuTriggerFor]="masterMenu" matTooltip="{{uiConstants.ADD_CARD_HERE}}">
+  <button mat-icon-button [matMenuTriggerFor]="masterMenu" matTooltip="Add card here">
     <mat-icon class="toolbarButton">add_circle</mat-icon>
   </button>
   <span fxFlex>
@@ -9,30 +9,30 @@
   <ng-template matMenuContent>
     <button mat-menu-item (click)="textbox()">
       <mat-icon>comment</mat-icon>
-      <span>{{uiConstants.ADD_BLANK_ANNOTATION}}</span>
+      <span>Add Blank Annotation</span>
     </button>
     <button mat-menu-item (click)="customTimeline()">
       <mat-icon>show_chart</mat-icon>
-      <span>{{uiConstants.ADD_CUSTOM_TIMELINE}}</span>
+      <span>Add Custom Timeline</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item [matMenuTriggerFor]="conceptSelectorMenu">
       <mat-icon>add_to_photos</mat-icon>
-      <span>{{uiConstants.ADD_CHART}}</span>
+      <span>Add Chart</span>
     </button>
   </ng-template>
 </mat-menu>
 <mat-menu #conceptSelectorMenu="matMenu" [style.padding]="0">
   <ng-template matMenuContent>
     <button mat-menu-item [matMenuTriggerFor]="menu">
-      {{uiConstants.SEARCH_FOR_A_CONCEPT}}
+      Search for a concept
     </button>
     <mat-divider></mat-divider>
     <mat-menu #menu="matMenu" (closed)="autocompleteTrigger.closePanel()" class="autoMenu">
       <!-- Autocomplete search bar -->
       <form class="conceptForm">
         <mat-form-field class="conceptFormField">
-          <input matInput placeholder="{{uiConstants.SEARCH_FOR_A_CONCEPT}}" [matAutocomplete]="auto"
+          <input matInput placeholder="Search for a concept" aria-label="Search for a concept" [matAutocomplete]="auto"
             [formControl]="conceptCtrl" (click)="$event.stopPropagation()">
           <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->
           <mat-icon matPrefix>search</mat-icon>
