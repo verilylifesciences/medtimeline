@@ -41,6 +41,9 @@ export class CustomizableGraphComponent extends
   // The reference for the Dialog opened.
   private dialogRef: any;
 
+  renderedChart: RenderedCustomizableChart;
+  chartConfiguration: c3.ChartConfiguration;
+
   constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
     super(sanitizer);
     const renderedConstructor = (axis: DateTimeXAxis, divId: string) =>

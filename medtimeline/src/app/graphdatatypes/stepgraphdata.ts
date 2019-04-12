@@ -22,14 +22,14 @@ export class StepGraphData extends GraphData {
       /** A list of the LabeledSeries data to plot. */
       readonly dataSeries: LabeledSeries[],
       /** A list of the LabeledSeries representing end points. */
-      readonly endpointSeries: LabeledSeries[],
+      // readonly endpointSeries: LabeledSeries[],
       /** A map of tooltips for the data points. */
       tooltipMap: Map<string, string>,
       /**
        *  The function to call to get the key for the tooltip map for a point.
        */
       keyFn: (data: string) => string) {
-    super(dataSeries.concat(endpointSeries), tooltipMap, keyFn);
+    super(dataSeries, tooltipMap, keyFn);
   }
 
   /**
@@ -85,7 +85,8 @@ export class StepGraphData extends GraphData {
       series.unit = undefined;
     }
     return new StepGraphData(
-        data, endpoints, tooltipMap,
+        endpoints,  // do not render medication administrations, only endpoints
+        tooltipMap,
         // Our tooltip key here is the drug name plus the timestamp.
         (tooltipContext: any) => {
           const xValue = tooltipContext.dataPoints[0].label;
