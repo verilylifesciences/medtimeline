@@ -35,15 +35,16 @@ export class CustomizableGraphComponent extends
   // An event indicating that the points on the CustomizableGraph have changed.
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   @Input() inEditMode: boolean;
+  // Kept around for compatibility with the custom timeline. To be removed.
+  @Input() xAxis: DateTimeXAxis;
 
   // The reference for the Dialog opened.
   private dialogRef: any;
 
   constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
-    super(
-        sanitizer,
-        (axis: DateTimeXAxis, divId: string) =>
-            new RenderedCustomizableChart(axis, divId));
+    super(sanitizer);
+    const renderedConstructor = (axis: DateTimeXAxis, divId: string) =>
+        new RenderedCustomizableChart(axis, divId);
   }
 
   ngOnDestroy() {

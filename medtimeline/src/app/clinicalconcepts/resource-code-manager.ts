@@ -281,18 +281,13 @@ export class ResourceCodeManager {
           false,
           (observation: Observation, dateRange: Interval):
               Promise<AnnotatedObservation> => {
-                return vancRxNorm.getResourceSet(dateRange)
-                    .then(rxNorms => {
-                      console.warn(rxNorms);
-                      // We know that we're only pushing in one RxNorm
-                      // so it's safe to grab the first (and only) one in
-                      // the list.
-                      return rxNorms[0].orders;
-                    })
-                    .then(orderSet => {
-                      return AnnotatedObservation.forMedicationMonitoring(
-                          observation, orderSet);
-                    });
+                return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
+                  // We know that we're only pushing in one RxNorm
+                  // so it's safe to grab the first (and only) one in
+                  // the list.
+                  return AnnotatedObservation.forMedicationMonitoring(
+                      observation, rxNorms[0].orders);
+                });
               })
     ];
 

@@ -62,7 +62,7 @@ export class DateTimeXAxis {
       }
     }
 
-    this.xAxisLabels = ticksLabels.map(x => x.toFormat('MM/dd HH:mm'));
+    this.xAxisLabels = ticksLabels.map(x => x.toISO());
 
     this.xAxisConfig = {
       type: 'timeseries',

@@ -4,35 +4,13 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
+
 import {LabeledSeries} from './labeled-series';
-
-export class DisplayConfiguration {
-  constructor(
-      /**
-       * These columns feed in to c3 as data. Each item in allColumns is
-       * an array of data. The first entry is the series label and the following
-       * entries are the data for that series.
-       */
-
-      readonly allColumns: any[],
-      /**
-       * The keys of this map are the name of the y-series as stored in
-       * allColumns, and the values are their corresponding x-series names.
-       */
-      readonly columnMap: {}) {}
-}
 
 /**
  * The base class for holding data pertaining to one graph.
  */
 export class GraphData {
-  // The DisplayConfiguration, including data and column names, for this
-  // GraphData.
-  c3DisplayConfiguration: DisplayConfiguration;
-
-  // A list of x-regions to highlight on the graph.
-  xRegions: any[];
-
   // The number of decimal places to show for any value associated with this
   // GraphData. The default is 0, to minimize errors caused by unnecessary
   // trailing zeros.
@@ -70,40 +48,7 @@ export class GraphData {
       /**
        * A list of x-axis regions to display on the graph.
        */
-      regions?: any[]) {
-    this.c3DisplayConfiguration = this.generateColumnMapping();
-    this.xRegions = regions;
-  }
-
-  /*
-   * Sets up the column map and list of columns to use while generating the c3
-   * chart.
-   * @param data The GraphData to use while making the columns and column map.
-   */
-  generateColumnMapping(): DisplayConfiguration {
-    // Give labels to each series and make a map of x-values to y-values.
-    const allColumns: any[][] = [];
-    const columnMap = {};
-
-    for (const s of this.series) {
-      allColumns.push(
-          new Array<string|DateTime>('x_' + s.label).concat(s.xValues));
-      allColumns.push(new Array<string|number>(s.label).concat(s.yValues));
-      columnMap[s.label] = 'x_' + s.label;
-    }
-    // If there is no data, we add a "dummy" data point to still display the
-    // x-axis.
-    if (allColumns.length < 1) {
-      // Add a data point to still show the x-axis.
-      // This date is the earliest possible date: Tuesday, April 20th, 271,821
-      // BCE.
-      allColumns.push(
-          ['x_empty', DateTime.fromJSDate(new Date(-8640000000000000))],
-          ['empty', 0]);
-      columnMap['empty'] = 'x_empty';
-    }
-    return new DisplayConfiguration(allColumns, columnMap);
-  }
+      readonly xRegions = new Array<[DateTime, DateTime]>()) {}
 
   /*
    * Returns whether or not there are any data points in the series that fall

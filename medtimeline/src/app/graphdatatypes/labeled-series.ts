@@ -23,17 +23,6 @@ import {ObservationSet} from './../fhir-data-classes/observation-set';
  */
 export class LabeledSeries {
   /**
-   * The x-values for this data series. This array should be parallel to the
-   * yValues series, so that (xValues[n], yValues[n]) forms a coordinate.
-   */
-  readonly xValues: DateTime[] = [];
-  /**
-   * The y-values for this data series. This array should be parallel to the
-   *  xValues series, so that (xValues[n], yValues[n]) forms a coordinate.
-   */
-  readonly yValues: number[] = [];
-
-  /**
    * The y units for this series.
    */
   unit: string;
@@ -48,8 +37,12 @@ export class LabeledSeries {
   constructor(
       /** The descriptive label of the data series. */
       readonly label: string,
-      /** The coordinate set for the series. */
-      coordinates: Array<[DateTime, number]>,
+      /**
+       * The coordinate set for the series. The y-coordinates may be strings
+       * or numbers, depending on whether this is a categorical or numerical
+       * graph.
+       */
+      readonly coordinates: Array<[DateTime, string|number, string?]>,
       /** The y-axis unit for this series. */
       unit?: string,
       /**
@@ -61,28 +54,28 @@ export class LabeledSeries {
        * Holds information about how this series should be displayed.
        */
       readonly legendInfo?: LegendInfo) {
+    // Sort the coordinates by x-value.
+    this.coordinates = coordinates.sort((a, b) => {
+      return a[0].toMillis() - b[0].toMillis();
+    });
     this.unit = unit;
 
     // If a specific legend wasn't passed through then we generate one for the
     // series.
     this.legendInfo = legendInfo || new LegendInfo(label);
 
-    /*
-     * Separate out the coordinates into x and y values because that's what
-     * the graphing library will expect.
-     */
-    for (const [x, y] of coordinates) {
-      this.xValues.push(x);
-      this.yValues.push(y);
-    }
-
     /**
      * Calculate the y axis display bounds by finding the outer boundaries of
      * the data and the normal range.
      */
-    this.yDisplayBounds = [
-      Math.min.apply(Math, this.yValues), Math.max.apply(Math, this.yValues)
-    ];
+    const yValues = this.coordinates.map(c => c[1]).filter(x => x !== null);
+
+    if (yValues.map(val => typeof val === 'number').some(x => x === false)) {
+      return;
+    }
+
+    this.yDisplayBounds =
+        [Math.min.apply(Math, yValues), Math.max.apply(Math, yValues)];
 
     if (this.yNormalBounds) {
       this.yDisplayBounds = [
@@ -148,27 +141,27 @@ export class LabeledSeries {
    * @param dateRange The date range displayed on the chart.
    * @param encounters A list of Encounters to use while determining line breaks
    *     in series.
-   * @param fixedYPosition If set, we use this y-position for all the
+   * @param categoricalYPosition If set, we use this y-position for all the
    *    datapoints in both returned series. If unset, we use the dosage
    *    quantity for each administration as the y-value.
    */
   static fromMedicationOrderSet(
       medOrderSet: MedicationOrderSet, dateRange: Interval,
-      encounters: Encounter[], fixedYPosition?: number): LabeledSeries {
-    const data = [];
+      encounters: Encounter[], categoricalYPosition?: string): LabeledSeries {
+    const data: LabeledSeries[] = [];
     for (const medOrder of medOrderSet.resourceList) {
       // The first series in fromMedicationOrder is all the administrations.
       // The second series (unused in this function) is the end points only.
       data.push(LabeledSeries.fromMedicationOrder(
-          medOrder, dateRange, fixedYPosition)[0]);
+          medOrder, dateRange, categoricalYPosition)[0]);
     }
 
     // Combine all the series into a single series so that it shows up with
     // the same color.
     let coords = [];
     for (const series of data) {
-      for (let i = 0; i < series.xValues.length; i++) {
-        coords.push([series.xValues[i], series.yValues[i]]);
+      for (const coord of series.coordinates) {
+        coords.push(coord);
       }
     }
 
@@ -176,8 +169,6 @@ export class LabeledSeries {
     return new LabeledSeries(
         medOrderSet.label, coords, medOrderSet.unit,
         undefined,  // yNormalBounds
-        // TODO(b/122468555): Enforce that medOrderSets have to have a
-        // RxNormCode upon construction
         medOrderSet.rxNormCode ? medOrderSet.rxNormCode.displayGrouping :
                                  undefined);
   }
@@ -189,15 +180,15 @@ export class LabeledSeries {
    * order.
    * @param order The MedicationOrder to chart.
    * @param dateRange The date range displayed on the chart.
-   * @param fixedYPosition If set, we use this y-position for all the
-   *    datapoints in both returned series. If unset, we use the dosage
-   *    quantity for each administration as the y-value.
+   * @param categoricalYPosition If set, we use this categorical y-position
+   *    for all the datapoints in both returned series. If unset, we use the
+   *    dosage quantity for each administration as the numerical y-value.
    */
   static fromMedicationOrder(
       order: MedicationOrder, dateRange: Interval,
-      fixedYPosition?: number): LabeledSeries[] {
-    const coordinates = new Array<[DateTime, number]>();
-    const endpointCoordinates = new Array<[DateTime, number]>();
+      categoricalYPosition?: string): LabeledSeries[] {
+    const coordinates = new Array<[DateTime, string | number, string?]>();
+    const endpointCoordinates = new Array<[DateTime, string | number]>();
     const medAdminsForOrder = order.administrationsForOrder;
 
     const label = order.label + order.orderId;
@@ -208,7 +199,8 @@ export class LabeledSeries {
         coordinates.push([
           annotatedAdmin.medAdministration.timestamp,
           this.getYPositionForMed(
-              annotatedAdmin.medAdministration, fixedYPosition)
+              annotatedAdmin.medAdministration, categoricalYPosition),
+          order.orderId
         ]);
       }
       // We add the beginning and end time stamp if the order is not fully
@@ -229,26 +221,28 @@ export class LabeledSeries {
       if (firstAdministrationIsAfterStartTime) {
         endpointCoordinates.push([
           order.firstAdministration.timestamp,
-          this.getYPositionForMed(order.firstAdministration, fixedYPosition)
+          this.getYPositionForMed(
+              order.firstAdministration, categoricalYPosition)
         ]);
       } else if (
-          fixedYPosition &&
+          categoricalYPosition &&
           (order.lastAdmininistration.timestamp.toMillis() >
            dateRange.start.toMillis())) {
         // Only add a point for continuity if we have a fixed y position.
-        coordinates.push([dateRange.start, fixedYPosition]);
+        coordinates.push([dateRange.start, categoricalYPosition]);
       }
       if (lastAdministrationIsBeforeEndTime) {
         endpointCoordinates.push([
           order.lastAdmininistration.timestamp,
-          this.getYPositionForMed(order.lastAdmininistration, fixedYPosition)
+          this.getYPositionForMed(
+              order.lastAdmininistration, categoricalYPosition)
         ]);
       } else if (
-          fixedYPosition &&
+          categoricalYPosition &&
           order.firstAdministration.timestamp.toMillis() <
               dateRange.end.toMillis()) {
         // Only add a point for continuity if we have a fixed y position.
-        coordinates.push([dateRange.end, fixedYPosition]);
+        coordinates.push([dateRange.end, categoricalYPosition]);
       }
     }
 
@@ -279,23 +273,20 @@ export class LabeledSeries {
    * @param date the DateTime corresponding to the Observations in the
    *     DiagnosticReport.
    */
-  static fromDiagnosticReport(
-      report: DiagnosticReport, date: DateTime,
-      yAxisMap: Map<number, string>): LabeledSeries[] {
+  static fromDiagnosticReport(report: DiagnosticReport, date: DateTime):
+      LabeledSeries[] {
     const series = [];
-    const interpretationMap = new Map<string, Array<[DateTime, number]>>();
+    const interpretationMap = new Map<string, Array<[DateTime, string]>>();
     // Sort results by interpretation, and make a LabeledSeries for each.
     for (const observation of report.results) {
-      const yValue =
-          Array.from(yAxisMap.keys())
-              .find(key => yAxisMap.get(key) === observation.display);
+      const categoricalYValue = observation.display;
       const interpretation = observation.interpretation.code;
       if (interpretationMap.get(interpretation)) {
         const existing = interpretationMap.get(interpretation);
-        existing.push([date, yValue]);
+        existing.push([date, categoricalYValue]);
         interpretationMap.set(interpretation, existing);
       } else {
-        interpretationMap.set(interpretation, [[date, yValue]]);
+        interpretationMap.set(interpretation, [[date, categoricalYValue]]);
       }
     }
     // Make a LabeledSeries for each interpretation.
@@ -337,9 +328,10 @@ export class LabeledSeries {
   }
 
   private static getYPositionForMed(
-      medAdmin: MedicationAdministration, fixedYPosition: number) {
-    return fixedYPosition !== undefined && fixedYPosition !== null ?
-        fixedYPosition :
+      medAdmin: MedicationAdministration, categoricalYPosition: string): string
+      |number {
+    return categoricalYPosition !== undefined && categoricalYPosition !== null ?
+        categoricalYPosition :
         medAdmin.dosage.quantity;
   }
 
@@ -361,7 +353,7 @@ export class LabeledSeries {
   }
 
   hasPointInRange(dateRange: Interval) {
-    for (const x of this.xValues) {
+    for (const x of this.coordinates.map(c => c[0])) {
       if (dateRange.contains(x)) {
         return true;
       }

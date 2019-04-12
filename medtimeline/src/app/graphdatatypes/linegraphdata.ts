@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {Encounter} from '../fhir-data-classes/encounter';
@@ -22,6 +22,8 @@ import {LabeledSeries} from './labeled-series';
  * one or more LabeledSeries.
  */
 export class LineGraphData extends GraphData {
+  private static readonly Y_AXIS_PADDING_RATIO = 0.1;
+
   private constructor(
       /** The label for the graph. */
       readonly label: string,
@@ -63,8 +65,10 @@ export class LineGraphData extends GraphData {
       obsGroupToSeries.set(obsSet, lblSeries);
       allSeries.push(lblSeries);
       /* Find the minimum and maximum y values for all the series. */
-      minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
-      maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
+      if (lblSeries.yDisplayBounds) {
+        minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
+        maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
+      }
     }
 
     let tooltipMap = LineGraphData.makeTooltipMap(obsGroupToSeries, sanitizer);
@@ -146,12 +150,12 @@ export class LineGraphData extends GraphData {
       const yBounds = series.yNormalBounds;
       if (yBounds) {
         // Add a tooltip for any value with an abnormal y-value.
-        for (let i = 0; i < series.yValues.length; i++) {
-          const value = series.yValues[i];
-          const timestamp = series.xValues[i].toMillis().toString();
+        for (const coords of series.coordinates) {
+          const value = coords[1];
+          const timestamp = coords[0].toMillis().toString();
           if (value < yBounds[0] || value > yBounds[1]) {
             const params = {};
-            params['timestamp'] = series.xValues[i].toMillis();
+            params['timestamp'] = coords[0].toMillis();
             params['value'] = value;
             params['label'] = series.label;
             params['unit'] = series.unit;
@@ -191,25 +195,33 @@ export class LineGraphData extends GraphData {
       yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
     } else {
       // We use the provided display bounds as the y-axis display min and
-      // max, unless the calculated minimum and maximum of the data span a
-      // smaller range.
-
-      // We choose the provided min bound if it is larger than the min of
-      // the data, to cut off abnormal values.
+      // max, unless the calculated minimum and maximum of the data span are
+      // a smaller range.
       yAxisDisplayMin = resourceCodeGroup.displayBounds ?
           ((resourceCodeGroup.displayBounds[0] >= minInSeries) ?
                resourceCodeGroup.displayBounds[0] :
                minInSeries) :
           minInSeries;
-      // We choose the provided max bound if it is smaller than the max of
-      // the data, to cut off abnormal values.
       yAxisDisplayMax = resourceCodeGroup.displayBounds ?
           ((resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
                resourceCodeGroup.displayBounds[1] :
                maxInSeries) :
           maxInSeries;
     }
-    return [yAxisDisplayMin, yAxisDisplayMax];
+
+    // If we get all the way here and the min/max values are still min/max
+    // int, then there are just no good bounds and/or no good data. So, we
+    // set an arbitrary min of 0 and max of 100 so that the super long
+    // numbers don't clobber our axis spacing.
+    yAxisDisplayMin =
+        yAxisDisplayMin === Number.MAX_VALUE ? 0 : yAxisDisplayMin;
+    yAxisDisplayMax =
+        yAxisDisplayMax === Number.MIN_VALUE ? 100 : yAxisDisplayMax;
+    // Add a bit of cushion so that there's padding at the top and bottom
+    // of the graph.
+    const padding = (yAxisDisplayMax - yAxisDisplayMin) *
+        LineGraphData.Y_AXIS_PADDING_RATIO;
+    return [yAxisDisplayMin - padding, yAxisDisplayMax + padding];
   }
 
   /**
@@ -226,14 +238,12 @@ export class LineGraphData extends GraphData {
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
       sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
     const tooltipMap = new Map<string, string>();
-    const regions = [];
+    const regions = new Array<[DateTime, DateTime]>();
     for (const order of medicationOrderSet.resourceList) {
-      regions.push({
-        axis: 'x',
-        class: 'order-region',
-        start: order.firstAdministration.timestamp,
-        end: order.lastAdmininistration.timestamp
-      });
+      regions.push([
+        order.firstAdministration.timestamp,
+        order.lastAdmininistration.timestamp
+      ]);
       for (const admin of order.administrationsForOrder.resourceList) {
         const timestamp =
             admin.medAdministration.timestamp.toMillis().toString();

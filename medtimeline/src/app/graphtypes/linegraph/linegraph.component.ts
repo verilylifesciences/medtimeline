@@ -5,12 +5,12 @@
 
 import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as d3 from 'd3';
+import {ChartPoint} from 'chart.js';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/bch_colors';
 
 import {GraphComponent} from '../graph/graph.component';
-import {RenderedChart} from '../graph/renderedchart';
+import {LegendInfo} from '../legend-info';
 
 @Component({
   selector: 'app-linegraph',
@@ -24,72 +24,29 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
   @Input() showTicks: boolean;
 
   constructor(readonly sanitizer: DomSanitizer) {
-    super(sanitizer, (axis, id) => new RenderedChart(axis, id));
+    super(sanitizer);
   }
 
   prepareForChartConfiguration() {
     if (this.data.yAxisDisplayBounds) {
-      this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
-      this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
+      // We only ever have one y-axis so it's safe to work only on the 0th
+      // subscript here.
+      this.chartOptions.scales.yAxes[0].ticks.min =
+          this.data.yAxisDisplayBounds[0];
+      this.chartOptions.scales.yAxes[0].ticks.max =
+          this.data.yAxisDisplayBounds[1];
     }
   }
 
   adjustGeneratedChartConfiguration() {
-    // If tick values aren't set, calculate the values.
-    if (!this.chartConfiguration.axis.y.tick.values) {
-      this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(
-          this.data.yAxisDisplayBounds[0], this.data.yAxisDisplayBounds[1]);
-    }
-
-    if (this.chartConfiguration.axis.y.tick.values.length === 0) {
-      // The dataset is empty. We show padded tick marks to align the y axis
-      // with the rest of the charts' axes.
-      for (let i = 0; i < 5; i++) {
-        this.chartConfiguration.axis.y.tick.values.push(i);
-      }
-    }
-
-    if (this.data.yAxisDisplayBounds) {
-      this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
-      this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
-    }
-
-    // If there's just one data series and it has normal bounds, let the colors
-    // get set for abnormal points in the series.
-    if (this.data.series.length === 1 && this.data.series[0].yNormalBounds) {
-      this.chartConfiguration.data.color = (color, d) => {
-        return (d.value !== undefined &&
-                (d.value < this.data.series[0].yNormalBounds[0] ||
-                 d.value > this.data.series[0].yNormalBounds[1])) ?
-            ABNORMAL.toString() :
-            color;
-      };
-    }
-  }
-
-  // Manually find y axis tick values based on the min and max display bounds.
-  private findYAxisValues(min: number, max: number): number[] {
-    // Evenly space out 5 numbers between the min and max (display bounds).
-    const difference = max - min;
-    const spacing = difference / 4;
-    const values = [];
-    for (let curr = min; curr <= max; curr += spacing) {
-      values.push(curr);
-    }
-    return values;
-  }
-
-  onRendered() {
-    if (!this.showTicks) {
-      d3.select('#' + this.chartDivId)
-          .selectAll('.c3-axis-y .tick')
-          .style('display', 'none');
-    }
+    // We have to wait until after the data loads up into the graph to iterate
+    // over the points and adjust their coloring based on the normal range.
     this.addYNormalRange();
   }
 
   /**
-   * Adds y normal ranges to the graph.
+   * Adds y normal ranges to the graph and colors points the designated
+   * "abnormal" color if they fall outside the normal range.
    */
   private addYNormalRange() {
     // Only LineGraphData has y normal bounds.
@@ -107,13 +64,92 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       return;
     }
 
-    const self = this;
-    this.renderedChart.addToRenderQueue(() => {
-      self.renderedChart.setYNormalBoundMarkers(yBounds);
-    });
-    this.renderedChart.addToRenderQueue(() => {
-      self.renderedChart.addYRegion(
-          {axis: 'y', start: yBounds[0], end: yBounds[1]});
-    });
+    this.addGreenRegion(yBounds);
+    this.colorAbnormalPoints(yBounds, this.data.series[0].legendInfo);
+  }
+
+  /**
+   * Draws a green box spanning the entire x-axis and covering y axis normal
+   * range. Also puts descriptive labels at the top and bottom of the range.
+   * @param yNormalBounds The bounds of the y range considered normal.
+   */
+  private addGreenRegion(yNormalBounds: [number, number]) {
+    const normalRegionAnnotation = {
+      // Show the y-bounds underneath the graph points.
+      drawTime: 'beforeDatasetsDraw',
+      type: 'box',
+      yMin: yNormalBounds[0],
+      yMax: yNormalBounds[1],
+      // No x-axis bounds so it extends to cover the whole graph.
+      xScaleID: GraphComponent.X_AXIS_ID,
+      yScaleID: GraphComponent.Y_AXIS_ID,
+      // Color the region light green.
+      backgroundColor: 'rgba(64, 191, 128, 0.15)',
+    };
+
+    // Draw label lines for the high and low bounds of the normal range.
+    const lines = [
+      ['High normal boundary: ', yNormalBounds[1]],
+      ['Low normal boundary: ', yNormalBounds[0]]
+    ];
+
+    for (const line of lines) {
+      const lbl = line[0];
+      const val = line[1];
+      const bound = {
+        type: 'line',
+        mode: 'horizontal',
+        scaleID: GraphComponent.Y_AXIS_ID,
+        value: val,
+        borderColor: 'rgba(64, 191, 128, 1)',
+        borderWidth: 2,
+        label: {
+          enabled: true,
+          fontColor: 'rgba(64, 191, 128, 1)',
+          content: lbl + val.toString() + ' ' + this.data.unit,
+          position: 'right'
+        }
+      };
+
+      this.chartOptions.annotation.annotations.push(bound);
+    }
+    this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
+  }
+
+  /**
+   * Colors the point the default series color if it's in the normal range,
+   * or the designated "abnormal" color if it's outside of the normal range.
+   *
+   * @param yNormalBounds The bounds of what should be considered normal.
+   * @param seriesLegend The legend info for the series we're working with.
+   */
+  private colorAbnormalPoints(
+      yNormalBounds: [number, number], seriesLegend: LegendInfo) {
+    const pointBackgroundColors = new Array<string>();
+    const pointBorderColors = new Array<string>();
+
+    if (this.chartData.length > 0) {
+      // We only ever get here if there's a single labeled series so it's okay
+      // from here on out to only work with the 0th index of the data.
+      for (let pt of this.chartData[0].data) {
+        // pt could also be a number here, so we constrain it to when it's a
+        // ChartPoint. For some reason Typescript doesn't like it when we do a
+        // test to see if pt is an instanceof ChartPoint so checking for the
+        // y-attribute is a workaround.
+        if (pt.hasOwnProperty('y')) {
+          pt = pt as ChartPoint;
+          if (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]) {
+            pointBackgroundColors.push(ABNORMAL.rgb().string());
+            pointBorderColors.push(ABNORMAL.rgb().string());
+          } else {
+            pointBackgroundColors.push(seriesLegend.fill.rgb().string());
+            pointBorderColors.push(seriesLegend.outline.rgb().string());
+          }
+        }
+      }
+
+      this.chartData[0].pointBackgroundColor = pointBackgroundColors;
+      this.chartData[0].pointBorderColor = pointBorderColors;
+    }
   }
 }

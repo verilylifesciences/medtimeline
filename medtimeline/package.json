@@ -26,6 +26,8 @@
     "@types/angular": "1.6.50",
     "@types/c3": "0.6.0",
     "c3": "0.6.6",
+    "chart.js": "2.8.0",
+    "chartjs-plugin-annotation": "0.5.7",
     "classlist-polyfill": "1.2.0",
     "classlist.js": "1.1.20150312",
     "color": "3.0.0",
@@ -34,12 +36,13 @@
     "hammerjs": "2.0.8",
     "luxon": "1.3.2",
     "moment": "2.23.0",
+    "ng2-charts": "2.2.2",
     "ng2-dragula": "2.0.2",
     "ngx-daterangepicker-material": "1.3.0",
     "ngx-device-detector": "^1.3.5",
     "rxjs": "6.4.0",
     "web-animations-js": "2.3.1",
-    "wordwrap": "^1.0.0",
+    "wordwrap": "1.0.0",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
