@@ -440,39 +440,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var ng2_dragula__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ng2-dragula */ "./node_modules/ng2-dragula/dist/fesm5/ng2-dragula.js");
-/* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
-/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
-/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
-/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
-/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
-/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
-/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
-/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
-/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
-/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
-/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
+/* harmony import */ var ng2_dragula__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ng2-dragula */ "./node_modules/ng2-dragula/dist/fesm5/ng2-dragula.js");
+/* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
+/* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
+/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
+/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
+/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
+/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
+/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
+/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
+/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
+/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -489,6 +490,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // tslint:disable-next-line:max-line-length
+
 
 
 
@@ -534,28 +536,28 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
-                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_30__["FhirLaunchComponent"],
-                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_17__["CardcontainerComponent"],
-                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_22__["TextboxcardComponent"],
-                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_33__["LineGraphComponent"],
-                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_35__["ScatterplotComponent"],
-                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_36__["StepGraphComponent"],
-                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_21__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_41__["TimelineControllerComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineComponent"],
-                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_32__["CustomizableGraphComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__["CustomizableTimelineDialogComponent"],
-                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_34__["MicrobioGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_42__["TimelineToolbarComponent"],
-                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_25__["DataSelectorElementComponent"],
-                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_26__["DataSelectorMenuComponent"],
-                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__["HelpDialogComponent"],
-                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_18__["CardComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__["DeleteDialogComponent"],
-                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_27__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_39__["SetupComponent"],
-                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__["ConfirmSaveComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"],
+                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_31__["FhirLaunchComponent"],
+                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_18__["CardcontainerComponent"],
+                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_23__["TextboxcardComponent"],
+                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_34__["LineGraphComponent"],
+                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_36__["ScatterplotComponent"],
+                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_37__["StepGraphComponent"],
+                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_22__["MultiGraphCardComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_42__["TimelineControllerComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineComponent"],
+                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_33__["CustomizableGraphComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineDialogComponent"],
+                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_35__["MicrobioGraphComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_43__["TimelineToolbarComponent"],
+                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_26__["DataSelectorElementComponent"],
+                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorMenuComponent"],
+                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__["HelpDialogComponent"],
+                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_19__["CardComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__["DeleteDialogComponent"],
+                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_28__["DebuggerComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_40__["SetupComponent"],
+                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmSaveComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -579,30 +581,30 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatToolbarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSnackBarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDatepickerModule"],
-                ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_12__["NgxDaterangepickerMd"].forRoot({}),
+                ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_13__["NgxDaterangepickerMd"].forRoot({}),
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonToggleModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
-                ng2_dragula__WEBPACK_IMPORTED_MODULE_11__["DragulaModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
-                ngx_device_detector__WEBPACK_IMPORTED_MODULE_13__["DeviceDetectorModule"].forRoot(),
+                ng2_charts__WEBPACK_IMPORTED_MODULE_11__["ChartsModule"],
+                ng2_dragula__WEBPACK_IMPORTED_MODULE_12__["DragulaModule"].forRoot(),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
+                ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__["DeviceDetectorModule"].forRoot(),
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
-                // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it
-                // can be injected into the service that uses it to allow for easier
-                // testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_40__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
-                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_31__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_29__["FhirHttpService"]
+                // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
+                // injected into the service that uses it to allow for easier testing.
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_41__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_32__["FhirService"],
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_39__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_30__["FhirHttpService"]
                 },
-                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_23__["ResourceCodeManager"] }
+                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__["ResourceCodeManager"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_19__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_37__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_28__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_24__["ConfirmSaveComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__["HelpDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmSaveComponent"]
             ]
         })
     ], AppModule);
@@ -631,7 +633,7 @@ module.exports = ".cardContainer {\n  background-color: #002356; /* PRIMARY_COLO
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedEncounter]=\"this.setupDataService.selectedEncounter\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\" [xAxis]=\"xAxis\"\n        [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [xAxis]=\"xAxis\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedEncounter]=\"this.setupDataService.selectedEncounter\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <!-- <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\" [xAxis]=\"xAxis\"\n        [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>-->\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [xAxis]=\"xAxis\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1621,7 +1623,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData\" [diameter]=\"30\"></mat-spinner>\n      <div *ngIf=\"axis.dataResolved() && axis.errorMessage\">\n        {{axis.errorMessage}}\n      </div>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [xAxis]=\"this.xAxis\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\"\n          [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\" [xAxis]=\"this.xAxis\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\"\n          [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [xAxis]=\"this.xAxis\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\" [xAxis]=\"this.xAxis\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData\" [diameter]=\"30\"></mat-spinner>\n      <div *ngIf=\"axis.dataResolved() && axis.errorMessage\">\n        {{axis.errorMessage}}\n      </div>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -2333,16 +2335,11 @@ var ResourceCodeManager = /** @class */ (function () {
             vancRxNorm,
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, undefined, // no meaningful y-axis ranges
             false, function (observation, dateRange) {
-                return vancRxNorm.getResourceSet(dateRange)
-                    .then(function (rxNorms) {
-                    console.warn(rxNorms);
+                return vancRxNorm.getResourceSet(dateRange).then(function (rxNorms) {
                     // We know that we're only pushing in one RxNorm
                     // so it's safe to grab the first (and only) one in
                     // the list.
-                    return rxNorms[0].orders;
-                })
-                    .then(function (orderSet) {
-                    return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forMedicationMonitoring(observation, orderSet);
+                    return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forMedicationMonitoring(observation, rxNorms[0].orders);
                 });
             })
         ];
@@ -5339,11 +5336,12 @@ var FhirService = /** @class */ (function () {
 /*!****************************************************!*\
   !*** ./src/app/graphdatatypes/customizabledata.ts ***!
   \****************************************************/
-/*! exports provided: CustomizableData */
+/*! exports provided: DisplayConfiguration, CustomizableData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayConfiguration", function() { return DisplayConfiguration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizableData", function() { return CustomizableData; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
@@ -5370,6 +5368,25 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
+var DisplayConfiguration = /** @class */ (function () {
+    function DisplayConfiguration(
+    /**
+     * These columns feed in to c3 as data. Each item in allColumns is
+     * an array of data. The first entry is the series label and the following
+     * entries are the data for that series.
+     */
+    allColumns, 
+    /**
+     * The keys of this map are the name of the y-series as stored in
+     * allColumns, and the values are their corresponding x-series names.
+     */
+    columnMap) {
+        this.allColumns = allColumns;
+        this.columnMap = columnMap;
+    }
+    return DisplayConfiguration;
+}());
 
 /**
  * CustomizableData holds a time-based series to which a user can add more
@@ -5416,10 +5433,8 @@ var CustomizableData = /** @class */ (function (_super) {
      */
     CustomizableData.prototype.addPointToSeries = function (annotation) {
         // This method assumes there is only 1 series.
-        this.series[0].xValues.push(annotation.timestamp);
-        this.series[0].yValues.push(0);
+        this.series[0].coordinates.push([annotation.timestamp, 0]);
         this.annotations.set(annotation.timestamp.toMillis(), annotation);
-        this.c3DisplayConfiguration = this.generateColumnMapping();
     };
     /**
      * Removes a point from the series in this CustomizableData object, as well as
@@ -5427,11 +5442,9 @@ var CustomizableData = /** @class */ (function (_super) {
      * @param date The date for this point to remove.
      */
     CustomizableData.prototype.removePointFromSeries = function (date) {
-        var index = this.series[0].xValues.findIndex(function (x) { return x.toMillis() === date.toMillis(); });
-        this.series[0].xValues.splice(index, 1);
-        this.series[0].yValues.splice(index, 1);
+        var index = this.series[0].coordinates.findIndex(function (c) { return c[0].toMillis() === date.toMillis(); });
+        this.series[0].coordinates.splice(index, 1);
         this.annotations.delete(date.toMillis());
-        this.c3DisplayConfiguration = this.generateColumnMapping();
     };
     return CustomizableData;
 }(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
@@ -5444,12 +5457,11 @@ var CustomizableData = /** @class */ (function (_super) {
 /*!*********************************************!*\
   !*** ./src/app/graphdatatypes/graphdata.ts ***!
   \*********************************************/
-/*! exports provided: DisplayConfiguration, GraphData */
+/*! exports provided: GraphData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayConfiguration", function() { return DisplayConfiguration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphData", function() { return GraphData; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
@@ -5457,25 +5469,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-
-var DisplayConfiguration = /** @class */ (function () {
-    function DisplayConfiguration(
-    /**
-     * These columns feed in to c3 as data. Each item in allColumns is
-     * an array of data. The first entry is the series label and the following
-     * entries are the data for that series.
-     */
-    allColumns, 
-    /**
-     * The keys of this map are the name of the y-series as stored in
-     * allColumns, and the values are their corresponding x-series names.
-     */
-    columnMap) {
-        this.allColumns = allColumns;
-        this.columnMap = columnMap;
-    }
-    return DisplayConfiguration;
-}());
 
 /**
  * The base class for holding data pertaining to one graph.
@@ -5512,44 +5505,18 @@ var GraphData = /** @class */ (function () {
     /**
      * A list of x-axis regions to display on the graph.
      */
-    regions) {
+    xRegions) {
         if (series === void 0) { series = []; }
+        if (xRegions === void 0) { xRegions = new Array(); }
         this.series = series;
         this.tooltipMap = tooltipMap;
         this.tooltipKeyFn = tooltipKeyFn;
+        this.xRegions = xRegions;
         // The number of decimal places to show for any value associated with this
         // GraphData. The default is 0, to minimize errors caused by unnecessary
         // trailing zeros.
         this.precision = 0;
-        this.c3DisplayConfiguration = this.generateColumnMapping();
-        this.xRegions = regions;
     }
-    /*
-     * Sets up the column map and list of columns to use while generating the c3
-     * chart.
-     * @param data The GraphData to use while making the columns and column map.
-     */
-    GraphData.prototype.generateColumnMapping = function () {
-        // Give labels to each series and make a map of x-values to y-values.
-        var allColumns = [];
-        var columnMap = {};
-        for (var _i = 0, _a = this.series; _i < _a.length; _i++) {
-            var s = _a[_i];
-            allColumns.push(new Array('x_' + s.label).concat(s.xValues));
-            allColumns.push(new Array(s.label).concat(s.yValues));
-            columnMap[s.label] = 'x_' + s.label;
-        }
-        // If there is no data, we add a "dummy" data point to still display the
-        // x-axis.
-        if (allColumns.length < 1) {
-            // Add a data point to still show the x-axis.
-            // This date is the earliest possible date: Tuesday, April 20th, 271,821
-            // BCE.
-            allColumns.push(['x_empty', luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromJSDate(new Date(-8640000000000000))], ['empty', 0]);
-            columnMap['empty'] = 'x_empty';
-        }
-        return new DisplayConfiguration(allColumns, columnMap);
-    };
     /*
      * Returns whether or not there are any data points in the series that fall
      * inside the date range provided.
@@ -5606,7 +5573,11 @@ var LabeledSeries = /** @class */ (function () {
     function LabeledSeries(
     /** The descriptive label of the data series. */
     label, 
-    /** The coordinate set for the series. */
+    /**
+     * The coordinate set for the series. The y-coordinates may be strings
+     * or numbers, depending on whether this is a categorical or numerical
+     * graph.
+     */
     coordinates, 
     /** The y-axis unit for this series. */
     unit, 
@@ -5620,38 +5591,27 @@ var LabeledSeries = /** @class */ (function () {
      */
     legendInfo) {
         this.label = label;
+        this.coordinates = coordinates;
         this.yNormalBounds = yNormalBounds;
         this.legendInfo = legendInfo;
-        /**
-         * The x-values for this data series. This array should be parallel to the
-         * yValues series, so that (xValues[n], yValues[n]) forms a coordinate.
-         */
-        this.xValues = [];
-        /**
-         * The y-values for this data series. This array should be parallel to the
-         *  xValues series, so that (xValues[n], yValues[n]) forms a coordinate.
-         */
-        this.yValues = [];
+        // Sort the coordinates by x-value.
+        this.coordinates = coordinates.sort(function (a, b) {
+            return a[0].toMillis() - b[0].toMillis();
+        });
         this.unit = unit;
         // If a specific legend wasn't passed through then we generate one for the
         // series.
         this.legendInfo = legendInfo || new _graphtypes_legend_info__WEBPACK_IMPORTED_MODULE_3__["LegendInfo"](label);
-        /*
-         * Separate out the coordinates into x and y values because that's what
-         * the graphing library will expect.
-         */
-        for (var _i = 0, coordinates_1 = coordinates; _i < coordinates_1.length; _i++) {
-            var _a = coordinates_1[_i], x = _a[0], y = _a[1];
-            this.xValues.push(x);
-            this.yValues.push(y);
-        }
         /**
          * Calculate the y axis display bounds by finding the outer boundaries of
          * the data and the normal range.
          */
-        this.yDisplayBounds = [
-            Math.min.apply(Math, this.yValues), Math.max.apply(Math, this.yValues)
-        ];
+        var yValues = this.coordinates.map(function (c) { return c[1]; }).filter(function (x) { return x !== null; });
+        if (yValues.map(function (val) { return typeof val === 'number'; }).some(function (x) { return x === false; })) {
+            return;
+        }
+        this.yDisplayBounds =
+            [Math.min.apply(Math, yValues), Math.max.apply(Math, yValues)];
         if (this.yNormalBounds) {
             this.yDisplayBounds = [
                 Math.min(this.yDisplayBounds[0], this.yNormalBounds[0]),
@@ -5709,31 +5669,30 @@ var LabeledSeries = /** @class */ (function () {
      * @param dateRange The date range displayed on the chart.
      * @param encounters A list of Encounters to use while determining line breaks
      *     in series.
-     * @param fixedYPosition If set, we use this y-position for all the
+     * @param categoricalYPosition If set, we use this y-position for all the
      *    datapoints in both returned series. If unset, we use the dosage
      *    quantity for each administration as the y-value.
      */
-    LabeledSeries.fromMedicationOrderSet = function (medOrderSet, dateRange, encounters, fixedYPosition) {
+    LabeledSeries.fromMedicationOrderSet = function (medOrderSet, dateRange, encounters, categoricalYPosition) {
         var data = [];
         for (var _i = 0, _a = medOrderSet.resourceList; _i < _a.length; _i++) {
             var medOrder = _a[_i];
             // The first series in fromMedicationOrder is all the administrations.
             // The second series (unused in this function) is the end points only.
-            data.push(LabeledSeries.fromMedicationOrder(medOrder, dateRange, fixedYPosition)[0]);
+            data.push(LabeledSeries.fromMedicationOrder(medOrder, dateRange, categoricalYPosition)[0]);
         }
         // Combine all the series into a single series so that it shows up with
         // the same color.
         var coords = [];
         for (var _b = 0, data_1 = data; _b < data_1.length; _b++) {
             var series = data_1[_b];
-            for (var i = 0; i < series.xValues.length; i++) {
-                coords.push([series.xValues[i], series.yValues[i]]);
+            for (var _c = 0, _d = series.coordinates; _c < _d.length; _c++) {
+                var coord = _d[_c];
+                coords.push(coord);
             }
         }
         coords = this.addEncounterEndpoints(coords, encounters);
         return new LabeledSeries(medOrderSet.label, coords, medOrderSet.unit, undefined, // yNormalBounds
-        // TODO(b/122468555): Enforce that medOrderSets have to have a
-        // RxNormCode upon construction
         medOrderSet.rxNormCode ? medOrderSet.rxNormCode.displayGrouping :
             undefined);
     };
@@ -5744,11 +5703,11 @@ var LabeledSeries = /** @class */ (function () {
      * order.
      * @param order The MedicationOrder to chart.
      * @param dateRange The date range displayed on the chart.
-     * @param fixedYPosition If set, we use this y-position for all the
-     *    datapoints in both returned series. If unset, we use the dosage
-     *    quantity for each administration as the y-value.
+     * @param categoricalYPosition If set, we use this categorical y-position
+     *    for all the datapoints in both returned series. If unset, we use the
+     *    dosage quantity for each administration as the numerical y-value.
      */
-    LabeledSeries.fromMedicationOrder = function (order, dateRange, fixedYPosition) {
+    LabeledSeries.fromMedicationOrder = function (order, dateRange, categoricalYPosition) {
         var coordinates = new Array();
         var endpointCoordinates = new Array();
         var medAdminsForOrder = order.administrationsForOrder;
@@ -5759,7 +5718,8 @@ var LabeledSeries = /** @class */ (function () {
                 var annotatedAdmin = _a[_i];
                 coordinates.push([
                     annotatedAdmin.medAdministration.timestamp,
-                    this.getYPositionForMed(annotatedAdmin.medAdministration, fixedYPosition)
+                    this.getYPositionForMed(annotatedAdmin.medAdministration, categoricalYPosition),
+                    order.orderId
                 ]);
             }
             // We add the beginning and end time stamp if the order is not fully
@@ -5777,26 +5737,26 @@ var LabeledSeries = /** @class */ (function () {
             if (firstAdministrationIsAfterStartTime) {
                 endpointCoordinates.push([
                     order.firstAdministration.timestamp,
-                    this.getYPositionForMed(order.firstAdministration, fixedYPosition)
+                    this.getYPositionForMed(order.firstAdministration, categoricalYPosition)
                 ]);
             }
-            else if (fixedYPosition &&
+            else if (categoricalYPosition &&
                 (order.lastAdmininistration.timestamp.toMillis() >
                     dateRange.start.toMillis())) {
                 // Only add a point for continuity if we have a fixed y position.
-                coordinates.push([dateRange.start, fixedYPosition]);
+                coordinates.push([dateRange.start, categoricalYPosition]);
             }
             if (lastAdministrationIsBeforeEndTime) {
                 endpointCoordinates.push([
                     order.lastAdmininistration.timestamp,
-                    this.getYPositionForMed(order.lastAdmininistration, fixedYPosition)
+                    this.getYPositionForMed(order.lastAdmininistration, categoricalYPosition)
                 ]);
             }
-            else if (fixedYPosition &&
+            else if (categoricalYPosition &&
                 order.firstAdministration.timestamp.toMillis() <
                     dateRange.end.toMillis()) {
                 // Only add a point for continuity if we have a fixed y position.
-                coordinates.push([dateRange.end, fixedYPosition]);
+                coordinates.push([dateRange.end, categoricalYPosition]);
             }
         }
         return [
@@ -5820,26 +5780,22 @@ var LabeledSeries = /** @class */ (function () {
      * @param date the DateTime corresponding to the Observations in the
      *     DiagnosticReport.
      */
-    LabeledSeries.fromDiagnosticReport = function (report, date, yAxisMap) {
+    LabeledSeries.fromDiagnosticReport = function (report, date) {
         var series = [];
         var interpretationMap = new Map();
-        var _loop_1 = function (observation) {
-            var yValue = Array.from(yAxisMap.keys())
-                .find(function (key) { return yAxisMap.get(key) === observation.display; });
-            var interpretation = observation.interpretation.code;
-            if (interpretationMap.get(interpretation)) {
-                var existing = interpretationMap.get(interpretation);
-                existing.push([date, yValue]);
-                interpretationMap.set(interpretation, existing);
-            }
-            else {
-                interpretationMap.set(interpretation, [[date, yValue]]);
-            }
-        };
         // Sort results by interpretation, and make a LabeledSeries for each.
         for (var _i = 0, _a = report.results; _i < _a.length; _i++) {
             var observation = _a[_i];
-            _loop_1(observation);
+            var categoricalYValue = observation.display;
+            var interpretation = observation.interpretation.code;
+            if (interpretationMap.get(interpretation)) {
+                var existing = interpretationMap.get(interpretation);
+                existing.push([date, categoricalYValue]);
+                interpretationMap.set(interpretation, existing);
+            }
+            else {
+                interpretationMap.set(interpretation, [[date, categoricalYValue]]);
+            }
         }
         // Make a LabeledSeries for each interpretation.
         for (var _b = 0, _c = Array.from(interpretationMap.keys()); _b < _c.length; _b++) {
@@ -5878,9 +5834,9 @@ var LabeledSeries = /** @class */ (function () {
             return _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_0__["negFinalMB"];
         }
     };
-    LabeledSeries.getYPositionForMed = function (medAdmin, fixedYPosition) {
-        return fixedYPosition !== undefined && fixedYPosition !== null ?
-            fixedYPosition :
+    LabeledSeries.getYPositionForMed = function (medAdmin, categoricalYPosition) {
+        return categoricalYPosition !== undefined && categoricalYPosition !== null ?
+            categoricalYPosition :
             medAdmin.dosage.quantity;
     };
     LabeledSeries.addEncounterEndpoints = function (coordinates, encounters) {
@@ -5900,7 +5856,7 @@ var LabeledSeries = /** @class */ (function () {
         return coordinates;
     };
     LabeledSeries.prototype.hasPointInRange = function (dateRange) {
-        for (var _i = 0, _a = this.xValues; _i < _a.length; _i++) {
+        for (var _i = 0, _a = this.coordinates.map(function (c) { return c[0]; }); _i < _a.length; _i++) {
             var x = _a[_i];
             if (dateRange.contains(x)) {
                 return true;
@@ -5996,8 +5952,10 @@ var LineGraphData = /** @class */ (function (_super) {
             obsGroupToSeries.set(obsSet, lblSeries);
             allSeries.push(lblSeries);
             /* Find the minimum and maximum y values for all the series. */
-            minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
-            maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
+            if (lblSeries.yDisplayBounds) {
+                minY = Math.min(minY, lblSeries.yDisplayBounds[0]);
+                maxY = Math.max(maxY, lblSeries.yDisplayBounds[1]);
+            }
         }
         var tooltipMap = LineGraphData.makeTooltipMap(obsGroupToSeries, sanitizer);
         tooltipMap = LineGraphData.addAbnormalValueTooltips(tooltipMap, sanitizer, obsGroupToSeries);
@@ -6056,12 +6014,13 @@ var LineGraphData = /** @class */ (function (_super) {
             var yBounds = series.yNormalBounds;
             if (yBounds) {
                 // Add a tooltip for any value with an abnormal y-value.
-                for (var i = 0; i < series.yValues.length; i++) {
-                    var value = series.yValues[i];
-                    var timestamp = series.xValues[i].toMillis().toString();
+                for (var _b = 0, _c = series.coordinates; _b < _c.length; _b++) {
+                    var coords = _c[_b];
+                    var value = coords[1];
+                    var timestamp = coords[0].toMillis().toString();
                     if (value < yBounds[0] || value > yBounds[1]) {
                         var params = {};
-                        params['timestamp'] = series.xValues[i].toMillis();
+                        params['timestamp'] = coords[0].toMillis();
                         params['value'] = value;
                         params['label'] = series.label;
                         params['unit'] = series.unit;
@@ -6096,24 +6055,32 @@ var LineGraphData = /** @class */ (function (_super) {
         }
         else {
             // We use the provided display bounds as the y-axis display min and
-            // max, unless the calculated minimum and maximum of the data span a
-            // smaller range.
-            // We choose the provided min bound if it is larger than the min of
-            // the data, to cut off abnormal values.
+            // max, unless the calculated minimum and maximum of the data span are
+            // a smaller range.
             yAxisDisplayMin = resourceCodeGroup.displayBounds ?
                 ((resourceCodeGroup.displayBounds[0] >= minInSeries) ?
                     resourceCodeGroup.displayBounds[0] :
                     minInSeries) :
                 minInSeries;
-            // We choose the provided max bound if it is smaller than the max of
-            // the data, to cut off abnormal values.
             yAxisDisplayMax = resourceCodeGroup.displayBounds ?
                 ((resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
                     resourceCodeGroup.displayBounds[1] :
                     maxInSeries) :
                 maxInSeries;
         }
-        return [yAxisDisplayMin, yAxisDisplayMax];
+        // If we get all the way here and the min/max values are still min/max
+        // int, then there are just no good bounds and/or no good data. So, we
+        // set an arbitrary min of 0 and max of 100 so that the super long
+        // numbers don't clobber our axis spacing.
+        yAxisDisplayMin =
+            yAxisDisplayMin === Number.MAX_VALUE ? 0 : yAxisDisplayMin;
+        yAxisDisplayMax =
+            yAxisDisplayMax === Number.MIN_VALUE ? 100 : yAxisDisplayMax;
+        // Add a bit of cushion so that there's padding at the top and bottom
+        // of the graph.
+        var padding = (yAxisDisplayMax - yAxisDisplayMin) *
+            LineGraphData.Y_AXIS_PADDING_RATIO;
+        return [yAxisDisplayMin - padding, yAxisDisplayMax + padding];
     };
     /**
      * Converts a list of MedicationOrderSets to a LineGraphData object.
@@ -6127,15 +6094,13 @@ var LineGraphData = /** @class */ (function (_super) {
      */
     LineGraphData.fromMedicationOrderSet = function (medicationOrderSet, dateRange, sanitizer, encounters) {
         var tooltipMap = new Map();
-        var regions = [];
+        var regions = new Array();
         for (var _i = 0, _a = medicationOrderSet.resourceList; _i < _a.length; _i++) {
             var order = _a[_i];
-            regions.push({
-                axis: 'x',
-                class: 'order-region',
-                start: order.firstAdministration.timestamp,
-                end: order.lastAdmininistration.timestamp
-            });
+            regions.push([
+                order.firstAdministration.timestamp,
+                order.lastAdmininistration.timestamp
+            ]);
             for (var _b = 0, _c = order.administrationsForOrder.resourceList; _b < _c.length; _b++) {
                 var admin = _c[_b];
                 var timestamp = admin.medAdministration.timestamp.toMillis().toString();
@@ -6194,6 +6159,7 @@ var LineGraphData = /** @class */ (function (_super) {
         return new LineGraphData(label, [lblSeries], [0, yValue], undefined, // Units
         tooltipMap);
     };
+    LineGraphData.Y_AXIS_PADDING_RATIO = 0.1;
     return LineGraphData;
 }(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
 
@@ -6211,12 +6177,10 @@ var LineGraphData = /** @class */ (function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioGraphData", function() { return MicrobioGraphData; });
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../graphtypes/tooltips/microbio-tooltips */ "./src/app/graphtypes/tooltips/microbio-tooltips.ts");
-/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
-/* harmony import */ var _stepgraphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/microbio-tooltips */ "./src/app/graphtypes/tooltips/microbio-tooltips.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _stepgraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6238,7 +6202,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
-
 /**
  * MicrobioGraphData holds configurations for a microbiology graph. The format
  * of a microbiology graph is simliar to a step graph in that each y-axis
@@ -6247,15 +6210,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var MicrobioGraphData = /** @class */ (function (_super) {
     __extends(MicrobioGraphData, _super);
-    function MicrobioGraphData(series, endpointSeries, yAxisMap, tooltipMap, keyFn, 
-    /**
-     * Maps the report ID to the report status. This is used for custom
-     * styling of display points.
-     */
-    reportIdToStatus) {
-        var _this = _super.call(this, series, endpointSeries, yAxisMap, tooltipMap, keyFn) || this;
-        _this.reportIdToStatus = reportIdToStatus;
-        return _this;
+    function MicrobioGraphData(series, endpointSeries, tooltipMap) {
+        return _super.call(this, series, endpointSeries, tooltipMap, undefined) || this;
     }
     /**
      * Converts a list of DiagnosticReports to a StepGraphData object.
@@ -6266,25 +6222,7 @@ var MicrobioGraphData = /** @class */ (function (_super) {
     MicrobioGraphData.fromDiagnosticReports = function (diagnosticReports, cultureType, sanitizer) {
         // TODO(b/121266814): Make constants or enum for cultureType.
         var points = [];
-        // We keep the yAxisMap mapping y-axis positions to labels to be consistent
-        // with other forms of StepGraphData.
-        var currYPosition = _stepgraphdata__WEBPACK_IMPORTED_MODULE_4__["StepGraphData"].Y_AXIS_SPACING;
-        var yAxisMap = new Map();
         var tooltipMap = new Map();
-        var timestampToId = new Map();
-        // We create a master y-axis map mapping discrete labels (Observation
-        // displays) to y-values. This must be uniform across all DiagnosticReports.
-        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
-            var report = diagnosticReports_1[_i];
-            for (var _a = 0, _b = report.results; _a < _b.length; _a++) {
-                var observation = _b[_a];
-                if (!Array.from(yAxisMap.values()).includes(observation.display)) {
-                    yAxisMap.set(currYPosition, observation.display);
-                    currYPosition += _stepgraphdata__WEBPACK_IMPORTED_MODULE_4__["StepGraphData"].Y_AXIS_SPACING;
-                }
-            }
-        }
-        var reportIdToStatus = new Map();
         var _loop_1 = function (report) {
             // Find the specimen in the report with the correct Culture type.
             // We throw an error if there are mutiple specimens of the same type for
@@ -6296,35 +6234,26 @@ var MicrobioGraphData = /** @class */ (function (_super) {
             if (hasDuplicates) {
                 throw Error('Report has multiple specimens with same type.');
             }
-            reportIdToStatus.set(report.id, report.status);
             var specimen = report.specimens.find(function (s) { return (s.type === cultureType); });
             if (specimen) {
-                var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_1__["AnnotatedDiagnosticReport"](report, cultureType);
-                // For this tooltip, the keys are report IDs.
-                tooltipMap.set(report.id, new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_2__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
-                var ts = annotatedReport.timestamp.toMillis().toString();
-                timestampToId.set(ts, report.id);
-                for (var _i = 0, _a = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp, yAxisMap); _i < _a.length; _i++) {
+                var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report, cultureType);
+                // For this tooltip, the keys are timestamps.
+                tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
+                for (var _i = 0, _a = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _i < _a.length; _i++) {
                     var series = _a[_i];
                     points.push(series);
                 }
             }
         };
-        for (var _c = 0, diagnosticReports_2 = diagnosticReports; _c < diagnosticReports_2.length; _c++) {
-            var report = diagnosticReports_2[_c];
+        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
+            var report = diagnosticReports_1[_i];
             _loop_1(report);
         }
         return new MicrobioGraphData([], // No series representing "lines" on this chart
-        points, yAxisMap, tooltipMap, 
-        // Because the keys here are report IDs we have to pass in a custom
-        // function to translate the graph's x-values to the appropriate
-        // tooltip.
-        function (reportPoint) {
-            return timestampToId.get(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromJSDate(reportPoint.x).toMillis().toString());
-        }, reportIdToStatus);
+        points, tooltipMap);
     };
     return MicrobioGraphData;
-}(_stepgraphdata__WEBPACK_IMPORTED_MODULE_4__["StepGraphData"]));
+}(_stepgraphdata__WEBPACK_IMPORTED_MODULE_3__["StepGraphData"]));
 
 
 
@@ -6340,9 +6269,11 @@ var MicrobioGraphData = /** @class */ (function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StepGraphData", function() { return StepGraphData; });
-/* harmony import */ var _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphtypes/tooltips/medication-tooltips */ "./src/app/graphtypes/tooltips/medication-tooltips.ts");
-/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
-/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/medication-tooltips */ "./src/app/graphtypes/tooltips/medication-tooltips.ts");
+/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6363,6 +6294,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
 /**
  * StepGraphData holds configurations for a step graph. A step graph displays
  * one or more LabeledSeries.
@@ -6374,15 +6306,15 @@ var StepGraphData = /** @class */ (function (_super) {
     dataSeries, 
     /** A list of the LabeledSeries representing end points. */
     endpointSeries, 
+    /** A map of tooltips for the data points. */
+    tooltipMap, 
     /**
-     * The map of y values to discrete labels to display on the y axis of the
-     * stepgraph.
+     *  The function to call to get the key for the tooltip map for a point.
      */
-    yAxisMap, tooltipMap, keyFn) {
+    keyFn) {
         var _this = _super.call(this, dataSeries.concat(endpointSeries), tooltipMap, keyFn) || this;
         _this.dataSeries = dataSeries;
         _this.endpointSeries = endpointSeries;
-        _this.yAxisMap = yAxisMap;
         return _this;
     }
     /**
@@ -6394,9 +6326,6 @@ var StepGraphData = /** @class */ (function (_super) {
     StepGraphData.fromMedicationOrderSetList = function (medicationOrderListGroup, dateRange, sanitizer) {
         var data = [];
         var endpoints = [];
-        // Give labels to each series and make a map of x-values to y-values.
-        var yAxisMap = new Map();
-        var currYPosition = StepGraphData.Y_AXIS_SPACING;
         medicationOrderListGroup = medicationOrderListGroup.sort(function (a, b) {
             return a.resourceList[a.resourceList.length - 1]
                 .lastAdmininistration.timestamp.toMillis() -
@@ -6410,18 +6339,19 @@ var StepGraphData = /** @class */ (function (_super) {
             // for the same medicine.
             for (var _a = 0, _b = medOrderSet.resourceList; _a < _b.length; _a++) {
                 var medOrder = _b[_a];
-                var labeledSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromMedicationOrder(medOrder, dateRange, currYPosition);
+                var labeledSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromMedicationOrder(medOrder, dateRange, medOrder.administrationsForOrder.label);
                 var administrationSeries = labeledSeries[0];
                 var endpointSeries = labeledSeries[1];
                 data.push(administrationSeries);
                 endpoints.push(endpointSeries);
-                yAxisMap.set(currYPosition, medOrder.administrationsForOrder.label);
                 // For this custom tooltip, the key is the series ID, and the value is
                 // the medication tooltip that shows the first and last doses for the
                 // medication.
-                tooltipMap.set(administrationSeries.label, new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__["MedicationTooltip"]().getTooltip(medOrder, sanitizer));
+                tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
+                    medOrder.firstAdministration.timestamp, new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer));
+                tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
+                    medOrder.lastAdmininistration.timestamp, new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer));
             }
-            currYPosition += StepGraphData.Y_AXIS_SPACING;
         }
         // Do not display the units for Medication administration values on the card
         // for MedicationSummary.
@@ -6433,17 +6363,17 @@ var StepGraphData = /** @class */ (function (_super) {
             var series = endpoints_1[_d];
             series.unit = undefined;
         }
-        return new StepGraphData(data, endpoints, yAxisMap, tooltipMap, 
-        // Our tooltip key here is the series ID, so we pass in a
-        // custom key function.
-        function (seriesObj) {
-            return seriesObj.id;
+        return new StepGraphData(data, endpoints, tooltipMap, 
+        // Our tooltip key here is the drug name plus the timestamp.
+        function (tooltipContext) {
+            var xValue = tooltipContext.dataPoints[0].label;
+            var yValue = tooltipContext.dataPoints[0].value;
+            return yValue.toLowerCase() +
+                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(xValue).toMillis().toString();
         });
     };
-    // The spacing between discrete values on the y-axis.
-    StepGraphData.Y_AXIS_SPACING = 10;
     return StepGraphData;
-}(_graphdata__WEBPACK_IMPORTED_MODULE_1__["GraphData"]));
+}(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
 
 
 
@@ -6987,8 +6917,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var src_app_cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graph/renderedcustomizablechart */ "./src/app/graphtypes/graph/renderedcustomizablechart.ts");
+/* harmony import */ var _graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graph/renderedcustomizablechart */ "./src/app/graphtypes/graph/renderedcustomizablechart.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7024,16 +6955,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CustomizableGraphComponent = /** @class */ (function (_super) {
     __extends(CustomizableGraphComponent, _super);
     function CustomizableGraphComponent(sanitizer, dialog) {
-        var _this = _super.call(this, sanitizer, function (axis, divId) {
-            return new _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_7__["RenderedCustomizableChart"](axis, divId);
-        }) || this;
+        var _this = _super.call(this, sanitizer) || this;
         _this.sanitizer = sanitizer;
         _this.dialog = dialog;
         // An event indicating that the points on the CustomizableGraph have changed.
         _this.pointsChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        var renderedConstructor = function (axis, divId) {
+            return new _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_8__["RenderedCustomizableChart"](axis, divId);
+        };
         return _this;
     }
     CustomizableGraphComponent_1 = CustomizableGraphComponent;
@@ -7267,20 +7200,24 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
     ], CustomizableGraphComponent.prototype, "inEditMode", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_6__["DateTimeXAxis"])
+    ], CustomizableGraphComponent.prototype, "xAxis", void 0);
     CustomizableGraphComponent = CustomizableGraphComponent_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-customizable-graph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             styles: [__webpack_require__(/*! ../../cardtypes/customizable-timeline/customizable-timeline.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.css")],
             providers: [{
-                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"],
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return CustomizableGraphComponent_1; })
                 }]
         }),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], CustomizableGraphComponent);
     return CustomizableGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["GraphComponent"]));
 
 
 
@@ -7293,7 +7230,7 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n\n::ng-deep .c3-region {\n  fill: hsl(150, 50%, 50%);\n  stroke: hsl(150, 50%, 70%);;\n  stroke-dasharray: 1px;\n}\n\n::ng-deep .c3 {\n  cursor: default !important;\n}\n\n.c3-tooltip > tbody > tr > th {\n  background-color: rgb(197, 185, 172); /* Boston Warm Gray */\n  width: 100%;\n  word-wrap: break-word;\n}\n\n/* This ensures that the step graph lines do not show circles for individual data points, except for the end points of each line segment. */\n\n::ng-deep .stepgraph .c3-circles:not([class *=\"endpoint\"]) {\n  display: none;\n}\n\n/* This is styling for a stepgraphcard's circles on the end points of line segments. */\n\n::ng-deep .stepgraph [class *= \"endpoint\"] {\n  stroke: black;\n  opacity: 1;\n  stroke-width: 3;\n}\n\n::ng-deep .stepgraph .c3-line {\n  stroke-width: 2px;\n}\n\n::ng-deep .stepgraph [class*=\"tooltip\"] {\n  width: 210px;\n}\n\n::ng-deep .c3-axis-y text :not(.c3-axis-y-label) {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 13px;\n}\n\n::ng-deep .c3-axis-x text {\n  font-family: \"Roboto\", sans-serif !important;\n  font-size: 13px;\n}\n\n::ng-deep .noData {\n  opacity: 1 !important;\n}\n\n::ng-deep .c3-ygrid-line text {\n  font-size: 13px !important;\n  fill: black;\n}\n\n/* These colors need to stay consistent with the color options in the dialog for the custom timeline. */\n\n/* Yellow grid line */\n\n::ng-deep .c3-xgrid-line.colorF2A900 line {\n  stroke: #F2A900;\n}\n\n/* Blue grid line */\n\n::ng-deep .c3-xgrid-line.color007396 line {\n  stroke: #007396;\n}\n\n/* Green grid line */\n\n::ng-deep .c3-xgrid-line.color739600 line {\n  stroke: #739600;\n}\n\n/* Pink grid line */\n\n::ng-deep .c3-xgrid-line.colorC6579A line {\n  stroke: #C6579A;\n}\n\n/* Purple grid line */\n\n::ng-deep .c3-xgrid-line.color8C4799 line {\n  stroke: #8C4799;\n}\n\n/* Red grid line */\n\n::ng-deep .c3-xgrid-line.color80225F line {\n  stroke: #80225F;\n}\n\n::ng-deep .encounter-region {\n  fill: rgb(0, 35, 86); /* Primary color */\n  stroke: rgb(0, 35, 86); /* Primary color */\n}\n\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n\n::ng-deep .c3-tooltip td {\n  width: 105px;\n}\n"
+module.exports = "::ng-deep canvas{\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n.c3-tooltip > tbody > tr > th {\n  background-color: rgb(197, 185, 172); /* Boston Warm Gray */\n  width: 100%;\n  word-wrap: break-word;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n}\n/* These colors need to stay consistent with the color options in the dialog for the custom timeline. */\n/* Yellow grid line */\n::ng-deep .c3-xgrid-line.colorF2A900 line {\n  stroke: #F2A900;\n}\n/* Blue grid line */\n::ng-deep .c3-xgrid-line.color007396 line {\n  stroke: #007396;\n}\n/* Green grid line */\n::ng-deep .c3-xgrid-line.color739600 line {\n  stroke: #739600;\n}\n/* Pink grid line */\n::ng-deep .c3-xgrid-line.colorC6579A line {\n  stroke: #C6579A;\n}\n/* Purple grid line */\n::ng-deep .c3-xgrid-line.color8C4799 line {\n  stroke: #8C4799;\n}\n/* Red grid line */\n::ng-deep .c3-xgrid-line.color80225F line {\n  stroke: #80225F;\n}\n::ng-deep .encounter-region {\n  fill: rgb(0, 35, 86); /* Primary color */\n  stroke: rgb(0, 35, 86); /* Primary color */\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n"
 
 /***/ }),
 
@@ -7364,7 +7301,7 @@ var DateTimeXAxis = /** @class */ (function () {
                 ticks.push(date);
             }
         }
-        this.xAxisLabels = ticksLabels.map(function (x) { return x.toFormat('MM/dd HH:mm'); });
+        this.xAxisLabels = ticksLabels.map(function (x) { return x.toISO(); });
         this.xAxisConfig = {
             type: 'timeseries',
             min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
@@ -7393,7 +7330,7 @@ var DateTimeXAxis = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"{{chartDivId}}\"></div>\n<table id=\"c3-tooltip\" class=\"c3-tooltip\"></table>\n"
+module.exports = "<!-- This top level div expands to fill the card. If we remove it, then the inner div\ninfinitely expands as the canvas tries to take up more and more space.-->\n<div>\n  <div style=\"position: relative; height:125px\">\n    <canvas baseChart [datasets]=\" chartData\" [colors]=\"chartColors\" [options]=\"chartOptions\"\n      [plugins]=\"lineChartPlugins\" [chartType]=\"chartTypeString\" [id]=\"chartDivId\" height=\"125\" width=\"500\"></canvas>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -7409,14 +7346,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChartType", function() { return ChartType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphComponent", function() { return GraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
+/* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chartjs-plugin-annotation */ "./node_modules/chartjs-plugin-annotation/src/index.js");
+/* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
-/* harmony import */ var _datetimexaxis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7436,7 +7373,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var ChartType;
 (function (ChartType) {
     ChartType[ChartType["SCATTER"] = 0] = "SCATTER";
@@ -7448,58 +7384,175 @@ var ChartType;
  * Displays a graph. T is the data type the graph is equipped to display.
  */
 var GraphComponent = /** @class */ (function () {
-    function GraphComponent(sanitizer, renderedConstructor) {
+    function GraphComponent(sanitizer) {
         var _this = this;
         this.sanitizer = sanitizer;
-        this.renderedConstructor = renderedConstructor;
-        // What type of chart this is. Line chart by default.
-        this.chartType = ChartType.LINE;
-        /** The default y-axis configuration for the chart. */
-        this.yAxisConfig = {
-            label: { text: '', position: 'outer-middle' },
-            tick: {
-                count: 5,
-                format: function (d) {
-                    // We add padding to our y-axis tick labels so that all y-axes of
-                    // the charts rendered on the page can be aligned.
-                    return (d)
-                        .toLocaleString('en-us', {
-                        minimumFractionDigits: _this.data.precision,
-                        maximumFractionDigits: _this.data.precision
-                    })
-                        .trim();
-                }
-            }
-        };
-        // A map containing a color for each series displayed on the graph.
-        this.colorsMap = {};
-        /**
-         * The base chart height to use when rendering.
-         */
+        /** The base chart height to use when rendering. */
         this.BASE_CHART_HEIGHT_PX = 150;
-        /**
-         * The amount of padding to add to the left of the graph. This goes hand in
-         * hand with how we choose to wrap the labels in the rendered chart, so if
-         * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
+        /*****************************************
+         * Variables the chart.js directive binds to.
          */
-        this.Y_AXIS_LEFT_PADDING = 125;
+        /** Plugins for chart.js. */
+        this.lineChartPlugins = [chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_1__];
+        /**
+         * Sets the tooltip for the graph.
+         * If the class has a tooltipMap set, then we look up the tooltip from that
+         * map. If there's no tooltipMap, then we return a simple formatted tooltip
+         * of just the string representing the data plus the appropriate units for
+         * a linegraph, or just the unedited value if it's a different kind of graph.
+         */
+        this.customTooltips = function (tooltipContext) {
+            // Get, or construct, a tooltip element to put all the tooltip HTML into.
+            var canvas = document.getElementById(_this.chartDivId);
+            var tooltipEl = _this.findOrCreateTooltipElement(canvas);
+            // Hide the element if there is no tooltip-- this function gets called
+            // back whether you're hovering over an element or not.
+            if (tooltipContext.opacity === 0) {
+                tooltipEl.style.opacity = '0';
+                return;
+            }
+            if (tooltipContext.body) {
+                tooltipEl.innerHTML = _this.getTooltipInnerHtml(tooltipContext);
+            }
+            // Display the tooltip lined up with the data point.
+            var positionY = canvas.offsetTop;
+            var positionX = canvas.offsetLeft;
+            tooltipEl.style.opacity = '1';
+            tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
+            tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
+        };
+        // The bindings are unhappy when you provide an empty data array, so we
+        // give it a fake label.
+        this.chartData = [
+            { data: [], label: GraphComponent.DEFAULT_BLANK_DATA_LABEL },
+        ];
+        this.chartOptions = {
+            // Draw straight lines between points instead of curves.
+            elements: { line: { tension: 0 } },
+            layout: { padding: { top: 15 } },
+            // We make our own legend so we don't show the built-in one.
+            legend: { display: false },
+            scales: {
+                xAxes: [{
+                        id: GraphComponent.X_AXIS_ID,
+                        type: 'time',
+                        gridLines: {
+                            display: false,
+                        },
+                        time: {
+                            // This sets the bounds of the x-axis. The default values of
+                            // 0 and 10
+                            // are nonsensical but necessary since the graph is first
+                            // rendered
+                            // before xAxis is bound.
+                            min: this.dateRange ? this.dateRange.start.toISO() :
+                                luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
+                            max: this.dateRange ? this.dateRange.end.toISO() :
+                                luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO()
+                        },
+                        ticks: {
+                            // Only show as many tick labels will fit neatly on the axis.
+                            autoSkip: true,
+                        }
+                    }],
+                yAxes: [
+                    {
+                        id: GraphComponent.Y_AXIS_ID,
+                        position: 'left',
+                        gridLines: {
+                            display: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '',
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            callback: function (value, index, values) {
+                                return (value).toLocaleString('en-us', {
+                                    minimumFractionDigits: _this.data.precision,
+                                    maximumFractionDigits: _this.data.precision
+                                });
+                            }
+                        }
+                    },
+                ]
+            },
+            responsive: false,
+            maintainAspectRatio: false,
+            // Set up the custom callback for the tooltips.
+            tooltips: {
+                enabled: false,
+                mode: 'x',
+                position: 'nearest',
+                custom: this.customTooltips
+            },
+            annotation: {
+                // Array of annotation configuration objects to be filled in.
+                annotations: []
+            },
+            /** The settings below are just for better performance. */
+            animation: { duration: 0 },
+            hover: { animationDuration: 0 },
+            responsiveAnimationDuration: 0
+        };
+        /**
+         * The sequence of colors to use for rendering the LabeledSeries for this
+         * chart's data. The ordering of this color array should be in parallel
+         * to the ordering of the LabeledSeries in this chart's data.
+         */
+        this.chartColors = [];
+        /**
+         * The default chart type for this chart. The Angular directive binds
+         * to this string to tell chart.js which chart type to use.
+         */
+        this.chartTypeString = 'line';
         // Generate a unique ID for this chart.
         var chartId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
         // Replace the dashes in the UUID to meet HTML requirements.
         var re = /\-/gi;
         this.chartDivId = 'chart' + chartId.replace(re, '');
     }
-    // The chart can't find the element to bind to until after the view is
-    // initialized so we need to regenerate the chart here.
-    GraphComponent.prototype.ngAfterViewInit = function () {
+    GraphComponent.prototype.generateXAxis = function () {
+        return {
+            id: GraphComponent.X_AXIS_ID,
+            type: 'time',
+            gridLines: {
+                display: false,
+            },
+            time: {
+                // This sets the bounds of the x-axis. The default values of 0 and 10
+                // are nonsensical but necessary since the graph is first rendered
+                // before xAxis is bound.
+                min: this.dateRange ? this.dateRange.start.toISO() :
+                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
+                max: this.dateRange ? this.dateRange.end.toISO() :
+                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
+                displayFormats: {
+                    minute: 'MM/DD H:mm',
+                    hour: 'MM/DD H:mm',
+                    day: 'MM/DD H:mm',
+                    week: 'MM/DD H:mm',
+                    month: 'MM/DD H:mm',
+                    quarter: 'MM/DD H:mm',
+                    year: 'MM/DD H:mm'
+                }
+            },
+            ticks: {
+                // Only show as many tick labels will fit neatly on the axis.
+                autoSkip: true,
+            }
+        };
+    };
+    GraphComponent.prototype.ngOnInit = function () {
         this.generateChart();
     };
     GraphComponent.prototype.ngOnChanges = function (changes) {
-        if (!this.renderedChart) {
-            return;
-        }
-        if (changes.eventlines) {
+        if (changes.eventlines && this.renderedChart) {
             this.renderedChart.updateEventlines(changes.eventlines.currentValue);
+        }
+        if (changes.dateRange) {
+            this.chartOptions.scales.xAxes = [this.generateXAxis()];
         }
     };
     /**
@@ -7519,16 +7572,14 @@ var GraphComponent = /** @class */ (function () {
      * the chart via c3 and do some generic styling of the chart
      * 5) onRender callback runs for the graph generated.
      */
-    GraphComponent.prototype.generateChart = function () {
-        if (this.data && this.xAxis) {
-            this.dataPointsInDateRange =
-                this.data.dataPointsInRange(this.xAxis.dateRange);
+    GraphComponent.prototype.generateChart = function (focusOnSeries) {
+        if (this.data && this.dateRange) {
+            this.chartData =
+                [{ data: [], label: GraphComponent.DEFAULT_BLANK_DATA_LABEL }];
+            this.dataPointsInDateRange = this.data.dataPointsInRange(this.dateRange);
             this.prepareForChartConfiguration();
-            this.generateBasicChart();
+            this.generateBasicChart(focusOnSeries);
             this.adjustGeneratedChartConfiguration();
-            this.renderedChart =
-                this.renderedConstructor(this.xAxis, this.chartDivId);
-            this.renderedChart.generate(this.chartConfiguration, this.dataPointsInDateRange);
         }
     };
     /**
@@ -7554,132 +7605,158 @@ var GraphComponent = /** @class */ (function () {
      * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
      * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
      */
-    GraphComponent.prototype.generateBasicChart = function (maxXTicks) {
-        if (maxXTicks === void 0) { maxXTicks = 10; }
-        this.chartTypeString = 'line';
-        if (this.chartType === ChartType.SCATTER) {
-            this.chartTypeString = 'scatter';
-        }
-        else if (this.chartType !== ChartType.LINE) {
-            throw Error('Unsupported chart type: ' + this.chartType);
-        }
-        // Show the y-axis label on the chart.
-        this.yAxisConfig['label'] = {
-            text: (this.axisLabel ? this.axisLabel : ''),
-            position: 'outer-middle'
-        };
-        var self = this;
-        var chartConfiguration = {
-            axis: { x: this.xAxis.xAxisConfig, y: this.yAxisConfig },
-            bindto: '#' + this.chartDivId,
-            data: {
-                columns: this.data.c3DisplayConfiguration.allColumns,
-                xs: this.data.c3DisplayConfiguration.columnMap,
-                type: this.chartTypeString,
-                colors: this.makeColorMap(),
-            },
-            grid: { y: {}, x: {} },
-            legend: { show: false },
-            line: { connectNull: false },
-            onrendered: function () {
-                var _this = this;
-                self.renderedChart.addToRenderQueue(function () {
-                    self.renderedChart.setXRegions(self.xRegions);
-                });
-                self.renderedChart.addToRenderQueue(function () {
-                    self.renderedChart.updateEventlines(self.eventlines);
-                });
-                self.renderedChart.addToRenderQueue(function () {
-                    self.onRendered(_this);
-                });
-            },
-            padding: { left: this.Y_AXIS_LEFT_PADDING },
-            size: { height: this.BASE_CHART_HEIGHT_PX },
-            tooltip: this.setTooltip(),
-        };
-        this.chartConfiguration = chartConfiguration;
-    };
-    GraphComponent.prototype.resetChart = function () {
-        this.renderedChart.resetChart();
-    };
-    GraphComponent.prototype.focusOnSeries = function (labeledSeries) {
-        this.renderedChart.focusOnSeries(labeledSeries.map(function (series) { return series.label; }));
-    };
-    GraphComponent.prototype.makeColorMap = function () {
-        var colorMap = {};
+    GraphComponent.prototype.generateBasicChart = function (focusOnSeries) {
+        // Transform the data into a format that chart.js can render it.
+        var data = [];
         for (var _i = 0, _a = this.data.series; _i < _a.length; _i++) {
             var series = _a[_i];
-            colorMap[series.label] = series.legendInfo.fill.toString();
+            var lineWidth = GraphComponent.THIN_LINE;
+            if (focusOnSeries !== undefined && focusOnSeries.includes(series)) {
+                lineWidth = GraphComponent.THICK_LINE;
+            }
+            data.push({
+                data: series.coordinates.map(function (pt) {
+                    return { x: pt[0].toISO(), y: pt[1] };
+                }),
+                label: series.label,
+                // Do not fill the area under the line.
+                fill: false,
+                borderWidth: lineWidth
+            });
+            this.chartColors.push({
+                backgroundColor: series.legendInfo.fill,
+                borderColor: series.legendInfo.fill,
+            });
         }
-        return colorMap;
-    };
-    /**
-     * Sets the tooltip for the graph.
-     * If the class has a tooltipMap set, then we look up the tooltip from that
-     * map. If there's no tooltipMap, then we return a simple formatted tooltip
-     * of just the string representing the data plus the appropriate units for
-     * a linegraph, or just the unedited value if it's a different kind of graph.
-     */
-    GraphComponent.prototype.setTooltip = function () {
-        var _this = this;
-        var self = this;
-        if (this.data && this.data.tooltipMap) {
-            return {
-                contents: function (pointData, defaultTitleFormat, defaultValueFormat, color) {
-                    // pointData will hold every point for the x-value you're hovering
-                    // on. We squish together all those data points preemptively in
-                    // our tooltip creation so that we just find the index of the
-                    // tooltip based on the first point's x-value.
-                    var value = pointData[0];
-                    var timestampKey = luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromJSDate(value.x).toMillis().toString();
-                    // Our data class may provide a tooltip key function that will
-                    // get the correct identifier from the data point. If it does,
-                    // we'll use that, but by default, the key is the timestamp
-                    // of the data point.
-                    var keyToUse = _this.data.tooltipKeyFn ?
-                        _this.data.tooltipKeyFn(value) :
-                        timestampKey;
-                    // If something bad happens and we don't have a tooltip for the
-                    // key, return an empty string so that there will just be no
-                    // tooltip.
-                    if (!_this.data.tooltipMap.has(keyToUse)) {
-                        return new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_5__["StandardTooltip"](pointData, color, self.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"] ? self.data.unit : '')
-                            .getTooltip(undefined, _this.sanitizer);
-                    }
-                    return _this.data.tooltipMap.get(keyToUse);
-                }
-            };
+        // The subclasses may have already put series in lineChartData, and we don't
+        // want to remove them, so we just append them to the series. On the other
+        // hand, if there's a blank series in lineChartData, we want to get rid of
+        // it before putting everything else in.
+        if (data.length > 0 && this.onlyDefaultDataPresent()) {
+            this.chartData = data;
         }
         else {
-            return {
-                format: {
-                    value: function (value, ratio, id, index) {
-                        if (self.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"]) {
-                            return (d3__WEBPACK_IMPORTED_MODULE_1__["format"](',.' + self.data.precision + 'f')(value) + ' ' +
-                                self.data.unit);
-                        }
-                        return value;
-                    }
-                }
+            this.chartData = this.chartData.concat(data);
+        }
+        // Set the axis label if it's provided.
+        this.chartOptions.scales.yAxes[0].scaleLabel.labelString =
+            this.axisLabel ? this.axisLabel : '';
+        // Add left-padding so that the y-axes are aligned with one another.
+        this.chartOptions.scales.yAxes[0]['afterSetDimensions'] = function (axes) {
+            axes.paddingLeft = GraphComponent.Y_AXIS_LEFT_PADDING;
+        };
+        this.showXRegions();
+    };
+    GraphComponent.prototype.showXRegions = function () {
+        for (var _i = 0, _a = this.xRegions; _i < _a.length; _i++) {
+            var region = _a[_i];
+            var annotation = {
+                // Show the region underneath the data points.
+                drawTime: 'beforeDatasetsDraw',
+                type: 'box',
+                xMin: region[0].toMillis(),
+                xMax: region[1].toMillis(),
+                xScaleID: GraphComponent.X_AXIS_ID,
+                yScaleID: GraphComponent.Y_AXIS_ID,
+                backgroundColor: 'rgba(179, 157, 219, 0.3)',
+                borderColor: 'rgba(179, 157, 219, 0.9)',
+                borderWidth: 2,
             };
+            this.chartOptions.annotation.annotations.push(annotation);
         }
     };
+    GraphComponent.prototype.onlyDefaultDataPresent = function () {
+        return this.chartData.length === 1 &&
+            this.chartData[0].label === GraphComponent.DEFAULT_BLANK_DATA_LABEL;
+    };
+    /***************************
+     * Legend interactions
+     */
+    GraphComponent.prototype.resetChart = function () {
+        this.generateChart();
+    };
+    GraphComponent.prototype.focusOnSeries = function (labeledSeries) {
+        this.generateChart(labeledSeries);
+    };
+    /******************************
+     * Helper functions for tooltipping
+     */
+    /**
+     * Finds or creates a HTML element to render the tooltip onto.
+     * @param canvas The Canvas this graph is rendered on
+     */
+    GraphComponent.prototype.findOrCreateTooltipElement = function (canvas) {
+        var tooltipTag = 'chartjs-tooltip' + this.chartDivId;
+        var tooltipEl = document.getElementById(tooltipTag);
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.id = tooltipTag;
+            tooltipEl.classList.add('chartjs-tooltip');
+            tooltipEl.innerHTML = '<table></table>';
+            canvas.parentNode.appendChild(tooltipEl);
+        }
+        return tooltipEl;
+    };
+    /**
+     * Gets the tooltip text for the given context.
+     * @param tooltipContext The tooltip context passed into the tooltip callback
+     */
+    GraphComponent.prototype.getTooltipInnerHtml = function (tooltipContext) {
+        // We squish together all points at the same timestamp preemptively in
+        // our tooltip creation so that we just find the index of the
+        // tooltip based on the first point's x-value.
+        var xValue = tooltipContext.dataPoints[0].label;
+        var timestampKey = luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromISO(xValue).toMillis().toString();
+        // Our data class may provide a tooltip key function that will
+        // get the correct identifier from the data point. If it does,
+        // we'll use that, but by default, the key is the timestamp
+        // of the data point.
+        var keyToUse = this.data.tooltipKeyFn ?
+            this.data.tooltipKeyFn(tooltipContext) :
+            timestampKey;
+        // If something bad happens and we don't have a tooltip for the
+        // key, return a generic tooltip with the value.
+        var tooltipText;
+        if (!this.data.tooltipMap || !this.data.tooltipMap.has(keyToUse)) {
+            tooltipText =
+                new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_5__["StandardTooltip"]([], undefined, this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"] ? this.data.unit : '')
+                    .getTooltip(undefined, this.sanitizer);
+        }
+        else {
+            tooltipText = this.data.tooltipMap.get(keyToUse);
+        }
+        return tooltipText;
+    };
+    /** Dummy data series label. */
+    GraphComponent.DEFAULT_BLANK_DATA_LABEL = 'blankdatalabel';
+    /**
+     * The amount of padding to add to the left of the graph. This goes hand in
+     * hand with how we choose to wrap the labels in the rendered chart, so if
+     * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
+     */
+    GraphComponent.Y_AXIS_LEFT_PADDING = 125;
+    /** Line weights for emphasized and non-emphasized line graphs. */
+    GraphComponent.THICK_LINE = 3;
+    GraphComponent.THIN_LINE = 1;
+    /** Constants for x and y axis names. */
+    GraphComponent.Y_AXIS_ID = 'y-axis-0';
+    GraphComponent.X_AXIS_ID = 'x-axis-0';
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
     ], GraphComponent.prototype, "eventlines", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", _datetimexaxis__WEBPACK_IMPORTED_MODULE_6__["DateTimeXAxis"])
-    ], GraphComponent.prototype, "xAxis", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], GraphComponent.prototype, "data", void 0);
+        __metadata("design:type", luxon__WEBPACK_IMPORTED_MODULE_2__["Interval"])
+    ], GraphComponent.prototype, "dateRange", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], GraphComponent.prototype, "axisLabel", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], GraphComponent.prototype, "data", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
@@ -7873,18 +7950,6 @@ var RenderedChart = /** @class */ (function () {
     RenderedChart.prototype.updateEventlines = function (eventLines) {
         d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#' + this.chartDivId).selectAll('.c3-xgrid-line').remove();
         this.generatedChart.xgrids(eventLines);
-    };
-    /**
-     * Set X regions on the chart.
-     */
-    RenderedChart.prototype.setXRegions = function (xRegions) {
-        this.generatedChart.regions(xRegions);
-    };
-    /**
-     * Add y region on chart.
-     */
-    RenderedChart.prototype.addYRegion = function (yRegion) {
-        this.generatedChart.regions.add(yRegion);
     };
     /**
      * Set lines and labels for y-boundaries.
@@ -8107,11 +8172,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineGraphComponent", function() { return LineGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
-/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/theme/bch_colors */ "./src/app/theme/bch_colors.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _graph_renderedchart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/renderedchart */ "./src/app/graphtypes/graph/renderedchart.ts");
+/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
+/* harmony import */ var src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/theme/bch_colors */ "./src/app/theme/bch_colors.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8143,76 +8206,36 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
 var LineGraphComponent = /** @class */ (function (_super) {
     __extends(LineGraphComponent, _super);
     function LineGraphComponent(sanitizer) {
-        var _this = _super.call(this, sanitizer, function (axis, id) { return new _graph_renderedchart__WEBPACK_IMPORTED_MODULE_6__["RenderedChart"](axis, id); }) || this;
+        var _this = _super.call(this, sanitizer) || this;
         _this.sanitizer = sanitizer;
         return _this;
     }
     LineGraphComponent_1 = LineGraphComponent;
     LineGraphComponent.prototype.prepareForChartConfiguration = function () {
         if (this.data.yAxisDisplayBounds) {
-            this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
-            this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
+            // We only ever have one y-axis so it's safe to work only on the 0th
+            // subscript here.
+            this.chartOptions.scales.yAxes[0].ticks.min =
+                this.data.yAxisDisplayBounds[0];
+            this.chartOptions.scales.yAxes[0].ticks.max =
+                this.data.yAxisDisplayBounds[1];
         }
     };
     LineGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
-        var _this = this;
-        // If tick values aren't set, calculate the values.
-        if (!this.chartConfiguration.axis.y.tick.values) {
-            this.chartConfiguration.axis.y.tick.values = this.findYAxisValues(this.data.yAxisDisplayBounds[0], this.data.yAxisDisplayBounds[1]);
-        }
-        if (this.chartConfiguration.axis.y.tick.values.length === 0) {
-            // The dataset is empty. We show padded tick marks to align the y axis
-            // with the rest of the charts' axes.
-            for (var i = 0; i < 5; i++) {
-                this.chartConfiguration.axis.y.tick.values.push(i);
-            }
-        }
-        if (this.data.yAxisDisplayBounds) {
-            this.yAxisConfig.min = this.data.yAxisDisplayBounds[0];
-            this.yAxisConfig.max = this.data.yAxisDisplayBounds[1];
-        }
-        // If there's just one data series and it has normal bounds, let the colors
-        // get set for abnormal points in the series.
-        if (this.data.series.length === 1 && this.data.series[0].yNormalBounds) {
-            this.chartConfiguration.data.color = function (color, d) {
-                return (d.value !== undefined &&
-                    (d.value < _this.data.series[0].yNormalBounds[0] ||
-                        d.value > _this.data.series[0].yNormalBounds[1])) ?
-                    src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_4__["ABNORMAL"].toString() :
-                    color;
-            };
-        }
-    };
-    // Manually find y axis tick values based on the min and max display bounds.
-    LineGraphComponent.prototype.findYAxisValues = function (min, max) {
-        // Evenly space out 5 numbers between the min and max (display bounds).
-        var difference = max - min;
-        var spacing = difference / 4;
-        var values = [];
-        for (var curr = min; curr <= max; curr += spacing) {
-            values.push(curr);
-        }
-        return values;
-    };
-    LineGraphComponent.prototype.onRendered = function () {
-        if (!this.showTicks) {
-            d3__WEBPACK_IMPORTED_MODULE_2__["select"]('#' + this.chartDivId)
-                .selectAll('.c3-axis-y .tick')
-                .style('display', 'none');
-        }
+        // We have to wait until after the data loads up into the graph to iterate
+        // over the points and adjust their coloring based on the normal range.
         this.addYNormalRange();
     };
     /**
-     * Adds y normal ranges to the graph.
+     * Adds y normal ranges to the graph and colors points the designated
+     * "abnormal" color if they fall outside the normal range.
      */
     LineGraphComponent.prototype.addYNormalRange = function () {
         // Only LineGraphData has y normal bounds.
-        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"])) {
+        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"])) {
             return;
         }
         // If there's more than one series on this graph we don't mark a normal
@@ -8225,13 +8248,88 @@ var LineGraphComponent = /** @class */ (function (_super) {
         if (!yBounds) {
             return;
         }
-        var self = this;
-        this.renderedChart.addToRenderQueue(function () {
-            self.renderedChart.setYNormalBoundMarkers(yBounds);
-        });
-        this.renderedChart.addToRenderQueue(function () {
-            self.renderedChart.addYRegion({ axis: 'y', start: yBounds[0], end: yBounds[1] });
-        });
+        this.addGreenRegion(yBounds);
+        this.colorAbnormalPoints(yBounds, this.data.series[0].legendInfo);
+    };
+    /**
+     * Draws a green box spanning the entire x-axis and covering y axis normal
+     * range. Also puts descriptive labels at the top and bottom of the range.
+     * @param yNormalBounds The bounds of the y range considered normal.
+     */
+    LineGraphComponent.prototype.addGreenRegion = function (yNormalBounds) {
+        var normalRegionAnnotation = {
+            // Show the y-bounds underneath the graph points.
+            drawTime: 'beforeDatasetsDraw',
+            type: 'box',
+            yMin: yNormalBounds[0],
+            yMax: yNormalBounds[1],
+            // No x-axis bounds so it extends to cover the whole graph.
+            xScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"].X_AXIS_ID,
+            yScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"].Y_AXIS_ID,
+            // Color the region light green.
+            backgroundColor: 'rgba(64, 191, 128, 0.15)',
+        };
+        // Draw label lines for the high and low bounds of the normal range.
+        var lines = [
+            ['High normal boundary: ', yNormalBounds[1]],
+            ['Low normal boundary: ', yNormalBounds[0]]
+        ];
+        for (var _i = 0, lines_1 = lines; _i < lines_1.length; _i++) {
+            var line = lines_1[_i];
+            var lbl = line[0];
+            var val = line[1];
+            var bound = {
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"].Y_AXIS_ID,
+                value: val,
+                borderColor: 'rgba(64, 191, 128, 1)',
+                borderWidth: 2,
+                label: {
+                    enabled: true,
+                    fontColor: 'rgba(64, 191, 128, 1)',
+                    content: lbl + val.toString() + ' ' + this.data.unit,
+                    position: 'right'
+                }
+            };
+            this.chartOptions.annotation.annotations.push(bound);
+        }
+        this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
+    };
+    /**
+     * Colors the point the default series color if it's in the normal range,
+     * or the designated "abnormal" color if it's outside of the normal range.
+     *
+     * @param yNormalBounds The bounds of what should be considered normal.
+     * @param seriesLegend The legend info for the series we're working with.
+     */
+    LineGraphComponent.prototype.colorAbnormalPoints = function (yNormalBounds, seriesLegend) {
+        var pointBackgroundColors = new Array();
+        var pointBorderColors = new Array();
+        if (this.chartData.length > 0) {
+            // We only ever get here if there's a single labeled series so it's okay
+            // from here on out to only work with the 0th index of the data.
+            for (var _i = 0, _a = this.chartData[0].data; _i < _a.length; _i++) {
+                var pt = _a[_i];
+                // pt could also be a number here, so we constrain it to when it's a
+                // ChartPoint. For some reason Typescript doesn't like it when we do a
+                // test to see if pt is an instanceof ChartPoint so checking for the
+                // y-attribute is a workaround.
+                if (pt.hasOwnProperty('y')) {
+                    pt = pt;
+                    if (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]) {
+                        pointBackgroundColors.push(src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
+                        pointBorderColors.push(src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
+                    }
+                    else {
+                        pointBackgroundColors.push(seriesLegend.fill.rgb().string());
+                        pointBorderColors.push(seriesLegend.outline.rgb().string());
+                    }
+                }
+            }
+            this.chartData[0].pointBackgroundColor = pointBackgroundColors;
+            this.chartData[0].pointBorderColor = pointBorderColors;
+        }
     };
     var LineGraphComponent_1;
     __decorate([
@@ -8244,13 +8342,13 @@ var LineGraphComponent = /** @class */ (function (_super) {
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [
-                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
+                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
             ]
         }),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
     ], LineGraphComponent);
     return LineGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"]));
 
 
 
@@ -8268,12 +8366,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioGraphComponent", function() { return MicrobioGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
-/* harmony import */ var src_app_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/clinicalconcepts/display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8304,56 +8398,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
-
-
 var MicrobioGraphComponent = /** @class */ (function (_super) {
     __extends(MicrobioGraphComponent, _super);
     function MicrobioGraphComponent(sanitizer) {
         return _super.call(this, sanitizer) || this;
     }
     MicrobioGraphComponent_1 = MicrobioGraphComponent;
-    MicrobioGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
-        _super.prototype.adjustGeneratedChartConfiguration.call(this);
-        this.chartConfiguration.data.type = 'scatter';
-        this.chartConfiguration.point = { r: 5 };
-    };
-    /**
-     * Every time the graph is rendered, go back and find all the preliminary
-     * points and make sure their fill is transparent and there is a border
-     * around it.
-     */
-    MicrobioGraphComponent.prototype.onRendered = function () {
-        var circles = d3__WEBPACK_IMPORTED_MODULE_2__["select"]('#' + this.chartDivId).selectAll('.c3-target');
-        var posCircles = circles
-            .filter(function (d) {
-            return d.id.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["CHECK_RESULT_CODE"]);
-        })
-            .style('fill', src_app_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_3__["posFinalMB"].fill.toString());
-        var negCircles = circles
-            .filter(function (d) {
-            return !d.id.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["CHECK_RESULT_CODE"]);
-        })
-            .style('fill', src_app_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_3__["negFinalMB"].fill.toString());
-        // Make prelim circles transparent-filled.
-        var prelimCircles = circles
-            .filter(function (d) {
-            return d.id.includes(src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Preliminary.toString());
-        })
-            .style('fill', 'transparent')
-            .style('stroke-width', '2px');
-        prelimCircles
-            .filter(function (d) {
-            return d.id.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["CHECK_RESULT_CODE"]);
-        })
-            .style('stroke', src_app_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_3__["posPrelimMB"].outline.toString());
-        prelimCircles
-            .filter(function (d) {
-            return !d.id.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["CHECK_RESULT_CODE"]);
-        })
-            .style('stroke', src_app_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_3__["negPrelimMB"].outline.toString());
-        circles.style('opacity', 1);
+    MicrobioGraphComponent.prototype.prepareForChartConfiguration = function () {
+        _super.prototype.prepareForChartConfiguration.call(this);
+        // Make the points a little bigger for microbio series since there is info
+        // encoded in their point styling.
+        for (var _i = 0, _a = this.chartData; _i < _a.length; _i++) {
+            var series = _a[_i];
+            series.pointRadius = 5;
+            series.pointBorderWidth = 2;
+        }
     };
     var MicrobioGraphComponent_1;
     MicrobioGraphComponent = MicrobioGraphComponent_1 = __decorate([
@@ -8362,14 +8421,14 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [{
-                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"],
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return MicrobioGraphComponent_1; })
                 }]
         }),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
     ], MicrobioGraphComponent);
     return MicrobioGraphComponent;
-}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_7__["StepGraphComponent"]));
+}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_3__["StepGraphComponent"]));
 
 
 
@@ -8419,12 +8478,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var ScatterplotComponent = /** @class */ (function (_super) {
     __extends(ScatterplotComponent, _super);
     function ScatterplotComponent(sanitizer) {
         var _this = _super.call(this, sanitizer) || this;
-        _this.chartType = _graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].SCATTER;
+        _this.chartTypeString = 'scatter';
         return _this;
     }
     ScatterplotComponent_1 = ScatterplotComponent;
@@ -8460,10 +8518,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StepGraphComponent", function() { return StepGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var color__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! color */ "./node_modules/color/index.js");
-/* harmony import */ var color__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var wordwrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wordwrap */ "./node_modules/wordwrap/index.js");
+/* harmony import */ var wordwrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wordwrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _graph_renderedchart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graph/renderedchart */ "./src/app/graphtypes/graph/renderedchart.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8494,13 +8551,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var StepGraphComponent = /** @class */ (function (_super) {
     __extends(StepGraphComponent, _super);
     function StepGraphComponent(sanitizer) {
-        var _this = _super.call(this, sanitizer, function (axis, id) { return new _graph_renderedchart__WEBPACK_IMPORTED_MODULE_4__["RenderedChart"](axis, id); }) || this;
+        var _this = _super.call(this, sanitizer) || this;
         _this.sanitizer = sanitizer;
-        _this.types = {};
+        /**
+         * The maximum characters for a y-axis tick label.
+         */
+        _this.Y_AXIS_TICK_MAX_LENGTH = 15;
         return _this;
     }
     StepGraphComponent_1 = StepGraphComponent;
@@ -8509,32 +8568,45 @@ var StepGraphComponent = /** @class */ (function (_super) {
      */
     StepGraphComponent.prototype.prepareForChartConfiguration = function () {
         var _this = this;
+        this.chartOptions.scales.yAxes[0].type = 'category';
+        // Set up the data points.
+        var s = [];
+        var yValuesForEndpoints = [];
         for (var _i = 0, _a = this.data.endpointSeries; _i < _a.length; _i++) {
-            var endpointSeries = _a[_i];
-            var endpointSeriesId = endpointSeries.label;
-            this.data.c3DisplayConfiguration.allColumns.push(new Array('x_' + endpointSeriesId)
-                .concat(endpointSeries.xValues));
-            this.data.c3DisplayConfiguration.allColumns.push(new Array(endpointSeriesId)
-                .concat(endpointSeries.yValues));
-            this.data.c3DisplayConfiguration.columnMap[endpointSeriesId] =
-                'x_' + endpointSeriesId;
-            this.types[endpointSeriesId] = 'scatter';
-            this.colorsMap[endpointSeriesId] = color__WEBPACK_IMPORTED_MODULE_2__["rgb"](0, 0, 0);
+            var series = _a[_i];
+            s.push({
+                data: series.coordinates.map(function (pt) {
+                    var lines = wordwrap__WEBPACK_IMPORTED_MODULE_2__(_this.Y_AXIS_TICK_MAX_LENGTH)(pt[1]).split('\n');
+                    var truncatedLabel = lines[0] + (lines.length > 1 ? '...' : '');
+                    yValuesForEndpoints.push(truncatedLabel);
+                    return { x: pt[0].toISO(), y: truncatedLabel };
+                }),
+                label: series.label,
+                // Do not fill the area under the line.
+                fill: false
+            });
+            this.chartColors.push({
+                backgroundColor: series.legendInfo.fill,
+                borderColor: series.legendInfo.fill,
+                pointBackgroundColor: series.legendInfo.fill,
+                pointBorderColor: series.legendInfo.outline,
+            });
         }
-        this.yAxisConfig.tick = {
-            // We add padding to our y-axis tick labels so that all y-axes of the
-            // charts rendered on the page can be aligned.
-            // We use an empty string placeholder for each label, so that the axis
-            // does not get shifted over.
-            format: function (d) {
-                return _this.data.yAxisMap.get(d);
-            },
-            values: Array.from(this.data.yAxisMap.keys()),
-        };
+        if (s.length > 0) {
+            this.chartData = s;
+        }
+        // Set the categorical labels for the y-axis.
+        var allYValues = this.data.dataSeries.map(function (series) { return series.coordinates.map(function (c) { return c[1]; }); })
+            .reduce(function (p, n) { return p.concat(n); }, [])
+            .concat(yValuesForEndpoints);
+        // Word wrap all the y-text so that it doesn't have problems.
+        var allLabels = Array.from(new Set(allYValues));
+        // Add blank labels to the top and bottom of the graph to add some padding.
+        allLabels.push('\t');
+        allLabels.unshift('\t');
+        this.chartOptions.scales.yAxes[0]['labels'] = allLabels;
     };
-    StepGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
-        this.chartConfiguration.grid.y = { show: true };
-    };
+    StepGraphComponent.prototype.adjustGeneratedChartConfiguration = function () { };
     var StepGraphComponent_1;
     StepGraphComponent = StepGraphComponent_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -10011,13 +10083,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceType", function() { return FhirResourceType; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+
 /** The period of time this app will search for patient encounters in.  */
-var APP_TIMESPAN = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_0__["Duration"].fromObject({ months: 6 })), luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc());
+var APP_TIMESPAN = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production ?
+    luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_0__["Duration"].fromObject({ months: 6 })), luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc()) :
+    luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_0__["Duration"].fromObject({ months: 60 })), luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc());
 /**
  * Do not consider any encounters with a start date earlier than a year from
  * now.
@@ -10113,7 +10189,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/setup/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })
