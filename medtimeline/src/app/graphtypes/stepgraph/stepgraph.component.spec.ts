@@ -87,10 +87,11 @@ describe('StepGraphComponent', () => {
           // visible on the chart are 9/12 and 9/14, since they are in the time
           // range.
           // We should get two endpoints series--one for each order.
-          expect(component.chartData.length).toEqual(1);
-          // The first one should contain the first order's final endpoint.
+          expect(component.chartData.length).toEqual(2);
           expect(component.chartData[0].data).toEqual([
             {x: '2018-09-12T11:00:00.000Z', y: 'vancomycin'},
+          ]);
+          expect(component.chartData[1].data).toEqual([
             {x: '2018-09-14T11:00:00.000Z', y: 'vancomycin'}
           ]);
           done();

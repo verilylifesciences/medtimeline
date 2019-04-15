@@ -7,13 +7,20 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
+import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 
 import {GraphComponent} from './graph.component';
 
 class StubGraphComponent extends GraphComponent<any> {
   constructor() {
     super(TestBed.get(DomSanitizer));
-    this.data = new GraphData([], new Map());
+    this.data = new GraphData(
+        [new LabeledSeries(
+            'Vanc Pk',
+            [
+              [DateTime.utc(1995, 7, 21), 15], [DateTime.utc(1995, 7, 22), 20]
+            ])],
+        new Map());
   }
 }
 
