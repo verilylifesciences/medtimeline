@@ -63,7 +63,8 @@ describe('StepGraphData', () => {
              expect(endpointSeries.length).toEqual(1);
              // for the administration series
              expect(endpointSeries[0].coordinates.map(c => c[0])).toEqual([
-               DateTime.fromISO(admin1Time), DateTime.fromISO(admin2Time)
+               DateTime.fromISO(admin1Time).toUTC(),
+               DateTime.fromISO(admin2Time).toUTC()
              ]);
              done();
            });

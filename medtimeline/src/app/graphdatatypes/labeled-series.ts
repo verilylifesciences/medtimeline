@@ -199,8 +199,7 @@ export class LabeledSeries {
         coordinates.push([
           annotatedAdmin.medAdministration.timestamp,
           this.getYPositionForMed(
-              annotatedAdmin.medAdministration, categoricalYPosition),
-          order.orderId
+              annotatedAdmin.medAdministration, categoricalYPosition)
         ]);
       }
       // We add the beginning and end time stamp if the order is not fully
@@ -344,8 +343,9 @@ export class LabeledSeries {
       // We assume that encounter endpoints correspond to correct line breaks,
       // and do not cross-check encounter id's of MedicationOrders or
       // MedicationAdministrations.
+      coordinates = coordinates.sort((a, b) => a[0] - b[0]);
       for (const encounter of encounters) {
-        coordinates.push([encounter.period.start.toUTC(), null]);
+        coordinates.unshift([encounter.period.start.toUTC(), null]);
         coordinates.push([encounter.period.end.toUTC(), null]);
       }
     }
