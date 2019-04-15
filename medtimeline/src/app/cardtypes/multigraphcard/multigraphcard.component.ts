@@ -6,10 +6,10 @@
 // tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import * as Color from 'color';
+import {Interval} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
-import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {LegendInfo} from 'src/app/graphtypes/legend-info';
 
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
@@ -32,9 +32,9 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   @Input() id: string;
 
   /**
-   *  The x-axis to use for graphs in this card
+   *  The date range to use for graphs in this card
    */
-  @Input() xAxis: DateTimeXAxis;
+  @Input() dateRange: Interval;
 
   /**
    * The AxisGroup displayed on this card.
@@ -115,7 +115,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   private loadNewData() {
     Promise
         .all(this.axisGroup.axes.map(
-            axis => axis.updateDateRange(this.xAxis.dateRange)))
+            axis => axis.updateDateRange(this.dateRange)))
         .then(axisData => {
           this.getLabelText().then(lblText => {
             this.unitsLabel = lblText;
@@ -143,7 +143,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   private getLabelText(): Promise<string> {
     return Promise
         .all(this.axisGroup.axes.map(
-            axis => axis.updateDateRange(this.xAxis.dateRange)))
+            axis => axis.updateDateRange(this.dateRange)))
         .then(dataArray => dataArray.map(data => data.series))
         .then(seriesNestedArray => {
           const flattened: LabeledSeries[] = [].concat(...seriesNestedArray);
@@ -177,7 +177,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    */
   private updateAxisLabels() {
     for (const axis of this.axisGroup.axes) {
-      axis.updateDateRange(this.xAxis.dateRange).then(axisData => {
+      axis.updateDateRange(this.dateRange).then(axisData => {
         if (axisData && axis.label && axisData.series &&
             axisData.series.length > 0 && axisData.series[0].unit) {
           const units = ' (' + axisData.series[0].unit + ')';
@@ -197,7 +197,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
    * directly in the Angular template.
    */
   hasData(labeledSeries: LabeledSeries[]) {
-    return labeledSeries.map(s => s.hasPointInRange(this.xAxis.dateRange))
+    return labeledSeries.map(s => s.hasPointInRange(this.dateRange))
         .some(s => s === true);
   }
 

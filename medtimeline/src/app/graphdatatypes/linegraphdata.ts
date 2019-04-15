@@ -22,7 +22,8 @@ import {LabeledSeries} from './labeled-series';
  * one or more LabeledSeries.
  */
 export class LineGraphData extends GraphData {
-  private static readonly Y_AXIS_PADDING_RATIO = 0.1;
+  /** The tick marks to display on the y axis. */
+  readonly yTicks: number[];
 
   private constructor(
       /** The label for the graph. */
@@ -37,6 +38,8 @@ export class LineGraphData extends GraphData {
       precision?: number) {
     super(series, tooltipMap, tooltipKeyFn, regions);
     this.precision = precision ? precision : 0;
+    this.yTicks =
+        LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
   }
 
   /**
@@ -82,16 +85,32 @@ export class LineGraphData extends GraphData {
       throw Error('Observations have different units.');
     }
 
+    const displayBounds: [number, number] =
+        LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup);
+
     const data = new LineGraphData(
-        label, allSeries,
-        LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup),
-        allUnits.values().next().value,
+        label, allSeries, displayBounds, allUnits.values().next().value,
         tooltipMap.size > 0 ? tooltipMap : undefined,
         undefined,  // tooltipMap
         undefined,  // regions
         resourceCodeGroup.precision);
     return data;
   }
+
+  /**
+   * Manually find y axis tick values based on the min and max display bounds.
+   */
+  private static getYTicks(min: number, max: number, tickCount = 4): number[] {
+    // Evenly space out 5 numbers between the min and max (display bounds).
+    const difference = max - min;
+    const spacing = difference / tickCount;
+    const values = [];
+    for (let curr = min; curr <= max; curr += spacing) {
+      values.push(curr);
+    }
+    return values;
+  }
+
 
   private static makeTooltipMap(
       obsGroupToSeries: Map<ObservationSet, LabeledSeries>,

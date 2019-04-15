@@ -17,7 +17,6 @@ import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {FhirService} from 'src/app/fhir.service';
 import {Axis} from 'src/app/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
-import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {ChartType} from 'src/app/graphtypes/graph/graph.component';
 import {LineGraphComponent} from 'src/app/graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from 'src/app/graphtypes/microbio-graph/microbio-graph.component';
@@ -59,8 +58,8 @@ describe('MultiGraphCardComponent', () => {
     fixture = TestBed.createComponent(MultiGraphCardComponent);
 
     component = fixture.componentInstance;
-    component.xAxis = new DateTimeXAxis(
-        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
+    component.dateRange =
+        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2}));
     component.axisGroup = new AxisGroup([new Axis(
         new StubFhirService(), TestBed.get(DomSanitizer), hemoglobin,
         'Hemoglobin')]);
@@ -73,13 +72,13 @@ describe('MultiGraphCardComponent', () => {
   });
 
   it('on date change should retrieve data and render graph', (done: DoneFn) => {
-    const xAxis = new DateTimeXAxis(
-        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2})));
-    component.ngOnChanges({xAxis: new SimpleChange(null, xAxis, true)});
+    const dateRange =
+        Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2}));
+    component.ngOnChanges({dateRange: new SimpleChange(null, dateRange, true)});
 
     Promise
         .all(component.axisGroup.axes.map(
-            axis => axis.updateDateRange(xAxis.dateRange)))
+            axis => axis.updateDateRange(dateRange)))
         .then(() => {
           fixture.detectChanges();
           const axis = component.axisGroup.axes[0];

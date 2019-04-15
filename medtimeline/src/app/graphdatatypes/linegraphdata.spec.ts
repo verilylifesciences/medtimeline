@@ -269,7 +269,6 @@ describe('LineGraphData', () => {
                           .getTooltip(params, TestBed.get(DomSanitizer)));
      });
 
-
   it('fromMedicationOrderSet should have one data series' +
          ' for all the orders',
      () => {
