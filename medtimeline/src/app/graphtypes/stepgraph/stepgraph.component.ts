@@ -52,7 +52,9 @@ export class StepGraphComponent extends
         pt[1] = truncatedLabel;
       });
     }
-    const allLabels = Array.from(new Set(yValuesForEndpoints));
+    let allLabels = Array.from(new Set(yValuesForEndpoints));
+    // Show the labels alphabetically along the y-axis.
+    allLabels = allLabels.sort();
     // Add blank labels to the top and bottom of the graph to add some padding.
     allLabels.push('\t');
     allLabels.unshift('\t');

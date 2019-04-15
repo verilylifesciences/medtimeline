@@ -241,7 +241,13 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
         label: series.label,
         // Do not fill the area under the line.
         fill: false,
-        borderWidth: lineWidth
+        borderWidth: lineWidth,
+        pointBorderWidth: 2,
+        pointRadius: 3,
+        backgroundColor: series.legendInfo.fill,
+        borderColor: series.legendInfo.fill,
+        pointBackgroundColor: series.legendInfo.fill,
+        pointBorderColor: series.legendInfo.outline,
       });
       this.chartColors.push({
         backgroundColor: series.legendInfo.fill,
@@ -318,9 +324,13 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   /**
    * Finds or creates a HTML element to render the tooltip onto.
    * @param canvas The Canvas this graph is rendered on
+   * @param uniqueId The unique ID to give to this element. If not provided,
+   *     will use 'chartjs-tooltip' + the chart div ID.
    */
-  private findOrCreateTooltipElement(canvas: HTMLElement): HTMLElement {
-    const tooltipTag = 'chartjs-tooltip' + this.chartDivId;
+  protected findOrCreateTooltipElement(canvas: HTMLElement, uniqueId?: string):
+      HTMLElement {
+    const tooltipTag =
+        uniqueId ? uniqueId : 'chartjs-tooltip' + this.chartDivId;
     let tooltipEl = document.getElementById(tooltipTag);
     if (!tooltipEl) {
       tooltipEl = document.createElement('div');
@@ -383,16 +393,13 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
                               DateTime.utc().toISO(),
         max: this.dateRange ? this.dateRange.end.toISO() :
                               DateTime.utc().toISO(),
+        // If we're showing fewer than three days, go for the hour axis labels;
+        // otherwise go with by-day axis labels.
+        unit: this.dateRange && (this.dateRange.length('day') > 3) ? 'day' :
+                                                                     'hour',
         displayFormats: {
-          // No matter what tick frequency it picks, we want to show the label
-          // in the same format.
-          minute: 'MM/DD H:mm',
           hour: 'MM/DD H:mm',
-          day: 'MM/DD H:mm',
-          week: 'MM/DD H:mm',
-          month: 'MM/DD H:mm',
-          quarter: 'MM/DD H:mm',
-          year: 'MM/DD H:mm'
+          day: 'MM/DD',
         }
       },
       ticks: {
@@ -414,7 +421,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
         labelString: '',
       },
       ticks: {
-        autoSkip: true,
+        // We explicitly set the y values to show, so we don't want to use
+        // autoskip.
+        autoSkip: false,
         callback: (value, index, values) => {
           if (!this.data || !this.data.precision) {
             return value;

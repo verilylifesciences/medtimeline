@@ -64,12 +64,4 @@ describe('LineGraphComponent', () => {
       {x: DateTime.utc(1995, 7, 22).toISO(), y: 20}
     ]);
   });
-
-  it('should calculate y-axis tick values correctly', () => {
-    fixture.detectChanges();
-    component.generateChart();
-    expect(component.chartOptions.scales.yAxes[0].scaleLabel).toEqual([
-      10, 12.5, 15, 17.5, 20
-    ]);
-  });
 });

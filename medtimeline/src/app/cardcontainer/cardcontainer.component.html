@@ -21,7 +21,7 @@
         (removeEvent)="removeDisplayedCard($event)">
       </app-customizable-timeline>-->
       <app-multigraphcard *ngIf="element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'"
-        [axisGroup]="element['concept']" [xAxis]="xAxis" [eventlines]="eventlines" [id]="element['id']"
+        [axisGroup]="element['concept']" [dateRange]="xAxis.dateRange" [eventlines]="eventlines" [id]="element['id']"
         (removeEvent)="removeDisplayedCard($event)">
       </app-multigraphcard>
       <app-data-selector-menu (addCard)="addConceptCard($event, element['id'])" (addTextbox)="addTextbox(element['id'])"
