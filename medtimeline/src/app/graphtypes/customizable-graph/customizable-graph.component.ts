@@ -58,8 +58,7 @@ export class CustomizableGraphComponent extends
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.inEditMode && this.renderedChart) {
-      (this.renderedChart as RenderedCustomizableChart).inEditMode =
-          changes.inEditMode.currentValue;
+      this.renderedChart.inEditMode = changes.inEditMode.currentValue;
     } else {
       this.generateChart();
     }
@@ -95,8 +94,7 @@ export class CustomizableGraphComponent extends
         columnsToLoad[1].push(0);
       }
     }
-    (this.renderedChart as RenderedCustomizableChart)
-        .loadNewData(columnsToLoad);
+    this.renderedChart.loadNewData(columnsToLoad);
   }
 
   // If the selected date already has an annotation, modify the time
@@ -124,8 +122,8 @@ export class CustomizableGraphComponent extends
   private openDialog(
       clickCoordinates: [number, number],
       editedAnnotation?: CustomizableGraphAnnotation) {
-    const xCoordinate = (this.renderedChart as RenderedCustomizableChart)
-                            .getClickCoordinate(clickCoordinates[0]);
+    const xCoordinate =
+        this.renderedChart.getClickCoordinate(clickCoordinates[0]);
     // Make the dialog show up near where the user clicked.
     const data = editedAnnotation ? {
       title: editedAnnotation.title,
@@ -168,7 +166,7 @@ export class CustomizableGraphComponent extends
             this.dateRange.end.toLocal().endOf('day'));
         if (entireInterval.contains(userSelectedDate)) {
           this.data.annotations.get(userSelectedDate.toMillis())
-              .addAnnotation(this.renderedChart as RenderedCustomizableChart);
+              .addAnnotation();
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(userSelectedDate.toMillis());
           this.addEditListener(userSelectedDate.toMillis());
@@ -198,8 +196,7 @@ export class CustomizableGraphComponent extends
         // Only add the annotation if the chart point is displayed given the
         // date range selected.
         if (entireInterval.contains(DateTime.fromMillis(timestamp))) {
-          this.data.annotations.get(timestamp).addAnnotation(
-              this.renderedChart as RenderedCustomizableChart);
+          this.data.annotations.get(timestamp).addAnnotation();
           // Add listeners for click events on the new annotation.
           this.addDeleteEvent(timestamp);
           this.addEditListener(timestamp);
@@ -266,21 +263,18 @@ export class CustomizableGraphComponent extends
     this.chartConfiguration.data.type = 'scatter';
     const self = this;
     this.chartConfiguration.data.onmouseover = function(d) {
-      (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
-          true;
+      self.renderedChart.hoveringOverPoint = true;
     };
     this.chartConfiguration.tooltip = {show: false};
     this.chartConfiguration.data.onmouseout = function(d) {
       // Add a timeout to ensure that the user can't add a point immediately
       // after moving away from an existing point.
       setTimeout(() => {
-        (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
-            false;
+        self.renderedChart.hoveringOverPoint = false;
       }, 500);
     };
     this.chartConfiguration.data.onclick = function(d, element) {
-      (self.renderedChart as RenderedCustomizableChart).hoveringOverPoint =
-          true;
+      self.renderedChart.hoveringOverPoint = true;
     };
 
     this.chartConfiguration.data.color = function(color, d) {
@@ -297,9 +291,8 @@ export class CustomizableGraphComponent extends
   adjustDataDependent() {}
 
   onRendered() {
-    (this.renderedChart as RenderedCustomizableChart)
-        .initialize(
-            (coords: [number, number], parentCoords: [number, number]) =>
-                this.addPoint(coords, parentCoords));
+    this.renderedChart.initialize(
+        (coords: [number, number], parentCoords: [number, number]) =>
+            this.addPoint(coords, parentCoords));
   }
 }
