@@ -6,28 +6,15 @@
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
-import {DisplayConfiguration, GraphData} from 'src/app/graphdatatypes/graphdata';
+import {GraphData} from 'src/app/graphdatatypes/graphdata';
 
-import {DateTimeXAxis} from './datetimexaxis';
 import {GraphComponent} from './graph.component';
-import {RenderedChart} from './renderedchart';
 
 class StubGraphComponent extends GraphComponent<any> {
   constructor() {
     super(TestBed.get(DomSanitizer));
     this.data = new GraphData([], new Map());
-    this.data.c3DisplayConfiguration = new DisplayConfiguration(
-        [
-          [
-            'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
-            DateTime.utc(1995, 7, 22).toISO()
-          ],
-          ['Vanc Pk', 15, 20]
-        ],
-        {'Vanc Pk': 'x_Vanc Pk'});
   }
-  adjustYAxisConfig() {}
-  adjustDataDependent() {}
 }
 
 describe('GraphComponent', () => {
@@ -50,38 +37,11 @@ describe('GraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
-    component.generateBasicChart();
-
-    expect(component.chartConfiguration['data']['xs']['Vanc Pk'])
-        .toEqual('x_Vanc Pk');
-
-    expect(component.chartConfiguration['data']['columns'][0].map(
-               x => x.toString()))
-        .toEqual([
-          'x_Vanc Pk', DateTime.utc(1995, 7, 21).toISO(),
-          DateTime.utc(1995, 7, 22).toISO()
-        ]);
-    expect(component.chartConfiguration['data']['columns'][1]).toEqual([
-      'Vanc Pk', 15, 20
+    component.generateChart();
+    expect(component.chartData.length).toEqual(1);
+    expect(component.chartData[0].data).toEqual([
+      {x: DateTime.utc(1995, 7, 21).toISO(), y: 15},
+      {x: DateTime.utc(1995, 7, 22).toISO(), y: 20}
     ]);
-  });
-
-  it('y axis bounds passed in okay', () => {
-    component.yAxisConfig.min = 12;
-    component.yAxisConfig.max = 81;
-    component.generateBasicChart();
-
-    expect(component.chartConfiguration['axis']['y'])
-        .toEqual(component.yAxisConfig);
-  });
-
-  it('should add point to data set if data is empty', () => {
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.local(1995, 7, 21, 12), DateTime.local(1995, 7, 24, 0)));
-    const data = new GraphData([], new Map());
-    const millis = -8640000000000000;
-    expect(data.c3DisplayConfiguration.allColumns[0][1].toMillis())
-        .toEqual(millis);
-    expect(data.c3DisplayConfiguration.allColumns[1][1]).toEqual(0);
   });
 });

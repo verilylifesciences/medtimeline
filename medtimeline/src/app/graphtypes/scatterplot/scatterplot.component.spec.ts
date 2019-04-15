@@ -4,6 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ChartsModule} from 'ng2-charts';
+
 import {ScatterplotComponent} from './scatterplot.component';
 
 describe('ScatterplotComponent', () => {
@@ -11,7 +13,9 @@ describe('ScatterplotComponent', () => {
   let fixture: ComponentFixture<ScatterplotComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [ScatterplotComponent]})
+    TestBed
+        .configureTestingModule(
+            {declarations: [ScatterplotComponent], imports: [ChartsModule]})
         .compileComponents();
   }));
 

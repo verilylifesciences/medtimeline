@@ -5,6 +5,7 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
+import {DateTime} from 'luxon';
 
 import {FhirService} from '../fhir.service';
 import {makeDiagnosticReports} from '../test_utils';
@@ -26,20 +27,9 @@ describe('MicrobioGraphData', () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
            diagnosticReports, 'Stool', TestBed.get(DomSanitizer));
-       expect(stepgraphdata.endpointSeries.length).toEqual(3);
+       expect(stepgraphdata.dataSeries.length).toEqual(3);
        // All the endpoint series are also in the master series list.
        expect(stepgraphdata.series.length).toEqual(3);
-     });
-
-  it('fromDiagnosticReports should correctly calculate' +
-         ' y axis map',
-     () => {
-       const diagnosticReports = makeDiagnosticReports();
-       const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
-           diagnosticReports, 'Stool', TestBed.get(DomSanitizer));
-       expect(stepgraphdata.yAxisMap.get(10)).toEqual('Ova and Parasite Exam');
-       expect(stepgraphdata.yAxisMap.get(20))
-           .toEqual('Salmonella and Shigella Culture');
      });
 
   it('fromDiagnosticReports should correctly calculate ' +
@@ -48,13 +38,15 @@ describe('MicrobioGraphData', () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
            diagnosticReports, 'Stool', TestBed.get(DomSanitizer));
-       const series1 = stepgraphdata.endpointSeries[0];
-       expect(series1.xValues[0].toString())
-           .toEqual('2018-08-31T13:48:00.000-04:00');
-       expect(series1.yValues[0]).toEqual(10);
-       const series2 = stepgraphdata.endpointSeries[1];
-       expect(series2.xValues[0].toString())
-           .toEqual('2018-08-31T13:48:00.000-04:00');
-       expect(series2.yValues[0]).toEqual(20);
+       const series1 = stepgraphdata.dataSeries[0];
+       expect(series1.coordinates[0]).toEqual([
+         DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
+         'Ova and Parasite Exam'
+       ]);
+       const series2 = stepgraphdata.dataSeries[1];
+       expect(series2.coordinates[0]).toEqual([
+         DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
+         'Salmonella and Shigella Culture'
+       ]);
      });
 });

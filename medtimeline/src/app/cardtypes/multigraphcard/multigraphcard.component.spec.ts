@@ -11,6 +11,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {FhirService} from 'src/app/fhir.service';
@@ -40,10 +41,8 @@ describe('MultiGraphCardComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            BrowserAnimationsModule,
-            MatCardModule,
-            MatIconModule,
-            MatProgressSpinnerModule,
+            BrowserAnimationsModule, MatCardModule, MatIconModule,
+            MatProgressSpinnerModule, ChartsModule
           ],
           declarations: [
             MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,

@@ -10,11 +10,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 
 import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {makeMedicationAdministration, makeMedicationOrder} from '../../test_utils';
-import {DateTimeXAxis} from '../graph/datetimexaxis';
 
 import {StepGraphComponent} from './stepgraph.component';
 
@@ -29,7 +29,9 @@ describe('StepGraphComponent', () => {
       DateTime.fromISO('2018-09-18T00:00:00.00'));
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [StepGraphComponent]})
+    TestBed
+        .configureTestingModule(
+            {declarations: [StepGraphComponent], imports: [ChartsModule]})
         .compileComponents();
     fhirServiceStub = {
       getMedicationAdministrationsWithOrder(id: string) {
@@ -78,32 +80,19 @@ describe('StepGraphComponent', () => {
               [earliestMedicationOrder, latestMedicationOrder]);
           component.data = StepGraphData.fromMedicationOrderSetList(
               [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-          component.xAxis = new DateTimeXAxis(dateRange);
+          component.dateRange = dateRange;
           component.generateChart();
-          const endpoints =
-              component.chartConfiguration.data.columns.filter((element) => {
-                return (element[0] as string).search('x_endpoint.*') !== -1;
-              });
-
           // The date range requested is 9/11 to 9/18, while the orders are from
           // 9/10 to 9/12 and 9/14 to 9/30. So the only endpoints that we want
           // visible on the chart are 9/12 and 9/14, since they are in the time
           // range.
           // We should get two endpoints series--one for each order.
-          // But, the series should appear twice becaues of how we
-          // hold it two places in the graph data.
-          // TODO(b/123303337): Fix duplication of series in stepgraph data.
-          expect(endpoints.length).toEqual(4);
+          expect(component.chartData.length).toEqual(1);
           // The first one should contain the first order's final endpoint.
-          expect(endpoints[0][1].toString())
-              .toEqual('2018-09-12T11:00:00.000Z');
-          // The second one should contain the second order's first endpoint.
-          expect(endpoints[1][1].toString())
-              .toEqual('2018-09-14T11:00:00.000Z');
-          expect(endpoints[2][1].toString())
-              .toEqual('2018-09-12T11:00:00.000Z');
-          expect(endpoints[3][1].toString())
-              .toEqual('2018-09-14T11:00:00.000Z');
+          expect(component.chartData[0].data).toEqual([
+            {x: '2018-09-12T11:00:00.000Z', y: 'vancomycin'},
+            {x: '2018-09-14T11:00:00.000Z', y: 'vancomycin'}
+          ]);
           done();
         });
   });

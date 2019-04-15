@@ -5,7 +5,6 @@
 
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as d3 from 'd3';
 import {DateTime, Interval} from 'luxon';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
@@ -266,7 +265,7 @@ describe('LineGraphData', () => {
        params['timestamp'] = 575078400000;
        expect(lgData.tooltipMap.size).toBe(1);
        expect(lgData.tooltipMap.get('575078400000'))
-           .toContain(new GenericAbnormalTooltip(true, seriesColor)
+           .toContain(new GenericAbnormalTooltip(false, seriesColor)
                           .getTooltip(params, TestBed.get(DomSanitizer)));
      });
 
@@ -312,14 +311,12 @@ describe('LineGraphData', () => {
        expect(lgData.series.length).toBe(1);
 
        const series = lgData.series[0];
-       expect(series.xValues.length).toBe(4);
-       expect(series.yValues.length).toBe(4);
+       expect(series.coordinates.length).toBe(4);
 
-       expect(series.xValues).toEqual([
-         medAdmin1.timestamp, medAdmin2.timestamp, medAdmin1Order2.timestamp,
-         medAdmin2Order2.timestamp
+       expect(series.coordinates).toEqual([
+         [medAdmin1.timestamp, 95], [medAdmin2.timestamp, 100],
+         [medAdmin1Order2.timestamp, 105], [medAdmin2Order2.timestamp, 110]
        ]);
-       expect(series.yValues).toEqual([95, 100, 105, 110]);
      });
 
 

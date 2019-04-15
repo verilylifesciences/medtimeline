@@ -6,6 +6,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
@@ -14,7 +15,6 @@ import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {makeSampleObservationJson, StubFhirService} from '../../test_utils';
-import {DateTimeXAxis} from '../graph/datetimexaxis';
 import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
@@ -38,16 +38,15 @@ describe('LineGraphComponent', () => {
       ChartType.LINE, [0, 50], false);
   beforeEach(async(() => {
     TestBed
-        .configureTestingModule({
-          declarations: [LineGraphComponent],
-        })
+        .configureTestingModule(
+            {declarations: [LineGraphComponent], imports: [ChartsModule]})
         .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LineGraphComponent);
     component = fixture.componentInstance;
-    component.xAxis = new DateTimeXAxis(testDateRange);
+    component.dateRange = testDateRange;
     component.data = LineGraphData.fromObservationSetList(
         'label', new Array(obsSet, obsSet), loincCodeGroup,
         TestBed.get(DomSanitizer), []);
@@ -60,24 +59,17 @@ describe('LineGraphComponent', () => {
   it('graph x and y values are correctly passed through', () => {
     fixture.detectChanges();
     component.generateChart();
-    expect(component.chartConfiguration['data']['xs']['Hemoglobin'])
-        .toEqual('x_Hemoglobin');
-    expect(component.chartConfiguration['data']['columns'][0].map(
-               x => x.toString()))
-        .toEqual([
-          'x_Hemoglobin', DateTime.utc(1995, 7, 21).toISO(),
-          DateTime.utc(1995, 7, 22).toISO()
-        ]);
-    expect(component.chartConfiguration['data']['columns'][1]).toEqual([
-      'Hemoglobin', 15, 20
+    expect(component.chartData[0].data).toEqual([
+      {x: DateTime.utc(1995, 7, 21).toISO(), y: 15},
+      {x: DateTime.utc(1995, 7, 22).toISO(), y: 20}
     ]);
   });
 
   it('should calculate y-axis tick values correctly', () => {
     fixture.detectChanges();
     component.generateChart();
-    expect(component.chartConfiguration.axis.y.tick.values.length).toEqual(5);
-    expect(component.chartConfiguration.axis.y.tick.values.toString())
-        .toEqual('10,12.5,15,17.5,20');
+    expect(component.chartOptions.scales.yAxes[0].scaleLabel).toEqual([
+      10, 12.5, 15, 17.5, 20
+    ]);
   });
 });

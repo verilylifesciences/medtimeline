@@ -23,6 +23,7 @@ import {By, DomSanitizer} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {of} from 'rxjs';
@@ -71,12 +72,26 @@ describe('CardcontainerComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            MatCardModule, MatIconModule, MatListModule, MatDividerModule,
-            MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule,
-            MatInputModule, FormsModule, ReactiveFormsModule, BrowserModule,
-            BrowserAnimationsModule, MatProgressSpinnerModule, MatMenuModule,
-            NgxDaterangepickerMd.forRoot(), MatToolbarModule, MatSnackBarModule,
-            MatCheckboxModule, MatRadioModule
+            MatCardModule,
+            MatIconModule,
+            MatListModule,
+            MatDividerModule,
+            MatDatepickerModule,
+            MatNativeDateModule,
+            MatAutocompleteModule,
+            MatInputModule,
+            FormsModule,
+            ReactiveFormsModule,
+            BrowserModule,
+            BrowserAnimationsModule,
+            MatProgressSpinnerModule,
+            MatMenuModule,
+            NgxDaterangepickerMd.forRoot(),
+            MatToolbarModule,
+            MatSnackBarModule,
+            MatCheckboxModule,
+            MatRadioModule,
+            ChartsModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,

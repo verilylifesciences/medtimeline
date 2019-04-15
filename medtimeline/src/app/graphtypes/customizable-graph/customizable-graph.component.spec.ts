@@ -7,6 +7,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatDialog} from '@angular/material/dialog';
 import * as d3 from 'd3';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 import {of} from 'rxjs';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
@@ -44,7 +45,8 @@ describe('CustomizableGraphComponent', () => {
     TestBed
         .configureTestingModule({
           declarations: [CustomizableGraphComponent],
-          providers: [{provide: MatDialog, useClass: MatDialogStub}]
+          providers: [{provide: MatDialog, useClass: MatDialogStub}],
+          imports: [ChartsModule]
         })
         .compileComponents();
   }));
@@ -70,7 +72,7 @@ describe('CustomizableGraphComponent', () => {
     component.data = CustomizableData.defaultEmptySeries();
     component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
         DateTime.utc().minus({days: 2}), DateTime.utc()));
-    component.generateBasicChart();
+    component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default
     // date and time.
@@ -78,11 +80,10 @@ describe('CustomizableGraphComponent', () => {
 
     expect(component.data.series.length).toEqual(1);
     // The series should contain the original point plus the one we added.
-    expect(component.data.series[0].xValues).toEqual([
-      DateTime.fromJSDate(new Date(-8640000000000000)),
-      DateTime.fromISO('2019-04-04T00:53:00')
+    expect(component.data.series[0].coordinates).toEqual([
+      [DateTime.fromJSDate(new Date(-8640000000000000)), 0],
+      [DateTime.fromISO('2019-04-04T00:53:00'), 0]
     ]);
-    expect(component.data.series[0].yValues).toEqual([0, 0]);
   });
 
   // TODO(b/128857535): Fix tests below.
@@ -109,11 +110,10 @@ describe('CustomizableGraphComponent', () => {
     // Make sure the point got changed to the new timestamp.
     expect(component.data.series.length).toEqual(1);
     // The series should contain the original point plus the one we added.
-    expect(component.data.series[0].xValues).toEqual([
-      DateTime.fromJSDate(new Date(-8640000000000000)),
-      DateTime.fromISO('2019-05-05T00:53:00')
+    expect(component.data.series[0].coordinates).toEqual([
+      [DateTime.fromJSDate(new Date(-8640000000000000)), 0],
+      [DateTime.fromISO('2019-05-05T00:53:00'), 0]
     ]);
-    expect(component.data.series[0].yValues).toEqual([0, 0]);
   });
 
   it('should handle deleting a point', () => {
@@ -135,9 +135,8 @@ describe('CustomizableGraphComponent', () => {
     // Make sure the point got changed to the new timestamp.
     expect(component.data.series.length).toEqual(1);
     // The series should contain the original point plus the one we added.
-    expect(component.data.series[0].xValues).toEqual([
-      DateTime.fromJSDate(new Date(-8640000000000000)),
+    expect(component.data.series[0].coordinates).toEqual([
+      [DateTime.fromJSDate(new Date(-8640000000000000)), 0]
     ]);
-    expect(component.data.series[0].yValues).toEqual([0]);
   });
 });
