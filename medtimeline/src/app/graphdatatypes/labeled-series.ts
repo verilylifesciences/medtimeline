@@ -86,6 +86,14 @@ export class LabeledSeries {
   }
 
   /**
+   * Generates an empty LabeledSeries.
+   */
+  static emptySeries() {
+    return new LabeledSeries('', []);
+  }
+
+
+  /**
    * Generates a LabeledSeries from the given ObservationSet.
    * @param observationSet The ObservationSet to chart.
    * @param encounters A list of Encounters to use while determining line breaks

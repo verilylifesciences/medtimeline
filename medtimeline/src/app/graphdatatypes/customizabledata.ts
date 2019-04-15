@@ -9,33 +9,11 @@ import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/cust
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
 
-
-
-export class DisplayConfiguration {
-  constructor(
-      /**
-       * These columns feed in to c3 as data. Each item in allColumns is
-       * an array of data. The first entry is the series label and the following
-       * entries are the data for that series.
-       */
-
-      readonly allColumns: any[],
-      /**
-       * The keys of this map are the name of the y-series as stored in
-       * allColumns, and the values are their corresponding x-series names.
-       */
-      readonly columnMap: {}) {}
-}
-
 /**
  * CustomizableData holds a time-based series to which a user can add more
  * points.
  */
 export class CustomizableData extends GraphData {
-  // The DisplayConfiguration, including data and column names, for this
-  // GraphData.
-  c3DisplayConfiguration: DisplayConfiguration;
-
   /** The display bounds of the y-axis. */
   readonly yAxisDisplayBounds: [number, number];
 
@@ -57,31 +35,9 @@ export class CustomizableData extends GraphData {
   }
 
   static defaultEmptySeries() {
-    // We need to initialize the data with a point so that the c3 chart can show
-    // the x-axis with the dates (otherwise, it turns up blank). This date is
-    // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
-    return CustomizableData.fromInitialPoint(
-        0,
-        new CustomizableGraphAnnotation(
-            DateTime.fromJSDate(new Date(-8640000000000000)),
-            'initial_point_hidden'));
-  }
-
-  /**
-   * Converts an initial time and y value to a CustomizableData object.
-   * @param date The date for this initial point.
-   * @param yValue The y-value for this initial point.
-   * @param annotation The CustomizableGraphAnnotation for this point.
-   * @returns a new CustomizableData representing this initial point.
-   */
-  // TODO(b/123940928): Consider passing in encounters rather than FhirService.
-  static fromInitialPoint(
-      yValue: number, annotation: CustomizableGraphAnnotation) {
-    const annotations = new Map<number, CustomizableGraphAnnotation>().set(
-        annotation.timestamp.toMillis(), annotation);
     return new CustomizableData(
-        LabeledSeries.fromInitialPoint(annotation.timestamp, yValue),
-        annotations);
+        LabeledSeries.emptySeries(),
+        new Map<number, CustomizableGraphAnnotation>());
   }
 
   /**
