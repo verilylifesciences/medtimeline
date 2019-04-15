@@ -22,14 +22,14 @@ import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, make
 import {makeSampleDiscreteObservationJson} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
-
-
 describe('LabeledSeries', () => {
-  const firstAdministration = '2018-09-12T11:00:00.000Z';
-  const lastAdministration = '2018-09-14T11:00:00.000Z';
+  const firstAdministration =
+      DateTime.fromISO('2018-09-12T11:00:00.000Z').toLocal();
+  const lastAdministration =
+      DateTime.fromISO('2018-09-14T11:00:00.000Z').toLocal();
   const medicationAdministrations = [
-    makeMedicationAdministration(firstAdministration, 525),
-    makeMedicationAdministration(lastAdministration, 750)
+    makeMedicationAdministration(firstAdministration.toISO(), 525),
+    makeMedicationAdministration(lastAdministration.toISO(), 750)
   ];
   const beginningOfEncounter = DateTime.utc(2018, 9, 10);
   const endOfEncounter = DateTime.utc(2018, 9, 15);
@@ -63,11 +63,10 @@ describe('LabeledSeries', () => {
           makeSampleObservationJson(100, DateTime.utc(1988, 3, 25))))
     ]);
     const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
-    expect(lblSeries.xValues.map(x => x.toISO())).toEqual([
-      DateTime.utc(1988, 3, 23).toISO(), DateTime.utc(1988, 3, 24).toISO(),
-      DateTime.utc(1988, 3, 25).toISO()
+    expect(lblSeries.coordinates).toEqual([
+      [DateTime.utc(1988, 3, 23), 1], [DateTime.utc(1988, 3, 24), 10],
+      [DateTime.utc(1988, 3, 25), 100]
     ]);
-    expect(lblSeries.yValues).toEqual([1, 10, 100]);
   });
 
   it('LabeledSeries.fromObservationSet should calculate display range ' +
@@ -115,21 +114,18 @@ describe('LabeledSeries', () => {
              makeSampleObservationJson(100, DateTime.utc(2018, 9, 14))))
        ]);
        const lblSeries = LabeledSeries.fromObservationSet(obsSet, [encounter]);
-       expect(lblSeries.xValues.map(x => x.toISO())).toEqual([
-         DateTime.utc(2018, 9, 11).toISO(), DateTime.utc(2018, 9, 12).toISO(),
-         DateTime.utc(2018, 9, 14).toISO(), beginningOfEncounter.toISO(),
-         endOfEncounter.toISO()
+       expect(lblSeries.coordinates).toEqual([
+         [beginningOfEncounter, null], [DateTime.utc(2018, 9, 11), 1],
+         [DateTime.utc(2018, 9, 12), 10], [DateTime.utc(2018, 9, 14), 100],
+         [endOfEncounter, null]
        ]);
-       // Null y-values are to force a braek in the series.
-       expect(lblSeries.yValues).toEqual([1, 10, 100, null, null]);
      });
 
   it('LabeledSeries.fromObservationSet should not add encounter endpoints without data',
      () => {
        const obsSet = new ObservationSet([]);
        const lblSeries = LabeledSeries.fromObservationSet(obsSet, [encounter]);
-       expect(lblSeries.xValues.map(x => x.toISO())).toEqual([]);
-       expect(lblSeries.yValues).toEqual([]);
+       expect(lblSeries.coordinates).toEqual([]);
      });
 
   it('LabeledSeries.fromObservationSetsDiscrete should calculate one series ' +
@@ -149,9 +145,9 @@ describe('LabeledSeries', () => {
 
        const lblSeries =
            LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
-       expect(lblSeries.xValues).toEqual([
-         DateTime.utc(1988, 3, 23), DateTime.utc(1988, 3, 24),
-         DateTime.utc(1988, 3, 25)
+       expect(lblSeries.coordinates).toEqual([
+         [DateTime.utc(1988, 3, 23), 10], [DateTime.utc(1988, 3, 24), 10],
+         [DateTime.utc(1988, 3, 25), 10]
        ]);
      });
 
@@ -171,10 +167,10 @@ describe('LabeledSeries', () => {
 
        const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
            [obsSet], 10, 'label', [encounter]);
-       expect(lblSeries.xValues.map(x => x.toISO())).toEqual([
-         DateTime.utc(2018, 9, 11).toISO(), DateTime.utc(2018, 9, 12).toISO(),
-         DateTime.utc(2018, 9, 14).toISO(), beginningOfEncounter.toISO(),
-         endOfEncounter.toISO()
+       expect(lblSeries.coordinates).toEqual([
+         [beginningOfEncounter, null], [DateTime.utc(2018, 9, 11), 10],
+         [DateTime.utc(2018, 9, 12), 10], [DateTime.utc(2018, 9, 14), 10],
+         [endOfEncounter, null]
        ]);
      });
 
@@ -184,22 +180,20 @@ describe('LabeledSeries', () => {
 
        const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
            [obsSet], 10, 'label', [encounter]);
-       expect(lblSeries.xValues.map(x => x.toISO())).toEqual([]);
-       expect(lblSeries.yValues).toEqual([]);
+       expect(lblSeries.coordinates).toEqual([]);
      });
 
   it('LabeledSeries.fromMedicationOrder should separate out coordinates',
      (done: DoneFn) => {
        Promise.resolve(order.setMedicationAdministrations(fhirServiceStub))
            .then(result => {
-             const lblSeries =
-                 LabeledSeries.fromMedicationOrder(order, dateRange, 10);
+             const lblSeries = LabeledSeries.fromMedicationOrder(
+                 order, dateRange, 'categorical');
 
-             const coordinates = lblSeries[0];
-             expect(coordinates.xValues.map(x => x.toISO())).toEqual([
-               firstAdministration, lastAdministration
+             expect(lblSeries[0].coordinates).toEqual([
+               [firstAdministration, 'categorical'],
+               [lastAdministration, 'categorical']
              ]);
-             expect(coordinates.yValues).toEqual([10, 10]);
            });
        done();
      });
@@ -208,11 +202,12 @@ describe('LabeledSeries', () => {
      (done: DoneFn) => {
        Promise.resolve(order.setMedicationAdministrations(fhirServiceStub))
            .then(result => {
-             const lblSeries =
-                 LabeledSeries.fromMedicationOrder(order, dateRange, 10);
+             const lblSeries = LabeledSeries.fromMedicationOrder(
+                 order, dateRange, 'categorical');
              const endpoints = lblSeries[1];
-             expect(endpoints.xValues.map(x => x.toISO())).toEqual([
-               firstAdministration, lastAdministration
+             expect(lblSeries[0].coordinates).toEqual([
+               [firstAdministration, 'categorical'],
+               [lastAdministration, 'categorical']
              ]);
            });
        done();
@@ -225,12 +220,9 @@ describe('LabeledSeries', () => {
            .then(result => {
              const lblSeries =
                  LabeledSeries.fromMedicationOrder(order, dateRange);
-             const coordinates = lblSeries[0];
-             expect(coordinates.xValues.map(x => x.toISO())).toEqual([
-               firstAdministration, lastAdministration
+             expect(lblSeries[0].coordinates).toEqual([
+               [firstAdministration, 525], [lastAdministration, 750]
              ]);
-
-             expect(coordinates.yValues).toEqual([525, 750]);
            });
        done();
      });
@@ -277,11 +269,10 @@ describe('LabeledSeries', () => {
        expect(lg.yDisplayBounds).toEqual([
          medOrderSet.minDose, medOrderSet.maxDose
        ]);
-       expect(lg.xValues).toEqual([
-         DateTime.utc(1965, 3, 22), DateTime.utc(1965, 3, 23),
-         DateTime.utc(1965, 3, 25), DateTime.utc(1965, 3, 26)
+       expect(lg.coordinates).toEqual([
+         [DateTime.utc(1965, 3, 22), 92], [DateTime.utc(1965, 3, 23), 19],
+         [DateTime.utc(1965, 3, 25), 23], [DateTime.utc(1965, 3, 26), 17]
        ]);
-       expect(lg.yValues).toEqual([92, 19, 23, 17]);
      });
 
   it('LabeledSeries.fromMedicationOrderSet should add encounter endpoints to series',
@@ -318,21 +309,18 @@ describe('LabeledSeries', () => {
        const lg = LabeledSeries.fromMedicationOrderSet(
            medOrderSet, dateRange, [encounter]);
 
-       expect(lg.xValues).toEqual([
-         DateTime.utc(2018, 9, 11), DateTime.utc(2018, 9, 12),
-         DateTime.utc(2018, 9, 13), DateTime.utc(2018, 9, 14),
-         beginningOfEncounter, endOfEncounter
+       expect(lg.coordinates).toEqual([
+         [beginningOfEncounter, null], [DateTime.utc(2018, 9, 11), 92],
+         [DateTime.utc(2018, 9, 12), 19], [DateTime.utc(2018, 9, 13), 29],
+         [DateTime.utc(2018, 9, 14), 17], [endOfEncounter, null]
        ]);
-       // Null y-values are to force a braek in the series.
-       expect(lg.yValues).toEqual([92, 19, 29, 17, null, null]);
      });
 
   it('LabeledSeries.fromMedicationOrderSet should not add encounter endpoints without data',
      () => {
        const lblSeries = LabeledSeries.fromMedicationOrderSet(
            new MedicationOrderSet([]), dateRange, [encounter]);
-       expect(lblSeries.xValues.map(x => x.toISO())).toEqual([]);
-       expect(lblSeries.yValues).toEqual([]);
+       expect(lblSeries.coordinates).toEqual([]);
      });
 
   it('LabeledSeries.fromDiagnosticReport should make a series for' +
@@ -343,7 +331,7 @@ describe('LabeledSeries', () => {
        yAxisMap.set(10, 'Salmonella and Shigella Culture');
        yAxisMap.set(20, 'Ova and Parasite Exam');
        const series = LabeledSeries.fromDiagnosticReport(
-           diagnosticReport, DateTime.fromJSDate(new Date()), yAxisMap);
+           diagnosticReport, DateTime.fromJSDate(new Date()));
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id-NEGORFLORA-Final');
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');

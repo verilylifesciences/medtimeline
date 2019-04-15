@@ -42,7 +42,7 @@ describe('StepGraphData', () => {
   }));
 
   it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
-         ' the two series for a MedicationOrderSet',
+         ' the data as the end point series',
      (done: DoneFn) => {
        const earliestMedicationOrder = makeMedicationOrder();
        earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
@@ -55,45 +55,17 @@ describe('StepGraphData', () => {
 
              const data = StepGraphData.fromMedicationOrderSetList(
                  [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-             const adminSeries = data.series;
-             const endpointSeries = data.endpointSeries;
+             const endpointSeries = data.series;
              // The adminSeries holds both the adminSeries and the
              // endpointSeries; it's redundantly stored due to the constraints
              // of inheritance from graphData and all the stuff that's needed
              // to make things like custom legends work.
-             expect(adminSeries.length).toEqual(2);
-             // for the administration series
-             expect(adminSeries[0].xValues[0].toString()).toEqual(admin1Time);
-             expect(adminSeries[0].xValues[1].toString()).toEqual(admin2Time);
-             // for the end point series
-             expect(adminSeries[1].xValues[0].toString()).toEqual(admin1Time);
-             expect(adminSeries[1].xValues[1].toString()).toEqual(admin2Time);
-
              expect(endpointSeries.length).toEqual(1);
-             expect(endpointSeries[0].xValues[0].toString())
-                 .toEqual(admin1Time);
-             expect(endpointSeries[0].xValues[1].toString())
-                 .toEqual(admin2Time);
+             // for the administration series
+             expect(endpointSeries[0].coordinates.map(c => c[0])).toEqual([
+               DateTime.fromISO(admin1Time), DateTime.fromISO(admin2Time)
+             ]);
              done();
-           });
-     });
-
-  it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
-         'y axis numerical to discrete map',
-     () => {
-       const earliestMedicationOrder = makeMedicationOrder();
-       earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
-       Promise
-           .resolve(earliestMedicationOrder.setMedicationAdministrations(
-               fhirServiceStub))
-           .then(result => {
-             const medOrderSet =
-                 new MedicationOrderSet([earliestMedicationOrder]);
-
-             const data = StepGraphData.fromMedicationOrderSetList(
-                 [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-
-             expect(data.yAxisMap.get(10)).toEqual('vancomycin');
            });
      });
 
@@ -111,8 +83,6 @@ describe('StepGraphData', () => {
                  [medOrderSet], dateRange, TestBed.get(DomSanitizer));
 
              data.dataSeries.forEach(
-                 series => expect(series.unit).toBeUndefined());
-             data.endpointSeries.forEach(
                  series => expect(series.unit).toBeUndefined());
            });
      });

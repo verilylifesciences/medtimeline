@@ -7,6 +7,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import {ChartsModule} from 'ng2-charts';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
@@ -25,11 +26,10 @@ describe('CustomizableTimelineComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          imports: [MatCardModule, MatIconModule],
+          imports: [MatCardModule, MatIconModule, ChartsModule],
           declarations: [
-            CustomizableTimelineComponent,
-            CustomizableGraphComponent,
-            CardComponent,
+            CustomizableTimelineComponent, CustomizableGraphComponent,
+            CardComponent
           ],
           providers: [
             {provide: MatDialog, useValue: null},

@@ -5,10 +5,9 @@
 
 import {Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ChartDataSets, ChartOptions, ChartYAxe} from 'chart.js';
-import {ChartXAxe} from 'chart.js';
+import {ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import {DateTime, Interval, IntervalObject} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {Color} from 'ng2-charts';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
@@ -274,6 +273,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
   }
 
   private showXRegions() {
+    if (!this.xRegions) {
+      return;
+    }
+
     for (const region of this.xRegions) {
       const annotation = {
         // Show the region underneath the data points.
@@ -413,6 +416,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
       ticks: {
         autoSkip: true,
         callback: (value, index, values) => {
+          if (!this.data || !this.data.precision) {
+            return value;
+          }
           return (value).toLocaleString('en-us', {
             minimumFractionDigits: this.data.precision,
             maximumFractionDigits: this.data.precision
