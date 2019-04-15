@@ -13,7 +13,6 @@ import {DateTime, Interval} from 'luxon';
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
-import {DateTimeXAxis} from '../graph/datetimexaxis';
 import {GraphComponent} from '../graph/graph.component';
 import {RenderedCustomizableChart} from '../graph/renderedcustomizablechart';
 
@@ -36,7 +35,7 @@ export class CustomizableGraphComponent extends
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   @Input() inEditMode: boolean;
   // Kept around for compatibility with the custom timeline. To be removed.
-  @Input() xAxis: DateTimeXAxis;
+  @Input() dateRange: Interval;
 
   // The reference for the Dialog opened.
   private dialogRef: any;
@@ -46,8 +45,8 @@ export class CustomizableGraphComponent extends
 
   constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
     super(sanitizer);
-    const renderedConstructor = (axis: DateTimeXAxis, divId: string) =>
-        new RenderedCustomizableChart(axis, divId);
+    const renderedConstructor = (dateRange: Interval, divId: string) =>
+        new RenderedCustomizableChart(dateRange, divId);
   }
 
   ngOnDestroy() {
@@ -83,8 +82,8 @@ export class CustomizableGraphComponent extends
   private loadNewData() {
     const columnsToLoad: any = [['x_'], ['']];
     const entireInterval = Interval.fromDateTimes(
-        this.xAxis.dateRange.start.toLocal().startOf('day'),
-        this.xAxis.dateRange.end.toLocal().endOf('day'));
+        this.dateRange.start.toLocal().startOf('day'),
+        this.dateRange.end.toLocal().endOf('day'));
     for (let i = 1; i < this.data.c3DisplayConfiguration.allColumns[0].length;
          i++) {
       // Only add the data to the array being loaded if it is within the date
@@ -133,11 +132,11 @@ export class CustomizableGraphComponent extends
       date: new Date(editedAnnotation.timestamp.toMillis()),
       description: editedAnnotation.description,
       color: editedAnnotation.color,
-      dateRange: this.xAxis.dateRange,
+      dateRange: this.dateRange,
     } :
                                     {
                                       date: xCoordinate,
-                                      dateRange: this.xAxis.dateRange,
+                                      dateRange: this.dateRange,
                                     };
 
     this.dialogRef =
@@ -165,8 +164,8 @@ export class CustomizableGraphComponent extends
         // Only display the annotation if the user selected date is within the
         // current date range.
         const entireInterval = Interval.fromDateTimes(
-            this.xAxis.dateRange.start.toLocal().startOf('day'),
-            this.xAxis.dateRange.end.toLocal().endOf('day'));
+            this.dateRange.start.toLocal().startOf('day'),
+            this.dateRange.end.toLocal().endOf('day'));
         if (entireInterval.contains(userSelectedDate)) {
           this.data.annotations.get(userSelectedDate.toMillis())
               .addAnnotation(this.renderedChart as RenderedCustomizableChart);
@@ -191,8 +190,8 @@ export class CustomizableGraphComponent extends
                               .selectAll('circle')
                               .nodes();
     const entireInterval = Interval.fromDateTimes(
-        this.xAxis.dateRange.start.toLocal().startOf('day'),
-        this.xAxis.dateRange.end.toLocal().endOf('day'));
+        this.dateRange.start.toLocal().startOf('day'),
+        this.dateRange.end.toLocal().endOf('day'));
     if (chartedPoints.length > 0) {
       for (let i = 0; i < timestamps.length; i++) {
         const timestamp = timestamps[i];

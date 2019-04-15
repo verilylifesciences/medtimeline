@@ -5,9 +5,8 @@
 
 import * as c3 from 'c3';
 import * as d3 from 'd3';
+import {Interval} from 'luxon';
 import * as wordwrap from 'wordwrap';
-
-import {DateTimeXAxis} from './datetimexaxis';
 
 /**
  * The maximum characters for a y-axis tick label.
@@ -27,7 +26,7 @@ export class RenderedChart {
   private nextRenderQueue = new Array<() => void>();
 
   constructor(
-      private readonly xAxis: DateTimeXAxis, private readonly chartDivId) {}
+      private readonly dateRange: Interval, private readonly chartDivId) {}
 
 
   /**
@@ -80,8 +79,8 @@ export class RenderedChart {
         d3.select('#' + this.chartDivId).select('.c3-text.c3-empty');
     emptyContainer.text(
         'No data for ' +
-        this.xAxis.dateRange.start.toLocal().startOf('day').toLocaleString() +
-        '-' + this.xAxis.dateRange.end.toLocal().endOf('day').toLocaleString());
+        this.dateRange.start.toLocal().startOf('day').toLocaleString() + '-' +
+        this.dateRange.end.toLocal().endOf('day').toLocaleString());
     emptyContainer.attr('class', 'c3-text c3-empty noData');
     // We set the opacity of the y-axis ticks of empty charts to 0 after
     // setting the tick values. We do this instead of not displaying the
@@ -152,15 +151,10 @@ export class RenderedChart {
                             .attr('dx', dx)
                             .attr('dy', dy)
                             .style('font-weight', 'bolder');
-          // Only add the tick label text if it was meant to be
-          // displayed.
-          if (self.xAxis.xAxisLabels.length > 0 &&
-              self.xAxis.xAxisLabels.includes(text)) {
-            tspan.text(
-                textSplit[0]);  // Set the 'bold' tspan's content as the date.
-            d3.select(this).append('tspan').text(
-                ' ' + textSplit[1]);  // Add an additional tspan for the time.
-          }
+          tspan.text(
+              textSplit[0]);  // Set the 'bold' tspan's content as the date.
+          d3.select(this).append('tspan').text(
+              ' ' + textSplit[1]);  // Add an additional tspan for the time.
         });
   }
 

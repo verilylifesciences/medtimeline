@@ -4,9 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import * as d3 from 'd3';
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 
-import {DateTimeXAxis} from './datetimexaxis';
 import {RenderedChart} from './renderedchart';
 
 /**
@@ -18,8 +17,8 @@ export class RenderedCustomizableChart extends RenderedChart {
   inEditMode = true;
   initialized = false;
 
-  constructor(xAxis: DateTimeXAxis, chartDivId: string) {
-    super(xAxis, chartDivId);
+  constructor(dateRange: Interval, chartDivId: string) {
+    super(dateRange, chartDivId);
   }
 
   initialize(addPointHandler: (selfCoords: [number, number], parentCoords: [
