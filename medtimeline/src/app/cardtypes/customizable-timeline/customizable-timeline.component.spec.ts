@@ -11,7 +11,6 @@ import {ChartsModule} from 'ng2-charts';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
-import {DateTimeXAxis} from 'src/app/graphtypes/graph/datetimexaxis';
 import {StubFhirService} from 'src/app/test_utils';
 
 import {CardComponent} from '../card/card.component';
@@ -45,8 +44,8 @@ describe('CustomizableTimelineComponent', () => {
     customGraph =
         fixture.debugElement.query(By.directive(CustomizableGraphComponent))
             .componentInstance;
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.local(2012, 8, 4, 12), DateTime.local(2012, 8, 15, 12)));
+    component.dateRange = Interval.fromDateTimes(
+        DateTime.local(2012, 8, 4, 12), DateTime.local(2012, 8, 15, 12));
     fixture.detectChanges();
   });
 

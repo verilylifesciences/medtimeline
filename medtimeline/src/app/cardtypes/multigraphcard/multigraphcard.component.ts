@@ -96,8 +96,8 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const axisChange = changes.xAxis;
-    if (axisChange && axisChange.previousValue !== axisChange.currentValue) {
+    const dateRange = changes.dateRange;
+    if (dateRange && dateRange.previousValue !== dateRange.currentValue) {
       this.loadNewData();
     }
   }

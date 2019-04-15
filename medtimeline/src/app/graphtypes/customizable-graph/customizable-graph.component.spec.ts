@@ -11,8 +11,6 @@ import {ChartsModule} from 'ng2-charts';
 import {of} from 'rxjs';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 
-import {DateTimeXAxis} from '../graph/datetimexaxis';
-
 import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 import {CustomizableGraphComponent} from './customizable-graph.component';
 
@@ -54,8 +52,8 @@ describe('CustomizableGraphComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomizableGraphComponent);
     component = fixture.componentInstance;
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.utc().minus({days: 2}), DateTime.utc()));
+    component.dateRange =
+        Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
     component.data = CustomizableData.defaultEmptySeries();
     MatDialogRefStub.setTime(annotationTime);
     fixture.detectChanges();
@@ -70,8 +68,8 @@ describe('CustomizableGraphComponent', () => {
   it('should handle adding points', () => {
     // Set up some stub data so that there's a chart to render.
     component.data = CustomizableData.defaultEmptySeries();
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.utc().minus({days: 2}), DateTime.utc()));
+    component.dateRange =
+        Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
     component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default
@@ -90,8 +88,8 @@ describe('CustomizableGraphComponent', () => {
   it('should handle editing a point', () => {
     // Set up some stub data so that there's a chart to render.
     component.data = CustomizableData.defaultEmptySeries();
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.utc().minus({days: 2}), DateTime.utc()));
+    component.dateRange =
+        Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
     component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default
@@ -119,8 +117,8 @@ describe('CustomizableGraphComponent', () => {
   it('should handle deleting a point', () => {
     // Set up some stub data so that there's a chart to render.
     component.data = CustomizableData.defaultEmptySeries();
-    component.xAxis = new DateTimeXAxis(Interval.fromDateTimes(
-        DateTime.utc().minus({days: 2}), DateTime.utc()));
+    component.dateRange =
+        Interval.fromDateTimes(DateTime.utc().minus({days: 2}), DateTime.utc());
     component.generateChart();
 
     // Add a point to the graph. The stubs will populate it with a default

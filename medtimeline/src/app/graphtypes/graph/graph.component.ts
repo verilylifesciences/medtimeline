@@ -388,7 +388,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnChanges {
       time: {
         // This sets the bounds of the x-axis. The default values of 0 and 10
         // are nonsensical but necessary since the graph is first rendered
-        // before xAxis is bound.
+        // before dateRange is bound.
         min: this.dateRange ? this.dateRange.start.toISO() :
                               DateTime.utc().toISO(),
         max: this.dateRange ? this.dateRange.end.toISO() :

@@ -17,7 +17,6 @@ import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {AxisGroup} from '../graphtypes/axis-group';
-import {DateTimeXAxis} from '../graphtypes/graph/datetimexaxis';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {SetupDataService} from '../setup-data.service';
 
@@ -62,11 +61,6 @@ export class CardcontainerComponent {
   dateRange: Interval =
       Interval.fromDateTimes(DateTime.utc().minus({days: 7}), DateTime.utc());
 
-  /**
-   * The x-axis configured for this date range.
-   */
-  xAxis: DateTimeXAxis;
-
   // Holds a subscription to the observable sequence of events emitted by the
   // Dragula Service.
   private readonly subs = new Subscription();
@@ -102,7 +96,6 @@ export class CardcontainerComponent {
                                 .reduce((acc, val) => acc.concat(val), []);
     this.setUpCards();
     this.setUpDrag(dragulaService);
-    this.xAxis = new DateTimeXAxis(this.dateRange);
   }
 
   private setUpCards() {
@@ -177,7 +170,6 @@ export class CardcontainerComponent {
   // UI, and update the date range.
   changeDateRange($event) {
     this.dateRange = $event;
-    this.xAxis = new DateTimeXAxis(this.dateRange);
   }
 
   // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.
