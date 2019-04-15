@@ -31,11 +31,14 @@ import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 })
 export class CustomizableGraphComponent extends
     GraphComponent<CustomizableData> implements OnChanges, OnDestroy {
-  // An event indicating that the points on the CustomizableGraph have changed.
+  /**
+   * An event indicating that the points on the CustomizableGraph have changed.
+   */
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
+  /**
+   * Holds whether this graph is in edit mode.
+   */
   @Input() inEditMode: boolean;
-  // Kept around for compatibility with the custom timeline. To be removed.
-  @Input() dateRange: Interval;
 
   // The reference for the Dialog opened.
   private dialogRef: any;
@@ -45,6 +48,7 @@ export class CustomizableGraphComponent extends
 
   constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
     super(sanitizer);
+    this.chartTypeString = 'scatter';
     const renderedConstructor = (dateRange: Interval, divId: string) =>
         new RenderedCustomizableChart(dateRange, divId);
   }
@@ -59,42 +63,37 @@ export class CustomizableGraphComponent extends
   ngOnChanges(changes: SimpleChanges) {
     if (changes.inEditMode && this.renderedChart) {
       this.renderedChart.inEditMode = changes.inEditMode.currentValue;
-    } else {
-      this.generateChart();
     }
+    super.ngOnChanges(changes);
   }
 
-  generateChart() {
-    super.generateChart();
-    // Once the chart is rendered, only display the data points in the current
-    // date range. This is due to a C3 bug that plots some points
-    // outside of the x-axis/y-axis boundaries upon loading additional data.
-    this.loadNewData();
+  adjustGeneratedChartConfiguration() {
+    const self = this;
+
+    // Show the time as we hover across the graph.
+    this.chartOptions.onHover = function(event) {
+      const chart: any = this;
+      const yScale = chart.scales[GraphComponent.Y_AXIS_ID];
+      const xScale = chart.scales[GraphComponent.X_AXIS_ID];
+      const currentDate =
+          DateTime.fromJSDate(xScale.getValueForPixel(event.offsetX).toDate());
+      const currentDateString = currentDate.toLocaleString() + ' ' +
+          currentDate.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE);
+
+      chart.clear();
+      chart.draw();
+      if (self.dateRange.contains(currentDate)) {
+        chart.ctx.beginPath();
+        chart.ctx.moveTo(event.offsetX, 0);
+        chart.ctx.strokeStyle = '#A0A0A0';
+        chart.ctx.lineTo(event.offsetX, yScale.bottom);
+        chart.ctx.stroke();
+        chart.ctx.fillText(currentDateString, event.offsetX, yScale.bottom / 2);
+      }
+    };
+
     // Update the annotations displayed for this chart.
     this.updateAnnotations();
-  }
-
-  // This function loads the data into the chart without needing the chart to be
-  // re-rendered completely. We only load data that is strictly within the date
-  // range being displayed on the chart, due to a C3 bug that plots some points
-  // outside of the x-axis/y-axis boundaries.
-  private loadNewData() {
-    const columnsToLoad: any = [['x_'], ['']];
-    const entireInterval = Interval.fromDateTimes(
-        this.dateRange.start.toLocal().startOf('day'),
-        this.dateRange.end.toLocal().endOf('day'));
-    for (let i = 1; i < this.data.c3DisplayConfiguration.allColumns[0].length;
-         i++) {
-      // Only add the data to the array being loaded if it is within the date
-      // range.
-      if (entireInterval.contains(
-              this.data.c3DisplayConfiguration.allColumns[0][i])) {
-        columnsToLoad[0].push(
-            this.data.c3DisplayConfiguration.allColumns[0][i]);
-        columnsToLoad[1].push(0);
-      }
-    }
-    this.renderedChart.loadNewData(columnsToLoad);
   }
 
   // If the selected date already has an annotation, modify the time
@@ -171,8 +170,8 @@ export class CustomizableGraphComponent extends
           this.addDeleteEvent(userSelectedDate.toMillis());
           this.addEditListener(userSelectedDate.toMillis());
         }
-        this.loadNewData();
         this.pointsChanged.emit(this.data);
+        this.generateChart();
       }
     });
   }

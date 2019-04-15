@@ -16,10 +16,10 @@
     <div *ngFor="let element of displayedConcepts" [attr.data-index]="element['id']" class="displayedConcept">
       <app-textboxcard *ngIf="element['concept'] ==='textbox'" [id]="element['id']" [noteString]="element['value']"
         (removeEvent)="removeDisplayedCard($event)"></app-textboxcard>
-      <!-- <app-customizable-timeline *ngIf="element['concept']==='customTimeline'" [id]="element['id']" [dateRange]="dateRange"
-        [deletedData]="element['value']" (updateEventLines)="updateEventLines($event)"
+      <app-customizable-timeline *ngIf="element['concept']==='customTimeline'" [id]="element['id']"
+        [dateRange]="dateRange" [deletedData]="element['value']" (updateEventLines)="updateEventLines($event)"
         (removeEvent)="removeDisplayedCard($event)">
-      </app-customizable-timeline>-->
+      </app-customizable-timeline>
       <app-multigraphcard *ngIf="element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'"
         [axisGroup]="element['concept']" [dateRange]="dateRange" [eventlines]="eventlines" [id]="element['id']"
         (removeEvent)="removeDisplayedCard($event)">
