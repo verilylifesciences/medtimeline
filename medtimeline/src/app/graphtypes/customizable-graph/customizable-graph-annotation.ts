@@ -4,9 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import * as Color from 'color';
-import * as d3 from 'd3';
 import {DateTime} from 'luxon';
-import {RenderedCustomizableChart} from '../graph/renderedcustomizablechart';
 
 /*
  * This class makes an annotation for a particular timestamp with custom notes.
@@ -15,20 +13,15 @@ export class CustomizableGraphAnnotation {
   // Whether or not the full annotation is shown. If false, only the title of
   // the annotation will show.
   private showDetails: boolean;
-  // The default y-coordinate for the annotation.
-  readonly defaultYCoordinate = 60;
-  // The maximum horizontal overlap for any two annotations.
-  readonly horizontalOverlap = 20;
-  // The maximum vertical overlap for any two annotations.
-  readonly verticalOverlap = 10;
   // The width of the annotation.
   readonly annotationWidth = 100;
   // The default height of the annotation.
   readonly annotationHeight = 25;
-  // The default padding for the annotation.
-  readonly defaultPadding = 30;
 
   timestamp: DateTime;
+  deleteIcon: HTMLElement;
+  editIcon: HTMLElement;
+  expandIcon: HTMLElement;
 
   private readonly yAxisXCoord = 125;
 
@@ -45,154 +38,104 @@ export class CustomizableGraphAnnotation {
     this.timestamp = timestamp;
   }
 
-  addAnnotation(renderedChart: RenderedCustomizableChart) {
+  addAnnotation(): HTMLElement {
     const self = this;
     this.showDetails = false;
-
     const millis = this.timestamp.toMillis();
 
-    const tooltipInfo = renderedChart.insertInitialTooltip(millis);
-    const tooltip = tooltipInfo[0];
-    const xCoordinate = tooltipInfo[1];
-    const yCoordinate = this.findBestYCoordinates(xCoordinate);
+    const tooltipContainer = document.createElement('div');
+    tooltipContainer.setAttribute('class', 'tooltip-custom-' + millis);
+    tooltipContainer.style.left = '0px';
+    tooltipContainer.style.borderColor = 'grey';
+    tooltipContainer.style.backgroundColor = this.color;
+    tooltipContainer.style.bottom = '20px';
 
-    const tooltipContainer =
-        tooltip.append('div').attr('class', 'tooltip-custom-' + millis);
-    const tooltipTitleContainer = tooltipContainer.append('div');
-    const expandIcon = tooltipTitleContainer.append('i')
-                           .attr('class', 'material-icons')
-                           .attr('id', 'expand-' + millis)
-                           .style('font-size', '18px')
-                           .html('expand_more');
-    const tooltipTitle = tooltipTitleContainer.append('h6')
-                             .attr('class', 'tooltip-title-custom-' + millis)
-                             .text(this.title);
-    const deleteIcon = tooltipTitleContainer.append('i')
-                           .attr('class', 'material-icons')
-                           .attr('id', 'delete-' + millis)
-                           .style('font-size', '18px')
-                           .html('clear');
-    const tooltipDetails = tooltipContainer.append('div').attr(
-        'class', 'tooltip-details-custom-' + millis);
-    const tooltipDetailsText =
-        tooltipDetails.append('div')
-            .text(this.description)
-            .attr('class', 'tooltip-details-text-' + millis);
-    const editIcon = tooltipDetails.append('i')
-                         .attr('class', 'material-icons')
-                         .attr('id', 'edit-' + millis)
-                         .style('font-size', '18px')
-                         .html('edit');
-    tooltip.style('left', (Number(xCoordinate) + this.yAxisXCoord) + 'px')
-        .style('top', yCoordinate + 'px')
-        .style('border-left-color', this.color)
-        .style(
-            'padding-bottom',
-            (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
-                'px');
-    tooltipContainer.style('left', '0px')
-        .style(
-            'bottom',
-            (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
-                'px')
-        .style('background-color', this.color);
+    const tooltipTitleContainer = document.createElement('div');
+    tooltipContainer.appendChild(tooltipTitleContainer);
+
+    this.expandIcon = this.makeIcon('expand-' + millis, 'expand_more');
+    this.expandIcon.style.cursor = 'pointer';
+    tooltipTitleContainer.append(this.expandIcon);
+
+    const tooltipTitle = document.createElement('h6');
+    tooltipTitle.setAttribute('class', 'tooltip-title-custom-' + millis);
+    tooltipTitle.innerText = this.title;
+    tooltipTitleContainer.appendChild(tooltipTitle);
+
+
+    this.deleteIcon = this.makeIcon('delete-' + millis, 'clear');
+    this.deleteIcon.style.cursor = 'pointer';
+    tooltipTitleContainer.append(this.deleteIcon);
+
+    const tooltipDetails = document.createElement('div');
+    tooltipDetails.setAttribute('class', 'tooltip-details-custom-' + millis);
+    tooltipContainer.appendChild(tooltipDetails);
+
+    const tooltipDetailsText = document.createElement('div');
+    tooltipDetailsText.innerText = this.description;
+    tooltipDetailsText.setAttribute('class', 'tooltip-details-text-' + millis);
+    tooltipDetails.appendChild(tooltipDetailsText);
+
+    this.editIcon = this.makeIcon('edit-' + millis, 'edit');
+    this.editIcon.style.cursor = 'pointer';
+    tooltipDetails.append(this.editIcon);
 
     /**
      * Add action handlers.
      */
-    tooltipTitle.on('click', () => {
+    tooltipTitle.onclick = ((e: MouseEvent) => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
+      self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
     });
-    expandIcon.style('cursor', 'pointer');
-    expandIcon.on('click', () => {
+
+    this.expandIcon.onclick = ((e: MouseEvent) => {
       // Toggle whether or not the details are shown.
       self.showDetails = !self.showDetails;
-      self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
+      self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
     });
-    tooltip
-        .on('mouseover',
-            () => {
-              // Only show icons when hovering over the tooltip, and while
-              // the custom timeline is in edit mode. Show the expander icon
-              // regardless of edit mode.
-              expandIcon.style('visibility', 'visible');
-              deleteIcon.classed('showIcon', true);
-              editIcon.classed('showIcon', true);
-            })
-        .on('click',
-            function() {
-              // Ensure that the annotation comes to the front when clicking
-              // on it.
-              // TODO(b/122365189): Bring annotation to front while hovering
-              // without disturbing scroll.
-              const parent = this.parentNode;
-              // TODO(b/123935165): Find a better way to handle the errors.
-              try {
-                parent.appendChild(this);
-              } catch (e) {
-                console.log(e);
-              }
-            })
-        .on('mouseout', () => {
-          deleteIcon.classed('showIcon', false);
-          editIcon.classed('showIcon', false);
-          expandIcon.style('visibility', 'hidden');
-        });
+
+
+    tooltipContainer.onmouseover = (e: MouseEvent) => {
+      this.expandIcon.style.visibility = 'visible';
+      this.deleteIcon.classList.add('showIcon');
+      this.editIcon.classList.add('showIcon');
+    };
+
+    tooltipContainer.onmouseout = (e: MouseEvent) => {
+      this.expandIcon.style.visibility = 'hidden';
+      this.deleteIcon.classList.remove('showIcon');
+      this.editIcon.classList.remove('showIcon');
+    };
+    return tooltipContainer;
   }
 
+  removeAnnotation() {
+    const annotation = document.getElementsByClassName(
+        'tooltip-whole-' + this.timestamp.toMillis())[0];
+    annotation.remove();
+  }
+
+  private makeIcon(id: string, iconName: string): HTMLElement {
+    const icon = document.createElement('i');
+    icon.setAttribute('class', 'material-icons');
+    icon.setAttribute('id', id);
+    icon.style.fontSize = '18px';
+    icon.innerHTML = iconName;
+    return icon;
+  }
   // Toggles whether or not the full annotation is shown.
   private showDetailsToggle(millis: number, toggle: boolean, element: any) {
     const detailsElement =
-        d3.select(element).select('.tooltip-details-custom-' + millis);
-    const expandElement = d3.select(element).select('#expand-' + millis);
+        document.getElementsByClassName(
+            'tooltip-details-custom-' + millis)[0] as HTMLElement;
+    const expandElement = document.getElementById('expand-' + millis);
     if (toggle) {
-      detailsElement.style('display', 'inline-block').raise();
-      expandElement.html('expand_less');
+      detailsElement.style.display = 'inline-block';
+      expandElement.innerHTML = 'expand_less';
     } else {
-      detailsElement.style('display', 'none');
-      expandElement.html('expand_more');
+      detailsElement.style.display = 'none';
+      expandElement.innerHTML = 'expand_more';
     }
-  }
-  private findBestYCoordinates(xCoordinate: string) {
-    const newXCoord = Number(xCoordinate.replace('px', ''));
-    const nodes: any = d3.selectAll('[class*="tooltip-whole"]').nodes();
-    const positions = nodes.map(function(element) {
-      return {
-        top: Number(element.style.top.replace('px', '')),
-        left: Number(element.style.left.replace('px', '')),
-      };
-    });
-    const overlappingYs = [];
-    // Check if there are any annotations with horizontal overlap.
-    for (const position of positions) {
-      const rightPosition = position.left + this.annotationWidth;
-      if (newXCoord <= rightPosition &&
-          (newXCoord + this.annotationWidth) >= position.left) {
-        overlappingYs.push(position.top);
-      }
-    }
-    // Figure out the new y-coordinate for the annotation.
-    let defaultTop = this.defaultYCoordinate;
-    overlappingYs.sort(function(a, b) {
-      return a - b;
-    });
-    // By default, try putting the new box above all other annotations with
-    // horizontal overlap.
-    if (overlappingYs.length > 0) {
-      const topPosition = overlappingYs[overlappingYs.length - 1];
-      defaultTop = topPosition - this.verticalOverlap;
-    }
-    // Check if there is any position with space available between existing
-    // annotations.
-    for (let i = 0; i < overlappingYs.length - 1; i++) {
-      // Check if there is enough space.
-      if (overlappingYs[i + 1] - (overlappingYs[i] + this.annotationWidth) >=
-          this.horizontalOverlap) {
-        defaultTop = overlappingYs[i];
-      }
-    }
-    return defaultTop;
   }
 }
