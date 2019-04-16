@@ -1,0 +1,1042 @@
+{
+  "resourceType": "Bundle",
+  "id": "f22d19cc-1b76-4171-bbbd-5436496bf28b",
+  "type": "searchset",
+  "total": 4,
+  "link": [
+    {
+      "relation": "self",
+      "url": ""
+    }
+  ],
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-01T12:12:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 346,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T00:04:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 355,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T12:57:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 402,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T23:40:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 252,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-03T12:52:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 257,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-03T23:43:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 464,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-04T11:25:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 270,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "23865893"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-07T23:03:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 380,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "85426486"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-08T11:05:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 396,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "85426486"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "effectiveTimeDateTime": "2018-10-09T00:19:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 373,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "85426486"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-01T12:09:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 254,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-01T23:32:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 293,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T11:15:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 459,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T23:28:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 450,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-03T12:16:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 469,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-03T23:29:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 299,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "effectiveTimeDateTime": "2018-10-04T12:05:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 264,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "12345678"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-01T12:28:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 397,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-01T23:02:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 369,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T12:55:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 377,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-02T23:30:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 490,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-03T11:09:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 273,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-04T00:35:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 289,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "effectiveTimeDateTime": "2018-10-04T11:56:00.000-04:00",
+        "dosage": {
+          "quantity": {
+            "value": 388,
+            "unit": "mg"
+          },
+          "route": {
+            "text": "oral"
+          }
+        },
+        "prescription": {
+          "reference": "2516412263"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "8795283",
+        "meta": {
+          "versionId": "8795284",
+          "lastUpdated": "2018-08-27T20:56:46.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Administration</b></p><p><b>Patient Name</b>: SMART, WILMA</p><p><b>Medication Display</b>: Vancomycin</p><p><b>Administered</b>: Yes</p><p><b>Dosage Quantity</b>: 400 mg</p><p><b>Medication Status</b>: Completed</p><p><b>Effective Time</b>: Aug 25, 2018  3:00 A.M. UTC</p></div>"
+        },
+        "contained": [
+          {
+            "resourceType": "Medication",
+            "id": "8795283",
+            "product": {
+              "ingredient": [
+                {
+                  "item": {
+                    "reference": "#8795285-1",
+                    "display": "Vancomycin"
+                  },
+                  "amount": {
+                    "numerator": {
+                      "value": 400,
+                      "unit": "mg",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "mg"
+                    }
+                  }
+                },
+                {
+                  "item": {
+                    "reference": "#8795287-2",
+                    "display": "Glucose 50 MG/ML / Sodium Chloride 0.0769 MEQ/ML Injectable Solution"
+                  },
+                  "amount": {
+                    "numerator": {
+                      "value": 200,
+                      "unit": "mL",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "mL"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "resourceType": "Medication",
+            "id": "8795285-1",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                  "code": "11124",
+                  "display": "Vancomycin",
+                  "userSelected": false
+                }
+              ],
+              "text": "vancomycin"
+            }
+          },
+          {
+            "resourceType": "Medication",
+            "id": "8795287-2",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                  "code": "309806",
+                  "display": "Glucose 50 MG/ML / Sodium Chloride 0.0769 MEQ/ML Injectable Solution",
+                  "userSelected": false
+                }
+              ],
+              "text": "Dextrose 5% with 0.45% NaCl"
+            }
+          }
+        ],
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/4342008",
+          "display": "SMART, WILMA"
+        },
+        "practitioner": {
+          "reference": "Practitioner/4474007",
+          "display": "Pickering, Kathy"
+        },
+        "encounter": {
+          "reference": "Encounter/4435906"
+        },
+        "prescription": {
+          "reference": "MedicationOrder/12345678"
+        },
+        "wasNotGiven": false,
+        "effectiveTimeDateTime": "2018-08-25T03:00:00.000Z",
+        "medicationReference": {
+          "reference": "#8795283",
+          "display": "Vancomycin"
+        },
+        "dosage": {
+          "text": "500 mg IV q6hr",
+          "siteCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "368208006",
+                "display": "left upper arm structure (body structure)",
+                "userSelected": false
+              }
+            ],
+            "text": "Left Arm"
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://ncimeta.nci.nih.gov",
+                "code": "C38276",
+                "display": "INTRAVENOUS",
+                "userSelected": false
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "47625008",
+                "display": "Intravenous route (qualifier value)",
+                "userSelected": false
+              }
+            ],
+            "text": "IV"
+          },
+          "quantity": {
+            "value": 400,
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          }
+        }
+      }
+    }
+  ]
+}
