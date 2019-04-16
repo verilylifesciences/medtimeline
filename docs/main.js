@@ -374,7 +374,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>"
+module.exports = "<!DOCTYPE html>\n<meta charset=\"utf-8\">\n<title>MedTimeLine</title>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -445,35 +445,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
 /* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-device-detector */ "./node_modules/ngx-device-detector/ngx-device-detector.umd.js");
 /* harmony import */ var ngx_device_detector__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
-/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
-/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
-/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
-/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
-/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
-/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
-/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
-/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
-/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cardcontainer/cardcontainer.component */ "./src/app/cardcontainer/cardcontainer.component.ts");
+/* harmony import */ var _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cardtypes/card/card.component */ "./src/app/cardtypes/card/card.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
+/* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
+/* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
+/* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
+/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
+/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
+/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
+/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
+/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -490,6 +491,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // tslint:disable-next-line:max-line-length
+
 
 
 
@@ -536,28 +538,28 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"],
-                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_31__["FhirLaunchComponent"],
-                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_18__["CardcontainerComponent"],
-                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_23__["TextboxcardComponent"],
-                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_34__["LineGraphComponent"],
-                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_36__["ScatterplotComponent"],
-                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_37__["StepGraphComponent"],
-                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_22__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_42__["TimelineControllerComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineComponent"],
-                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_33__["CustomizableGraphComponent"],
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineDialogComponent"],
-                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_35__["MicrobioGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_43__["TimelineToolbarComponent"],
-                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_26__["DataSelectorElementComponent"],
-                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorMenuComponent"],
-                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__["HelpDialogComponent"],
-                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_19__["CardComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__["DeleteDialogComponent"],
-                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_28__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_40__["SetupComponent"],
-                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmSaveComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"],
+                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_32__["FhirLaunchComponent"],
+                _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_19__["CardcontainerComponent"],
+                _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__["TextboxcardComponent"],
+                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__["LineGraphComponent"],
+                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__["ScatterplotComponent"],
+                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__["StepGraphComponent"],
+                _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__["MultiGraphCardComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_43__["TimelineControllerComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__["CustomizableTimelineComponent"],
+                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__["CustomizableGraphComponent"],
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"],
+                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__["MicrobioGraphComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_44__["TimelineToolbarComponent"],
+                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorElementComponent"],
+                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorMenuComponent"],
+                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
+                _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__["CardComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"],
+                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__["DebuggerComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_41__["SetupComponent"],
+                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -588,23 +590,24 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_11__["ChartsModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_12__["DragulaModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"],
                 ngx_device_detector__WEBPACK_IMPORTED_MODULE_14__["DeviceDetectorModule"].forRoot(),
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
                 // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
                 // injected into the service that uses it to allow for easier testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_41__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
-                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_32__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_39__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_30__["FhirHttpService"]
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_42__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_33__["FhirService"],
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_40__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
                 },
-                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_24__["ResourceCodeManager"] }
+                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"] },
+                { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_20__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_38__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_29__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmSaveComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"]
             ]
         })
     ], AppModule);
@@ -633,7 +636,7 @@ module.exports = ".cardContainer {\n  background-color: #002356; /* PRIMARY_COLO
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedEncounter]=\"this.setupDataService.selectedEncounter\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <!-- <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\" [xAxis]=\"xAxis\"\n        [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>-->\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [xAxis]=\"xAxis\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedEncounter]=\"this.setupDataService.selectedEncounter\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\"\n        [dateRange]=\"dateRange\" [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [dateRange]=\"dateRange\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -653,14 +656,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ng2_dragula__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng2-dragula */ "./node_modules/ng2-dragula/dist/fesm5/ng2-dragula.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../graphtypes/graph/datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
 /* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 /* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
@@ -675,6 +678,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
 };
 
 
@@ -693,16 +699,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var CardcontainerComponent = /** @class */ (function () {
     // TODO(b/119251288): Extract out the constants to somewhere shared between
     // the ts files and html files.
-    function CardcontainerComponent(dragulaService, fhirService, resourceCodeManager, snackBar, deleteDialog, setupDataService, saveDialog) {
+    function CardcontainerComponent(dragulaService, fhirService, resourceCodeManager, snackBar, deleteDialog, setupDataService, saveDialog, uiConstants) {
         this.fhirService = fhirService;
         this.snackBar = snackBar;
         this.deleteDialog = deleteDialog;
         this.setupDataService = setupDataService;
         this.saveDialog = saveDialog;
+        this.uiConstants = uiConstants;
         // How long to display the snack bar for.
         this.DISPLAY_TIME = 6000;
         // Whether or not to display the debugger.
-        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].useDebugger;
+        this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].useDebugger;
         /**
          * The format of each object in the array is an object representing a line
          * drawn on the chart, that has a value, text, and class field. The value
@@ -734,7 +741,6 @@ var CardcontainerComponent = /** @class */ (function () {
             .reduce(function (acc, val) { return acc.concat(val); }, []);
         this.setUpCards();
         this.setUpDrag(dragulaService);
-        this.xAxis = new _graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_11__["DateTimeXAxis"](this.dateRange);
     }
     CardcontainerComponent.prototype.setUpCards = function () {
         // Add a textbox at the top of the card list.
@@ -744,7 +750,7 @@ var CardcontainerComponent = /** @class */ (function () {
         // Add all cards selected at the set-up screen.
         for (var _i = 0, _a = this.setupDataService.selectedConcepts; _i < _a.length; _i++) {
             var concept = _a[_i];
-            this.displayedConcepts.push({ 'id': Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])(), 'concept': concept });
+            this.displayedConcepts.push({ 'id': Object(uuid__WEBPACK_IMPORTED_MODULE_6__["v4"])(), 'concept': concept });
         }
     };
     // Ensures that the order of displayed concepts is updated as the user drags
@@ -788,7 +794,7 @@ var CardcontainerComponent = /** @class */ (function () {
      */
     CardcontainerComponent.prototype.addTextbox = function (id) {
         var index = id ? (this.displayedConcepts.map(function (x) { return x.id; }).indexOf(id) + 1) : 0;
-        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])(), concept: 'textbox' });
+        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_6__["v4"])(), concept: 'textbox' });
     };
     /**
      * Adds a new custom timeline to the card panel.
@@ -796,26 +802,25 @@ var CardcontainerComponent = /** @class */ (function () {
      */
     CardcontainerComponent.prototype.addCustomTimeline = function (id) {
         var index = id ? (this.displayedConcepts.map(function (x) { return x.id; }).indexOf(id) + 1) : 0;
-        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])(), concept: 'customTimeline' });
+        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_6__["v4"])(), concept: 'customTimeline' });
     };
     // Listen for an event indicating that the date range has been changed on the
     // UI, and update the date range.
     CardcontainerComponent.prototype.changeDateRange = function ($event) {
         this.dateRange = $event;
-        this.xAxis = new _graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_11__["DateTimeXAxis"](this.dateRange);
     };
     // Saves a snapshot of the graph drawer HTML to the EHR using a FhirService.
     CardcontainerComponent.prototype.snapshot = function () {
         var _this = this;
         var html = document.getElementsByClassName('cardContainer')[0].innerHTML;
         this.saveDialogRef =
-            this.saveDialog.open(_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_8__["ConfirmSaveComponent"], { data: html, height: '80%' });
+            this.saveDialog.open(_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmSaveComponent"], { data: html, height: '80%' });
         this.saveDialogRef.afterClosed().subscribe(function (result) {
             // Only save the snapshot to the EHR if the user confirmed the save.
             if (result) {
                 var date = luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromJSDate(new Date()).toISO();
                 _this.fhirService.saveStaticNote(html, date);
-                _this.snackBar.open('Snapshot saved to PowerChart', 'Dismiss', {
+                _this.snackBar.open(_this.uiConstants.SAVED_TO_POWERCHART, _this.uiConstants.DISMISS, {
                     duration: _this.DISPLAY_TIME,
                 });
             }
@@ -829,7 +834,7 @@ var CardcontainerComponent = /** @class */ (function () {
         var index = this.displayedConcepts.map(function (x) { return x.id; }).indexOf($event.id);
         var concept = this.displayedConcepts[index];
         concept.value = $event.value;
-        this.deleteDialogRef = this.deleteDialog.open(_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_9__["DeleteDialogComponent"]);
+        this.deleteDialogRef = this.deleteDialog.open(_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_10__["DeleteDialogComponent"]);
         this.deleteDialogRef.afterClosed().subscribe(function (result) {
             // The user wishes to delete the card.
             if (result) {
@@ -848,8 +853,8 @@ var CardcontainerComponent = /** @class */ (function () {
     // of cards from the page. Only one snack bar can be opened at a time.
     CardcontainerComponent.prototype.openSnackBar = function () {
         var _this = this;
-        var message = 'Card removed.';
-        var snackBarRef = this.snackBar.open(message, 'Undo', {
+        var message = this.uiConstants.CARD_REMOVED;
+        var snackBarRef = this.snackBar.open(message, this.uiConstants.UNDO, {
             duration: this.DISPLAY_TIME,
         });
         // Undo the most recent deletion according to what is stored in
@@ -878,7 +883,7 @@ var CardcontainerComponent = /** @class */ (function () {
         // Insert the card at the top of the page
         // Insert after the closest card rather than before the card.
         var index = id ? (this.displayedConcepts.map(function (x) { return x.id; }).indexOf(id) + 1) : 0;
-        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])(), concept: graphCardValue });
+        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_6__["v4"])(), concept: graphCardValue });
     };
     /**
      * Listens for an event indicating that the user has edited the points on a
@@ -915,13 +920,16 @@ var CardcontainerComponent = /** @class */ (function () {
             selector: 'app-cardcontainer',
             template: __webpack_require__(/*! ./cardcontainer.component.html */ "./src/app/cardcontainer/cardcontainer.component.html"),
             styles: [__webpack_require__(/*! ./cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")],
-            entryComponents: [_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_9__["DeleteDialogComponent"]],
+            entryComponents: [_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_10__["DeleteDialogComponent"]],
         }),
-        __metadata("design:paramtypes", [ng2_dragula__WEBPACK_IMPORTED_MODULE_3__["DragulaService"], _fhir_service__WEBPACK_IMPORTED_MODULE_10__["FhirService"],
-            _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_7__["ResourceCodeManager"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
+        __param(7, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_5__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [ng2_dragula__WEBPACK_IMPORTED_MODULE_3__["DragulaService"],
+            _fhir_service__WEBPACK_IMPORTED_MODULE_11__["FhirService"],
+            _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__["ResourceCodeManager"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
             _setup_data_service__WEBPACK_IMPORTED_MODULE_13__["SetupDataService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
     ], CardcontainerComponent);
     return CardcontainerComponent;
 }());
@@ -948,7 +956,7 @@ module.exports = ".mat-card {\n  cursor: -webkit-grab;\n  cursor: grab;\n  margi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- This component is a card that holds a colored sidebar with icons indicating\nfunctionality, then space for a label & legend, then space for other contents. -->\n<mat-card fxFlex [attr.id]=\"id\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" (resized)=\"resize($event)\">\n  <div fxFlex fxLayout=\"column\" fxFlexAlign=\"stretch\" fxShrink='0' fxGrow='0' fxLayoutAlign=\"space-between center\"\n    [style.background-color]=\"color\" class=\"colorbar\">\n    <mat-icon *ngIf=\"isRemovable\" class=\"removeCardButton\" (click)=\"remove($event)\" matTooltip=\"Remove this card\">clear\n    </mat-icon>\n    <mat-icon *ngIf=\"isDraggable\" class=\"dragCardIcon\">\n      drag_indicator\n    </mat-icon>\n    <!--Ensure that the dragger icon is always at the center of the color bar.-->\n    <div style=\"margin-bottom: 12px\"></div>\n  </div>\n  <div *ngIf=\"label\" fxFlex=\"0 0 15\" fxLayout=\"column\" fxFlexAlign=\"stretch\" class=\"labelColumn\">\n    <div fxFlex class=\"mat-title label\">{{label}}</div>\n    <!--Give the div that you want to appear here the class \"legends-block\".-->\n    <ng-content select=\".legends-block\"></ng-content>\n  </div>\n  <!--Give the div that you want to appear here the class \"contents-block\".-->\n  <ng-content select=\".contents-block\"></ng-content>\n  <div *ngIf=\"!isEditable\" style=\"margin-right: 25px\"></div>\n  <ng-container *ngIf=\"isEditable\">\n    <mat-icon *ngIf=\"!inEditMode\" matTooltip=\"Click to edit this card\" (click)=\"edit($event)\" class=\"editCardIcon\">edit\n    </mat-icon>\n    <mat-icon *ngIf=\"inEditMode\" matTooltip=\"Click to save your work\" (click)=\"save($event)\">save</mat-icon>\n  </ng-container>\n</mat-card>\n"
+module.exports = "<!-- This component is a card that holds a colored sidebar with icons indicating\nfunctionality, then space for a label & legend, then space for other contents. -->\n<mat-card fxFlex [attr.id]=\"id\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" (resized)=\"resize($event)\">\n  <div fxFlex fxLayout=\"column\" fxFlexAlign=\"stretch\" fxShrink='0' fxGrow='0' fxLayoutAlign=\"space-between center\"\n    [style.background-color]=\"color\" class=\"colorbar\">\n    <mat-icon *ngIf=\"isRemovable\" class=\"removeCardButton\" (click)=\"remove($event)\"\n      matTooltip=\"{{uiConstants.REMOVE_THIS_CARD}}\">clear\n    </mat-icon>\n    <mat-icon *ngIf=\"isDraggable\" class=\"dragCardIcon\" matTooltip=\"{{uiConstants.DRAG_THIS_CARD}}\">\n      drag_indicator\n    </mat-icon>\n    <!--Ensure that the dragger icon is always at the center of the color bar.-->\n    <div style=\"margin-bottom: 12px\"></div>\n  </div>\n  <div *ngIf=\"label\" fxFlex=\"0 0 15\" fxLayout=\"column\" fxFlexAlign=\"stretch\" class=\"labelColumn\">\n    <div fxFlex class=\"mat-title label\">{{label}}</div>\n    <!--Give the div that you want to appear here the class \"legends-block\".-->\n    <ng-content select=\".legends-block\"></ng-content>\n  </div>\n  <!--Give the div that you want to appear here the class \"contents-block\".-->\n  <ng-content select=\".contents-block\"></ng-content>\n  <div *ngIf=\"!isEditable\" style=\"margin-right: 25px\"></div>\n  <ng-container *ngIf=\"isEditable\">\n    <mat-icon *ngIf=\"!inEditMode\" matTooltip=\"{{uiConstants.EDIT_THIS_CARD}}\" (click)=\"edit($event)\"\n      class=\"editCardIcon\">edit\n    </mat-icon>\n    <mat-icon *ngIf=\"inEditMode\" matTooltip=\"{{uiConstants.SAVE_YOUR_WORK}}\" (click)=\"save($event)\">save</mat-icon>\n  </ng-container>\n</mat-card>\n"
 
 /***/ }),
 
@@ -966,6 +974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! color */ "./node_modules/color/index.js");
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/theme/bch_colors */ "./src/app/theme/bch_colors.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -979,6 +988,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
@@ -988,7 +1001,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * optionally a label and legend, then the contents of the card.
  */
 var CardComponent = /** @class */ (function () {
-    function CardComponent() {
+    function CardComponent(uiConstants) {
+        this.uiConstants = uiConstants;
         this.color = src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_2__["BOSTON_WARM_GRAY"];
         this.isDraggable = true;
         this.isEditable = false;
@@ -1064,7 +1078,9 @@ var CardComponent = /** @class */ (function () {
             selector: 'app-card',
             template: __webpack_require__(/*! ./card.component.html */ "./src/app/cardtypes/card/card.component.html"),
             styles: [__webpack_require__(/*! ./card.component.css */ "./src/app/cardtypes/card/card.component.css")]
-        })
+        }),
+        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [Object])
     ], CardComponent);
     return CardComponent;
 }());
@@ -1250,7 +1266,7 @@ module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibilit
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [attr.id]=\"id\" label=\"Custom Timeline\" [isDraggable]=\"false\" [isEditable]=\"true\" [isRemovable]=\"true\"\n  (renderEvent)=\"this.renderContainedGraph()\" (editEvent)=\"this.inEditMode = true\" (saveEvent)=\"this.inEditMode = false\"\n  (removeEvent)=\"remove()\" [ngClass]=\"{'inEditMode': inEditMode}\">\n  <ng-container class=\"legends-block\">\n    <div *ngIf=\"inEditMode\" style=\"min-width: 200px; max-width: 200px; word-wrap: break-word;\">\n      Click on this graph to add a flag for anything you want to keep track of.\n    </div>\n  </ng-container>\n  <div fxFlex=\"row\" class=\"contents-block\">\n    <app-customizable-graph class=\"timeline\" [data]=\"this.data\" [xAxis]=\"this.xAxis\" [inEditMode]=\"inEditMode\"\n      (pointsChanged)=\"pointsChanged($event)\" [ngClass]=\"{'inEditMode': inEditMode}\">\n    </app-customizable-graph>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [attr.id]=\"id\" label=\"{{this.uiConstants.CUSTOM_TIMELINE_LABEL}}\" [isDraggable]=\"false\" [isEditable]=\"true\"\n  [isRemovable]=\"true\" (renderEvent)=\"this.renderContainedGraph()\" (editEvent)=\"this.inEditMode = true\"\n  (saveEvent)=\"this.inEditMode = false\" (removeEvent)=\"remove()\" [ngClass]=\"{'inEditMode': inEditMode}\">\n  <ng-container class=\"legends-block\">\n    <div *ngIf=\"inEditMode\" style=\"min-width: 200px; max-width: 200px; word-wrap: break-word;\">\n      {{this.uiConstants.CUSTOM_TIMELINE_INSTRUCTIONS}}\n    </div>\n  </ng-container>\n  <div fxFlex=\"row\" class=\"contents-block\">\n    <app-customizable-graph class=\"timeline\" [data]=\"this.data\" [dateRange]=\"this.dateRange\" [inEditMode]=\"inEditMode\"\n      (pointsChanged)=\"pointsChanged($event)\" [ngClass]=\"{'inEditMode': inEditMode}\">\n    </app-customizable-graph>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -1265,10 +1281,12 @@ module.exports = "<app-card [attr.id]=\"id\" label=\"Custom Timeline\" [isDragga
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizableTimelineComponent", function() { return CustomizableTimelineComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_fhir_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var src_app_graphdatatypes_customizabledata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/customizabledata */ "./src/app/graphdatatypes/customizabledata.ts");
-/* harmony import */ var src_app_graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphtypes/graph/datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var src_app_fhir_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var src_app_graphdatatypes_customizabledata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphdatatypes/customizabledata */ "./src/app/graphdatatypes/customizabledata.ts");
 /* harmony import */ var src_app_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -1282,7 +1300,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 // tslint:disable-next-line:max-line-length
+
 
 
 
@@ -1293,8 +1315,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * track of as little flags along a timeline.
  */
 var CustomizableTimelineComponent = /** @class */ (function () {
-    function CustomizableTimelineComponent(fhirService) {
+    function CustomizableTimelineComponent(fhirService, uiConstants) {
         this.fhirService = fhirService;
+        this.uiConstants = uiConstants;
         // An event indicating that the event lines displayed on all other charts need
         // to be updated.
         this.updateEventLines = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -1302,7 +1325,7 @@ var CustomizableTimelineComponent = /** @class */ (function () {
         this.removeEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         // Whether or not this CustomizableTimeline is being edited.
         this.inEditMode = false;
-        this.data = src_app_graphdatatypes_customizabledata__WEBPACK_IMPORTED_MODULE_2__["CustomizableData"].defaultEmptySeries();
+        this.data = src_app_graphdatatypes_customizabledata__WEBPACK_IMPORTED_MODULE_3__["CustomizableData"].defaultEmptySeries();
         this.renderContainedGraph();
     }
     CustomizableTimelineComponent.prototype.ngOnChanges = function (changes) {
@@ -1337,8 +1360,8 @@ var CustomizableTimelineComponent = /** @class */ (function () {
     ], CustomizableTimelineComponent.prototype, "id", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", src_app_graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_3__["DateTimeXAxis"])
-    ], CustomizableTimelineComponent.prototype, "xAxis", void 0);
+        __metadata("design:type", luxon__WEBPACK_IMPORTED_MODULE_1__["Interval"])
+    ], CustomizableTimelineComponent.prototype, "dateRange", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -1357,7 +1380,8 @@ var CustomizableTimelineComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./customizable-timeline.component.html */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.html"),
             styles: [__webpack_require__(/*! ./customizable-timeline.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.css")]
         }),
-        __metadata("design:paramtypes", [src_app_fhir_service__WEBPACK_IMPORTED_MODULE_1__["FhirService"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_5__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [src_app_fhir_service__WEBPACK_IMPORTED_MODULE_2__["FhirService"], Object])
     ], CustomizableTimelineComponent);
     return CustomizableTimelineComponent;
 }());
@@ -1388,8 +1412,9 @@ module.exports = ".legend {\n  cursor: pointer;\n}\n\n/* This is the color swatc
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiGraphCardComponent", function() { return MultiGraphCardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
-/* harmony import */ var src_app_graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphtypes/graph/datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var src_app_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
 /* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 /* harmony import */ var _theme_bch_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../theme/bch_colors */ "./src/app/theme/bch_colors.ts");
 // Copyright 2018 Verily Life Sciences Inc.
@@ -1448,8 +1473,8 @@ var MultiGraphCardComponent = /** @class */ (function () {
         this.color = this.axisGroup.displayGroup.fill;
     };
     MultiGraphCardComponent.prototype.ngOnChanges = function (changes) {
-        var axisChange = changes.xAxis;
-        if (axisChange && axisChange.previousValue !== axisChange.currentValue) {
+        var dateRange = changes.dateRange;
+        if (dateRange && dateRange.previousValue !== dateRange.currentValue) {
             this.loadNewData();
         }
     };
@@ -1464,7 +1489,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
     MultiGraphCardComponent.prototype.loadNewData = function () {
         var _this = this;
         Promise
-            .all(this.axisGroup.axes.map(function (axis) { return axis.updateDateRange(_this.xAxis.dateRange); }))
+            .all(this.axisGroup.axes.map(function (axis) { return axis.updateDateRange(_this.dateRange); }))
             .then(function (axisData) {
             _this.getLabelText().then(function (lblText) {
                 _this.unitsLabel = lblText;
@@ -1491,7 +1516,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
     MultiGraphCardComponent.prototype.getLabelText = function () {
         var _this = this;
         return Promise
-            .all(this.axisGroup.axes.map(function (axis) { return axis.updateDateRange(_this.xAxis.dateRange); }))
+            .all(this.axisGroup.axes.map(function (axis) { return axis.updateDateRange(_this.dateRange); }))
             .then(function (dataArray) { return dataArray.map(function (data) { return data.series; }); })
             .then(function (seriesNestedArray) {
             var flattened = [].concat.apply([], seriesNestedArray);
@@ -1525,7 +1550,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
      */
     MultiGraphCardComponent.prototype.updateAxisLabels = function () {
         var _loop_1 = function (axis) {
-            axis.updateDateRange(this_1.xAxis.dateRange).then(function (axisData) {
+            axis.updateDateRange(this_1.dateRange).then(function (axisData) {
                 if (axisData && axis.label && axisData.series &&
                     axisData.series.length > 0 && axisData.series[0].unit) {
                     var units = ' (' + axisData.series[0].unit + ')';
@@ -1550,7 +1575,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
      */
     MultiGraphCardComponent.prototype.hasData = function (labeledSeries) {
         var _this = this;
-        return labeledSeries.map(function (s) { return s.hasPointInRange(_this.xAxis.dateRange); })
+        return labeledSeries.map(function (s) { return s.hasPointInRange(_this.dateRange); })
             .some(function (s) { return s === true; });
     };
     /**
@@ -1588,11 +1613,11 @@ var MultiGraphCardComponent = /** @class */ (function () {
     ], MultiGraphCardComponent.prototype, "id", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", src_app_graphtypes_graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_2__["DateTimeXAxis"])
-    ], MultiGraphCardComponent.prototype, "xAxis", void 0);
+        __metadata("design:type", luxon__WEBPACK_IMPORTED_MODULE_1__["Interval"])
+    ], MultiGraphCardComponent.prototype, "dateRange", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", src_app_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_1__["AxisGroup"])
+        __metadata("design:type", src_app_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_2__["AxisGroup"])
     ], MultiGraphCardComponent.prototype, "axisGroup", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -1623,7 +1648,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData\" [diameter]=\"30\"></mat-spinner>\n      <div *ngIf=\"axis.dataResolved() && axis.errorMessage\">\n        {{axis.errorMessage}}\n      </div>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.xAxis.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axis.label\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData\" [diameter]=\"30\"></mat-spinner>\n      <div *ngIf=\"axis.dataResolved() && axis.errorMessage\">\n        {{axis.errorMessage}}\n      </div>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\"\n          [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\"\n          [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\" [axisLabel]=\"axis.label\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -1649,6 +1674,7 @@ module.exports = "<app-card [id]=\"id\" [isEditable]=\"true\" (removeEvent)=\"re
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextboxcardComponent", function() { return TextboxcardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -1662,9 +1688,18 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
+
+/**
+ * A Material Card that displays a label, a textbox, and a draggable handle
+ * in a row.
+ */
 var TextboxcardComponent = /** @class */ (function () {
-    function TextboxcardComponent() {
+    function TextboxcardComponent(uiConstants) {
+        this.uiConstants = uiConstants;
         /** Propogate remove events up to the card container.  */
         this.removeEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.inEditMode = false;
@@ -1687,10 +1722,10 @@ var TextboxcardComponent = /** @class */ (function () {
     };
     TextboxcardComponent.prototype.getHintText = function () {
         if (this.inEditMode) {
-            return 'Click the save button to save annotation';
+            return this.uiConstants.SAVE_TEXT_HINT;
         }
         else {
-            return 'Click the edit button to modify annotation';
+            return this.uiConstants.EDIT_TEXT_HINT;
         }
     };
     __decorate([
@@ -1713,11 +1748,9 @@ var TextboxcardComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-textboxcard',
             template: __webpack_require__(/*! ./textboxcard.component.html */ "./src/app/cardtypes/textboxcard/textboxcard.component.html"),
-        })
-        /**
-         * A Material Card that displays a label, a textbox, and a draggable handle
-         * in a row.
-         */
+        }),
+        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [Object])
     ], TextboxcardComponent);
     return TextboxcardComponent;
 }());
@@ -2876,7 +2909,7 @@ module.exports = ".configurationCard {\n  background-color: transparent;\n  bord
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{axisGroup.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!axisGroup.dataAvailable\">\n          No data between\n          {{appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>\n"
+module.exports = "<div class=\"configurationCard {{axisGroup.dataAvailable ? 'enableDragging': 'disableDragging'}}\"\n  [style.border-left-color]=\"axisGroup.dataAvailable ? axisGroup.displayGroup.fill.hsl().string(): 'rgb(197, 185, 172)'\">\n  <!-- BOSTON_WARM_GRAY -->\n  <mat-list-item>\n    <div class=\"listItem\">\n      <div style=\"display:inline-block; vertical-align: middle;\">\n        <div class=\"label\">\n          {{axisGroup.label}}\n        </div>\n        <div class=\"tinytext\" *ngIf=\"!axisGroup.dataAvailable\">\n          {{uiConstants.NO_DATA_AVAILABLE_TMPL + appTimeIntervalString}}\n        </div>\n      </div>\n    </div>\n  </mat-list-item>\n</div>\n"
 
 /***/ }),
 
@@ -2906,6 +2939,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
 
@@ -2914,7 +2950,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * that can be added to the main CardContainer.
  */
 var DataSelectorElementComponent = /** @class */ (function () {
-    function DataSelectorElementComponent() {
+    function DataSelectorElementComponent(uiConstants) {
+        this.uiConstants = uiConstants;
         /**
          *  Hold an instance of the app time interval so we can display it in the HTML
          */
@@ -2942,7 +2979,9 @@ var DataSelectorElementComponent = /** @class */ (function () {
             selector: 'app-data-selector-element',
             template: __webpack_require__(/*! ./data-selector-element.component.html */ "./src/app/data-selector-element/data-selector-element.component.html"),
             styles: [__webpack_require__(/*! ./data-selector-element.component.css */ "./src/app/data-selector-element/data-selector-element.component.css")]
-        })
+        }),
+        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [Object])
     ], DataSelectorElementComponent);
     return DataSelectorElementComponent;
 }());
@@ -2969,7 +3008,7 @@ module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"Add card here\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>comment</mat-icon>\n      <span>Add Blank Annotation</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>Add Custom Timeline</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>Add Chart</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      Search for a concept\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [axisGroup]=\"concept\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let axisGroup of entry[1]\" (click)=\"addConceptCard(axisGroup.label)\" class=\"conceptSelector\"\n            mat-menu-item>\n            <app-data-selector-element [axisGroup]=\"axisGroup\">\n            </app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n</mat-menu>\n"
+module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"{{uiConstants.ADD_CARD_HERE}}\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>comment</mat-icon>\n      <span>{{uiConstants.ADD_BLANK_ANNOTATION}}</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>{{uiConstants.ADD_CUSTOM_TIMELINE}}</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>{{uiConstants.ADD_CHART}}</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      {{uiConstants.SEARCH_FOR_A_CONCEPT}}\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [axisGroup]=\"concept\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let axisGroup of entry[1]\" (click)=\"addConceptCard(axisGroup.label)\" class=\"conceptSelector\"\n            mat-menu-item>\n            <app-data-selector-element [axisGroup]=\"axisGroup\">\n            </app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n</mat-menu>\n"
 
 /***/ }),
 
@@ -2987,7 +3026,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3001,6 +3041,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
@@ -3010,8 +3054,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * Shows a button with expanding menus for selecting data elements to display.
  */
 var DataSelectorMenuComponent = /** @class */ (function () {
-    function DataSelectorMenuComponent(resourceCodeManager) {
+    function DataSelectorMenuComponent(resourceCodeManager, uiConstants) {
         this.resourceCodeManager = resourceCodeManager;
+        this.uiConstants = uiConstants;
         // An event that is emitted when the user requests to add a new card.
         this.addCard = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         // An event that is emitted when the user requests to add a textbox.
@@ -3091,7 +3136,8 @@ var DataSelectorMenuComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./data-selector-menu.component.html */ "./src/app/data-selector-menu/data-selector-menu.component.html"),
             styles: [__webpack_require__(/*! ./data-selector-menu.component.css */ "./src/app/data-selector-menu/data-selector-menu.component.css")]
         }),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeManager"], Object])
     ], DataSelectorMenuComponent);
     return DataSelectorMenuComponent;
 }());
@@ -3290,7 +3336,7 @@ var DebuggerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Do you want to remove this card?</h1>\n<div mat-dialog-actions>\n  <button mat-button (click)=\"onExit()\" id=\"noCancelButton\">No</button>\n  <button mat-button (click)=\"onConfirm()\" cdkFocusInitial id=\"yesRemoveButton\">Yes, remove this card</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>{{uiConstants.REMOVE_CARD}}</h1>\n<div mat-dialog-actions>\n  <button mat-button (click)=\"onExit()\">{{uiConstants.REMOVE_CARD_NO}}</button>\n  <button mat-button (click)=\"onConfirm()\" cdkFocusInitial>{{uiConstants.REMOVE_CARD_YES}}</button>\n</div>\n"
 
 /***/ }),
 
@@ -3306,6 +3352,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteDialogComponent", function() { return DeleteDialogComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3319,11 +3366,20 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
+
+/**
+ * Shows a dialog asking the user to confirm whether or not they wish to delete
+ * the card.
+ */
 var DeleteDialogComponent = /** @class */ (function () {
-    function DeleteDialogComponent(dialogRef) {
+    function DeleteDialogComponent(dialogRef, uiConstants) {
         this.dialogRef = dialogRef;
+        this.uiConstants = uiConstants;
     }
     // The user does not wish to delete the card.
     DeleteDialogComponent.prototype.onExit = function () {
@@ -3340,13 +3396,9 @@ var DeleteDialogComponent = /** @class */ (function () {
             selector: 'app-delete-dialog',
             template: __webpack_require__(/*! ./delete-dialog.component.html */ "./src/app/delete-dialog/delete-dialog.component.html"),
             styles: [__webpack_require__(/*! ../cardcontainer/cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
-        })
-        /**
-         * Shows a dialog asking the user to confirm whether or not they wish to delete
-         * the card.
-         */
-        ,
-        __metadata("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
     ], DeleteDialogComponent);
     return DeleteDialogComponent;
 }());
@@ -4661,19 +4713,23 @@ var Specimen = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirHttpService", function() { return FhirHttpService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
-/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
-/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4716,6 +4772,9 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
+
 var GREATER_OR_EQUAL = 'ge';
 var LESS_OR_EQUAL = 'le';
 // The Cerner implementation has a maximum result return of 100 for
@@ -4723,10 +4782,11 @@ var LESS_OR_EQUAL = 'le';
 var CERNER_MAX_OBS_RESULTS_RETURNED = 100;
 var FhirHttpService = /** @class */ (function (_super) {
     __extends(FhirHttpService, _super);
-    function FhirHttpService(debugService, smartOnFhirClient, sanitizer) {
+    function FhirHttpService(debugService, smartOnFhirClient, sanitizer, http) {
         var _this = _super.call(this) || this;
         _this.debugService = debugService;
         _this.sanitizer = sanitizer;
+        _this.http = http;
         _this.createContentTypeString = 'application/xhtml+xml;charset=utf-8';
         // Create a promise which resolves to the smart API when the smart API is
         // ready. This allows clients of this service to call service methods
@@ -4744,9 +4804,9 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange, limitCount) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].Observation,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation,
             query: {
-                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_3__["LOINCCode"].CODING_STRING + '|' + code.codeString,
+                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__["LOINCCode"].CODING_STRING + '|' + code.codeString,
                 date: {
                     $and: [
                         GREATER_OR_EQUAL + dateRange.start.toISO(),
@@ -4761,12 +4821,12 @@ var FhirHttpService = /** @class */ (function (_super) {
                 .then(function (results) {
                 return results
                     .map(function (result) {
-                    return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["Observation"](result);
+                    return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](result);
                 })
                     // TODO(b/126775896): Determine which statuses to
                     // filter out.
                     .filter(function (result) { return result.status !==
-                    _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["ObservationStatus"].EnteredInError; });
+                    _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; });
             }, 
             // Do not return any Observations for this code if one of
             // the Observation constructions throws an error.
@@ -4786,7 +4846,7 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].MedicationAdministration,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration,
             query: {
                 effectivetime: {
                     $and: [
@@ -4795,7 +4855,7 @@ var FhirHttpService = /** @class */ (function (_super) {
                     ]
                 },
                 medication: {
-                    code: _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_5__["RxNormCode"].CODING_STRING + '|' + code.codeString,
+                    code: _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_6__["RxNormCode"].CODING_STRING + '|' + code.codeString,
                 }
             }
         };
@@ -4805,7 +4865,7 @@ var FhirHttpService = /** @class */ (function (_super) {
         return this.smartApiPromise.then(function (smartApi) { return smartApi.patient.api.fetchAll(queryParams)
             .then(function (results) { return results.map(function (result) {
             try {
-                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](result);
+                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
             }
             catch (e) {
                 _this.debugService.logError(e);
@@ -4828,9 +4888,9 @@ var FhirHttpService = /** @class */ (function (_super) {
         var _this = this;
         return this.smartApiPromise.then(function (smartApi) {
             return smartApi.patient.api
-                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].MedicationOrder, 'id': id })
+                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder, 'id': id })
                 .then(function (result) {
-                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__["MedicationOrder"](result.data);
+                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](result.data);
             }, 
             // Do not return any MedicationOrders for
             // this code if one of the MedicationOrder
@@ -4848,15 +4908,15 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getMedicationAdministrationsWithOrder = function (id) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].MedicationAdministration,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration,
             query: {
-                prescription: { reference: [_constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].MedicationOrder, id].join('/') }
+                prescription: { reference: [_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder, id].join('/') }
             }
         };
         return this.smartApiPromise.then(function (smartApi) { return smartApi.patient.api.fetchAll(queryParams)
             .then(function (results) {
             results.map(function (result) {
-                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](result);
+                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
             });
         }, 
         // Do not return any MedicationOrders for
@@ -4876,10 +4936,10 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getEncountersForPatient = function (dateRange) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].Encounter,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter,
         };
         if (!dateRange) {
-            dateRange = _constants__WEBPACK_IMPORTED_MODULE_2__["APP_TIMESPAN"];
+            dateRange = _constants__WEBPACK_IMPORTED_MODULE_3__["APP_TIMESPAN"];
         }
         // The Cerner implementation of the Encounter search does not offer any
         // filtering by date at this point, so we grab all the encounters
@@ -4891,16 +4951,17 @@ var FhirHttpService = /** @class */ (function (_super) {
             results =
                 results
                     .map(function (result) {
-                    return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__["Encounter"](result);
+                    return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](result);
                 })
                     .filter(function (encounter) {
                     return dateRange.intersection(encounter.period) !== null;
                 })
                     .filter(function (encounter) { return encounter.period.start >=
-                    _constants__WEBPACK_IMPORTED_MODULE_2__["EARLIEST_ENCOUNTER_START_DATE"]; });
+                    _constants__WEBPACK_IMPORTED_MODULE_3__["EARLIEST_ENCOUNTER_START_DATE"]; });
             return results;
         }, function (rejection) {
             _this.debugService.logError(rejection);
+            throw rejection;
         }); });
     };
     /**
@@ -4910,16 +4971,16 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param date The date the note was written on.
      */
     FhirHttpService.prototype.saveStaticNote = function (html, date) {
-        html = this.sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, html);
+        html = this.sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_1__["SecurityContext"].HTML, html);
         var doc = new DOMParser().parseFromString(html, 'text/html');
         var xhtml = new XMLSerializer().serializeToString(doc);
         var testData = {
             resource: {
-                resourceType: _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].DocumentReference,
+                resourceType: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DocumentReference,
                 type: {
                     coding: [{
-                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_3__["LOINCCode"].CODING_STRING,
-                            code: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["documentReferenceLoinc"].codeString,
+                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__["LOINCCode"].CODING_STRING,
+                            code: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["documentReferenceLoinc"].codeString,
                         }],
                 },
                 indexed: date,
@@ -4937,12 +4998,12 @@ var FhirHttpService = /** @class */ (function (_super) {
         // Timmy (patient id 4342012), not Wilma
         this.smartApiPromise.then(function (smartApi) {
             testData['resource']['subject'] = {
-                reference: [_constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
+                reference: [_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
             };
             testData['resource']['context'] = {
                 encounter: {
                     reference: [
-                        _constants__WEBPACK_IMPORTED_MODULE_2__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
+                        _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
                     ].join('/')
                 }
             };
@@ -4957,17 +5018,48 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param dateRange Return all DiagnosticReports that covered any time in this
      *   date range.
      */
-    // TODO(b/119121684): Make API calls to get DiagnosticReports.
     FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
-        return Promise.resolve([]);
+        var _this = this;
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"]) {
+            console.warn('No microbiology parameters available in the configuration.');
+            return Promise.resolve([]);
+        }
+        return this.smartApiPromise.then(function (smartApi) {
+            // YYYY-MM-DD format for dates
+            var callParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]();
+            callParams = callParams.append('patient', smartApi.patient.id);
+            callParams = callParams.append('category', 'microbiology'),
+                callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
+            callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
+            callParams = callParams.append('format', 'json');
+            var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].username + ':' +
+                    _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].password,
+            });
+            return _this.http
+                .get([
+                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].url,
+                _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport
+            ].join('/'), { headers: httpHeaders, params: callParams })
+                .toPromise()
+                .then(function (results) {
+                return results.map(function (result) {
+                    return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReport"](result);
+                });
+            });
+        }, function (rejection) {
+            _this.debugService.logError(rejection);
+            throw rejection;
+        });
     };
     FhirHttpService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_12__["SMART_ON_FHIR_CLIENT"])),
-        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_6__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__["SMART_ON_FHIR_CLIENT"])),
+        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_11__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
 
 
 
@@ -5010,8 +5102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../fhir_config.js */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fhir_config_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_4__);
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5061,9 +5153,9 @@ var FhirLaunchComponent = /** @class */ (function () {
                 }
                 else {
                     if (_this.useDebugger) {
-                        _this.clientId = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
-                        _this.baseURL = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].baseURL;
-                        _this.redirectURL = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL;
+                        _this.clientId = _fhir_config__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
+                        _this.baseURL = _fhir_config__WEBPACK_IMPORTED_MODULE_4__["url"].baseURL;
+                        _this.redirectURL = _fhir_config__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL;
                         _this.route.queryParams.subscribe(function (pms) {
                             _this.parameters.push(JSON.stringify(pms));
                         });
@@ -5075,7 +5167,7 @@ var FhirLaunchComponent = /** @class */ (function () {
         }
     };
     FhirLaunchComponent.prototype.beginAuthenticationFlow = function () {
-        var clientId = _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
+        var clientId = _fhir_config__WEBPACK_IMPORTED_MODULE_4__["credentials"].client_id;
         if (!clientId) {
             this.error = true;
         }
@@ -5083,7 +5175,7 @@ var FhirLaunchComponent = /** @class */ (function () {
             FHIR.oauth2.authorize({
                 'client_id': clientId,
                 'scope': this.scope,
-                'redirect_uri': _fhir_config_js__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL
+                'redirect_uri': _fhir_config__WEBPACK_IMPORTED_MODULE_4__["url"].redirectURL
             });
         }
     };
@@ -5336,18 +5428,14 @@ var FhirService = /** @class */ (function () {
 /*!****************************************************!*\
   !*** ./src/app/graphdatatypes/customizabledata.ts ***!
   \****************************************************/
-/*! exports provided: DisplayConfiguration, CustomizableData */
+/*! exports provided: CustomizableData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayConfiguration", function() { return DisplayConfiguration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizableData", function() { return CustomizableData; });
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_annotation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/customizable-graph/customizable-graph-annotation */ "./src/app/graphtypes/customizable-graph/customizable-graph-annotation.ts");
-/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
-/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5366,27 +5454,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
     };
 })();
 
-
-
-
-var DisplayConfiguration = /** @class */ (function () {
-    function DisplayConfiguration(
-    /**
-     * These columns feed in to c3 as data. Each item in allColumns is
-     * an array of data. The first entry is the series label and the following
-     * entries are the data for that series.
-     */
-    allColumns, 
-    /**
-     * The keys of this map are the name of the y-series as stored in
-     * allColumns, and the values are their corresponding x-series names.
-     */
-    columnMap) {
-        this.allColumns = allColumns;
-        this.columnMap = columnMap;
-    }
-    return DisplayConfiguration;
-}());
 
 /**
  * CustomizableData holds a time-based series to which a user can add more
@@ -5410,22 +5477,7 @@ var CustomizableData = /** @class */ (function (_super) {
         return _this;
     }
     CustomizableData.defaultEmptySeries = function () {
-        // We need to initialize the data with a point so that the c3 chart can show
-        // the x-axis with the dates (otherwise, it turns up blank). This date is
-        // the earliest possible date: Tuesday, April 20th, 271,821 BCE.
-        return CustomizableData.fromInitialPoint(0, new _graphtypes_customizable_graph_customizable_graph_annotation__WEBPACK_IMPORTED_MODULE_1__["CustomizableGraphAnnotation"](luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromJSDate(new Date(-8640000000000000)), 'initial_point_hidden'));
-    };
-    /**
-     * Converts an initial time and y value to a CustomizableData object.
-     * @param date The date for this initial point.
-     * @param yValue The y-value for this initial point.
-     * @param annotation The CustomizableGraphAnnotation for this point.
-     * @returns a new CustomizableData representing this initial point.
-     */
-    // TODO(b/123940928): Consider passing in encounters rather than FhirService.
-    CustomizableData.fromInitialPoint = function (yValue, annotation) {
-        var annotations = new Map().set(annotation.timestamp.toMillis(), annotation);
-        return new CustomizableData(_labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromInitialPoint(annotation.timestamp, yValue), annotations);
+        return new CustomizableData(_labeled_series__WEBPACK_IMPORTED_MODULE_1__["LabeledSeries"].emptySeries(), new Map());
     };
     /**
      * Adds a point to the series in this CustomizableData object.
@@ -5447,7 +5499,7 @@ var CustomizableData = /** @class */ (function (_super) {
         this.annotations.delete(date.toMillis());
     };
     return CustomizableData;
-}(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
+}(_graphdata__WEBPACK_IMPORTED_MODULE_0__["GraphData"]));
 
 
 
@@ -5620,6 +5672,12 @@ var LabeledSeries = /** @class */ (function () {
         }
     }
     /**
+     * Generates an empty LabeledSeries.
+     */
+    LabeledSeries.emptySeries = function () {
+        return new LabeledSeries('', []);
+    };
+    /**
      * Generates a LabeledSeries from the given ObservationSet.
      * @param observationSet The ObservationSet to chart.
      * @param encounters A list of Encounters to use while determining line breaks
@@ -5718,8 +5776,7 @@ var LabeledSeries = /** @class */ (function () {
                 var annotatedAdmin = _a[_i];
                 coordinates.push([
                     annotatedAdmin.medAdministration.timestamp,
-                    this.getYPositionForMed(annotatedAdmin.medAdministration, categoricalYPosition),
-                    order.orderId
+                    this.getYPositionForMed(annotatedAdmin.medAdministration, categoricalYPosition)
                 ]);
             }
             // We add the beginning and end time stamp if the order is not fully
@@ -5847,9 +5904,10 @@ var LabeledSeries = /** @class */ (function () {
             // We assume that encounter endpoints correspond to correct line breaks,
             // and do not cross-check encounter id's of MedicationOrders or
             // MedicationAdministrations.
+            coordinates = coordinates.sort(function (a, b) { return a[0] - b[0]; });
             for (var _i = 0, encounters_1 = encounters; _i < encounters_1.length; _i++) {
                 var encounter = encounters_1[_i];
-                coordinates.push([encounter.period.start.toUTC(), null]);
+                coordinates.unshift([encounter.period.start.toUTC(), null]);
                 coordinates.push([encounter.period.end.toUTC(), null]);
             }
         }
@@ -5927,6 +5985,8 @@ var LineGraphData = /** @class */ (function (_super) {
         _this.yAxisDisplayBounds = yAxisDisplayBounds;
         _this.unit = unit;
         _this.precision = precision ? precision : 0;
+        _this.yTicks =
+            LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
         return _this;
     }
     /**
@@ -5963,10 +6023,25 @@ var LineGraphData = /** @class */ (function (_super) {
         if (allUnits.size > 1) {
             throw Error('Observations have different units.');
         }
-        var data = new LineGraphData(label, allSeries, LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup), allUnits.values().next().value, tooltipMap.size > 0 ? tooltipMap : undefined, undefined, // tooltipMap
+        var displayBounds = LineGraphData.getDisplayBounds(minY, maxY, resourceCodeGroup);
+        var data = new LineGraphData(label, allSeries, displayBounds, allUnits.values().next().value, tooltipMap.size > 0 ? tooltipMap : undefined, undefined, // tooltipMap
         undefined, // regions
         resourceCodeGroup.precision);
         return data;
+    };
+    /**
+     * Manually find y axis tick values based on the min and max display bounds.
+     */
+    LineGraphData.getYTicks = function (min, max, tickCount) {
+        if (tickCount === void 0) { tickCount = 4; }
+        // Evenly space out 5 numbers between the min and max (display bounds).
+        var difference = max - min;
+        var spacing = difference / tickCount;
+        var values = [];
+        for (var curr = min; curr <= max; curr += spacing) {
+            values.push(curr);
+        }
+        return values;
     };
     LineGraphData.makeTooltipMap = function (obsGroupToSeries, sanitizer) {
         var tooltipMap = new Map();
@@ -6076,11 +6151,7 @@ var LineGraphData = /** @class */ (function (_super) {
             yAxisDisplayMin === Number.MAX_VALUE ? 0 : yAxisDisplayMin;
         yAxisDisplayMax =
             yAxisDisplayMax === Number.MIN_VALUE ? 100 : yAxisDisplayMax;
-        // Add a bit of cushion so that there's padding at the top and bottom
-        // of the graph.
-        var padding = (yAxisDisplayMax - yAxisDisplayMin) *
-            LineGraphData.Y_AXIS_PADDING_RATIO;
-        return [yAxisDisplayMin - padding, yAxisDisplayMax + padding];
+        return [yAxisDisplayMin, yAxisDisplayMax];
     };
     /**
      * Converts a list of MedicationOrderSets to a LineGraphData object.
@@ -6159,7 +6230,6 @@ var LineGraphData = /** @class */ (function (_super) {
         return new LineGraphData(label, [lblSeries], [0, yValue], undefined, // Units
         tooltipMap);
     };
-    LineGraphData.Y_AXIS_PADDING_RATIO = 0.1;
     return LineGraphData;
 }(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
 
@@ -6210,8 +6280,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var MicrobioGraphData = /** @class */ (function (_super) {
     __extends(MicrobioGraphData, _super);
-    function MicrobioGraphData(series, endpointSeries, tooltipMap) {
-        return _super.call(this, series, endpointSeries, tooltipMap, undefined) || this;
+    function MicrobioGraphData(endpointSeries, tooltipMap) {
+        return _super.call(this, endpointSeries, tooltipMap, undefined) || this;
     }
     /**
      * Converts a list of DiagnosticReports to a StepGraphData object.
@@ -6249,8 +6319,7 @@ var MicrobioGraphData = /** @class */ (function (_super) {
             var report = diagnosticReports_1[_i];
             _loop_1(report);
         }
-        return new MicrobioGraphData([], // No series representing "lines" on this chart
-        points, tooltipMap);
+        return new MicrobioGraphData(points, tooltipMap);
     };
     return MicrobioGraphData;
 }(_stepgraphdata__WEBPACK_IMPORTED_MODULE_3__["StepGraphData"]));
@@ -6305,16 +6374,15 @@ var StepGraphData = /** @class */ (function (_super) {
     /** A list of the LabeledSeries data to plot. */
     dataSeries, 
     /** A list of the LabeledSeries representing end points. */
-    endpointSeries, 
+    // readonly endpointSeries: LabeledSeries[],
     /** A map of tooltips for the data points. */
     tooltipMap, 
     /**
      *  The function to call to get the key for the tooltip map for a point.
      */
     keyFn) {
-        var _this = _super.call(this, dataSeries.concat(endpointSeries), tooltipMap, keyFn) || this;
+        var _this = _super.call(this, dataSeries, tooltipMap, keyFn) || this;
         _this.dataSeries = dataSeries;
-        _this.endpointSeries = endpointSeries;
         return _this;
     }
     /**
@@ -6363,7 +6431,8 @@ var StepGraphData = /** @class */ (function (_super) {
             var series = endpoints_1[_d];
             series.unit = undefined;
         }
-        return new StepGraphData(data, endpoints, tooltipMap, 
+        return new StepGraphData(endpoints, // do not render medication administrations, only endpoints
+        tooltipMap, 
         // Our tooltip key here is the drug name plus the timestamp.
         function (tooltipContext) {
             var xValue = tooltipContext.dataPoints[0].label;
@@ -6716,12 +6785,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizableGraphAnnotation", function() { return CustomizableGraphAnnotation; });
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! color */ "./node_modules/color/index.js");
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-
 
 /*
  * This class makes an annotation for a particular timestamp with custom notes.
@@ -6740,158 +6807,95 @@ var CustomizableGraphAnnotation = /** @class */ (function () {
         this.title = title;
         this.description = description;
         this.color = color;
-        // The default y-coordinate for the annotation.
-        this.defaultYCoordinate = 60;
-        // The maximum horizontal overlap for any two annotations.
-        this.horizontalOverlap = 20;
-        // The maximum vertical overlap for any two annotations.
-        this.verticalOverlap = 10;
         // The width of the annotation.
         this.annotationWidth = 100;
         // The default height of the annotation.
         this.annotationHeight = 25;
-        // The default padding for the annotation.
-        this.defaultPadding = 30;
         this.yAxisXCoord = 125;
         this.timestamp = timestamp;
     }
-    CustomizableGraphAnnotation.prototype.addAnnotation = function (renderedChart) {
+    CustomizableGraphAnnotation.prototype.addAnnotation = function () {
+        var _this = this;
         var self = this;
         this.showDetails = false;
         var millis = this.timestamp.toMillis();
-        var tooltipInfo = renderedChart.insertInitialTooltip(millis);
-        var tooltip = tooltipInfo[0];
-        var xCoordinate = tooltipInfo[1];
-        var yCoordinate = this.findBestYCoordinates(xCoordinate);
-        var tooltipContainer = tooltip.append('div').attr('class', 'tooltip-custom-' + millis);
-        var tooltipTitleContainer = tooltipContainer.append('div');
-        var expandIcon = tooltipTitleContainer.append('i')
-            .attr('class', 'material-icons')
-            .attr('id', 'expand-' + millis)
-            .style('font-size', '18px')
-            .html('expand_more');
-        var tooltipTitle = tooltipTitleContainer.append('h6')
-            .attr('class', 'tooltip-title-custom-' + millis)
-            .text(this.title);
-        var deleteIcon = tooltipTitleContainer.append('i')
-            .attr('class', 'material-icons')
-            .attr('id', 'delete-' + millis)
-            .style('font-size', '18px')
-            .html('clear');
-        var tooltipDetails = tooltipContainer.append('div').attr('class', 'tooltip-details-custom-' + millis);
-        var tooltipDetailsText = tooltipDetails.append('div')
-            .text(this.description)
-            .attr('class', 'tooltip-details-text-' + millis);
-        var editIcon = tooltipDetails.append('i')
-            .attr('class', 'material-icons')
-            .attr('id', 'edit-' + millis)
-            .style('font-size', '18px')
-            .html('edit');
-        tooltip.style('left', (Number(xCoordinate) + this.yAxisXCoord) + 'px')
-            .style('top', yCoordinate + 'px')
-            .style('border-left-color', this.color)
-            .style('padding-bottom', (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
-            'px');
-        tooltipContainer.style('left', '0px')
-            .style('bottom', (this.defaultPadding + (this.defaultYCoordinate - yCoordinate)) +
-            'px')
-            .style('background-color', this.color);
+        var tooltipContainer = document.createElement('div');
+        tooltipContainer.setAttribute('class', 'tooltip-custom-' + millis);
+        tooltipContainer.style.left = '0px';
+        tooltipContainer.style.borderColor = 'grey';
+        tooltipContainer.style.backgroundColor = this.color;
+        tooltipContainer.style.bottom = '20px';
+        var tooltipTitleContainer = document.createElement('div');
+        tooltipContainer.appendChild(tooltipTitleContainer);
+        this.expandIcon = this.makeIcon('expand-' + millis, 'expand_more');
+        this.expandIcon.style.cursor = 'pointer';
+        tooltipTitleContainer.append(this.expandIcon);
+        var tooltipTitle = document.createElement('h6');
+        tooltipTitle.setAttribute('class', 'tooltip-title-custom-' + millis);
+        tooltipTitle.innerText = this.title;
+        tooltipTitleContainer.appendChild(tooltipTitle);
+        this.deleteIcon = this.makeIcon('delete-' + millis, 'clear');
+        this.deleteIcon.style.cursor = 'pointer';
+        tooltipTitleContainer.append(this.deleteIcon);
+        var tooltipDetails = document.createElement('div');
+        tooltipDetails.setAttribute('class', 'tooltip-details-custom-' + millis);
+        tooltipContainer.appendChild(tooltipDetails);
+        var tooltipDetailsText = document.createElement('div');
+        tooltipDetailsText.innerText = this.description;
+        tooltipDetailsText.setAttribute('class', 'tooltip-details-text-' + millis);
+        tooltipDetails.appendChild(tooltipDetailsText);
+        this.editIcon = this.makeIcon('edit-' + millis, 'edit');
+        this.editIcon.style.cursor = 'pointer';
+        tooltipDetails.append(this.editIcon);
         /**
          * Add action handlers.
          */
-        tooltipTitle.on('click', function () {
+        tooltipTitle.onclick = (function (e) {
             // Toggle whether or not the details are shown.
             self.showDetails = !self.showDetails;
-            self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
+            self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
         });
-        expandIcon.style('cursor', 'pointer');
-        expandIcon.on('click', function () {
+        this.expandIcon.onclick = (function (e) {
             // Toggle whether or not the details are shown.
             self.showDetails = !self.showDetails;
-            self.showDetailsToggle(millis, self.showDetails, tooltipContainer.node());
+            self.showDetailsToggle(millis, self.showDetails, tooltipContainer);
         });
-        tooltip
-            .on('mouseover', function () {
-            // Only show icons when hovering over the tooltip, and while
-            // the custom timeline is in edit mode. Show the expander icon
-            // regardless of edit mode.
-            expandIcon.style('visibility', 'visible');
-            deleteIcon.classed('showIcon', true);
-            editIcon.classed('showIcon', true);
-        })
-            .on('click', function () {
-            // Ensure that the annotation comes to the front when clicking
-            // on it.
-            // TODO(b/122365189): Bring annotation to front while hovering
-            // without disturbing scroll.
-            var parent = this.parentNode;
-            // TODO(b/123935165): Find a better way to handle the errors.
-            try {
-                parent.appendChild(this);
-            }
-            catch (e) {
-                console.log(e);
-            }
-        })
-            .on('mouseout', function () {
-            deleteIcon.classed('showIcon', false);
-            editIcon.classed('showIcon', false);
-            expandIcon.style('visibility', 'hidden');
-        });
+        tooltipContainer.onmouseover = function (e) {
+            _this.expandIcon.style.visibility = 'visible';
+            _this.deleteIcon.classList.add('showIcon');
+            _this.editIcon.classList.add('showIcon');
+        };
+        tooltipContainer.onmouseout = function (e) {
+            _this.expandIcon.style.visibility = 'hidden';
+            _this.deleteIcon.classList.remove('showIcon');
+            _this.editIcon.classList.remove('showIcon');
+        };
+        return tooltipContainer;
+    };
+    CustomizableGraphAnnotation.prototype.removeAnnotation = function () {
+        var annotation = document.getElementsByClassName('tooltip-whole-' + this.timestamp.toMillis())[0];
+        annotation.remove();
+    };
+    CustomizableGraphAnnotation.prototype.makeIcon = function (id, iconName) {
+        var icon = document.createElement('i');
+        icon.setAttribute('class', 'material-icons');
+        icon.setAttribute('id', id);
+        icon.style.fontSize = '18px';
+        icon.innerHTML = iconName;
+        return icon;
     };
     // Toggles whether or not the full annotation is shown.
     CustomizableGraphAnnotation.prototype.showDetailsToggle = function (millis, toggle, element) {
-        var detailsElement = d3__WEBPACK_IMPORTED_MODULE_1__["select"](element).select('.tooltip-details-custom-' + millis);
-        var expandElement = d3__WEBPACK_IMPORTED_MODULE_1__["select"](element).select('#expand-' + millis);
+        var detailsElement = document.getElementsByClassName('tooltip-details-custom-' + millis)[0];
+        var expandElement = document.getElementById('expand-' + millis);
         if (toggle) {
-            detailsElement.style('display', 'inline-block').raise();
-            expandElement.html('expand_less');
+            detailsElement.style.display = 'inline-block';
+            expandElement.innerHTML = 'expand_less';
         }
         else {
-            detailsElement.style('display', 'none');
-            expandElement.html('expand_more');
+            detailsElement.style.display = 'none';
+            expandElement.innerHTML = 'expand_more';
         }
-    };
-    CustomizableGraphAnnotation.prototype.findBestYCoordinates = function (xCoordinate) {
-        var newXCoord = Number(xCoordinate.replace('px', ''));
-        var nodes = d3__WEBPACK_IMPORTED_MODULE_1__["selectAll"]('[class*="tooltip-whole"]').nodes();
-        var positions = nodes.map(function (element) {
-            return {
-                top: Number(element.style.top.replace('px', '')),
-                left: Number(element.style.left.replace('px', '')),
-            };
-        });
-        var overlappingYs = [];
-        // Check if there are any annotations with horizontal overlap.
-        for (var _i = 0, positions_1 = positions; _i < positions_1.length; _i++) {
-            var position = positions_1[_i];
-            var rightPosition = position.left + this.annotationWidth;
-            if (newXCoord <= rightPosition &&
-                (newXCoord + this.annotationWidth) >= position.left) {
-                overlappingYs.push(position.top);
-            }
-        }
-        // Figure out the new y-coordinate for the annotation.
-        var defaultTop = this.defaultYCoordinate;
-        overlappingYs.sort(function (a, b) {
-            return a - b;
-        });
-        // By default, try putting the new box above all other annotations with
-        // horizontal overlap.
-        if (overlappingYs.length > 0) {
-            var topPosition = overlappingYs[overlappingYs.length - 1];
-            defaultTop = topPosition - this.verticalOverlap;
-        }
-        // Check if there is any position with space available between existing
-        // annotations.
-        for (var i = 0; i < overlappingYs.length - 1; i++) {
-            // Check if there is enough space.
-            if (overlappingYs[i + 1] - (overlappingYs[i] + this.annotationWidth) >=
-                this.horizontalOverlap) {
-                defaultTop = overlappingYs[i];
-            }
-        }
-        return defaultTop;
     };
     return CustomizableGraphAnnotation;
 }());
@@ -6917,9 +6921,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var src_app_cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.ts");
-/* harmony import */ var _graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/datetimexaxis */ "./src/app/graphtypes/graph/datetimexaxis.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graph/renderedcustomizablechart */ "./src/app/graphtypes/graph/renderedcustomizablechart.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graph/renderedcustomizablechart */ "./src/app/graphtypes/graph/renderedcustomizablechart.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6955,17 +6958,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var CustomizableGraphComponent = /** @class */ (function (_super) {
     __extends(CustomizableGraphComponent, _super);
     function CustomizableGraphComponent(sanitizer, dialog) {
         var _this = _super.call(this, sanitizer) || this;
         _this.sanitizer = sanitizer;
         _this.dialog = dialog;
-        // An event indicating that the points on the CustomizableGraph have changed.
+        /**
+         * An event indicating that the points on the CustomizableGraph have changed.
+         */
         _this.pointsChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        var renderedConstructor = function (axis, divId) {
-            return new _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_8__["RenderedCustomizableChart"](axis, divId);
+        _this.chartTypeString = 'scatter';
+        var renderedConstructor = function (dateRange, divId) {
+            return new _graph_renderedcustomizablechart__WEBPACK_IMPORTED_MODULE_7__["RenderedCustomizableChart"](dateRange, divId);
         };
         return _this;
     }
@@ -6978,39 +6983,33 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
     };
     CustomizableGraphComponent.prototype.ngOnChanges = function (changes) {
         if (changes.inEditMode && this.renderedChart) {
-            this.renderedChart.inEditMode =
-                changes.inEditMode.currentValue;
+            this.renderedChart.inEditMode = changes.inEditMode.currentValue;
         }
-        else {
-            this.generateChart();
-        }
+        _super.prototype.ngOnChanges.call(this, changes);
     };
-    CustomizableGraphComponent.prototype.generateChart = function () {
-        _super.prototype.generateChart.call(this);
-        // Once the chart is rendered, only display the data points in the current
-        // date range. This is due to a C3 bug that plots some points
-        // outside of the x-axis/y-axis boundaries upon loading additional data.
-        this.loadNewData();
+    CustomizableGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
+        var self = this;
+        // Show the time as we hover across the graph.
+        this.chartOptions.onHover = function (event) {
+            var chart = this;
+            var yScale = chart.scales[_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].Y_AXIS_ID];
+            var xScale = chart.scales[_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].X_AXIS_ID];
+            var currentDate = luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].fromJSDate(xScale.getValueForPixel(event.offsetX).toDate());
+            var currentDateString = currentDate.toLocaleString() + ' ' +
+                currentDate.toLocal().toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].TIME_24_SIMPLE);
+            chart.clear();
+            chart.draw();
+            if (self.dateRange.contains(currentDate)) {
+                chart.ctx.beginPath();
+                chart.ctx.moveTo(event.offsetX, 0);
+                chart.ctx.strokeStyle = '#A0A0A0';
+                chart.ctx.lineTo(event.offsetX, yScale.bottom);
+                chart.ctx.stroke();
+                chart.ctx.fillText(currentDateString, event.offsetX, yScale.bottom / 2);
+            }
+        };
         // Update the annotations displayed for this chart.
         this.updateAnnotations();
-    };
-    // This function loads the data into the chart without needing the chart to be
-    // re-rendered completely. We only load data that is strictly within the date
-    // range being displayed on the chart, due to a C3 bug that plots some points
-    // outside of the x-axis/y-axis boundaries.
-    CustomizableGraphComponent.prototype.loadNewData = function () {
-        var columnsToLoad = [['x_'], ['']];
-        var entireInterval = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.xAxis.dateRange.start.toLocal().startOf('day'), this.xAxis.dateRange.end.toLocal().endOf('day'));
-        for (var i = 1; i < this.data.c3DisplayConfiguration.allColumns[0].length; i++) {
-            // Only add the data to the array being loaded if it is within the date
-            // range.
-            if (entireInterval.contains(this.data.c3DisplayConfiguration.allColumns[0][i])) {
-                columnsToLoad[0].push(this.data.c3DisplayConfiguration.allColumns[0][i]);
-                columnsToLoad[1].push(0);
-            }
-        }
-        this.renderedChart
-            .loadNewData(columnsToLoad);
     };
     // If the selected date already has an annotation, modify the time
     // by + 1 millisecond.
@@ -7032,19 +7031,18 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
     };
     CustomizableGraphComponent.prototype.openDialog = function (clickCoordinates, editedAnnotation) {
         var _this = this;
-        var xCoordinate = this.renderedChart
-            .getClickCoordinate(clickCoordinates[0]);
+        var xCoordinate = this.renderedChart.getClickCoordinate(clickCoordinates[0]);
         // Make the dialog show up near where the user clicked.
         var data = editedAnnotation ? {
             title: editedAnnotation.title,
             date: new Date(editedAnnotation.timestamp.toMillis()),
             description: editedAnnotation.description,
             color: editedAnnotation.color,
-            dateRange: this.xAxis.dateRange,
+            dateRange: this.dateRange,
         } :
             {
                 date: xCoordinate,
-                dateRange: this.xAxis.dateRange,
+                dateRange: this.dateRange,
             };
         this.dialogRef =
             this.dialog.open(src_app_cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_5__["CustomizableTimelineDialogComponent"], { data: data });
@@ -7067,16 +7065,16 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
                 _this.data.addPointToSeries(result);
                 // Only display the annotation if the user selected date is within the
                 // current date range.
-                var entireInterval = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(_this.xAxis.dateRange.start.toLocal().startOf('day'), _this.xAxis.dateRange.end.toLocal().endOf('day'));
+                var entireInterval = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(_this.dateRange.start.toLocal().startOf('day'), _this.dateRange.end.toLocal().endOf('day'));
                 if (entireInterval.contains(userSelectedDate)) {
                     _this.data.annotations.get(userSelectedDate.toMillis())
-                        .addAnnotation(_this.renderedChart);
+                        .addAnnotation();
                     // Add listeners for click events on the new annotation.
                     _this.addDeleteEvent(userSelectedDate.toMillis());
                     _this.addEditListener(userSelectedDate.toMillis());
                 }
-                _this.loadNewData();
                 _this.pointsChanged.emit(_this.data);
+                _this.generateChart();
             }
         });
     };
@@ -7090,14 +7088,14 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
             .select('.c3-circles')
             .selectAll('circle')
             .nodes();
-        var entireInterval = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.xAxis.dateRange.start.toLocal().startOf('day'), this.xAxis.dateRange.end.toLocal().endOf('day'));
+        var entireInterval = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.dateRange.start.toLocal().startOf('day'), this.dateRange.end.toLocal().endOf('day'));
         if (chartedPoints.length > 0) {
             for (var i = 0; i < timestamps.length; i++) {
                 var timestamp = timestamps[i];
                 // Only add the annotation if the chart point is displayed given the
                 // date range selected.
                 if (entireInterval.contains(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].fromMillis(timestamp))) {
-                    this.data.annotations.get(timestamp).addAnnotation(this.renderedChart);
+                    this.data.annotations.get(timestamp).addAnnotation();
                     // Add listeners for click events on the new annotation.
                     this.addDeleteEvent(timestamp);
                     this.addEditListener(timestamp);
@@ -7157,21 +7155,18 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
         this.chartConfiguration.data.type = 'scatter';
         var self = this;
         this.chartConfiguration.data.onmouseover = function (d) {
-            self.renderedChart.hoveringOverPoint =
-                true;
+            self.renderedChart.hoveringOverPoint = true;
         };
         this.chartConfiguration.tooltip = { show: false };
         this.chartConfiguration.data.onmouseout = function (d) {
             // Add a timeout to ensure that the user can't add a point immediately
             // after moving away from an existing point.
             setTimeout(function () {
-                self.renderedChart.hoveringOverPoint =
-                    false;
+                self.renderedChart.hoveringOverPoint = false;
             }, 500);
         };
         this.chartConfiguration.data.onclick = function (d, element) {
-            self.renderedChart.hoveringOverPoint =
-                true;
+            self.renderedChart.hoveringOverPoint = true;
         };
         this.chartConfiguration.data.color = function (color, d) {
             return self.data.annotations.get(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].fromJSDate(d.x).toMillis())
@@ -7186,8 +7181,7 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
     CustomizableGraphComponent.prototype.adjustDataDependent = function () { };
     CustomizableGraphComponent.prototype.onRendered = function () {
         var _this = this;
-        this.renderedChart
-            .initialize(function (coords, parentCoords) {
+        this.renderedChart.initialize(function (coords, parentCoords) {
             return _this.addPoint(coords, parentCoords);
         });
     };
@@ -7200,24 +7194,20 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
     ], CustomizableGraphComponent.prototype, "inEditMode", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", _graph_datetimexaxis__WEBPACK_IMPORTED_MODULE_6__["DateTimeXAxis"])
-    ], CustomizableGraphComponent.prototype, "xAxis", void 0);
     CustomizableGraphComponent = CustomizableGraphComponent_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-customizable-graph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             styles: [__webpack_require__(/*! ../../cardtypes/customizable-timeline/customizable-timeline.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.css")],
             providers: [{
-                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["GraphComponent"],
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return CustomizableGraphComponent_1; })
                 }]
         }),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], CustomizableGraphComponent);
     return CustomizableGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"]));
 
 
 
@@ -7231,95 +7221,6 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
 /***/ (function(module, exports) {
 
 module.exports = "::ng-deep canvas{\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n.c3-tooltip > tbody > tr > th {\n  background-color: rgb(197, 185, 172); /* Boston Warm Gray */\n  width: 100%;\n  word-wrap: break-word;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n}\n/* These colors need to stay consistent with the color options in the dialog for the custom timeline. */\n/* Yellow grid line */\n::ng-deep .c3-xgrid-line.colorF2A900 line {\n  stroke: #F2A900;\n}\n/* Blue grid line */\n::ng-deep .c3-xgrid-line.color007396 line {\n  stroke: #007396;\n}\n/* Green grid line */\n::ng-deep .c3-xgrid-line.color739600 line {\n  stroke: #739600;\n}\n/* Pink grid line */\n::ng-deep .c3-xgrid-line.colorC6579A line {\n  stroke: #C6579A;\n}\n/* Purple grid line */\n::ng-deep .c3-xgrid-line.color8C4799 line {\n  stroke: #8C4799;\n}\n/* Red grid line */\n::ng-deep .c3-xgrid-line.color80225F line {\n  stroke: #80225F;\n}\n::ng-deep .encounter-region {\n  fill: rgb(0, 35, 86); /* Primary color */\n  stroke: rgb(0, 35, 86); /* Primary color */\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/graphtypes/graph/datetimexaxis.ts":
-/*!***************************************************!*\
-  !*** ./src/app/graphtypes/graph/datetimexaxis.ts ***!
-  \***************************************************/
-/*! exports provided: DateTimeXAxis */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateTimeXAxis", function() { return DateTimeXAxis; });
-/* harmony import */ var src_app_date_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/date_utils */ "./src/app/date_utils.ts");
-// Copyright 2018 Verily Life Sciences Inc.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-var DateTimeXAxis = /** @class */ (function () {
-    function DateTimeXAxis(
-    /**
-     * The date range this x axis configuration should cover.
-     */
-    dateRange, maxXTicks) {
-        if (maxXTicks === void 0) { maxXTicks = 10; }
-        this.dateRange = dateRange;
-        this.maxXTicks = maxXTicks;
-        this.makeXAxis();
-    }
-    /**
-     * If the date range is changed, adjust the x-axis tick marks displayed. This
-     * method does not need to be called otherwise, as the x-axis should stay
-     * constant unless the date range is changed.
-     * @param maxXTicks The maximum number of labeled ticks to display. By
-     *     default, any date range lasting shorter than maxXTicks will show tick
-     *     marks with labels at each 24-hour mark, and tick marks without labels
-     *     at 12-hour marks.
-     */
-    DateTimeXAxis.prototype.makeXAxis = function () {
-        var daysInRange = Object(src_app_date_utils__WEBPACK_IMPORTED_MODULE_0__["getTickMarksForXAxis"])(this.dateRange, true);
-        // The ticks with labels displayed.
-        var ticksLabels = new Array();
-        // All ticks displayed.
-        var ticks = new Array();
-        if (Math.floor(daysInRange.length / 2) <= this.maxXTicks) {
-            // Ticks are separated by 1 day intervals, in which case we show ticks
-            // with no labels at the 12-hour mark.
-            ticks = daysInRange;
-            for (var i = 0; i < daysInRange.length; i += 2) {
-                ticksLabels.push(daysInRange[i]);
-            }
-        }
-        else {
-            // Ticks are separated by intervals > 1 day, in which case we show ticks
-            // with no labels at the day mark.
-            var iteration = Math.ceil(daysInRange.length / this.maxXTicks);
-            ticksLabels.push(daysInRange[0]);
-            var date = daysInRange[0];
-            while (date <= this.dateRange.end) {
-                date = date.plus({ days: iteration });
-                ticksLabels.push(date);
-            }
-            date = daysInRange[0];
-            ticks.push(date);
-            while (date <= this.dateRange.end) {
-                date = date.plus({ days: 1 });
-                ticks.push(date);
-            }
-        }
-        this.xAxisLabels = ticksLabels.map(function (x) { return x.toISO(); });
-        this.xAxisConfig = {
-            type: 'timeseries',
-            min: this.dateRange.start.toLocal().startOf('day').toJSDate(),
-            max: this.dateRange.end.toLocal().endOf('day').toJSDate(),
-            localtime: true,
-            tick: {
-                // To reduce ambiguity we include the hour as well.
-                format: '%m/%d %H:%M',
-                multiline: true,
-                fit: true,
-                values: ticks.map(function (x) { return Number(x); })
-            }
-        };
-    };
-    return DateTimeXAxis;
-}());
-
-
 
 /***/ }),
 
@@ -7422,63 +7323,25 @@ var GraphComponent = /** @class */ (function () {
             tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
         };
         // The bindings are unhappy when you provide an empty data array, so we
-        // give it a fake label.
+        // give it a fake series to render.
+        /**
+         * The chart data sets to render.
+         */
         this.chartData = [
             { data: [], label: GraphComponent.DEFAULT_BLANK_DATA_LABEL },
         ];
+        /**
+         * Chart options to be rendered.
+         */
         this.chartOptions = {
             // Draw straight lines between points instead of curves.
             elements: { line: { tension: 0 } },
             layout: { padding: { top: 15 } },
             // We make our own legend so we don't show the built-in one.
             legend: { display: false },
-            scales: {
-                xAxes: [{
-                        id: GraphComponent.X_AXIS_ID,
-                        type: 'time',
-                        gridLines: {
-                            display: false,
-                        },
-                        time: {
-                            // This sets the bounds of the x-axis. The default values of
-                            // 0 and 10
-                            // are nonsensical but necessary since the graph is first
-                            // rendered
-                            // before xAxis is bound.
-                            min: this.dateRange ? this.dateRange.start.toISO() :
-                                luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
-                            max: this.dateRange ? this.dateRange.end.toISO() :
-                                luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO()
-                        },
-                        ticks: {
-                            // Only show as many tick labels will fit neatly on the axis.
-                            autoSkip: true,
-                        }
-                    }],
-                yAxes: [
-                    {
-                        id: GraphComponent.Y_AXIS_ID,
-                        position: 'left',
-                        gridLines: {
-                            display: false,
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: '',
-                        },
-                        ticks: {
-                            autoSkip: true,
-                            callback: function (value, index, values) {
-                                return (value).toLocaleString('en-us', {
-                                    minimumFractionDigits: _this.data.precision,
-                                    maximumFractionDigits: _this.data.precision
-                                });
-                            }
-                        }
-                    },
-                ]
-            },
-            responsive: false,
+            scales: { xAxes: [this.generateXAxis()], yAxes: [this.generateYAxis()] },
+            // Needed to grow the graph to fit the space.
+            responsive: true,
             maintainAspectRatio: false,
             // Set up the custom callback for the tooltips.
             tooltips: {
@@ -7497,9 +7360,9 @@ var GraphComponent = /** @class */ (function () {
             responsiveAnimationDuration: 0
         };
         /**
-         * The sequence of colors to use for rendering the LabeledSeries for this
-         * chart's data. The ordering of this color array should be in parallel
-         * to the ordering of the LabeledSeries in this chart's data.
+         * The sequence of colors to use for rendering the LabeledSeries for
+         * this chart's data. The ordering of this color array should be in
+         * parallel to the ordering of the LabeledSeries in this chart's data.
          */
         this.chartColors = [];
         /**
@@ -7513,64 +7376,27 @@ var GraphComponent = /** @class */ (function () {
         var re = /\-/gi;
         this.chartDivId = 'chart' + chartId.replace(re, '');
     }
-    GraphComponent.prototype.generateXAxis = function () {
-        return {
-            id: GraphComponent.X_AXIS_ID,
-            type: 'time',
-            gridLines: {
-                display: false,
-            },
-            time: {
-                // This sets the bounds of the x-axis. The default values of 0 and 10
-                // are nonsensical but necessary since the graph is first rendered
-                // before xAxis is bound.
-                min: this.dateRange ? this.dateRange.start.toISO() :
-                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
-                max: this.dateRange ? this.dateRange.end.toISO() :
-                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
-                displayFormats: {
-                    minute: 'MM/DD H:mm',
-                    hour: 'MM/DD H:mm',
-                    day: 'MM/DD H:mm',
-                    week: 'MM/DD H:mm',
-                    month: 'MM/DD H:mm',
-                    quarter: 'MM/DD H:mm',
-                    year: 'MM/DD H:mm'
-                }
-            },
-            ticks: {
-                // Only show as many tick labels will fit neatly on the axis.
-                autoSkip: true,
-            }
-        };
-    };
     GraphComponent.prototype.ngOnInit = function () {
         this.generateChart();
     };
     GraphComponent.prototype.ngOnChanges = function (changes) {
-        if (changes.eventlines && this.renderedChart) {
-            this.renderedChart.updateEventlines(changes.eventlines.currentValue);
+        if (changes.eventlines) {
+            // TODO(laurendukes): update event lines by adding annotations
         }
         if (changes.dateRange) {
             this.chartOptions.scales.xAxes = [this.generateXAxis()];
         }
     };
     /**
-     * When the component gets initialized, it calls this function to make the
-     * c3 chart configuration and render it. As outlined in the function below,
-     * there are several steps along the way (please see individual function-level
-     * comments for more details):
+     * When the component gets initialized and upon updates, this series of calls
+     * modifies the data-bound variables so that the correct chart gets rendered.
      *
      * 1) prepareForChartConfiguration: an overrideable function in which
-     * subclasses can get things ready for the chart configuration to get
-     * generated
-     * 2) generateBasicChart: make the chart configuration and store
-     * it in this class
+     *    subclasses can get things ready for the chart to load in data
+     * 2) generateBasicChart: load in the chart data and do formatting that all
+     *    subclasses share in common
      * 3) adjustGeneratedChartConfiguration: make any tweaks to the chart
-     *    configuration
-     * 4) Work with the renderedChart class variable to render
-     * the chart via c3 and do some generic styling of the chart
-     * 5) onRender callback runs for the graph generated.
+     *    that couldn't be made until the data got loaded in
      */
     GraphComponent.prototype.generateChart = function (focusOnSeries) {
         if (this.data && this.dateRange) {
@@ -7583,27 +7409,22 @@ var GraphComponent = /** @class */ (function () {
         }
     };
     /**
-     * Lines up any extra things needed to generate the ChartConfiguration.
-     * This may include things like adding atypical data series, custom-setting
-     * colors, etc.
+     * Lines up any extra things needed to generate the
+     * chart. Override this function when you need to make changes before the data
+     * is loaded into the chart or when you need to load more data into the chart.
      */
     GraphComponent.prototype.prepareForChartConfiguration = function () { };
     /**
-     * Takes the generated chart configuration (in this.chartConfiguration) and
-     * tweaks it. Override this function to modify the defaults of the chart
-     * configuration.
+     * Tweaks the generated chart. Override this function when you need to make
+     * changes based on the data loaded into the chart.
      */
     GraphComponent.prototype.adjustGeneratedChartConfiguration = function () { };
     /**
-     * Called every time the graph is rendered. If subclass graphs want to do
-     * something special upon rendering, they can override this function.
-     */
-    GraphComponent.prototype.onRendered = function (graphObject) { };
-    /**
-     * Sets up a generalized c3.ChartConfig for the data passed in. See the
-     * type definition at:
+     * Sets up a generalized c3.ChartConfig for the data passed in. See
+     * the type definition at:
      * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
-     * @param maxXTicks: The maximum number of tick-marks to include on the x-axis
+     * @param maxXTicks: The maximum number of tick-marks to include on
+     *     the x-axis
      */
     GraphComponent.prototype.generateBasicChart = function (focusOnSeries) {
         // Transform the data into a format that chart.js can render it.
@@ -7621,17 +7442,24 @@ var GraphComponent = /** @class */ (function () {
                 label: series.label,
                 // Do not fill the area under the line.
                 fill: false,
-                borderWidth: lineWidth
+                borderWidth: lineWidth,
+                pointBorderWidth: 2,
+                pointRadius: 3,
+                backgroundColor: series.legendInfo.fill,
+                borderColor: series.legendInfo.fill,
+                pointBackgroundColor: series.legendInfo.fill,
+                pointBorderColor: series.legendInfo.outline,
             });
             this.chartColors.push({
                 backgroundColor: series.legendInfo.fill,
                 borderColor: series.legendInfo.fill,
             });
         }
-        // The subclasses may have already put series in lineChartData, and we don't
-        // want to remove them, so we just append them to the series. On the other
-        // hand, if there's a blank series in lineChartData, we want to get rid of
-        // it before putting everything else in.
+        // The subclasses may have already put series in lineChartData, and
+        // we don't want to remove them, so we just append them to the
+        // series. On the other hand, if there's a blank series in
+        // lineChartData, we want to get rid of it before putting everything
+        // else in.
         if (data.length > 0 && this.onlyDefaultDataPresent()) {
             this.chartData = data;
         }
@@ -7648,6 +7476,9 @@ var GraphComponent = /** @class */ (function () {
         this.showXRegions();
     };
     GraphComponent.prototype.showXRegions = function () {
+        if (!this.xRegions) {
+            return;
+        }
         for (var _i = 0, _a = this.xRegions; _i < _a.length; _i++) {
             var region = _a[_i];
             var annotation = {
@@ -7684,9 +7515,11 @@ var GraphComponent = /** @class */ (function () {
     /**
      * Finds or creates a HTML element to render the tooltip onto.
      * @param canvas The Canvas this graph is rendered on
+     * @param uniqueId The unique ID to give to this element. If not provided,
+     *     will use 'chartjs-tooltip' + the chart div ID.
      */
-    GraphComponent.prototype.findOrCreateTooltipElement = function (canvas) {
-        var tooltipTag = 'chartjs-tooltip' + this.chartDivId;
+    GraphComponent.prototype.findOrCreateTooltipElement = function (canvas, uniqueId) {
+        var tooltipTag = uniqueId ? uniqueId : 'chartjs-tooltip' + this.chartDivId;
         var tooltipEl = document.getElementById(tooltipTag);
         if (!tooltipEl) {
             tooltipEl = document.createElement('div');
@@ -7699,11 +7532,12 @@ var GraphComponent = /** @class */ (function () {
     };
     /**
      * Gets the tooltip text for the given context.
-     * @param tooltipContext The tooltip context passed into the tooltip callback
+     * @param tooltipContext The tooltip context passed into the tooltip
+     *     callback
      */
     GraphComponent.prototype.getTooltipInnerHtml = function (tooltipContext) {
-        // We squish together all points at the same timestamp preemptively in
-        // our tooltip creation so that we just find the index of the
+        // We squish together all points at the same timestamp preemptively
+        // in our tooltip creation so that we just find the index of the
         // tooltip based on the first point's x-value.
         var xValue = tooltipContext.dataPoints[0].label;
         var timestampKey = luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromISO(xValue).toMillis().toString();
@@ -7726,6 +7560,65 @@ var GraphComponent = /** @class */ (function () {
             tooltipText = this.data.tooltipMap.get(keyToUse);
         }
         return tooltipText;
+    };
+    /*************************
+     * Helper functions for other chart options
+     */
+    GraphComponent.prototype.generateXAxis = function () {
+        return {
+            id: GraphComponent.X_AXIS_ID,
+            type: 'time',
+            gridLines: { display: true, drawOnChartArea: false },
+            time: {
+                // This sets the bounds of the x-axis. The default values of 0 and 10
+                // are nonsensical but necessary since the graph is first rendered
+                // before dateRange is bound.
+                min: this.dateRange ? this.dateRange.start.toISO() :
+                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
+                max: this.dateRange ? this.dateRange.end.toISO() :
+                    luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
+                // If we're showing fewer than three days, go for the hour axis labels;
+                // otherwise go with by-day axis labels.
+                unit: this.dateRange && (this.dateRange.length('day') > 3) ? 'day' :
+                    'hour',
+                displayFormats: {
+                    hour: 'MM/DD H:mm',
+                    day: 'MM/DD',
+                }
+            },
+            ticks: {
+                // Only show as many tick labels will fit neatly on the axis.
+                autoSkip: true,
+                display: true
+            }
+        };
+    };
+    GraphComponent.prototype.generateYAxis = function () {
+        var _this = this;
+        return {
+            id: GraphComponent.Y_AXIS_ID,
+            position: 'left',
+            // Show tick marks but not grid lines.
+            gridLines: { display: true, drawOnChartArea: false },
+            scaleLabel: {
+                display: true,
+                labelString: '',
+            },
+            ticks: {
+                // We explicitly set the y values to show, so we don't want to use
+                // autoskip.
+                autoSkip: false,
+                callback: function (value, index, values) {
+                    if (!_this.data || !_this.data.precision) {
+                        return value;
+                    }
+                    return (value).toLocaleString('en-us', {
+                        minimumFractionDigits: _this.data.precision,
+                        maximumFractionDigits: _this.data.precision
+                    });
+                }
+            }
+        };
     };
     /** Dummy data series label. */
     GraphComponent.DEFAULT_BLANK_DATA_LABEL = 'blankdatalabel';
@@ -7800,8 +7693,8 @@ var Y_AXIS_TICK_MAX = 15;
  * on the chart after it is rendered.
  */
 var RenderedChart = /** @class */ (function () {
-    function RenderedChart(xAxis, chartDivId) {
-        this.xAxis = xAxis;
+    function RenderedChart(dateRange, chartDivId) {
+        this.dateRange = dateRange;
         this.chartDivId = chartDivId;
         /**
          * Holds functions to execute upon next render.
@@ -7850,8 +7743,8 @@ var RenderedChart = /** @class */ (function () {
     RenderedChart.prototype.showNoData = function () {
         var emptyContainer = d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#' + this.chartDivId).select('.c3-text.c3-empty');
         emptyContainer.text('No data for ' +
-            this.xAxis.dateRange.start.toLocal().startOf('day').toLocaleString() +
-            '-' + this.xAxis.dateRange.end.toLocal().endOf('day').toLocaleString());
+            this.dateRange.start.toLocal().startOf('day').toLocaleString() + '-' +
+            this.dateRange.end.toLocal().endOf('day').toLocaleString());
         emptyContainer.attr('class', 'c3-text c3-empty noData');
         // We set the opacity of the y-axis ticks of empty charts to 0 after
         // setting the tick values. We do this instead of not displaying the
@@ -7917,13 +7810,8 @@ var RenderedChart = /** @class */ (function () {
                 .attr('dx', dx)
                 .attr('dy', dy)
                 .style('font-weight', 'bolder');
-            // Only add the tick label text if it was meant to be
-            // displayed.
-            if (self.xAxis.xAxisLabels.length > 0 &&
-                self.xAxis.xAxisLabels.includes(text)) {
-                tspan.text(textSplit[0]); // Set the 'bold' tspan's content as the date.
-                d3__WEBPACK_IMPORTED_MODULE_1__["select"](this).append('tspan').text(' ' + textSplit[1]); // Add an additional tspan for the time.
-            }
+            tspan.text(textSplit[0]); // Set the 'bold' tspan's content as the date.
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"](this).append('tspan').text(' ' + textSplit[1]); // Add an additional tspan for the time.
         });
     };
     /**
@@ -8008,8 +7896,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var RenderedCustomizableChart = /** @class */ (function (_super) {
     __extends(RenderedCustomizableChart, _super);
-    function RenderedCustomizableChart(xAxis, chartDivId) {
-        var _this = _super.call(this, xAxis, chartDivId) || this;
+    function RenderedCustomizableChart(dateRange, chartDivId) {
+        var _this = _super.call(this, dateRange, chartDivId) || this;
         _this.hoveringOverPoint = false;
         _this.inEditMode = true;
         _this.initialized = false;
@@ -8215,13 +8103,27 @@ var LineGraphComponent = /** @class */ (function (_super) {
     }
     LineGraphComponent_1 = LineGraphComponent;
     LineGraphComponent.prototype.prepareForChartConfiguration = function () {
+        var _this = this;
         if (this.data.yAxisDisplayBounds) {
             // We only ever have one y-axis so it's safe to work only on the 0th
             // subscript here.
+            // Calculate the data range and add a bit of padding at top and bottom
+            // (unless the bottom is zero or the top is 100--those might be
+            // percentages). This reasonably ensures that there's no cropping where
+            // the normal bound labels would get cut off.
+            var padding = (this.data.yAxisDisplayBounds[1] - this.data.yAxisDisplayBounds[0]) *
+                0.25;
             this.chartOptions.scales.yAxes[0].ticks.min =
-                this.data.yAxisDisplayBounds[0];
+                Math.max(this.data.yAxisDisplayBounds[0] - padding, 0);
             this.chartOptions.scales.yAxes[0].ticks.max =
-                this.data.yAxisDisplayBounds[1];
+                this.data.yAxisDisplayBounds[1] === 100 ?
+                    this.data.yAxisDisplayBounds[1] :
+                    this.data.yAxisDisplayBounds[1] + padding;
+            this.chartOptions.scales.yAxes[0].afterBuildTicks = function (scale) {
+                if (_this.data && _this.data.yTicks) {
+                    scale.ticks = _this.data.yTicks;
+                }
+            };
         }
     };
     LineGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
@@ -8238,18 +8140,21 @@ var LineGraphComponent = /** @class */ (function (_super) {
         if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"])) {
             return;
         }
+        // Color points that fall outside of their respective normal ranges.
+        for (var i = 0; i < this.data.series.length; i++) {
+            var chartjsSeries = this.chartData[i];
+            var labeledSeries = this.data.series[i];
+            this.colorAbnormalPoints(chartjsSeries, labeledSeries.yNormalBounds, labeledSeries.legendInfo);
+        }
         // If there's more than one series on this graph we don't mark a normal
         // region because they might not be the same.
-        if (this.data.series.length !== 1) {
-            return;
-        }
-        var yBounds = this.data.series[0].yNormalBounds;
-        // If there aren't bounds, there's nothing to add.
+        var yBounds = this.data.series.length === 1 ?
+            this.data.series[0].yNormalBounds :
+            undefined;
         if (!yBounds) {
             return;
         }
         this.addGreenRegion(yBounds);
-        this.colorAbnormalPoints(yBounds, this.data.series[0].legendInfo);
     };
     /**
      * Draws a green box spanning the entire x-axis and covering y axis normal
@@ -8271,13 +8176,14 @@ var LineGraphComponent = /** @class */ (function (_super) {
         };
         // Draw label lines for the high and low bounds of the normal range.
         var lines = [
-            ['High normal boundary: ', yNormalBounds[1]],
-            ['Low normal boundary: ', yNormalBounds[0]]
+            ['High normal boundary: ', yNormalBounds[1], -8],
+            ['Low normal boundary: ', yNormalBounds[0], 8]
         ];
         for (var _i = 0, lines_1 = lines; _i < lines_1.length; _i++) {
             var line = lines_1[_i];
             var lbl = line[0];
             var val = line[1];
+            var yOffsetPx = line[2];
             var bound = {
                 type: 'line',
                 mode: 'horizontal',
@@ -8287,9 +8193,15 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 borderWidth: 2,
                 label: {
                     enabled: true,
-                    fontColor: 'rgba(64, 191, 128, 1)',
+                    // Clear background color.
+                    backgroundColor: 'rgba(0,0,0,0.0)',
+                    // Black text for label.
+                    fontColor: 'rgba(0, 0, 0, 0.8)',
                     content: lbl + val.toString() + ' ' + this.data.unit,
-                    position: 'right'
+                    // Shift the text above or below the line, and to the right side of
+                    // the axis.
+                    position: 'right',
+                    yAdjust: yOffsetPx
                 }
             };
             this.chartOptions.annotation.annotations.push(bound);
@@ -8300,35 +8212,33 @@ var LineGraphComponent = /** @class */ (function (_super) {
      * Colors the point the default series color if it's in the normal range,
      * or the designated "abnormal" color if it's outside of the normal range.
      *
+     * @param series The data series to color points for.
      * @param yNormalBounds The bounds of what should be considered normal.
      * @param seriesLegend The legend info for the series we're working with.
      */
-    LineGraphComponent.prototype.colorAbnormalPoints = function (yNormalBounds, seriesLegend) {
+    LineGraphComponent.prototype.colorAbnormalPoints = function (series, yNormalBounds, seriesLegend) {
         var pointBackgroundColors = new Array();
         var pointBorderColors = new Array();
-        if (this.chartData.length > 0) {
-            // We only ever get here if there's a single labeled series so it's okay
-            // from here on out to only work with the 0th index of the data.
-            for (var _i = 0, _a = this.chartData[0].data; _i < _a.length; _i++) {
-                var pt = _a[_i];
-                // pt could also be a number here, so we constrain it to when it's a
-                // ChartPoint. For some reason Typescript doesn't like it when we do a
-                // test to see if pt is an instanceof ChartPoint so checking for the
-                // y-attribute is a workaround.
-                if (pt.hasOwnProperty('y')) {
-                    pt = pt;
-                    if (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]) {
-                        pointBackgroundColors.push(src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
-                        pointBorderColors.push(src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
-                    }
-                    else {
-                        pointBackgroundColors.push(seriesLegend.fill.rgb().string());
-                        pointBorderColors.push(seriesLegend.outline.rgb().string());
-                    }
+        for (var _i = 0, _a = series.data; _i < _a.length; _i++) {
+            var pt = _a[_i];
+            // pt could also be a number here, so we constrain it to when it's a
+            // ChartPoint. For some reason Typescript doesn't like it when we do a
+            // test to see if pt is an instanceof ChartPoint so checking for the
+            // y-attribute is a workaround.
+            if (pt.hasOwnProperty('y')) {
+                pt = pt;
+                if (yNormalBounds &&
+                    (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1])) {
+                    pointBackgroundColors.push(seriesLegend.fill.rgb().string());
+                    pointBorderColors.push(src_app_theme_bch_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
                 }
+                else {
+                    pointBackgroundColors.push(seriesLegend.fill.rgb().string());
+                    pointBorderColors.push(seriesLegend.outline.rgb().string());
+                }
+                series.pointBackgroundColor = pointBackgroundColors;
+                series.pointBorderColor = pointBorderColors;
             }
-            this.chartData[0].pointBackgroundColor = pointBackgroundColors;
-            this.chartData[0].pointBorderColor = pointBorderColors;
         }
     };
     var LineGraphComponent_1;
@@ -8569,38 +8479,27 @@ var StepGraphComponent = /** @class */ (function (_super) {
     StepGraphComponent.prototype.prepareForChartConfiguration = function () {
         var _this = this;
         this.chartOptions.scales.yAxes[0].type = 'category';
+        this.chartOptions.scales.yAxes[0].gridLines = {
+            display: true,
+            drawOnChartArea: true
+        };
         // Set up the data points.
-        var s = [];
         var yValuesForEndpoints = [];
-        for (var _i = 0, _a = this.data.endpointSeries; _i < _a.length; _i++) {
+        for (var _i = 0, _a = this.data.series; _i < _a.length; _i++) {
             var series = _a[_i];
-            s.push({
-                data: series.coordinates.map(function (pt) {
-                    var lines = wordwrap__WEBPACK_IMPORTED_MODULE_2__(_this.Y_AXIS_TICK_MAX_LENGTH)(pt[1]).split('\n');
-                    var truncatedLabel = lines[0] + (lines.length > 1 ? '...' : '');
-                    yValuesForEndpoints.push(truncatedLabel);
-                    return { x: pt[0].toISO(), y: truncatedLabel };
-                }),
-                label: series.label,
-                // Do not fill the area under the line.
-                fill: false
-            });
-            this.chartColors.push({
-                backgroundColor: series.legendInfo.fill,
-                borderColor: series.legendInfo.fill,
-                pointBackgroundColor: series.legendInfo.fill,
-                pointBorderColor: series.legendInfo.outline,
+            // Since the categorical labels may be long, we truncate the label names.
+            // We also have to re-map the coordinates to the truncated names so
+            // that they may be plotted correctly along the categorical axis.
+            series.coordinates.forEach(function (pt) {
+                var lines = wordwrap__WEBPACK_IMPORTED_MODULE_2__(_this.Y_AXIS_TICK_MAX_LENGTH)(pt[1]).split('\n');
+                var truncatedLabel = lines[0] + (lines.length > 1 ? '...' : '');
+                yValuesForEndpoints.push(truncatedLabel);
+                pt[1] = truncatedLabel;
             });
         }
-        if (s.length > 0) {
-            this.chartData = s;
-        }
-        // Set the categorical labels for the y-axis.
-        var allYValues = this.data.dataSeries.map(function (series) { return series.coordinates.map(function (c) { return c[1]; }); })
-            .reduce(function (p, n) { return p.concat(n); }, [])
-            .concat(yValuesForEndpoints);
-        // Word wrap all the y-text so that it doesn't have problems.
-        var allLabels = Array.from(new Set(allYValues));
+        var allLabels = Array.from(new Set(yValuesForEndpoints));
+        // Show the labels alphabetically along the y-axis.
+        allLabels = allLabels.sort();
         // Add blank labels to the top and bottom of the graph to add some padding.
         allLabels.push('\t');
         allLabels.unshift('\t');
@@ -9445,7 +9344,7 @@ module.exports = ".title {\n  font-family: 'Quicksand', sans-serif;\n}\n\n.mat-s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">Select Initial Configuration</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      Continue\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  {{browserString}}\n  <div>\n    <h1 class=\"title\">Which date range would you like to see first?</h1>\n    <mat-radio-group aria-label=\"Choose one of the following date ranges to begin with.\">\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} (hospital visit)\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button value=\"undefined\" [checked]=\"true\">\n          Last seven days\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n\n  <div class=\"checkboxActions\">\n    <h1 class=\"title\">Which timelines would you like to see first?</h1>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      Select All\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      Clear Selection\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"Search for a concept\" aria-label=\"Search for a concept\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"!codeGroupAvailable.get(element.label)\">\n          {{element.label}} <span class=\"grayout\" *ngIf=\"!codeGroupAvailable.get(element.label)\">(No data\n            available in the past 6 months)</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      No results found\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"toolbar\">\n  <h1 class=\"title\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"mainSetup\">\n  <div>\n    <h1 class=\"title\">{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h1>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button value=\"undefined\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n\n  <div class=\"checkboxActions\">\n    <h1 class=\"title\">Which timelines would you like to see first?</h1>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div class=\"category\" [style.color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"!codeGroupAvailable.get(element.label)\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"!codeGroupAvailable.get(element.label)\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9486,6 +9385,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
 
@@ -9504,12 +9406,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * configuration.
  */
 var SetupComponent = /** @class */ (function () {
-    function SetupComponent(resourceCodeManager, route, router, setupDataService, fhirService, deviceService) {
+    function SetupComponent(resourceCodeManager, route, router, setupDataService, fhirService, deviceService, uiConstants) {
         this.route = route;
         this.router = router;
         this.setupDataService = setupDataService;
         this.fhirService = fhirService;
         this.deviceService = deviceService;
+        this.uiConstants = uiConstants;
         this.allConcepts = new Array();
         this.checkedConcepts = new Map();
         this.chosenConcepts = new Array();
@@ -9637,10 +9540,11 @@ var SetupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./setup.component.html */ "./src/app/setup/setup.component.html"),
             styles: [__webpack_require__(/*! ./setup.component.css */ "./src/app/setup/setup.component.css")]
         }),
+        __param(6, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_7__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_11__["SetupDataService"],
             _fhir_service__WEBPACK_IMPORTED_MODULE_10__["FhirService"],
-            ngx_device_detector__WEBPACK_IMPORTED_MODULE_5__["DeviceDetectorService"]])
+            ngx_device_detector__WEBPACK_IMPORTED_MODULE_5__["DeviceDetectorService"], Object])
     ], SetupComponent);
     return SetupComponent;
 }());
@@ -9771,7 +9675,7 @@ module.exports = ".datePicker {\n  background-color: white;\n  padding-top: 20px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"datePickerRanges\"\n    [alwaysShowCalendars]=\"true\" [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"Change date range\" />\n  <mat-icon *ngIf=\"encounterError\" class=\"errorIcon\"\n    matTooltip=\"Unable to retrieve hospital visit dates for this patient. You can select any time period in the past six months.\">\n    warning</mat-icon>\n</div>\n"
+module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"datePickerRanges\"\n    [alwaysShowCalendars]=\"true\" [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"{{uiConstants.CHANGE_DATE_RANGE}}\" />\n  <mat-icon *ngIf=\"encounterError\" class=\"errorIcon\" matTooltip=\"{{uiConstants.BAD_ENCOUNTER_ERROR}}\">\n    warning</mat-icon>\n</div>\n"
 
 /***/ }),
 
@@ -9807,6 +9711,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
 
@@ -9824,9 +9731,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * several places.
  */
 var TimelineControllerComponent = /** @class */ (function () {
-    function TimelineControllerComponent(renderer) {
+    function TimelineControllerComponent(renderer, uiConstants) {
         var _this = this;
         this.renderer = renderer;
+        this.uiConstants = uiConstants;
         this.changeDateRange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Holds all the ISO strings for days covered by all the patient encounters
@@ -9941,7 +9849,8 @@ var TimelineControllerComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./timeline-controller.component.html */ "./src/app/timeline-controller/timeline-controller.component.html"),
             styles: [__webpack_require__(/*! ./timeline-controller.component.css */ "./src/app/timeline-controller/timeline-controller.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], Object])
     ], TimelineControllerComponent);
     return TimelineControllerComponent;
 }());
@@ -9957,7 +9866,7 @@ var TimelineControllerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <div *ngIf=\"showMockDataMessage\">This is synthesized data used for demo purposes only.</div>\n  <button mat-icon-button matTooltip=\"Launch Tutorial\" (click)=\"openHelpDialog()\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <button mat-icon-button matTooltip=\"Save a static image of this page to a PowerChart clinical note\"\n    (click)=\"snapshot()\">\n    <mat-icon class=\"toolbarButton\">\n      save\n    </mat-icon>\n  </button>\n</div>"
+module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <div *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <button mat-icon-button matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <button mat-icon-button matTooltip=\"{{uiConstants.SAVE_TO_NOTE}}\" (click)=\"snapshot()\">\n    <mat-icon class=\"toolbarButton\">\n      save\n    </mat-icon>\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -9973,9 +9882,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TimelineToolbarComponent", function() { return TimelineToolbarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9989,15 +9899,20 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
 
 
 var TimelineToolbarComponent = /** @class */ (function () {
-    function TimelineToolbarComponent(resourceCodeManager, dialog) {
+    function TimelineToolbarComponent(resourceCodeManager, dialog, uiConstants) {
         this.dialog = dialog;
-        this.showMockDataMessage = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].useMockServer;
+        this.uiConstants = uiConstants;
+        this.showMockDataMessage = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].useMockServer;
         this.saveSnapshot = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.addTextbox = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         var displayGroups = resourceCodeManager.getDisplayGroupMapping();
@@ -10013,7 +9928,7 @@ var TimelineToolbarComponent = /** @class */ (function () {
         this.addTextbox.emit();
     };
     TimelineToolbarComponent.prototype.openHelpDialog = function () {
-        var dialogRef = this.dialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_4__["HelpDialogComponent"]);
+        var dialogRef = this.dialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__["HelpDialogComponent"]);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -10029,7 +9944,8 @@ var TimelineToolbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./timeline-toolbar.component.html */ "./src/app/timeline-toolbar/timeline-toolbar.component.html"),
             styles: [__webpack_require__(/*! ../cardcontainer/cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
         }),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_3__["ResourceCodeManager"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
     ], TimelineToolbarComponent);
     return TimelineToolbarComponent;
 }());
@@ -10073,7 +9989,7 @@ function fixUnitAbbreviations(unit) {
 /*!**************************!*\
   !*** ./src/constants.ts ***!
   \**************************/
-/*! exports provided: APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType */
+/*! exports provided: APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType, UI_CONSTANTS_TOKEN, UI_CONSTANTS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10081,24 +9997,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_TIMESPAN", function() { return APP_TIMESPAN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EARLIEST_ENCOUNTER_START_DATE", function() { return EARLIEST_ENCOUNTER_START_DATE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceType", function() { return FhirResourceType; });
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UI_CONSTANTS_TOKEN", function() { return UI_CONSTANTS_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UI_CONSTANTS", function() { return UI_CONSTANTS; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 
+
 /** The period of time this app will search for patient encounters in.  */
-var APP_TIMESPAN = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production ?
-    luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_0__["Duration"].fromObject({ months: 6 })), luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc()) :
-    luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_0__["Duration"].fromObject({ months: 60 })), luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc());
+var APP_TIMESPAN = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].production ?
+    luxon__WEBPACK_IMPORTED_MODULE_1__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_1__["Duration"].fromObject({ months: 6 })), luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc()) :
+    luxon__WEBPACK_IMPORTED_MODULE_1__["Interval"].fromDateTimes(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc().minus(luxon__WEBPACK_IMPORTED_MODULE_1__["Duration"].fromObject({ months: 60 })), luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc());
 /**
  * Do not consider any encounters with a start date earlier than a year from
  * now.
  */
-var EARLIEST_ENCOUNTER_START_DATE = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().minus({ years: 1 });
+var EARLIEST_ENCOUNTER_START_DATE = luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].utc().minus({ years: 1 });
 /** Constants used for FHIR resource types. */
 var FhirResourceType;
 (function (FhirResourceType) {
@@ -10112,6 +10032,73 @@ var FhirResourceType;
     FhirResourceType["Medication"] = "Medication";
     FhirResourceType["DiagnosticReport"] = "DiagnosticReport";
 })(FhirResourceType || (FhirResourceType = {}));
+/**
+ * Injection token for passing UI constants across the app.
+ */
+var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('UiConstantsToken');
+/**
+ * UI constants text.
+ */
+var UI_CONSTANTS = {
+    SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
+    // Tooltip for adding a card inline
+    ADD_TIMELINE_HERE: 'Add timeline here',
+    // Dialog for adding an event to the custom timeline
+    ADD_TITLE_CUSTOM_EVENT: 'Add title',
+    ADD_DESCRIPTION_CUSTOM_EVENT: 'Add description',
+    DATE_CUSTOM_EVENT: 'Date',
+    TIME_CUSTOM_EVENT: 'Time',
+    CANCEL: 'Cancel',
+    SAVE: 'Save',
+    CONTINUE: 'Continue',
+    // Custom timeline constants
+    ADD_CUSTOM_TIMELINE: 'Add Custom Timeline',
+    CUSTOM_TIMELINE_LABEL: 'Custom Timeline',
+    CUSTOM_TIMELINE_INSTRUCTIONS: 'Click on this graph to add a flag for anything you want to keep track of.',
+    // Annotation constants
+    ADD_ANNOTATION: 'Add Textbox',
+    ANNOTATION_INSTRUCTIONS: 'Add your text here.',
+    SAVE_TEXT_HINT: 'Click the save button to save your text.',
+    EDIT_TEXT_HINT: 'Click the edit button to edit this text.',
+    // Constants
+    NO_DATA_AVAILABLE_TMPL: 'No data between ',
+    // Used in menu to add timelines
+    ADD_CHART: 'Add Data Timeline',
+    SEARCH_FOR_A_CONCEPT: 'Search for a concept',
+    // Confirmation dialog for removing a card
+    REMOVE_CARD: 'Do you want to remove this card?',
+    REMOVE_CARD_NO: 'No',
+    REMOVE_CARD_YES: 'Yes, remove this card',
+    // Error handling
+    BAD_DATA_ERROR: 'Invalid data received. Please check the PowerChart.',
+    BAD_ENCOUNTER_ERROR: 'Unable to retrieve hospital visit dates for this patient.' +
+        ' You can select any time period in the past six months.',
+    // Setup screen
+    INITIAL_CONFIGURATION_HEADER: 'Select Initial Configuration',
+    LAST_SEVEN_DAYS: 'Last seven days',
+    NO_RESULTS: 'No results found',
+    SELECT_ALL: 'Select all',
+    CLEAR_SELECTION: 'Clear selection',
+    NO_DATA_PAST_SIX_MOS: 'No data available in past six months',
+    WHICH_ENCOUNTER_FIRST: 'Which time period would you like to see first?',
+    WHICH_CONCEPTS_FIRST: 'Which data timelines would you like to see first?',
+    ENCOUNTER: '(patient encounter)',
+    // Top banner constants
+    CHANGE_DATE_RANGE: 'Change date range',
+    MOCK_DATA_BANNER: 'This is synthesized data used for demo purposes only.',
+    LAUNCH_TUTORIAL: 'Launch Tutorial',
+    SAVE_TO_NOTE: 'Save a screenshot of this page to a PowerChart clinical note',
+    // Interacting with cards
+    REMOVE_THIS_CARD: 'Remove this card',
+    CARD_REMOVED: 'Card removed.',
+    UNDO: 'Undo',
+    DRAG_THIS_CARD: 'Drag and drop to move this card somewhere else',
+    EDIT_THIS_CARD: 'Edit this card',
+    SAVE_YOUR_WORK: 'Save your work on this card',
+    // Saving to PowerChart
+    SAVED_TO_POWERCHART: 'Screenshot saved to PowerChart.',
+    DISMISS: 'Dismiss',
+};
 
 
 /***/ }),
@@ -10189,7 +10176,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })

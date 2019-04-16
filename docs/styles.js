@@ -621,9 +621,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/src/styles.scss */"./src/styles.scss");
-__webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/node_modules/c3/c3.css */"./node_modules/c3/c3.css");
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/mg/bch/medtimeline/node_modules/dragula/dist/dragula.css */"./node_modules/dragula/dist/dragula.css");
+__webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/src/styles.scss */"./src/styles.scss");
+__webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/node_modules/c3/c3.css */"./node_modules/c3/c3.css");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/node_modules/dragula/dist/dragula.css */"./node_modules/dragula/dist/dragula.css");
 
 
 /***/ })

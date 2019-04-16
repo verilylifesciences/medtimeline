@@ -2,8 +2,7 @@
   <input type="button" class="mat-raised-button" ngxDaterangepickerMd [(ngModel)]="selected"
     [minDate]="earliestAvailableDate" [maxDate]="latestAvailableDate" [linkedCalendars]="true"
     [isCustomDate]="addCustomClass" (datesUpdated)="datesUpdated($event)" [ranges]="datePickerRanges"
-    [alwaysShowCalendars]="true" [keepCalendarOpeningWithRange]="true" matTooltip="Change date range" />
-  <mat-icon *ngIf="encounterError" class="errorIcon"
-    matTooltip="Unable to retrieve hospital visit dates for this patient. You can select any time period in the past six months.">
+    [alwaysShowCalendars]="true" [keepCalendarOpeningWithRange]="true" matTooltip="{{uiConstants.CHANGE_DATE_RANGE}}" />
+  <mat-icon *ngIf="encounterError" class="errorIcon" matTooltip="{{uiConstants.BAD_ENCOUNTER_ERROR}}">
     warning</mat-icon>
 </div>

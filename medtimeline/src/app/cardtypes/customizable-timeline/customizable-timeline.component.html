@@ -1,9 +1,9 @@
-<app-card [attr.id]="id" label="Custom Timeline" [isDraggable]="false" [isEditable]="true" [isRemovable]="true"
-  (renderEvent)="this.renderContainedGraph()" (editEvent)="this.inEditMode = true" (saveEvent)="this.inEditMode = false"
-  (removeEvent)="remove()" [ngClass]="{'inEditMode': inEditMode}">
+<app-card [attr.id]="id" label="{{this.uiConstants.CUSTOM_TIMELINE_LABEL}}" [isDraggable]="false" [isEditable]="true"
+  [isRemovable]="true" (renderEvent)="this.renderContainedGraph()" (editEvent)="this.inEditMode = true"
+  (saveEvent)="this.inEditMode = false" (removeEvent)="remove()" [ngClass]="{'inEditMode': inEditMode}">
   <ng-container class="legends-block">
     <div *ngIf="inEditMode" style="min-width: 200px; max-width: 200px; word-wrap: break-word;">
-      Click on this graph to add a flag for anything you want to keep track of.
+      {{this.uiConstants.CUSTOM_TIMELINE_INSTRUCTIONS}}
     </div>
   </ng-container>
   <div fxFlex="row" class="contents-block">

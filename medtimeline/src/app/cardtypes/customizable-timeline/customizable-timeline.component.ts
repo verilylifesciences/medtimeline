@@ -4,12 +4,13 @@
 // license that can be found in the LICENSE file.
 
 // tslint:disable-next-line:max-line-length
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 /**
  * The customizable timeline lets the user plot any events they'd like to keep
@@ -50,7 +51,9 @@ export class CustomizableTimelineComponent implements OnChanges {
   // Whether or not this CustomizableTimeline is being edited.
   inEditMode = false;
 
-  constructor(private fhirService: FhirService) {
+  constructor(
+      private fhirService: FhirService,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     this.data = CustomizableData.defaultEmptySeries();
   }
 

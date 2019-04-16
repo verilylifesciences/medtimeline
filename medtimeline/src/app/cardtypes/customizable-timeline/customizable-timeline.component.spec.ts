@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatCardModule, MatDialog, MatIconModule} from '@angular/material';
+import {MatCardModule, MatDialog, MatIconModule, MatTooltipModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
@@ -12,6 +12,7 @@ import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
 import {StubFhirService} from 'src/app/test_utils';
+import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../card/card.component';
 
@@ -25,14 +26,16 @@ describe('CustomizableTimelineComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          imports: [MatCardModule, MatIconModule, ChartsModule],
+          imports:
+              [MatCardModule, MatIconModule, ChartsModule, MatTooltipModule],
           declarations: [
             CustomizableTimelineComponent, CustomizableGraphComponent,
             CardComponent
           ],
           providers: [
             {provide: MatDialog, useValue: null},
-            {provide: FhirService, useValue: new StubFhirService()}
+            {provide: FhirService, useValue: new StubFhirService()},
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
         .compileComponents();

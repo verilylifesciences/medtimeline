@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Inject, Injectable, SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
@@ -20,6 +21,7 @@ import {MedicationAdministration} from './fhir-data-classes/medication-administr
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
+import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 
 
@@ -40,7 +42,7 @@ export class FhirHttpService extends FhirService {
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,
-      private sanitizer: DomSanitizer) {
+      private sanitizer: DomSanitizer, private http: HttpClient) {
     super();
     // Create a promise which resolves to the smart API when the smart API is
     // ready. This allows clients of this service to call service methods
@@ -237,6 +239,7 @@ export class FhirHttpService extends FhirService {
                             },
                             rejection => {
                               this.debugService.logError(rejection);
+                              throw rejection;
                             }));
   }
 
@@ -296,9 +299,48 @@ export class FhirHttpService extends FhirService {
    * @param dateRange Return all DiagnosticReports that covered any time in this
    *   date range.
    */
-  // TODO(b/119121684): Make API calls to get DiagnosticReports.
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {
-    return Promise.resolve([]);
+    if (!FhirConfig.microbiology) {
+      console.warn(
+          'No microbiology parameters available in the configuration.');
+      return Promise.resolve([]);
+    }
+    return this.smartApiPromise.then(
+        smartApi => {
+          // YYYY-MM-DD format for dates
+          let callParams = new HttpParams();
+          callParams = callParams.append('patient', smartApi.patient.id);
+          callParams = callParams.append('category', 'microbiology'),
+          callParams = callParams.append(
+              'item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
+          callParams = callParams.append(
+              'item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
+          callParams = callParams.append('format', 'json');
+
+          const httpHeaders = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + FhirConfig.microbiology.username + ':' +
+                FhirConfig.microbiology.password,
+          });
+
+          return this.http
+              .get(
+                  [
+                    FhirConfig.microbiology.url,
+                    FhirResourceType.DiagnosticReport
+                  ].join('/'),
+                  {headers: httpHeaders, params: callParams})
+              .toPromise()
+              .then((results: any[]) => {
+                return results.map(result => {
+                  return new DiagnosticReport(result);
+                });
+              });
+        },
+        rejection => {
+          this.debugService.logError(rejection);
+          throw rejection;
+        });
   }
 }

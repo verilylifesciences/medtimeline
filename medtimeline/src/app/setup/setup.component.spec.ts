@@ -11,6 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
@@ -39,7 +40,8 @@ describe('SetupComponent', () => {
             {provide: ActivatedRoute, useValue: {}},
             {provide: Router, useValue: {}},
             {provide: FhirService, useValue: new StubFhirService()},
-            {provide: DeviceDetectorService, useValue: {getDeviceInfo() {}}}
+            {provide: DeviceDetectorService, useValue: {getDeviceInfo() {}}},
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
         .compileComponents();

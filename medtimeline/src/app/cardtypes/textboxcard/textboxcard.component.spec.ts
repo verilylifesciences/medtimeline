@@ -5,12 +5,15 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../card/card.component';
+
 import {TextboxcardComponent} from './textboxcard.component';
 
 describe('TextboxcardComponent', () => {
@@ -21,14 +24,11 @@ describe('TextboxcardComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            BrowserAnimationsModule,
-            MatCardModule,
-            MatInputModule,
-            MatIconModule,
-            FormsModule,
-            ReactiveFormsModule,
+            BrowserAnimationsModule, MatCardModule, MatInputModule,
+            MatIconModule, FormsModule, ReactiveFormsModule, MatTooltipModule
           ],
-          declarations: [TextboxcardComponent, CardComponent]
+          declarations: [TextboxcardComponent, CardComponent],
+          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
         })
         .compileComponents();
   }));

@@ -88,6 +88,37 @@ This will serve the page at `localhost:<specified port number`.
 Navigate to `http://localhost:<your port number>/auth?iss=<your ISS configuration>&launch=<your launch configuration>`
 to run the application.
 
+#### Optional use of custom microbiology server
+
+Right now Cerner does not support getting DiagnosticReports representing microbiology results from
+its standard FHIR interface. So, if you run this app as-is, you will just never get microbiology
+results. If you implement your own microbiology server, you can wire it in to this app by providing
+this stanza in your dev and prod configurations:
+
+```
+  microbiology: {
+    url: '<your url>',
+    username: 'username',
+    password: 'password',
+  }
+```
+
+The server should support simple authentication and should respond to a call that looks like this:
+
+```
+http://<your_url>/DiagnosticReport?patient=<PATIENTID>&category=microbiology&item-date=ge<lower date bound>&item-date=<upper date bound>&_format=json
+```
+
+with this header (code copied from fhir-http.service.ts)
+
+```
+const httpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Authorization': 'Basic ' + FhirConfig.microbiology.username + ':' +
+      FhirConfig.microbiology.password,
+});
+```
+
 ### Running against mock data
 
 If instead you want to run against the mock data, you have your pick of test data sets to run against.

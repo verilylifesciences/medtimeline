@@ -3,8 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
@@ -25,7 +26,8 @@ export class TimelineToolbarComponent {
   @Output() addTextbox = new EventEmitter<null>();
 
   constructor(
-      resourceCodeManager: ResourceCodeManager, private dialog: MatDialog) {
+      resourceCodeManager: ResourceCodeManager, private dialog: MatDialog,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     this.displayGroupings = Array.from(displayGroups.entries());
   }
