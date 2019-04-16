@@ -8,8 +8,7 @@
           {{axisGroup.label}}
         </div>
         <div class="tinytext" *ngIf="!axisGroup.dataAvailable">
-          No data between
-          {{appTimeIntervalString}}
+          {{uiConstants.NO_DATA_AVAILABLE_TMPL + appTimeIntervalString}}
         </div>
       </div>
     </div>

@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {AfterViewInit, Component, Input} from '@angular/core';
-import {APP_TIMESPAN} from 'src/constants';
+import {AfterViewInit, Component, Inject, Input} from '@angular/core';
+import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {AxisGroup} from '../graphtypes/axis-group';
 
 /**
@@ -34,6 +33,8 @@ export class DataSelectorElementComponent implements AfterViewInit {
    * Whether there is data available within the app timespan for this card.
    */
   dataAvailable: boolean = true;
+
+  constructor(@Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {}
 
   ngAfterViewInit() {
     // We have to wait until after view initialization so that the @Input

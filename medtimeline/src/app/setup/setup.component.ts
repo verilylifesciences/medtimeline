@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatRadioGroup} from '@angular/material/radio';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,7 +11,7 @@ import {DateTime, Interval} from 'luxon';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {APP_TIMESPAN} from 'src/constants';
+import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
@@ -91,7 +91,8 @@ export class SetupComponent implements OnInit, OnDestroy {
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
       private router: Router, private setupDataService: SetupDataService,
       private fhirService: FhirService,
-      private deviceService: DeviceDetectorService) {
+      private deviceService: DeviceDetectorService,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     // Set up jut a couple things so we don't have to hold on to them as
     // unnecessary class variables.
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();

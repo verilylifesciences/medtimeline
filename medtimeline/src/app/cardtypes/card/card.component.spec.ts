@@ -4,8 +4,11 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatCardModule, MatIconModule} from '@angular/material';
+import {MatTooltipModule} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from './card.component';
 
@@ -17,11 +20,11 @@ describe('CardComponent', () => {
     TestBed
         .configureTestingModule({
           imports: [
-            BrowserAnimationsModule,
-            MatCardModule,
-            MatIconModule,
+            BrowserAnimationsModule, MatCardModule, MatIconModule,
+            MatTooltipModule
           ],
-          declarations: [CardComponent]
+          declarations: [CardComponent],
+          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
         })
         .compileComponents();
   }));
