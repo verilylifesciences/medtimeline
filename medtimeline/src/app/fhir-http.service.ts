@@ -10,7 +10,6 @@ import {Interval} from 'luxon';
 
 import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../constants';
 
-import * as FhirConfig from './../fhir_config';
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {documentReferenceLoinc} from './clinicalconcepts/resource-code-manager';
@@ -22,6 +21,7 @@ import {MedicationAdministration} from './fhir-data-classes/medication-administr
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
+import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 
 

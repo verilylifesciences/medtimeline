@@ -1,0 +1,252 @@
+{
+  "resourceType": "Bundle",
+  "id": "619b6899-8192-4e64-8fd0-5c99f21ddb25",
+  "type": "searchset",
+  "total": 3,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://fhir-ehr.sandboxcerner.com/dstu2/96976f07-eccb-424c-9825-e0d0b887148b/MedicationOrder?patient=26494257&_count=25"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl: ": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661507625",
+        "meta": {
+          "versionId": "0",
+          "lastUpdated": "2019-04-05T18:38:49.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 600 mg, IV, Q8hr</p><p><b>Status</b>: Active</p></div>"
+        },
+        "dateWritten": "2019-04-05T14:36:47.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/26494257",
+          "display": "TEST, BMEDTIMEA"
+        },
+        "prescriber": {
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
+        },
+        "encounter": {
+          "reference": "Encounter/80367166"
+        },
+        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "600 mg, IV, Q8hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "600 Milligram intravenous every 8 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-15T12:00:00.000-05:00"
+                }
+              },
+              "code": {
+                "text": "Q8hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 600,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-04-05T14:36:47.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl: ": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661474541",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2019-04-05T18:38:48.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 700 mg, IV, Q8hr</p><p><b>Status</b>: Stopped</p></div>"
+        },
+        "dateWritten": "2019-02-20T09:47:59.000-05:00",
+        "status": "stopped",
+        "dateEnded": "2019-04-05T14:38:48.000-04:00",
+        "patient": {
+          "reference": "Patient/26494257",
+          "display": "TEST, BMEDTIMEA"
+        },
+        "prescriber": {
+          "reference": "Practitioner/6992382",
+          "display": "CHBP MD, MD"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2661473945"
+        },
+        "encounter": {
+          "reference": "Encounter/80367166"
+        },
+        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "700 mg, IV, Q8hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "700 Milligram intravenous every 8 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-15T00:00:00.000-05:00",
+                  "end": "2019-04-05T14:38:48.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q8hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 700,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-02-20T09:47:59.000-05:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl: ": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2661473945",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2019-02-20T14:49:27.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div><p><b>Medication Order</b></p><p><b>Patient Name</b>: TEST, BMEDTIMEA</p><p><b>Medication Name</b>: vancomycin</p><p><b>Dosage Instructions</b>: 750 mg, IV, Q8hr</p><p><b>Status</b>: Stopped</p></div>"
+        },
+        "dateWritten": "2019-02-19T12:37:13.000-05:00",
+        "status": "stopped",
+        "dateEnded": "2019-02-20T09:48:43.000-05:00",
+        "patient": {
+          "reference": "Patient/26494257",
+          "display": "TEST, BMEDTIMEA"
+        },
+        "prescriber": {
+          "reference": "Practitioner/24699304",
+          "display": "OIAKWSQ MTMPO, XSHOVU E"
+        },
+        "encounter": {
+          "reference": "Encounter/80367166"
+        },
+        "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
+        "medicationCodeableConcept": {
+          "text": "vancomycin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "750 mg, IV, Q8hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "750 Milligram intravenous every 8 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2019-02-13T16:00:00.000-05:00",
+                  "end": "2019-02-20T09:48:43.000-05:00"
+                }
+              },
+              "code": {
+                "text": "Q8hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 750,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2019-02-19T12:37:13.000-05:00"
+          }
+        }
+      }
+    }
+  ]
+}
