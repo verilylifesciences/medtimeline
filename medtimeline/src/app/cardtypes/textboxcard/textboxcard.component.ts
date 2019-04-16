@@ -3,17 +3,16 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-
-@Component({
-  selector: 'app-textboxcard',
-  templateUrl: './textboxcard.component.html',
-})
-
+import {Component, ElementRef, EventEmitter, Inject, Input, Output, ViewChild} from '@angular/core';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 /**
  * A Material Card that displays a label, a textbox, and a draggable handle
  * in a row.
  */
+@Component({
+  selector: 'app-textboxcard',
+  templateUrl: './textboxcard.component.html',
+})
 export class TextboxcardComponent {
   @ViewChild('textArea') textAreaElement: ElementRef;
   @Input() id: string;
@@ -25,6 +24,9 @@ export class TextboxcardComponent {
   @Input() noteString: string;
 
   inEditMode = false;
+
+
+  constructor(@Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {}
 
   updateValue() {
     this.textAreaElement.nativeElement.innerHTML = this.noteString;
@@ -49,9 +51,9 @@ export class TextboxcardComponent {
 
   getHintText() {
     if (this.inEditMode) {
-      return 'Click the save button to save annotation';
+      return this.uiConstants.SAVE_TEXT_HINT;
     } else {
-      return 'Click the edit button to modify annotation';
+      return this.uiConstants.EDIT_TEXT_HINT;
     }
   }
 }
