@@ -17,13 +17,13 @@ export class CustomizableGraphAnnotation {
   readonly annotationWidth = 100;
   // The default height of the annotation.
   readonly annotationHeight = 25;
+  // The default y position of the annotation.
+  readonly annotationDefaultY = 20;
 
   timestamp: DateTime;
   deleteIcon: HTMLElement;
   editIcon: HTMLElement;
   expandIcon: HTMLElement;
-
-  private readonly yAxisXCoord = 125;
 
   constructor(
       timestamp: DateTime,
@@ -38,7 +38,7 @@ export class CustomizableGraphAnnotation {
     this.timestamp = timestamp;
   }
 
-  addAnnotation(chartDivId: string): HTMLElement {
+  addAnnotation(chartDivId: string, differenceInHeight: number): HTMLElement {
     const self = this;
     this.showDetails = false;
     const millis = this.timestamp.toMillis();
@@ -49,7 +49,8 @@ export class CustomizableGraphAnnotation {
     tooltipContainer.style.left = '0px';
     tooltipContainer.style.borderColor = 'grey';
     tooltipContainer.style.backgroundColor = this.color;
-    tooltipContainer.style.bottom = '20px';
+    tooltipContainer.style.bottom =
+        (this.annotationDefaultY + differenceInHeight) + 'px';
 
     const tooltipTitleContainer = document.createElement('div');
     tooltipContainer.appendChild(tooltipTitleContainer);

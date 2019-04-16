@@ -69,6 +69,9 @@ export class CustomizableGraphComponent extends
     this.chartOptions.tooltips = {enabled: false};
     this.chartOptions.hover = {mode: null};
     this.chartOptions.onClick = function(event) {
+      if (!self.inEditMode) {
+        return;
+      }
       const xValueMoment =
           this.scales[GraphComponent.X_AXIS_ID].getValueForPixel(event.offsetX);
       const dateClicked = DateTime.fromJSDate(xValueMoment.toDate());
@@ -80,6 +83,9 @@ export class CustomizableGraphComponent extends
       }
     };
     this.chartOptions.onHover = function(event) {
+      if (!self.inEditMode) {
+        return;
+      }
       const chart: any = this;
       const yScale = chart.scales[GraphComponent.Y_AXIS_ID];
       const xScale = chart.scales[GraphComponent.X_AXIS_ID];
@@ -132,6 +138,12 @@ export class CustomizableGraphComponent extends
       const yOffset = (this.chart.chart as any)
                           .scales[GraphComponent.Y_AXIS_ID]
                           .margins['bottom'];
+      const yAxisHeight =
+          (this.chart.chart as any).scales[GraphComponent.Y_AXIS_ID].height;
+      const heightToUse =
+          this.findBestYCoordinate(xOffset, yAxisHeight, yOffset);
+      const difference = heightToUse - yOffset;
+
       // Only display the flag if the date it represents is within the
       // current date range. This is so that the flag is not added to a location
       // on the DOM that is not within the chart.
@@ -141,10 +153,9 @@ export class CustomizableGraphComponent extends
         tooltip.setAttribute(
             'class', 'tooltip-whole-' + this.chartDivId + millis);
         tooltip.style.borderLeftColor = color;
-        // TODO(shilpakumar): Figure out a positioning strategy--perhaps change
-        // to a categorical graph, perhaps something else
         tooltip.style.bottom = yOffset + 'px';
         tooltip.style.left = xOffset + 'px';
+        tooltip.style.height = heightToUse + 'px';
         while (tooltip.firstChild) {
           tooltip.removeChild(tooltip.firstChild);
         }
@@ -158,7 +169,8 @@ export class CustomizableGraphComponent extends
           }
         };
 
-        tooltip.appendChild(annotation.addAnnotation(this.chartDivId));
+        tooltip.appendChild(
+            annotation.addAnnotation(this.chartDivId, difference));
         this.addDeleteEvent(annotation);
         this.addEditListener(annotation);
       }
@@ -171,6 +183,60 @@ export class CustomizableGraphComponent extends
              document.querySelectorAll('[class*=' + selector + ']'))) {
       annotation.remove();
     }
+  }
+
+  private findBestYCoordinate(
+      xOffset: number, yAxisHeight: number, yOffset: number): number {
+    const annotationWidth = 100;
+    const verticalOverlap = 10;
+    const horizontalOverlap = 20;
+    const selector = 'tooltip-whole-' + this.chartDivId;
+    const allFlags =
+        Array.from(document.querySelectorAll('[class*=' + selector + ']'));
+    const positions = allFlags.map(flag => {
+      const htmlFlag = flag as HTMLElement;
+      return {
+        left: Number(htmlFlag.style.left.replace('px', '')),
+        height: Number(htmlFlag.style.height.replace('px', '')),
+      };
+    });
+    const overlappingYs = [];
+    // Check if there are any annotations with horizontal overlap.
+    for (const position of positions) {
+      const leftPosition = position.left + annotationWidth;
+      if (xOffset <= leftPosition &&
+          (xOffset + annotationWidth >= position.left)) {
+        overlappingYs.push(position.height);
+      }
+    }
+
+    // Figure out the new y-coordinate for the annotation.
+    let heightToUse = yOffset;
+    // Sort all heights in increasing order.
+    overlappingYs.sort(function(a, b) {
+      return a - b;
+    });
+    // By default, try putting the new box above all other annotations with
+    // horizontal overlap.
+    if (overlappingYs.length > 0) {
+      const currentMaxHeight = overlappingYs[overlappingYs.length - 1];
+      // Only add height if the annotation does not go past the y axis height.
+      if (currentMaxHeight + verticalOverlap <= yAxisHeight) {
+        heightToUse = currentMaxHeight + verticalOverlap;
+      } else {
+        heightToUse = currentMaxHeight;
+      }
+    }
+    // Check if there is any position with space available between existing
+    // annotations.
+    for (let i = 0; i < overlappingYs.length; i++) {
+      // Check if there is enough space.
+      if (overlappingYs[i + 1] - (overlappingYs[i] + annotationWidth) >=
+          horizontalOverlap) {
+        heightToUse = overlappingYs[i];
+      }
+    }
+    return heightToUse;
   }
 
   // If the selected date already has an annotation, modify the time
