@@ -28,7 +28,9 @@ import {CustomizableGraphAnnotation} from './customizable-graph-annotation';
 })
 export class CustomizableGraphComponent extends
     GraphComponent<CustomizableData> implements OnChanges, OnDestroy {
-  // An event indicating that the points on the CustomizableGraph have changed.
+  /**
+   * An event indicating that the points on the CustomizableGraph have changed.
+   */
   @Output() pointsChanged = new EventEmitter<CustomizableData>();
   /**
    * Holds whether this graph is in edit mode.

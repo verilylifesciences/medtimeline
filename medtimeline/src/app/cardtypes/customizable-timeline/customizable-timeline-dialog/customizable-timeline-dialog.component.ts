@@ -11,7 +11,7 @@ import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 // tslint:disable-next-line:max-line-length
-import {BOSTON_BAY, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_LAVENDER, BOSTON_PINK, BOSTON_PURPLE, BOSTON_YELLOW} from 'src/app/theme/bch_colors';
+import * as Colors from 'src/app/theme/verily_colors';
 
 /**
  * A Dialog with a textarea input, used to set the description of points on the
@@ -34,8 +34,8 @@ export class CustomizableTimelineDialogComponent {
   // The list of colors the user will be able to choose from.
   // These colors need to stay consistent with the colored styles in graph.css.
   listOfColors = [
-    BOSTON_YELLOW, BOSTON_GREEN, BOSTON_INDIGO, BOSTON_BAY, BOSTON_PINK,
-    BOSTON_LAVENDER, BOSTON_PURPLE
+    Colors.CYAN, Colors.TURQUOISE, Colors.GREEN, Colors.LIME, Colors.GOLD,
+    Colors.ORANGE, Colors.CORAL
   ];
 
   // The selected color in this dialog box.
@@ -69,7 +69,7 @@ export class CustomizableTimelineDialogComponent {
     // matching the selected color passed in.
     this.selectedColor = data.color ?
         this.listOfColors.find(c => c.hex() === data.color.hex()) :
-        BOSTON_YELLOW;
+        Colors.CYAN;
     // Set the title if it is passed in.
     if (data.title) {
       this.userTitle = data.title;

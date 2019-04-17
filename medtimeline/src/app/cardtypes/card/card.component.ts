@@ -5,7 +5,7 @@
 
 import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import * as Color from 'color';
-import {BOSTON_WARM_GRAY} from 'src/app/theme/bch_colors';
+import * as Colors from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 /**
@@ -19,7 +19,7 @@ import {UI_CONSTANTS_TOKEN} from 'src/constants';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() color: Color = BOSTON_WARM_GRAY;
+  @Input() color: Color = Colors.BLUE_GREY_50;
   @Input() id: string;
   @Input() label: string;
   @Input() isDraggable = true;
