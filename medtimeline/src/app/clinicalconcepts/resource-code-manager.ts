@@ -48,12 +48,14 @@ export class ResourceCodeManager {
     // Pull all the defaults to the top.
     new LOINCCode(
         '1988-5', labResult, 'C-Reactive Protein', true, [0, 100], true),
-    new LOINCCode('4537-7', labResult, 'ESR', true, [0, 200]),
+    new LOINCCode(
+        '4537-7', labResult, 'ESR (Erythrocyte Sedimentation Rate)', true,
+        [0, 200]),
     new LOINCCode('3094-0', labResult, 'BUN', true),
     new LOINCCode('2160-0', labResult, 'Creatinine', true),
     new LOINCCode('1742-6', labResult, 'ALT', true),
     new LOINCCode(
-        '1920-8', labResult, 'Aspartate Aminotransferase (AST)', true),
+        '1920-8', labResult, 'AST (Aspartate Aminotransferase)', true),
     new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', true),
     new LOINCCode('1968-7', labResult, 'Bilirubin, Direct', true),
     new LOINCCode('1975-2', labResult, 'Bilirubin, Total', true),
@@ -64,7 +66,8 @@ export class ResourceCodeManager {
     new LOINCCode('8310-5', vitalSign, 'Temperature', true, [35, 41]),
     new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
     new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
-    new LOINCCode('59408-5', vitalSign, 'SpO2', true, [5, 100], true)
+    new LOINCCode(
+        '59408-5', vitalSign, 'Oxygen Saturation (SpO2)', true, [5, 100], true)
   ];
 
   /**
@@ -79,7 +82,7 @@ export class ResourceCodeManager {
 
   private static readonly bloodPressureLoincs = [
     new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true),
-    new LOINCCode('76214-6', vitalSign, 'Mean Arterial Pressure', true)
+    new LOINCCode('8478-0', vitalSign, 'Mean Arterial Pressure (Device)', true)
   ];
 
   private static readonly gentMonitoring = [
@@ -217,9 +220,9 @@ export class ResourceCodeManager {
           [new LOINCCode('777-3', labResult, 'Platelet', false, [0.5, 30])],
           labResult, ChartType.LINE, [0.5, 30]),
       new LOINCCodeGroup(
-          this.fhirService, 'White Blood Cell',
-          [new LOINCCode('26464-8', labResult, 'White Blood Cell', false)],
-          labResult, ChartType.LINE),
+          this.fhirService, 'WBC',
+          [new LOINCCode('26464-8', labResult, 'WBC', false)], labResult,
+          ChartType.LINE),
     ];
 
     codeGroups.push(new AxisGroup(
@@ -234,8 +237,15 @@ export class ResourceCodeManager {
           [new LOINCCode(
               '35332-6', labResult, 'Neutrophil/Band', true, [0, 100])],
           labResult, ChartType.LINE, [0, 100]),
-      // TODO: add Immature Granulocytes
-      // TODO: add Lymphocyte
+      new LOINCCodeGroup(
+          this.fhirService, 'Immature Granulocytes',
+          [new LOINCCode(
+              '38518-7', labResult, 'Immature Granulocytes', false, [0, 100])],
+          labResult, ChartType.LINE, [0, 100]),
+      new LOINCCodeGroup(
+          this.fhirService, 'Lymphocyte',
+          [new LOINCCode('736-9', labResult, 'Lymphocyte', false, [0, 100])],
+          labResult, ChartType.LINE, [0, 100]),
       new LOINCCodeGroup(
           this.fhirService, 'Monocyte',
           [new LOINCCode('5905-5', labResult, 'Monocyte', false, [0, 100])],
