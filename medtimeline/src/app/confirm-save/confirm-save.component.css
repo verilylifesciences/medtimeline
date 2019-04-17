@@ -17,10 +17,6 @@
   pointer-events: none !important;
 }
 
-.previewText,h1 {
-  font-family: 'Quicksand', sans-serif;
-}
-
 .mat-dialog-actions {
   float: right;
 }

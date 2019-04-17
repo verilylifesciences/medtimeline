@@ -7,7 +7,7 @@ import {Component, forwardRef, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
-import {ABNORMAL} from 'src/app/theme/bch_colors';
+import {ABNORMAL} from 'src/app/theme/verily_colors';
 
 import {GraphComponent} from '../graph/graph.component';
 import {LegendInfo} from '../legend-info';
