@@ -3,7 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClient} from '@angular/common/http';
+import {TestBed} from '@angular/core/testing';
+import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {FhirHttpService} from './fhir-http.service';
@@ -33,15 +37,8 @@ describe('FhirService', () => {
         }
       }
     };
-    const domSan = {
-      sanitize: () => 'safeString',
-      bypassSecurityTrustHtml: () => 'safeString',
-      bypassSecurityTrustStyle: () => 'safeString',
-      bypassSecurityTrustScript: () => 'safeString',
-      bypassSecurityTrustUrl: () => 'safeString',
-      bypassSecurityTrustResourceUrl: () => 'safeString',
-    };
-    service = new FhirHttpService(null, smartOnFhirClient, domSan);
+    service = new FhirHttpService(
+        null, smartOnFhirClient, TestBed.get(DomSanitizer), undefined);
   });
 
 

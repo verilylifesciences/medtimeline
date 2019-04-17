@@ -26,7 +26,7 @@ describe('ObservationSet', () => {
       new AnnotatedObservation(new Observation({
         code: {
           coding: [{system: LOINCCode.CODING_STRING, code: '4092-3'}],
-          text: 'Vanc Tr'
+          text: 'Vancomycin Level, Trough/Pre'
         },
         valueQuantity: {value: 90}
       }))

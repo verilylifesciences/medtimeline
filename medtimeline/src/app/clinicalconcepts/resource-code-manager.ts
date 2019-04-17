@@ -28,7 +28,7 @@ export const documentReferenceLoinc =
     new LOINCCode('68608-9', undefined, 'Summary', true);
 
 const ovaAndParasiteExam = new BCHMicrobioCode(
-    'OVAANDPARASITEEXAM', microbio, 'Ovo and Parasite Exam', false);
+    'OVAANDPARASITEEXAM', microbio, 'Ova and Parasite Exam', false);
 
 const salmonella = new BCHMicrobioCode(
     'SALMONELLAANDSHIGELLACULTURE', microbio, 'Salmonella and Shigella Culture',
@@ -51,7 +51,7 @@ export class ResourceCodeManager {
     new LOINCCode('4537-7', labResult, 'ESR', true, [0, 200]),
     new LOINCCode('3094-0', labResult, 'BUN', true),
     new LOINCCode('2160-0', labResult, 'Creatinine', true),
-    new LOINCCode('1742-6', labResult, 'Alanine Aminotransferase (ALT)', true),
+    new LOINCCode('1742-6', labResult, 'ALT', true),
     new LOINCCode(
         '1920-8', labResult, 'Aspartate Aminotransferase (AST)', true),
     new LOINCCode('6768-6', labResult, 'Alkaline Phosphatase', true),
@@ -61,7 +61,7 @@ export class ResourceCodeManager {
   ];
 
   private static readonly vitalLoincs = [
-    new LOINCCode('8310-5', vitalSign, 'Body temperature', true, [35, 41]),
+    new LOINCCode('8310-5', vitalSign, 'Temperature', true, [35, 41]),
     new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
     new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
     new LOINCCode('59408-5', vitalSign, 'SpO2', true, [5, 100], true)
@@ -137,7 +137,7 @@ export class ResourceCodeManager {
   // TODO(b/117431412): Figure out which microbio concepts to display.
   private static stoolGroup = [
     new BCHMicrobioCode(
-        'OVAANDPARASITEEXAM', microbio, 'Ovo and Parasite Exam', true),
+        'OVAANDPARASITEEXAM', microbio, 'Ova and Parasite Exam', true),
     new BCHMicrobioCode(
         'SALMONELLAANDSHIGELLACULTURE', microbio,
         'Salmonella and Shigella Culture', true)

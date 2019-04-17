@@ -223,10 +223,17 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
    * @param seriesLegend The legend info for the series we're working with.
    */
   private colorAbnormalPoints(
-      series: any, yBounds: [number, number], seriesLegend: LegendInfo) {
+      series: any, yNormalBounds: [number, number], seriesLegend: LegendInfo) {
     const pointBackgroundColors = new Array<string>();
     const pointBorderColors = new Array<string>();
 
+    // Highlight the points that are outside of the normal range, or that
+    // are marked as abnormal.
+    const allAbnormalPoints =
+        this.data.series.map(s => s.abnormalCoordinates)
+            .reduce(
+                (p, c) => new Set([...Array.from(p), ...Array.from(c)]),
+                new Set());
     for (let pt of series.data) {
       // pt could also be a number here, so we constrain it to when it's a
       // ChartPoint. For some reason Typescript doesn't like it when we do a
@@ -234,7 +241,11 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       // y-attribute is a workaround.
       if (pt.hasOwnProperty('y')) {
         pt = pt as ChartPoint;
-        if (yBounds && (pt.y < yBounds[0] || pt.y > yBounds[1])) {
+        const outsideOfNormalBounds = yNormalBounds &&
+            (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]);
+        const inAbnormalSet = allAbnormalPoints.has([pt.x, pt.y]);
+
+        if (outsideOfNormalBounds || inAbnormalSet) {
           pointBackgroundColors.push(seriesLegend.fill.rgb().string());
           pointBorderColors.push(ABNORMAL.rgb().string());
         } else {
