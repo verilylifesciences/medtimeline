@@ -274,8 +274,6 @@ export class FhirHttpService extends FhirService {
         }],
       }
     };
-    // TODO(b/119119092): Currently we only have permissions to write for
-    // Timmy (patient id 4342012), not Wilma
     this.smartApiPromise.then(smartApi => {
       testData['resource']['subject'] = {
         reference: [FhirResourceType.Patient, smartApi.patient.id].join('/')

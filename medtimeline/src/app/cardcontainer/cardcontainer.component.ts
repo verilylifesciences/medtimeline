@@ -82,8 +82,6 @@ export class CardcontainerComponent {
   private eventsForCustomTimelines =
       new Map<string, Array<{[key: string]: number | string}>>();
 
-  // TODO(b/119251288): Extract out the constants to somewhere shared between
-  // the ts files and html files.
   constructor(
       dragulaService: DragulaService,
       private fhirService: FhirService,

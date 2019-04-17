@@ -19,7 +19,6 @@ import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
 
-// TODO(b/117234137): Protractor tests for line graph display
 describe('LineGraphComponent', () => {
   let component: LineGraphComponent;
   let fixture: ComponentFixture<LineGraphComponent>;

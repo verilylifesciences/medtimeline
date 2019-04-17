@@ -149,8 +149,6 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
     super(medicationOrderList);
     // Set the RxNormCode and MedicationConceptGroup for this
     // MedicationOrderSet.
-    // TODO(b/117327111): Restructure FhirResourceSet to take in a list of
-    // attributes to check sameness for
     if (medicationOrderList.length > 0) {
       const firstRxNorm = medicationOrderList[0].rxNormCode;
       if (!firstRxNorm) {
