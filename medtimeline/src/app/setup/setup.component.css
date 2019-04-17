@@ -3,9 +3,12 @@ button {
 }
 
 h3 {
-  color: white;
   padding: 5px;
   margin: 10px;
+}
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 mat-icon {
@@ -26,7 +29,7 @@ mat-icon {
   width: 100%;
   padding-top: 20px;
   padding-left: 40px;
-  color: black;
+  color: white;
   height: 100%;
 }
 
@@ -37,4 +40,53 @@ mat-icon {
 ::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
   display: flex;
   display: -ms-flexbox;
+}
+
+.defaultBackgroundColor {
+  background-color: #202020; /* Grey 900 */
+}
+
+.accentBackgroundColor {
+  /* Deep Purple 800 to Pink 900 */
+ background-image: linear-gradient(to right, #4527A0 , #870D4E);
+ color: white;
+}
+
+::ng-deep  app-setup .mat-form-field-wrapper {
+  color: white;
+}
+
+::ng-deep app-setup .mat-checkbox-frame {
+  border-color: white;
+}
+
+::ng-deep app-setup .mat-radio-outer-circle {
+  border-color: white;
+}
+
+::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {
+  color: gray;
+}
+::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {
+  color: white;
+}
+
+::ng-deep app-setup .mat-form-field-label {
+  color:white !important;
+}
+
+::ng-deep app-setup .mat-form-field-underline {
+  background-color: white !important;
+}
+
+::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: white !important;
+}
+
+::ng-deep app-setup .mat-form-field-underline {
+  background-color: white !important;
+}
+
+app-setup .mat-input-placeholder {
+  color: white;
 }
