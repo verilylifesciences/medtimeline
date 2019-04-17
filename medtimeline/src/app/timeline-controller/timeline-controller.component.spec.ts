@@ -29,7 +29,7 @@ const encounters = [
     period: {start: '1987-05-13T00:00:00.000Z', end: '1987-05-20T00:00:00.000Z'}
   })
 ];
-// TODO(b/121206822): better coverage for various encounter scenarios
+
 describe('TimelineControllerComponent with encounters', () => {
   let component: TimelineControllerComponent;
   let fixture: ComponentFixture<TimelineControllerComponent>;

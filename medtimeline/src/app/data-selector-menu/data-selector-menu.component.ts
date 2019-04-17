@@ -69,31 +69,16 @@ export class DataSelectorMenuComponent implements OnInit {
   // event to CardContainer.
   private addConceptCard(label: string) {
     this.addCard.emit(label);
-    // Record the user adding a card with charts to Google Analytics.
-    (<any>window).gtag('event', 'addConcept', {
-      'event_category': 'addCard',
-      'event_label': label
-    });
   }
 
   // Emits an event indicating to CardContainer to add a blank textbox at the
   // top of the page.
   private textbox() {
     this.addTextbox.emit();
-    // Record the user adding a textbox card to Google Analytics.
-    (<any>window).gtag('event', 'addTextbox', {
-      'event_category': 'addCard',
-      'event_label': new Date().toDateString()
-    });
   }
 
   private customTimeline() {
     this.addCustomTimeline.emit();
-    // Record the user adding a CustomizableTimeline to Google Analytics.
-    (<any>window).gtag('event', 'addCustomTimeline', {
-      'event_category': 'addCard',
-      'event_label': new Date().toDateString()
-    });
   }
 
   // Filter the concepts shown on the autocomplete menu.

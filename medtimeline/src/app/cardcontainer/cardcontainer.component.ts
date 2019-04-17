@@ -82,8 +82,6 @@ export class CardcontainerComponent {
   private eventsForCustomTimelines =
       new Map<string, Array<{[key: string]: number | string}>>();
 
-  // TODO(b/119251288): Extract out the constants to somewhere shared between
-  // the ts files and html files.
   constructor(
       dragulaService: DragulaService,
       private fhirService: FhirService,
@@ -132,13 +130,6 @@ export class CardcontainerComponent {
         originalIndex++;
       }
       this.displayedConcepts.splice(originalIndex, 1);
-      // Record the user moving a card to Google Analytics.
-      (<any>window).gtag('event', 'moveCard', {
-        'event_category': 'moveCard',
-        'event_label':
-            ((typeof elementDisplayed === 'string') ? elementDisplayed :
-                                                      elementDisplayed.label)
-      });
     }));
   }
 
@@ -199,11 +190,6 @@ export class CardcontainerComponent {
               duration: this.DISPLAY_TIME,  // Wait 6 seconds before dismissing
                                             // the snack bar.
             });
-        // Record the user saving a snapshot to Google Analytics.
-        (<any>window).gtag('event', 'saveStaticSnapshot', {
-          'event_category': 'save',
-          'event_label': new Date().toDateString()
-        });
       }
     });
   }
@@ -223,17 +209,10 @@ export class CardcontainerComponent {
         this.recentlyRemoved = [index, concept];
         this.openSnackBar();
         if (this.eventsForCustomTimelines.get($event.id)) {
-          // We only remove the event lines for this CustomTimeline if the
-          // user confirms the deletion of the card.
+          // We only remove the event lines for this CustomTimeline if the user
+          // confirms the deletion of the card.
           this.updateEventLines({id: $event.id});
         }
-      } else {
-        // The user does not wish to delete the card.
-        // Record the user canceling a deletion to Google Analytics.
-        (<any>window).gtag('event', 'cancelDelete', {
-          'event_category': 'deleteCard',
-          'event_label': (typeof concept === 'string') ? concept : concept.label
-        });
       }
     });
   }
@@ -243,8 +222,8 @@ export class CardcontainerComponent {
   private openSnackBar() {
     const message = this.uiConstants.CARD_REMOVED;
     const snackBarRef = this.snackBar.open(message, this.uiConstants.UNDO, {
-      duration: this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the
-                                    // snack bar.
+      duration:
+          this.DISPLAY_TIME,  // Wait 6 seconds before dismissing the snack bar.
     });
     // Undo the most recent deletion according to what is stored in
     // recentlyRemoved.
@@ -257,11 +236,6 @@ export class CardcontainerComponent {
           data: this.displayedConcepts[0].value
         });
       }
-      // Record the user undoing a deletion to Google Analytics.
-      (<any>window).gtag('event', 'undoDelete', {
-        'event_category': 'deleteCard',
-        'event_label': Array.from(this.recentlyRemoved.values()).toString()
-      });
     });
   }
 

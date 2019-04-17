@@ -47,11 +47,8 @@ export class Axis {
    * Holds the GraphData already resolved for the class's current date range,
    * unless it hasn't been resolved yet. Then this variable will be undefined,
    * and you need to call updateDateRange to get the data loaded in.
-   *
-   * TODO(b/129284629): This should be a private variable after reworking the
-   * region rendering.
    */
-  alreadyResolvedData: GraphData;
+  private alreadyResolvedData: GraphData;
 
   /**
    * The associated DisplayGrouping for this graph.

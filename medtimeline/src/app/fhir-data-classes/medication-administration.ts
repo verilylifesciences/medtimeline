@@ -42,10 +42,6 @@ export class MedicationAdministration extends LabeledClass {
                                    null);
     this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
 
-    // TODO(b/111990521): If there are hours and minutes then we can guarantee
-    // timezone is specified, but if not, then the timezone might not be
-    // specified! I'm not sure how to best handle that.
-    // https://www.hl7.org/fhir/DSTU2/datatypes.html#dateTime
     this.timestamp = json.effectiveTimeDateTime ?
         DateTime.fromISO(json.effectiveTimeDateTime).toUTC() :
         (json.effectiveTimePeriod ?

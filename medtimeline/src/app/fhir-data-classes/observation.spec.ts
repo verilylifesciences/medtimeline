@@ -128,10 +128,6 @@ describe('Observation', () => {
     expect(observation.label).toEqual('Temperature');
   });
 
-
-  /*
-  TODO(b/119673528): Work out which labels we're going to use for BCH, then
-  re-enable.
   it('should raise error if LOINC label does not match observation label',
      () => {
        const constructor = () => {
@@ -144,7 +140,6 @@ describe('Observation', () => {
        };
        expect(constructor).toThrowError();
      });
-  */
 
   it('should get the result from json', () => {
     const observation = new Observation(

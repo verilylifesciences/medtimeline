@@ -89,10 +89,6 @@ export class Observation extends LabeledClass {
    */
   constructor(private json: any) {
     super(Observation.getLabel(json));
-    // TODO(b/111990521): If there are hours and minutes then we can
-    // guarantee timezone is specified, but if not, then the timezone might
-    // not be specified! I'm not sure how to best handle that.
-    // https://www.hl7.org/fhir/DSTU2/datatypes.html#dateTime
     this.timestamp = json.effectiveDateTime ?
         DateTime.fromISO(json.effectiveDateTime).toUTC() :
         json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
@@ -157,17 +153,14 @@ export class Observation extends LabeledClass {
           'JSON: ' + JSON.stringify(json));
     }
 
-    /*
-    TODO(b/119673528): Work out which labels we're going to use for BCH, then
-    re-enable.
     // Check the observation label against the LOINC code label.
-    if (this.label !== this.loincCodes[0].label) {
+    if (this.label.toLowerCase() !== this.codes[0].label.toLowerCase()) {
       throw Error(
           'The label for this observation\'s LOINC code doesn\'t match ' +
           ' the label in the data. Observation label: ' + this.label +
-          ' LOINC label: ' + this.loincCodes[0].label);
+          ' LOINC label: ' + this.codes[0].label);
     }
-    */
+
 
     this.value = json.valueQuantity ? json.valueQuantity : null;
     if (this.value) {
@@ -184,9 +177,9 @@ export class Observation extends LabeledClass {
     this.result =
         json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
 
-    // TODO(b/121318193): Impement better parsing of Observations with BCH Codes
-    // (associated with Microbiology data). These Observations might not have
-    // values or results.
+    // TODO(b/121318193): Implement better parsing of Observations with BCH
+    // Codes (associated with Microbiology data). These Observations might not
+    // have values or results.
     if (this.value === null && this.result === null && !this.interpretation &&
         this.innerComponents.length === 0) {
       throw Error(

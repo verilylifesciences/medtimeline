@@ -39,11 +39,6 @@ export class TextboxcardComponent {
     // We pass a 'value' field with the contents of the textbox so that, in case
     // of restoration of a deleted textbox, the previous value can be displayed.
     this.removeEvent.emit({id: this.id, value: this.noteString});
-    // Record the user deleting a textbox card to Google Analytics.
-    (<any>window).gtag('event', 'deleteTextbox', {
-      'event_category': 'deleteCard',
-      'event_label': new Date().toDateString()
-    });
   }
 
   edit() {

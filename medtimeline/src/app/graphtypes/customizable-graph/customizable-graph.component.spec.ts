@@ -84,7 +84,6 @@ describe('CustomizableGraphComponent', () => {
     ]);
   });
 
-  // TODO(b/128857535): Fix tests below.
   it('should handle editing a point', () => {
     // Set up some stub data so that there's a chart to render.
     component.data = CustomizableData.defaultEmptySeries();

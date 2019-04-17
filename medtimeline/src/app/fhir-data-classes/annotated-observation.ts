@@ -21,7 +21,6 @@ export class AnnotatedObservation extends LabeledClass {
        * The items in this list are [label, value] pairs to be displayed in
        * a tooltip.
        * This array should be treated as immutable.
-       * TODO(b/126219092): Pull in a library to enforce immutability.
        */
       readonly annotationValues = new Array<[string, string]>()) {
     super(observation.label);

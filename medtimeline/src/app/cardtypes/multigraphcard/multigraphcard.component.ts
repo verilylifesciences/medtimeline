@@ -227,10 +227,5 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
     // We do not add a 'value' field because there is no internal value that
     // needs to be restored when the user reverts a deletion.
     this.removeEvent.emit({id: this.id});
-    // Record the user deleting a card with charts to Google Analytics.
-    (<any>window).gtag('event', 'deleteConcept', {
-      'event_category': 'deleteCard',
-      'event_label': this.label
-    });
   }
 }

@@ -81,10 +81,5 @@ export class CustomizableTimelineComponent implements OnChanges {
   // Called when the user clicks the trashcan button on the card.
   remove() {
     this.removeEvent.emit({id: this.id, value: this.data});
-    // Record the user deleting a CustomizableTimeline to Google Analytics.
-    (<any>window).gtag('event', 'deleteCustomTimeline', {
-      'event_category': 'deleteCard',
-      'event_label': new Date().toDateString()
-    });
   }
 }

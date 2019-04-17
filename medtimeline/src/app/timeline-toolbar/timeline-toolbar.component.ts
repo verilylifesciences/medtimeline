@@ -45,10 +45,5 @@ export class TimelineToolbarComponent {
 
   openHelpDialog() {
     const dialogRef = this.dialog.open(HelpDialogComponent);
-    // Record the user viewing the tutorial to Google Analytics.
-    (<any>window).gtag('event', 'viewTutorial', {
-      'event_category': 'tutorial',
-      'event_label': new Date().toDateString()
-    });
   }
 }
