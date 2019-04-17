@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="toolbar">
-  <h1 class="title">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>
+<mat-toolbar class="accentBackgroundColor">
+  <h1 style="color: white">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>
   <div class="actions">
     <button mat-raised-button (click)="onContinue()" cdkFocusInitial id="continue">
       {{uiConstants.CONTINUE}}
@@ -9,9 +9,9 @@
 <div *ngIf="useDebugger">
   <app-debugger></app-debugger>
 </div>
-<div class="mainSetup">
+<div class="defaultBackgroundColor mainSetup">
   <div>
-    <h1 class="title">{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h1>
+    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>
     <mat-radio-group>
       <div *ngFor="let encounter of encounters">
         <mat-radio-button [value]="encounter">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="checkboxActions">
-    <h1 class="title">Which timelines would you like to see first?</h1>
+    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>
     <button mat-raised-button (click)="selectAll()" id="continue">
       {{uiConstants.SELECT_ALL}}
     </button>
@@ -41,10 +41,10 @@
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div *ngFor="let entry of displayGroupingOptions | async">
-      <div class="category" [style.color]="entry[0].fill.hsl().string()">
-        {{entry[0].label}}
+      <div [style.background-color]="entry[0].fill.hsl().string()" class="category">
+        <h3>{{entry[0].label}}</h3>
       </div>
-      <div *ngFor="let element of entry[1].sort(sortResources)">
+      <div *ngFor="let element of entry[1].sort(sortResources)" class="conceptOptions">
         <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
           [disabled]="!codeGroupAvailable.get(element.label)">
           {{element.label}} <span class="grayout"
