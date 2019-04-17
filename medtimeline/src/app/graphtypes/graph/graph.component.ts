@@ -91,7 +91,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   readonly customTooltips =
       (tooltipContext) => {
-        console.log(tooltipContext);
         // Get, or construct, a tooltip element to put all the tooltip HTML
         // into.
         const canvas = document.getElementById(this.chartDivId);
@@ -107,7 +106,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
 
         if (tooltipContext.body) {
           tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
-          console.log(tooltipEl.innerHTML);
         }
 
         // Display the tooltip lined up with the data point.

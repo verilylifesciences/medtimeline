@@ -61,6 +61,12 @@ export class LabeledSeries {
        * Holds information about how this series should be displayed.
        */
       readonly legendInfo?: LegendInfo,
+       /**
+       * The coordinate values in the labeled series that should be marked as
+       * abnormal because of their interpretation results.
+       */
+      readonly abnormalCoordinates =
+          new Set<[DateTime | string, number|string]>(),
       /**
        * A map of DateTimes to corresponding tuples representing the low and
        * high bounds of what should be considered "normal" along the y-axis.
@@ -115,15 +121,22 @@ export class LabeledSeries {
       observationSet: ObservationSet, encounters: Encounter[]): LabeledSeries {
     let coordinates: Array<[DateTime, number]> = [];
     const observations = observationSet.resourceList;
+    const abnormal = new Set<[DateTime | string, number | string]>();
     for (const obs of observations) {
       coordinates.push(
           [obs.observation.timestamp, obs.observation.value.value]);
+
+      if (obs.observation.interpretation &&
+          obs.observation.interpretation.code !== NORMAL) {
+        abnormal.add([obs.observation.timestamp, obs.observation.value.value]);
+      }
     }
 
     coordinates = this.addEncounterEndpoints(coordinates, encounters);
     return new LabeledSeries(
         observationSet.label, coordinates, observationSet.unit,
-        undefined,  // legendInfo
+        undefined,  // legendInfo,
+        abnormal,
         observationSet.normalRanges);
   }
 
@@ -143,15 +156,26 @@ export class LabeledSeries {
   static fromObservationSetsDiscrete(
       observationSets: ObservationSet[], yValue: number, label,
       encounters: Encounter[]): LabeledSeries {
-    let coordinates: Array<[DateTime, number]> = [];
+    let coordinates: Array<[DateTime, number | string]> = [];
+    const abnormal = new Set<[DateTime | string, number | string]>();
     for (const obsSet of observationSets) {
       const observations = obsSet.resourceList;
       for (const obs of observations) {
         coordinates.push([obs.observation.timestamp, yValue]);
+
+        if (obs.observation.interpretation &&
+            obs.observation.interpretation.code !== NORMAL) {
+          abnormal.add([obs.observation.timestamp, yValue]);
+        }
       }
     }
     coordinates = this.addEncounterEndpoints(coordinates, encounters);
-    return new LabeledSeries(label, coordinates);
+    return new LabeledSeries(
+        label, coordinates,
+        undefined,  // unit
+        undefined,  // y normal bounds,
+        undefined,  // legend info,
+        abnormal);
   }
 
   /**
@@ -190,6 +214,7 @@ export class LabeledSeries {
     return new LabeledSeries(
         medOrderSet.label, coords, medOrderSet.unit,
         undefined,  // legendInfo
+        undefined, // abnormal points
         // Always keep normalRanges undefined for MedicationOrder-based
         // LabeledSeries, as we only show normal ranges for Observations with a
         // normal range given in the data.
@@ -275,6 +300,7 @@ export class LabeledSeries {
     return [
       new LabeledSeries(
           label, coordinates, medAdminsForOrder.unit, legend,
+          undefined, // abnormal points
           // Always keep normalRanges undefined for MedicationOrder-based
           // LabeledSeries, as we only show normal ranges for Observations with
           // a normal range given in the data.

@@ -44,8 +44,8 @@ describe('LOINCCodeGroup', () => {
            },
            component: [{
              code: {
-               coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}],
-               text: 'Diastolic BP'
+               coding: [{system: LOINCCode.CODING_STRING, code: '8462-4'}],
+               text: 'Diastolic Blood Pressure'
              },
              valueQuantity: {value: 69}
            }]
@@ -68,7 +68,7 @@ describe('LOINCCodeGroup', () => {
              expect(result.length).toEqual(2);
              expect(result[0].label).toEqual('ALT');
              expect(result[0].resourceList.length).toEqual(2);
-             expect(result[1].label).toEqual('Diastolic BP');
+             expect(result[1].label).toEqual('Diastolic Blood Pressure');
              expect(result[1].resourceList.length).toEqual(1);
              done();
            });

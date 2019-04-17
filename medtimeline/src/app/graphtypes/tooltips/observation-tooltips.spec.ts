@@ -48,9 +48,9 @@ describe('DiscreteObservationTooltip', () => {
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) + '</th></tr>' +
             '<tr>' +
-            '<td class="name">Vanco Pk</td><td class="value">blue</td></tr>' +
+            '<td class="name">Vanc pk</td><td class="value">blue</td></tr>' +
             '<tr>' +
-            '<td class="name">Vanco Pk</td><td class="value">green</td></tr>' +
+            '<td class="name">Vanc pk</td><td class="value">green</td></tr>' +
             '</tbody></table>');
   });
 });
@@ -90,9 +90,9 @@ describe('GenericObservationTooltip', () => {
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) + '</th></tr>' +
             '<tr>' +
-            '<td class="name">Vanco Pk</td><td class="value">blue</td></tr>' +
+            '<td class="name">Vanc pk</td><td class="value">blue</td></tr>' +
             '<tr>' +
-            '<td class="name">Vanco Pk</td><td class="value">green</td></tr>' +
+            '<td class="name">Vanc pk</td><td class="value">green</td></tr>' +
             '</tbody></table>');
   });
 });

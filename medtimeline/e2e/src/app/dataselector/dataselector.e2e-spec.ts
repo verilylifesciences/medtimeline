@@ -80,8 +80,8 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
-          'Body temperature', 'Heart Rate', 'Respiratory Rate',
-          'Blood Pressure', 'SpO2'
+          'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood Pressure',
+          'SpO2'
         ]));
     expect(itemsText.length).toEqual(5);
   });
@@ -100,9 +100,8 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
-          'Alanine Aminotransferase (ALT)', 'Alkaline Phosphatase',
-          'Aspartate Aminotransferase (AST)', 'Bilirubin, Direct',
-          'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
+          'ALT', 'Alkaline Phosphatase', 'Aspartate Aminotransferase (AST)',
+          'Bilirubin, Direct', 'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
           'Complete Blood Count', 'Complete Blood Count White Blood Cell',
           'Creatinine', 'CSF', 'ESR', 'Other Fluid', 'Uric acid', 'Urinalysis'
         ]));

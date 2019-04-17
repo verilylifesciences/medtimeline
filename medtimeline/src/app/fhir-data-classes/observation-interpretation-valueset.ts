@@ -14,6 +14,7 @@ export const OBSERVATION_INTERPRETATION_VALUESET_URL =
 export const CHECK_RESULT_CODE = 'CHECKRESULT';
 export const NEGFLORA_CODE = 'NEGORFLORA';
 export const NEG_CODE = 'NEG';
+export const NORMAL = 'N';
 
 /**
  * Represents the possible interpretations for observations. Each interpretation
@@ -59,7 +60,7 @@ const STANDARD_FHIR_INTERPRETATIONS = [
   new ObservationInterpretation(
       'MS',
       'Moderately susceptible. Indicates for microbiology susceptibilities only.'),
-  new ObservationInterpretation('N', 'Normal'),
+  new ObservationInterpretation(NORMAL, 'Normal'),
   new ObservationInterpretation('ND', 'Not Detected'),
   new ObservationInterpretation(NEG_CODE, 'Negative'),
   new ObservationInterpretation('NR', 'Non-reactive'),

@@ -81,7 +81,6 @@ export class Observation extends LabeledClass {
   // The number of decimal places stored in the value.
   readonly precision: number;
 
-
   /**
    * Makes an Observation out of a JSON object that represents a
    * a FHIR observation.

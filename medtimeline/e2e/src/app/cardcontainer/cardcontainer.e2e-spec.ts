@@ -85,7 +85,7 @@ describe('Card Container', () => {
 
        expect(cardLabels).toEqual([
          'Custom Timeline',
-         'Body temperature',
+         'Temperature',
          'Heart Rate',
          'Respiratory Rate',
          'SpO2',
@@ -94,7 +94,7 @@ describe('Card Container', () => {
          'ESR',
          'BUN',
          'Creatinine',
-         'Alanine Aminotransferase (ALT)',
+         'ALT',
          'Aspartate Aminotransferase (AST)',
          'Alkaline Phosphatase',
          'Bilirubin, Direct',
@@ -186,9 +186,9 @@ describe('Card Container', () => {
 
     expect(updatedCardLabels).toEqual([
       'Custom Timeline', 'Heart Rate', 'Respiratory Rate', 'SpO2',
-      'Blood Pressure', 'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine',
-      'Alanine Aminotransferase (ALT)', 'Aspartate Aminotransferase (AST)',
-      'Alkaline Phosphatase', 'Bilirubin, Direct', 'Bilirubin, Total',
+      'Blood Pressure', 'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT',
+      'Aspartate Aminotransferase (AST)', 'Alkaline Phosphatase',
+      'Bilirubin, Direct', 'Bilirubin, Total',
       'Complete Blood Count White Blood Cell',
       'Vancomycin & Gentamicin Summary', 'Vancomycin', 'Stool', 'NP Swab'
     ]);
