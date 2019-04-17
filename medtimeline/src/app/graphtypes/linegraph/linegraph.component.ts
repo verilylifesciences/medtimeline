@@ -130,6 +130,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
           backgroundColor: 'rgba(0,0,0,0.0)',
           // Black text for label.
           fontColor: 'rgba(0, 0, 0, 0.8)',
+          fontFamily: 'Work Sans',
           content: lbl + val.toString() + ' ' + this.data.unit,
           // Shift the text above or below the line, and to the right side of
           // the axis.

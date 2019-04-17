@@ -21,7 +21,12 @@
   -ms-flex: 1 1 0%; /* For IE10 */
 }
 
- .axis {
+.axis {
   flex: 0 0 auto;
   -ms-flex: 0 0 auto; /* For IE10 */
-} 
+}
+
+.mat-body {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+}
