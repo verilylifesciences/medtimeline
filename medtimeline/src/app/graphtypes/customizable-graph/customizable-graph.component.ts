@@ -3,13 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
 
@@ -43,8 +44,10 @@ export class CustomizableGraphComponent extends
   private dialogRef: any;
 
 
-  constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
-    super(sanitizer);
+  constructor(
+      readonly sanitizer: DomSanitizer, public dialog: MatDialog,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+    super(sanitizer, uiConstants);
     this.chartTypeString = 'scatter';
   }
 
