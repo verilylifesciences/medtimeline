@@ -1,6 +1,6 @@
 <mat-toolbar>
   <app-timeline-controller (changeDateRange)="changeDateRange($event)" [encounters]="this.setupDataService.encounters"
-    [selectedEncounter]="this.setupDataService.selectedEncounter"></app-timeline-controller>
+    [selectedDateRange]="this.setupDataService.selectedDateRange"></app-timeline-controller>
   <!--Push the buttons to the right and left sides.-->
   <div fxFlex class="flexSpacer"></div>
   <app-timeline-toolbar (saveSnapshot)="snapshot()" (addTextbox)="addTextbox()">

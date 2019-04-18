@@ -14,18 +14,27 @@
     <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>
     <mat-radio-group>
       <div *ngFor="let encounter of encounters">
-        <mat-radio-button [value]="encounter">
+        <mat-radio-button [value]="encounter.period">
           {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}
         </mat-radio-button>
       </div>
       <div>
-        <mat-radio-button value="undefined" [checked]="true">
+        <mat-radio-button [value]="lastThreeMonths">
+          {{uiConstants.LAST_THREE_MONTHS}}
+        </mat-radio-button>
+      </div>
+      <div>
+        <mat-radio-button [value]="lastMonth">
+          {{uiConstants.LAST_MONTH}}
+        </mat-radio-button>
+      </div>
+      <div>
+        <mat-radio-button [value]="lastSevenDays" [checked]="true">
           {{uiConstants.LAST_SEVEN_DAYS}}
         </mat-radio-button>
       </div>
     </mat-radio-group>
   </div>
-
   <div class="checkboxActions">
     <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>
     <button mat-raised-button (click)="selectAll()" id="continue">

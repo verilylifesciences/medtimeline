@@ -84,6 +84,8 @@ export const UI_CONSTANTS = {
   // Setup screen
   INITIAL_CONFIGURATION_HEADER: 'Select Initial Configuration',
   LAST_SEVEN_DAYS: 'Last seven days',
+  LAST_MONTH: 'Last month',
+  LAST_THREE_MONTHS: 'Last three months',
   NO_RESULTS: 'No results found',
   SELECT_ALL: 'Select all',
   CLEAR_SELECTION: 'Clear selection',

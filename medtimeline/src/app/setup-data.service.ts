@@ -4,26 +4,23 @@
 // license that can be found in the LICENSE file.
 
 import {Injectable} from '@angular/core';
-import {AxisGroup} from './graphtypes/axis-group';
-import {Encounter} from './fhir-data-classes/encounter';
+import {Interval} from 'luxon';
 
+import {Encounter} from './fhir-data-classes/encounter';
+import {AxisGroup} from './graphtypes/axis-group';
 
 /**
  * This class is a service that communicates the user-selected concepts on the
  * configuration page (SetupComponent) to CardContainerComponent.
  */
 @Injectable({providedIn: 'root'})
-
-// This class is a service that communicates the user-selected concepts on the
-// configuration page (SetupComponent) to CardContainerComponent.
 export class SetupDataService {
   /** Which concepts to display. */
   selectedConcepts: AxisGroup[];
   /** Which encounters to show in the date picker. */
   encounters: Encounter[];
   /**
-   * The first encounter to load into the app. We grab the data using this
-   * encounter's date span.
+   * The first date range to load into the app.
    */
-  selectedEncounter: Encounter;
+  selectedDateRange: Interval;
 }

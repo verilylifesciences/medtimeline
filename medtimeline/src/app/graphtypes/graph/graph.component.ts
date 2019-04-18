@@ -250,13 +250,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
             value: currentDate.toJSDate(),
             borderColor: eventline.color,
             borderWidth: 2,
-            label: {
-              fontColor: 'grey',
-              fontSize: 8,
-              position: 'center',
-              enabled: true,
-              content: eventline.text
-            }
           };
           this.chartOptions.annotation.annotations.push(line);
         }

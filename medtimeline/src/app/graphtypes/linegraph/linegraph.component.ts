@@ -181,8 +181,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
 
     // Draw label lines for the high and low bounds of the normal range.
     const lines = [
-      ['High normal boundary: ', yNormalBounds[1], -8],
-      ['Low normal boundary: ', yNormalBounds[0], 8]
+      ['Normal boundary: ', yNormalBounds[1], -8],
+      ['Normal boundary: ', yNormalBounds[0], 8]
     ];
 
     for (const line of lines) {

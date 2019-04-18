@@ -6,8 +6,8 @@ functionality, then space for a label & legend, then space for other contents. -
     <mat-icon *ngIf="isRemovable" class="removeCardButton" (click)="remove($event)"
       matTooltip="{{uiConstants.REMOVE_THIS_CARD}}">clear
     </mat-icon>
-    <mat-icon *ngIf="isDraggable" class="dragCardIcon" matTooltip="{{uiConstants.DRAG_THIS_CARD}}">
-      drag_indicator
+    <mat-icon class="removeCardButton" matTooltip="{{uiConstants.DRAG_THIS_CARD}}">
+      drag_handle
     </mat-icon>
     <!--Ensure that the dragger icon is always at the center of the color bar.-->
     <div style="margin-bottom: 12px"></div>
