@@ -3,29 +3,24 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Inject, Pipe, PipeTransform} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-confirm-save',
   templateUrl: './confirm-save.component.html',
   styleUrls: ['./confirm-save.component.css']
 })
-
-@Pipe({name: 'safe'})
-export class ConfirmSaveComponent implements PipeTransform {
+export class ConfirmSaveComponent {
   innerHtml: string;
   constructor(
       public dialogRef: MatDialogRef<ConfirmSaveComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: string,
-      private sanitizer: DomSanitizer) {
-    this.innerHtml = this.transform(data);
-  }
+      @Inject(MAT_DIALOG_DATA) readonly data: HTMLCanvasElement) {}
 
-  transform(htmlString: string): any {
-    // TODO(b/129060095): Can we do this without bypassing security?
-    return this.sanitizer.bypassSecurityTrustHtml(htmlString);
+  ngAfterViewInit() {
+    this.data.setAttribute('id', 'previewImg');
+    this.data.setAttribute('style', 'width:500px');
+    document.getElementById('previewCanvas').appendChild(this.data);
   }
 
   // The user does not wish to save the snapshot.
