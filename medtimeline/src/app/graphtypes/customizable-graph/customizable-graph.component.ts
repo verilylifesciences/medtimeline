@@ -69,6 +69,7 @@ export class CustomizableGraphComponent extends
     this.chartOptions.scales.yAxes[0].display = false;
     this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
     this.chartOptions.tooltips = {enabled: false};
+    this.chartOptions.hover = {mode: null};
     this.chartOptions.onClick = function(event) {
       if (!self.inEditMode) {
         return;
@@ -116,12 +117,8 @@ export class CustomizableGraphComponent extends
         chart.ctx.fillText(currentDateString, event.offsetX, yScale.bottom / 2);
       }
     };
-    this.chartOptions.animation = {
-      onComplete: function(chart) {
-        self.removeAnnotations();
-        self.addAnnotations();
-      }
-    };
+    this.removeAnnotations();
+    this.addAnnotations();
   }
 
   dateRangeChanged() {
@@ -150,8 +147,8 @@ export class CustomizableGraphComponent extends
       const difference = heightToUse - yOffset;
 
       // Only display the flag if the date it represents is within the
-      // current date range. This is so that the flag is not added to a
-      // location on the DOM that is not within the chart.
+      // current date range. This is so that the flag is not added to a location
+      // on the DOM that is not within the chart.
       if (this.entireInterval.contains(DateTime.fromMillis(millis).toLocal())) {
         const tooltip = this.findOrCreateTooltipElement(
             canvas, 'annotation-' + this.chartDivId + millis);

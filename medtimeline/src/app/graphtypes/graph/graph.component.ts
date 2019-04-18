@@ -149,10 +149,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       // Array of annotation configuration objects to be filled in.
       annotations: []
     },
-    // Disable any visual changes on hovering.
-    hover: {mode: null},
     /** The settings below are just for better performance. */
     animation: {duration: 0},
+    hover: {animationDuration: 0},
     responsiveAnimationDuration: 0
   };
 
@@ -221,6 +220,20 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       this.prepareForChartConfiguration();
       this.generateBasicChart(focusOnSeries);
       this.adjustGeneratedChartConfiguration();
+
+      // Don't let point style change on hover.
+      // For some reason this does better after data binding instead of inline.
+      // for (let i = 0; i < this.data.series.length; i++) {
+      //   const chartjsSeries = this.chartData[i];
+      //   const labeledSeries = this.data.series[i];
+      //   try {
+      //     chartjsSeries.pointHoverBackgroundColor =
+      //         labeledSeries.legendInfo.fill;
+      //     chartjsSeries.pointHoverBorderColor =
+      //         labeledSeries.legendInfo.outline;
+      //   } catch {
+      //   }
+      // }
     }
   }
 

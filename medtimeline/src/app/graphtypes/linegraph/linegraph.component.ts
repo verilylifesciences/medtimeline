@@ -120,8 +120,9 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         yDisplayBounds[1] + padding;
     this.chartOptions.scales.yAxes[0].afterBuildTicks = (scale) => {
       if (this.data && this.data.yTicks) {
-        scale.ticks =
-            LineGraphData.getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
+        scale.ticks = (this.data.yTicks.length === 1) ?
+            LineGraphData.getYTicks(yDisplayBounds[0], yDisplayBounds[1]) :
+            this.data.yTicks;
       }
     };
   }

@@ -60,7 +60,14 @@ export class CustomizableTimelineComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.deletedData && changes.deletedData.currentValue) {
       this.data = this.deletedData;
-      this.containedGraph.data = this.data;
+    }
+  }
+
+  // Render the contained graph in the event of a resize.
+  renderContainedGraph() {
+    if (this.containedGraph) {
+      this.inEditMode = false;
+      this.containedGraph.generateChart();
     }
   }
 
