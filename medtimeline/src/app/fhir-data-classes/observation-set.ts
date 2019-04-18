@@ -18,8 +18,7 @@ export class ObservationSet extends FhirResourceSet<AnnotatedObservation> {
    * The normal ranges for this set of observations. It maps a timestamp of each
    * Observation with a normal range to the corresponding normal range.
    */
-  normalRanges: Map<DateTime, [number, number]> =
-      new Map<DateTime, [number, number]>();
+  normalRanges = new Map<DateTime, [number, number]>();
 
   /**
    * The units for this set of observations. Left unset if the normal
