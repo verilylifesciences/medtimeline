@@ -1,0 +1,84 @@
+{
+    "entry": [
+        {
+            "fullUrl: ": https://xxxxx",
+            "resource": {
+                "category": {
+                    "coding": [
+                        {
+                            "code": "MB",
+                            "system": "http://hl7.org/fhir/v2/0074"
+                        }
+                    ]
+                },
+                "contained": [
+                    {
+                        "collection": {
+                            "collectedDateTime": "2019-02-12T10:00:00-05:00"
+                        },
+                        "id": "1",
+                        "resourceType": "Specimen",
+                        "type": {
+                            "text": "Blood"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "code": "BLOODCULTUREAEROBICANDANAEROBIC",
+                                    "display": "Blood Culture, Aerobic and Anaerobic",
+                                    "system": "http://cerner.com/bch_mapping/"
+                                }
+                            ]
+                        },
+                        "id": "2",
+                        "interpretation": {
+                            "coding": [
+                                {
+                                    "code": "NEGORFLORA",
+                                    "display": "Neg or Flora",
+                                    "system": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+                                }
+                            ]
+                        },
+                        "resourceType": "Observation"
+                    }
+                ],
+                "encounter": {
+                    "reference": "Encounter/80367214"
+                },
+                "id": "4795107315",
+                "issued": "2019-02-13T11:55:41.000-05:00",
+                "resourceType": "DiagnosticReport",
+                "result": [
+                    {
+                        "reference": "#2"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "#1"
+                    }
+                ],
+                "status": "final",
+                "subject": {
+                    "reference": "Patient/XXXXXXX"
+                }
+            }
+        }
+    ],
+    "id": "ab9a6da3-7124-4ed8-8841-56b874cf0821",
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://xxxxxxxx"
+        }
+    ],
+    "meta": {
+        "lastUpdated": "2019-03-31T10:59:59.506-04:00"
+    },
+    "resourceType": "Bundle",
+    "total": 1,
+    "type": "searchset"
+}

@@ -1,0 +1,2378 @@
+{
+  "resourceType": "Bundle",
+  "id": "f22d19cc-1b76-4171-bbbd-5436496bf28b",
+  "type": "searchset",
+  "total": 4,
+  "link": [
+    {
+      "relation": "self",
+      "url": ""
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2523147881",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-06-21T06:10:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-21T01:41:58.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: for convulsive seizure > 3mins",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "6470",
+              "display": "Lorazepam",
+              "userSelected": false
+            }
+          ],
+          "text": "LORazepam"
+        },
+        "dosageInstruction": [
+          {
+            "text": "3 mg = 1.5 mL, IV, daily, PRN: Seizure Activity",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "3 Milligram intravenous once a day as needed Seizure Activity. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-21T01:41:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "daily"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "91175000",
+                  "display": "Seizure (finding)",
+                  "userSelected": false
+                }
+              ],
+              "text": "Seizure Activity"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 3,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-21T01:41:58.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2602139465",
+        "meta": {
+          "versionId": "127",
+          "lastUpdated": "2018-10-02T16:06:41.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-23T09:35:10.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2589318351"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: Zn 5mg/day\r\nCu 450mcg/day",
+        "medicationCodeableConcept": {
+          "text": "Parenteral Nutrition 1440 mL"
+        },
+        "dosageInstruction": [
+          {
+            "text": "60 mL/hr, IV",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "60 Milliliter/hour intravenous. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-23T09:35:00.000-04:00"
+                }
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 1440,
+              "unit": "mL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mL"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 1440,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 24,
+                "unit": "hr",
+                "system": "http://unitsofmeasure.org",
+                "code": "h"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-23T09:35:10.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2495748469",
+        "meta": {
+          "versionId": "5",
+          "lastUpdated": "2018-07-23T13:00:50.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-05-30T15:57:07.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: 2 x maintenance fluids",
+        "medicationCodeableConcept": {
+          "text": "Total Fluids"
+        },
+        "dosageInstruction": [
+          {
+            "text": "3200 mL/day, DATA ONLY",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "3200 mL/day DATA ONLY ENTRIES. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-05-30T15:57:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "DATA ONLY"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-05-30T15:57:07.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2570179677",
+        "meta": {
+          "versionId": "12",
+          "lastUpdated": "2018-08-22T05:15:00.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-07-28T22:03:09.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2566715933"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "161",
+              "display": "Acetaminophen",
+              "userSelected": false
+            }
+          ],
+          "text": "acetaminophen"
+        },
+        "dosageInstruction": [
+          {
+            "text": "500 mg = 50 mL, 200 mL/hr, IV, Q6hr, PRN: Fever",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "200 Milliliter/hour intravenous every 6 hours as needed For Temperature. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-07-28T22:03:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q6hr"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "386661006",
+                  "display": "Fever (finding)",
+                  "userSelected": false
+                }
+              ],
+              "text": "Fever"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 500,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 50,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 15,
+                "unit": "minute",
+                "system": "http://unitsofmeasure.org",
+                "code": "min"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-07-28T22:03:09.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2621928079",
+        "meta": {
+          "versionId": "7",
+          "lastUpdated": "2018-09-21T23:46:27.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-09-08T09:16:23.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "161",
+              "display": "Acetaminophen",
+              "userSelected": false
+            }
+          ],
+          "text": "acetaminophen"
+        },
+        "dosageInstruction": [
+          {
+            "text": "375 mg = 11.72 mL, PO, Q4hr, PRN: Fever/Pain",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "375 Milligram by mouth every 4 hours as needed Fever/Pain. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-09-08T09:16:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q4hr"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "text": "Fever/Pain"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "26643006",
+                  "display": "Oral route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "PO"
+            },
+            "doseQuantity": {
+              "value": 375,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-09-08T09:16:23.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2579480385",
+        "meta": {
+          "versionId": "12",
+          "lastUpdated": "2018-09-28T09:38:23.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-05T09:50:16.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: * Must be diluted prior to admin *",
+        "medicationCodeableConcept": {
+          "text": "acetylcysteine"
+        },
+        "dosageInstruction": [
+          {
+            "text": "2,140 mg = 10.7 mL, NJ, Q6hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "2,140 Milligram NJ tube every 6 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-05T10:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q6hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "418730005",
+                  "display": "Nasojejunal route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "NJ"
+            },
+            "doseQuantity": {
+              "value": 2140,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-05T09:50:16.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2516412263",
+        "meta": {
+          "versionId": "22",
+          "lastUpdated": "2018-09-28T09:38:40.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-15T11:32:13.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2509916905"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450",
+              "display": "gentamicin",
+              "userSelected": false
+            }
+          ],
+          "text": "gentamicin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "107 mg = 21.4 mL, 21.4 mL/hr, IV, Q12hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "21.4 Milliliter/hour intravenous every 12 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-15T13:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q12hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 107,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 21.4,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 60,
+                "unit": "minute",
+                "system": "http://unitsofmeasure.org",
+                "code": "min"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-15T11:32:13.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2561829833",
+        "meta": {
+          "versionId": "0",
+          "lastUpdated": "2018-07-23T01:20:10.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-07-22T21:20:11.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "text": "aerochamber (aerochamber (medium mask))"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 EA, MDI, DATA ONLY",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "1 Each inhaled DATA ONLY ENTRIES. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-07-22T21:19:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "DATA ONLY"
+              }
+            },
+            "route": {
+              "text": "MDI"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "EA",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Each}"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-07-22T21:20:11.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2561829445",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-07-23T12:15:53.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-07-22T21:18:06.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "text": "albuterol (albuterol CFC free 90 mcg/inh inhalation aerosol)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "2 puff, INH, Q4hr, PRN: Respiratory Distress",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "2 puff(s) inhalation every 4 hours as needed Respiratory Distress. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-07-22T21:18:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q4hr"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "271825005",
+                  "display": "Respiratory distress (finding)",
+                  "userSelected": false
+                }
+              ],
+              "text": "Respiratory Distress"
+            },
+            "route": {
+              "text": "INH"
+            },
+            "doseQuantity": {
+              "value": 2,
+              "unit": "puff"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-07-22T21:18:06.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2650237299",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-09-29T00:55:07.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-09-28T17:22:48.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "245314",
+              "display": "Albuterol 1 MG/ML Inhalant Solution",
+              "userSelected": false
+            }
+          ],
+          "text": "albuterol (albuterol 5 mg/mL (0.5%) inhalation solution)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 mL, INH, TID",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "1 Milliliter inhalation three times a day. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-09-28T20:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "TID"
+              }
+            },
+            "route": {
+              "text": "INH"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "mL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mL"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-09-28T17:22:48.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2514822491",
+        "meta": {
+          "versionId": "27",
+          "lastUpdated": "2018-09-06T11:06:54.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-14T11:13:37.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: please discuss w MD before giving dose if SBP <100 and/or DBP <60",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "17767",
+              "display": "Amlodipine",
+              "userSelected": false
+            }
+          ],
+          "text": "amLODIPine"
+        },
+        "dosageInstruction": [
+          {
+            "text": "2.5 mg = 2.5 mL, NJ, BID",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "2.5 Milligram NJ tube twice a day. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-14T12:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "BID"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "418730005",
+                  "display": "Nasojejunal route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "NJ"
+            },
+            "doseQuantity": {
+              "value": 2.5,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-14T11:13:37.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2607334917",
+        "meta": {
+          "versionId": "6",
+          "lastUpdated": "2018-09-04T04:26:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-27T22:42:34.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: Compatible with D5W only.  Flush line with D5W before infusion",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450",
+              "display": "gentamicin",
+              "userSelected": false
+            }
+          ],
+          "text": "amphotericin B liposomal (gentamicin)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "92 mg = 46 mL, 23 mL/hr, IV, Q24hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "23 Milliliter/hour intravenous every 24 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-27T23:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q24hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 92,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 46,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 120,
+                "unit": "minute",
+                "system": "http://unitsofmeasure.org",
+                "code": "min"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-27T22:42:34.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2500078065",
+        "meta": {
+          "versionId": "23",
+          "lastUpdated": "2018-09-18T23:50:23.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-03T08:49:39.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596",
+              "display": "Bisacodyl",
+              "userSelected": false
+            }
+          ],
+          "text": "bisacodyl"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg = 1 tab, NJ, daily",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "5 Milligram NJ tube once a day. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-03T09:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "daily"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "418730005",
+                  "display": "Nasojejunal route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "NJ"
+            },
+            "doseQuantity": {
+              "value": 5,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-03T08:49:39.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2525292085",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-06-22T16:30:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-22T11:19:15.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "text": "concentrate medications (pharmacy use)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 EA, N/A, DATA ONLY",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "1 Each Not Applicable DATA ONLY ENTRIES. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-22T11:19:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "DATA ONLY"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "385432009",
+                  "display": "Not applicable (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "N/A"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "EA",
+              "system": "http://unitsofmeasure.org",
+              "code": "{Each}"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-22T11:19:15.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2505994783",
+        "meta": {
+          "versionId": "21",
+          "lastUpdated": "2018-07-12T20:47:18.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-07T14:20:12.000-04:00",
+        "status": "on-hold",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2496839855"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: Must be reviewed by ONCOLOGY chemotherapy competent RN.\r\n\r\nStart day -3 \r\n\r\n Continue until - See order comment. \r\n\r\n- Dosing to be updated based on levels (see pt care orders) with target trough levels of 250-350 mcg/L. \r\n- Continue until day 100, then tapered weekly and discontinued on day 180 if no evidence of GVHD.\r\n- Cyclosporine should be changed to enteral as soon as patient can tolerate enteral medication. \r\n\r\nInfuse via dedicated lumen of CVL. Draw ordered levels from non-contaminated lumen/venipuncture within the hour prior to the indicated dose.",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "205175",
+              "display": "Cyclosporine 50 MG/ML Injectable Solution",
+              "userSelected": false
+            }
+          ],
+          "text": "cycloSPORINE (cycloSPORINE IV)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "90 mg = 45 mL, 22.5 mL/hr, IV, Q12hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "22.5 Milliliter/hour intravenous every 12 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-08T05:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q12hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 90,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 45,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 120,
+                "unit": "minute",
+                "system": "http://unitsofmeasure.org",
+                "code": "min"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-07T14:20:12.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2577898191",
+        "meta": {
+          "versionId": "41",
+          "lastUpdated": "2018-09-28T09:39:17.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-03T13:27:08.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "3322",
+              "display": "Diazepam",
+              "userSelected": false
+            }
+          ],
+          "text": "diazePAM (Diazepam)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "3.75 mg = 0.75 mL, IV, Q6hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "3.75 Milligram intravenous every 6 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-03T17:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q6hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 3.75,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-03T13:27:08.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2588488077",
+        "meta": {
+          "versionId": "6",
+          "lastUpdated": "2018-08-15T00:48:46.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-12T19:41:58.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "3322",
+              "display": "Diazepam",
+              "userSelected": false
+            }
+          ],
+          "text": "diazePAM (Diazepam)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 mg = 0.2 mL, IV, Q6hr, PRN: Spasm",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "1 Milligram intravenous every 6 hours as needed spasm. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-12T19:41:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q6hr"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "45352006",
+                  "display": "Spasm (finding)",
+                  "userSelected": false
+                }
+              ],
+              "text": "Spasm"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-12T19:41:58.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2634852059",
+        "meta": {
+          "versionId": "10",
+          "lastUpdated": "2018-09-20T16:20:25.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-09-18T12:56:53.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2597202451"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "82000",
+              "display": "Colace",
+              "userSelected": false
+            }
+          ],
+          "text": "docusate (Colace)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "10 mg = 1 mL, NJ, BID",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "10 Milligram NJ tube twice a day. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-09-18T12:56:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "BID"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "418730005",
+                  "display": "Nasojejunal route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "NJ"
+            },
+            "doseQuantity": {
+              "value": 10,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-09-18T12:56:53.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2506296495",
+        "meta": {
+          "versionId": "9",
+          "lastUpdated": "2018-08-27T13:46:32.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-07T16:55:28.000-04:00",
+        "status": "on-hold",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: 800 unit = 4 drop",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "4018",
+              "display": "Ergocalciferol",
+              "userSelected": false
+            }
+          ],
+          "text": "ergocalciferol"
+        },
+        "dosageInstruction": [
+          {
+            "text": "50,000 unit = 6.25 mL, PO, WeeklyFriday",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "50,000 unit(s) by mouth weekly on Friday. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-08T08:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "WeeklyFriday"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "26643006",
+                  "display": "Oral route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "PO"
+            },
+            "doseQuantity": {
+              "value": 50000,
+              "unit": "unit",
+              "system": "http://unitsofmeasure.org",
+              "code": "U"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-07T16:55:28.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2525327943",
+        "meta": {
+          "versionId": "11",
+          "lastUpdated": "2018-07-13T16:03:52.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-06-22T11:40:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "200317",
+              "display": "Soybean Oil 200 MG/ML Injectable Suspension",
+              "userSelected": false
+            }
+          ],
+          "text": "fat emulsion 20%, intravenous 153.6 mL"
+        },
+        "dosageInstruction": [
+          {
+            "text": "6.4 mL/hr, IV",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "6.4 Milliliter/hour intravenous. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-06-22T11:40:00.000-04:00"
+                }
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 153.6,
+              "unit": "mL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mL"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 153.6,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 24,
+                "unit": "hr",
+                "system": "http://unitsofmeasure.org",
+                "code": "h"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-06-22T11:40:12.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2559782265",
+        "meta": {
+          "versionId": "10",
+          "lastUpdated": "2018-10-01T01:58:52.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-07-20T10:44:32.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "priorPrescription": {
+          "reference": "MedicationOrder/2553937061"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "68442",
+              "display": "Filgrastim",
+              "userSelected": false
+            }
+          ],
+          "text": "filgrastim"
+        },
+        "dosageInstruction": [
+          {
+            "text": "300 mcg = 6 mL, 24 mL/hr, IV, Q24hr",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "24 Milliliter/hour intravenous every 24 hours. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-07-20T22:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q24hr"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 300,
+              "unit": "mcg",
+              "system": "http://unitsofmeasure.org",
+              "code": "ug"
+            },
+            "rateRatio": {
+              "numerator": {
+                "value": 6,
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              },
+              "denominator": {
+                "value": 15,
+                "unit": "minute",
+                "system": "http://unitsofmeasure.org",
+                "code": "min"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-07-20T10:44:32.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2495391709",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-05-30T19:22:10.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-05-30T12:33:28.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: usual dose 300-500 units.  Use standard volume per device/number of ports.  While in OR.\r\nper venous access device policy",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "5224",
+              "display": "heparin",
+              "userSelected": false
+            }
+          ],
+          "text": "heparin flush (heparin Flush 100 unit/mL)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "500 unit = 5 mL, IV, 1time, PRN: Other - See Order Comments",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "500 unit(s) intravenous one time as needed Other - See Order Comments. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-05-30T12:33:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "1time"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "text": "Other - See Order Comments"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 500,
+              "unit": "unit",
+              "system": "http://unitsofmeasure.org",
+              "code": "U"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-05-30T12:33:28.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2587847185",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-08-11T19:39:43.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-11T15:33:22.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "note": "Order Comment: Flush each PICC lumen a MINIMUM of Q12h AND following the NS flush given after each medication as part of the \"SASH\" protocol.",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "5224",
+              "display": "heparin",
+              "userSelected": false
+            }
+          ],
+          "text": "heparin flush (heparin Flush 10 unit/mL)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "20 unit = 2 mL, IV, Q12hr, PRN: Line Maintenance",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "20 unit(s) intravenous every 12 hours as needed Line Maintenance. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-11T15:33:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "Q12hr"
+              }
+            },
+            "asNeededCodeableConcept": {
+              "text": "Line Maintenance"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 20,
+              "unit": "unit",
+              "system": "http://unitsofmeasure.org",
+              "code": "U"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-11T15:33:22.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2489352065",
+        "meta": {
+          "versionId": "0",
+          "lastUpdated": "2018-05-24T20:41:12.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-05-24T16:36:36.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77813230"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "197787",
+              "display": "Hydrocortisone 5 MG Oral Tablet",
+              "userSelected": false
+            }
+          ],
+          "text": "hydrocortisone (hydrocortisone 5 mg oral tablet)"
+        },
+        "dosageInstruction": [
+          {
+            "text": "See Instructions, 5mg at 6am  2.5mg at 2pm  2.5mg at 10pm, 60 tab",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "5mg at 6am\r\n2.5mg at 2pm\r\n2.5mg at 10pm. Refills: 0."
+                }
+              ]
+            },
+            "additionalInstructions": {
+              "text": "5mg at 6am\r\n2.5mg at 2pm\r\n2.5mg at 10pm"
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-05-24T16:36:37.000-04:00"
+                }
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-05-24T16:36:36.000-04:00"
+          },
+          "quantity": {
+            "value": 60,
+            "unit": "tab"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "id": "2604840457",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "5492",
+              "display": "Hydrocortisone",
+              "userSelected": false
+            }
+          ],
+          "text": "hydrocortisone"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg = 5 mL, IV, QAM",
+            "_text": {
+              "extension": [
+                {
+                  "url": "https://fhir-ehr.cerner.com/dstu2/StructureDefinition/patient-friendly-display",
+                  "valueString": "5 Milligram intravenous once daily in the morning. Refills: 0."
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2018-08-25T16:00:00.000-04:00"
+                }
+              },
+              "code": {
+                "text": "QAM"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route (qualifier value)",
+                  "userSelected": false
+                }
+              ],
+              "text": "IV"
+            },
+            "doseQuantity": {
+              "value": 5,
+              "unit": "mg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2018-08-25T09:03:12.000-04:00"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "id": "23865893"
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "id": "12345678"
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "vancomycin"
+        },
+        "id": "85426486"
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "18631"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "Azithromycin"
+        },
+        "id": "12345678"
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "resourceType": "MedicationOrder",
+        "meta": {
+          "versionId": "29",
+          "lastUpdated": "2018-09-19T13:45:06.000Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": ""
+        },
+        "dateWritten": "2018-08-25T09:03:12.000-04:00",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/PatientID",
+          "display": "PATIENT NAME"
+        },
+        "prescriber": {
+          "reference": "Practitioner/PractitionerID",
+          "display": "Practitioner NAME"
+        },
+        "encounter": {
+          "reference": "Encounter/77728861"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1596450"
+            }
+          ]
+        },
+        "medicationReference": {
+          "display": "gentamicin"
+        },
+        "id": "2516412263"
+      }
+    }
+  ]
+}
