@@ -5,7 +5,7 @@
 
 import {Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
+import {Chart, ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import {DateTime, Interval} from 'luxon';
 import {BaseChartDirective, Color} from 'ng2-charts';
@@ -305,6 +305,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   private generateBasicChart(focusOnSeries?: LabeledSeries[]) {
     // Transform the data into a format that chart.js can render it.
+    Chart.defaults.global.defaultFontFamily = 'Work Sans';
     const data = [];
     for (const series of this.data.series) {
       let lineWidth: number = GraphComponent.THIN_LINE;
@@ -480,7 +481,8 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         // Only show as many tick labels will fit neatly on the axis.
         autoSkip: true,
         display: true
-      }
+      },
+      scaleLabel: {fontFamily: 'Work Sans'}
     };
   }
 

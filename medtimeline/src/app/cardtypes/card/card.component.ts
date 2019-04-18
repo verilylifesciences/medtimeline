@@ -19,7 +19,7 @@ import {UI_CONSTANTS_TOKEN} from 'src/constants';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() color: Color = Colors.BLUE_GREY_50;
+  @Input() color: Color = Colors.BLUE_GREY_500;
   @Input() id: string;
   @Input() label: string;
   @Input() isDraggable = true;
