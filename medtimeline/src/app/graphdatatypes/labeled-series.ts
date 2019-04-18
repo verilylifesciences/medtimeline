@@ -9,7 +9,7 @@ import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from 
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {CHECK_RESULT_CODE} from '../fhir-data-classes/observation-interpretation-valueset';
+import {CHECK_RESULT_CODE, NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
 import {LegendInfo} from '../graphtypes/legend-info';
 
 import {MedicationOrder, MedicationOrderSet} from './../fhir-data-classes/medication-order';
@@ -36,8 +36,7 @@ export class LabeledSeries {
    * A map of DateTimes to corresponding tuples representing the low and high
    * bounds of what should be considered "normal" along the y-axis.
    */
-  normalRanges: Map<DateTime, [number, number]> =
-      new Map<DateTime, [number, number]>();
+  normalRanges = new Map<DateTime, [number, number]>();
 
   /**
    * This is the desired display range for the y-axis for this series. We
@@ -61,7 +60,7 @@ export class LabeledSeries {
        * Holds information about how this series should be displayed.
        */
       readonly legendInfo?: LegendInfo,
-       /**
+      /**
        * The coordinate values in the labeled series that should be marked as
        * abnormal because of their interpretation results.
        */
@@ -136,8 +135,7 @@ export class LabeledSeries {
     return new LabeledSeries(
         observationSet.label, coordinates, observationSet.unit,
         undefined,  // legendInfo,
-        abnormal,
-        observationSet.normalRanges);
+        abnormal, observationSet.normalRanges);
   }
 
   /**
@@ -173,9 +171,9 @@ export class LabeledSeries {
     return new LabeledSeries(
         label, coordinates,
         undefined,  // unit
-        undefined,  // y normal bounds,
         undefined,  // legend info,
-        abnormal);
+        abnormal    // abnormal points
+    );
   }
 
   /**
@@ -214,7 +212,7 @@ export class LabeledSeries {
     return new LabeledSeries(
         medOrderSet.label, coords, medOrderSet.unit,
         undefined,  // legendInfo
-        undefined, // abnormal points
+        undefined,  // abnormal points
         // Always keep normalRanges undefined for MedicationOrder-based
         // LabeledSeries, as we only show normal ranges for Observations with a
         // normal range given in the data.
@@ -300,7 +298,7 @@ export class LabeledSeries {
     return [
       new LabeledSeries(
           label, coordinates, medAdminsForOrder.unit, legend,
-          undefined, // abnormal points
+          undefined,  // abnormal points
           // Always keep normalRanges undefined for MedicationOrder-based
           // LabeledSeries, as we only show normal ranges for Observations with
           // a normal range given in the data.
