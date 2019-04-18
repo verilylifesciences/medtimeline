@@ -136,7 +136,13 @@ export class Axis {
    * application's time scope.
    */
   dataAvailableInAppTimeScope(): Promise<boolean> {
-    return this.resourceGroup.dataAvailableInAppTimeScope();
+    return Promise
+        .all(this.resourceGroup.resourceCodes.map(
+            rsc => rsc.dataAvailableInAppTimeScope(this.fhirService)))
+        .then(rsc => {
+          const flattened: boolean[] = [].concat.apply([], rsc);
+          return flattened.reduce((prev, curr) => prev || curr, false);
+        });
   }
 
   /**
