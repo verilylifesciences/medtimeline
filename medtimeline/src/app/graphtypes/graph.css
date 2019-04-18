@@ -1,7 +1,8 @@
-::ng-deep canvas{
+::ng-deep canvas {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  cursor: pointer;
 }
 ::ng-deep .chartjs-tooltip {
   opacity: 1;
