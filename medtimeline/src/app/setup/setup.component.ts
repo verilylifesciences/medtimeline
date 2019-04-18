@@ -8,7 +8,6 @@ import {FormControl} from '@angular/forms';
 import {MatRadioGroup} from '@angular/material/radio';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DateTime, Interval} from 'luxon';
-import {DeviceDetectorService} from 'ngx-device-detector';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
@@ -37,11 +36,10 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly chosenConcepts = new Array<AxisGroup>();
   readonly useDebugger = environment.useDebugger;
 
-
   /**
    * Which encounter to load into the app first.
    */
-  @ViewChild(MatRadioGroup) selectedEncounter: MatRadioGroup;
+  @ViewChild(MatRadioGroup) selectedDateRange: MatRadioGroup;
 
   /**
    * This FormControl monitors changes in the user input typed in the
@@ -72,8 +70,14 @@ export class SetupComponent implements OnInit, OnDestroy {
    */
   encounters: Encounter[];
 
-  /** A string that displays the browser. Used for debugging; to be removed. */
-  browserString = '';
+  // Fixed time periods to offer as options for selection.
+  today: DateTime = DateTime.utc().startOf('day');
+  readonly lastSevenDays =
+      Interval.fromDateTimes(this.today.minus({days: 7}), this.today);
+  readonly lastMonth =
+      Interval.fromDateTimes(this.today.minus({months: 1}), this.today);
+  readonly lastThreeMonths =
+      Interval.fromDateTimes(this.today.minus({months: 3}), this.today);
 
   sortResources = (function(a, b) {
     return a.label.localeCompare(b.label);
@@ -83,16 +87,16 @@ export class SetupComponent implements OnInit, OnDestroy {
     // Pass the selected information through to the setup data service.
     this.setupDataService.selectedConcepts = this.chosenConcepts;
     this.setupDataService.encounters = this.encounters;
-    this.setupDataService.selectedEncounter = this.selectedEncounter.value ?
-        this.selectedEncounter.value :
-        Interval.fromDateTimes(DateTime.utc().minus({days: 7}), DateTime.utc());
+    console.warn(this.selectedDateRange.value);
+    this.setupDataService.selectedDateRange = this.selectedDateRange.value ?
+        this.selectedDateRange.value :
+        Interval.fromDateTimes(this.today.minus({days: 7}), this.today);
   }
 
   constructor(
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
       private router: Router, private setupDataService: SetupDataService,
       private fhirService: FhirService,
-      private deviceService: DeviceDetectorService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     // Set up jut a couple things so we don't have to hold on to them as
     // unnecessary class variables.
@@ -120,11 +124,6 @@ export class SetupComponent implements OnInit, OnDestroy {
         this.checkedConcepts[concept.label] = true;
       }
     }
-
-    // Put up a warning if the browser is different than we intend.
-    this.deviceService.getDeviceInfo();
-    this.browserString = 'Browser: ' + this.deviceService.browser +
-        ' version: ' + this.deviceService.browser_version;
 
     // Retrieve the patient encounters. When they load in asynchronously,
     // the radio buttons for encounter selection will show up.
@@ -168,7 +167,10 @@ export class SetupComponent implements OnInit, OnDestroy {
    */
   selectAll() {
     for (const concept of this.allConcepts) {
-      this.checkedConcepts[concept.label] = true;
+      if (this.codeGroupAvailable.has(concept.label) &&
+          this.codeGroupAvailable.get(concept.label)) {
+        this.checkedConcepts[concept.label] = true;
+      }
     }
   }
 

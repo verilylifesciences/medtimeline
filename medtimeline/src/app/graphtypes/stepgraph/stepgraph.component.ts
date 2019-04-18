@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef, Inject} from '@angular/core';
+import {Component, forwardRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import * as wordwrap from 'wordwrap';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
@@ -22,10 +21,8 @@ import {GraphComponent} from '../graph/graph.component';
 })
 export class StepGraphComponent extends
     GraphComponent<StepGraphData|MicrobioGraphData> {
-  constructor(
-      readonly sanitizer: DomSanitizer,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(sanitizer, uiConstants);
+  constructor(readonly sanitizer: DomSanitizer) {
+    super(sanitizer);
   }
   /**
    * The maximum characters for a y-axis tick label.

@@ -22,7 +22,6 @@ export class CardComponent {
   @Input() color: Color = Colors.BLUE_GREY_500;
   @Input() id: string;
   @Input() label: string;
-  @Input() isDraggable = true;
   @Input() isEditable = false;
   @Input() isRemovable = true;
 

@@ -51,7 +51,6 @@ export const UI_CONSTANTS = {
   // Dialog for adding an event to the custom timeline
   ADD_TITLE_CUSTOM_EVENT: 'Add title',
   ADD_DESCRIPTION_CUSTOM_EVENT: 'Add description',
-  ADD_CARD_HERE: 'Add card here',
   DATE_CUSTOM_EVENT: 'Date',
   TIME_CUSTOM_EVENT: 'Time',
   CANCEL: 'Cancel',
@@ -84,6 +83,8 @@ export const UI_CONSTANTS = {
   // Setup screen
   INITIAL_CONFIGURATION_HEADER: 'Select Initial Configuration',
   LAST_SEVEN_DAYS: 'Last seven days',
+  LAST_MONTH: 'Last month',
+  LAST_THREE_MONTHS: 'Last three months',
   NO_RESULTS: 'No results found',
   SELECT_ALL: 'Select all',
   CLEAR_SELECTION: 'Clear selection',
@@ -95,8 +96,7 @@ export const UI_CONSTANTS = {
   CHANGE_DATE_RANGE: 'Change date range',
   MOCK_DATA_BANNER: 'This is synthesized data used for demo purposes only.',
   LAUNCH_TUTORIAL: 'Launch Tutorial',
-  SAVE_TO_NOTE:
-      'Save a static image of this page to a PowerChart clinical note',
+  SAVE_TO_NOTE: 'Save a screenshot of this page to a PowerChart clinical note',
   // Interacting with cards
   REMOVE_THIS_CARD: 'Remove this card',
   CARD_REMOVED: 'Card removed.',

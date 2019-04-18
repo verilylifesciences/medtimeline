@@ -11,7 +11,6 @@ import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {getDaysForIntervalSet} from '../date_utils';
 import {Encounter} from '../fhir-data-classes/encounter';
-import {FhirService} from '../fhir.service';
 
 /**
  * Date range picker for selecting the time span to show in all the charts.
@@ -38,10 +37,10 @@ export class TimelineControllerComponent {
   @Input() encounters: Encounter[];
 
   /**
-   * Holds the encounter to default to on initial setup. If unset, we'll
+   * Holds the date range to default to on initial setup. If unset, we'll
    * default to the last seven days.
    */
-  @Input() selectedEncounter: Encounter;
+  @Input() selectedDateRange: Interval;
 
   /**
    * Holds all the ISO strings for days covered by all the patient encounters
@@ -56,9 +55,12 @@ export class TimelineControllerComponent {
 
   /** Selected timespan is past seven days by default. */
   readonly defaultDateRange = {
-    startDate: moment.utc(
-        DateTime.utc().minus(Duration.fromObject({days: 7})).toJSDate()),
-    endDate: moment.utc(DateTime.utc())
+    startDate: moment.utc(DateTime.utc()
+                              .minus(Duration.fromObject({days: 7}))
+                              .toLocal()
+                              .startOf('day')
+                              .toJSDate()),
+    endDate: moment.utc(DateTime.utc().toLocal().endOf('day'))
   };
 
   /**
@@ -80,15 +82,10 @@ export class TimelineControllerComponent {
 
   ngOnInit() {
     // Set the initial date range selection and fire off a change event.
-    let selectedRange = this.defaultDateRange;
-    if (this.selectedEncounter && this.selectedEncounter.period) {
-      selectedRange = {
-        startDate: moment(
-            this.selectedEncounter.period.start.startOf('day').toJSDate()),
-        endDate:
-            moment(this.selectedEncounter.period.end.startOf('day').toJSDate())
-      };
-    }
+    const selectedRange = {
+      startDate: moment(this.selectedDateRange.start.startOf('day').toJSDate()),
+      endDate: moment(this.selectedDateRange.end.startOf('day').toJSDate())
+    };
     this.selected = selectedRange;
     this.datesUpdated(selectedRange);
 
@@ -124,10 +121,8 @@ export class TimelineControllerComponent {
             start.format('MM/DD/YYYY') + '-' + end.format('MM/DD/YYYY');
         this.datePickerRanges[label] = [start, end];
       }
-
-      this.datePickerRanges['Last seven days'] =
+      this.datePickerRanges[this.uiConstants.LAST_SEVEN_DAYS] =
           [this.defaultDateRange.startDate, this.defaultDateRange.endDate];
-
     } else {
       this.encounterError = true;
     }
