@@ -82,8 +82,7 @@
 }
 
 .label {
-  max-width: 200px;
-  min-width: 200px;
+  width: 100%;
   word-wrap: break-word;
   flex: 1 1 auto;
   -ms-flex: 1 1 auto; /* For IE10 */
