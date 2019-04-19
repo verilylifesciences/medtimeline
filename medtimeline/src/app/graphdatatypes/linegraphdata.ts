@@ -157,6 +157,8 @@ export class LineGraphData extends GraphData {
    * Constructs a map of timestamps to GenericAbnormalTooltips for any point
    * with an "abnormal" value. Currently, we only use the normal range as
    * reference.
+   * TODO(b/129059213): Use Observation.interpretation to determine abnormality
+   * as well.
    * @param series The series to construct the tooltip map for.
    * @param tooltipMap The existing tooltips for the series.
    * @param obsLabelToColor A map of Observation label to corresponding color.

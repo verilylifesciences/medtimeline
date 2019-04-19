@@ -8,17 +8,6 @@ import {DateTime, Duration, Interval} from 'luxon';
 
 import {environment} from './environments/environment';
 
-
-export function recordGoogleAnalyticsEvent(
-    eventName: string, eventCategory: string, eventLabel: string) {
-  if ((<any>window).gtag) {
-    (<any>window).gtag('event', eventName, {
-      'event_category': eventCategory,
-      'event_label': eventLabel
-    });
-  }
-}
-
 /** The period of time this app will search for patient encounters in.  */
 export const APP_TIMESPAN = environment.production ?
     Interval.fromDateTimes(
