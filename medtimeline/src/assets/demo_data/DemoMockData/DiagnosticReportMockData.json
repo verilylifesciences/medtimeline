@@ -422,8 +422,8 @@
               "coding": [
                 {
                   "system": "http://cerner.com/bch_mapping/",
-                  "code": "INFLUENZAABRSVPCRWASUBTYPEQUAL",
-                  "display": "Influenza A/B, RSV PCR w/A Subtype, QuaL"
+                  "code": "ADENOVIRUSPCRRESPQUAL",
+                  "display": "Adenovirus PCR, Resp, QuaL"
                 }
               ]
             },
