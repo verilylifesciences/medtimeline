@@ -1,5 +1,6 @@
 <div class="timelineToolbarMain" fxLayout="row">
   <div *ngIf="showMockDataMessage">{{uiConstants.SYNTH_DATA}}</div>
+  <div> {{uiConstants.LOINC_VERIFIED_STRING}}</div>
   <button mat-icon-button matTooltip="{{uiConstants.LAUNCH_TUTORIAL}}" (click)="openHelpDialog()">
     <mat-icon class="toolbarButton">help_outline</mat-icon>
   </button>
