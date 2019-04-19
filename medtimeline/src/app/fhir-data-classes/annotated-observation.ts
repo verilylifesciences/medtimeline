@@ -121,21 +121,13 @@ export class AnnotatedObservation extends LabeledClass {
     const annotations = new Array<[string, string]>();
     // Find the medication order set that coincides in time with this
     // administration (if any).
-    let matchingObservation: Observation;
     if (locationSet) {
       for (const locationObs of locationSet.resourceList) {
         if (locationObs.observation.timestamp.equals(observation.timestamp)) {
-          if (matchingObservation) {
-            throw Error(
-                'Two blood pressure locations recorded at the same time.');
-          }
-          matchingObservation = locationObs.observation;
+          annotations.push(
+              ['Blood Pressure Location', locationObs.observation.result]);
         }
       }
-    }
-
-    if (matchingObservation) {
-      annotations.push(['Blood Pressure Location', matchingObservation.result]);
     }
 
     return new AnnotatedObservation(observation, annotations);

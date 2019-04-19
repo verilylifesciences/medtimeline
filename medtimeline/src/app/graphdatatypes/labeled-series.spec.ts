@@ -347,5 +347,16 @@ describe('LabeledSeries', () => {
        expect(series[0].label).toEqual('id-NEGORFLORA-Final');
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');
      });
+
+  it('fromDiagnosticReport should make a series for' +
+         'corrected statuses in the report',
+     () => {
+       const diagnosticReport = makeDiagnosticReports()[2];
+       const series = LabeledSeries.fromDiagnosticReport(
+           diagnosticReport, DateTime.fromJSDate(new Date()));
+       expect(series.length).toEqual(2);
+       expect(series[0].label).toEqual('id-NEGORFLORA-Corrected');
+       expect(series[1].label).toEqual('id-CHECKRESULT-Corrected');
+     });
 });
 /* tslint:enable:object-literal-shorthand*/

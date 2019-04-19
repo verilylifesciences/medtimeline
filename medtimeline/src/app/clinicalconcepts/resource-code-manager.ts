@@ -136,24 +136,100 @@ export class ResourceCodeManager {
     new LOINCCode('12209-3', labResult, 'Eosinophil, Other Fluid')
   ];
 
-
-  // TODO(b/117431412): Figure out which microbio concepts to display.
-  private static stoolGroup = [
+  private static stoolGroupMB = [
     new BCHMicrobioCode(
-        'OVAANDPARASITEEXAM', microbio, 'Ova and Parasite Exam', true),
+        'CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', microbio,
+        'C difficile EIA w/rflx to amplified DNA', true),
+    new BCHMicrobioCode(
+        'CAMPYLOBACTERCULTURE', microbio, 'Campylobacter Culture', true),
+    new BCHMicrobioCode(
+        'ENTEROHEMORRHAGICECOLITEST', microbio, 'Enterohemorrhagic E coli Test',
+        true),
     new BCHMicrobioCode(
         'SALMONELLAANDSHIGELLACULTURE', microbio,
-        'Salmonella and Shigella Culture', true)
+        'Salmonella and Shigella Culture', true),
+    new BCHMicrobioCode('YERSINIACULTURE', microbio, 'Yersinia Culture', true),
   ];
 
-  private static npSwabGroup = [
-    new BCHMicrobioCode(
-        'INFLUENZAABRSVPCRWASUBTYPEQUAL', microbio,
-        'nfluenza A/B, RSV PCR w/A Subtype, QuaL', true),
+  private static respiratoryGroupMB = [
     new BCHMicrobioCode(
         'ADENOVIRUSPCRRESPQUAL', microbio, 'Adenovirus PCR, Resp, QuaL', true),
     new BCHMicrobioCode(
-        'VIRALDFARESPIRATORY', microbio, 'Viral DFA Respiratory', true)
+        'INFLUENZAABRSVPCRWASUBTYPEQUAL', microbio,
+        'Influenza A/B, RSV PCR w/A Subtype, QuaL', true),
+    new BCHMicrobioCode(
+        'RESPIRATORYCULTUREANDGRAMSTAIN', microbio,
+        'Respiratory Culture and Gram Stain', true),
+    new BCHMicrobioCode(
+        'VIRALDFARESPIRATORY', microbio, 'Viral DFA Respiratory', true),
+    new BCHMicrobioCode(
+        'PARAINFLUENZA1DFA', microbio, 'Parainfluenza 1 DFA', true),
+    new BCHMicrobioCode(
+        'PARAINFLUENZA123DFA', microbio, 'Parainfluenza 1, 2, 3 DFA', true),
+    new BCHMicrobioCode(
+        'PARAINFLUENZA2DFA', microbio, 'Parainfluenza 2 DFA', true),
+    new BCHMicrobioCode(
+        'PARAINFLUENZA3DFA', microbio, 'Parainfluenza 3 DFA', true),
+  ];
+
+  private static otherGroupMB = [
+    new BCHMicrobioCode(
+        'AFBCULTUREANDSTAIN', microbio, 'AFB Culture and Stain', true),
+    new BCHMicrobioCode(
+        'ANAEROBICCULTURE', microbio, 'Anaerobic Culture', true),
+    new BCHMicrobioCode(
+        'ASPERGILLUSGALACTOMANNANEIA', microbio,
+        'Aspergillus galactomannan EIA', true),
+    new BCHMicrobioCode(
+        'CMVSHELLVIALCULTURE', microbio, 'CMV Shell Vial Culture', true),
+    new BCHMicrobioCode(
+        'CATHETERTIPTUBINGFOREIGNBODYCULTURE', microbio,
+        'Catheter Tip/Tubing/Foreign Body Culture', true),
+    new BCHMicrobioCode(
+        'FLUIDCULTUREANDGRAMSTAIN', microbio, 'Fluid Culture and Gram Stain',
+        true),
+    new BCHMicrobioCode('FUNGUSCULTURE', microbio, 'Fungus Culture', true),
+    new BCHMicrobioCode('KOHFUNGALSTAIN', microbio, 'KOH Fungal Stain', true),
+    new BCHMicrobioCode(
+        'TISSUECULTUREANDGRAMSTAIN', microbio, 'Tissue Culture and Gram Stain',
+        true),
+    new BCHMicrobioCode('VZVDFA', microbio, 'VZV DFA', true),
+    new BCHMicrobioCode(
+        'VIRALCULTURENONRESPIRATORY', microbio,
+        'Viral Culture, Non Respiratory', true),
+    new BCHMicrobioCode(
+        'WOUNDCULTUREANDGRAMSTAIN', microbio, 'Wound Culture and Gram Stain',
+        true),
+    new BCHMicrobioCode('HSVDFA', microbio, 'HSV DFA', true),
+    new BCHMicrobioCode(
+        'HERPESSIMPLEXVIRUS12PCRQUAL', microbio,
+        'Herpes Simplex Virus 1/2 PCR, QuaL', true),
+  ];
+
+  private static bloodGroupMB = [
+    new BCHMicrobioCode(
+        'ADENOVIRUSPCRQUANT', microbio, 'Adenovirus PCR, QuaNT', true),
+    new BCHMicrobioCode(
+        'BLOODCULTUREROUTINEAEROBIC', microbio,
+        'Blood Culture Routine, Aerobic', true),
+    new BCHMicrobioCode(
+        'BLOODCULTUREAEROBICANDANAEROBIC', microbio,
+        'Blood Culture, Aerobic and Anaerobic', true),
+    new BCHMicrobioCode(
+        'BLOODCULTUREFUNGUS', microbio, 'Blood Culture, Fungus', true),
+    new BCHMicrobioCode(
+        'CYTOMEGALOVIRUSPCRQUANT', microbio, 'Cytomegalovirus PCR, QuaNT',
+        true),
+    new BCHMicrobioCode(
+        'EPSTEINBARRVIRUSPCRQUANT', microbio, 'Epstein-Barr Virus PCR, QuaNT',
+        true),
+  ];
+
+  private static csfGroupMB = [
+    new BCHMicrobioCode(
+        'CSFCULTUREANDGRAMSTAIN', microbio, 'CSF Culture and Gram Stain', true),
+    new BCHMicrobioCode(
+        'ENTEROVIRUSPCRCSFQUAL', microbio, 'Enterovirus PCR, CSF, QuaL', true)
   ];
 
   private static typeToPairs: Array<[DisplayGrouping, LOINCCode[]]> = [
@@ -346,16 +422,39 @@ export class ResourceCodeManager {
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
-            this.fhirService, 'Stool', ResourceCodeManager.stoolGroup, microbio,
-            ChartType.MICROBIO),
+            this.fhirService, 'Stool', ResourceCodeManager.stoolGroupMB,
+            microbio, ChartType.MICROBIO),
         'Stool')]));
 
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
-            this.fhirService, 'NP Swab', ResourceCodeManager.npSwabGroup,
+            this.fhirService, 'Respiratory',
+            ResourceCodeManager.respiratoryGroupMB, microbio,
+            ChartType.MICROBIO),
+        'Respiratory')]));
+
+    codeGroups.push(new AxisGroup([new Axis(
+        this.fhirService, this.sanitizer,
+        new BCHMicrobioCodeGroup(
+            this.fhirService, 'Other', ResourceCodeManager.otherGroupMB,
             microbio, ChartType.MICROBIO),
-        'NP Swab')]));
+        'Other')]));
+
+    codeGroups.push(new AxisGroup([new Axis(
+        this.fhirService, this.sanitizer,
+        new BCHMicrobioCodeGroup(
+            this.fhirService, 'Blood', ResourceCodeManager.bloodGroupMB,
+            microbio, ChartType.MICROBIO),
+        'Blood')]));
+
+    codeGroups.push(new AxisGroup([new Axis(
+        this.fhirService, this.sanitizer,
+        new BCHMicrobioCodeGroup(
+            this.fhirService, 'CSF Microbiology',
+            ResourceCodeManager.csfGroupMB, microbio, ChartType.MICROBIO),
+        'CSF Microbiology')]));
+
     ResourceCodeManager.axisGroups = codeGroups;
 
     const mapping = new Map<DisplayGrouping, AxisGroup[]>();
