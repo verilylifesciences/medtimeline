@@ -5,7 +5,7 @@
 
 import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
+import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
@@ -45,10 +45,7 @@ export class TimelineToolbarComponent {
 
   openHelpDialog() {
     const dialogRef = this.dialog.open(HelpDialogComponent);
-    // Record the user viewing the tutorial to Google Analytics.
-    (<any>window).gtag('event', 'viewTutorial', {
-      'event_category': 'tutorial',
-      'event_label': new Date().toDateString()
-    });
+    recordGoogleAnalyticsEvent(
+        'viewTutorial', 'tutorial', new Date().toDateString());
   }
 }
