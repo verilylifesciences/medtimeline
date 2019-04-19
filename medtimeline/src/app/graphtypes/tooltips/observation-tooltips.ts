@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {Color} from 'd3';
+import * as Color from 'color';
 import {DateTime} from 'luxon';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
 

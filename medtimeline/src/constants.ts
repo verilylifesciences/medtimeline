@@ -109,6 +109,7 @@ export const UI_CONSTANTS = {
   CHANGE_DATE_RANGE: 'Change date range',
   MOCK_DATA_BANNER: 'This is synthesized data used for demo purposes only.',
   LAUNCH_TUTORIAL: 'Launch Tutorial',
+  IFU: 'Open Instructions for Use',
   SAVE_TO_NOTE:
       'Save a static image of this page to a PowerChart clinical note',
   // Interacting with cards
