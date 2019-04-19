@@ -3,14 +3,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, EventEmitter, forwardRef, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
 
@@ -44,10 +43,8 @@ export class CustomizableGraphComponent extends
   private dialogRef: any;
 
 
-  constructor(
-      readonly sanitizer: DomSanitizer, public dialog: MatDialog,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(sanitizer, uiConstants);
+  constructor(readonly sanitizer: DomSanitizer, public dialog: MatDialog) {
+    super(sanitizer);
     this.chartTypeString = 'scatter';
   }
 
@@ -72,7 +69,6 @@ export class CustomizableGraphComponent extends
     this.chartOptions.scales.yAxes[0].display = false;
     this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
     this.chartOptions.tooltips = {enabled: false};
-    this.chartOptions.hover = {mode: null};
     this.chartOptions.onClick = function(event) {
       if (!self.inEditMode) {
         return;
@@ -120,8 +116,12 @@ export class CustomizableGraphComponent extends
         chart.ctx.fillText(currentDateString, event.offsetX, yScale.bottom / 2);
       }
     };
-    this.removeAnnotations();
-    this.addAnnotations();
+    this.chartOptions.animation = {
+      onComplete: function(chart) {
+        self.removeAnnotations();
+        self.addAnnotations();
+      }
+    };
   }
 
   dateRangeChanged() {
@@ -150,8 +150,8 @@ export class CustomizableGraphComponent extends
       const difference = heightToUse - yOffset;
 
       // Only display the flag if the date it represents is within the
-      // current date range. This is so that the flag is not added to a location
-      // on the DOM that is not within the chart.
+      // current date range. This is so that the flag is not added to a
+      // location on the DOM that is not within the chart.
       if (this.entireInterval.contains(DateTime.fromMillis(millis).toLocal())) {
         const tooltip = this.findOrCreateTooltipElement(
             canvas, 'annotation-' + this.chartDivId + millis);

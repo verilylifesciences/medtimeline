@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Inject, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Chart, ChartDataSets, ChartOptions, ChartXAxe, ChartYAxe} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
@@ -12,7 +12,6 @@ import {BaseChartDirective, Color} from 'ng2-charts';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {StandardTooltip} from '../tooltips/tooltip';
@@ -59,9 +58,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * the last day of the date range.
    */
   entireInterval: Interval;
-
-  /** Whether data is available for this graph for the current date range. */
-  dataPointsInDateRange = false;
 
   /*****************************************
    * Bound input variables
@@ -153,9 +149,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       // Array of annotation configuration objects to be filled in.
       annotations: []
     },
+    // Disable any visual changes on hovering.
+    hover: {mode: null},
     /** The settings below are just for better performance. */
     animation: {duration: 0},
-    hover: {animationDuration: 0},
     responsiveAnimationDuration: 0
   };
 
@@ -175,9 +172,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    */
   chartTypeString = 'line';
 
-  constructor(
-      readonly sanitizer: DomSanitizer,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+  constructor(readonly sanitizer: DomSanitizer) {
     // Generate a unique ID for this chart.
     const chartId = uuid();
     // Replace the dashes in the UUID to meet HTML requirements.
@@ -223,24 +218,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       this.entireInterval = Interval.fromDateTimes(
           this.dateRange.start.toLocal().startOf('day'),
           this.dateRange.end.toLocal().endOf('day'));
-      this.dataPointsInDateRange = this.data.dataPointsInRange(this.dateRange);
       this.prepareForChartConfiguration();
       this.generateBasicChart(focusOnSeries);
       this.adjustGeneratedChartConfiguration();
-
-      // Don't let point style change on hover.
-      // For some reason this does better after data binding instead of inline.
-      // for (let i = 0; i < this.data.series.length; i++) {
-      //   const chartjsSeries = this.chartData[i];
-      //   const labeledSeries = this.data.series[i];
-      //   try {
-      //     chartjsSeries.pointHoverBackgroundColor =
-      //         labeledSeries.legendInfo.fill;
-      //     chartjsSeries.pointHoverBorderColor =
-      //         labeledSeries.legendInfo.outline;
-      //   } catch {
-      //   }
-      // }
     }
   }
 
@@ -356,11 +336,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       axes.paddingLeft = GraphComponent.Y_AXIS_LEFT_PADDING;
     };
 
-    const self = this;
-    this.chartOptions.animation.onComplete = function(chart) {
-      self.showNoDataLabel(this);
-    };
-
     this.showXRegions();
   }
 
@@ -382,23 +357,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         borderWidth: 2,
       };
       this.chartOptions.annotation.annotations.push(annotation);
-    }
-  }
-
-  showNoDataLabel(chart: any) {
-    if (!this.dataPointsInDateRange) {
-      // Remove all other ctx objects drawn.
-      chart.clear();
-      chart.draw();
-
-      const xCoordinate = chart.width / 2;
-      const yCoordinate = chart.height / 2;
-      chart.ctx.textAlign = 'center';
-      chart.ctx.fillText(
-          UI_CONSTANTS.NO_DATA_AVAILABLE_TMPL +
-              this.entireInterval.start.toLocaleString() + ' and ' +
-              this.entireInterval.end.toLocaleString(),
-          xCoordinate, yCoordinate);
     }
   }
 
