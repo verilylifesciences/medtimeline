@@ -10,6 +10,7 @@ import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
+import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
@@ -38,8 +39,11 @@ describe('LineGraphComponent', () => {
       ChartType.LINE, [0, 50], false);
   beforeEach(async(() => {
     TestBed
-        .configureTestingModule(
-            {declarations: [LineGraphComponent], imports: [ChartsModule]})
+        .configureTestingModule({
+          declarations: [LineGraphComponent],
+          imports: [ChartsModule],
+          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
+        })
         .compileComponents();
   }));
 

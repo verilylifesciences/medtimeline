@@ -48,7 +48,7 @@ export class CustomizableGraphComponent extends
   constructor(
       readonly sanitizer: DomSanitizer, public dialog: MatDialog,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(uiConstants);
+    super(sanitizer, uiConstants);
     this.chartTypeString = 'scatter';
   }
 
