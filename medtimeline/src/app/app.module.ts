@@ -10,7 +10,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckbox, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -19,7 +19,6 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ChartsModule} from 'ng2-charts';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
-import {DeviceDetectorModule} from 'ngx-device-detector';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../environments/environment';
@@ -108,8 +107,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     MatRadioModule,
     ChartsModule,
     DragulaModule.forRoot(),
-    AppRoutingModule,
-    DeviceDetectorModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by

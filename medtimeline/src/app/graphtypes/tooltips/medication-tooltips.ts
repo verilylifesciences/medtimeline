@@ -4,7 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import * as d3 from 'd3';
 import {Duration} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-data-classes/medication-administration';
 
@@ -84,7 +83,7 @@ export class MedicationAdministrationTooltip extends
   }
 
   private formatDosage(administration: MedicationAdministration) {
-    return d3.format(',')(administration.dosage.quantity) + ' ' +
+    return administration.dosage.quantity.toLocaleString() + ' ' +
         administration.dosage.unit;
   }
 }

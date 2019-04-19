@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="space-around start">
-  <div>
-    <mat-icon>access_time</mat-icon>
-    <mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px" fxFlex>
+    <mat-icon fxFlex>access_time</mat-icon>
+    <mat-form-field fxFlex>
       <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
         (click)="datePicker.open()" required>
       <mat-error *ngIf="dateFormControl.invalid">Invalid date</mat-error>
@@ -10,7 +10,7 @@
       </mat-hint>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <input matInput [formControl]="timeFormControl" placeholder="Time" [matAutocomplete]="auto" required>
       <mat-error *ngIf="timeFormControl.invalid">Invalid time</mat-error>
       <mat-autocomplete #auto="matAutocomplete">
