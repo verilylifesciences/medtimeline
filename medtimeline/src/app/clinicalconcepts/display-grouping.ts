@@ -46,9 +46,3 @@ export const posFinalMB =
     new DisplayGrouping('Check Result Final', Colors.ABNORMAL);
 export const negFinalMB =
     new DisplayGrouping('Negative Final', Colors.BLUE_A700);
-// We declare DisplayGroupings that correspond to report statuses that we might
-// encounter rarely.
-export const posOtherNB =
-    new DisplayGrouping('Check Result, Other', Colors.DEEP_GOLD);
-export const negOtherMB =
-    new DisplayGrouping('Negative, Other', Colors.DEEP_GOLD);

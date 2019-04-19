@@ -3,19 +3,17 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Inject} from '@angular/core';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {GraphComponent} from './graph.component';
 
 class StubGraphComponent extends GraphComponent<any> {
-  constructor(@Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    super(TestBed.get(DomSanitizer), uiConstants);
+  constructor() {
+    super(TestBed.get(DomSanitizer));
     this.data = new GraphData(
         [new LabeledSeries(
             'Vanc Pk',
@@ -37,7 +35,7 @@ describe('GraphComponent', () => {
   }));
 
   beforeEach(() => {
-    component = new StubGraphComponent(UI_CONSTANTS_TOKEN);
+    component = new StubGraphComponent();
     component.dateRange = dateRange;
   });
 

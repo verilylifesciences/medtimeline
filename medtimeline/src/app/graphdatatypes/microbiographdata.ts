@@ -34,7 +34,6 @@ export class MicrobioGraphData extends StepGraphData {
   static fromDiagnosticReports(
       diagnosticReports: DiagnosticReport[], cultureType: string,
       sanitizer: DomSanitizer): MicrobioGraphData {
-    // TODO(b/121266814): Make constants or enum for cultureType.
     const points: LabeledSeries[] = [];
 
     const tooltipMap = new Map<string, string>();

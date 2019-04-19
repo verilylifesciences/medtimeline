@@ -5,8 +5,7 @@
 
 import {DateTime, Interval} from 'luxon';
 
-// tslint:disable-next-line:max-line-length
-import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, negFinalMB, negPrelimMB, posFinalMB, posPrelimMB} from '../clinicalconcepts/display-grouping';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
@@ -372,14 +371,10 @@ export class LabeledSeries {
       } else if (status === DiagnosticReportStatus.Final) {
         return posFinalMB;
       }
-      return posOtherNB;
-    } else {
-      if (status === DiagnosticReportStatus.Preliminary) {
-        return negPrelimMB;
-      } else if (status === DiagnosticReportStatus.Final) {
-        return negFinalMB;
-      }
-      return negOtherMB;
+    } else if (status === DiagnosticReportStatus.Preliminary) {
+      return negPrelimMB;
+    } else if (status === DiagnosticReportStatus.Final) {
+      return negFinalMB;
     }
   }
 

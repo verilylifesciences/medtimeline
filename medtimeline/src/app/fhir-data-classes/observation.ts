@@ -93,8 +93,6 @@ export class Observation extends LabeledClass {
         json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
     if (json.code) {
       if (json.code.coding) {
-        // TODO(b/121318193): Implement better parsing of Observations with BCH
-        // Codes (associated with Microbiology data).
         if (json.code.coding[0].system === BCHMicrobioCode.CODING_STRING) {
           this.codes = json.code.coding.map(
               (coding) => BCHMicrobioCode.fromCodeString(coding.code));
@@ -175,10 +173,6 @@ export class Observation extends LabeledClass {
 
     this.result =
         json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
-
-    // TODO(b/121318193): Implement better parsing of Observations with BCH
-    // Codes (associated with Microbiology data). These Observations might not
-    // have values or results.
     if (this.value === null && this.result === null && !this.interpretation &&
         this.innerComponents.length === 0) {
       throw Error(
@@ -191,7 +185,6 @@ export class Observation extends LabeledClass {
     // We are going to err on the side of safety and not include a normal range
     // unless there's just the one, and it includes a high and low field.
     // https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
-    // TODO(b/113575661): handle multiple ranges
     if (json.referenceRange && json.referenceRange.length === 1) {
       if (json.referenceRange[0].low && json.referenceRange[0].high) {
         this.normalRange = [

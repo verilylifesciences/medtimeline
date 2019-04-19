@@ -17,8 +17,10 @@ describe('ConfirmSaveComponent', () => {
         .configureTestingModule({
           declarations: [ConfirmSaveComponent],
           providers: [
-            {provide: MatDialogRef, useValue: {}},
-            {provide: MAT_DIALOG_DATA, useValue: {}}
+            {provide: MatDialogRef, useValue: {}}, {
+              provide: MAT_DIALOG_DATA,
+              useValue: document.createElement('canvas')
+            }
           ]
         })
         .compileComponents();
