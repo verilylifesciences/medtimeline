@@ -7,7 +7,7 @@ import {Component, EventEmitter, Inject, Input, Output, Renderer2, ViewChild} fr
 import {DateTime, Duration, Interval} from 'luxon';
 import * as moment from 'moment';
 import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
-import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {APP_TIMESPAN, recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {getDaysForIntervalSet} from '../date_utils';
 import {Encounter} from '../fhir-data-classes/encounter';
@@ -158,12 +158,10 @@ export class TimelineControllerComponent {
           DateTime.fromJSDate(rangeIn.endDate.toDate()).endOf('day').toUTC());
       this.changeDateRange.emit(interval);
 
-      // Record the user changing the date range to Google Analytics.
-      (<any>window).gtag('event', 'dateRangeChanged', {
-        'event_category': 'timeline',
-        'event_label': interval.start.toLocaleString() + ' - ' +
-            interval.end.toLocaleString()
-      });
+      recordGoogleAnalyticsEvent(
+          'dateRangeChanged', 'timeline',
+          interval.start.toLocaleString() + ' - ' +
+              interval.end.toLocaleString());
     }
   }
 }
