@@ -124,4 +124,34 @@ describe('AnnotatedObservation', () => {
          'Blood Pressure Location', 'location'
        ]);
      });
+
+  it('forBloodPressure should correctly give annotations with accurate bp locations if there are multiple locations for the same time',
+     () => {
+       const json1 = makeSampleDiscreteObservationJson(
+           'location1', DateTime.fromISO('1992-11-06T00:00:00.00'));
+       json1.code = {
+         coding: [{code: '41904-4', system: 'http://loinc.org'}],
+         text: 'Blood Pressure Location'
+       };
+       const json2 = makeSampleDiscreteObservationJson(
+           'location2', DateTime.fromISO('1992-11-06T00:00:00.00'));
+       json2.code = {
+         coding: [{code: '41904-4', system: 'http://loinc.org'}],
+         text: 'Blood Pressure Location'
+       };
+       const locationObservationSet = new ObservationSet([
+         new AnnotatedObservation(new Observation(json1)),
+         new AnnotatedObservation(new Observation(json2))
+       ]);
+       const annotated =
+           AnnotatedObservation.forBloodPressure(obs, locationObservationSet);
+       expect(annotated.observation).toEqual(obs);
+       expect(annotated.annotationValues.length).toEqual(2);
+       expect(annotated.annotationValues[0]).toEqual([
+         'Blood Pressure Location', 'location1'
+       ]);
+       expect(annotated.annotationValues[1]).toEqual([
+         'Blood Pressure Location', 'location2'
+       ]);
+     });
 });
