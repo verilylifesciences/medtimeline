@@ -11,7 +11,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
@@ -31,11 +30,8 @@ describe('StepGraphComponent', () => {
 
   beforeEach(async(() => {
     TestBed
-        .configureTestingModule({
-          declarations: [StepGraphComponent],
-          imports: [ChartsModule],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
-        })
+        .configureTestingModule(
+            {declarations: [StepGraphComponent], imports: [ChartsModule]})
         .compileComponents();
     fhirServiceStub = {
       getMedicationAdministrationsWithOrder(id: string) {

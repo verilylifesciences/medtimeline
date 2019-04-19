@@ -11,7 +11,6 @@ import {DateTime, Interval} from 'luxon';
 import {CustomizableTimelineDialogComponent} from 'src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
-import {recordGoogleAnalyticsEvent} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
 
@@ -73,7 +72,6 @@ export class CustomizableGraphComponent extends
     this.chartOptions.scales.yAxes[0].display = false;
     this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
     this.chartOptions.tooltips = {enabled: false};
-    this.chartOptions.hover = {mode: null};
     this.chartOptions.onClick = function(event) {
       if (!self.inEditMode) {
         return;
@@ -155,8 +153,8 @@ export class CustomizableGraphComponent extends
       const difference = heightToUse - yOffset;
 
       // Only display the flag if the date it represents is within the
-      // current date range. This is so that the flag is not added to a location
-      // on the DOM that is not within the chart.
+      // current date range. This is so that the flag is not added to a
+      // location on the DOM that is not within the chart.
       if (this.entireInterval.contains(DateTime.fromMillis(millis).toLocal())) {
         const tooltip = this.findOrCreateTooltipElement(
             canvas, 'annotation-' + this.chartDivId + millis);
@@ -308,9 +306,12 @@ export class CustomizableGraphComponent extends
         this.pointsChanged.emit(this.data);
         this.generateChart();
 
-        recordGoogleAnalyticsEvent(
-            'addEventCustomTimeline', 'customTimeline',
-            new Date().toDateString());
+        // Record the user adding an event on a CustomizableTimeline to Google
+        // Analytics.
+        (<any>window).gtag('event', 'addEventCustomTimeline', {
+          'event_category': 'customTimeline',
+          'event_label': new Date().toDateString()
+        });
       }
     });
   }
@@ -338,10 +339,12 @@ export class CustomizableGraphComponent extends
   addEditListener(annotation: CustomizableGraphAnnotation) {
     annotation.editIcon.onclick = ((e: MouseEvent) => {
       this.dialogRef = this.openDialog(annotation.timestamp, annotation);
-
-      recordGoogleAnalyticsEvent(
-          'editEventCustomTimeline', 'customTimeline',
-          new Date().toDateString());
+      // Record the user editing an event on a CustomizableTimeline to Google
+      // Analytics.
+      (<any>window).gtag('event', 'editEventCustomTimeline', {
+        'event_category': 'customTimeline',
+        'event_label': new Date().toDateString()
+      });
     });
   }
 }

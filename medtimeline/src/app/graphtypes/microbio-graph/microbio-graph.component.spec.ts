@@ -4,8 +4,8 @@
 // license that can be found in the LICENSE file.
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {DomSanitizer} from '@angular/platform-browser';
 import {ChartsModule} from 'ng2-charts';
-import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {MicrobioGraphComponent} from './microbio-graph.component';
 
@@ -18,7 +18,7 @@ describe('MicrobioGraphComponent', () => {
         .configureTestingModule({
           declarations: [MicrobioGraphComponent],
           imports: [ChartsModule],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
+          providers: [DomSanitizer]
         })
         .compileComponents();
   }));

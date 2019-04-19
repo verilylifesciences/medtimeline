@@ -10,7 +10,7 @@ import {FhirService} from 'src/app/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
-import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 /**
  * The customizable timeline lets the user plot any events they'd like to keep
@@ -74,7 +74,10 @@ export class CustomizableTimelineComponent implements OnChanges {
   // Called when the user clicks the trashcan button on the card.
   remove() {
     this.removeEvent.emit({id: this.id, value: this.data});
-    recordGoogleAnalyticsEvent(
-        'deleteCustomTimeline', 'deleteCard', new Date().toDateString());
+    // Record the user deleting a CustomizableTimeline to Google Analytics.
+    (<any>window).gtag('event', 'deleteCustomTimeline', {
+      'event_category': 'deleteCard',
+      'event_label': new Date().toDateString()
+    });
   }
 }

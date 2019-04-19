@@ -5,7 +5,7 @@
 
 import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as Color from 'color';
+import {Color} from 'd3';
 import {DateTime} from 'luxon';
 
 /*

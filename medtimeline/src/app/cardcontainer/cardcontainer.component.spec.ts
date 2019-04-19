@@ -113,7 +113,7 @@ describe('CardcontainerComponent', () => {
               useValue: {
                 selectedConcepts: [],
                 encounters: [],
-                selectedDateRange: Interval.fromDateTimes(
+                selectedEncounter: Interval.fromDateTimes(
                     DateTime.utc().minus({days: 7}), DateTime.utc())
               }
             }
