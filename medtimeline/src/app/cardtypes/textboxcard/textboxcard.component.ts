@@ -4,8 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Component, ElementRef, EventEmitter, Inject, Input, Output, ViewChild} from '@angular/core';
-import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
-
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 /**
  * A Material Card that displays a label, a textbox, and a draggable handle
  * in a row.
@@ -40,9 +39,11 @@ export class TextboxcardComponent {
     // We pass a 'value' field with the contents of the textbox so that, in case
     // of restoration of a deleted textbox, the previous value can be displayed.
     this.removeEvent.emit({id: this.id, value: this.noteString});
-
-    recordGoogleAnalyticsEvent(
-        'deleteTextbox', 'deleteCard', new Date().toDateString());
+    // Record the user deleting a textbox card to Google Analytics.
+    (<any>window).gtag('event', 'deleteTextbox', {
+      'event_category': 'deleteCard',
+      'event_label': new Date().toDateString()
+    });
   }
 
   edit() {

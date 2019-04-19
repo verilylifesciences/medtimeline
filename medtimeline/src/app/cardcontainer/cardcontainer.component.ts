@@ -9,7 +9,7 @@ import html2canvas from 'html2canvas';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
 import {Subscription} from 'rxjs';
-import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
@@ -131,12 +131,13 @@ export class CardcontainerComponent {
         originalIndex++;
       }
       this.displayedConcepts.splice(originalIndex, 1);
-
-      recordGoogleAnalyticsEvent(
-          'moveCard', 'moveCard',
-          (typeof elementDisplayed === 'string') ?
-              (elementDisplayed as string) :
-              (elementDisplayed.label as string));
+      // Record the user moving a card to Google Analytics.
+      (<any>window).gtag('event', 'moveCard', {
+        'event_category': 'moveCard',
+        'event_label':
+            ((typeof elementDisplayed === 'string') ? elementDisplayed :
+                                                      elementDisplayed.label)
+      });
     }));
   }
 
@@ -199,8 +200,11 @@ export class CardcontainerComponent {
                                               // dismissing the snack bar.
               });
 
-          recordGoogleAnalyticsEvent(
-              'saveStaticSnapshot', 'save', new Date().toDateString());
+        // Record the user saving a snapshot to Google Analytics.
+        (<any>window).gtag('event', 'saveStaticSnapshot', {
+          'event_category': 'save',
+          'event_label': new Date().toDateString()
+        });
         }
       });
     });
@@ -248,9 +252,11 @@ export class CardcontainerComponent {
           data: this.displayedConcepts[0].value
         });
       }
-      recordGoogleAnalyticsEvent(
-          'undoDelete', 'deleteCard',
-          Array.from(this.recentlyRemoved.values()).toString());
+      // Record the user undoing a deletion to Google Analytics.
+      (<any>window).gtag('event', 'undoDelete', {
+        'event_category': 'deleteCard',
+        'event_label': Array.from(this.recentlyRemoved.values()).toString()
+      });
     });
   }
 

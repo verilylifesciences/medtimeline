@@ -1,5 +1,5 @@
 <app-card [id]="id" [color]="this.color.hsl().string()" [label]="label + unitsLabel" (removeEvent)="remove()">
-  <ng-container *ngIf="legendToSeries.size > 1" class="legends-block">
+  <ng-container class="legends-block">
     <ng-container *ngFor="let series of legendToSeries | keyvalue">
       <div fxLayout="row" class="legend" *ngIf="hasData(series.value)" (mouseover)="focusOnSeries(series.value)"
         (mouseout)="resetChart()">
@@ -18,18 +18,18 @@
       </div>
       <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage" [ngSwitch]="axis.chartType">
         <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.alreadyResolvedData" [dateRange]="this.dateRange"
-          [eventlines]="this.eventlines" [xRegions]="this.xRegions"
-          [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''" [showTicks]="axis.showTicks"></app-linegraph>
+          [eventlines]="this.eventlines" [xRegions]="this.xRegions" [axisLabel]="axis.label"
+          [showTicks]="axis.showTicks"></app-linegraph>
         <app-scatterplot *ngSwitchCase="ChartType.SCATTER" [data]="axis.alreadyResolvedData"
           [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
-          [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''" [showTicks]="axis.showTicks"></app-scatterplot>
+          [axisLabel]="axis.label" [showTicks]="axis.showTicks"></app-scatterplot>
         <app-stepgraph class="stepgraph" *ngSwitchCase="ChartType.STEP" [data]="axis.alreadyResolvedData"
           [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
-          [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
+          [axisLabel]="axis.label">
         </app-stepgraph>
         <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.alreadyResolvedData"
           [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
-          [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
+          [axisLabel]="axis.label">
         </app-microbio-graph>
       </ng-container>
     </div>

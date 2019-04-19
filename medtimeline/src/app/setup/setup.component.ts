@@ -71,7 +71,7 @@ export class SetupComponent implements OnInit, OnDestroy {
   encounters: Encounter[];
 
   // Fixed time periods to offer as options for selection.
-  today: DateTime = DateTime.utc().startOf('day');
+  today: DateTime = DateTime.local().startOf('day');
   readonly lastSevenDays =
       Interval.fromDateTimes(this.today.minus({days: 7}), this.today);
   readonly lastMonth =
@@ -87,7 +87,6 @@ export class SetupComponent implements OnInit, OnDestroy {
     // Pass the selected information through to the setup data service.
     this.setupDataService.selectedConcepts = this.chosenConcepts;
     this.setupDataService.encounters = this.encounters;
-    console.warn(this.selectedDateRange.value);
     this.setupDataService.selectedDateRange = this.selectedDateRange.value ?
         this.selectedDateRange.value :
         Interval.fromDateTimes(this.today.minus({days: 7}), this.today);

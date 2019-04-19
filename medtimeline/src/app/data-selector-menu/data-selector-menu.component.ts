@@ -8,7 +8,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteTrigger, MatMenuTrigger} from '@angular/material';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
@@ -69,24 +69,31 @@ export class DataSelectorMenuComponent implements OnInit {
   // event to CardContainer.
   private addConceptCard(label: string) {
     this.addCard.emit(label);
-
-    recordGoogleAnalyticsEvent('addConcept', 'addCard', label);
+    // Record the user adding a card with charts to Google Analytics.
+    (<any>window).gtag('event', 'addConcept', {
+      'event_category': 'addCard',
+      'event_label': label
+    });
   }
 
   // Emits an event indicating to CardContainer to add a blank textbox at the
   // top of the page.
   private textbox() {
     this.addTextbox.emit();
-
-    recordGoogleAnalyticsEvent(
-        'addTextbox', 'addCard', new Date().toDateString());
+    // Record the user adding a textbox card to Google Analytics.
+    (<any>window).gtag('event', 'addTextbox', {
+      'event_category': 'addCard',
+      'event_label': new Date().toDateString()
+    });
   }
 
   private customTimeline() {
     this.addCustomTimeline.emit();
-
-    recordGoogleAnalyticsEvent(
-        'addCustomTimeline', 'addCard', new Date().toDateString());
+    // Record the user adding a CustomizableTimeline to Google Analytics.
+    (<any>window).gtag('event', 'addCustomTimeline', {
+      'event_category': 'addCard',
+      'event_label': new Date().toDateString()
+    });
   }
 
   // Filter the concepts shown on the autocomplete menu.
