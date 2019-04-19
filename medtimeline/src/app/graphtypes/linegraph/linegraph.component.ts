@@ -3,13 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, forwardRef, Inject, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
 import {DateTime} from 'luxon';
 import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
 import {LegendInfo} from '../legend-info';
@@ -25,8 +26,10 @@ import {LegendInfo} from '../legend-info';
 export class LineGraphComponent extends GraphComponent<LineGraphData> {
   @Input() showTicks: boolean;
 
-  constructor(readonly sanitizer: DomSanitizer) {
-    super(sanitizer);
+  constructor(
+      readonly sanitizer: DomSanitizer,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+    super(sanitizer, uiConstants);
   }
 
   prepareForChartConfiguration() {
