@@ -48,7 +48,7 @@ export class Axis {
    * unless it hasn't been resolved yet. Then this variable will be undefined,
    * and you need to call updateDateRange to get the data loaded in.
    */
-  private alreadyResolvedData: GraphData;
+  alreadyResolvedData: GraphData;
 
   /**
    * The associated DisplayGrouping for this graph.

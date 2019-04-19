@@ -175,8 +175,6 @@ export class MockFhirService extends FhirService {
   /**
    * Returns arbitrary orders for current mock medications.
    * @param id The id to pull the order from.
-   * TODO(b/117438708): Add more mock medication orders to JSON files for
-   * different medications requested.
    */
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
     return this.allDataPromise.then(

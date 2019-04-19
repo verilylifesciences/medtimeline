@@ -11,6 +11,7 @@ import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {LegendInfo} from 'src/app/graphtypes/legend-info';
+import {recordGoogleAnalyticsEvent} from 'src/constants';
 
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
 import * as Colors from '../../theme/verily_colors';
@@ -227,10 +228,6 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
     // We do not add a 'value' field because there is no internal value that
     // needs to be restored when the user reverts a deletion.
     this.removeEvent.emit({id: this.id});
-    // Record the user deleting a card with charts to Google Analytics.
-    (<any>window).gtag('event', 'deleteConcept', {
-      'event_category': 'deleteCard',
-      'event_label': this.label
-    });
+    recordGoogleAnalyticsEvent('deleteConcept', 'deleteCard', this.label);
   }
 }

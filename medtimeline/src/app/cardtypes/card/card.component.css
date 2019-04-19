@@ -15,8 +15,6 @@
   display: -ms-flexbox; /* For IE10 */
   flex: 1 1 0%;
   -ms-flex: 1 1 0%; /* For IE10 */
-  width: 100%;
-  max-width: 100%;
 }
 
 ::ng-deep .inEditMode .mat-card {
