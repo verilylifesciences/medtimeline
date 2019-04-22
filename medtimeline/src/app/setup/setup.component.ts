@@ -20,6 +20,12 @@ import {FhirService} from '../fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {SetupDataService} from '../setup-data.service';
 
+enum LoadStatus {
+  LOADING,
+  DATA_AVAILABLE,
+  DATA_UNAVAILABLE
+}
+
 /**
  * Contains the intial configuration options for the MedTimeLine.
  * Users can choose which concepts to display, or pick the default
@@ -35,6 +41,8 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly checkedConcepts = new Map<string, boolean>();
   readonly chosenConcepts = new Array<AxisGroup>();
   readonly useDebugger = environment.useDebugger;
+
+  readonly statusConsts = LoadStatus;
 
   /**
    * Which encounter to load into the app first.
@@ -63,7 +71,7 @@ export class SetupComponent implements OnInit, OnDestroy {
   /**
    * Holds whether there's any data available for each resource code group.
    */
-  readonly codeGroupAvailable = new Map<string, boolean>();
+  readonly codeGroupAvailable = new Map<string, LoadStatus>();
 
   /**
    * List of times the patient was in the hospital.
@@ -138,11 +146,14 @@ export class SetupComponent implements OnInit, OnDestroy {
     this.displayGroupings.forEach(grouping => {
       const resourceCodes = grouping[1];
       resourceCodes.forEach(rsc => {
+        this.codeGroupAvailable.set(rsc.label, LoadStatus.LOADING);
         rsc.dataAvailableInAppTimeScope().then(available => {
           if (!available) {
             this.checkedConcepts[rsc.label] = false;
+            this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_UNAVAILABLE);
+          } else {
+            this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_AVAILABLE);
           }
-          this.codeGroupAvailable.set(rsc.label, available);
         });
       });
     });
