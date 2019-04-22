@@ -53,6 +53,7 @@ describe('TimelineControllerComponent with encounters', () => {
     fixture = TestBed.createComponent(TimelineControllerComponent);
     component = fixture.componentInstance;
     component.encounters = encounters;
+    component.selectedDateRange = encounters[0].period;
     fixture.detectChanges();
   });
 
@@ -118,6 +119,7 @@ describe('TimelineControllerComponent without encounters', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimelineControllerComponent);
     component = fixture.componentInstance;
+    component.selectedDateRange = encounters[0].period;
     fixture.detectChanges();
   });
   it('should not allow calendar to go back before app timespan',

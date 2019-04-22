@@ -27,9 +27,8 @@ describe('MicrobioGraphData', () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
            diagnosticReports, 'Stool', TestBed.get(DomSanitizer));
-       expect(stepgraphdata.dataSeries.length).toEqual(3);
        // All the endpoint series are also in the master series list.
-       expect(stepgraphdata.series.length).toEqual(3);
+       expect(stepgraphdata.series.length).toEqual(5);
      });
 
   it('fromDiagnosticReports should correctly calculate ' +
@@ -38,12 +37,12 @@ describe('MicrobioGraphData', () => {
        const diagnosticReports = makeDiagnosticReports();
        const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
            diagnosticReports, 'Stool', TestBed.get(DomSanitizer));
-       const series1 = stepgraphdata.dataSeries[0];
+       const series1 = stepgraphdata.series[0];
        expect(series1.coordinates[0]).toEqual([
          DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
          'Ova and Parasite Exam'
        ]);
-       const series2 = stepgraphdata.dataSeries[1];
+       const series2 = stepgraphdata.series[1];
        expect(series2.coordinates[0]).toEqual([
          DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
          'Salmonella and Shigella Culture'

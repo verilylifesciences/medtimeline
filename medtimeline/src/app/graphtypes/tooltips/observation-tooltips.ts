@@ -53,12 +53,15 @@ export class GenericAnnotatedObservationTooltip extends
           observation.observation.timestamp, table, sanitizer);
     }
 
+    console.warn(observation.observation);
     Tooltip.addRow(
         table,
         [
           observation.label,
-          observation.observation.value.value + ' ' +
-              observation.observation.unit
+          observation.observation.value ?
+              observation.observation.value.value.toString() + ' ' +
+                  observation.observation.unit :
+              observation.observation.result
         ],
         sanitizer, this.color);
     for (const annotation of observation.annotationValues) {
