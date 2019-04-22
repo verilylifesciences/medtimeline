@@ -47,8 +47,7 @@ describe('MultiGraphCardComponent', () => {
           ],
           declarations: [
             MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,
-            ScatterplotComponent, MicrobioGraphComponent, CardComponent,
-            MatIconModule
+            ScatterplotComponent, MicrobioGraphComponent, CardComponent
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},

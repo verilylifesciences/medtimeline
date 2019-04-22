@@ -130,10 +130,8 @@ describe('CustomizableGraphComponent', () => {
     component.addPoint(DateTime.fromISO('2019-04-04T00:53:00'));
 
     // Trigger the edit action
-    const deleteIcon = undefined;
-
-    /*d3.select('#' + component.chartDivId)
-                           .select('#delete-' + annotationTime.toMillis());*/
+    const deleteIcon = d3.select('#' + component.chartDivId)
+                           .select('#delete-' + annotationTime.toMillis());
     deleteIcon.dispatch('click');
 
     // Make sure the point got changed to the new timestamp.

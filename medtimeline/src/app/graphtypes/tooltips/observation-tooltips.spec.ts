@@ -5,8 +5,9 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as Color from 'color';
+import * as d3 from 'd3';
 import {DateTime} from 'luxon';
+import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
 import {Observation} from 'src/app/fhir-data-classes/observation';
 import {makeSampleDiscreteObservationJson} from 'src/app/test_utils';
 
@@ -63,6 +64,15 @@ describe('GenericObservationTooltip', () => {
     TestBed.configureTestingModule({}).compileComponents();
   }));
 
+  it('should get undefined tooltip if there are no annotations', () => {
+    const tooltip =
+        new GenericAnnotatedObservationTooltip(true, d3.rgb(12, 67, 199))
+            .getTooltip(
+                new AnnotatedObservation(obs), TestBed.get(DomSanitizer));
+
+    expect(tooltip).toBeUndefined();
+  });
+
   it('should generate tooltip text', () => {
     const tooltipText = new DiscreteObservationTooltip().getTooltip(
         [
@@ -99,7 +109,7 @@ describe('GenericAbnormalTooltip', () => {
   }));
 
   it('should generate tooltip text', () => {
-    const tooltipText = new GenericAbnormalTooltip(true, Color.rgb(12, 67, 199))
+    const tooltipText = new GenericAbnormalTooltip(true, d3.rgb(12, 67, 199))
                             .getTooltip(params, TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();
     expect(tooltipText)

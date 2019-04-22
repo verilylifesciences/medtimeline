@@ -20,7 +20,7 @@ import {LabeledSeries} from './labeled-series';
 export class StepGraphData extends GraphData {
   constructor(
       /** A list of the LabeledSeries data to plot. */
-      dataSeries: LabeledSeries[],
+      readonly dataSeries: LabeledSeries[],
       /** A list of the LabeledSeries representing end points. */
       // readonly endpointSeries: LabeledSeries[],
       /** A map of tooltips for the data points. */
