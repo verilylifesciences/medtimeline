@@ -35,8 +35,6 @@ const CERNER_MAX_OBS_RESULTS_RETURNED = 100;
 @Injectable()
 export class FhirHttpService extends FhirService {
   readonly smartApiPromise: Promise<any>;
-  errorMessage: string;
-
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,

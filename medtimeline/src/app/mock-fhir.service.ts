@@ -23,8 +23,6 @@ import {FhirService} from './fhir.service';
 
 @Injectable()
 export class MockFhirService extends FhirService {
-  errorMessage: string;
-
   private readonly assetPath = './assets/' + environment.mockDataFolder + '/';
   private readonly allFilePaths =
       environment.mockDataFiles.map(x => this.assetPath + x + '.json');
