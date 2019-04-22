@@ -23,14 +23,43 @@
 are nested inside the components and within C3 divs, we have to prefix the
 style names with ::ng-deep.  */
 
-.c3-tooltip > tbody > tr > th {
-  background-color: rgb(197, 185, 172); /* Boston Warm Gray */
+::ng-deep .c3-tooltip {
+  font-size: 13px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+  empty-cells: show;
+  -webkit-box-shadow: 7px 7px 12px -9px #777777;
+  -moz-box-shadow: 7px 7px 12px -9px #777777;
+  box-shadow: 7px 7px 12px -9px #777777;
+  opacity: 0.9;
+}
+
+::ng-deep table {
+  background: #fff;
+  border: solid 1px #ddd;
+}
+
+::ng-deep .c3-tooltip tr {
+  border: 1px solid #CCC;
+}
+
+::ng-deep .c3-tooltip > tbody > tr > th {
   width: 100%;
   word-wrap: break-word;
+  background-color: #aaa;
+  font-size: 14px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #FFF;
 }
 
 ::ng-deep .c3-tooltip td {
   width: 125px;
+  font-size: 13px;
+  padding: 3px 6px;
+  background-color: #fff;
+  border-left: 1px dotted #999;
 }
 
 ::ng-deep .order-region {

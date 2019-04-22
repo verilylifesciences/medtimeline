@@ -35,10 +35,6 @@ const CERNER_MAX_OBS_RESULTS_RETURNED = 100;
 @Injectable()
 export class FhirHttpService extends FhirService {
   readonly smartApiPromise: Promise<any>;
-  errorMessage: string;
-
-  private createContentTypeString = 'application/xhtml+xml;charset=utf-8';
-
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,
@@ -68,8 +64,8 @@ export class FhirHttpService extends FhirService {
         code: LOINCCode.CODING_STRING + '|' + code.codeString,
         date: {
           $and: [
-            GREATER_OR_EQUAL + dateRange.start.toISO(),
-            LESS_OR_EQUAL + dateRange.end.toISO()
+            GREATER_OR_EQUAL + dateRange.start.toISODate(),
+            LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
         },
         _count: limitCount ? limitCount : CERNER_MAX_OBS_RESULTS_RETURNED
@@ -113,8 +109,8 @@ export class FhirHttpService extends FhirService {
       query: {
         effectivetime: {
           $and: [
-            GREATER_OR_EQUAL + dateRange.start.toISO(),
-            LESS_OR_EQUAL + dateRange.end.toISO()
+            GREATER_OR_EQUAL + dateRange.start.toISODate(),
+            LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
         },
         medication: {
@@ -244,15 +240,12 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
-   * Saves the current HTML of the graphs rendered as a DocumentReference
+   * Saves the current image of the graphs rendered as a DocumentReference
    * (static save).
    * @param html The inner HTML to keep in the Document.
    * @param date The date the note was written on.
    */
-  saveStaticNote(html: string, date: string) {
-    html = this.sanitizer.sanitize(SecurityContext.HTML, html);
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const xhtml = new XMLSerializer().serializeToString(doc);
+  saveStaticNote(image: HTMLCanvasElement, date: string) {
     const testData = {
       resource: {
         resourceType: FhirResourceType.DocumentReference,
@@ -268,8 +261,8 @@ export class FhirHttpService extends FhirService {
                         // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
         content: [{
           attachment: {
-            contentType: this.createContentTypeString,
-            data: btoa(xhtml),
+            contentType: 'image/png',
+            data: image.toDataURL(),
           }
         }],
       }

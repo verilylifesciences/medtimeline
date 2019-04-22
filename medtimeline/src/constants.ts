@@ -102,6 +102,7 @@ export const UI_CONSTANTS = {
   SELECT_ALL: 'Select all',
   CLEAR_SELECTION: 'Clear selection',
   NO_DATA_PAST_SIX_MOS: '(No data found for past six months)',
+  CHECKING_DATA_AVAILABILITY: '(Checking data availability...)',
   WHICH_ENCOUNTER_FIRST: 'Which time period would you like to see first?',
   WHICH_CONCEPTS_FIRST: 'Which data timelines would you like to see first?',
   ENCOUNTER: '(patient encounter)',

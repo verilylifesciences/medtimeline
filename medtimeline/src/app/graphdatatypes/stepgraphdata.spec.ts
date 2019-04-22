@@ -83,8 +83,7 @@ describe('StepGraphData', () => {
              const data = StepGraphData.fromMedicationOrderSetList(
                  [medOrderSet], dateRange, TestBed.get(DomSanitizer));
 
-             data.dataSeries.forEach(
-                 series => expect(series.unit).toBeUndefined());
+             data.series.forEach(series => expect(series.unit).toBeUndefined());
            });
      });
 });

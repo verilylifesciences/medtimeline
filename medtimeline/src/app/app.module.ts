@@ -16,7 +16,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserModule} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChartsModule} from 'ng2-charts';
 import {DragulaModule} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
@@ -81,7 +80,6 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     MatCardModule,
     HttpClientModule,
     MatListModule,

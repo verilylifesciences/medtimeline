@@ -50,7 +50,7 @@ export class StubFhirService extends FhirService {
     return Promise.resolve([]);
   }
 
-  saveStaticNote(html: string, date: string): void {}
+  saveStaticNote(image: HTMLCanvasElement, date: string): void {}
 
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {

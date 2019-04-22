@@ -12,8 +12,9 @@
   </ng-container>
   <div fxFlex *ngIf="axisGroup" fxLayout="column" class="contents-block">
     <div fxFlex *ngFor="let axis of axisGroup.axes" fxShrink="0" fxGrow="0">
-      <mat-spinner *ngIf="!axis.alreadyResolvedData" [diameter]="30"></mat-spinner>
+      <mat-spinner *ngIf="!axis.alreadyResolvedData && !axis.errorMessage" [diameter]="30"></mat-spinner>
       <div *ngIf="axis.dataResolved() && axis.errorMessage">
+        <mat-icon>error</mat-icon>
         {{axis.errorMessage}}
       </div>
       <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage" [ngSwitch]="axis.chartType">
