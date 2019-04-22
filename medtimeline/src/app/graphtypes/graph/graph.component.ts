@@ -51,17 +51,17 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   readonly BASE_CHART_HEIGHT_PX = 150;
 
   /** The eventline annotations to keep track of. */
-  annotations = [];
+  protected annotations = [];
 
   /**
    * The entire interval represented by the current date range. This Interval
    * goes from the beginning of the first day of the date range, to the end of
    * the last day of the date range.
    */
-  entireInterval: Interval;
+  protected entireInterval: Interval;
 
   /** Whether data is available for this graph for the current date range. */
-  dataPointsInDateRange = false;
+  private dataPointsInDateRange = false;
 
   /*****************************************
    * Bound input variables
@@ -132,7 +132,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   /**
    * Chart options to be rendered.
    */
-  chartOptions: (ChartOptions&{annotation: any}) = {
+  readonly chartOptions: (ChartOptions&{annotation: any}) = {
     // Draw straight lines between points instead of curves.
     elements: {line: {tension: 0}},
     layout: {padding: {top: 15}},
@@ -159,13 +159,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     animation: {duration: 0},
     responsiveAnimationDuration: 0
   };
-
-  /**
-   * The sequence of colors to use for rendering the LabeledSeries for
-   * this chart's data. The ordering of this color array should be in
-   * parallel to the ordering of the LabeledSeries in this chart's data.
-   */
-  chartColors: Color[] = [];
 
   /** A unique identifier for the element to bind the graph to. */
   chartDivId: string;
@@ -285,8 +278,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * Sets up a generalized c3.ChartConfig for the data passed in. See
    * the type definition at:
    * https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/c3/index.d.ts
-   * @param maxXTicks: The maximum number of tick-marks to include on
-   *     the x-axis
    */
   private generateBasicChart(focusOnSeries?: LabeledSeries[]) {
     // Transform the data into a format that chart.js can render it.
@@ -328,8 +319,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     }
 
     // Set the axis label if it's provided.
-    this.chartOptions.scales.yAxes[0].scaleLabel.labelString =
-        this.axisLabel ? this.axisLabel : '';
+    this.chartOptions.scales.yAxes[0].scaleLabel.labelString = this.axisLabel ?
+        this.axisLabel.substr(0, 18) +
+            (this.axisLabel.length > 18 ? '...' : '') :
+        '';
 
     // Add left-padding so that the y-axes are aligned with one another.
     this.chartOptions.scales.yAxes[0]['afterSetDimensions'] = function(axes) {

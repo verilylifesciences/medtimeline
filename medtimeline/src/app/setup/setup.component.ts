@@ -178,7 +178,8 @@ export class SetupComponent implements OnInit, OnDestroy {
   selectAll() {
     for (const concept of this.allConcepts) {
       if (this.codeGroupAvailable.has(concept.label) &&
-          this.codeGroupAvailable.get(concept.label)) {
+          this.codeGroupAvailable.get(concept.label) !==
+              LoadStatus.DATA_UNAVAILABLE) {
         this.checkedConcepts[concept.label] = true;
       }
     }
