@@ -1,6 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="space-around start">
   <div>
-    <mat-icon>access_time</mat-icon>
     <mat-form-field>
       <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
         (click)="datePicker.open()" required>
@@ -10,15 +9,10 @@
       </mat-hint>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput [formControl]="timeFormControl" placeholder="Time" [matAutocomplete]="auto" required>
-      <mat-error *ngIf="timeFormControl.invalid">Invalid time</mat-error>
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let time of listOfTimes" [value]="time[24]">
-          {{time[24]}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+    <div class="mockPlaceholder">Time *</div>
+    <ngb-timepicker [(ngModel)]="time" [formControl]="timeFormControl" required [spinners]="true">
+    </ngb-timepicker>
+    <div *ngIf="!timeFormControl.value" class="mat-error">Invalid time</div>
   </div>
   <div fxLayout="column" fxFlex>
     <mat-form-field class="inputTitle">
