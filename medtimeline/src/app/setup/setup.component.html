@@ -55,9 +55,11 @@
       </div>
       <div *ngFor="let element of entry[1].sort(sortResources)" class="conceptOptions">
         <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
-          [disabled]="!codeGroupAvailable.get(element.label)">
+          [disabled]="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">
           {{element.label}} <span class="grayout"
-            *ngIf="!codeGroupAvailable.get(element.label)">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>
+            *ngIf="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>
+          <span class="grayout"
+            *ngIf="codeGroupAvailable.get(element.label) === statusConsts.LOADING">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>
         </mat-checkbox>
       </div>
     </div>
