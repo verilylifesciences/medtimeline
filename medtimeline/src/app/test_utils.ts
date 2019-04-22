@@ -40,7 +40,7 @@ export class StubFhirService extends FhirService {
     return Promise.resolve(makeMedicationOrder());
   }
 
-  getMedicationAdministrationsWithOrder(id: string):
+  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
       Promise<MedicationAdministration[]> {
     return Promise.resolve(
         [makeMedicationAdministration(DateTime.utc().toISO())]);

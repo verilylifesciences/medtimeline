@@ -77,8 +77,7 @@ export abstract class Tooltip<T> {
     colorSpan.setAttribute(
         'style',
         'background-color: ' + color.toString() +
-            '; display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px;');
+            '; display: inline-block; height: 10px; width: 10px;');
     return colorSpan;
   }
 
