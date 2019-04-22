@@ -20,8 +20,6 @@ import {ChartType} from './graphtypes/graph/graph.component';
 
 @Injectable()
 export abstract class FhirService {
-  errorMessage: string;
-
   /**
    * Returns whether there are any observations with this code in the given
    * time range.

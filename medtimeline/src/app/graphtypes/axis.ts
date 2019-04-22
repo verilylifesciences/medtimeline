@@ -66,7 +66,7 @@ export class Axis {
    */
   showTicks = true;
 
-  // An error message if there's an error in data retrieval.
+  /** An error message if there's an error in data retrieval. */
   errorMessage: string;
 
   // The encounters for the date range.
@@ -127,7 +127,8 @@ export class Axis {
           return data;
         },
         rejection => {
-          throw rejection;
+          this.errorMessage = JSON.stringify(rejection);
+          return undefined;
         });
   }
 
