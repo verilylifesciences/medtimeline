@@ -11,6 +11,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
+import {RxNormCode} from 'src/app/clinicalconcepts/rx-norm';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
@@ -38,7 +39,7 @@ describe('StepGraphComponent', () => {
         })
         .compileComponents();
     fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string) {
+      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
         const medicationAdministrations = [
           makeMedicationAdministration('2018-09-10T11:00:00.000Z'),
           makeMedicationAdministration('2018-09-12T11:00:00.000Z')
@@ -68,7 +69,8 @@ describe('StepGraphComponent', () => {
         })
         .then(() => {
           const fhirServiceStubAdjustedDates: any = {
-            getMedicationAdministrationsWithOrder(id: string) {
+            getMedicationAdministrationsWithOrder(
+                id: string, code: RxNormCode) {
               const medicationAdministrations = [
                 makeMedicationAdministration('2018-09-14T11:00:00.000Z'),
                 makeMedicationAdministration('2018-09-30T11:00:00.000Z')

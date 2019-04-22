@@ -46,7 +46,7 @@ describe('MedicationOrder', () => {
 
   beforeEach(async(() => {
     fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string) {
+      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
         return of(medicationAdministrations).toPromise();
       }
     };

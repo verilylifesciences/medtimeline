@@ -145,7 +145,7 @@ export abstract class FhirService {
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
    */
-  abstract getMedicationAdministrationsWithOrder(id: string):
+  abstract getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
       Promise<MedicationAdministration[]>;
 
   /**

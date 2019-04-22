@@ -12,6 +12,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {of} from 'rxjs';
 
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
@@ -35,7 +36,7 @@ describe('StepGraphData', () => {
     TestBed.configureTestingModule(
         {providers: [{provide: FhirService, useValue: fhirServiceStub}]});
     fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string) {
+      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
         return of(medicationAdministrations).toPromise();
       }
     };
