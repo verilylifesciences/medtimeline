@@ -8,69 +8,36 @@
   <ng-template matStepperIcon="edit" let-index="index">
     {{index +1}}
   </ng-template>
-  <mat-step label="Intro">
+  <mat-step label="Configuration">
     <div class="stepContent">
-      MedTimeLine intro screen
+      MedTimeLine Configuration Screen
     </div>
     <div class="stepperButtons">
       <button mat-stroked-button matStepperNext>Next</button>
     </div>
   </mat-step>
 
-  <mat-step label="Changing the dates">
+  <mat-step label="Set Date Range">
     <div class="stepContent">
       <div>
         <div>
-          Change the dates of the data displayed on the chart using datepickers.
+          Click on the current date range to open the datepicker.
         </div>
-        <img src="assets/images/datepicker1.png">
+        <img src="assets/images/datepicker_open.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
       <div>
         <div>
-          Click on the datepicker icon to open a calendar.
+          Choose a patient encounter or pre-set time period on the left.
         </div>
-        <img src="assets/images/datepicker2.gif">
-      </div>
-      <mat-divider class="divider"></mat-divider>
-    </div>
-    <div class="stepperButtons">
-      <button mat-stroked-button matStepperPrevious>Back</button>
-      <button mat-stroked-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-
-  <mat-step label="Custom TimeLine">
-    <div class="stepContent">
-      <div>
-        The Timeline feature allows you to enter custom events.
-      </div>
-      <div>
-        <div>
-          Click anywhere on the timeline to add an event.
-        </div>
-        <img src="assets/images/customTimeline1.gif">
+        <img src="assets/images/datepicker_preset.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
       <div>
         <div>
-          By default, descriptions for events are hidden. Click on the expander to reveal the description.
+          Alternatively, choose a custom date range.
         </div>
-        <img src="assets/images/customTimeline2.gif">
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div>
-        <div>
-          Click on the pencil icon to edit the event.
-        </div>
-        <img src="assets/images/customTimeline3.gif">
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div>
-        <div>
-          Click on the trashcan icon to delete the event.
-        </div>
-        <img src="assets/images/customTimeline4.gif">
+        <img src="assets/images/datepicker_custom.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
     </div>
@@ -80,21 +47,51 @@
     </div>
   </mat-step>
 
-  <mat-step label="Charts">
+  <mat-step label="Add Flags to Custom Timeline">
     <div class="stepContent">
       <div>
+        The Custom Timeline feature allows you to enter custom events.
+      </div>
+      <div>
         <div>
-          For charts with legends, hover over a series to highlight that series on the chart. Click on a series to hide
-          it from the chart.
+          Click the pencil icon to enter edit mode.
         </div>
-        <img src="assets/images/chartUpClose1.gif">
+        <img src="assets/images/customTimeline_edit.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
       <div>
         <div>
-          The green highlighted area on some charts represents a "normal range" indicated in the standard.
+          Click the timeline at a place where you would like to add a flag.
         </div>
-        <img src="assets/images/chartUpClose2.png">
+        <img src="assets/images/customTimeline_click.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        <div>
+          In the dialog box, enter a title, description, and select a color for the flag.
+        </div>
+        <img src="assets/images/customTimeline_title.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        <div>
+          You can also manually adjust the date and/or time.
+        </div>
+        <img src="assets/images/customTimeline_time.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        <div>
+          While in edit mode, you can edit an existing flag, which will open up the dialog box again.
+        </div>
+        <img src="assets/images/customTimeline_editFlag.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        <div>
+          You can also remove flags while in edit mode.
+        </div>
+        <img src="assets/images/customTimeline_delete.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
     </div>
@@ -104,30 +101,23 @@
     </div>
   </mat-step>
 
-  <mat-step label="Card Container">
+  <mat-step label="Enter Text Notes">
     <div class="stepContent">
       <div>
-        The card container displays all charts selected.
+        You can enter notes in the main timeline display area.
       </div>
       <div>
         <div>
-          Click and drag a chart to rearrange on the page.
+          Click the pencil icon to enter edit mode.
         </div>
-        <img src="assets/images/cardContainer1.gif">
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div>
-        <div>
-          Click on the trashcan icon to remove a card from the page. Press "Undo" at the bottom of the page to restore.
-        </div>
-        <img src="assets/images/cardContainer2.gif">
+        <img src="assets/images/annotation_edit.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
       <div>
         <div>
-          You can add cards to the top of the page using the toolbar.
+          Type in your notes, and click the save button to save the note.
         </div>
-        <img src="assets/images/cardContainer3.gif">
+        <img src="assets/images/annotation_type.gif">
       </div>
       <mat-divider class="divider"></mat-divider>
     </div>
@@ -137,14 +127,63 @@
     </div>
   </mat-step>
 
-  <mat-step label="Save Snapshot">
+  <mat-step label="Timelines">
     <div class="stepContent">
       <div>
-        <div>
-          The "Save Snapshot" button allows you to save a static image of the current page to the patient record.
-        </div>
-        <img src="assets/images/saveSnapshot.gif">
+        You can add, remove, and rearrange timelines to optimize the data view for specific patients.
       </div>
+      <div>
+        <div>
+          To add a timeline, click the plus sign, then select Add Data Timeline.
+          Select the timeline type you want to add, then select the specific timeline.
+        </div>
+        <img src="assets/images/timelines_add_generic.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        You can also add another Custom Timeline or text notes. You can also search for concept through the autocomplete
+        input.
+      </div>
+      <img src="assets/images/timelines_autocomplete.gif">
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        To remove a timeline, hover your cursor over the timeline you want to remove. Click the X in the upper left
+        corner of the timeline.
+      </div>
+      <img src="assets/images/timelines_delete.gif">
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        You can undo a deletion of a card, as well.
+      </div>
+      <img src="assets/images/timelines_undo_delete.gif">
+      <mat-divider class="divider"></mat-divider>
+      <div>
+        To rearrange timelines, click the label or colored handle on the left hand side of the timeline you want to
+        move, and hold the mouse button and drag and drop the timeline to your desired location.
+      </div>
+      <img src="assets/images/timelines_reorder.gif">
+      <mat-divider class="divider"></mat-divider>
+    </div>
+    <div class="stepperButtons">
+      <button mat-stroked-button matStepperPrevious>Back</button>
+      <button mat-stroked-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Timeline Features">
+    <div class="stepContent">
+      <div>
+        Timelines are categorized and color-coded by a vertical bar on the leftmost side of the data timeline.
+      </div>
+      <div>
+        <div>
+          You can hover over plotted data point and additional data displays in a tooltip.
+        </div>
+        <img src="assets/images/chartHover.gif">
+        <mat-divider class="divider"></mat-divider>
+        <img src="assets/images/chartHover2.gif">
+      </div>
+      <mat-divider class="divider"></mat-divider>
     </div>
     <div class="stepperButtons">
       <button mat-stroked-button matStepperPrevious>Back</button>

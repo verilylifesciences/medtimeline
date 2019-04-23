@@ -86,7 +86,6 @@ export class MedicationOrder extends LabeledClass {
         .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
         .then(
             medAdmins => {
-              alert(medAdmins);
               if (!medAdmins) return this;
               medAdmins = medAdmins.sort((a, b) => {
                 return a.timestamp.toMillis() - b.timestamp.toMillis();
