@@ -24,8 +24,6 @@ import {LabeledClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
-import moment = require('moment');
-
 
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';
@@ -265,7 +263,7 @@ export class FhirHttpService extends FhirService {
             code: documentReferenceLoinc.codeString,  // Summary Note
           }],
         },
-        indexed: moment.utc(Date.now()).format(),
+        indexed: DateTime.utc().toISO(),
         status:
             'current',  // Required; only supported option is 'current'
                         // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
