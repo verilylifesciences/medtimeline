@@ -192,24 +192,12 @@ export class CardcontainerComponent {
         // Only save the snapshot to the EHR if the user confirmed the save.
         if (result) {
           const date = DateTime.fromJSDate(new Date()).toISO();
-          this.fhirService.saveStaticNote(canvas, date).then(res => {
-            if (res) {
-              this.snackBar.open(
-                  this.uiConstants.SAVED_TO_POWERCHART,
-                  this.uiConstants.DISMISS, {
-                    duration: this.DISPLAY_TIME,  // Wait 6 seconds before
-                                                  // dismissing the snack bar.
-                  });
-            } else {
-              this.snackBar.open(
-                  this.uiConstants.ERROR_SAVED_TO_POWERCHART,
-                  this.uiConstants.DISMISS, {
-                    duration: this.DISPLAY_TIME,  // Wait 6 seconds before
-                                                  // dismissing the snack bar.
-                  });
-            }
-          });
-
+          this.fhirService.saveStaticNote(canvas, date);
+          this.snackBar.open(
+              this.uiConstants.SAVED_TO_POWERCHART, this.uiConstants.DISMISS, {
+                duration: this.DISPLAY_TIME,  // Wait 6 seconds before
+                                              // dismissing the snack bar.
+              });
 
           recordGoogleAnalyticsEvent(
               'saveStaticSnapshot', 'save', new Date().toDateString());

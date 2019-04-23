@@ -162,8 +162,7 @@ export abstract class FhirService {
    * @param image The image to save in the Document.
    * @param date The date the note was written on.
    */
-  abstract saveStaticNote(image: HTMLCanvasElement, date: string):
-      Promise<boolean>;
+  abstract saveStaticNote(image: HTMLCanvasElement, date: string): void;
 
   /**
    * Gets the DiagnosticReports for the patient for any report that falls in

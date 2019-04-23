@@ -23,7 +23,7 @@
     "@angular/platform-browser": "7.2.4",
     "@angular/platform-browser-dynamic": "7.2.4",
     "@angular/router": "7.2.4",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "@ng-bootstrap/ng-bootstrap": "4.1.1",
     "@types/angular": "1.6.50",
     "chart.js": "2.8.0",
     "chartjs-plugin-annotation": "0.5.7",
