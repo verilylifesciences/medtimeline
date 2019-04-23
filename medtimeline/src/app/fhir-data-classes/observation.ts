@@ -174,7 +174,7 @@ export class Observation extends LabeledClass {
     this.result =
         json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
     if (this.value === null && this.result === null && !this.interpretation &&
-        (this.innerComponents && this.innerComponents.length === 0)) {
+        this.innerComponents.length === 0) {
       throw Error(
           'An Observation must have a value, result, inner components, ' +
           'or an interpretation to be useful. JSON: ' + JSON.stringify(json));

@@ -250,8 +250,8 @@ export class FhirHttpService extends FhirService {
    * @param html The inner HTML to keep in the Document.
    * @param date The date the note was written on.
    */
-  saveStaticNote(image: HTMLCanvasElement, date: string): Promise<boolean> {
-    return this.smartApiPromise.then(smartApi => {
+  saveStaticNote(image: HTMLCanvasElement, date: string) {
+    this.smartApiPromise.then(smartApi => {
       const postBody = {
         resourceType: FhirResourceType.DocumentReference,
         subject: {
@@ -269,8 +269,8 @@ export class FhirHttpService extends FhirService {
                         // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
         content: [{
           attachment: {
-            contentType: 'application/xhtml+xml;charset=utf-8',
-            data: btoa('<img src="' + image.toDataURL() + '">')
+            contentType: 'image/png',
+            data: btoa(image.toDataURL()),
           }
         }],
         context: {
@@ -281,14 +281,8 @@ export class FhirHttpService extends FhirService {
           }
         }
       };
-      return smartApi.patient.api.create({resource: postBody})
-          .then(
-              resolve => {
-                return true;
-              },
-              reject => {
-                return false;
-              });
+      smartApi.patient.api.create(postBody);
+      return smartApi;
     });
   }
 

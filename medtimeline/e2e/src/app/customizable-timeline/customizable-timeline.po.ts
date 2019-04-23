@@ -3,8 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {browser, by, element, ElementFinder} from 'protractor';
-
+import {by, element, ElementFinder} from 'protractor';
 import {IndexPage} from '../index.po';
 
 export class CustomizableTimelinePage {
@@ -35,7 +34,6 @@ export class CustomizableTimelinePage {
     await this.index.waitForClickable(
         saveButton, jasmine.DEFAULT_TIMEOUT_INTERVAL);
     await saveButton.click();
-    await browser.sleep(2000);
   }
 
   // Return the cancel button in the CustomizableTimelineDialog.
