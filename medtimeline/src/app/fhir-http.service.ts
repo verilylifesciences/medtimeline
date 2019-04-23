@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Inject, Injectable, SecurityContext} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
@@ -184,7 +184,7 @@ export class FhirHttpService extends FhirService {
             smartApi.patient.api.fetchAll(queryParams)
                 .then(
                     (results: any[]) => {
-                      results
+                      return results
                           .filter(
                               result => LabeledClass.extractMedicationEncoding(
                                             result) === code)
@@ -252,7 +252,7 @@ export class FhirHttpService extends FhirService {
    * @param date The date the note was written on.
    */
   saveStaticNote(image: HTMLCanvasElement, date: string) {
-    const testData = {
+    const note = {
       resource: {
         resourceType: FhirResourceType.DocumentReference,
         type: {
@@ -274,17 +274,17 @@ export class FhirHttpService extends FhirService {
       }
     };
     this.smartApiPromise.then(smartApi => {
-      testData['resource']['subject'] = {
+      note['resource']['subject'] = {
         reference: [FhirResourceType.Patient, smartApi.patient.id].join('/')
       };
-      testData['resource']['context'] = {
+      note['resource']['context'] = {
         encounter: {
           reference: [
             FhirResourceType.Encounter, smartApi.tokenResponse.encounter
           ].join('/')
         }
       };
-      smartApi.patient.api.create(testData);
+      smartApi.patient.api.create(note);
       return smartApi;
     });
   }
@@ -315,10 +315,13 @@ export class FhirHttpService extends FhirService {
               'item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
           callParams = callParams.append('format', 'json');
 
+          const authString = btoa(
+              FhirConfig.microbiology.username + ':' +
+              FhirConfig.microbiology.password);
           const httpHeaders = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + FhirConfig.microbiology.username + ':' +
-                FhirConfig.microbiology.password,
+            'Accept': 'application/json',
+            'Authorization': 'Basic ' + authString,
           });
 
           return this.http
