@@ -156,6 +156,9 @@ export class Axis {
     // Set the encounters for this date range. If the promise fails, the list of
     // encounters is empty.
     this.fhirService.getEncountersForPatient(dateRange).then(e => {
+      if (!e) {
+        e = [];
+      }
       e = e.sort(
           (a, b) => a.period.start.toMillis() - b.period.start.toMillis());
       this.encounters = e;
