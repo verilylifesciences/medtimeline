@@ -209,9 +209,10 @@ export class MockFhirService extends FhirService {
    * @param html The inner HTML to keep in the Document.
    * @param date The date the note was written for.
    */
-  saveStaticNote(image: HTMLCanvasElement, date: string) {
+  saveStaticNote(image: HTMLCanvasElement, date: string): Promise<boolean> {
     console.log('Save to note button clicked for mock data for date: ' + date);
     console.log(image);
+    return Promise.resolve(true);
   }
 
   /**
