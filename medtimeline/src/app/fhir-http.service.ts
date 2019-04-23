@@ -6,7 +6,7 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 
 import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../constants';
 
@@ -24,6 +24,7 @@ import {LabeledClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
+import moment = require('moment');
 
 
 const GREATER_OR_EQUAL = 'ge';
@@ -252,39 +253,37 @@ export class FhirHttpService extends FhirService {
    * @param date The date the note was written on.
    */
   saveStaticNote(image: HTMLCanvasElement, date: string) {
-    const note = {
-      resource: {
+    this.smartApiPromise.then(smartApi => {
+      const postBody = {
         resourceType: FhirResourceType.DocumentReference,
+        subject: {
+          reference: [FhirResourceType.Patient, smartApi.patient.id].join('/')
+        },
         type: {
           coding: [{
             system: LOINCCode.CODING_STRING,          // must be loinc
             code: documentReferenceLoinc.codeString,  // Summary Note
           }],
         },
-        indexed: date,
+        indexed: moment.utc(Date.now()).format(),
         status:
             'current',  // Required; only supported option is 'current'
                         // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
         content: [{
           attachment: {
             contentType: 'image/png',
-            data: image.toDataURL(),
+            data: btoa(image.toDataURL()),
           }
         }],
-      }
-    };
-    this.smartApiPromise.then(smartApi => {
-      note['resource']['subject'] = {
-        reference: [FhirResourceType.Patient, smartApi.patient.id].join('/')
-      };
-      note['resource']['context'] = {
-        encounter: {
-          reference: [
-            FhirResourceType.Encounter, smartApi.tokenResponse.encounter
-          ].join('/')
+        context: {
+          encounter: {
+            reference: [
+              FhirResourceType.Encounter, smartApi.tokenResponse.encounter
+            ].join('/')
+          }
         }
       };
-      smartApi.patient.api.create(note);
+      smartApi.patient.api.create(postBody);
       return smartApi;
     });
   }
