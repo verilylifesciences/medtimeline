@@ -19,6 +19,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChartsModule} from 'ng2-charts';
 import {DragulaModule} from 'ng2-dragula';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
@@ -48,6 +49,7 @@ import {MicrobioGraphComponent} from './graphtypes/microbio-graph/microbio-graph
 import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {HelpDialogComponent} from './help-dialog/help-dialog.component';
+import {IfuDialogComponent} from './ifu-dialog/ifu-dialog.component';
 import {MockFhirService} from './mock-fhir.service';
 import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
@@ -78,6 +80,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     DebuggerComponent,
     SetupComponent,
     ConfirmSaveComponent,
+    IfuDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +112,8 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     MatRadioModule,
     ChartsModule,
     DragulaModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    PdfViewerModule
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by
@@ -125,7 +129,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
   bootstrap: [AppComponent],
   entryComponents: [
     CustomizableTimelineDialogComponent, HelpDialogComponent,
-    DeleteDialogComponent, ConfirmSaveComponent
+    DeleteDialogComponent, ConfirmSaveComponent, IfuDialogComponent
   ]
 })
 export class AppModule {
