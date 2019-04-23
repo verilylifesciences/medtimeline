@@ -4,8 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime} from 'luxon';
-
 import {AnnotatedDiagnosticReport, DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
 
