@@ -37,10 +37,7 @@ export class BCHMicrobioCodeGroup extends
    * codes.
    */
   getResourceFromFhir(dateRange: Interval): Promise<DiagnosticReport[]> {
-    return this.fhirService.getDiagnosticReports(this, dateRange)
-        .then(result => {
-          return result;
-        });
+    return this.fhirService.getDiagnosticReports(this, dateRange);
   }
 
   /**
