@@ -122,5 +122,6 @@ export const UI_CONSTANTS = {
   SAVE_YOUR_WORK: 'Save your work on this card',
   // Saving to PowerChart
   SAVED_TO_POWERCHART: 'Screenshot saved to PowerChart.',
+  ERROR_SAVED_TO_POWERCHART: 'Error saving to PowerChart.',
   DISMISS: 'Dismiss',
 };
