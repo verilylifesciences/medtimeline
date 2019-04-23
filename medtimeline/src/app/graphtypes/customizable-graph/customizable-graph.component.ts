@@ -61,6 +61,7 @@ export class CustomizableGraphComponent extends
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
+    // TODO(shilpakumar): Handle edit mode.
     if (changes.dateRange) {
       // CustomizableGraph needs to update annotations in the case that the date
       // range is changed.
@@ -133,7 +134,7 @@ export class CustomizableGraphComponent extends
     this.adjustGeneratedChartConfiguration();
   }
 
-  addAnnotations() {
+  private addAnnotations() {
     for (const dataPt of this.chartData[0].data) {
       const canvas = document.getElementById(this.chartDivId);
       const millis = DateTime.fromISO(dataPt['x']).toMillis();
