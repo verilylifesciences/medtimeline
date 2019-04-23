@@ -9,39 +9,12 @@ import {IndexPage} from '../index.po';
 
 import {CardContainerPage} from './cardcontainer.po';
 
-const allDefaultCardLabels = [
-  'Custom Timeline',
-  'Temperature',
-  'Heart Rate',
-  'Respiratory Rate',
-  'Oxygen Saturation (SpO2)',
-  'Blood Pressure',
-  'C-Reactive Protein',
-  'ESR (Erythrocyte Sedimentation Rate)',
-  'BUN',
-  'Creatinine',
-  'ALT',
-  'AST (Aspartate Aminotransferase)',
-  'Alkaline Phosphatase',
-  'Bilirubin, Direct',
-  'Bilirubin, Total',
-  'Complete Blood Count White Blood Cell',
-  'Vancomycin & Gentamicin Summary',
-  'Vancomycin',
-  'Stool',
-  'Respiratory',
-  'Other',
-  'Blood',
-  'CSF Microbiology'
-];
-
 describe('Card Container', () => {
   const page = new CardContainerPage();
   const index = new IndexPage();
   const cards = page.getCards();
   const intialBackgroundColor = 'rgba(248, 248, 248, 1)';
   const finalBackgroundColor = 'rgba(240, 240, 240, 1)';
-
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
   beforeEach(async () => {
     await browser.waitForAngularEnabled(false);
@@ -70,7 +43,7 @@ describe('Card Container', () => {
 
   it('should display welcome message', async () => {
     const title = await page.getTitle();
-    expect(title).toEqual('MedTimeLine');
+    expect(title).toEqual('Medtimeline');
   });
 
   it('should drag graph cards correctly', async () => {
@@ -106,11 +79,32 @@ describe('Card Container', () => {
          }
        });
 
-       // We display 23 cards by default, with one being a textbox. A textbox
+       // We display 19 cards by default, with one being a textbox. A textbox
        // does not have a label, and would not be in this list.
-       expect(cardLabels.length).toEqual(23);
+       expect(cardLabels.length).toEqual(20);
 
-       expect(cardLabels).toEqual(allDefaultCardLabels);
+       expect(cardLabels).toEqual([
+         'Custom Timeline',
+         'Temperature',
+         'Heart Rate',
+         'Respiratory Rate',
+         'SpO2',
+         'Blood Pressure',
+         'C-Reactive Protein',
+         'ESR',
+         'BUN',
+         'Creatinine',
+         'ALT',
+         'Aspartate Aminotransferase (AST)',
+         'Alkaline Phosphatase',
+         'Bilirubin, Direct',
+         'Bilirubin, Total',
+         'Complete Blood Count White Blood Cell',
+         'Vancomycin & Gentamicin Summary',
+         'Vancomycin',
+         'Stool',
+         'NP Swab'
+       ]);
      });
 
   it('all cards should have a data selector after the card', async () => {
@@ -190,8 +184,14 @@ describe('Card Container', () => {
 
     expect(updatedCardLabels.length).toEqual(cardLabels.length - 1);
 
-    expect(updatedCardLabels)
-        .toEqual(allDefaultCardLabels.filter(x => x !== 'Temperature'));
+    expect(updatedCardLabels).toEqual([
+      'Custom Timeline', 'Heart Rate', 'Respiratory Rate', 'SpO2',
+      'Blood Pressure', 'C-Reactive Protein', 'ESR', 'BUN', 'Creatinine', 'ALT',
+      'Aspartate Aminotransferase (AST)', 'Alkaline Phosphatase',
+      'Bilirubin, Direct', 'Bilirubin, Total',
+      'Complete Blood Count White Blood Cell',
+      'Vancomycin & Gentamicin Summary', 'Vancomycin', 'Stool', 'NP Swab'
+    ]);
   });
 
   it('should correctly undo a deletion of card', async () => {
