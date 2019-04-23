@@ -185,7 +185,7 @@ export class MockFhirService extends FhirService {
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
    */
-  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+  getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
     return this.allDataPromise.then(
         x => this.medicationAdministrationMapByOrderId.get(id));

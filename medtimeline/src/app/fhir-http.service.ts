@@ -20,7 +20,6 @@ import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
-import {LabeledClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
@@ -113,6 +112,9 @@ export class FhirHttpService extends FhirService {
             GREATER_OR_EQUAL + dateRange.start.toISODate(),
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
+        },
+        medication: {
+          code: RxNormCode.CODING_STRING + '|' + code.codeString,
         }
       }
     };
@@ -122,16 +124,9 @@ export class FhirHttpService extends FhirService {
     }
 
     return this.smartApiPromise.then(
-        smartApi =>
-            smartApi.patient.api.fetchAll(queryParams)
-                .then(
-                    (results: any[]) =>
-                        results
-                            .filter(
-                                result =>
-                                    LabeledClass.extractMedicationEncoding(
-                                        result) === code)
-                            .map(result => {
+        smartApi => smartApi.patient.api.fetchAll(queryParams)
+                        .then(
+                            (results: any[]) => results.map(result => {
                               try {
                                 return new MedicationAdministration(result);
                               } catch (e) {
@@ -139,13 +134,13 @@ export class FhirHttpService extends FhirService {
                                 throw e;
                               }
                             }),
-                    // Do not return any MedicationAdministrations for
-                    // this code if one of the MedicationAdministration
-                    // constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+                            // Do not return any MedicationAdministrations for
+                            // this code if one of the MedicationAdministration
+                            // constructions throws an error.
+                            rejection => {
+                              this.debugService.logError(rejection);
+                              throw rejection;
+                            }));
   }
 
   /**
@@ -174,32 +169,31 @@ export class FhirHttpService extends FhirService {
    * Gets administrations for specified order id.
    * @param id The id to pull the order from.
    */
-  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+  getMedicationAdministrationsWithOrder(id: string):
       Promise<MedicationAdministration[]> {
     const queryParams = {
       type: FhirResourceType.MedicationAdministration,
+
+      query: {
+        prescription:
+            {reference: [FhirResourceType.MedicationOrder, id].join('/')}
+      }
     };
     return this.smartApiPromise.then(
-        smartApi =>
-            smartApi.patient.api.fetchAll(queryParams)
-                .then(
-                    (results: any[]) => {
-                      results
-                          .filter(
-                              result => LabeledClass.extractMedicationEncoding(
-                                            result) === code)
-                          .map(result => {
-                            return new MedicationAdministration(result);
-                          })
-                          .filter(admin => admin.medicationOrderId === id);
-                    },
-                    // Do not return any MedicationOrders for
-                    // this code if one of the MedicationOrder
-                    // constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+        smartApi => smartApi.patient.api.fetchAll(queryParams)
+                        .then(
+                            (results: any[]) => {
+                              results.map(result => {
+                                return new MedicationAdministration(result);
+                              });
+                            },
+                            // Do not return any MedicationOrders for
+                            // this code if one of the MedicationOrder
+                            // constructions throws an error.
+                            rejection => {
+                              this.debugService.logError(rejection);
+                              throw rejection;
+                            }));
   }
 
   /**

@@ -82,8 +82,7 @@ export class MedicationOrder extends LabeledClass {
    */
   setMedicationAdministrations(fhirService: FhirService):
       Promise<MedicationOrder> {
-    return fhirService
-        .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
+    return fhirService.getMedicationAdministrationsWithOrder(this.orderId)
         .then(
             medAdmins => {
               medAdmins = medAdmins.sort((a, b) => {

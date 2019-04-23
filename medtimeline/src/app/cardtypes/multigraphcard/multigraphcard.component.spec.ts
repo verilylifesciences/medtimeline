@@ -46,9 +46,12 @@ describe('MultiGraphCardComponent', () => {
             MatProgressSpinnerModule, ChartsModule, MatTooltipModule
           ],
           declarations: [
-            MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,
-            ScatterplotComponent, MicrobioGraphComponent, CardComponent,
-            MatIconModule
+            MultiGraphCardComponent,
+            LineGraphComponent,
+            StepGraphComponent,
+            ScatterplotComponent,
+            MicrobioGraphComponent,
+            CardComponent,
           ],
           providers: [
             {provide: FhirService, useValue: new StubFhirService()},

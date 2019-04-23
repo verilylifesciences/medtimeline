@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Component, Inject} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
@@ -20,6 +20,7 @@ import * as Colors from 'src/app/theme/verily_colors';
 @Component({
   selector: 'app-customizable-timeline-dialog',
   templateUrl: './customizable-timeline-dialog.component.html',
+  styleUrls: ['./customizable-timeline-dialog.component.css']
 })
 export class CustomizableTimelineDialogComponent {
   // The text input for this dialog box.
@@ -52,6 +53,9 @@ export class CustomizableTimelineDialogComponent {
   // The date selected for this dialog box.
   date: Date;
 
+  // The time selected for this dialog box.
+  time: any;
+
   // The date range currently being viewed.
   dateRange: Interval;
 
@@ -60,13 +64,16 @@ export class CustomizableTimelineDialogComponent {
       @Inject(MAT_DIALOG_DATA) public data: any) {
     this.date = new Date(data.date);
     this.dateFormControl = new FormControl(this.date);
-    const timeString = this.date.toLocaleTimeString(
-        [], {hour12: false, hour: '2-digit', minute: '2-digit'});
-    // Since we do not have an input of type "time" due to IE restrictions, we
-    // manually check whether the input is a valid time string using regex.
-    this.timeFormControl = new FormControl(
-        timeString, Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]'));
-    this.generateListOfTimes();
+    const minutes = this.date.getMinutes();
+    const hours = this.date.getHours();
+    this.time = {hour: hours, minute: minutes};
+    this.timeFormControl =
+        new FormControl(this.time, (control: FormControl) => {
+          const value = control.value;
+          if (!value) {
+            return null;
+          }
+        });
     // Set the default selected color as yellow if unset, or find the BCH Color
     // matching the selected color passed in.
     this.selectedColor = data.color ?
@@ -103,31 +110,15 @@ export class CustomizableTimelineDialogComponent {
         ));
   }
 
-  // Generates a list of times with 30-minute intervals, for the autocomplete
-  // time-picker.
-  private generateListOfTimes() {
-    const interval = 30;
-    const date = new Date();
-    date.setMinutes(0);
-    date.setHours(0);
-    for (let time = 0; time <= 24 * 60; time += interval) {
-      date.setHours(time / 60);
-      date.setMinutes(time % 60);
-      this.listOfTimes.push({
-        24: date.toLocaleTimeString(
-            [], {hour12: false, hour: '2-digit', minute: '2-digit'})
-      });
-    }
-  }
-
   // Constructs a new Date based on user input.
   private getSelectedDate(): Date {
     const dateTime = new Date(this.dateFormControl.value);
+    if (!this.time || !this.timeFormControl.value) {
+      return undefined;
+    }
     // For date parsing to work in IE, we must remove all extraneous non-ASCII
     // characters added, and manually change the time.
-    const time =
-        this.timeFormControl.value.replace(/[^\x00-x7F]/g, '').split(':');
-    dateTime.setHours(Number(time[0]), Number(time[1]));
+    dateTime.setHours(this.time.hour, this.time.minute);
     return dateTime;
   }
 
@@ -137,7 +128,7 @@ export class CustomizableTimelineDialogComponent {
         (this.userTitle && this.userTitle.trim().length === 0) ||
         this.dateFormControl.hasError('required') ||
         this.timeFormControl.hasError('required') ||
-        this.timeFormControl.invalid || this.dateFormControl.invalid;
+        this.dateFormControl.invalid || this.timeFormControl.invalid;
   }
 
   // Returns whether the date selected by the user falls outside the current
