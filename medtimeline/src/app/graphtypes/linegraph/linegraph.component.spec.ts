@@ -68,4 +68,115 @@ describe('LineGraphComponent', () => {
       {x: DateTime.utc(1995, 7, 22).toISO(), y: 20}
     ]);
   });
+
+  it('LinegraphComponent should set y axis display as display' +
+         ' bounds if min/max of data fall outside of this range',
+     () => {
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             100, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             -10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             -40, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+       component.data = LineGraphData.fromObservationSetList(
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
+       component.generateChart();
+       const expectedMin = 0;
+       const expectedMax = 50;
+       const padding = (expectedMax - expectedMin) * .25;
+       expect(component.chartOptions.scales.yAxes[0].ticks.min)
+           .toEqual(expectedMin - padding);
+       expect(component.chartOptions.scales.yAxes[0].ticks.max)
+           .toEqual(expectedMax + padding);
+     });
+
+
+  it('LinegraphComponent should set y axis display correctly' +
+         ' if points fall outside display bound range in only one direction',
+     () => {
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             100, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             5, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             6, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+       component.data = LineGraphData.fromObservationSetList(
+           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
+
+       component.generateChart();
+       const expectedMin = 1;
+       const expectedMax = 50;
+       const padding = (expectedMax - expectedMin) * .25;
+       expect(component.chartOptions.scales.yAxes[0].ticks.min)
+           .toEqual(expectedMin - padding);
+       expect(component.chartOptions.scales.yAxes[0].ticks.max)
+           .toEqual(expectedMax + padding);
+     });
+
+  it('LinegraphComponent should set y axis display as bounds ' +
+         ' passed in if forceDisplayBounds is true',
+     () => {
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             40, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+
+       const obsSet2 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             5, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             6, DateTime.utc(1988, 3, 25), normalRange)))
+       ]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+
+       const loincCodeGroup2 = new LOINCCodeGroup(
+           new StubFhirService(), 'lbl',
+           [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
+           ChartType.LINE, [0, 50], true);
+       component.data = LineGraphData.fromObservationSetList(
+           'lbl', obsSetList, loincCodeGroup2, TestBed.get(DomSanitizer), []);
+
+       component.generateChart();
+       const expectedMin = 0;
+       const expectedMax = 50;
+       const padding = (expectedMax - expectedMin) * .25;
+
+       expect(component.chartOptions.scales.yAxes[0].ticks.min)
+           .toEqual(expectedMin - padding);
+       expect(component.chartOptions.scales.yAxes[0].ticks.max)
+           .toEqual(expectedMax + padding);
+     });
 });
