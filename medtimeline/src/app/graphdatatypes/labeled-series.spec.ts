@@ -10,6 +10,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
@@ -33,7 +34,7 @@ describe('LabeledSeries', () => {
   const endOfEncounter = DateTime.utc(2018, 9, 15);
   const encounter = makeEncounter(beginningOfEncounter, endOfEncounter);
   const fhirServiceStub: any = {
-    getMedicationAdministrationsWithOrder(id: string) {
+    getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
       return Promise.resolve(medicationAdministrations);
     }
   };

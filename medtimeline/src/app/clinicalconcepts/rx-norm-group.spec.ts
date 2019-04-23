@@ -106,7 +106,7 @@ class RxStubFhirService extends StubFhirService {
     throw Error('Bad medication order ID: ' + id);
   }
 
-  getMedicationAdministrationsWithOrder(id: string):
+  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
       Promise<MedicationAdministration[]> {
     if (id === 'OrderA') {
       return Promise.resolve(orderAAdmins);
