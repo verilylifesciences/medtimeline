@@ -10,9 +10,7 @@ export class CustomizableTimelinePage {
   index = new IndexPage();
   // Return the svg portion of the Customizable Graph.
   getGraph() {
-    return element(by.css('app-customizable-graph'))
-        .element(by.css('.c3'))
-        .element(by.css('svg'));
+    return element(by.css('app-customizable-graph'));
   }
 
   getEditIcon() {
@@ -68,9 +66,7 @@ export class CustomizableTimelinePage {
 
   // Return the flag rendered on the CustomizableGraph.
   async getFlag() {
-    return element(by.css('app-customizable-graph'))
-        .element(by.css('.c3'))
-        .element(by.css('[class*="tooltip-custom"]'));
+    return element(by.css('[class*="tooltip-custom"]'));
   }
 
   // Return the title of the flag rendered on the CustomizableGraph.

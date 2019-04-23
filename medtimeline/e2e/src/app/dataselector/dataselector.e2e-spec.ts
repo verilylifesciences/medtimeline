@@ -36,7 +36,7 @@ describe('Data Selector', () => {
        const menu = await dataSelector.getMenu();
        const itemsText = await dataSelector.getItemsText(menu).getText();
        expect(itemsText).toEqual(
-           ['Add Blank Annotation', 'Add Custom Timeline', 'Add Chart']);
+           ['Add Textbox', 'Add Custom Timeline', 'Add Data Timeline']);
      });
 
   it('menu should close after adding a textbox', async () => {
@@ -81,9 +81,8 @@ describe('Data Selector', () => {
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
           'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood Pressure',
-          'SpO2'
+          'Oxygen Saturation (SpO2)'
         ]));
-    expect(itemsText.length).toEqual(5);
   });
 
   it('lab results option menu should have correct options', async () => {
@@ -100,10 +99,11 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set([
-          'ALT', 'Alkaline Phosphatase', 'Aspartate Aminotransferase (AST)',
+          'ALT', 'Alkaline Phosphatase', 'AST (Aspartate Aminotransferase)',
           'Bilirubin, Direct', 'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
           'Complete Blood Count', 'Complete Blood Count White Blood Cell',
-          'Creatinine', 'CSF', 'ESR', 'Other Fluid', 'Uric acid', 'Urinalysis'
+          'Creatinine', 'CSF', 'ESR (Erythrocyte Sedimentation Rate)',
+          'Other Fluid', 'Uric acid', 'Urinalysis'
         ]));
   });
 
@@ -138,8 +138,8 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(mbMenu).getText();
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(['Stool', 'NP Swab']));
-    expect(itemsText.length).toEqual(2);
+        .toEqual(new Set(
+            ['Blood', 'CSF Microbiology', 'Other', 'Respiratory', 'Stool']));
   });
 
   it('color and text of each clinical concept should reflect no data.',
