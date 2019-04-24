@@ -111,7 +111,8 @@ export const UI_CONSTANTS = {
   MOCK_DATA_BANNER: 'This is synthesized data used for demo purposes only.',
   LAUNCH_TUTORIAL: 'Launch Tutorial',
   IFU: 'Open Instructions for Use',
-  SAVE_TO_NOTE: 'Save a screenshot to a PowerChart clinical note',
+  SAVE_TO_NOTE:
+      'Save a static image of this page to a PowerChart clinical note',
   // Interacting with cards
   REMOVE_THIS_CARD: 'Remove this card',
   CARD_REMOVED: 'Card removed.',

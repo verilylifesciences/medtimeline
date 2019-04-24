@@ -82,7 +82,8 @@ export class ResourceCodeManager {
 
   private static readonly bloodPressureLoincs = [
     new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true),
-    new LOINCCode('8478-0', vitalSign, 'Mean Arterial Pressure (Device)', true)
+    new LOINCCode(
+        '8478-0', vitalSign, 'Mean Arterial Pressure (Device)', true, [25, 200])
   ];
 
   private static readonly gentMonitoring = [
@@ -116,21 +117,24 @@ export class ResourceCodeManager {
   ];
 
   private static readonly csfGroup = [
-    new LOINCCode('10333-3', labResult, 'Appearance, CSF'),
-    new LOINCCode('13517-8', labResult, 'Atypical Lymph, CSF'),
-    new LOINCCode('12278-8', labResult, 'Band, CSF'),
-    new LOINCCode('30374-3', labResult, 'Basophil, CSF'),
-    new LOINCCode('12208-5', labResult, 'Eosinophil, CSF'),
-    new LOINCCode('2342-4', labResult, 'Glucose, CSF'),
-    new LOINCCode('10328-3', labResult, 'Lymphocyte, CSF'),
-    new LOINCCode('10329-1', labResult, 'Monocyte, CSF'),
-    new LOINCCode('12278-8', labResult, 'Neutrophil/Band, CSF')
+    new LOINCCode('10333-3', labResult, 'Appearance, CSF', false, [0, 100]),
+    new LOINCCode('13517-8', labResult, 'Atypical Lymph, CSF', false, [0, 100]),
+    new LOINCCode('12278-8', labResult, 'Band, CSF', false, [0, 100]),
+    new LOINCCode('30374-3', labResult, 'Basophil, CSF', false, [0, 100]),
+    new LOINCCode('12208-5', labResult, 'Eosinophil, CSF', false, [0, 100]),
+    new LOINCCode('2342-4', labResult, 'Glucose, CSF', false, [0, 100]),
+    new LOINCCode('10328-3', labResult, 'Lymphocyte, CSF', false, [0, 100]),
+    new LOINCCode('10329-1', labResult, 'Monocyte, CSF', false, [0, 100]),
+    new LOINCCode('12278-8', labResult, 'Neutrophil/Band, CSF', false, [0, 100])
   ];
 
   private static readonly otherFluidGroup = [
     new LOINCCode('9335-1', labResult, 'Appearance, Other Fluid'),
-    new LOINCCode('31208-2', labResult, 'Cell Count Source, Other Fluid'),
-    new LOINCCode('47938-6', labResult, 'Cell Count, Other Source'),
+    new LOINCCode(
+        '31208-2', labResult, 'Cell Count Source, Other Fluid', false,
+        [0, 100000]),
+    new LOINCCode(
+        '47938-6', labResult, 'Cell Count, Other Source', false, [0, 100000]),
     new LOINCCode('38256-4', labResult, 'Cells Counted, Other Fluid'),
     new LOINCCode('6824-7', labResult, 'Color, Other Fluid'),
     new LOINCCode('12209-3', labResult, 'Eosinophil, Other Fluid')
@@ -268,7 +272,7 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'Blood Pressure',
             ResourceCodeManager.bloodPressureLoincs, vitalSign, ChartType.LINE,
-            [25, 200], false,
+            [25, 250], false,
             (observation: Observation, dateRange: Interval):
                 Promise<AnnotatedObservation> => {
                   return bpLocation.getResourceSet(dateRange).then(obsSet => {
@@ -293,12 +297,12 @@ export class ResourceCodeManager {
           labResult, ChartType.LINE, [0.5, 30]),
       new LOINCCodeGroup(
           this.fhirService, 'Platelet',
-          [new LOINCCode('777-3', labResult, 'Platelet', false, [0.5, 30])],
-          labResult, ChartType.LINE, [0.5, 30]),
+          [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
+          labResult, ChartType.LINE, [2, 900]),
       new LOINCCodeGroup(
           this.fhirService, 'WBC',
-          [new LOINCCode('26464-8', labResult, 'WBC', false)], labResult,
-          ChartType.LINE),
+          [new LOINCCode('26464-8', labResult, 'WBC', false, [0, 150])],
+          labResult, ChartType.LINE, [0, 150]),
     ];
 
     codeGroups.push(new AxisGroup(
@@ -409,7 +413,7 @@ export class ResourceCodeManager {
         this.fhirService, this.sanitizer,
         new LOINCCodeGroup(
             this.fhirService, 'CSF', ResourceCodeManager.csfGroup, labResult,
-            ChartType.SCATTER),
+            ChartType.SCATTER, [0, 100]),
         'CSF')]));
 
     codeGroups.push(new AxisGroup([new Axis(
