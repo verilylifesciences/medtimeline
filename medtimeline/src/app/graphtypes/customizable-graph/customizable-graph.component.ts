@@ -170,7 +170,6 @@ export class CustomizableGraphComponent extends
         }
         tooltip.onclick = (e: MouseEvent) => {
           const parent = tooltip.parentNode;
-          // TODO(b/123935165): Find a better way to handle the errors.
           try {
             parent.appendChild(tooltip);
           } catch (e) {
@@ -298,8 +297,6 @@ export class CustomizableGraphComponent extends
         // By default, the user selected date is the original date
         // corresponding to where the user chose to add the point.
         let userSelectedDate = result.timestamp;
-        // TODO(b/122371627):  Use UUIDs instead of timestamps to track
-        // annotations.
         userSelectedDate =
             DateTime.fromMillis(this.updateTime(userSelectedDate.toMillis()));
         result.timestamp = userSelectedDate;

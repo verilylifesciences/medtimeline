@@ -84,35 +84,3 @@ ngb-timepicker {
   color: grey;
   margin-top: 18px;
 }
-
-::ng-deep .dateInput {
-  width: 100px !important;
-}
-
-::ng-deep ngb-datepicker {
-  z-index: 4;
-  background-color:white;
-}
-
-::ng-deep .date {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-::ng-deep .time {
-  display: inline-block;
-  margin-left:30px;
-  vertical-align: middle;
-}
-
-::ng-deep .date .mockPlaceholder {
-  margin-bottom: 20px;
-}
-
-::ng-deep .date .dateInput {
-  margin-bottom: 20px;
-}
-
-::ng-deep .mat-dialog-container {
-  max-height: 400px !important;
-}

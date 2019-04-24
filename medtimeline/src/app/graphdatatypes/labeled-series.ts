@@ -218,8 +218,6 @@ export class LabeledSeries {
         // LabeledSeries, as we only show normal ranges for Observations with a
         // normal range given in the data.
         undefined,  // normalRanges
-        // TODO(b/122468555): Enforce that medOrderSets have to have a
-        // RxNormCode upon construction
         medOrderSet.rxNormCode ? medOrderSet.rxNormCode.displayGrouping :
                                  undefined);
   }

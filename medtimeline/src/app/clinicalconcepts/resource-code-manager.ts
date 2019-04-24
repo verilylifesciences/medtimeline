@@ -44,7 +44,7 @@ export class ResourceCodeManager {
   private static axisGroups: AxisGroup[];
   private static displayGroupMapping: Map<DisplayGrouping, AxisGroup[]>;
 
-  private static readonly labLoincs = [
+  static readonly labLoincs = [
     // Pull all the defaults to the top.
     new LOINCCode(
         '1988-5', labResult, 'C-Reactive Protein', true, [0, 100], true),

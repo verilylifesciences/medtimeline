@@ -82,8 +82,6 @@ export class FhirHttpService extends FhirService {
                             .map(result => {
                               return new Observation(result);
                             })
-                            // TODO(b/126775896): Determine which statuses to
-                            // filter out.
                             .filter(
                                 result => result.status !==
                                     ObservationStatus.EnteredInError),
