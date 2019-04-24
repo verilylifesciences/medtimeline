@@ -12,7 +12,6 @@ import {MatDialogRef} from '@angular/material';
   styleUrls: ['./ifu-dialog.component.css']
 })
 export class IfuDialogComponent {
-  source = '../../assets/documents/instructions_for_use.pdf';
   constructor(public dialogRef: MatDialogRef<IfuDialogComponent>) {}
 
   onExit() {

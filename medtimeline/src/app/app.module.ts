@@ -19,7 +19,6 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ChartsModule} from 'ng2-charts';
 import {DragulaModule} from 'ng2-dragula';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
@@ -113,7 +112,6 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     ChartsModule,
     DragulaModule.forRoot(),
     AppRoutingModule,
-    PdfViewerModule
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by

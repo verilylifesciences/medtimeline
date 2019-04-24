@@ -357,7 +357,7 @@ export class ResourceCodeManager {
     // Drug monitoring should be a scatterplot, and the related concepts
     // should be displayed on the same axes.
     const vancRxNorm = new RxNormCodeGroup(
-        this.fhirService, 'Medication Administrations',
+        this.fhirService, 'Administrations',
         [RxNormCode.fromCodeString('11124')], med, ChartType.SCATTER);
 
     // Drug monitoring should be a scatterplot, and the related concepts
@@ -389,7 +389,7 @@ export class ResourceCodeManager {
 
     const gentMonitoring = [
       new RxNormCodeGroup(
-          this.fhirService, 'Medication Administrations',
+          this.fhirService, 'Administrations',
           [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
       new LOINCCodeGroup(
           this.fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring,
