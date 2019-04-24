@@ -469,12 +469,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
 /* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
 /* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -532,7 +531,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -547,21 +545,20 @@ var AppModule = /** @class */ (function () {
                 _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__["ScatterplotComponent"],
                 _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__["StepGraphComponent"],
                 _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_44__["TimelineControllerComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_43__["TimelineControllerComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__["CustomizableTimelineComponent"],
                 _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__["CustomizableGraphComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"],
                 _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__["MicrobioGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_45__["TimelineToolbarComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_44__["TimelineToolbarComponent"],
                 _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorElementComponent"],
                 _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorMenuComponent"],
                 _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
                 _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__["CardComponent"],
                 _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"],
                 _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_42__["SetupComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_41__["SetupComponent"],
                 _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"],
-                _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__["IfuDialogComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -593,15 +590,15 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_13__["DragulaModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"]
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
                 // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
                 // injected into the service that uses it to allow for easier testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_43__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_42__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
                     provide: _fhir_service__WEBPACK_IMPORTED_MODULE_33__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_41__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_40__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
                 },
                 { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"] },
                 { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] }
@@ -609,7 +606,7 @@ var AppModule = /** @class */ (function () {
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
             entryComponents: [
                 _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"], _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__["IfuDialogComponent"]
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"]
             ]
         })
     ], AppModule);
@@ -824,17 +821,9 @@ var CardcontainerComponent = /** @class */ (function () {
                 // Only save the snapshot to the EHR if the user confirmed the save.
                 if (result) {
                     var date = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].fromJSDate(new Date()).toISO();
-                    _this.fhirService.saveStaticNote(canvas, date).then(function (res) {
-                        if (res) {
-                            _this.snackBar.open(_this.uiConstants.SAVED_TO_POWERCHART, _this.uiConstants.DISMISS, {
-                                duration: _this.DISPLAY_TIME,
-                            });
-                        }
-                        else {
-                            _this.snackBar.open(_this.uiConstants.ERROR_SAVED_TO_POWERCHART, _this.uiConstants.DISMISS, {
-                                duration: _this.DISPLAY_TIME,
-                            });
-                        }
+                    _this.fhirService.saveStaticNote(canvas, date);
+                    _this.snackBar.open(_this.uiConstants.SAVED_TO_POWERCHART, _this.uiConstants.DISMISS, {
+                        duration: _this.DISPLAY_TIME,
                     });
                     Object(src_constants__WEBPACK_IMPORTED_MODULE_6__["recordGoogleAnalyticsEvent"])('saveStaticSnapshot', 'save', new Date().toDateString());
                 }
@@ -1839,7 +1828,10 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
      * codes.
      */
     BCHMicrobioCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
-        return this.fhirService.getDiagnosticReports(this, dateRange);
+        return this.fhirService.getDiagnosticReports(this, dateRange)
+            .then(function (result) {
+            return result;
+        });
     };
     /**
      * Returns whether there is any data available for this ResourceCode within
@@ -2345,7 +2337,7 @@ var ResourceCodeManager = /** @class */ (function () {
         }
         var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Add the blood pressure LOINCs.
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', ResourceCodeManager_1.bloodPressureLoincs, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [25, 250], false, function (observation, dateRange) {
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', ResourceCodeManager_1.bloodPressureLoincs, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [25, 200], false, function (observation, dateRange) {
                 return bpLocation.getResourceSet(dateRange).then(function (obsSet) {
                     return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forBloodPressure(observation, 
                     // We only pass in the first ObservationSet, since we
@@ -2357,8 +2349,8 @@ var ResourceCodeManager = /** @class */ (function () {
         var cbc = [
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [10, 70]),
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0.5, 30]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [2, 900]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 150]),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Platelet', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0.5, 30]),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC', false)], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbc.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count'));
         var cbcWBC = [
@@ -2374,7 +2366,7 @@ var ResourceCodeManager = /** @class */ (function () {
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
-        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
+        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Medication Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
         var vancMonitoring = [
@@ -2391,12 +2383,12 @@ var ResourceCodeManager = /** @class */ (function () {
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](vancMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Vancomycin'));
         var gentMonitoring = [
-            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
+            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Medication Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.gentMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER)
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](gentMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Gentamicin'));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Urinalysis', ResourceCodeManager_1.urineGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Urinalysis')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, [0, 100]), 'CSF')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'CSF')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Other Fluid', ResourceCodeManager_1.otherFluidGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Other Fluid')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Stool', ResourceCodeManager_1.stoolGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Stool')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Respiratory', ResourceCodeManager_1.respiratoryGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Respiratory')]));
@@ -2462,7 +2454,7 @@ var ResourceCodeManager = /** @class */ (function () {
     ResourceCodeManager.systolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8480-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Systolic Blood Pressure', true, [30, 250]);
     ResourceCodeManager.bloodPressureLoincs = [
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Mean Arterial Pressure (Device)', true, [25, 200])
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Mean Arterial Pressure (Device)', true)
     ];
     ResourceCodeManager.gentMonitoring = [
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31091-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Peak/Post Q24H'),
@@ -2487,25 +2479,25 @@ var ResourceCodeManager = /** @class */ (function () {
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13945-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Red Cells, Urinalysis'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('11277-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Squamous Epithelial, Urinalysis'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50563-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Urobilinogen, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5799-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC Enzyme, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5799-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'White Blood Cell Enzyme, Urinalysis'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('33825-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'White Blood Cell Clump, Urinalysis'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20408-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'White Cells, Urinalysis'),
     ];
     ResourceCodeManager.csfGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10333-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Appearance, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13517-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Atypical Lymph, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Band, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('30374-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12208-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2342-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Glucose, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10328-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10329-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band, CSF', false, [0, 100])
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10333-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Appearance, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13517-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Atypical Lymph, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Band, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('30374-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12208-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2342-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Glucose, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10328-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10329-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte, CSF'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band, CSF')
     ];
     ResourceCodeManager.otherFluidGroup = [
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9335-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Appearance, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31208-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count Source, Other Fluid', false, [0, 100000]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('47938-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count, Other Source', false, [0, 100000]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31208-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count Source, Other Fluid'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('47938-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count, Other Source'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38256-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cells Counted, Other Fluid'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6824-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Color, Other Fluid'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12209-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil, Other Fluid')
@@ -3663,6 +3655,8 @@ var statusToEnumMap = new Map([
  */
 var DiagnosticReport = /** @class */ (function () {
     function DiagnosticReport(json) {
+        /** Specimens this report is based on */
+        this.specimens = new Array();
         /** Results in the form of observations */
         this.results = new Array();
         if (json.id) {
@@ -3670,21 +3664,16 @@ var DiagnosticReport = /** @class */ (function () {
         }
         // Contained resources may be either specimens or observations.
         var contained = json.contained;
-        var specimens = [];
         for (var _i = 0, contained_1 = contained; _i < contained_1.length; _i++) {
             var rsc = contained_1[_i];
             if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Specimen) {
-                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_2__["Specimen"](rsc));
+                this.specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_2__["Specimen"](rsc));
             }
             else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
                 this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_1__["Observation"](rsc));
             }
             // Silently ignore all other contained resource types.
         }
-        if (specimens.length > 1) {
-            throw Error('The report cannot have multiple specimens.');
-        }
-        this.specimen = specimens[0];
         if (!json.status) {
             throw Error('The report needs a status to be useful. JSON: ' +
                 JSON.stringify(json));
@@ -3698,9 +3687,9 @@ var DiagnosticReport = /** @class */ (function () {
  * A diagnostic report with the timestamp for a specific culture type extended.
  */
 var AnnotatedDiagnosticReport = /** @class */ (function () {
-    function AnnotatedDiagnosticReport(report) {
+    function AnnotatedDiagnosticReport(report, cultureType) {
         // Get the timestamp from the collection time of the specimen.
-        var specimen = report.specimen;
+        var specimen = report.specimens.find(function (s) { return (s.type === cultureType); });
         if (specimen) {
             this.timestamp = specimen.collectedDateTime ?
                 specimen.collectedDateTime :
@@ -4097,8 +4086,6 @@ var MedicationOrder = /** @class */ (function (_super) {
         return fhirService
             .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
             .then(function (medAdmins) {
-            if (!medAdmins)
-                return _this;
             medAdmins = medAdmins.sort(function (a, b) {
                 return a.timestamp.toMillis() - b.timestamp.toMillis();
             });
@@ -4625,7 +4612,7 @@ var Observation = /** @class */ (function (_super) {
         _this.result =
             json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
         if (_this.value === null && _this.result === null && !_this.interpretation &&
-            (_this.innerComponents && _this.innerComponents.length === 0)) {
+            _this.innerComponents.length === 0) {
             throw Error('An Observation must have a value, result, inner components, ' +
                 'or an interpretation to be useful. JSON: ' + JSON.stringify(json));
         }
@@ -4737,22 +4724,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
-/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
-/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4798,7 +4783,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var GREATER_OR_EQUAL = 'ge';
 var LESS_OR_EQUAL = 'le';
 // The Cerner implementation has a maximum result return of 100 for
@@ -4827,9 +4811,9 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange, limitCount) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Observation,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation,
             query: {
-                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"].CODING_STRING + '|' + code.codeString,
+                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__["LOINCCode"].CODING_STRING + '|' + code.codeString,
                 date: {
                     $and: [
                         GREATER_OR_EQUAL + dateRange.start.toISODate(),
@@ -4844,12 +4828,12 @@ var FhirHttpService = /** @class */ (function (_super) {
                 .then(function (results) {
                 return results
                     .map(function (result) {
-                    return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](result);
+                    return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["Observation"](result);
                 })
                     // TODO(b/126775896): Determine which statuses to
                     // filter out.
                     .filter(function (result) { return result.status !==
-                    _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; });
+                    _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["ObservationStatus"].EnteredInError; });
             }, 
             // Do not return any Observations for this code if one of
             // the Observation constructions throws an error.
@@ -4869,7 +4853,7 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration,
             query: {
                 effectivetime: {
                     $and: [
@@ -4887,11 +4871,11 @@ var FhirHttpService = /** @class */ (function (_super) {
                 .then(function (results) {
                 return results
                     .filter(function (result) {
-                    return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["LabeledClass"].extractMedicationEncoding(result) === code;
+                    return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_12__["LabeledClass"].extractMedicationEncoding(result) === code;
                 })
                     .map(function (result) {
                     try {
-                        return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
+                        return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](result);
                     }
                     catch (e) {
                         _this.debugService.logError(e);
@@ -4916,9 +4900,9 @@ var FhirHttpService = /** @class */ (function (_super) {
         var _this = this;
         return this.smartApiPromise.then(function (smartApi) {
             return smartApi.patient.api
-                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationOrder, 'id': id })
+                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder, 'id': id })
                 .then(function (result) {
-                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](result.data);
+                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__["MedicationOrder"](result.data);
             }, 
             // Do not return any MedicationOrders for
             // this code if one of the MedicationOrder
@@ -4936,15 +4920,15 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getMedicationAdministrationsWithOrder = function (id, code) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration,
         };
         return this.smartApiPromise.then(function (smartApi) {
             return smartApi.patient.api.fetchAll(queryParams)
                 .then(function (results) {
-                return results
-                    .filter(function (result) { return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["LabeledClass"].extractMedicationEncoding(result) === code; })
+                results
+                    .filter(function (result) { return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_12__["LabeledClass"].extractMedicationEncoding(result) === code; })
                     .map(function (result) {
-                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
+                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](result);
                 })
                     .filter(function (admin) { return admin.medicationOrderId === id; });
             }, 
@@ -4966,10 +4950,10 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getEncountersForPatient = function (dateRange) {
         var _this = this;
         var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Encounter,
+            type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter,
         };
         if (!dateRange) {
-            dateRange = _constants__WEBPACK_IMPORTED_MODULE_4__["APP_TIMESPAN"];
+            dateRange = _constants__WEBPACK_IMPORTED_MODULE_3__["APP_TIMESPAN"];
         }
         // The Cerner implementation of the Encounter search does not offer any
         // filtering by date at this point, so we grab all the encounters
@@ -4981,13 +4965,13 @@ var FhirHttpService = /** @class */ (function (_super) {
             results =
                 results
                     .map(function (result) {
-                    return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](result);
+                    return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__["Encounter"](result);
                 })
                     .filter(function (encounter) {
                     return dateRange.intersection(encounter.period) !== null;
                 })
                     .filter(function (encounter) { return encounter.period.start >=
-                    _constants__WEBPACK_IMPORTED_MODULE_4__["EARLIEST_ENCOUNTER_START_DATE"]; });
+                    _constants__WEBPACK_IMPORTED_MODULE_3__["EARLIEST_ENCOUNTER_START_DATE"]; });
             return results;
         }, function (rejection) {
             _this.debugService.logError(rejection);
@@ -5001,41 +4985,39 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param date The date the note was written on.
      */
     FhirHttpService.prototype.saveStaticNote = function (image, date) {
-        return this.smartApiPromise.then(function (smartApi) {
-            var postBody = {
-                resourceType: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DocumentReference,
-                subject: {
-                    reference: [_constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
-                },
+        var testData = {
+            resource: {
+                resourceType: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DocumentReference,
                 type: {
                     coding: [{
-                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"].CODING_STRING,
-                            code: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["documentReferenceLoinc"].codeString,
+                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__["LOINCCode"].CODING_STRING,
+                            code: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["documentReferenceLoinc"].codeString,
                         }],
                 },
-                indexed: luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc().toISO(),
+                indexed: date,
                 status: 'current',
                 // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
                 content: [{
                         attachment: {
-                            contentType: 'application/xhtml+xml;charset=utf-8',
-                            data: btoa('<img src="' + image.toDataURL() + '">')
+                            contentType: 'image/png',
+                            data: image.toDataURL(),
                         }
                     }],
-                context: {
-                    encounter: {
-                        reference: [
-                            _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
-                        ].join('/')
-                    }
+            }
+        };
+        this.smartApiPromise.then(function (smartApi) {
+            testData['resource']['subject'] = {
+                reference: [_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
+            };
+            testData['resource']['context'] = {
+                encounter: {
+                    reference: [
+                        _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
+                    ].join('/')
                 }
             };
-            return smartApi.patient.api.create({ resource: postBody })
-                .then(function (resolve) {
-                return true;
-            }, function (reject) {
-                return false;
-            });
+            smartApi.patient.api.create(testData);
+            return smartApi;
         });
     };
     /**
@@ -5047,7 +5029,7 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
         var _this = this;
-        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"]) {
             console.warn('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
@@ -5058,52 +5040,22 @@ var FhirHttpService = /** @class */ (function (_super) {
             callParams = callParams.append('category', 'microbiology'),
                 callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
-            callParams = callParams.append('_format', 'json');
-            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].username + ':' +
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].password);
+            callParams = callParams.append('format', 'json');
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Basic ' + authString,
+                'Authorization': 'Basic ' + _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].username + ':' +
+                    _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].password,
             });
             return _this.http
                 .get([
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].url,
-                _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport
+                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].url,
+                _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
                 .then(function (results) {
-                return results.entry.map(function (result) {
-                    return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReport"](result.resource);
+                return results.map(function (result) {
+                    return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__["DiagnosticReport"](result);
                 });
-            })
-                .then(function (results) {
-                var mapToUpdate = new Map();
-                // Get all unique codes for all DiagnosticReport results.
-                for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
-                    var report = results_1[_i];
-                    var codes = report.results.map(function (r) { return r.codes; })
-                        .reduce(function (prev, curr) {
-                        return prev.concat(curr);
-                    }, []);
-                    var uniqueCodes = Array.from(new Set(codes));
-                    for (var _a = 0, uniqueCodes_1 = uniqueCodes; _a < uniqueCodes_1.length; _a++) {
-                        var code = uniqueCodes_1[_a];
-                        var existing = mapToUpdate.get(code);
-                        if (!existing) {
-                            existing = [];
-                        }
-                        existing.push(report);
-                    }
-                }
-                var reports = new Array();
-                for (var _b = 0, _c = codeGroup.resourceCodes; _b < _c.length; _b++) {
-                    var code = _c[_b];
-                    if (mapToUpdate.has(code)) {
-                        reports = reports.concat(mapToUpdate.get(code));
-                    }
-                }
-                return reports;
             });
         }, function (rejection) {
             _this.debugService.logError(rejection);
@@ -5112,11 +5064,11 @@ var FhirHttpService = /** @class */ (function (_super) {
     };
     FhirHttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__["SMART_ON_FHIR_CLIENT"])),
-        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__["SMART_ON_FHIR_CLIENT"])),
+        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_6__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
 
 
 
@@ -6277,18 +6229,7 @@ var LineGraphData = /** @class */ (function (_super) {
             for (var _a = 0, _b = observationSet.resourceList; _a < _b.length; _a++) {
                 var obs = _b[_a];
                 var tsString = obs.observation.timestamp.toMillis().toString();
-                // Only add the timestamp to the tooltip for the first entry.
-                var tooltipText = void 0;
-                if (obs.observation.value) {
-                    tooltipText =
-                        new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                            .getTooltip(obs, sanitizer);
-                }
-                else {
-                    tooltipText =
-                        new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["DiscreteObservationTooltip"](!tooltipMap.has(tsString))
-                            .getTooltip([obs.observation], sanitizer);
-                }
+                var tooltipText = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["DiscreteObservationTooltip"]().getTooltip([obs.observation], sanitizer);
                 // The key for this tooltip is the observation's timestamp.
                 // There may be multiple data points associated with the timestamp
                 // so we stack the tooltips on top of one another in that case.
@@ -6300,7 +6241,7 @@ var LineGraphData = /** @class */ (function (_super) {
                 }
             }
         }
-        return new LineGraphData(label, [lblSeries], [0, yValue * 2], undefined, // Units
+        return new LineGraphData(label, [lblSeries], [0, yValue], undefined, // Units
         tooltipMap);
     };
     return LineGraphData;
@@ -6362,22 +6303,34 @@ var MicrobioGraphData = /** @class */ (function (_super) {
      * @param diagnosticReports A list of DiagnosticReports to display.
      * @returns a new StepGraphData for this set.
      */
-    MicrobioGraphData.fromDiagnosticReports = function (diagnosticReports, sanitizer) {
+    MicrobioGraphData.fromDiagnosticReports = function (diagnosticReports, cultureType, sanitizer) {
         var points = [];
         var tooltipMap = new Map();
-        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
-            var report = diagnosticReports_1[_i];
-            // Get the timestamp from the collection time of the specimen.
-            var specimen = report.specimen;
+        var _loop_1 = function (report) {
+            // Find the specimen in the report with the correct Culture type.
+            // We throw an error if there are mutiple specimens of the same type for
+            // a DiagnosticReport.
+            var seen = new Set();
+            var hasDuplicates = report.specimens.some(function (s) {
+                return seen.size === seen.add(s.type).size;
+            });
+            if (hasDuplicates) {
+                throw Error('Report has multiple specimens with same type.');
+            }
+            var specimen = report.specimens.find(function (s) { return (s.type === cultureType); });
             if (specimen) {
-                var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report);
+                var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report, cultureType);
                 // For this tooltip, the keys are timestamps.
                 tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
-                for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
-                    var series = _b[_a];
+                for (var _i = 0, _a = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _i < _a.length; _i++) {
+                    var series = _a[_i];
                     points.push(series);
                 }
             }
+        };
+        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
+            var report = diagnosticReports_1[_i];
+            _loop_1(report);
         }
         return new MicrobioGraphData(points, tooltipMap);
     };
@@ -6730,9 +6683,6 @@ var Axis = /** @class */ (function () {
         // Set the encounters for this date range. If the promise fails, the list of
         // encounters is empty.
         this.fhirService.getEncountersForPatient(dateRange).then(function (e) {
-            if (!e) {
-                e = [];
-            }
             e = e.sort(function (a, b) { return a.period.start.toMillis() - b.period.start.toMillis(); });
             _this.encounters = e;
         }, function (reject) { return _this.encounters = []; });
@@ -6787,7 +6737,7 @@ var Axis = /** @class */ (function () {
     Axis.prototype.getStepGraphDataForMB = function (bchCodes, dateRange) {
         var _this = this;
         return bchCodes.getResourceFromFhir(dateRange).then(function (diagReports) {
-            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_5__["MicrobioGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
+            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_5__["MicrobioGraphData"].fromDiagnosticReports(diagReports, bchCodes.label, _this.sanitizer);
         });
     };
     /**
@@ -7042,6 +6992,7 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
     };
     CustomizableGraphComponent.prototype.ngOnChanges = function (changes) {
         _super.prototype.ngOnChanges.call(this, changes);
+        // TODO(shilpakumar): Handle edit mode.
         if (changes.dateRange) {
             // CustomizableGraph needs to update annotations in the case that the date
             // range is changed.
@@ -7624,8 +7575,8 @@ var GraphComponent = /** @class */ (function () {
         }
         // Set the axis label if it's provided.
         this.chartOptions.scales.yAxes[0].scaleLabel.labelString = this.axisLabel ?
-            this.axisLabel.substr(0, 10) +
-                (this.axisLabel.length > 10 ? '...' : '') :
+            this.axisLabel.substr(0, 18) +
+                (this.axisLabel.length > 18 ? '...' : '') :
             '';
         // Add left-padding so that the y-axes are aligned with one another.
         this.chartOptions.scales.yAxes[0]['afterSetDimensions'] = function (axes) {
@@ -7958,10 +7909,6 @@ var LineGraphComponent = /** @class */ (function (_super) {
         // We have to wait until after the data loads up into the graph to iterate
         // over the points and adjust their coloring based on the normal range.
         this.addYNormalRange();
-        if (!this.showTicks) {
-            this.chartOptions.scales.yAxes[0].display = false;
-            this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
-        }
     };
     /**
      * Adds y normal ranges to the graph and colors points the designated
@@ -8625,11 +8572,9 @@ var MicrobioTooltip = /** @class */ (function (_super) {
         var status = src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["DiagnosticReportStatus"][annotatedReport.report.status];
         var results = annotatedReport.report.results;
         var timestamp = annotatedReport.timestamp;
-        var specimen = annotatedReport.report.specimen.type;
         var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Status', status], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Specimen', specimen], sanitizer);
         var spacerRow = table.insertRow();
         spacerRow.insertCell();
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Results Contained', table, sanitizer);
@@ -8687,17 +8632,12 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var DiscreteObservationTooltip = /** @class */ (function (_super) {
     __extends(DiscreteObservationTooltip, _super);
-    function DiscreteObservationTooltip(addTimestampRow) {
-        if (addTimestampRow === void 0) { addTimestampRow = true; }
-        var _this = _super.call(this) || this;
-        _this.addTimestampRow = addTimestampRow;
-        return _this;
+    function DiscreteObservationTooltip() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     DiscreteObservationTooltip.prototype.getTooltip = function (observations, sanitizer) {
         var table = _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
-        if (this.addTimestampRow) {
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(observations[0].timestamp, table, sanitizer);
-        }
+        _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(observations[0].timestamp, table, sanitizer);
         for (var _i = 0, observations_1 = observations; _i < observations_1.length; _i++) {
             var obs = observations_1[_i];
             _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [obs.label, obs.result], sanitizer);
@@ -8731,6 +8671,7 @@ var GenericAnnotatedObservationTooltip = /** @class */ (function (_super) {
         if (this.addTimestampRow) {
             _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(observation.observation.timestamp, table, sanitizer);
         }
+        console.warn(observation.observation);
         _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
             observation.label,
             observation.observation.value ?
@@ -8925,7 +8866,7 @@ var StandardTooltip = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n  font-size: 20px;\n}\n\n::ng-deep .mat-horizontal-content-container {\n  padding-bottom: 0px !important;\n}\n\n.stepperButtons {\n  float: right;\n}\n\n.stepperButtons button {\n  margin-right: 5px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 500px !important;\n}\n\nimg {\n  max-width: 100%;\n}\n\n.divider {\n  margin-bottom: 20px;\n  margin-top: 10px;\n  border-top-width: 5px !important;\n}"
+module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n  font-size: 20px;\n}\n\n::ng-deep .mat-horizontal-content-container {\n  padding-bottom: 0px !important;\n}\n\n.stepperButtons {\n  float: right;\n}\n\n.stepperButtons button {\n  margin-right: 5px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: -webkit-fill-available !important;\n}\n\nimg {\n  width: 100%;\n}\n\n.divider {\n  margin-bottom: 20px;\n  margin-top: 10px;\n  border-top-width: 5px !important;\n}"
 
 /***/ }),
 
@@ -8936,7 +8877,7 @@ module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"float: right;\" mat-dialog-actions>\n  <button mat-icon-button (click)=\"onExit()\">\n    <mat-icon color=\"primary\">close</mat-icon>\n  </button>\n</div>\n<mat-horizontal-stepper [linear]=\"false\" #stepper>\n  <!-- keep icons as numbers during edit-->\n  <ng-template matStepperIcon=\"edit\" let-index=\"index\">\n    {{index +1}}\n  </ng-template>\n  <mat-step label=\"Configuration\">\n    <div class=\"stepContent\">\n      <div>\n        MedTimeLine Configuration Screen\n      </div>\n      <img src=\"assets/images/configuration.png\">\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Set Date Range\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          Click on the current date range to open the datepicker.\n        </div>\n        <img src=\"assets/images/datepicker_open.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Choose a patient encounter or pre-set time period on the left.\n        </div>\n        <img src=\"assets/images/datepicker_preset.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Alternatively, choose a custom date range.\n        </div>\n        <img src=\"assets/images/datepicker_custom.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Add Flags to Custom Timeline\">\n    <div class=\"stepContent\">\n      <div>\n        The Custom Timeline feature allows you to enter custom events.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click the timeline at a place where you would like to add a flag.\n        </div>\n        <img src=\"assets/images/customTimeline_click.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          In the dialog box, enter a title, description, and select a color for the flag.\n        </div>\n        <img src=\"assets/images/customTimeline_title.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also manually adjust the date and/or time.\n        </div>\n        <img src=\"assets/images/customTimeline_time.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          While in edit mode, you can edit an existing flag, which will open up the dialog box again.\n        </div>\n        <img src=\"assets/images/customTimeline_editFlag.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also remove flags while in edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_delete.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Enter Text Notes\">\n    <div class=\"stepContent\">\n      <div>\n        You can enter notes in the main timeline display area.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/annotation_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Type in your notes, and click the save button to save the note.\n        </div>\n        <img src=\"assets/images/annotation_type.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timelines\">\n    <div class=\"stepContent\">\n      <div>\n        You can add, remove, and rearrange timelines to optimize the data view for specific patients.\n      </div>\n      <div>\n        <div>\n          To add a timeline, click the plus sign, then select Add Data Timeline.\n          Select the timeline type you want to add, then select the specific timeline.\n        </div>\n        <img src=\"assets/images/timelines_add_generic.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can also add another Custom Timeline or text notes. You can also search for concept through the autocomplete\n        input.\n      </div>\n      <img src=\"assets/images/timelines_autocomplete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To remove a timeline, hover your cursor over the timeline you want to remove. Click the X in the upper left\n        corner of the timeline.\n      </div>\n      <img src=\"assets/images/timelines_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can undo a deletion of a card, as well.\n      </div>\n      <img src=\"assets/images/timelines_undo_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To rearrange timelines, click the label or colored handle on the left hand side of the timeline you want to\n        move, and hold the mouse button and drag and drop the timeline to your desired location.\n      </div>\n      <img src=\"assets/images/timelines_reorder.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timeline Features\">\n    <div class=\"stepContent\">\n      <div>\n        Timelines are categorized and color-coded by a vertical bar on the leftmost side of the data timeline.\n      </div>\n      <div>\n        <div>\n          You can hover over plotted data point and additional data displays in a tooltip.\n        </div>\n        <img src=\"assets/images/chartHover.gif\">\n        <mat-divider class=\"divider\"></mat-divider>\n        <img src=\"assets/images/chartHover2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button (click)=\"onExit()\">Close</button>\n    </div>\n  </mat-step>\n</mat-horizontal-stepper>"
+module.exports = "<div style=\"float: right;\" mat-dialog-actions>\n  <button mat-icon-button (click)=\"onExit()\">\n    <mat-icon color=\"primary\">close</mat-icon>\n  </button>\n</div>\n<mat-horizontal-stepper [linear]=\"false\" #stepper>\n  <!-- keep icons as numbers during edit-->\n  <ng-template matStepperIcon=\"edit\" let-index=\"index\">\n    {{index +1}}\n  </ng-template>\n  <mat-step label=\"Intro\">\n    <div class=\"stepContent\">\n      MedTimeLine intro screen\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Changing the dates\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          Change the dates of the data displayed on the chart using datepickers.\n        </div>\n        <img src=\"assets/images/datepicker1.png\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click on the datepicker icon to open a calendar.\n        </div>\n        <img src=\"assets/images/datepicker2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Custom TimeLine\">\n    <div class=\"stepContent\">\n      <div>\n        The Timeline feature allows you to enter custom events.\n      </div>\n      <div>\n        <div>\n          Click anywhere on the timeline to add an event.\n        </div>\n        <img src=\"assets/images/customTimeline1.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          By default, descriptions for events are hidden. Click on the expander to reveal the description.\n        </div>\n        <img src=\"assets/images/customTimeline2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click on the pencil icon to edit the event.\n        </div>\n        <img src=\"assets/images/customTimeline3.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click on the trashcan icon to delete the event.\n        </div>\n        <img src=\"assets/images/customTimeline4.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Charts\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          For charts with legends, hover over a series to highlight that series on the chart. Click on a series to hide\n          it from the chart.\n        </div>\n        <img src=\"assets/images/chartUpClose1.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          The green highlighted area on some charts represents a \"normal range\" indicated in the standard.\n        </div>\n        <img src=\"assets/images/chartUpClose2.png\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Card Container\">\n    <div class=\"stepContent\">\n      <div>\n        The card container displays all charts selected.\n      </div>\n      <div>\n        <div>\n          Click and drag a chart to rearrange on the page.\n        </div>\n        <img src=\"assets/images/cardContainer1.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click on the trashcan icon to remove a card from the page. Press \"Undo\" at the bottom of the page to restore.\n        </div>\n        <img src=\"assets/images/cardContainer2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can add cards to the top of the page using the toolbar.\n        </div>\n        <img src=\"assets/images/cardContainer3.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Save Snapshot\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          The \"Save Snapshot\" button allows you to save a static image of the current page to the patient record.\n        </div>\n        <img src=\"assets/images/saveSnapshot.gif\">\n      </div>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button (click)=\"onExit()\">Close</button>\n    </div>\n  </mat-step>\n</mat-horizontal-stepper>"
 
 /***/ }),
 
@@ -8965,6 +8906,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 /**
  * This class holds the logic and template for a tutorial stepper dialog.
+ * TODO(b/122670756): Change wording and pictures in the tutorial.
  */
 var HelpDialogComponent = /** @class */ (function () {
     function HelpDialogComponent(dialogRef) {
@@ -8982,77 +8924,6 @@ var HelpDialogComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
     ], HelpDialogComponent);
     return HelpDialogComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/ifu-dialog/ifu-dialog.component.css":
-/*!*****************************************************!*\
-  !*** ./src/app/ifu-dialog/ifu-dialog.component.css ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "::ng-deep .ifuViewer {\n  height: 300px;\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/ifu-dialog/ifu-dialog.component.html":
-/*!******************************************************!*\
-  !*** ./src/app/ifu-dialog/ifu-dialog.component.html ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h1>MedTimeLine Instructions For Use</h1>\n<div style=\"overflow-y:auto; height: 400px; border: 1px solid black;\">\n  <img *ngFor=\"let i of [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\"\n    [src]=\"'../../assets/documents/ifu_' + i + '.png'\" style=\"display: block;\">\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/ifu-dialog/ifu-dialog.component.ts":
-/*!****************************************************!*\
-  !*** ./src/app/ifu-dialog/ifu-dialog.component.ts ***!
-  \****************************************************/
-/*! exports provided: IfuDialogComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IfuDialogComponent", function() { return IfuDialogComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-// Copyright 2018 Verily Life Sciences Inc.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var IfuDialogComponent = /** @class */ (function () {
-    function IfuDialogComponent(dialogRef) {
-        this.dialogRef = dialogRef;
-    }
-    IfuDialogComponent.prototype.onExit = function () {
-        this.dialogRef.close();
-    };
-    IfuDialogComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-ifu-dialog',
-            template: __webpack_require__(/*! ./ifu-dialog.component.html */ "./src/app/ifu-dialog/ifu-dialog.component.html"),
-            styles: [__webpack_require__(/*! ./ifu-dialog.component.css */ "./src/app/ifu-dialog/ifu-dialog.component.css")]
-        }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
-    ], IfuDialogComponent);
-    return IfuDialogComponent;
 }());
 
 
@@ -9274,7 +9145,6 @@ var MockFhirService = /** @class */ (function (_super) {
     MockFhirService.prototype.saveStaticNote = function (image, date) {
         console.log('Save to note button clicked for mock data for date: ' + date);
         console.log(image);
-        return Promise.resolve(true);
     };
     /**
      * Gets the DiagnosticReports for the patient for any report that falls in
@@ -9294,7 +9164,11 @@ var MockFhirService = /** @class */ (function (_super) {
                     reports = reports.concat(_this.diagnosticReportMap.get(code));
                 }
             }
-            reports.slice(0, limitCount ? limitCount : undefined);
+            reports
+                .filter(function (report) { return report.specimens.map(function (s) { return s.type; })
+                .find(function (specimen) { return specimen === codeGroup.label; }) !==
+                undefined; })
+                .slice(0, limitCount ? limitCount : undefined);
             return reports;
         });
     };
@@ -9692,7 +9566,7 @@ var ABNORMAL = PINK_A700_DARKER;
  * Returns all the colors that are acceptable for data points to be plotted in.
  */
 function getDataColors() {
-    return [BLUE_A700, DEEP_PURPLE_800, PINK_900, GREEN, GOLD, ORANGE, TURQUOISE];
+    return [GREY_900, BLUE_A700, DEEP_PURPLE_800, PINK_900, GREEN, GOLD];
 }
 
 
@@ -9921,7 +9795,7 @@ var TimelineControllerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <div style=\"margin-top: 5px\" *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div style=\"margin-top: 5px\"> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button [matMenuTriggerFor]=\"helpMenu\" matTooltip=\"Help\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <mat-menu #helpMenu=\"matMenu\">\n    <button mat-menu-item (click)=\"openIFU()\">\n      <span>{{uiConstants.IFU}}</span>\n    </button>\n    <button mat-menu-item matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n      <span>{{uiConstants.LAUNCH_TUTORIAL}}</span>\n    </button>\n  </mat-menu>\n  <button mat-icon-button matTooltip=\"{{uiConstants.SAVE_TO_NOTE}}\" (click)=\"snapshot()\">\n    <mat-icon class=\"toolbarButton\">\n      save\n    </mat-icon>\n  </button>\n</div>"
+module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <div *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <button mat-icon-button matTooltip=\"{{uiConstants.SAVE_TO_NOTE}}\" (click)=\"snapshot()\">\n    <mat-icon class=\"toolbarButton\">\n      save\n    </mat-icon>\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -9941,7 +9815,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
 /* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9964,11 +9837,9 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var TimelineToolbarComponent = /** @class */ (function () {
-    function TimelineToolbarComponent(resourceCodeManager, helpDialog, ifuDialog, uiConstants) {
-        this.helpDialog = helpDialog;
-        this.ifuDialog = ifuDialog;
+    function TimelineToolbarComponent(resourceCodeManager, dialog, uiConstants) {
+        this.dialog = dialog;
         this.uiConstants = uiConstants;
         this.showMockDataMessage = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].useMockServer;
         this.saveSnapshot = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -9986,11 +9857,7 @@ var TimelineToolbarComponent = /** @class */ (function () {
         this.addTextbox.emit();
     };
     TimelineToolbarComponent.prototype.openHelpDialog = function () {
-        var dialogRef = this.helpDialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__["HelpDialogComponent"]);
-        Object(src_constants__WEBPACK_IMPORTED_MODULE_2__["recordGoogleAnalyticsEvent"])('viewTutorial', 'tutorial', new Date().toDateString());
-    };
-    TimelineToolbarComponent.prototype.openIFU = function () {
-        var dialogRef = this.ifuDialog.open(_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_6__["IfuDialogComponent"]);
+        var dialogRef = this.dialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__["HelpDialogComponent"]);
         Object(src_constants__WEBPACK_IMPORTED_MODULE_2__["recordGoogleAnalyticsEvent"])('viewTutorial', 'tutorial', new Date().toDateString());
     };
     __decorate([
@@ -10007,9 +9874,8 @@ var TimelineToolbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./timeline-toolbar.component.html */ "./src/app/timeline-toolbar/timeline-toolbar.component.html"),
             styles: [__webpack_require__(/*! ../cardcontainer/cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
         }),
-        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
+        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
     ], TimelineToolbarComponent);
     return TimelineToolbarComponent;
 }());
@@ -10149,7 +10015,7 @@ var UI_CONSTANTS = {
     BAD_ENCOUNTER_ERROR: 'Unable to retrieve hospital visit dates for this patient.' +
         ' You can select any time period in the past six months.',
     // Setup screen
-    INITIAL_CONFIGURATION_HEADER: 'MedTimeLine',
+    INITIAL_CONFIGURATION_HEADER: 'Select Initial Configuration',
     LAST_SEVEN_DAYS: 'Last seven days',
     LAST_MONTH: 'Last month',
     LAST_THREE_MONTHS: 'Last three months',
@@ -10166,7 +10032,7 @@ var UI_CONSTANTS = {
     MOCK_DATA_BANNER: 'This is synthesized data used for demo purposes only.',
     LAUNCH_TUTORIAL: 'Launch Tutorial',
     IFU: 'Open Instructions for Use',
-    SAVE_TO_NOTE: 'Save a screenshot to a PowerChart clinical note',
+    SAVE_TO_NOTE: 'Save a static image of this page to a PowerChart clinical note',
     // Interacting with cards
     REMOVE_THIS_CARD: 'Remove this card',
     CARD_REMOVED: 'Card removed.',
@@ -10176,7 +10042,6 @@ var UI_CONSTANTS = {
     SAVE_YOUR_WORK: 'Save your work on this card',
     // Saving to PowerChart
     SAVED_TO_POWERCHART: 'Screenshot saved to PowerChart.',
-    ERROR_SAVED_TO_POWERCHART: 'Error saving to PowerChart.',
     DISMISS: 'Dismiss',
 };
 
