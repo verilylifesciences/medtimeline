@@ -12,7 +12,6 @@ import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
-import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {documentReferenceLoinc} from './clinicalconcepts/resource-code-manager';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DebuggerService} from './debugger.service';
@@ -317,7 +316,7 @@ export class FhirHttpService extends FhirService {
               'item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
           callParams = callParams.append(
               'item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
-          callParams = callParams.append('_format', 'json');
+          callParams = callParams.append('format', 'json');
 
           const authString = btoa(
               FhirConfig.microbiology.username + ':' +
@@ -340,34 +339,6 @@ export class FhirHttpService extends FhirService {
                 return results.entry.map(result => {
                   return new DiagnosticReport(result.resource);
                 });
-              })
-              .then((results: DiagnosticReport[]) => {
-                const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
-                // Get all unique codes for all DiagnosticReport results.
-                for (const report of results) {
-                  const codes =
-                      report.results.map(r => r.codes)
-                          .reduce(
-                              (prev: ResourceCode[], curr: ResourceCode[]) => {
-                                return prev.concat(curr);
-                              },
-                              []);
-                  const uniqueCodes = Array.from(new Set(codes));
-                  for (const code of uniqueCodes) {
-                    let existing = mapToUpdate.get(code);
-                    if (!existing) {
-                      existing = [];
-                    }
-                    existing.push(report);
-                  }
-                }
-                let reports = new Array<DiagnosticReport>();
-                for (const code of codeGroup.resourceCodes) {
-                  if (mapToUpdate.has(code)) {
-                    reports = reports.concat(mapToUpdate.get(code));
-                  }
-                }
-                return reports;
               });
         },
         rejection => {
