@@ -225,7 +225,7 @@ export class Axis {
       Promise<StepGraphData> {
     return bchCodes.getResourceFromFhir(dateRange).then(diagReports => {
       return MicrobioGraphData.fromDiagnosticReports(
-          diagReports, bchCodes.label, this.sanitizer);
+          diagReports, this.sanitizer);
     });
   }
 
