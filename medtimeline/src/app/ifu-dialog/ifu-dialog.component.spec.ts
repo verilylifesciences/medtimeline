@@ -5,6 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatDialog, MatDialogRef} from '@angular/material';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 import {IfuDialogComponent} from './ifu-dialog.component';
 
@@ -16,6 +17,7 @@ describe('IfuDialogComponent', () => {
     TestBed
         .configureTestingModule({
           declarations: [IfuDialogComponent],
+          imports: [PdfViewerModule],
           providers: [
             {provide: MatDialog, useValue: null},
             {provide: MatDialogRef, useValue: null},
