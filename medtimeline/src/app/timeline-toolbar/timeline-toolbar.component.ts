@@ -12,7 +12,6 @@ import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
-import {IfuDialogComponent} from '../ifu-dialog/ifu-dialog.component';
 
 @Component({
   selector: 'app-timeline-toolbar',
@@ -27,8 +26,7 @@ export class TimelineToolbarComponent {
   @Output() addTextbox = new EventEmitter<null>();
 
   constructor(
-      resourceCodeManager: ResourceCodeManager, private helpDialog: MatDialog,
-      private ifuDialog: MatDialog,
+      resourceCodeManager: ResourceCodeManager, private dialog: MatDialog,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     const displayGroups = resourceCodeManager.getDisplayGroupMapping();
     this.displayGroupings = Array.from(displayGroups.entries());
@@ -46,13 +44,7 @@ export class TimelineToolbarComponent {
   }
 
   openHelpDialog() {
-    const dialogRef = this.helpDialog.open(HelpDialogComponent);
-    recordGoogleAnalyticsEvent(
-        'viewTutorial', 'tutorial', new Date().toDateString());
-  }
-
-  openIFU() {
-    const dialogRef = this.ifuDialog.open(IfuDialogComponent);
+    const dialogRef = this.dialog.open(HelpDialogComponent);
     recordGoogleAnalyticsEvent(
         'viewTutorial', 'tutorial', new Date().toDateString());
   }
