@@ -277,19 +277,8 @@ export class LineGraphData extends GraphData {
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
         const tsString = obs.observation.timestamp.toMillis().toString();
-        // Only add the timestamp to the tooltip for the first entry.
-        let tooltipText: string;
-        if (obs.observation.value) {
-          tooltipText =
-              new GenericAnnotatedObservationTooltip(
-                  !tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                  .getTooltip(obs, sanitizer);
-        } else {
-          tooltipText =
-              new DiscreteObservationTooltip(!tooltipMap.has(tsString))
-                  .getTooltip([obs.observation], sanitizer);
-        }
-
+        const tooltipText = new DiscreteObservationTooltip().getTooltip(
+            [obs.observation], sanitizer);
         // The key for this tooltip is the observation's timestamp.
         // There may be multiple data points associated with the timestamp
         // so we stack the tooltips on top of one another in that case.
@@ -301,7 +290,7 @@ export class LineGraphData extends GraphData {
       }
     }
     return new LineGraphData(
-        label, [lblSeries], [0, yValue * 2], undefined,  // Units
+        label, [lblSeries], [0, yValue], undefined,  // Units
         tooltipMap);
   }
 }

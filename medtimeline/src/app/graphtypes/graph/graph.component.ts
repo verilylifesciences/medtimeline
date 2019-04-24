@@ -320,8 +320,8 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
 
     // Set the axis label if it's provided.
     this.chartOptions.scales.yAxes[0].scaleLabel.labelString = this.axisLabel ?
-        this.axisLabel.substr(0, 10) +
-            (this.axisLabel.length > 10 ? '...' : '') :
+        this.axisLabel.substr(0, 18) +
+            (this.axisLabel.length > 18 ? '...' : '') :
         '';
 
     // Add left-padding so that the y-axes are aligned with one another.
