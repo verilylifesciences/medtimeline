@@ -6,6 +6,7 @@
 import {Component, forwardRef, Inject, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
+import {DateTime} from 'luxon';
 import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
@@ -47,10 +48,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     // We have to wait until after the data loads up into the graph to iterate
     // over the points and adjust their coloring based on the normal range.
     this.addYNormalRange();
-    if (!this.showTicks) {
-      this.chartOptions.scales.yAxes[0].display = false;
-      this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
-    }
   }
 
   /**

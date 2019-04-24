@@ -53,6 +53,7 @@ export class GenericAnnotatedObservationTooltip extends
           observation.observation.timestamp, table, sanitizer);
     }
 
+    console.warn(observation.observation);
     Tooltip.addRow(
         table,
         [
