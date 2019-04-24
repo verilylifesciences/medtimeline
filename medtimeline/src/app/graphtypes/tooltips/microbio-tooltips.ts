@@ -20,10 +20,12 @@ export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
     const status = DiagnosticReportStatus[annotatedReport.report.status];
     const results = annotatedReport.report.results;
     const timestamp = annotatedReport.timestamp;
+    const specimen = annotatedReport.report.specimen.type;
 
     const table = Tooltip.createNewTable();
     Tooltip.addTimeHeader(timestamp, table, sanitizer);
     Tooltip.addRow(table, ['Status', status], sanitizer);
+    Tooltip.addRow(table, ['Specimen', specimen], sanitizer);
     const spacerRow = table.insertRow();
     spacerRow.insertCell();
     Tooltip.addHeader('Results Contained', table, sanitizer);

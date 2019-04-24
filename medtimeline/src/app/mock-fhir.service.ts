@@ -233,12 +233,7 @@ export class MockFhirService extends FhirService {
           reports = reports.concat(this.diagnosticReportMap.get(code));
         }
       }
-      reports
-          .filter(
-              report => report.specimens.map(s => s.type)
-                            .find(specimen => specimen === codeGroup.label) !==
-                  undefined)
-          .slice(0, limitCount ? limitCount : undefined);
+      reports.slice(0, limitCount ? limitCount : undefined);
       return reports;
     });
   }

@@ -30,28 +30,17 @@ export class MicrobioGraphData extends StepGraphData {
    * @returns a new StepGraphData for this set.
    */
   static fromDiagnosticReports(
-      diagnosticReports: DiagnosticReport[], cultureType: string,
+      diagnosticReports: DiagnosticReport[],
       sanitizer: DomSanitizer): MicrobioGraphData {
     const points: LabeledSeries[] = [];
 
     const tooltipMap = new Map<string, string>();
 
     for (const report of diagnosticReports) {
-      // Find the specimen in the report with the correct Culture type.
-      // We throw an error if there are mutiple specimens of the same type for
-      // a DiagnosticReport.
-      const seen = new Set();
-      const hasDuplicates = report.specimens.some((s) => {
-        return seen.size === seen.add(s.type).size;
-      });
-      if (hasDuplicates) {
-        throw Error('Report has multiple specimens with same type.');
-      }
-
-      const specimen = report.specimens.find(s => (s.type === cultureType));
+      // Get the timestamp from the collection time of the specimen.
+      const specimen = report.specimen;
       if (specimen) {
-        const annotatedReport =
-            new AnnotatedDiagnosticReport(report, cultureType);
+        const annotatedReport = new AnnotatedDiagnosticReport(report);
         // For this tooltip, the keys are timestamps.
         tooltipMap.set(
             annotatedReport.timestamp.toMillis().toString(),
