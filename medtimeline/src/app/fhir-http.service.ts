@@ -335,9 +335,9 @@ export class FhirHttpService extends FhirService {
                   ].join('/'),
                   {headers: httpHeaders, params: callParams})
               .toPromise()
-              .then((results: any[]) => {
-                return results.map(result => {
-                  return new DiagnosticReport(result);
+              .then((results: any) => {
+                return results.entry.map(result => {
+                  return new DiagnosticReport(result.resource);
                 });
               });
         },
