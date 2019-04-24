@@ -18,9 +18,15 @@ import {Tooltip} from './tooltip';
  * Observations should all have the same timestamp.
  */
 export class DiscreteObservationTooltip extends Tooltip<Observation[]> {
+  constructor(private addTimestampRow = true) {
+    super();
+  }
+
   getTooltip(observations: Observation[], sanitizer: DomSanitizer): string {
     const table = Tooltip.createNewTable();
-    Tooltip.addTimeHeader(observations[0].timestamp, table, sanitizer);
+    if (this.addTimestampRow) {
+      Tooltip.addTimeHeader(observations[0].timestamp, table, sanitizer);
+    }
     for (const obs of observations) {
       Tooltip.addRow(table, [obs.label, obs.result], sanitizer);
     }
