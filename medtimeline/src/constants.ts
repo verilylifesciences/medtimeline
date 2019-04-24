@@ -94,7 +94,7 @@ export const UI_CONSTANTS = {
       'Unable to retrieve hospital visit dates for this patient.' +
       ' You can select any time period in the past six months.',
   // Setup screen
-  INITIAL_CONFIGURATION_HEADER: 'Select Initial Configuration',
+  INITIAL_CONFIGURATION_HEADER: 'MedTimeLine',
   LAST_SEVEN_DAYS: 'Last seven days',
   LAST_MONTH: 'Last month',
   LAST_THREE_MONTHS: 'Last three months',
