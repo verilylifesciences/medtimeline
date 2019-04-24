@@ -111,7 +111,7 @@ export class ResourceCodeManager {
     new LOINCCode('13945-1', labResult, 'Red Cells, Urinalysis'),
     new LOINCCode('11277-1', labResult, 'Squamous Epithelial, Urinalysis'),
     new LOINCCode('50563-6', labResult, 'Urobilinogen, Urinalysis'),
-    new LOINCCode('5799-2', labResult, 'White Blood Cell Enzyme, Urinalysis'),
+    new LOINCCode('5799-2', labResult, 'WBC Enzyme, Urinalysis'),
     new LOINCCode('33825-1', labResult, 'White Blood Cell Clump, Urinalysis'),
     new LOINCCode('20408-1', labResult, 'White Cells, Urinalysis'),
   ];
