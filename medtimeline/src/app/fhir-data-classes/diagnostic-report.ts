@@ -102,8 +102,11 @@ export class DiagnosticReport {
    * @param json The JSON retrieved from the server.
    * @param codeGroup The CodeGroup of tests we're looking for.
    */
-  static parseAndFilterMicrobioData(
-      json: any, codeGroup: BCHMicrobioCodeGroup) {
+  static parseAndFilterMicrobioData(json: any, codeGroup: BCHMicrobioCodeGroup):
+      Array<DiagnosticReport> {
+    if (!json || !json.entry) {
+      return [];
+    }
     const diagnosticReports: DiagnosticReport[] =
         json.entry.map(result => new DiagnosticReport(result.resource));
 
