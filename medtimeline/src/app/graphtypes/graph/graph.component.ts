@@ -369,8 +369,8 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       chart.ctx.textAlign = 'center';
       chart.ctx.fillText(
           UI_CONSTANTS.NO_DATA_AVAILABLE_TMPL +
-              this.entireInterval.start.toLocal().toLocaleString() + ' and ' +
-              this.entireInterval.end.toLocal().toLocaleString(),
+              this.entireInterval.start.toLocaleString() + ' and ' +
+              this.entireInterval.end.toLocaleString(),
           xCoordinate, yCoordinate);
     }
   }
