@@ -130,7 +130,7 @@ export class CustomizableTimelineDialogComponent {
   }
 
   // Returns whether the date input has an invalid date.
-  isInvalidDate(): boolean {
+  private isInvalidDate(): boolean {
     return isNaN(DateTime.fromJSDate(this.date).toMillis());
   }
 
