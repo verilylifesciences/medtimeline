@@ -20,7 +20,6 @@ import {makeMedicationAdministration, makeMedicationOrder} from '../../test_util
 
 import {StepGraphComponent} from './stepgraph.component';
 
-// TODO(b/116157058): Add more test coverage for StepGraphCardComponent.
 describe('StepGraphComponent', () => {
   let component: StepGraphComponent;
   let fixture: ComponentFixture<StepGraphComponent>;
