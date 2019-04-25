@@ -141,31 +141,4 @@ describe('Data Selector', () => {
         .toEqual(new Set(
             ['Blood', 'CSF Microbiology', 'Other', 'Respiratory', 'Stool']));
   });
-
-  it('color and text of each clinical concept should reflect no data.',
-     async () => {
-       // By default, there is no data loaded for any clinical concept, so check
-       // that the style of each data selector menu element shows the lack of
-       // data.
-       await dataSelector.clickOnAddCard();
-
-       const addVitals = await dataSelector.getItems(subMenu).get(1);
-
-       await index.waitForClickable(
-           addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-       await addVitals.click();
-
-       const vitalsMenu = await dataSelector.getSubMenu(2);
-       const firstVital = await dataSelector.getItems(vitalsMenu).get(0);
-
-       const text: any = await firstVital.getText();
-       expect(text).toContain('No data between');
-
-       const confCard = dataSelector.getConfigurationCard(firstVital);
-       const color = await index.getStyle(confCard, 'border-left-color');
-
-       // The color of "No Data".
-       expect(color).toEqual('rgba(197, 185, 172, 1)');
-     });
 });

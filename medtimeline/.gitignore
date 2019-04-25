@@ -25,6 +25,12 @@ package-lock.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Firebase
+.firebase/
+.firebaserc
+firebase.json
+public/
+
 # misc
 /.sass-cache
 /connect.lock
