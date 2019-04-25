@@ -48,7 +48,7 @@ export class CustomizableGraphAnnotation {
         'class', 'tooltip-custom-' + chartDivId + millis);
     tooltipContainer.style.left = '0px';
     tooltipContainer.style.borderColor = 'grey';
-    tooltipContainer.style.backgroundColor = this.color;
+    tooltipContainer.style.backgroundColor = this.color.toString();
     tooltipContainer.style.bottom =
         (this.annotationDefaultY + differenceInHeight) + 'px';
 
@@ -121,7 +121,10 @@ export class CustomizableGraphAnnotation {
   removeAnnotation(chartDivId: string) {
     const annotation = document.getElementsByClassName(
         'tooltip-whole-' + chartDivId + this.timestamp.toMillis())[0];
-    annotation.remove();
+    const parent = annotation.parentNode;
+    if (parent) {
+      parent.removeChild(annotation);
+    }
   }
 
   private makeIcon(id: string, iconName: string): HTMLElement {
