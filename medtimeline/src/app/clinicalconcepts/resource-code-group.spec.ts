@@ -11,10 +11,8 @@ import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {StubFhirService} from '../test_utils';
 
-import {labResult, vitalSign} from './display-grouping';
 import {LOINCCode} from './loinc-code';
-import {CachedResourceCodeGroup, ResourceCode, ResourceCodeGroup} from './resource-code-group';
-import {ResourceCodeManager} from './resource-code-manager';
+import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
 
 const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),
@@ -51,11 +49,10 @@ class StubCachedResourceCodeGroup extends
 describe('ResourceCodeGroup', () => {
   it('should correctly determine whether it should be shown if any ResourceCode is marked as default.',
      () => {
-       // These ResourceCodes have mixed showByDefault fields.
-       const resourceCodes = ResourceCodeManager.labLoincs;
-       const resourceCodeGroup = new ResourceCodeGroup(
-           null, 'label', resourceCodes, labResult, ChartType.LINE);
-       expect(resourceCodeGroup.showByDefault).toBeTruthy();
+         // TODO(b/119677148) : Right now there is no "Card" that has multiple
+         // axes, so  there's no case where a Card has a ResourceCodeGroup[]
+         // with length > 1. So, I haven't checked if the card should be shown
+         // based on whether any of them are default, etc.
      });
 });
 

@@ -1,20 +1,18 @@
 <div fxLayout="column" fxLayoutAlign="space-around start">
   <div>
-    <div class="date">
-      <div class="mockPlaceholder">Date *</div>
-      <input class="dateInput form-control" placeholder="yyyy-mm-dd" name="datePicker" [(ngModel)]="date" ngbDatepicker
-        #datePicker="ngbDatepicker" (click)="datePicker.toggle()">
-      <div *ngIf="!date || isInvalidDate()" class="mat-error">Invalid date</div>
-    </div>
-    <div class="time">
-      <div class="mockPlaceholder">Time *</div>
-      <ngb-timepicker [(ngModel)]="time" [formControl]="timeFormControl" required [spinners]="true">
-      </ngb-timepicker>
-      <div *ngIf="!timeFormControl.value" class="mat-error">Invalid time</div>
-    </div>
-    <div *ngIf="dateNotInRange()" class="mat-error">
-      Caution: Date outside of current range
-    </div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="datePicker" placeholder="Date" [formControl]="dateFormControl"
+        (click)="datePicker.open()" required>
+      <mat-error *ngIf="dateFormControl.invalid">Invalid date</mat-error>
+      <mat-hint *ngIf="dateNotInRange()">
+        Caution: Date outside of current range
+      </mat-hint>
+      <mat-datepicker #datePicker></mat-datepicker>
+    </mat-form-field>
+    <div class="mockPlaceholder">Time *</div>
+    <ngb-timepicker [(ngModel)]="time" [formControl]="timeFormControl" required [spinners]="true">
+    </ngb-timepicker>
+    <div *ngIf="!timeFormControl.value" class="mat-error">Invalid time</div>
   </div>
   <div fxLayout="column" fxFlex>
     <mat-form-field class="inputTitle">

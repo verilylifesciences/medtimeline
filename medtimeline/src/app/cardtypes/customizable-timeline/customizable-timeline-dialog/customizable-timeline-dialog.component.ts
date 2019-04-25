@@ -6,7 +6,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
@@ -21,12 +20,14 @@ import * as Colors from 'src/app/theme/verily_colors';
 @Component({
   selector: 'app-customizable-timeline-dialog',
   templateUrl: './customizable-timeline-dialog.component.html',
-  styleUrls: ['./customizable-timeline-dialog.component.css'],
-  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
+  styleUrls: ['./customizable-timeline-dialog.component.css']
 })
 export class CustomizableTimelineDialogComponent {
   // The text input for this dialog box.
   userTitle: string;
+
+  // The FormControl handling the Date selection for this dialog box.
+  dateFormControl: FormControl;
 
   // The list of suggested times to display with the autocomplete.
   listOfTimes = [];
@@ -62,6 +63,7 @@ export class CustomizableTimelineDialogComponent {
       public dialogRef: MatDialogRef<CustomizableTimelineDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) {
     this.date = new Date(data.date);
+    this.dateFormControl = new FormControl(this.date);
     const minutes = this.date.getMinutes();
     const hours = this.date.getHours();
     this.time = {hour: hours, minute: minutes};
@@ -110,7 +112,7 @@ export class CustomizableTimelineDialogComponent {
 
   // Constructs a new Date based on user input.
   private getSelectedDate(): Date {
-    const dateTime = new Date(this.date);
+    const dateTime = new Date(this.dateFormControl.value);
     if (!this.time || !this.timeFormControl.value) {
       return undefined;
     }
@@ -124,14 +126,9 @@ export class CustomizableTimelineDialogComponent {
   findIncompleteFields() {
     return !this.userTitle ||
         (this.userTitle && this.userTitle.trim().length === 0) ||
-        this.date === null || this.isInvalidDate() ||
+        this.dateFormControl.hasError('required') ||
         this.timeFormControl.hasError('required') ||
-        this.timeFormControl.invalid;
-  }
-
-  // Returns whether the date input has an invalid date.
-  private isInvalidDate(): boolean {
-    return isNaN(DateTime.fromJSDate(this.date).toMillis());
+        this.dateFormControl.invalid || this.timeFormControl.invalid;
   }
 
   // Returns whether the date selected by the user falls outside the current

@@ -61,6 +61,7 @@ const statusToEnumMap = new Map<string, ObservationStatus>([
  * as a point on a line graph for a lab or a vital sign. Observations also hold
  * information about microbiology report results that show up in the
  * microbiology graph tooltips.
+ * TODO(b/126222425): Add a descriptive readme to this folder.
  */
 export class Observation extends LabeledClass {
   readonly codes: ResourceCode[] = [];

@@ -82,6 +82,8 @@ export class FhirHttpService extends FhirService {
                             .map(result => {
                               return new Observation(result);
                             })
+                            // TODO(b/126775896): Determine which statuses to
+                            // filter out.
                             .filter(
                                 result => result.status !==
                                     ObservationStatus.EnteredInError),
@@ -334,43 +336,45 @@ export class FhirHttpService extends FhirService {
                   ].join('/'),
                   {headers: httpHeaders, params: callParams})
               .toPromise()
-              .then((results: any) => {
-                return results.entry.map(result => {
-                  return new DiagnosticReport(result.resource);
-                });
-              })
-              .then((results: DiagnosticReport[]) => {
-                const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
-                // Get all unique codes for all DiagnosticReport results.
-                for (const report of results) {
-                  const codes =
-                      report.results.map(r => r.codes)
-                          .reduce(
-                              (prev: ResourceCode[], curr: ResourceCode[]) => {
-                                return prev.concat(curr);
-                              },
-                              []);
-                  const uniqueCodes = Array.from(new Set(codes));
-                  for (const code of uniqueCodes) {
-                    let existing = mapToUpdate.get(code);
-                    if (!existing) {
-                      existing = [];
-                    }
-                    existing.push(report);
-                  }
-                }
-                let reports = new Array<DiagnosticReport>();
-                for (const code of codeGroup.resourceCodes) {
-                  if (mapToUpdate.has(code)) {
-                    reports = reports.concat(mapToUpdate.get(code));
-                  }
-                }
-                return reports;
+              .then((res: any) => {
+                return this.parseMicrobioData(res, codeGroup);
               });
         },
         rejection => {
           this.debugService.logError(rejection);
           throw rejection;
         });
+  }
+
+  // Visible only for testing convenience.
+  parseMicrobioData(json: any, codeGroup: BCHMicrobioCodeGroup) {
+    const diagnosticReports: DiagnosticReport[] =
+        json.entry.map(result => new DiagnosticReport(result.resource));
+
+    const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
+    // Get all unique codes for all DiagnosticReport results.
+    for (const report of diagnosticReports) {
+      const codes: ResourceCode[] =
+          report.results.map(r => r.codes)
+              .reduce((prev: ResourceCode[], curr: ResourceCode[]) => {
+                return prev.concat(curr);
+              }, []);
+      const uniqueCodes: ResourceCode[] = Array.from(new Set(codes));
+      for (const code of uniqueCodes) {
+        let existing = mapToUpdate.get(code);
+        if (!existing) {
+          existing = [];
+        }
+        existing.push(report);
+        mapToUpdate.set(code, existing);
+      }
+    }
+    let reports = new Array<DiagnosticReport>();
+    for (const code of codeGroup.resourceCodes) {
+      if (mapToUpdate.has(code)) {
+        reports = reports.concat(mapToUpdate.get(code));
+      }
+    }
+    return reports;
   }
 }

@@ -44,7 +44,7 @@ export class ResourceCodeManager {
   private static axisGroups: AxisGroup[];
   private static displayGroupMapping: Map<DisplayGrouping, AxisGroup[]>;
 
-  static readonly labLoincs = [
+  private static readonly labLoincs = [
     // Pull all the defaults to the top.
     new LOINCCode(
         '1988-5', labResult, 'C-Reactive Protein', true, [0, 100], true),
@@ -155,7 +155,8 @@ export class ResourceCodeManager {
     new BCHMicrobioCode('YERSINIACULTURE', microbio, 'Yersinia Culture', true),
   ];
 
-  private static respiratoryGroupMB = [
+  // Visible for testing.
+  static respiratoryGroupMB = [
     new BCHMicrobioCode(
         'ADENOVIRUSPCRRESPQUAL', microbio, 'Adenovirus PCR, Resp, QuaL', true),
     new BCHMicrobioCode(
@@ -176,7 +177,8 @@ export class ResourceCodeManager {
         'PARAINFLUENZA3DFA', microbio, 'Parainfluenza 3 DFA', true),
   ];
 
-  private static otherGroupMB = [
+  // Visible for testing.
+  static otherGroupMB = [
     new BCHMicrobioCode(
         'AFBCULTUREANDSTAIN', microbio, 'AFB Culture and Stain', true),
     new BCHMicrobioCode(
