@@ -3,17 +3,19 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClient} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
-import {DisplayGrouping, microbio} from './clinicalconcepts/display-grouping';
+import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {FhirHttpService} from './fhir-http.service';
+import {FhirService} from './fhir.service';
 import {makeSampleObservationJson} from './test_utils';
 
-describe('FhirHttpService', () => {
-  let service: FhirHttpService;
+describe('FhirService', () => {
+  let service: FhirService;
   let clientReadyCallback: (any) => void;
   let clientError: (any) => void;
   const smartApi = {patient: {api: {fetchAll: () => {}}}};

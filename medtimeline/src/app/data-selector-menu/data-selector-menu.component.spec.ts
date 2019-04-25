@@ -17,7 +17,6 @@ import {StubFhirService} from '../test_utils';
 
 import {DataSelectorMenuComponent} from './data-selector-menu.component';
 
-// TODO(b/122653172): Add tests to test event emissions.
 describe('DataSelectorMenuComponent', () => {
   let component: DataSelectorMenuComponent;
   let fixture: ComponentFixture<DataSelectorMenuComponent>;

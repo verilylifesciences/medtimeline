@@ -116,6 +116,7 @@ export class Axis {
     if (dateRange === this.dateRange) {
       return Promise.resolve(this.alreadyResolvedData);
     }
+
     // Invalidate the already-resolved data so that the graph data promise
     // has to be re-evaluated.
     this.dateRange = dateRange;
@@ -126,8 +127,8 @@ export class Axis {
           return data;
         },
         rejection => {
-          this.errorMessage = rejection;
-          return LineGraphData.emptyData();
+          this.errorMessage = JSON.stringify(rejection);
+          return undefined;
         });
   }
 

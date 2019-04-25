@@ -146,66 +146,24 @@ describe('LabeledSeries', () => {
        ]);
      });
 
-  it('fromObservationSetDiscrete should mark qualitative abnormal coordinates',
-     () => {
-       const obsSet = new ObservationSet([
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'yellow', DateTime.utc(1988, 3, 23)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'red', DateTime.utc(1988, 3, 24)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'blue', DateTime.utc(1988, 3, 25), 'A')))
-       ]);
+  it('fromObservationSetDiscrete should mark abnormal coordinates', () => {
+    const obsSet = new ObservationSet([
+      new AnnotatedObservation(
+          new Observation(makeSampleDiscreteObservationJson(
+              'yellow', DateTime.utc(1988, 3, 23)))),
+      new AnnotatedObservation(new Observation(
+          makeSampleDiscreteObservationJson('red', DateTime.utc(1988, 3, 24)))),
+      new AnnotatedObservation(
+          new Observation(makeSampleDiscreteObservationJson(
+              'blue', DateTime.utc(1988, 3, 25), 'A')))
+    ]);
 
-       const lblSeries =
-           LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
-       expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 25), 10]
-       ]);
-     });
-
-  it('fromObservationSetDiscrete should mark quantitative abnormal coordinates ' +
-         ' when they are out of the numerical range',
-     () => {
-       const quantJson = makeSampleObservationJson(
-           1, DateTime.utc(1988, 3, 24), [-1000, -999]);
-
-       const quant = new Observation(quantJson);
-       const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(1, DateTime.utc(1988, 3, 22), [0, 2]))),
-         new AnnotatedObservation(quant),
-       ]);
-
-       const lblSeries =
-           LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
-       expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 24), 10]
-       ]);
-     });
-
-  it('fromObservationSetDiscrete should mark quantitative abnormal coordinates ' +
-         ' when they are marked abnormal of the numerical range',
-     () => {
-       const quantJson = makeSampleObservationJson(
-           1, DateTime.utc(1988, 3, 24), [-1000, 999], 'A');
-
-       const quant = new Observation(quantJson);
-       const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(1, DateTime.utc(1988, 3, 22), [0, 2]))),
-         new AnnotatedObservation(quant)
-       ]);
-
-       const lblSeries =
-           LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
-       expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 24), 10]
-       ]);
-     });
+    const lblSeries =
+        LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
+    expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
+      [DateTime.utc(1988, 3, 25), 10]
+    ]);
+  });
 
   it('fromObservationSetDiscrete should add encounter endpoints to series',
      () => {

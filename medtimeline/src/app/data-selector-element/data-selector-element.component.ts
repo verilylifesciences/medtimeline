@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {AfterViewInit, Component, Inject, Input} from '@angular/core';
-import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
+import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {AxisGroup} from '../graphtypes/axis-group';
 
