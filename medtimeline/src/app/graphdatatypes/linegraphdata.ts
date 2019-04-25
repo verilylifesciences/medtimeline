@@ -48,6 +48,10 @@ export class LineGraphData extends GraphData {
     this.resourceGroup = resourceCodeGroup;
   }
 
+  static emptyData() {
+    return new LineGraphData('', [], [0, 0], '');
+  }
+
   /**
    * Converts a list of ObservationSets to a LineGraphData object.
    * @param label The label for this set of observations.

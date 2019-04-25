@@ -166,6 +166,11 @@ export class LabeledSeries {
             obs.observation.interpretation.code !== NORMAL) {
           abnormal.add([obs.observation.timestamp, yValue]);
         }
+        if (obs.observation.value && obs.observation.value.value &&
+            (obs.observation.value.value < obs.observation.normalRange[0] ||
+             obs.observation.value.value > obs.observation.normalRange[1])) {
+          abnormal.add([obs.observation.timestamp, yValue]);
+        }
       }
     }
     coordinates = this.addEncounterEndpoints(coordinates, encounters);

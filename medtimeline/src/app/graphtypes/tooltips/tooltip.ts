@@ -34,7 +34,7 @@ export abstract class Tooltip<T> {
   }
 
   static formatTimestamp(timestamp: DateTime) {
-    return timestamp.toLocal().toLocaleString() + ' ' +
+    return timestamp.toLocaleString() + ' ' +
         timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE);
   }
 

@@ -7,7 +7,7 @@
         <div class="label">
           {{axisGroup.label}}
         </div>
-        <div class="tinytext" *ngIf="!axisGroup.dataAvailable">
+        <div class="tinytext" *ngIf="axisGroup.dataAvailable === false">
           {{uiConstants.NO_DATA_AVAILABLE_TMPL + appTimeIntervalString}}
         </div>
       </div>
