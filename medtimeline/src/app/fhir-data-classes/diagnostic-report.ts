@@ -6,6 +6,8 @@
 import {DateTime} from 'luxon';
 
 import {FhirResourceType} from '../../constants';
+import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 
 import {Observation} from './observation';
 import {Specimen} from './specimen';
@@ -91,6 +93,45 @@ export class DiagnosticReport {
     }
 
     this.status = statusToEnumMap.get(json.status);
+  }
+
+  /**
+   * The custom microbiology API provided does not allow for calling for
+   * a specific microbio code, so this function parses the entire anticipated
+   * JSON repsonse and filters by code.
+   * @param json The JSON retrieved from the server.
+   * @param codeGroup The CodeGroup of tests we're looking for.
+   */
+  static parseAndFilterMicrobioData(
+      json: any, codeGroup: BCHMicrobioCodeGroup) {
+    const diagnosticReports: DiagnosticReport[] =
+        json.entry.map(result => new DiagnosticReport(result.resource));
+
+    const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
+    // Get all unique codes for all DiagnosticReport results.
+    for (const report of diagnosticReports) {
+      const codes: ResourceCode[] =
+          report.results.map(r => r.codes)
+              .reduce((prev: ResourceCode[], curr: ResourceCode[]) => {
+                return prev.concat(curr);
+              }, []);
+      const uniqueCodes: ResourceCode[] = Array.from(new Set(codes));
+      for (const code of uniqueCodes) {
+        let existing = mapToUpdate.get(code);
+        if (!existing) {
+          existing = [];
+        }
+        existing.push(report);
+        mapToUpdate.set(code, existing);
+      }
+    }
+    let reports = new Array<DiagnosticReport>();
+    for (const code of codeGroup.resourceCodes) {
+      if (mapToUpdate.has(code)) {
+        reports = reports.concat(mapToUpdate.get(code));
+      }
+    }
+    return reports;
   }
 }
 

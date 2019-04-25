@@ -155,7 +155,8 @@ export class ResourceCodeManager {
     new BCHMicrobioCode('YERSINIACULTURE', microbio, 'Yersinia Culture', true),
   ];
 
-  private static respiratoryGroupMB = [
+  // Visible for testing.
+  static respiratoryGroupMB = [
     new BCHMicrobioCode(
         'ADENOVIRUSPCRRESPQUAL', microbio, 'Adenovirus PCR, Resp, QuaL', true),
     new BCHMicrobioCode(
@@ -176,7 +177,8 @@ export class ResourceCodeManager {
         'PARAINFLUENZA3DFA', microbio, 'Parainfluenza 3 DFA', true),
   ];
 
-  private static otherGroupMB = [
+  // Visible for testing.
+  static otherGroupMB = [
     new BCHMicrobioCode(
         'AFBCULTUREANDSTAIN', microbio, 'AFB Culture and Stain', true),
     new BCHMicrobioCode(

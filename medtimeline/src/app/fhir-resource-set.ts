@@ -79,7 +79,6 @@ export class FhirResourceSet<T extends LabeledClass> {
     if (resourceList.length > 0) {
       const firstLabel = resourceList[0].label;
       if (!firstLabel) {
-        console.warn(resourceList);
         throw Error('The first resource does not have a label.');
       }
 
