@@ -54,4 +54,7 @@ describe('TimelineToolbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // TODO(b/122653172): Add test for snapshot event, and figure out how to open
+  // menus and test button clicks.
 });
