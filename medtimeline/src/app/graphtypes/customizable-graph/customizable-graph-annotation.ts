@@ -58,7 +58,7 @@ export class CustomizableGraphAnnotation {
     this.expandIcon =
         this.makeIcon('expand-' + chartDivId + millis, 'expand_more');
     this.expandIcon.style.cursor = 'pointer';
-    tooltipTitleContainer.append(this.expandIcon);
+    tooltipTitleContainer.appendChild(this.expandIcon);
 
     const tooltipTitle = document.createElement('h6');
     tooltipTitle.setAttribute(
@@ -69,7 +69,7 @@ export class CustomizableGraphAnnotation {
 
     this.deleteIcon = this.makeIcon('delete-' + chartDivId + millis, 'clear');
     this.deleteIcon.style.cursor = 'pointer';
-    tooltipTitleContainer.append(this.deleteIcon);
+    tooltipTitleContainer.appendChild(this.deleteIcon);
 
     const tooltipDetails = document.createElement('div');
     tooltipDetails.setAttribute(
@@ -84,7 +84,7 @@ export class CustomizableGraphAnnotation {
 
     this.editIcon = this.makeIcon('edit-' + chartDivId + millis, 'edit');
     this.editIcon.style.cursor = 'pointer';
-    tooltipDetails.append(this.editIcon);
+    tooltipDetails.appendChild(this.editIcon);
 
     /**
      * Add action handlers.
