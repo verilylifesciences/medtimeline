@@ -126,7 +126,8 @@ export class Axis {
           return data;
         },
         rejection => {
-          this.errorMessage = rejection;
+          this.errorMessage =
+              JSON.stringify(rejection) ? JSON.stringify(rejection) : rejection;
           return LineGraphData.emptyData();
         });
   }
