@@ -100,7 +100,7 @@ export class GenericAbnormalTooltip extends
       string|undefined {
     const table = Tooltip.createNewTable();
     const millis: any = params['timestamp'];
-    const timestamp = DateTime.fromMillis(millis).toLocal();
+    const timestamp = DateTime.fromMillis(millis);
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }

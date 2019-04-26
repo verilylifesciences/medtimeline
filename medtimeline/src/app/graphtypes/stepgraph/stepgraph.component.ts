@@ -30,7 +30,7 @@ export class StepGraphComponent extends
   /**
    * The maximum characters for a y-axis tick label.
    */
-  readonly Y_AXIS_TICK_MAX_LENGTH = 15;
+  readonly Y_AXIS_TICK_MAX_LENGTH = 12;
 
   /**
    * Adjusts the y-axis configuration for the chart.

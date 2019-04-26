@@ -189,7 +189,10 @@ export class CustomizableGraphComponent extends
     const selector = 'tooltip-whole-' + this.chartDivId;
     for (const annotation of Array.from(
              document.querySelectorAll('[class*=' + selector + ']'))) {
-      annotation.remove();
+      const parent = annotation.parentNode;
+      if (parent) {
+        parent.removeChild(annotation);
+      }
     }
   }
 
