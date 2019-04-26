@@ -92,7 +92,7 @@ describe('GenericAbnormalTooltip', () => {
   const params = {};
   params['label'] = 'Hemoglobin';
   params['value'] = 100;
-  params['timestamp'] = 575078400000;
+  params['timestamp'] = DateTime.utc(1988, 3, 22).toMillis();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({}).compileComponents();

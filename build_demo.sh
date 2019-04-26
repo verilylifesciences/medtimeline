@@ -5,7 +5,7 @@ mv src/app/fhir_config.js ../fhir_config.js
 touch src/app/fhir_config.js
 
 # Build the demo into the docs folder in the root of the repository.
-ng build --prod --output-path ../docs --base-href /medtimeline/ --configuration dev_mock_DemoMockData
+ng build --prod --output-path ../docs --base-href /medtimeline/ --configuration dev_mock_test_bMedtimeA
 
 # Put back the fhir_config where it belongs.
 rm src/app/fhir_config.js

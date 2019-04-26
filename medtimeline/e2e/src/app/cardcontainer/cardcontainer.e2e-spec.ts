@@ -144,24 +144,6 @@ describe('Card Container', () => {
     });
   });
 
-
-  it('remove icons should only appear on hover', async () => {
-    await cards.each(async function(el) {
-      const card = await index.getElement(el, 'mat-card');
-
-      const deleteIcon = await index.getElement(card, '.removeCardButton');
-      const initialDeleteIconOpacity =
-          await index.getStyle(deleteIcon, 'opacity');
-      expect(initialDeleteIconOpacity).toEqual('0');
-
-      await index.hoverOverElement(card);
-
-      const finalDeleteIconOpacity =
-          await index.getStyle(deleteIcon, 'opacity');
-      expect(Number(finalDeleteIconOpacity)).toEqual(0.8);
-    });
-  });
-
   it('should correctly delete card', async () => {
     const cardLabels = [];
     await cards.each(async function(el) {
