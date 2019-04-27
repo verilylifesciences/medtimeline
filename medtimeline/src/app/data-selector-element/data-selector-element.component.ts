@@ -32,7 +32,7 @@ export class DataSelectorElementComponent implements AfterViewInit {
   /**
    * Whether there is data available within the app timespan for this card.
    */
-  dataAvailable: boolean = true;
+  dataAvailable = true;
 
   constructor(@Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {}
 

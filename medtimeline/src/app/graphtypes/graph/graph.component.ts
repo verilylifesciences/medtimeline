@@ -86,40 +86,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   /** Plugins for chart.js. */
   chartPlugins = [pluginAnnotations];
 
-  /**
-   * Sets the tooltip for the graph.
-   * If the class has a tooltipMap set, then we look up the tooltip from that
-   * map. If there's no tooltipMap, then we return a simple formatted tooltip
-   * of just the string representing the data plus the appropriate units for
-   * a linegraph, or just the unedited value if it's a different kind of graph.
-   */
-  readonly customTooltips =
-      (tooltipContext) => {
-        // Get, or construct, a tooltip element to put all the tooltip HTML
-        // into.
-        const canvas = document.getElementById(this.chartDivId);
-        const tooltipEl = this.findOrCreateTooltipElement(
-            canvas, 'chartjs-tooltip' + this.chartDivId);
-
-        // Hide the element if there is no tooltip-- this function gets called
-        // back whether you're hovering over an element or not.
-        if (tooltipContext.opacity === 0) {
-          tooltipEl.style.opacity = '0';
-          return;
-        }
-
-        if (tooltipContext.body) {
-          tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
-        }
-
-        // Display the tooltip lined up with the data point.
-        const positionY = canvas.offsetTop;
-        const positionX = canvas.offsetLeft;
-        tooltipEl.style.opacity = '1';
-        tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
-        tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
-      }
-
   // The bindings are unhappy when you provide an empty data array, so we
   // give it a fake series to render.
   /**
@@ -147,7 +113,40 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       enabled: false,
       mode: 'x',
       position: 'nearest',
-      custom: this.customTooltips
+      /**
+       * Sets the tooltip for the graph.
+       * If the class has a tooltipMap set, then we look up the tooltip from
+       * that map. If there's no tooltipMap, then we return a simple formatted
+       * tooltip of just the string representing the data plus the appropriate
+       * units for a linegraph, or just the unedited value if it's a different
+       * kind of graph.
+       */
+      custom:
+          (tooltipContext) => {
+            // Get, or construct, a tooltip element to put all the tooltip HTML
+            // into.
+            const canvas = document.getElementById(this.chartDivId);
+            const tooltipEl = this.findOrCreateTooltipElement(
+                canvas, 'chartjs-tooltip' + this.chartDivId);
+
+            // Hide the element if there is no tooltip-- this function gets
+            // called back whether you're hovering over an element or not.
+            if (tooltipContext.opacity === 0) {
+              tooltipEl.style.opacity = '0';
+              return;
+            }
+
+            if (tooltipContext.body) {
+              tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
+            }
+
+            // Display the tooltip lined up with the data point.
+            const positionY = canvas.offsetTop;
+            const positionX = canvas.offsetLeft;
+            tooltipEl.style.opacity = '1';
+            tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
+            tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
+          }
     },
     annotation: {
       // Array of annotation configuration objects to be filled in.

@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Inject} from '@angular/core';
+import {AfterViewInit, Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
@@ -11,7 +11,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   templateUrl: './confirm-save.component.html',
   styleUrls: ['./confirm-save.component.css']
 })
-export class ConfirmSaveComponent {
+export class ConfirmSaveComponent implements AfterViewInit {
   innerHtml: string;
   constructor(
       public dialogRef: MatDialogRef<ConfirmSaveComponent>,
