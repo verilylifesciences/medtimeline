@@ -122,13 +122,18 @@ export class LabeledSeries {
     const observations = observationSet.resourceList;
     const abnormal = new Set<string>();
     for (const obs of observations) {
-      coordinates.push(
-          [obs.observation.timestamp, obs.observation.value.value]);
+      coordinates.push([
+        obs.observation.timestamp,
+        obs.observation.value ? obs.observation.value.value : null
+      ]);
+
+      const outsideNormalRange = obs.observation.normalRange &&
+          (obs.observation.value.value < obs.observation.normalRange[0] ||
+           obs.observation.value.value > obs.observation.normalRange[1]);
 
       if ((obs.observation.interpretation &&
            obs.observation.interpretation.code !== NORMAL) ||
-          (obs.observation.value.value < obs.observation.normalRange[0] ||
-           obs.observation.value.value > obs.observation.normalRange[1])) {
+          outsideNormalRange) {
         abnormal.add(obs.observation.timestamp.toISO());
       }
     }
@@ -167,9 +172,12 @@ export class LabeledSeries {
             obs.observation.interpretation.code !== NORMAL) {
           abnormal.add(obs.observation.timestamp.toISO());
         }
-        if (obs.observation.value && obs.observation.value.value &&
+        const outsideNormalRange = obs.observation.normalRange &&
             (obs.observation.value.value < obs.observation.normalRange[0] ||
-             obs.observation.value.value > obs.observation.normalRange[1])) {
+             obs.observation.value.value > obs.observation.normalRange[1]);
+
+        if (obs.observation.value && obs.observation.value.value &&
+            outsideNormalRange) {
           abnormal.add(obs.observation.timestamp.toISO());
         }
       }

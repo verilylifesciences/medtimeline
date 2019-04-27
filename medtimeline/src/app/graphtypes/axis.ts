@@ -200,6 +200,7 @@ export class Axis {
                   this.displayConcept.label, obsSetList, this.resourceGroup,
                   this.sanitizer, this.encounters);
             }
+            return LineGraphData.emptyData();
           });
     }
   }
