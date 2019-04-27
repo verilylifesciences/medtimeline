@@ -1,430 +1,428 @@
-[
+{
+  "entry": [
     {
-        "entry": [
-            {
-                "fullUrl": "https://xxxxx",
-                "resource": {
-                    "class": "outpatient",
-                    "hospitalization": {
-                        "dischargeDisposition": {
-                            "text": "Discharge"
-                        }
-                    },
-                    "id": "PatientID",
-                    "identifier": [
-                        {
-                            "period": {
-                                "start": "2019-02-05T19:24:41.000Z"
-                            },
-                            "system": "XXXXXXXXXX.XXXX",
-                            "type": {
-                                "text": "FIN NBR"
-                            },
-                            "use": "usual",
-                            "value": "DFDOC7617728"
-                        }
-                    ],
-                    "location": [
-                        {
-                            "location": {
-                                "display": "DFCI - Pediatrics, DFCI - Pediatrics, DFDOC - Medical Records",
-                                "reference": "Location/121141848"
-                            },
-                            "status": "completed"
-                        }
-                    ],
-                    "meta": {
-                        "lastUpdated": "2019-02-05T19:24:41.000Z",
-                        "versionId": "0"
-                    },
-                    "patient": {
-                        "display": "Patient Name",
-                        "reference": "Patient/PatientID"
-                    },
-                    "period": {
-                        "end": "2100-01-01T05:00:00.000Z",
-                        "start": "1869-01-01T05:00:00.000Z"
-                    },
-                    "resourceType": "Encounter",
-                    "serviceProvider": {
-                        "reference": "Organization/599844"
-                    },
-                    "status": "finished",
-                    "text": {
-                        "div": "",
-                        "status": "generated"
-                    },
-                    "type": [
-                        {
-                            "text": "Documents"
-                        }
-                    ]
-                }
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "class": "outpatient",
+        "hospitalization": {
+          "dischargeDisposition": {
+            "text": "Discharge"
+          }
+        },
+        "id": "PatientID",
+        "identifier": [
+          {
+            "period": {
+              "start": "2019-02-05T19:24:41.000Z"
             },
-            {
-                "fullUrl": "https://xxxxx",
-                "resource": {
-                    "class": "inpatient",
-                    "hospitalization": {
-                        "admitSource": {
-                            "text": "Physician Referral"
-                        }
-                    },
-                    "id": "PatientID",
-                    "identifier": [
-                        {
-                            "period": {
-                                "start": "2019-02-05T19:28:31.000Z"
-                            },
-                            "system": "XXXXXXXXXX.XXXX",
-                            "type": {
-                                "text": "FIN NBR"
-                            },
-                            "use": "usual",
-                            "value": "8100010299"
-                        },
-                        {
-                            "period": {
-                                "start": "2019-02-05T19:28:31.000Z"
-                            },
-                            "type": {
-                                "text": "Visit Id"
-                            },
-                            "use": "usual",
-                            "value": "80034417"
-                        }
-                    ],
-                    "location": [
-                        {
-                            "location": {
-                                "display": "Boston Children's Hospital, BCH, 09 East, 945, A",
-                                "reference": "Location/3135421"
-                            },
-                            "status": "active"
-                        }
-                    ],
-                    "meta": {
-                        "lastUpdated": "2019-02-05T19:30:41.000Z",
-                        "versionId": "2"
-                    },
-                    "participant": [
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/5281126"
-                            },
-                            "period": {
-                                "start": "2019-02-05T19:28:31.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Admitting Physician"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/5281126"
-                            },
-                            "period": {
-                                "start": "2019-02-05T19:28:31.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Attending Physician"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/5281126"
-                            },
-                            "period": {
-                                "start": "2019-02-13T14:04:11.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Ordering Physician"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/18074863"
-                            },
-                            "period": {
-                                "start": "2019-02-05T19:28:31.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Referring Physician"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/26492004"
-                            },
-                            "period": {
-                                "start": "2019-03-20T16:04:49.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Office/Clinic: Administration"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/26493284"
-                            },
-                            "period": {
-                                "start": "2019-03-20T15:59:00.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Database Coordinator"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/25953480"
-                            },
-                            "period": {
-                                "start": "2019-03-19T15:07:03.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Chart Review"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/24146177"
-                            },
-                            "period": {
-                                "start": "2019-02-20T17:44:00.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Database Coordinator"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/26492012"
-                            },
-                            "period": {
-                                "start": "2019-02-14T21:24:00.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Database Coordinator"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/1143645"
-                            },
-                            "period": {
-                                "start": "2019-02-13T13:47:00.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Database Coordinator"
-                                }
-                            ]
-                        },
-                        {
-                            "individual": {
-                                "display": "Participant, Display",
-                                "reference": "Practitioner/24699304"
-                            },
-                            "period": {
-                                "start": "2019-02-11T13:22:00.000Z"
-                            },
-                            "type": [
-                                {
-                                    "text": "Resident/Fellow"
-                                }
-                            ]
-                        }
-                    ],
-                    "patient": {
-                        "display": "Patient Name",
-                        "reference": "Patient/PatientID"
-                    },
-                    "period": {
-                        "end": "2019-10-18T04:00:00.000Z",
-                        "start": "2019-01-15T19:30:33.000Z"
-                    },
-                    "priority": {
-                        "text": "Elective"
-                    },
-                    "reason": [
-                        {
-                            "text": "test"
-                        }
-                    ],
-                    "resourceType": "Encounter",
-                    "serviceProvider": {
-                        "reference": "Organization/595843"
-                    },
-                    "status": "in-progress",
-                    "text": {
-                        "div": "",
-                        "status": "generated"
-                    },
-                    "type": [
-                        {
-                            "text": "Inpatient"
-                        }
-                    ]
-                }
+            "system": "XXXXXXXXXX.XXXX",
+            "type": {
+              "text": "FIN NBR"
             },
-            {
-                "fullUrl": "https://xxxxx",
-                "resource": {
-                    "class": "outpatient",
-                    "hospitalization": {
-                        "dischargeDisposition": {
-                            "text": "Discharge"
-                        }
-                    },
-                    "id": "PatientID",
-                    "identifier": [
-                        {
-                            "period": {
-                                "start": "2019-02-05T19:24:40.000Z"
-                            },
-                            "system": "XXXXXXXXXX.XXXX",
-                            "type": {
-                                "text": "FIN NBR"
-                            },
-                            "use": "usual",
-                            "value": "DOC7617728"
-                        }
-                    ],
-                    "location": [
-                        {
-                            "location": {
-                                "display": "Boston Children's Hospital",
-                                "reference": "Location/3110560"
-                            },
-                            "status": "completed"
-                        }
-                    ],
-                    "meta": {
-                        "lastUpdated": "2019-02-05T19:28:31.000Z",
-                        "versionId": "2"
-                    },
-                    "patient": {
-                        "display": "Patient Name",
-                        "reference": "Patient/PatientID"
-                    },
-                    "period": {
-                        "end": "2100-01-01T05:00:00.000Z",
-                        "start": "1869-01-01T05:00:00.000Z"
-                    },
-                    "resourceType": "Encounter",
-                    "serviceProvider": {
-                        "reference": "Organization/595843"
-                    },
-                    "status": "finished",
-                    "text": {
-                        "div": "",
-                        "status": "generated"
-                    },
-                    "type": [
-                        {
-                            "text": "Documents"
-                        }
-                    ]
-                }
-            },
-            {
-                "fullUrl": "https://xxxxx",
-                "resource": {
-                    "class": "outpatient",
-                    "hospitalization": {
-                        "dischargeDisposition": {
-                            "text": "Discharge"
-                        }
-                    },
-                    "id": "PatientID",
-                    "identifier": [
-                        {
-                            "period": {
-                                "start": "2019-02-05T19:24:41.000Z"
-                            },
-                            "system": "XXXXXXXXXX.XXXX",
-                            "type": {
-                                "text": "FIN NBR"
-                            },
-                            "use": "usual",
-                            "value": "DFCHCC7617728"
-                        }
-                    ],
-                    "location": [
-                        {
-                            "location": {
-                                "display": "DFCHCC - Joint Program, DFCHCC - Joint Program, DFCHCC - Joint Program",
-                                "reference": "Location/26438531"
-                            },
-                            "status": "completed"
-                        }
-                    ],
-                    "meta": {
-                        "lastUpdated": "2019-02-05T19:24:41.000Z",
-                        "versionId": "0"
-                    },
-                    "patient": {
-                        "display": "Patient Name",
-                        "reference": "Patient/PatientID"
-                    },
-                    "period": {
-                        "end": "2100-01-01T05:00:00.000Z",
-                        "start": "1869-01-01T05:00:00.000Z"
-                    },
-                    "resourceType": "Encounter",
-                    "serviceProvider": {
-                        "reference": "Organization/1384716"
-                    },
-                    "status": "finished",
-                    "text": {
-                        "div": "",
-                        "status": "generated"
-                    },
-                    "type": [
-                        {
-                            "text": "Documents"
-                        }
-                    ]
-                }
-            }
+            "use": "usual",
+            "value": "DFDOC7617728"
+          }
         ],
-        "id": "176a3097-1aad-4b7c-bd4e-5fc793763a5c",
-        "link": [
-            {
-                "relation": "self",
-                "url": "XXXXX"
-            }
+        "location": [
+          {
+            "location": {
+              "display": "DFCI - Pediatrics, DFCI - Pediatrics, DFDOC - Medical Records",
+              "reference": "Location/121141848"
+            },
+            "status": "completed"
+          }
         ],
-        "resourceType": "Bundle",
-        "total": 4,
-        "type": "searchset"
+        "meta": {
+          "lastUpdated": "2019-02-05T19:24:41.000Z",
+          "versionId": "0"
+        },
+        "patient": {
+          "display": "Patient Name",
+          "reference": "Patient/PatientID"
+        },
+        "period": {
+          "end": "2100-01-01T05:00:00.000Z",
+          "start": "1869-01-01T05:00:00.000Z"
+        },
+        "resourceType": "Encounter",
+        "serviceProvider": {
+          "reference": "Organization/599844"
+        },
+        "status": "finished",
+        "text": {
+          "div": "",
+          "status": "generated"
+        },
+        "type": [
+          {
+            "text": "Documents"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "class": "inpatient",
+        "hospitalization": {
+          "admitSource": {
+            "text": "Physician Referral"
+          }
+        },
+        "id": "PatientID",
+        "identifier": [
+          {
+            "period": {
+              "start": "2019-02-05T19:28:31.000Z"
+            },
+            "system": "XXXXXXXXXX.XXXX",
+            "type": {
+              "text": "FIN NBR"
+            },
+            "use": "usual",
+            "value": "8100010299"
+          },
+          {
+            "period": {
+              "start": "2019-02-05T19:28:31.000Z"
+            },
+            "type": {
+              "text": "Visit Id"
+            },
+            "use": "usual",
+            "value": "80034417"
+          }
+        ],
+        "location": [
+          {
+            "location": {
+              "display": "Boston Children's Hospital, BCH, 09 East, 945, A",
+              "reference": "Location/3135421"
+            },
+            "status": "active"
+          }
+        ],
+        "meta": {
+          "lastUpdated": "2019-02-05T19:30:41.000Z",
+          "versionId": "2"
+        },
+        "participant": [
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/5281126"
+            },
+            "period": {
+              "start": "2019-02-05T19:28:31.000Z"
+            },
+            "type": [
+              {
+                "text": "Admitting Physician"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/5281126"
+            },
+            "period": {
+              "start": "2019-02-05T19:28:31.000Z"
+            },
+            "type": [
+              {
+                "text": "Attending Physician"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/5281126"
+            },
+            "period": {
+              "start": "2019-02-13T14:04:11.000Z"
+            },
+            "type": [
+              {
+                "text": "Ordering Physician"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/18074863"
+            },
+            "period": {
+              "start": "2019-02-05T19:28:31.000Z"
+            },
+            "type": [
+              {
+                "text": "Referring Physician"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/26492004"
+            },
+            "period": {
+              "start": "2019-03-20T16:04:49.000Z"
+            },
+            "type": [
+              {
+                "text": "Office/Clinic: Administration"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/26493284"
+            },
+            "period": {
+              "start": "2019-03-20T15:59:00.000Z"
+            },
+            "type": [
+              {
+                "text": "Database Coordinator"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/25953480"
+            },
+            "period": {
+              "start": "2019-03-19T15:07:03.000Z"
+            },
+            "type": [
+              {
+                "text": "Chart Review"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/24146177"
+            },
+            "period": {
+              "start": "2019-02-20T17:44:00.000Z"
+            },
+            "type": [
+              {
+                "text": "Database Coordinator"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/26492012"
+            },
+            "period": {
+              "start": "2019-02-14T21:24:00.000Z"
+            },
+            "type": [
+              {
+                "text": "Database Coordinator"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/1143645"
+            },
+            "period": {
+              "start": "2019-02-13T13:47:00.000Z"
+            },
+            "type": [
+              {
+                "text": "Database Coordinator"
+              }
+            ]
+          },
+          {
+            "individual": {
+              "display": "Participant, Display",
+              "reference": "Practitioner/24699304"
+            },
+            "period": {
+              "start": "2019-02-11T13:22:00.000Z"
+            },
+            "type": [
+              {
+                "text": "Resident/Fellow"
+              }
+            ]
+          }
+        ],
+        "patient": {
+          "display": "Patient Name",
+          "reference": "Patient/PatientID"
+        },
+        "period": {
+          "end": "2019-10-18T04:00:00.000Z",
+          "start": "2019-01-15T19:30:33.000Z"
+        },
+        "priority": {
+          "text": "Elective"
+        },
+        "reason": [
+          {
+            "text": "test"
+          }
+        ],
+        "resourceType": "Encounter",
+        "serviceProvider": {
+          "reference": "Organization/595843"
+        },
+        "status": "in-progress",
+        "text": {
+          "div": "",
+          "status": "generated"
+        },
+        "type": [
+          {
+            "text": "Inpatient"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "class": "outpatient",
+        "hospitalization": {
+          "dischargeDisposition": {
+            "text": "Discharge"
+          }
+        },
+        "id": "PatientID",
+        "identifier": [
+          {
+            "period": {
+              "start": "2019-02-05T19:24:40.000Z"
+            },
+            "system": "XXXXXXXXXX.XXXX",
+            "type": {
+              "text": "FIN NBR"
+            },
+            "use": "usual",
+            "value": "DOC7617728"
+          }
+        ],
+        "location": [
+          {
+            "location": {
+              "display": "Boston Children's Hospital",
+              "reference": "Location/3110560"
+            },
+            "status": "completed"
+          }
+        ],
+        "meta": {
+          "lastUpdated": "2019-02-05T19:28:31.000Z",
+          "versionId": "2"
+        },
+        "patient": {
+          "display": "Patient Name",
+          "reference": "Patient/PatientID"
+        },
+        "period": {
+          "end": "2100-01-01T05:00:00.000Z",
+          "start": "1869-01-01T05:00:00.000Z"
+        },
+        "resourceType": "Encounter",
+        "serviceProvider": {
+          "reference": "Organization/595843"
+        },
+        "status": "finished",
+        "text": {
+          "div": "",
+          "status": "generated"
+        },
+        "type": [
+          {
+            "text": "Documents"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://xxxxx",
+      "resource": {
+        "class": "outpatient",
+        "hospitalization": {
+          "dischargeDisposition": {
+            "text": "Discharge"
+          }
+        },
+        "id": "PatientID",
+        "identifier": [
+          {
+            "period": {
+              "start": "2019-02-05T19:24:41.000Z"
+            },
+            "system": "XXXXXXXXXX.XXXX",
+            "type": {
+              "text": "FIN NBR"
+            },
+            "use": "usual",
+            "value": "DFCHCC7617728"
+          }
+        ],
+        "location": [
+          {
+            "location": {
+              "display": "DFCHCC - Joint Program, DFCHCC - Joint Program, DFCHCC - Joint Program",
+              "reference": "Location/26438531"
+            },
+            "status": "completed"
+          }
+        ],
+        "meta": {
+          "lastUpdated": "2019-02-05T19:24:41.000Z",
+          "versionId": "0"
+        },
+        "patient": {
+          "display": "Patient Name",
+          "reference": "Patient/PatientID"
+        },
+        "period": {
+          "end": "2100-01-01T05:00:00.000Z",
+          "start": "1869-01-01T05:00:00.000Z"
+        },
+        "resourceType": "Encounter",
+        "serviceProvider": {
+          "reference": "Organization/1384716"
+        },
+        "status": "finished",
+        "text": {
+          "div": "",
+          "status": "generated"
+        },
+        "type": [
+          {
+            "text": "Documents"
+          }
+        ]
+      }
     }
-]
+  ],
+  "id": "176a3097-1aad-4b7c-bd4e-5fc793763a5c",
+  "link": [
+    {
+      "relation": "self",
+      "url": "XXXXX"
+    }
+  ],
+  "resourceType": "Bundle",
+  "total": 4,
+  "type": "searchset"
+}
