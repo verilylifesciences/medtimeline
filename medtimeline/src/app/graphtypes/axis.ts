@@ -187,10 +187,15 @@ export class Axis {
           .getResourceSet(dateRange)
           .then(obsSetList => {
             if (obsSetList) {
+              const allUnits = new Set(
+                  obsSetList.map(x => x.unit).filter(x => x !== undefined));
               // If the observation set contains any qualitative
               // values, even if it's mixed in with quantitative values,
-              // we display the discrete linegraph.
-              if (obsSetList.some(obsSet => obsSet.anyQualitative)) {
+              // we display the discrete linegraph. Similarly, if the
+              // observations have different units we display it as a discrete
+              // line graph.
+              if (obsSetList.some(obsSet => obsSet.anyQualitative) ||
+                  allUnits.size > 1) {
                 this.showTicks = false;
                 return LineGraphData.fromObservationSetListDiscrete(
                     this.displayConcept.label, obsSetList, this.sanitizer,

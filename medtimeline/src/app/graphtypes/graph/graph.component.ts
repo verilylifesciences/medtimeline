@@ -50,9 +50,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   /** The base chart height to use when rendering. */
   readonly BASE_CHART_HEIGHT_PX = 150;
 
-  /** The eventline annotations to keep track of. */
-  protected annotations = [];
-
   /**
    * The entire interval represented by the current date range. This Interval
    * goes from the beginning of the first day of the date range, to the end of
@@ -332,8 +329,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     this.chartOptions.animation.onComplete = function(chart) {
       self.showNoDataLabel(this);
     };
-
-    this.showXRegions();
   }
 
   private showXRegions() {
@@ -350,11 +345,12 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         xScaleID: GraphComponent.X_AXIS_ID,
         yScaleID: GraphComponent.Y_AXIS_ID,
         backgroundColor: 'rgba(179, 157, 219, 0.3)',  // purple secondary color
-        borderColor: 'rgba(179, 157, 219, 0.9)',      // purple secondary color
-        borderWidth: 2,
+        borderColor: 'rgba(179, 157, 219, 0.4)',      // purple secondary color
+        borderWidth: 1,
       };
       this.chartOptions.annotation.annotations.push(annotation);
     }
+    this.reloadChart();
   }
 
   showNoDataLabel(chart: any) {

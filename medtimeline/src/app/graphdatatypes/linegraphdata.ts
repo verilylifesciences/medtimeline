@@ -87,17 +87,14 @@ export class LineGraphData extends GraphData {
     let tooltipMap = LineGraphData.makeTooltipMap(obsGroupToSeries, sanitizer);
 
     tooltipMap = LineGraphData.addAbnormalValueTooltips(
-        tooltipMap, sanitizer, obsGroupToSeries);
+        tooltipMap, sanitizer, allSeries);
 
     const allUnits =
         new Set(observationGroup.map(x => x.unit).filter(x => x !== undefined));
-    if (allUnits.size > 1) {
-      throw Error('Observations have different units.');
-    }
 
     const data = new LineGraphData(
         label, allSeries, [minY, maxY], allUnits.values().next().value,
-        tooltipMap.size > 0 ? tooltipMap : undefined,
+        tooltipMap && tooltipMap.size > 0 ? tooltipMap : undefined,
         undefined,  // tooltipMap
         undefined,  // regions
         resourceCodeGroup.precision, resourceCodeGroup);
@@ -172,32 +169,31 @@ export class LineGraphData extends GraphData {
   private static addAbnormalValueTooltips(
       tooltipMap: Map<string, string>,
       sanitizer: DomSanitizer,
-      obsGroupToSeries: Map<ObservationSet, LabeledSeries>,
+      labeledSeries: LabeledSeries[],
       ): Map<string, string> {
-    for (const entry of Array.from(obsGroupToSeries.entries())) {
-      const series: LabeledSeries = entry[1];
-      // Add a tooltip for any value with an abnormal y-value.
+    const alreadyMarked = new Set<string>();
+    for (const series of labeledSeries) {
+      // Add a tooltip for any value with an abnormal value.
       for (const coords of series.coordinates) {
-        const value = coords[1];
         const timestamp = coords[0].toMillis().toString();
-        const yBounds = series.normalRanges.get(coords[0]);
-        if (yBounds && (value < yBounds[0] || value > yBounds[1])) {
+        if (series.abnormalCoordinates.has(coords[0].toISO())) {
           const params = {};
           params['timestamp'] = coords[0].toMillis();
-          params['value'] = value;
+          params['value'] = coords[1];
           params['label'] = series.label;
           params['unit'] = series.unit;
           // The key for this tooltip is the timestamp.
           // There may be multiple data points associated with the
           // timestamp so we stack the administrations on top of one
           // another in that case.
-          if (tooltipMap.get(timestamp)) {
+          if (tooltipMap.get(timestamp) && !alreadyMarked.has(timestamp)) {
             tooltipMap.set(
                 timestamp,
                 tooltipMap.get(timestamp) +
                     new GenericAbnormalTooltip(false, series.legendInfo.fill)
                         .getTooltip(params, sanitizer));
-          } else {
+            alreadyMarked.add(timestamp);
+          } else if (!tooltipMap.get(timestamp)) {
             tooltipMap.set(
                 timestamp,
                 new GenericAbnormalTooltip(true, series.legendInfo.fill)
@@ -205,8 +201,8 @@ export class LineGraphData extends GraphData {
           }
         }
       }
+      return tooltipMap;
     }
-    return tooltipMap;
   }
 
   /**
@@ -277,7 +273,7 @@ export class LineGraphData extends GraphData {
     const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
         observationGroup, yValue, label, encounters);
 
-    const tooltipMap = new Map<string, string>();
+    let tooltipMap = new Map<string, string>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
         const tsString = obs.observation.timestamp.toMillis().toString();
@@ -304,6 +300,9 @@ export class LineGraphData extends GraphData {
         }
       }
     }
+    tooltipMap = LineGraphData.addAbnormalValueTooltips(
+        tooltipMap, sanitizer, [lblSeries]);
+
     return new LineGraphData(
         label, [lblSeries], [0, yValue * 2], undefined,  // Units
         tooltipMap);

@@ -6,7 +6,7 @@
 // tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import * as Color from 'color';
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
@@ -52,7 +52,7 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   @Input() eventlines: Array<{[key: string]: number | string}>;
 
   /** The x-regions to draw for this graph. */
-  xRegions: any[];
+  xRegions: Array<[DateTime, DateTime]>;
 
   /** Propogate remove events up to the card container.  */
   @Output() removeEvent = new EventEmitter();

@@ -127,37 +127,6 @@ describe('LineGraphData', () => {
        expect(lgData.yAxisDisplayBounds).toEqual([1, 40]);
      });
 
-
-  it('fromObservationSetList should throw error if there are multiple units',
-     () => {
-       const obsSet1 =
-           new ObservationSet([new AnnotatedObservation(new Observation({
-             code: {
-               coding: [{system: 'http://loinc.org', code: '4090-7'}],
-               text: 'Vanc Pk'
-             },
-             effectiveDateTime: DateTime.utc(1957, 1, 14).toISO(),
-             valueQuantity: {value: '50', unit: 'unitA'},
-           }))]);
-
-       const obsSet2 =
-           new ObservationSet([new AnnotatedObservation(new Observation({
-             code: {
-               coding: [{system: 'http://loinc.org', code: '4090-7'}],
-               text: 'Vanc Pk'
-             },
-             effectiveDateTime: DateTime.utc(1957, 1, 14).toISO(),
-             valueQuantity: {value: '50', unit: 'unitB'},
-           }))]);
-
-       expect(() => {
-         const obsSetList = new Array(obsSet1, obsSet2);
-
-         const lgData = LineGraphData.fromObservationSetList(
-             'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
-       }).toThrowError();
-     });
-
   it('fromObservationSetList should set abnormal value tooltip correctly.',
      () => {
        const obsSet1 = new ObservationSet([

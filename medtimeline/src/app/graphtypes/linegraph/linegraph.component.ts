@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, forwardRef, Inject, Input} from '@angular/core';
+import {Component, forwardRef, Inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
-import {DateTime} from 'luxon';
 import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
@@ -14,7 +13,6 @@ import {ABNORMAL} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {GraphComponent} from '../graph/graph.component';
-import {LegendInfo} from '../legend-info';
 
 @Component({
   selector: 'app-linegraph',
@@ -24,7 +22,8 @@ import {LegendInfo} from '../legend-info';
     {provide: GraphComponent, useExisting: forwardRef(() => LineGraphComponent)}
   ]
 })
-export class LineGraphComponent extends GraphComponent<LineGraphData> {
+export class LineGraphComponent extends GraphComponent<LineGraphData> implements
+    OnChanges {
   @Input() showTicks: boolean;
 
   constructor(
@@ -33,6 +32,9 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     super(sanitizer, uiConstants);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
   prepareForChartConfiguration() {
     if (this.data.yAxisDisplayBounds) {
       // We only ever have one y-axis so it's safe to work only on the 0th
@@ -195,8 +197,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
         mode: 'horizontal',
         scaleID: GraphComponent.Y_AXIS_ID,
         value: val,
-        borderColor: 'rgba(64, 191, 128, 1)',
-        borderWidth: 2,
+        borderColor: 'rgba(64, 191, 128, 0.25)',
+        borderWidth: 1,
         label: {
           enabled: true,
           // Clear background color.
