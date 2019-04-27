@@ -638,7 +638,7 @@ module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedDateRange]=\"this.setupDataService.selectedDateRange\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\"\n        [dateRange]=\"dateRange\" [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [dateRange]=\"dateRange\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<mat-toolbar>\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedDateRange]=\"this.setupDataService.selectedDateRange\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\"\n        [dateRange]=\"dateRange\" [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [dateRange]=\"dateRange\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n  <!-- Leave some cushion at the bottom so that tooltips show up. -->\n  <div style=\"height: 500px\"></div>\n</div>\n"
 
 /***/ }),
 
@@ -1277,7 +1277,7 @@ var CustomizableTimelineDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 160px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  -webkit-box-flex: 1;\n          flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}"
+module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 200px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  -webkit-box-flex: 1;\n          flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}\n"
 
 /***/ }),
 
@@ -4145,8 +4145,9 @@ var MedicationOrder = /** @class */ (function (_super) {
         return fhirService
             .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
             .then(function (medAdmins) {
-            if (!medAdmins)
+            if (!medAdmins) {
                 return _this;
+            }
             medAdmins = medAdmins.sort(function (a, b) {
                 return a.timestamp.toMillis() - b.timestamp.toMillis();
             });
@@ -4623,18 +4624,24 @@ var Observation = /** @class */ (function (_super) {
                 }
             }
         }
-        if (json.interpretation && json.interpretation.coding) {
-            var coding = json.interpretation.coding[0];
-            if (coding.system === _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["OBSERVATION_INTERPRETATION_VALUESET_URL"]) {
-                if (_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.has(coding.code)) {
-                    _this.interpretation =
-                        _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.get(coding.code);
-                }
-                else {
-                    throw Error('Unsupported interpretation code: ' + JSON.stringify(coding));
+        if (json.interpretation) {
+            if (json.interpretation.coding) {
+                var coding = json.interpretation.coding[0];
+                if (coding.system === _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["OBSERVATION_INTERPRETATION_VALUESET_URL"]) {
+                    if (_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.has(coding.code)) {
+                        _this.interpretation =
+                            _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.get(coding.code);
+                    }
+                    else {
+                        throw Error('Unsupported interpretation code: ' + JSON.stringify(coding));
+                    }
                 }
             }
-            // Silently ignore encodings coming from other systems.
+            else if (json.interpretation.text) {
+                // BCH uses a non-standard coding system so we make interpretations on
+                // the fly.
+                _this.interpretation = new _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"](json.interpretation.text, json.interpretation.text);
+            }
         }
         if (json.component) {
             json.component.forEach(function (element) {
@@ -4663,8 +4670,8 @@ var Observation = /** @class */ (function (_super) {
         if (_this.value) {
             _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_4__["fixUnitAbbreviations"])(_this.value.unit);
         }
-        // We must calculate precision before the value is stored as a number, where
-        // precision is lost.
+        // We must calculate precision before the value is stored as a number,
+        // where precision is lost.
         if (json.valueQuantity && json.valueQuantity.value) {
             var values = json.valueQuantity.value.toString().split('.');
             _this.precision = values.length > 1 ? values[1].length : 0;
@@ -4678,9 +4685,9 @@ var Observation = /** @class */ (function (_super) {
         }
         // The FHIR standard says that if there's only one range then it should be
         // what is "normal" for that measure. Otherwise they should be labeled.
-        // We are going to err on the side of safety and not include a normal range
-        // unless there's just the one, and it includes a high and low field.
-        // https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
+        // We are going to err on the side of safety and not include a normal
+        // range unless there's just the one, and it includes a high and low
+        // field. https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
         if (json.referenceRange && json.referenceRange.length === 1) {
             if (json.referenceRange[0].low && json.referenceRange[0].high) {
                 _this.normalRange = [
@@ -5711,7 +5718,7 @@ var LabeledSeries = /** @class */ (function () {
      */
     legendInfo, 
     /**
-     * The coordinate values in the labeled series that should be marked as
+     * The x-coordinate values in the labeled series that should be marked as
      * abnormal because of their interpretation results.
      */
     abnormalCoordinates, 
@@ -5773,10 +5780,17 @@ var LabeledSeries = /** @class */ (function () {
         var abnormal = new Set();
         for (var _i = 0, observations_1 = observations; _i < observations_1.length; _i++) {
             var obs = observations_1[_i];
-            coordinates.push([obs.observation.timestamp, obs.observation.value.value]);
-            if (obs.observation.interpretation &&
-                obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["NORMAL"]) {
-                abnormal.add([obs.observation.timestamp, obs.observation.value.value]);
+            coordinates.push([
+                obs.observation.timestamp,
+                obs.observation.value ? obs.observation.value.value : null
+            ]);
+            var outsideNormalRange = obs.observation.normalRange &&
+                (obs.observation.value.value < obs.observation.normalRange[0] ||
+                    obs.observation.value.value > obs.observation.normalRange[1]);
+            if ((obs.observation.interpretation &&
+                obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["NORMAL"]) ||
+                outsideNormalRange) {
+                abnormal.add(obs.observation.timestamp.toISO());
             }
         }
         coordinates = this.addEncounterEndpoints(coordinates, encounters);
@@ -5807,12 +5821,14 @@ var LabeledSeries = /** @class */ (function () {
                 coordinates.push([obs.observation.timestamp, yValue]);
                 if (obs.observation.interpretation &&
                     obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["NORMAL"]) {
-                    abnormal.add([obs.observation.timestamp, yValue]);
+                    abnormal.add(obs.observation.timestamp.toISO());
                 }
-                if (obs.observation.value && obs.observation.value.value &&
+                var outsideNormalRange = obs.observation.normalRange &&
                     (obs.observation.value.value < obs.observation.normalRange[0] ||
-                        obs.observation.value.value > obs.observation.normalRange[1])) {
-                    abnormal.add([obs.observation.timestamp, yValue]);
+                        obs.observation.value.value > obs.observation.normalRange[1]);
+                if (obs.observation.value && obs.observation.value.value &&
+                    outsideNormalRange) {
+                    abnormal.add(obs.observation.timestamp.toISO());
                 }
             }
         }
@@ -6136,12 +6152,9 @@ var LineGraphData = /** @class */ (function (_super) {
             }
         }
         var tooltipMap = LineGraphData.makeTooltipMap(obsGroupToSeries, sanitizer);
-        tooltipMap = LineGraphData.addAbnormalValueTooltips(tooltipMap, sanitizer, obsGroupToSeries);
+        tooltipMap = LineGraphData.addAbnormalValueTooltips(tooltipMap, sanitizer, allSeries);
         var allUnits = new Set(observationGroup.map(function (x) { return x.unit; }).filter(function (x) { return x !== undefined; }));
-        if (allUnits.size > 1) {
-            throw Error('Observations have different units.');
-        }
-        var data = new LineGraphData(label, allSeries, [minY, maxY], allUnits.values().next().value, tooltipMap.size > 0 ? tooltipMap : undefined, undefined, // tooltipMap
+        var data = new LineGraphData(label, allSeries, [minY, maxY], allUnits.values().next().value, tooltipMap && tooltipMap.size > 0 ? tooltipMap : undefined, undefined, // tooltipMap
         undefined, // regions
         resourceCodeGroup.precision, resourceCodeGroup);
         return data;
@@ -6202,39 +6215,38 @@ var LineGraphData = /** @class */ (function (_super) {
      *     tooltips replaced with GenericAbnormal tooltip if the value is
      *     abnormal.
      */
-    LineGraphData.addAbnormalValueTooltips = function (tooltipMap, sanitizer, obsGroupToSeries) {
-        for (var _i = 0, _a = Array.from(obsGroupToSeries.entries()); _i < _a.length; _i++) {
-            var entry = _a[_i];
-            var series = entry[1];
-            // Add a tooltip for any value with an abnormal y-value.
-            for (var _b = 0, _c = series.coordinates; _b < _c.length; _b++) {
-                var coords = _c[_b];
-                var value = coords[1];
+    LineGraphData.addAbnormalValueTooltips = function (tooltipMap, sanitizer, labeledSeries) {
+        var alreadyMarked = new Set();
+        for (var _i = 0, labeledSeries_1 = labeledSeries; _i < labeledSeries_1.length; _i++) {
+            var series = labeledSeries_1[_i];
+            // Add a tooltip for any value with an abnormal value.
+            for (var _a = 0, _b = series.coordinates; _a < _b.length; _a++) {
+                var coords = _b[_a];
                 var timestamp = coords[0].toMillis().toString();
-                var yBounds = series.normalRanges.get(coords[0]);
-                if (yBounds && (value < yBounds[0] || value > yBounds[1])) {
+                if (series.abnormalCoordinates.has(coords[0].toISO())) {
                     var params = {};
                     params['timestamp'] = coords[0].toMillis();
-                    params['value'] = value;
+                    params['value'] = coords[1];
                     params['label'] = series.label;
                     params['unit'] = series.unit;
                     // The key for this tooltip is the timestamp.
                     // There may be multiple data points associated with the
                     // timestamp so we stack the administrations on top of one
                     // another in that case.
-                    if (tooltipMap.get(timestamp)) {
+                    if (tooltipMap.get(timestamp) && !alreadyMarked.has(timestamp)) {
                         tooltipMap.set(timestamp, tooltipMap.get(timestamp) +
                             new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](false, series.legendInfo.fill)
                                 .getTooltip(params, sanitizer));
+                        alreadyMarked.add(timestamp);
                     }
-                    else {
+                    else if (!tooltipMap.get(timestamp)) {
                         tooltipMap.set(timestamp, new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](true, series.legendInfo.fill)
                             .getTooltip(params, sanitizer));
                     }
                 }
             }
+            return tooltipMap;
         }
-        return tooltipMap;
     };
     /**
      * Converts a list of MedicationOrderSets to a LineGraphData object.
@@ -6321,6 +6333,7 @@ var LineGraphData = /** @class */ (function (_super) {
                 }
             }
         }
+        tooltipMap = LineGraphData.addAbnormalValueTooltips(tooltipMap, sanitizer, [lblSeries]);
         return new LineGraphData(label, [lblSeries], [0, yValue * 2], undefined, // Units
         tooltipMap);
     };
@@ -6724,7 +6737,8 @@ var Axis = /** @class */ (function () {
             _this.alreadyResolvedData = data;
             return data;
         }, function (rejection) {
-            _this.errorMessage = rejection;
+            _this.errorMessage =
+                JSON.stringify(rejection) ? JSON.stringify(rejection) : rejection;
             return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].emptyData();
         });
     };
@@ -6778,15 +6792,20 @@ var Axis = /** @class */ (function () {
                 .getResourceSet(dateRange)
                 .then(function (obsSetList) {
                 if (obsSetList) {
+                    var allUnits = new Set(obsSetList.map(function (x) { return x.unit; }).filter(function (x) { return x !== undefined; }));
                     // If the observation set contains any qualitative
                     // values, even if it's mixed in with quantitative values,
-                    // we display the discrete linegraph.
-                    if (obsSetList.some(function (obsSet) { return obsSet.anyQualitative; })) {
+                    // we display the discrete linegraph. Similarly, if the
+                    // observations have different units we display it as a discrete
+                    // line graph.
+                    if (obsSetList.some(function (obsSet) { return obsSet.anyQualitative; }) ||
+                        allUnits.size > 1) {
                         _this.showTicks = false;
                         return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].fromObservationSetListDiscrete(_this.displayConcept.label, obsSetList, _this.sanitizer, _this.encounters);
                     }
                     return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].fromObservationSetList(_this.displayConcept.label, obsSetList, _this.resourceGroup, _this.sanitizer, _this.encounters);
                 }
+                return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].emptyData();
             });
         }
     };
@@ -7181,7 +7200,10 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
         var selector = 'tooltip-whole-' + this.chartDivId;
         for (var _i = 0, _a = Array.from(document.querySelectorAll('[class*=' + selector + ']')); _i < _a.length; _i++) {
             var annotation = _a[_i];
-            annotation.remove();
+            var parent_1 = annotation.parentNode;
+            if (parent_1) {
+                parent_1.removeChild(annotation);
+            }
         }
     };
     CustomizableGraphComponent.prototype.findBestYCoordinate = function (xOffset, yAxisHeight, yOffset) {
@@ -7436,40 +7458,10 @@ var GraphComponent = /** @class */ (function () {
         this.uiConstants = uiConstants;
         /** The base chart height to use when rendering. */
         this.BASE_CHART_HEIGHT_PX = 150;
-        /** The eventline annotations to keep track of. */
-        this.annotations = [];
         /** Whether data is available for this graph for the current date range. */
         this.dataPointsInDateRange = false;
         /** Plugins for chart.js. */
         this.chartPlugins = [chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_3__];
-        /**
-         * Sets the tooltip for the graph.
-         * If the class has a tooltipMap set, then we look up the tooltip from that
-         * map. If there's no tooltipMap, then we return a simple formatted tooltip
-         * of just the string representing the data plus the appropriate units for
-         * a linegraph, or just the unedited value if it's a different kind of graph.
-         */
-        this.customTooltips = function (tooltipContext) {
-            // Get, or construct, a tooltip element to put all the tooltip HTML
-            // into.
-            var canvas = document.getElementById(_this.chartDivId);
-            var tooltipEl = _this.findOrCreateTooltipElement(canvas, 'chartjs-tooltip' + _this.chartDivId);
-            // Hide the element if there is no tooltip-- this function gets called
-            // back whether you're hovering over an element or not.
-            if (tooltipContext.opacity === 0) {
-                tooltipEl.style.opacity = '0';
-                return;
-            }
-            if (tooltipContext.body) {
-                tooltipEl.innerHTML = _this.getTooltipInnerHtml(tooltipContext);
-            }
-            // Display the tooltip lined up with the data point.
-            var positionY = canvas.offsetTop;
-            var positionX = canvas.offsetLeft;
-            tooltipEl.style.opacity = '1';
-            tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
-            tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
-        };
         // The bindings are unhappy when you provide an empty data array, so we
         // give it a fake series to render.
         /**
@@ -7496,7 +7488,35 @@ var GraphComponent = /** @class */ (function () {
                 enabled: false,
                 mode: 'x',
                 position: 'nearest',
-                custom: this.customTooltips
+                /**
+                 * Sets the tooltip for the graph.
+                 * If the class has a tooltipMap set, then we look up the tooltip from
+                 * that map. If there's no tooltipMap, then we return a simple formatted
+                 * tooltip of just the string representing the data plus the appropriate
+                 * units for a linegraph, or just the unedited value if it's a different
+                 * kind of graph.
+                 */
+                custom: function (tooltipContext) {
+                    // Get, or construct, a tooltip element to put all the tooltip HTML
+                    // into.
+                    var canvas = document.getElementById(_this.chartDivId);
+                    var tooltipEl = _this.findOrCreateTooltipElement(canvas, 'chartjs-tooltip' + _this.chartDivId);
+                    // Hide the element if there is no tooltip-- this function gets
+                    // called back whether you're hovering over an element or not.
+                    if (tooltipContext.opacity === 0) {
+                        tooltipEl.style.opacity = '0';
+                        return;
+                    }
+                    if (tooltipContext.body) {
+                        tooltipEl.innerHTML = _this.getTooltipInnerHtml(tooltipContext);
+                    }
+                    // Display the tooltip lined up with the data point.
+                    var positionY = canvas.offsetTop;
+                    var positionX = canvas.offsetLeft;
+                    tooltipEl.style.opacity = '1';
+                    tooltipEl.style.left = positionX + tooltipContext.caretX + 'px';
+                    tooltipEl.style.top = positionY + tooltipContext.caretY + 'px';
+                }
             },
             annotation: {
                 // Array of annotation configuration objects to be filled in.
@@ -7656,7 +7676,6 @@ var GraphComponent = /** @class */ (function () {
         this.chartOptions.animation.onComplete = function (chart) {
             self.showNoDataLabel(this);
         };
-        this.showXRegions();
     };
     GraphComponent.prototype.showXRegions = function () {
         if (!this.xRegions) {
@@ -7673,11 +7692,12 @@ var GraphComponent = /** @class */ (function () {
                 xScaleID: GraphComponent.X_AXIS_ID,
                 yScaleID: GraphComponent.Y_AXIS_ID,
                 backgroundColor: 'rgba(179, 157, 219, 0.3)',
-                borderColor: 'rgba(179, 157, 219, 0.9)',
-                borderWidth: 2,
+                borderColor: 'rgba(179, 157, 219, 0.4)',
+                borderWidth: 1,
             };
             this.chartOptions.annotation.annotations.push(annotation);
         }
+        this.reloadChart();
     };
     GraphComponent.prototype.showNoDataLabel = function (chart) {
         if (!this.dataPointsInDateRange) {
@@ -7964,6 +7984,9 @@ var LineGraphComponent = /** @class */ (function (_super) {
         return _this;
     }
     LineGraphComponent_1 = LineGraphComponent;
+    LineGraphComponent.prototype.ngOnChanges = function (changes) {
+        _super.prototype.ngOnChanges.call(this, changes);
+    };
     LineGraphComponent.prototype.prepareForChartConfiguration = function () {
         if (this.data.yAxisDisplayBounds) {
             // We only ever have one y-axis so it's safe to work only on the 0th
@@ -7979,6 +8002,12 @@ var LineGraphComponent = /** @class */ (function (_super) {
         // We have to wait until after the data loads up into the graph to iterate
         // over the points and adjust their coloring based on the normal range.
         this.addYNormalRange();
+        // Color points that fall outside of their respective normal ranges.
+        for (var i = 0; i < this.data.series.length; i++) {
+            var chartjsSeries = this.chartData[i];
+            var labeledSeries = this.data.series[i];
+            this.colorAbnormalPoints(chartjsSeries, labeledSeries);
+        }
         if (!this.showTicks) {
             this.chartOptions.scales.yAxes[0].display = false;
             this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
@@ -8030,14 +8059,6 @@ var LineGraphComponent = /** @class */ (function (_super) {
                         Math.min(yDisplayBounds[0], firstNormalRange[0]),
                         Math.max(yDisplayBounds[1], firstNormalRange[1])
                     ];
-                    // Color points that fall outside of their respective normal ranges.
-                    for (var i = 0; i < this.data.series.length; i++) {
-                        var chartjsSeries = this.chartData[i];
-                        var labeledSeries = this.data.series[i];
-                        if (labeledSeries.normalRanges) {
-                            this.colorAbnormalPoints(chartjsSeries, firstNormalRange, labeledSeries.legendInfo);
-                        }
-                    }
                 }
             }
         }
@@ -8119,8 +8140,8 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 mode: 'horizontal',
                 scaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].Y_AXIS_ID,
                 value: val,
-                borderColor: 'rgba(64, 191, 128, 1)',
-                borderWidth: 2,
+                borderColor: 'rgba(64, 191, 128, 0.25)',
+                borderWidth: 1,
                 label: {
                     enabled: true,
                     // Clear background color.
@@ -8140,42 +8161,34 @@ var LineGraphComponent = /** @class */ (function (_super) {
         this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
     };
     /**
-     * Colors the point the default series color if it's in the normal range,
-     * or the designated "abnormal" color if it's outside of the normal range.
+     * Colors the point the default series color if it's not abnormal, or outlines
+     * with the abnormal color if marked as abnormal.
      *
      * @param series The data series to color points for.
      * @param yNormalBounds The bounds of what should be considered normal.
      * @param seriesLegend The legend info for the series we're working with.
      */
-    LineGraphComponent.prototype.colorAbnormalPoints = function (series, yNormalBounds, seriesLegend) {
+    LineGraphComponent.prototype.colorAbnormalPoints = function (chartjsSeries, labeledSeries) {
         var pointBackgroundColors = new Array();
         var pointBorderColors = new Array();
-        // Highlight the points that are outside of the normal range, or that
-        // are marked as abnormal.
-        var allAbnormalPoints = this.data.series.map(function (s) { return s.abnormalCoordinates; })
-            .reduce(function (p, c) { return new Set(Array.from(p).concat(Array.from(c))); }, new Set());
-        for (var _i = 0, _a = series.data; _i < _a.length; _i++) {
+        for (var _i = 0, _a = chartjsSeries.data; _i < _a.length; _i++) {
             var pt = _a[_i];
             // pt could also be a number here, so we constrain it to when it's a
             // ChartPoint. For some reason Typescript doesn't like it when we do a
             // test to see if pt is an instanceof ChartPoint so checking for the
             // y-attribute is a workaround.
-            if (pt.hasOwnProperty('y')) {
-                pt = pt;
-                var outsideOfNormalBounds = yNormalBounds &&
-                    (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]);
-                var inAbnormalSet = allAbnormalPoints.has([pt.x, pt.y]);
-                if (outsideOfNormalBounds || inAbnormalSet) {
-                    pointBackgroundColors.push(seriesLegend.fill.rgb().string());
-                    pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
-                }
-                else {
-                    pointBackgroundColors.push(seriesLegend.fill.rgb().string());
-                    pointBorderColors.push(seriesLegend.outline.rgb().string());
-                }
-                series.pointBackgroundColor = pointBackgroundColors;
-                series.pointBorderColor = pointBorderColors;
+            pt = pt;
+            var inAbnormalSet = labeledSeries.abnormalCoordinates.has(pt.x);
+            if (inAbnormalSet) {
+                pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
+                pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
             }
+            else {
+                pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
+                pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+            }
+            chartjsSeries.pointBackgroundColor = pointBackgroundColors;
+            chartjsSeries.pointBorderColor = pointBorderColors;
         }
     };
     var LineGraphComponent_1;
@@ -8443,7 +8456,7 @@ var StepGraphComponent = /** @class */ (function (_super) {
         /**
          * The maximum characters for a y-axis tick label.
          */
-        _this.Y_AXIS_TICK_MAX_LENGTH = 15;
+        _this.Y_AXIS_TICK_MAX_LENGTH = 12;
         return _this;
     }
     StepGraphComponent_1 = StepGraphComponent;
@@ -8957,7 +8970,7 @@ module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"float: right;\" mat-dialog-actions>\n  <button mat-icon-button (click)=\"onExit()\">\n    <mat-icon color=\"primary\">close</mat-icon>\n  </button>\n</div>\n<mat-horizontal-stepper [linear]=\"false\" #stepper>\n  <!-- keep icons as numbers during edit-->\n  <ng-template matStepperIcon=\"edit\" let-index=\"index\">\n    {{index +1}}\n  </ng-template>\n  <mat-step label=\"Configuration\">\n    <div class=\"stepContent\">\n      <div>\n        MedTimeLine Configuration Screen\n      </div>\n      <img src=\"assets/images/configuration.png\">\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Set Date Range\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          Click on the current date range to open the datepicker.\n        </div>\n        <img src=\"assets/images/datepicker_open.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Choose a patient encounter or pre-set time period on the left.\n        </div>\n        <img src=\"assets/images/datepicker_preset.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Alternatively, choose a custom date range.\n        </div>\n        <img src=\"assets/images/datepicker_custom.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Add Flags to Custom Timeline\">\n    <div class=\"stepContent\">\n      <div>\n        The Custom Timeline feature allows you to enter custom events.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click the timeline at a place where you would like to add a flag.\n        </div>\n        <img src=\"assets/images/customTimeline_click.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          In the dialog box, enter a title, description, and select a color for the flag.\n        </div>\n        <img src=\"assets/images/customTimeline_title.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also manually adjust the date and/or time.\n        </div>\n        <img src=\"assets/images/customTimeline_time.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          While in edit mode, you can edit an existing flag, which will open up the dialog box again.\n        </div>\n        <img src=\"assets/images/customTimeline_editFlag.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also remove flags while in edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_delete.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Enter Text Notes\">\n    <div class=\"stepContent\">\n      <div>\n        You can enter notes in the main timeline display area.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/annotation_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Type in your notes, and click the save button to save the note.\n        </div>\n        <img src=\"assets/images/annotation_type.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timelines\">\n    <div class=\"stepContent\">\n      <div>\n        You can add, remove, and rearrange timelines to optimize the data view for specific patients.\n      </div>\n      <div>\n        <div>\n          To add a timeline, click the plus sign, then select Add Data Timeline.\n          Select the timeline type you want to add, then select the specific timeline.\n        </div>\n        <img src=\"assets/images/timelines_add_generic.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can also add another Custom Timeline or text notes. You can also search for concept through the autocomplete\n        input.\n      </div>\n      <img src=\"assets/images/timelines_autocomplete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To remove a timeline, hover your cursor over the timeline you want to remove. Click the X in the upper left\n        corner of the timeline.\n      </div>\n      <img src=\"assets/images/timelines_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can undo a deletion of a card, as well.\n      </div>\n      <img src=\"assets/images/timelines_undo_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To rearrange timelines, click the label or colored handle on the left hand side of the timeline you want to\n        move, and hold the mouse button and drag and drop the timeline to your desired location.\n      </div>\n      <img src=\"assets/images/timelines_reorder.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timeline Features\">\n    <div class=\"stepContent\">\n      <div>\n        Timelines are categorized and color-coded by a vertical bar on the leftmost side of the data timeline.\n      </div>\n      <div>\n        <div>\n          You can hover over plotted data point and additional data displays in a tooltip.\n        </div>\n        <img src=\"assets/images/chartHover.gif\">\n        <mat-divider class=\"divider\"></mat-divider>\n        <img src=\"assets/images/chartHover2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button (click)=\"onExit()\">Close</button>\n    </div>\n  </mat-step>\n</mat-horizontal-stepper>"
+module.exports = "<div style=\"float: right;\" mat-dialog-actions>\n  <button mat-icon-button (click)=\"onExit()\">\n    <mat-icon color=\"primary\">close</mat-icon>\n  </button>\n</div>\n<mat-horizontal-stepper [linear]=\"false\" #stepper>\n  <!-- keep icons as numbers during edit-->\n  <ng-template matStepperIcon=\"edit\" let-index=\"index\">\n    {{index +1}}\n  </ng-template>\n  <mat-step label=\"Configuration\">\n    <div class=\"stepContent\">\n      <div>\n        MedTimeLine Configuration Screen\n      </div>\n      <img src=\"assets/images/configuration.png\">\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Set Date Range\">\n    <div class=\"stepContent\">\n      <div>\n        <div>\n          Click on the current date range to open the datepicker.\n        </div>\n        <img src=\"assets/images/datepicker_open.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Choose a patient encounter or pre-set time period on the left.\n        </div>\n        <img src=\"assets/images/datepicker_preset.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Alternatively, choose a custom date range.\n        </div>\n        <img src=\"assets/images/datepicker_custom.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Add Flags to Custom Timeline\">\n    <div class=\"stepContent\">\n      <div>\n        The Custom Timeline feature allows you to enter custom events.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Click the timeline at a place where you would like to add a flag.\n        </div>\n        <img src=\"assets/images/customTimeline_click.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          In the dialog box, enter a title, description, and select a color for the flag.\n        </div>\n        <img src=\"assets/images/customTimeline_title.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also manually adjust the date and/or time.\n        </div>\n        <div>\n          While in edit mode, you can edit an existing flag, which will open up the dialog box again.\n        </div>\n        <img src=\"assets/images/customTimeline_editFlag.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          You can also remove flags while in edit mode.\n        </div>\n        <img src=\"assets/images/customTimeline_delete.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Enter Text Notes\">\n    <div class=\"stepContent\">\n      <div>\n        You can enter notes in the main timeline display area.\n      </div>\n      <div>\n        <div>\n          Click the pencil icon to enter edit mode.\n        </div>\n        <img src=\"assets/images/annotation_edit.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        <div>\n          Type in your notes, and click the save button to save the note.\n        </div>\n        <img src=\"assets/images/annotation_type.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timelines\">\n    <div class=\"stepContent\">\n      <div>\n        You can add, remove, and rearrange timelines to optimize the data view for specific patients.\n      </div>\n      <div>\n        <div>\n          To add a timeline, click the plus sign, then select Add Data Timeline.\n          Select the timeline type you want to add, then select the specific timeline.\n        </div>\n        <img src=\"assets/images/timelines_add_generic.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can also add another Custom Timeline or text notes. You can also search for concept through the autocomplete\n        input.\n      </div>\n      <img src=\"assets/images/timelines_autocomplete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To remove a timeline, hover your cursor over the timeline you want to remove. Click the X in the upper left\n        corner of the timeline.\n      </div>\n      <img src=\"assets/images/timelines_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        You can undo a deletion of a card, as well.\n      </div>\n      <img src=\"assets/images/timelines_undo_delete.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n      <div>\n        To rearrange timelines, click the label or colored handle on the left hand side of the timeline you want to\n        move, and hold the mouse button and drag and drop the timeline to your desired location.\n      </div>\n      <img src=\"assets/images/timelines_reorder.gif\">\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button matStepperNext>Next</button>\n    </div>\n  </mat-step>\n\n  <mat-step label=\"Timeline Features\">\n    <div class=\"stepContent\">\n      <div>\n        Timelines are categorized and color-coded by a vertical bar on the leftmost side of the data timeline.\n      </div>\n      <div>\n        <div>\n          You can hover over plotted data point and additional data displays in a tooltip.\n        </div>\n        <img src=\"assets/images/chartHover.gif\">\n        <mat-divider class=\"divider\"></mat-divider>\n        <img src=\"assets/images/chartHover2.gif\">\n      </div>\n      <mat-divider class=\"divider\"></mat-divider>\n    </div>\n    <div class=\"stepperButtons\">\n      <button mat-stroked-button matStepperPrevious>Back</button>\n      <button mat-stroked-button (click)=\"onExit()\">Close</button>\n    </div>\n  </mat-step>\n</mat-horizontal-stepper>"
 
 /***/ }),
 
@@ -9942,7 +9955,7 @@ var TimelineControllerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <div style=\"margin-top: 5px\" *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div style=\"margin-top: 5px\"> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button [matMenuTriggerFor]=\"helpMenu\" matTooltip=\"Help\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <mat-menu #helpMenu=\"matMenu\">\n    <button mat-menu-item (click)=\"openIFU()\">\n      <span>{{uiConstants.IFU}}</span>\n    </button>\n    <button mat-menu-item matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n      <span>{{uiConstants.LAUNCH_TUTORIAL}}</span>\n    </button>\n  </mat-menu>\n</div>"
+module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <img src=\"assets/images/logo.gif\">\n  <div style=\"margin-top: 5px\" *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div style=\"margin-top: 5px\"> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button [matMenuTriggerFor]=\"helpMenu\" matTooltip=\"Help\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <mat-menu #helpMenu=\"matMenu\">\n    <button mat-menu-item (click)=\"openIFU()\">\n      <span>{{uiConstants.IFU}}</span>\n    </button>\n    <button mat-menu-item matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n      <span>{{uiConstants.LAUNCH_TUTORIAL}}</span>\n    </button>\n  </mat-menu>\n</div>\n"
 
 /***/ }),
 
@@ -10135,7 +10148,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30.',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.0.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
