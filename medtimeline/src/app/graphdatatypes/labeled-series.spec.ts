@@ -74,12 +74,13 @@ describe('LabeledSeries', () => {
           1, DateTime.utc(1988, 3, 23), undefined, 'A'))),
       new AnnotatedObservation(new Observation(
           makeSampleObservationJson(10, DateTime.utc(1988, 3, 24)))),
+      // This one is out of range.
       new AnnotatedObservation(new Observation(
           makeSampleObservationJson(100, DateTime.utc(1988, 3, 25))))
     ]);
     const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
     expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-      [DateTime.utc(1988, 3, 23), 1]
+      DateTime.utc(1988, 3, 23).toISO(), DateTime.utc(1988, 3, 25).toISO()
     ]);
   });
 
@@ -163,7 +164,7 @@ describe('LabeledSeries', () => {
        const lblSeries =
            LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
        expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 25), 10]
+         DateTime.utc(1988, 3, 25).toISO()
        ]);
      });
 
@@ -183,7 +184,34 @@ describe('LabeledSeries', () => {
        const lblSeries =
            LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
        expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 24), 10]
+         DateTime.utc(1988, 3, 24).toISO()
+       ]);
+     });
+
+  it('fromObservationSetDiscrete should mark qualitative abnormal coordinates ' +
+         ' with non-standard valueset coding',
+     () => {
+       const obsSet = new ObservationSet([
+         new AnnotatedObservation(new Observation({
+           code: {
+             coding: [{system: 'http://loinc.org', code: '4090-7'}],
+             text: 'Vanc pk'
+           },
+           effectiveDateTime: '2019-02-14T00:00:00.000Z',
+           interpretation: {text: 'ABN'},
+           resourceType: 'Observation',
+           status: 'final',
+           valueCodeableConcept: {text: 'Trace graded/hpf'}
+         })),
+         new AnnotatedObservation(
+             new Observation(makeSampleDiscreteObservationJson(
+                 'red', DateTime.utc(1988, 3, 24)))),
+       ]);
+
+       const lblSeries =
+           LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
+       expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
+         DateTime.utc(2019, 2, 14).toISO()
        ]);
      });
 
@@ -203,7 +231,7 @@ describe('LabeledSeries', () => {
        const lblSeries =
            LabeledSeries.fromObservationSetsDiscrete([obsSet], 10, 'label', []);
        expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
-         [DateTime.utc(1988, 3, 24), 10]
+         DateTime.utc(1988, 3, 24).toISO()
        ]);
      });
 

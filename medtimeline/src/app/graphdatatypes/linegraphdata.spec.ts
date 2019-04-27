@@ -228,7 +228,6 @@ describe('LineGraphData', () => {
        ]);
      });
 
-
   it('fromMedicationOrderSet should handle tooltips', () => {
     const order1 = makeMedicationOrder();
 
@@ -263,6 +262,25 @@ describe('LineGraphData', () => {
                 [new AnnotatedAdministration(medAdmin2, 1, 1)],
                 TestBed.get(DomSanitizer)));
   });
+
+  it('fromObservationSetListDiscrete should calculate one' +
+         'LabeledSeries for all ObservationSets.',
+     () => {
+       const obsSet1 = new ObservationSet([new AnnotatedObservation(
+           new Observation(makeSampleDiscreteObservationJson(
+               'yellow', DateTime.utc(1988, 3, 23))))]);
+
+       const obsSet2 = new ObservationSet([new AnnotatedObservation(
+           new Observation(makeSampleDiscreteObservationJson(
+               'blue', DateTime.utc(1988, 3, 23))))]);
+       const obsSetList = new Array(obsSet1, obsSet2);
+
+       const lgData = LineGraphData.fromObservationSetListDiscrete(
+           'lbl', obsSetList, TestBed.get(DomSanitizer), []);
+
+       expect(lgData.series.length).toEqual(1);
+     });
+
 
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',

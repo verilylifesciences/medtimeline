@@ -113,18 +113,24 @@ export class Observation extends LabeledClass {
       }
     }
 
-    if (json.interpretation && json.interpretation.coding) {
-      const coding = json.interpretation.coding[0];
-      if (coding.system === OBSERVATION_INTERPRETATION_VALUESET_URL) {
-        if (ObservationInterpretation.codeToObject.has(coding.code)) {
-          this.interpretation =
-              ObservationInterpretation.codeToObject.get(coding.code);
-        } else {
-          throw Error(
-              'Unsupported interpretation code: ' + JSON.stringify(coding));
+    if (json.interpretation) {
+      if (json.interpretation.coding) {
+        const coding = json.interpretation.coding[0];
+        if (coding.system === OBSERVATION_INTERPRETATION_VALUESET_URL) {
+          if (ObservationInterpretation.codeToObject.has(coding.code)) {
+            this.interpretation =
+                ObservationInterpretation.codeToObject.get(coding.code);
+          } else {
+            throw Error(
+                'Unsupported interpretation code: ' + JSON.stringify(coding));
+          }
         }
+      } else if (json.interpretation.text) {
+        // BCH uses a non-standard coding system so we make interpretations on
+        // the fly.
+        this.interpretation = new ObservationInterpretation(
+            json.interpretation.text, json.interpretation.text);
       }
-      // Silently ignore encodings coming from other systems.
     }
 
     if (json.component) {
@@ -163,8 +169,8 @@ export class Observation extends LabeledClass {
       this.unit = fixUnitAbbreviations(this.value.unit);
     }
 
-    // We must calculate precision before the value is stored as a number, where
-    // precision is lost.
+    // We must calculate precision before the value is stored as a number,
+    // where precision is lost.
     if (json.valueQuantity && json.valueQuantity.value) {
       const values = json.valueQuantity.value.toString().split('.');
       this.precision = values.length > 1 ? values[1].length : 0;
@@ -181,9 +187,9 @@ export class Observation extends LabeledClass {
 
     // The FHIR standard says that if there's only one range then it should be
     // what is "normal" for that measure. Otherwise they should be labeled.
-    // We are going to err on the side of safety and not include a normal range
-    // unless there's just the one, and it includes a high and low field.
-    // https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
+    // We are going to err on the side of safety and not include a normal
+    // range unless there's just the one, and it includes a high and low
+    // field. https://www.hl7.org/fhir/DSTU2/observation.html#4.20.4.4
     if (json.referenceRange && json.referenceRange.length === 1) {
       if (json.referenceRange[0].low && json.referenceRange[0].high) {
         this.normalRange = [

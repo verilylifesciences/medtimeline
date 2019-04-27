@@ -6,7 +6,9 @@
 import {Component, forwardRef, Inject, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
+import {DateTime} from 'luxon';
 import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
+import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
@@ -47,6 +49,13 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     // We have to wait until after the data loads up into the graph to iterate
     // over the points and adjust their coloring based on the normal range.
     this.addYNormalRange();
+
+    // Color points that fall outside of their respective normal ranges.
+    for (let i = 0; i < this.data.series.length; i++) {
+      const chartjsSeries = this.chartData[i];
+      const labeledSeries = this.data.series[i];
+      this.colorAbnormalPoints(chartjsSeries, labeledSeries);
+    }
     if (!this.showTicks) {
       this.chartOptions.scales.yAxes[0].display = false;
       this.chartOptions.scales.yAxes[0].ticks.beginAtZero = true;
@@ -98,15 +107,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
             Math.min(yDisplayBounds[0], firstNormalRange[0]),
             Math.max(yDisplayBounds[1], firstNormalRange[1])
           ];
-          // Color points that fall outside of their respective normal ranges.
-          for (let i = 0; i < this.data.series.length; i++) {
-            const chartjsSeries = this.chartData[i];
-            const labeledSeries = this.data.series[i];
-            if (labeledSeries.normalRanges) {
-              this.colorAbnormalPoints(
-                  chartjsSeries, firstNormalRange, labeledSeries.legendInfo);
-            }
-          }
         }
       }
     }
@@ -131,7 +131,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
       }
     };
   }
-
 
   private getDisplayBounds(
       minInSeries: number, maxInSeries: number,
@@ -161,7 +160,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
     }
     return [yAxisDisplayMin, yAxisDisplayMax];
   }
-
 
   /**
    * Draws a green box spanning the entire x-axis and covering y axis normal
@@ -220,46 +218,37 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> {
   }
 
   /**
-   * Colors the point the default series color if it's in the normal range,
-   * or the designated "abnormal" color if it's outside of the normal range.
+   * Colors the point the default series color if it's not abnormal, or outlines
+   * with the abnormal color if marked as abnormal.
    *
    * @param series The data series to color points for.
    * @param yNormalBounds The bounds of what should be considered normal.
    * @param seriesLegend The legend info for the series we're working with.
    */
   private colorAbnormalPoints(
-      series: any, yNormalBounds: [number, number], seriesLegend: LegendInfo) {
+      chartjsSeries: any, labeledSeries: LabeledSeries) {
     const pointBackgroundColors = new Array<string>();
     const pointBorderColors = new Array<string>();
 
-    // Highlight the points that are outside of the normal range, or that
-    // are marked as abnormal.
-    const allAbnormalPoints =
-        this.data.series.map(s => s.abnormalCoordinates)
-            .reduce(
-                (p, c) => new Set([...Array.from(p), ...Array.from(c)]),
-                new Set());
-    for (let pt of series.data) {
+    for (let pt of chartjsSeries.data) {
       // pt could also be a number here, so we constrain it to when it's a
       // ChartPoint. For some reason Typescript doesn't like it when we do a
       // test to see if pt is an instanceof ChartPoint so checking for the
       // y-attribute is a workaround.
-      if (pt.hasOwnProperty('y')) {
-        pt = pt as ChartPoint;
-        const outsideOfNormalBounds = yNormalBounds &&
-            (pt.y < yNormalBounds[0] || pt.y > yNormalBounds[1]);
-        const inAbnormalSet = allAbnormalPoints.has([pt.x, pt.y]);
+      pt = pt as ChartPoint;
+      const inAbnormalSet = labeledSeries.abnormalCoordinates.has(pt.x);
 
-        if (outsideOfNormalBounds || inAbnormalSet) {
-          pointBackgroundColors.push(seriesLegend.fill.rgb().string());
-          pointBorderColors.push(ABNORMAL.rgb().string());
-        } else {
-          pointBackgroundColors.push(seriesLegend.fill.rgb().string());
-          pointBorderColors.push(seriesLegend.outline.rgb().string());
-        }
-        series.pointBackgroundColor = pointBackgroundColors;
-        series.pointBorderColor = pointBorderColors;
+      if (inAbnormalSet) {
+        pointBackgroundColors.push(
+            labeledSeries.legendInfo.fill.rgb().string());
+        pointBorderColors.push(ABNORMAL.rgb().string());
+      } else {
+        pointBackgroundColors.push(
+            labeledSeries.legendInfo.fill.rgb().string());
+        pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
       }
+      chartjsSeries.pointBackgroundColor = pointBackgroundColors;
+      chartjsSeries.pointBorderColor = pointBorderColors;
     }
   }
 }

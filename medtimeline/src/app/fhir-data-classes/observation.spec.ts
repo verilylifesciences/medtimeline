@@ -7,7 +7,7 @@ import {DateTime} from 'luxon';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 
 import {Observation} from './observation';
-import {OBSERVATION_INTERPRETATION_VALUESET_URL} from './observation-interpretation-valueset';
+import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';
 
 describe('Observation', () => {
   const observationCodingString = {
@@ -165,5 +165,55 @@ describe('Observation', () => {
       component: [{...observationCodingString, valueQuantity: {value: 100}}]
     });
     expect(observation.innerComponents.length).toEqual(1);
+  });
+
+  it('grabs intepretation from a non-standard coding', () => {
+    const obs = new Observation({
+      code: {
+        coding: [{system: 'http://loinc.org', code: '4090-7'}],
+        text: 'Vanc pk'
+      },
+      effectiveDateTime: '2019-02-14T00:00:00.000Z',
+      interpretation: {text: 'ABN'},
+      resourceType: 'Observation',
+      status: 'final',
+      valueCodeableConcept: {text: 'Trace graded/hpf'}
+    });
+
+    expect(obs.interpretation)
+        .toEqual(new ObservationInterpretation('ABN', 'ABN'));
+  });
+
+  it('should get normal range from more complex observation', () => {
+    const obs = new Observation({
+      code: {
+        coding: [{code: '13945-1', system: 'http://loinc.org'}],
+        text: 'Red Cells, Urinalysis'
+      },
+      effectiveDateTime: '2019-02-14T19:23:00.000Z',
+      referenceRange: [{
+        high: {
+          code: '/[HPF]',
+          system: 'http://unitsofmeasure.org',
+          unit: '/hpf',
+          value: 3
+        },
+        low: {
+          code: '/[HPF]',
+          system: 'http://unitsofmeasure.org',
+          unit: '/hpf',
+          value: 0
+        },
+        text: '0-3 /hpf'
+      }],
+      resourceType: 'Observation',
+      valueQuantity: {
+        code: '/[HPF]',
+        system: 'http://unitsofmeasure.org',
+        unit: '/hpf',
+        value: 32
+      }
+    });
+    expect(obs.normalRange).toEqual([0, 3]);
   });
 });

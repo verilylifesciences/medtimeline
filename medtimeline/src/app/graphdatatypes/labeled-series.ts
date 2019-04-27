@@ -62,11 +62,10 @@ export class LabeledSeries {
        */
       readonly legendInfo?: LegendInfo,
       /**
-       * The coordinate values in the labeled series that should be marked as
+       * The x-coordinate values in the labeled series that should be marked as
        * abnormal because of their interpretation results.
        */
-      readonly abnormalCoordinates =
-          new Set<[DateTime | string, number|string]>(),
+      readonly abnormalCoordinates = new Set<string>(),
       /**
        * A map of DateTimes to corresponding tuples representing the low and
        * high bounds of what should be considered "normal" along the y-axis.
@@ -121,14 +120,16 @@ export class LabeledSeries {
       observationSet: ObservationSet, encounters: Encounter[]): LabeledSeries {
     let coordinates: Array<[DateTime, number]> = [];
     const observations = observationSet.resourceList;
-    const abnormal = new Set<[DateTime | string, number | string]>();
+    const abnormal = new Set<string>();
     for (const obs of observations) {
       coordinates.push(
           [obs.observation.timestamp, obs.observation.value.value]);
 
-      if (obs.observation.interpretation &&
-          obs.observation.interpretation.code !== NORMAL) {
-        abnormal.add([obs.observation.timestamp, obs.observation.value.value]);
+      if ((obs.observation.interpretation &&
+           obs.observation.interpretation.code !== NORMAL) ||
+          (obs.observation.value.value < obs.observation.normalRange[0] ||
+           obs.observation.value.value > obs.observation.normalRange[1])) {
+        abnormal.add(obs.observation.timestamp.toISO());
       }
     }
 
@@ -156,7 +157,7 @@ export class LabeledSeries {
       observationSets: ObservationSet[], yValue: number, label,
       encounters: Encounter[]): LabeledSeries {
     let coordinates: Array<[DateTime, number | string]> = [];
-    const abnormal = new Set<[DateTime | string, number | string]>();
+    const abnormal = new Set<string>();
     for (const obsSet of observationSets) {
       const observations = obsSet.resourceList;
       for (const obs of observations) {
@@ -164,12 +165,12 @@ export class LabeledSeries {
 
         if (obs.observation.interpretation &&
             obs.observation.interpretation.code !== NORMAL) {
-          abnormal.add([obs.observation.timestamp, yValue]);
+          abnormal.add(obs.observation.timestamp.toISO());
         }
         if (obs.observation.value && obs.observation.value.value &&
             (obs.observation.value.value < obs.observation.normalRange[0] ||
              obs.observation.value.value > obs.observation.normalRange[1])) {
-          abnormal.add([obs.observation.timestamp, yValue]);
+          abnormal.add(obs.observation.timestamp.toISO());
         }
       }
     }
