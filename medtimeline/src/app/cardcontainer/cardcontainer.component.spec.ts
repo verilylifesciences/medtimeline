@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule, MatRadioModule, MatTooltipModule} from '@angular/material';
+import {MatExpansionModule, MatNativeDateModule, MatRadioModule, MatTooltipModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -93,7 +93,8 @@ describe('CardcontainerComponent', () => {
             MatCheckboxModule,
             MatRadioModule,
             MatTooltipModule,
-            ChartsModule
+            ChartsModule,
+            MatExpansionModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,

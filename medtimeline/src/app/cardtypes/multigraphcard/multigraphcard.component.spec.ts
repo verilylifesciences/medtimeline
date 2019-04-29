@@ -5,6 +5,7 @@
 
 import {SimpleChange} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatExpansionModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -43,7 +44,8 @@ describe('MultiGraphCardComponent', () => {
         .configureTestingModule({
           imports: [
             BrowserAnimationsModule, MatCardModule, MatIconModule,
-            MatProgressSpinnerModule, ChartsModule, MatTooltipModule
+            MatProgressSpinnerModule, ChartsModule, MatTooltipModule,
+            MatExpansionModule
           ],
           declarations: [
             MultiGraphCardComponent,
