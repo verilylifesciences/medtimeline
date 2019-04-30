@@ -108,7 +108,7 @@ describe('GenericAbnormalTooltip', () => {
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 22)) + '</th></tr>' +
-            '<tr><th colspan="2">Caution: value outside normal range</th></tr>' +
+            '<tr><th colspan="2">Caution: abnormal value</th></tr>' +
             '</tbody></table>');
   });
 });

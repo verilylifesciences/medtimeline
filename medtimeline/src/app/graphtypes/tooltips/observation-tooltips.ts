@@ -105,7 +105,7 @@ export class GenericAbnormalTooltip extends
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
 
-    Tooltip.addHeader('Caution: value outside normal range', table, sanitizer);
+    Tooltip.addHeader('Caution: abnormal value', table, sanitizer);
     return table.outerHTML;
   }
 }
