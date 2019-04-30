@@ -496,7 +496,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         // autoskip.
         autoSkip: false,
         callback: (value, index, values) => {
-          if (!this.data || !this.data.precision) {
+          if (!this.data) {
             return value;
           }
           return (value).toLocaleString('en-us', {
