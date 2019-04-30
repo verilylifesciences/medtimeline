@@ -594,6 +594,7 @@ var AppModule = /** @class */ (function () {
                 ng2_charts__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_13__["DragulaModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatExpansionModule"]
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
@@ -1667,7 +1668,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <div *ngIf=\"axis.errorMessage\">\n        <mat-icon>error</mat-icon>\n        {{axis.errorMessage}}\n      </div>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data.\n        </mat-expansion-panel-header>\n        Technical details: {{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -6406,7 +6407,14 @@ var MicrobioGraphData = /** @class */ (function (_super) {
             if (specimen) {
                 var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report);
                 // For this tooltip, the keys are timestamps.
-                tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
+                if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+                    var existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
+                    tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), existingTT +
+                        new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](false).getTooltip(annotatedReport, sanitizer));
+                }
+                else {
+                    tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
+                }
                 for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
                     var series = _b[_a];
                     points.push(series);
@@ -7826,7 +7834,7 @@ var GraphComponent = /** @class */ (function () {
                 // autoskip.
                 autoSkip: false,
                 callback: function (value, index, values) {
-                    if (!_this.data || !_this.data.precision) {
+                    if (!_this.data) {
                         return value;
                     }
                     return (value).toLocaleString('en-us', {
@@ -8410,9 +8418,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var wordwrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wordwrap */ "./node_modules/wordwrap/index.js");
-/* harmony import */ var wordwrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wordwrap__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8442,7 +8448,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-
 
 
 
@@ -8478,8 +8483,9 @@ var StepGraphComponent = /** @class */ (function (_super) {
             // We also have to re-map the coordinates to the truncated names so
             // that they may be plotted correctly along the categorical axis.
             series.coordinates.forEach(function (pt) {
-                var lines = wordwrap__WEBPACK_IMPORTED_MODULE_3__(_this.Y_AXIS_TICK_MAX_LENGTH)(pt[1]).split('\n');
-                var truncatedLabel = lines[0] + (lines.length > 1 ? '...' : '');
+                var lbl = pt[1];
+                var truncatedLabel = lbl.substr(0, _this.Y_AXIS_TICK_MAX_LENGTH) +
+                    (lbl.length > _this.Y_AXIS_TICK_MAX_LENGTH ? '...' : '');
                 yValuesForEndpoints.push(truncatedLabel);
                 pt[1] = truncatedLabel;
             });
@@ -8500,14 +8506,14 @@ var StepGraphComponent = /** @class */ (function (_super) {
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [
-                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return StepGraphComponent_1; }) }
+                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return StepGraphComponent_1; }) }
             ]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], StepGraphComponent);
     return StepGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"]));
 
 
 
@@ -8652,8 +8658,11 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var MicrobioTooltip = /** @class */ (function (_super) {
     __extends(MicrobioTooltip, _super);
-    function MicrobioTooltip() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function MicrobioTooltip(addTimestampRow) {
+        if (addTimestampRow === void 0) { addTimestampRow = true; }
+        var _this = _super.call(this) || this;
+        _this.addTimestampRow = addTimestampRow;
+        return _this;
     }
     MicrobioTooltip.prototype.getTooltip = function (annotatedReport, sanitizer) {
         var status = src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["DiagnosticReportStatus"][annotatedReport.report.status];
@@ -8661,16 +8670,16 @@ var MicrobioTooltip = /** @class */ (function (_super) {
         var timestamp = annotatedReport.timestamp;
         var specimen = annotatedReport.report.specimen.type;
         var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Status', status], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Specimen', specimen], sanitizer);
-        var spacerRow = table.insertRow();
-        spacerRow.insertCell();
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Results Contained', table, sanitizer);
+        if (this.addTimestampRow) {
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
+        }
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Result set', table, sanitizer);
         for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
             var result = results_1[_i];
             _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [result.display, result.interpretation.display], sanitizer);
         }
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Status', status], sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Specimen', specimen], sanitizer);
         return table.outerHTML;
     };
     return MicrobioTooltip;
@@ -8809,7 +8818,7 @@ var GenericAbnormalTooltip = /** @class */ (function (_super) {
         if (this.addTimestampRow) {
             _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
         }
-        _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Caution: value outside normal range', table, sanitizer);
+        _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Caution: abnormal value', table, sanitizer);
         return table.outerHTML;
     };
     return GenericAbnormalTooltip;
@@ -9400,7 +9409,7 @@ module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}</h1>\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9955,7 +9964,7 @@ var TimelineControllerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <img src=\"assets/images/logo.gif\">\n  <div style=\"margin-top: 5px\" *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div style=\"margin-top: 5px\"> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button [matMenuTriggerFor]=\"helpMenu\" matTooltip=\"Help\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <mat-menu #helpMenu=\"matMenu\">\n    <button mat-menu-item (click)=\"openIFU()\">\n      <span>{{uiConstants.IFU}}</span>\n    </button>\n    <button mat-menu-item matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n      <span>{{uiConstants.LAUNCH_TUTORIAL}}</span>\n    </button>\n  </mat-menu>\n</div>\n"
+module.exports = "<div class=\"timelineToolbarMain\" fxLayout=\"row\">\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div style=\"margin-top: 5px\" *ngIf=\"showMockDataMessage\">{{uiConstants.SYNTH_DATA}}</div>\n  <div style=\"margin-top: 5px\"> {{uiConstants.LOINC_VERIFIED_STRING}}</div>\n  <button mat-icon-button [matMenuTriggerFor]=\"helpMenu\" matTooltip=\"Help\">\n    <mat-icon class=\"toolbarButton\">help_outline</mat-icon>\n  </button>\n  <mat-menu #helpMenu=\"matMenu\">\n    <button mat-menu-item (click)=\"openIFU()\">\n      <span>{{uiConstants.IFU}}</span>\n    </button>\n    <button mat-menu-item matTooltip=\"{{uiConstants.LAUNCH_TUTORIAL}}\" (click)=\"openHelpDialog()\">\n      <span>{{uiConstants.LAUNCH_TUTORIAL}}</span>\n    </button>\n  </mat-menu>\n</div>\n"
 
 /***/ }),
 
@@ -10148,7 +10157,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.0.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.0.1',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
