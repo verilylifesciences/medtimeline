@@ -3177,21 +3177,6 @@
           "value": 0.04
         }
       }
-    }
-  ],
-  "id": "146fd7ff-169c-4479-8cfa-6a75c257ce58",
-  "link": [
-    {
-      "relation": "self",
-      "url": "XXXXXXX&-pageContext=088c4e75-cff5-4ab8-a9a7-c81710bf89b9&-pageDirection=NEXT"
-    },
-    {
-      "relation": "next",
-      "url": "XXXXXXX&-pageContext=3494fc34-170a-4d75-a28e-7913183544e9&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "XXXXXXX&-pageContext=3494fc34-170a-4d75-a28e-7913183544e9&-pageDirection=PREVIOUS"
     },
     {
       "fullUrl": "https://xxxxx",

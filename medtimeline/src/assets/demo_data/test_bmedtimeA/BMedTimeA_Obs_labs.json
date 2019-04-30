@@ -3350,21 +3350,6 @@
           "value": 24.05
         }
       }
-    }
-  ],
-  "id": "ee442f19-0459-4ff9-b626-a6aabb32dcc7",
-  "link": [
-    {
-      "relation": "self",
-      "url": "https://XXXXXXX&-pageContext=ca7ee4c4-b253-4dc4-a228-715c5b01eb74&-pageDirection=NEXT"
-    },
-    {
-      "relation": "next",
-      "url": "https://XXXXXXX&-pageContext=7ad70c23-b464-4485-993e-89869f87886f&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "https://XXXXXXX&-pageContext=7ad70c23-b464-4485-993e-89869f87886f&-pageDirection=PREVIOUS"
     },
     {
       "fullUrl": "https://xxxxx",
@@ -6305,21 +6290,6 @@
           "value": 19
         }
       }
-    }
-  ],
-  "id": "090ae160-3369-4210-b4f5-ffcaf295c8b6",
-  "link": [
-    {
-      "relation": "self",
-      "url": "https://XXXXXXX&-pageContext=7ad70c23-b464-4485-993e-89869f87886f&-pageDirection=NEXT"
-    },
-    {
-      "relation": "next",
-      "url": "https://XXXXXXX&-pageContext=8c93247f-fe92-4947-9d93-3895cbaa10aa&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "https://XXXXXXX&-pageContext=8c93247f-fe92-4947-9d93-3895cbaa10aa&-pageDirection=PREVIOUS"
     },
     {
       "fullUrl": "https://xxxxx",
@@ -7873,18 +7843,5 @@
         }
       }
     }
-  ],
-  "id": "f25562ed-01b8-4f3e-970e-b422da9e6170",
-  "link": [
-    {
-      "relation": "self",
-      "url": "https://XXXXXXX&-pageContext=8c93247f-fe92-4947-9d93-3895cbaa10aa&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "https://XXXXXXX&-pageContext=a6c1768a-6524-4317-923d-e6e1a37ff426&-pageDirection=PREVIOUS"
-    }
-  ],
-  "resourceType": "Bundle",
-  "type": "searchset"
+  ]
 }

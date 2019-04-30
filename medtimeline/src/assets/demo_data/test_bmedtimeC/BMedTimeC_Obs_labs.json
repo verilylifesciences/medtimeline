@@ -3043,21 +3043,6 @@
           "value": 100
         }
       }
-    }
-  ],
-  "id": "fae45baa-ea33-4edc-aa3e-e2b969f24552",
-  "link": [
-    {
-      "relation": "self",
-      "url": "XXXXXXX&-pageContext=560573c5-475f-4fc5-96df-01b137159895&-pageDirection=NEXT"
-    },
-    {
-      "relation": "next",
-      "url": "XXXXXXX&-pageContext=95a2c046-343d-4008-bd4e-ca73e35627fa&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "XXXXXXX&-pageContext=95a2c046-343d-4008-bd4e-ca73e35627fa&-pageDirection=PREVIOUS"
     },
     {
       "fullUrl": "https://xxxxx",
@@ -6268,21 +6253,6 @@
           "value": 5
         }
       }
-    }
-  ],
-  "id": "8dcf0331-baf4-4cf1-8831-f5bb9bb9988e",
-  "link": [
-    {
-      "relation": "self",
-      "url": "XXXXXXX&-pageContext=95a2c046-343d-4008-bd4e-ca73e35627fa&-pageDirection=NEXT"
-    },
-    {
-      "relation": "next",
-      "url": "XXXXXXX&-pageContext=70b694f3-5a0a-4da9-a02d-07529f1f438e&-pageDirection=NEXT"
-    },
-    {
-      "relation": "previous",
-      "url": "XXXXXXX&-pageContext=70b694f3-5a0a-4da9-a02d-07529f1f438e&-pageDirection=PREVIOUS"
     },
     {
       "fullUrl": "https://xxxxx",
