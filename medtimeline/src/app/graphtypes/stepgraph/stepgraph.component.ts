@@ -7,7 +7,6 @@ import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
-import * as wordwrap from 'wordwrap';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 import {GraphComponent} from '../graph/graph.component';
@@ -49,8 +48,9 @@ export class StepGraphComponent extends
       // We also have to re-map the coordinates to the truncated names so
       // that they may be plotted correctly along the categorical axis.
       series.coordinates.forEach(pt => {
-        const lines = wordwrap(this.Y_AXIS_TICK_MAX_LENGTH)(pt[1]).split('\n');
-        const truncatedLabel = lines[0] + (lines.length > 1 ? '...' : '');
+        const lbl = pt[1] as string;
+        const truncatedLabel = lbl.substr(0, this.Y_AXIS_TICK_MAX_LENGTH) +
+            (lbl.length > this.Y_AXIS_TICK_MAX_LENGTH ? '...' : '');
         yValuesForEndpoints.push(truncatedLabel);
         pt[1] = truncatedLabel;
       });

@@ -14,6 +14,10 @@ import {Tooltip} from '../tooltips/tooltip';
  * status, as well as all results contained in the report.
  */
 export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
+  constructor(private addTimestampRow = true) {
+    super();
+  }
+
   getTooltip(
       annotatedReport: AnnotatedDiagnosticReport,
       sanitizer: DomSanitizer): string {
@@ -23,16 +27,19 @@ export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
     const specimen = annotatedReport.report.specimen.type;
 
     const table = Tooltip.createNewTable();
-    Tooltip.addTimeHeader(timestamp, table, sanitizer);
-    Tooltip.addRow(table, ['Status', status], sanitizer);
-    Tooltip.addRow(table, ['Specimen', specimen], sanitizer);
-    const spacerRow = table.insertRow();
-    spacerRow.insertCell();
-    Tooltip.addHeader('Results Contained', table, sanitizer);
+    if (this.addTimestampRow) {
+      Tooltip.addTimeHeader(timestamp, table, sanitizer);
+    }
+
+    Tooltip.addHeader('Result set', table, sanitizer);
+
     for (const result of results) {
       Tooltip.addRow(
           table, [result.display, result.interpretation.display], sanitizer);
     }
+    Tooltip.addRow(table, ['Status', status], sanitizer);
+    Tooltip.addRow(table, ['Specimen', specimen], sanitizer);
+
     return table.outerHTML;
   }
 }

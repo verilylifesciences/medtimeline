@@ -35,18 +35,33 @@ describe('MicrobioTooltip', () => {
             '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(annotated.timestamp) + '</th></tr>' +
-            '<tr>' +
-            '<td class="name">Status</td>' +
-            '<td class="value">Final</td></tr>' +
-            '<tr><td class="name">Specimen</td>' +
-            '<td class="value">Stool</td></tr>' +
-            '<tr><td></td></tr>' +
-            '<tr><th colspan="2">Results Contained</th></tr>' +
-            '<tr>' +
-            '<td class="name">Ova and Parasite Exam</td>' +
+            '<tr><th colspan="2">Result set</th></tr>' +
+            '<tr><td class="name">Ova and Parasite Exam</td>' +
             '<td class="value">Negative or Flora</td></tr>' +
-            '<tr>' +
-            '<td class="name">Salmonella and Shigella Culture</td>' +
-            '<td class="value">Check result</td></tr></tbody></table>');
+            '<tr><td class="name">Salmonella and Shigella Culture</td>' +
+            '<td class="value">Check result</td></tr>' +
+            '<tr><td class="name">Status</td><td class="value">Final</td></tr>' +
+            '<tr><td class="name">Specimen</td><td class="value">Stool</td></tr>' +
+            '</tbody></table>');
+  });
+
+  it('should drop timestamp text if indicated', () => {
+    const annotated = new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]);
+    const tooltipText = new MicrobioTooltip(false).getTooltip(
+        annotated, TestBed.get(DomSanitizer));
+    expect(tooltipText).toBeDefined();
+    // Angular generates a numerical idenitifer for each table and this
+    // regular expression strips it from the HTML check.
+    expect(tooltipText)
+        .toEqual(
+            '<table class="c3-tooltip"><tbody>' +
+            '<tr><th colspan="2">Result set</th></tr>' +
+            '<tr><td class="name">Ova and Parasite Exam</td>' +
+            '<td class="value">Negative or Flora</td></tr>' +
+            '<tr><td class="name">Salmonella and Shigella Culture</td>' +
+            '<td class="value">Check result</td></tr>' +
+            '<tr><td class="name">Status</td><td class="value">Final</td></tr>' +
+            '<tr><td class="name">Specimen</td><td class="value">Stool</td></tr>' +
+            '</tbody></table>');
   });
 });

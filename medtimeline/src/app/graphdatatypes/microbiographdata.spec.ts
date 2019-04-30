@@ -7,7 +7,9 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 
+import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {FhirService} from '../fhir.service';
+import {Tooltip} from '../graphtypes/tooltips/tooltip';
 import {makeDiagnosticReports} from '../test_utils';
 
 import {MicrobioGraphData} from './microbiographdata';
@@ -47,5 +49,115 @@ describe('MicrobioGraphData', () => {
          DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
          'Salmonella and Shigella Culture'
        ]);
+     });
+
+
+  it('fromDiagnosticReports should make tooltip for multiple reports at same timestamp',
+     () => {
+       const mb1 = {
+         contained: [
+           {
+             collection: {collectedDateTime: '2019-02-14T17:34:43-05:00'},
+             id: '1',
+             resourceType: 'Specimen',
+             type: {text: 'BAL'}
+           },
+           {
+             code: {
+               coding: [{
+                 code: 'KOHFUNGALSTAIN',
+                 display: 'KOH Fungal Stain',
+                 system: 'http://cerner.com/bch_mapping/'
+               }]
+             },
+             id: '2',
+             interpretation: {
+               coding: [{
+                 code: 'NEGORFLORA',
+                 display: 'Neg or Flora',
+                 system:
+                     'http://hl7.org/fhir/ValueSet/observation-interpretation'
+               }]
+             },
+             resourceType: 'Observation'
+           }
+         ],
+         id: '4795108019',
+         resourceType: 'DiagnosticReport',
+         result: [{'reference': '#2'}],
+         specimen: [{'reference': '#1'}],
+         status: 'final',
+       };
+       const mb2 = {
+         category:
+             {coding: [{code: 'MB', system: 'http://hl7.org/fhir/v2/0074'}]},
+         contained: [
+           {
+             collection: {collectedDateTime: '2019-02-14T17:34:43-05:00'},
+             id: '1',
+             resourceType: 'Specimen',
+             type: {text: 'BAL'}
+           },
+           {
+             code: {
+               coding: [{
+                 code: 'FUNGUSCULTURE',
+                 display: 'Fungus Culture',
+                 system: 'http://cerner.com/bch_mapping/'
+               }]
+             },
+             id: '2',
+             interpretation: {
+               coding: [{
+                 code: 'NEGORFLORA',
+                 display: 'Neg or Flora',
+                 system:
+                     'http://hl7.org/fhir/ValueSet/observation-interpretation'
+               }]
+             },
+             resourceType: 'Observation'
+           }
+         ],
+         encounter: {reference: 'Encounter/80367178'},
+         id: '4795108015',
+         issued: '2019-02-14T12:36:30.000-05:00',
+         resourceType: 'DiagnosticReport',
+         result: [{reference: '#2'}],
+         specimen: [{reference: '#1'}],
+         status: 'partial',
+         subject: {reference: 'Patient/XXXXXXX'}
+       };
+
+       const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
+           [new DiagnosticReport(mb1), new DiagnosticReport(mb2)],
+           TestBed.get(DomSanitizer));
+
+       expect(stepgraphdata.tooltipMap.size).toBe(1);
+       const mbKey = DateTime.fromISO('2019-02-14T17:34:43-05:00')
+                         .toUTC()
+                         .toMillis()
+                         .toString();
+       expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();
+       expect(stepgraphdata.tooltipMap.get(mbKey))
+           .toEqual(
+               '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
+               Tooltip.formatTimestamp(
+                   DateTime.fromISO('2019-02-14T17:34:43-05:00')) +
+               '</th></tr>' +
+               '<tr><th colspan="2">Result set</th></tr>' +
+               '<tr><td class="name">KOH Fungal Stain</td>' +
+               '<td class="value">Negative or Flora</td></tr>' +
+               '<tr><td class="name">Status</td>' +
+               '<td class="value">Final</td></tr>' +
+               '<tr><td class="name">Specimen</td>' +
+               '<td class="value">BAL</td></tr></tbody></table>' +
+               '<table class="c3-tooltip"><tbody>' +
+               '<tr><th colspan="2">Result set</th></tr>' +
+               '<tr><td class="name">Fungus Culture</td>' +
+               '<td class="value">Negative or Flora</td></tr>' +
+               '<tr><td class="name">Status</td>' +
+               '<td class="value">Partial</td></tr>' +
+               '<tr><td class="name">Specimen</td>' +
+               '<td class="value">BAL</td></tr></tbody></table>');
      });
 });

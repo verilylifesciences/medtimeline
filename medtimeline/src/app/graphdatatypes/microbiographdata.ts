@@ -42,9 +42,19 @@ export class MicrobioGraphData extends StepGraphData {
       if (specimen) {
         const annotatedReport = new AnnotatedDiagnosticReport(report);
         // For this tooltip, the keys are timestamps.
-        tooltipMap.set(
-            annotatedReport.timestamp.toMillis().toString(),
-            new MicrobioTooltip().getTooltip(annotatedReport, sanitizer));
+        if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+          const existingTT =
+              tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
+          tooltipMap.set(
+              annotatedReport.timestamp.toMillis().toString(),
+              existingTT +
+                  new MicrobioTooltip(false).getTooltip(
+                      annotatedReport, sanitizer));
+        } else {
+          tooltipMap.set(
+              annotatedReport.timestamp.toMillis().toString(),
+              new MicrobioTooltip().getTooltip(annotatedReport, sanitizer));
+        }
         for (const series of LabeledSeries.fromDiagnosticReport(
                  report, annotatedReport.timestamp)) {
           points.push(series);
