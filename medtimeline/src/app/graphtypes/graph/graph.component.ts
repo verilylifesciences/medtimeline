@@ -108,7 +108,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     // Set up the custom callback for the tooltips.
     tooltips: {
       enabled: false,
-      mode: 'x',
       position: 'nearest',
       /**
        * Sets the tooltip for the graph.
