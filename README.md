@@ -3,19 +3,23 @@
 [See the online demo here!](https://verilylifesciences.github.io/medtimeline/)
 This demo was automatically built using ./build_demo.sh
 
-## Disclaimer
-This is not an official Verily product.
-
 ## About MedTimeLine
 
 MedTimeLine is a web application to help clinicians view how a patient's status
 is changing over time. It uses the [SMART on FHIR API](http://docs.smarthealthit.org/)
 to pull values for clinical concepts for a patient, then graphs the values
-measured for that concept as a time series within a single card.
+measured for that concept as a time series within a single card. Users can
+customize the timelines they view by dragging and dropping cards to different
+places on the screen, adding text annotations, dragging in new clinical concepts,
+and changing the timeframe of the visualized data.
 
-Users can customize the timelines they view by dragging and dropping
-cards to different places on the screen, adding text annotations, dragging in
-new clinical concepts, and changing the timeframe of the visualized data.
+This code was originally built by Verily in collaboration with
+Boston Children’s Hospital to improve the efficiency of tracking infectious
+disease data. You can read more about the original instance on the Verily blog.
+
+## Disclaimer
+Verily is not responsible for changes to the code or IFU beyond Verily’s
+original submission: MedTimeLine v1.0.1.0, commit number 3f17565ee6549a97b9be164c1eeb19be174e7e07.
 
 ## Quick Start Demo
 1. Clone this repository.
@@ -56,7 +60,7 @@ const dev = {
 
 const prod = {
   credentials: {
-    client_id: '<<your client ID>',
+    client_id: '<your client ID>',
   },
   url: {
     host: '',
