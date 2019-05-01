@@ -10156,7 +10156,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.0.1',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.1.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
@@ -10243,14 +10243,14 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     useMockServer: true,
-    mockDataFolder: 'demo_data/test_bmedtimeA',
+    mockDataFolder: 'demo_data/test_bmedtimeB',
     mockDataFiles: [
-        'BMedTimeA_Encounter',
-        'BMedtimeA_MB_data',
-        'BMedTimeA_Med_Orders',
-        'BMedTimeA_Obs_labs',
-        'BMedTimeA_Obs_vitals',
-        'BMedTimeA_Med_Admins',
+        'BMedTimeB_Encounter',
+        'BMedTimeB_Obs_labs',
+        'BMedTimeB_Obs_vitals',
+        'BMedtimeB_MB_data',
+        'BMedTimeB_Med_Admins',
+        'BMedTimeB_Med_Orders',
     ],
     useDebugger: false,
 };

@@ -235,8 +235,8 @@
           "reference": "Patient/PatientID"
         },
         "period": {
-          "end": "2019-10-18T04:00:00.000Z",
-          "start": "2019-01-15T19:08:12.000Z"
+          "end": "2019-02-18T04:00:00.000Z",
+          "start": "2019-02-11T19:08:12.000Z"
         },
         "priority": {
           "text": "Elective"
