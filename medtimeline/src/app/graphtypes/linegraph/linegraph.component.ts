@@ -231,6 +231,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
       chartjsSeries: any, labeledSeries: LabeledSeries) {
     const pointBackgroundColors = new Array<string>();
     const pointBorderColors = new Array<string>();
+    const pointStyle = new Array<string>();
 
     for (let pt of chartjsSeries.data) {
       // pt could also be a number here, so we constrain it to when it's a
@@ -244,13 +245,16 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
         pointBackgroundColors.push(
             labeledSeries.legendInfo.fill.rgb().string());
         pointBorderColors.push(ABNORMAL.rgb().string());
+        pointStyle.push('triangle');
       } else {
         pointBackgroundColors.push(
             labeledSeries.legendInfo.fill.rgb().string());
         pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+        pointStyle.push('circle');
       }
       chartjsSeries.pointBackgroundColor = pointBackgroundColors;
       chartjsSeries.pointBorderColor = pointBorderColors;
+      chartjsSeries.pointStyle = pointStyle;
     }
   }
 }

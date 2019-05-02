@@ -5,6 +5,8 @@
 
 import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ChartPoint} from 'chart.js';
+import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
@@ -34,6 +36,28 @@ export class MicrobioGraphComponent extends StepGraphComponent {
     for (const series of this.chartData) {
       series.pointRadius = 5;
       series.pointBorderWidth = 2;
+    }
+  }
+
+  adjustGeneratedChartConfiguration() {
+    // Color points that fall outside of their respective normal ranges.
+    for (let i = 0; i < this.data.series.length; i++) {
+      const isPositive = this.data.series[i].label.includes(CHECK_RESULT_CODE);
+      const chartjsSeries = this.chartData[i];
+      const pointStyle = new Array<string>();
+      for (let pt of chartjsSeries.data) {
+        // pt could also be a number here, so we constrain it to when it's a
+        // ChartPoint. For some reason Typescript doesn't like it when we do a
+        // test to see if pt is an instanceof ChartPoint so checking for the
+        // y-attribute is a workaround.
+        pt = pt as ChartPoint;
+        if (isPositive) {
+          pointStyle.push('triangle');
+        } else {
+          pointStyle.push('circle');
+        }
+        (chartjsSeries as any).pointStyle = pointStyle;
+      }
     }
   }
 
