@@ -6,7 +6,6 @@
 import {Component, forwardRef, Inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
-import {ResourceCodeGroup} from 'src/app/clinicalconcepts/resource-code-group';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
@@ -24,6 +23,13 @@ import {GraphComponent} from '../graph/graph.component';
 })
 export class LineGraphComponent extends GraphComponent<LineGraphData> implements
     OnChanges {
+  /**
+   * The amount to pad the y-axis around the displayed data range. This gives
+   * the data points a little cushion so that they don't run off the top or
+   * bottom of the axis.
+   */
+  static readonly yAxisPaddingFactor = 0.25;
+
   @Input() showTicks: boolean;
 
   constructor(
@@ -34,17 +40,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
-  }
-  prepareForChartConfiguration() {
-    if (this.data.yAxisDisplayBounds) {
-      // We only ever have one y-axis so it's safe to work only on the 0th
-      // subscript here.
-      // Calculate the data range and add a bit of padding at top and bottom
-      // (unless the bottom is zero or the top is 100--those might be
-      // percentages). This reasonably ensures that there's no cropping where
-      // the normal bound labels would get cut off.
-      this.adjustChartYScales(this.data.yAxisDisplayBounds);
-    }
   }
 
   adjustGeneratedChartConfiguration() {
@@ -69,12 +64,12 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
    * "abnormal" color if they fall outside the normal range.
    */
   private addYNormalRange() {
-    let yDisplayBounds = this.data.yAxisDisplayBounds;
     // Only LineGraphData has y normal bounds.
     if (!(this.data instanceof LineGraphData)) {
       return;
     }
 
+    let normalRangeBounds;
     if (this.data.series.length === 1) {
       // Some things are only valid if there are y-axis normal bounds. We
       // also only show normal bounds if there's one data series on the
@@ -105,27 +100,24 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
         // display bounds accordingly.
         if (!differentNormalRanges) {
           this.addGreenRegion(firstNormalRange);
-          yDisplayBounds = [
-            Math.min(yDisplayBounds[0], firstNormalRange[0]),
-            Math.max(yDisplayBounds[1], firstNormalRange[1])
-          ];
+          normalRangeBounds = firstNormalRange;
         }
       }
     }
-    if (this.data.resourceGroup && this.data.resourceGroup.displayBounds) {
-      yDisplayBounds = this.getDisplayBounds(
-          yDisplayBounds[0], yDisplayBounds[1], this.data.resourceGroup);
-    }
-
-    this.adjustChartYScales(yDisplayBounds);
+    this.adjustChartYScales(normalRangeBounds);
   }
 
-  private adjustChartYScales(yDisplayBounds: [number, number]) {
-    const padding = (yDisplayBounds[1] - yDisplayBounds[0]) * 0.25;
+  private adjustChartYScales(normalRangeBounds: [number, number]) {
+    const yDisplayBounds = this.getDisplayBounds(normalRangeBounds);
+
+    // If the display bounds are enforced and all the bounds are the
+    // same, don't pad.
+    const padding = (this.allBoundsAreEnforced() && this.allBoundsAreSame()) ?
+        0 :
+        Math.abs(yDisplayBounds[1] - yDisplayBounds[0]) *
+            LineGraphComponent.yAxisPaddingFactor;
     this.chartOptions.scales.yAxes[0].ticks.min = yDisplayBounds[0] - padding;
-    this.chartOptions.scales.yAxes[0].ticks.max = yDisplayBounds[1] === 100 ?
-        yDisplayBounds[1] :
-        yDisplayBounds[1] + padding;
+    this.chartOptions.scales.yAxes[0].ticks.max = yDisplayBounds[1] + padding;
     this.chartOptions.scales.yAxes[0].afterBuildTicks = (scale) => {
       if (this.data && this.data.yTicks) {
         scale.ticks =
@@ -134,33 +126,57 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
     };
   }
 
-  private getDisplayBounds(
-      minInSeries: number, maxInSeries: number,
-      resourceCodeGroup: ResourceCodeGroup): [number, number] {
-    let yAxisDisplayMin;
-    let yAxisDisplayMax;
-    if (resourceCodeGroup.forceDisplayBounds) {
-      // We use the provided display bounds by default, regardless of the
-      // bounds of the data.
-      yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
-      yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
-    } else {
-      // We use the provided display bounds as the y-axis display min and max,
-      // unless the calculated minimum and maximum of the data span a smaller
-      // range.
-
-      // We choose the provided min bound if it is larger than the min of the
-      // data, to cut off abnormal values.
-      yAxisDisplayMin = (resourceCodeGroup.displayBounds[0] >= minInSeries) ?
-          resourceCodeGroup.displayBounds[0] :
-          minInSeries;
-      // We choose the provided max bound if it is smaller than the max of the
-      // data, to cut off abnormal values.
-      yAxisDisplayMax = (resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
-          resourceCodeGroup.displayBounds[1] :
-          maxInSeries;
+  /**
+   * Reconciles together several possible sources of y-axis display bounds. The
+   * bounds can come from three places:
+   * 1) Each ResourceCode has an expected data bound encoded.
+   * 2) Each Observation point may have a normal range encoded (passed in as
+   *    normalRangeBounds only if all the observation points have the same
+   *    normal range; otherwise normalRangeBounds is undefined).
+   * 3) LineGraphData tracks the range of data seen across all data points.
+   *
+   * Our goal here is to show as much data as possible without being misleading
+   * or skewing the graph too much to include outlier points. So, we follow
+   * these rules:
+   *
+   * 1) If all the ResourceCodes have the same expected data bound, and all of
+   *    them are marked to enforce that bound, choose those upper and lower
+   *    bounds.
+   * 2) Else, consider each endpoint of the bound separately.
+   *    a. For the lower bound, choose min(min data, min normal bound)
+   *    b. For the upper bound, choose max(max data, max normal bound)
+   */
+  private getDisplayBounds(normalRangeBounds: [number, number]):
+      [number, number] {
+    if (this.allBoundsAreSame() && this.allBoundsAreEnforced()) {
+      return this.data.resourceGroup.resourceCodes[0].displayBounds;
     }
-    return [yAxisDisplayMin, yAxisDisplayMax];
+
+    if (!normalRangeBounds) {
+      return (this.data.yAxisDataBounds);
+    }
+
+    return [
+      Math.min(this.data.yAxisDataBounds[0], normalRangeBounds[0]),
+      Math.max(this.data.yAxisDataBounds[1], normalRangeBounds[1])
+    ];
+  }
+
+  private allBoundsAreSame(): boolean {
+    return new Set(
+               this.data.resourceGroup.resourceCodes
+                   .map(code => code.displayBounds)
+                   .filter(bound => bound !== undefined)
+                   .map(
+                       bound =>
+                           bound.toString()  // cast to string for hashability
+                       ))
+               .size === 1;
+  }
+
+  private allBoundsAreEnforced(): boolean {
+    return this.data.resourceGroup.resourceCodes.map(x => x.forceDisplayBounds)
+        .every(x => x === true);
   }
 
   /**

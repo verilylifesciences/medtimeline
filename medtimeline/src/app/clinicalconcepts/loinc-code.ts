@@ -44,13 +44,6 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
       readonly displayGrouping: DisplayGrouping,
       /** The chart type for this Axis. */
       readonly chartType: ChartType,
-      /** Absolute axis bounds for the graph displaying this ResourceCode. */
-      readonly displayBounds?: [number, number],
-      /**
-       * Whether or not to force the axis bounds, even if a smaller range
-       * containing all the data can be calculated.
-       */
-      readonly forceDisplayBounds = false,
       /**
        * The (optional) function that will make an observation into an
        * AnnotatedObservation so that the graph can show the appropriate
@@ -59,15 +52,7 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
       readonly makeAnnotated?:
           (observation: Observation,
            dateRange: Interval) => Promise<AnnotatedObservation>) {
-    super(
-        fhirService, label, resourceCodes, displayGrouping, chartType,
-        displayBounds, forceDisplayBounds);
-
-    // If there's only one resource code in the group, just use its display
-    // bounds as the axis bounds.
-    if (!displayBounds && resourceCodes.length === 1) {
-      this.displayBounds = resourceCodes[0].displayBounds;
-    }
+    super(fhirService, label, resourceCodes, displayGrouping, chartType);
   }
 
   /**

@@ -37,7 +37,7 @@ describe('MultiGraphCardComponent', () => {
   const hemoglobin = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
       [new LOINCCode('718-7', labResult, 'Hemoglobin', true)], labResult,
-      ChartType.LINE, [0, 50], false);
+      ChartType.LINE);
 
   beforeEach(async(() => {
     TestBed

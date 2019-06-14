@@ -27,7 +27,7 @@ describe('LineGraphData', () => {
   const loincCodeGroup = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
       [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
-      ChartType.LINE, [0, 50], false);
+      ChartType.LINE);
 
   it('fromObservationSetList should have one LabeledSeries for' +
          'each ObservationSet passed in',
@@ -99,8 +99,7 @@ describe('LineGraphData', () => {
                    .getTooltip(obs2, TestBed.get(DomSanitizer)));
      });
 
-  it('fromObservationSetList should set y axis display so that' +
-         ' all the points are visible as long as within display bounds',
+  it('fromObservationSetList should set y axis display so that all data included',
      () => {
        const obsSet1 = new ObservationSet([
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
@@ -124,7 +123,7 @@ describe('LineGraphData', () => {
        const lgData = LineGraphData.fromObservationSetList(
            'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
 
-       expect(lgData.yAxisDisplayBounds).toEqual([1, 40]);
+       expect(lgData.yAxisDataBounds).toEqual([1, 40]);
      });
 
   it('fromObservationSetList should set abnormal value tooltip correctly.',

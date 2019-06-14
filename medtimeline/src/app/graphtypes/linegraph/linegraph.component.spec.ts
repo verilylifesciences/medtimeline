@@ -21,22 +21,21 @@ import {ChartType} from '../graph/graph.component';
 import {LineGraphComponent} from './linegraph.component';
 
 describe('LineGraphComponent', () => {
-  const normalRange: [number, number] = [1, 30];
+  // All the observations in this class will report a normal range of [0, 30].
+  const normalRange: [number, number] = [0, 30];
+
   let component: LineGraphComponent;
   let fixture: ComponentFixture<LineGraphComponent>;
-  const obsSet = new ObservationSet([
-    new AnnotatedObservation(new Observation(
-        makeSampleObservationJson(15, DateTime.utc(1995, 7, 21)))),
-    new AnnotatedObservation(new Observation(
-        makeSampleObservationJson(20, DateTime.utc(1995, 7, 22))))
-  ]);
 
   const testDateRange = Interval.fromDateTimes(
       DateTime.utc(1995, 7, 21), DateTime.utc(1995, 7, 22));
+
+  // Display bounds for this LOINC are set as [0, 40].
   const loincCodeGroup = new LOINCCodeGroup(
       new StubFhirService(), 'lbl',
-      [new LOINCCode('718-7', labResult, 'Hemoglobin', true)], labResult,
-      ChartType.LINE, [0, 50], false);
+      [new LOINCCode('718-7', labResult, 'Hemoglobin', true, [0, 40])],
+      labResult, ChartType.LINE);
+
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
@@ -51,9 +50,6 @@ describe('LineGraphComponent', () => {
     fixture = TestBed.createComponent(LineGraphComponent);
     component = fixture.componentInstance;
     component.dateRange = testDateRange;
-    component.data = LineGraphData.fromObservationSetList(
-        'label', new Array(obsSet, obsSet), loincCodeGroup,
-        TestBed.get(DomSanitizer), []);
   });
 
   it('should create', () => {
@@ -61,85 +57,106 @@ describe('LineGraphComponent', () => {
   });
 
   it('graph x and y values are correctly passed through', () => {
-    fixture.detectChanges();
+    const obsSet = new ObservationSet([
+      new AnnotatedObservation(new Observation(
+          makeSampleObservationJson(15, DateTime.utc(1995, 7, 21)))),
+      new AnnotatedObservation(new Observation(
+          makeSampleObservationJson(20, DateTime.utc(1995, 7, 22))))
+    ]);
+
+    component.data = LineGraphData.fromObservationSetList(
+        'label', [obsSet], loincCodeGroup, TestBed.get(DomSanitizer), []);
+
     component.generateChart();
+
     expect(component.chartData[0].data).toEqual([
       {x: DateTime.utc(1995, 7, 21).toISO(), y: 15},
       {x: DateTime.utc(1995, 7, 22).toISO(), y: 20}
     ]);
   });
 
-  it('LinegraphComponent should set y axis display as display' +
-         ' bounds if min/max of data fall outside of this range',
+  it('should set display bounds to min/max of data if they are outside of display range',
      () => {
+       // Since the data falls outside of [0, 40] (LOINC display bounds) and
+       // [0, 30] (normal range), the display bounds should stretch to fit the
+       // data.
        const obsSet1 = new ObservationSet([
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
              100, DateTime.utc(1988, 3, 23), normalRange))),
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
              -10, DateTime.utc(1988, 3, 24), normalRange))),
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 25), normalRange)))
+             10, DateTime.utc(1988, 3, 25), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             -40, DateTime.utc(1988, 3, 23), normalRange)))
        ]);
-
-       const obsSet2 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             -40, DateTime.utc(1988, 3, 23), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             1, DateTime.utc(1988, 3, 25), normalRange)))
-       ]);
-       const obsSetList = new Array(obsSet1, obsSet2);
 
        component.data = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
+           'lbl', [obsSet1], loincCodeGroup, TestBed.get(DomSanitizer), []);
        component.generateChart();
-       const expectedMin = 0;
-       const expectedMax = 50;
-       const padding = (expectedMax - expectedMin) * .25;
+       const expectedMin = -40;
+       const expectedMax = 100;
+       const padding = Math.abs(expectedMax - expectedMin) *
+           LineGraphComponent.yAxisPaddingFactor;
        expect(component.chartOptions.scales.yAxes[0].ticks.min)
            .toEqual(expectedMin - padding);
        expect(component.chartOptions.scales.yAxes[0].ticks.max)
            .toEqual(expectedMax + padding);
      });
 
-
-  it('LinegraphComponent should set y axis display correctly' +
-         ' if points fall outside display bound range in only one direction',
+  it('should set display bounds to normal range if data points all fall within',
      () => {
+       // Since the data falls inside [0, 30] (normal range)
+       // and [0, 40] (LOINC range) the display bounds
+       // should be the normal bounds.
        const obsSet1 = new ObservationSet([
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             100, DateTime.utc(1988, 3, 23), normalRange))),
+             2, DateTime.utc(1995, 7, 21), normalRange))),
          new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             1, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 25), normalRange)))
+             3, DateTime.utc(1995, 7, 22), normalRange)))
        ]);
-
-       const obsSet2 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             5, DateTime.utc(1988, 3, 23), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             6, DateTime.utc(1988, 3, 25), normalRange)))
-       ]);
-       const obsSetList = new Array(obsSet1, obsSet2);
 
        component.data = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup, TestBed.get(DomSanitizer), []);
-
+           'lbl', [obsSet1], loincCodeGroup, TestBed.get(DomSanitizer), []);
        component.generateChart();
-       const expectedMin = 1;
-       const expectedMax = 50;
-       const padding = (expectedMax - expectedMin) * .25;
+       const expectedMin = 0;
+       const expectedMax = 30;
+       const padding = Math.abs(expectedMax - expectedMin) *
+           LineGraphComponent.yAxisPaddingFactor;
        expect(component.chartOptions.scales.yAxes[0].ticks.min)
            .toEqual(expectedMin - padding);
        expect(component.chartOptions.scales.yAxes[0].ticks.max)
            .toEqual(expectedMax + padding);
      });
 
-  it('LinegraphComponent should set y axis display as bounds ' +
+
+  it('should set y axis display correctly' +
+         ' if points fall outside display bound range in only one direction',
+     () => {
+       // Since the data falls outside of [0, 40] (LOINC display bounds) and
+       // [0, 30] (normal range), the display bounds should be [0, 100].
+       const obsSet1 = new ObservationSet([
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             100, DateTime.utc(1995, 7, 22), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1995, 7, 21), normalRange))),
+       ]);
+
+       component.data = LineGraphData.fromObservationSetList(
+           'lbl', [obsSet1], loincCodeGroup, TestBed.get(DomSanitizer), []);
+
+       component.generateChart();
+       const expectedMin = 0;
+       const expectedMax = 100;
+       const padding =
+           (expectedMax - expectedMin) * LineGraphComponent.yAxisPaddingFactor;
+       expect(component.chartOptions.scales.yAxes[0].ticks.min)
+           .toEqual(expectedMin - padding);
+       expect(component.chartOptions.scales.yAxes[0].ticks.max)
+           .toEqual(expectedMax + padding);
+     });
+
+  it('should set y axis display as bounds ' +
          ' passed in if forceDisplayBounds is true',
      () => {
        const obsSet1 = new ObservationSet([
@@ -151,32 +168,15 @@ describe('LineGraphComponent', () => {
              10, DateTime.utc(1988, 3, 25), normalRange)))
        ]);
 
-       const obsSet2 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             5, DateTime.utc(1988, 3, 23), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             6, DateTime.utc(1988, 3, 25), normalRange)))
-       ]);
-       const obsSetList = new Array(obsSet1, obsSet2);
-
-
        const loincCodeGroup2 = new LOINCCodeGroup(
            new StubFhirService(), 'lbl',
-           [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
-           ChartType.LINE, [0, 50], true);
+           [new LOINCCode('4090-7', labResult, 'Vanc Pk', true, [0, 50], true)],
+           labResult, ChartType.LINE);
        component.data = LineGraphData.fromObservationSetList(
-           'lbl', obsSetList, loincCodeGroup2, TestBed.get(DomSanitizer), []);
+           'lbl', [obsSet1], loincCodeGroup2, TestBed.get(DomSanitizer), []);
 
        component.generateChart();
-       const expectedMin = 0;
-       const expectedMax = 50;
-       const padding = (expectedMax - expectedMin) * .25;
-
-       expect(component.chartOptions.scales.yAxes[0].ticks.min)
-           .toEqual(expectedMin - padding);
-       expect(component.chartOptions.scales.yAxes[0].ticks.max)
-           .toEqual(expectedMax + padding);
+       expect(component.chartOptions.scales.yAxes[0].ticks.min).toEqual(0);
+       expect(component.chartOptions.scales.yAxes[0].ticks.max).toEqual(50);
      });
 });

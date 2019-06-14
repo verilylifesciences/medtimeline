@@ -30,13 +30,16 @@ export class LineGraphData extends GraphData {
    * whether to force display bounds, and the code group's display bounds.
    */
   readonly resourceGroup: ResourceCodeGroup;
+
+
+
   private constructor(
       /** The label for the graph. */
       readonly label: string,
       /** The LabeledSeries that are a part of this line graph. */
       series: LabeledSeries[],
-      /** The display bounds of the y-axis. */
-      readonly yAxisDisplayBounds: [number, number],
+      /** The minimum and maximum y-values for this data. */
+      readonly yAxisDataBounds: [number, number],
       /** The unit for the y-axis of the graph. */
       readonly unit: string, tooltipMap?: Map<string, string>,
       tooltipKeyFn?: (key: string) => string, regions?: any[],
@@ -44,7 +47,7 @@ export class LineGraphData extends GraphData {
     super(series, tooltipMap, tooltipKeyFn, regions);
     this.precision = precision ? precision : 0;
     this.yTicks =
-        LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
+        LineGraphData.getYTicks(yAxisDataBounds[0], yAxisDataBounds[1]);
     this.resourceGroup = resourceCodeGroup;
   }
 

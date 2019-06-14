@@ -259,7 +259,7 @@ export class ResourceCodeManager {
             this.fhirService, this.sanitizer,
             new LOINCCodeGroup(
                 this.fhirService, loinc.label, new Array(loinc), conceptGroup,
-                ChartType.LINE, loinc.displayBounds, loinc.forceDisplayBounds),
+                ChartType.LINE),
             loinc.label)]));
       }
     }
@@ -274,7 +274,6 @@ export class ResourceCodeManager {
         new LOINCCodeGroup(
             this.fhirService, 'Blood Pressure',
             ResourceCodeManager.bloodPressureLoincs, vitalSign, ChartType.LINE,
-            [25, 250], false,
             (observation: Observation, dateRange: Interval):
                 Promise<AnnotatedObservation> => {
                   return bpLocation.getResourceSet(dateRange).then(obsSet => {
@@ -289,23 +288,23 @@ export class ResourceCodeManager {
         'Blood Pressure')]));
 
     const cbc = [
-        new LOINCCodeGroup(
-            this.fhirService, 'WBC',
-            [new LOINCCode('26464-8', labResult, 'WBC', false, [0, 150])],
-            labResult, ChartType.LINE, [0, 150]),
-        new LOINCCodeGroup(
-            this.fhirService, 'Hemoglobin',
-            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-            labResult, ChartType.LINE, [0.5, 30]),
-        new LOINCCodeGroup(
-            this.fhirService, 'Hematocrit',
-            [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
-            labResult, ChartType.LINE, [10, 70]),
-        new LOINCCodeGroup(
-            this.fhirService, 'Platelet',
-            [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
-            labResult, ChartType.LINE, [2, 900]),
-        ];
+      new LOINCCodeGroup(
+          this.fhirService, 'WBC',
+          [new LOINCCode('26464-8', labResult, 'WBC', false, [0, 150])],
+          labResult, ChartType.LINE),
+      new LOINCCodeGroup(
+          this.fhirService, 'Hemoglobin',
+          [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
+          labResult, ChartType.LINE),
+      new LOINCCodeGroup(
+          this.fhirService, 'Hematocrit',
+          [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
+          labResult, ChartType.LINE),
+      new LOINCCodeGroup(
+          this.fhirService, 'Platelet',
+          [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
+          labResult, ChartType.LINE),
+    ];
 
     codeGroups.push(new AxisGroup(
         cbc.map(
@@ -318,28 +317,28 @@ export class ResourceCodeManager {
           this.fhirService, 'Neutrophil/Band',
           [new LOINCCode(
               '35332-6', labResult, 'Neutrophil/Band', true, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
       new LOINCCodeGroup(
           this.fhirService, 'Immature Granulocytes',
           [new LOINCCode(
               '38518-7', labResult, 'Immature Granulocytes', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
       new LOINCCodeGroup(
           this.fhirService, 'Lymphocyte',
           [new LOINCCode('736-9', labResult, 'Lymphocyte', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
       new LOINCCodeGroup(
           this.fhirService, 'Monocyte',
           [new LOINCCode('5905-5', labResult, 'Monocyte', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
       new LOINCCodeGroup(
           this.fhirService, 'Eosinophil',
           [new LOINCCode('713-8', labResult, 'Eosinophil', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
       new LOINCCodeGroup(
           this.fhirService, 'Basophil',
           [new LOINCCode('706-2', labResult, 'Basophil', false, [0, 100])],
-          labResult, ChartType.LINE, [0, 100]),
+          labResult, ChartType.LINE),
 
     ];
     codeGroups.push(new AxisGroup(
@@ -369,8 +368,6 @@ export class ResourceCodeManager {
       new LOINCCodeGroup(
           this.fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring,
           med, ChartType.SCATTER,
-          undefined,  // no meaningful y-axis ranges
-          false,
           (observation: Observation, dateRange: Interval):
               Promise<AnnotatedObservation> => {
                 return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
@@ -415,7 +412,7 @@ export class ResourceCodeManager {
         this.fhirService, this.sanitizer,
         new LOINCCodeGroup(
             this.fhirService, 'CSF', ResourceCodeManager.csfGroup, labResult,
-            ChartType.SCATTER, [0, 100]),
+            ChartType.SCATTER),
         'CSF')]));
 
     codeGroups.push(new AxisGroup([new Axis(

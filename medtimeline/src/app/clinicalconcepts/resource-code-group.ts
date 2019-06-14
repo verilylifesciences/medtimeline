@@ -77,14 +77,7 @@ export class ResourceCodeGroup {
       /** The display grouping for this resource code group. */
       readonly displayGrouping: DisplayGrouping,
       /** The chart type for this Axis. */
-      readonly chartType: ChartType,
-      /** Absolute axis bounds for the graph displaying this ResourceCode. */
-      readonly displayBounds?: number[],
-      /**
-       * Whether or not to force the axis bounds, even if a smaller range
-       * containing all the data can be calculated.
-       */
-      readonly forceDisplayBounds = false) {
+      readonly chartType: ChartType) {
     this.showByDefault = this.resourceCodes.some(code => code.showByDefault);
   }
 

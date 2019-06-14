@@ -168,7 +168,7 @@ describe('LOINCCodeGroup', () => {
         [
           ResourceCode.fromCodeString('4090-7'),
         ],
-        vitalSign, ChartType.LINE, [80, 200], true,
+        vitalSign, ChartType.LINE,
         (o: Observation, range: Interval): Promise<AnnotatedObservation> => {
           return Promise.resolve(
               new AnnotatedObservation(o, [['annotation 1', 'annotation a']]));
@@ -209,7 +209,7 @@ describe('LOINCCodeGroup', () => {
         [
           ResourceCode.fromCodeString('4090-7'),
         ],
-        vitalSign, ChartType.LINE, [80, 200], true,
+        vitalSign, ChartType.LINE,
         (o: Observation, range: Interval): Promise<AnnotatedObservation> => {
           return Promise.resolve(
               new AnnotatedObservation(o, [['annotation 1', 'annotation a']]));
@@ -228,43 +228,6 @@ describe('LOINCCodeGroup', () => {
       done();
     });
   });
-
-  it('should set display bounds if there is just one code group', () => {
-    const loincGroup = new LOINCCodeGroup(
-        undefined /* FHIR service */, 'label',
-        /* ESR's bounds are 0-200 */
-        [ResourceCode.fromCodeString('4537-7')], vitalSign, ChartType.LINE);
-    expect(loincGroup.displayBounds).toEqual([0, 200]);
-  });
-
-  it('should not set display bounds if there is more than one code group',
-     () => {
-       const loincGroup = new LOINCCodeGroup(
-           undefined /* FHIR service */, 'label',
-           [
-             ResourceCode.fromCodeString('4537-7'),  // ESR
-             ResourceCode.fromCodeString('8867-4')   // Heart rate
-           ],
-           vitalSign, ChartType.LINE);
-       expect(loincGroup.displayBounds).toBeUndefined();
-     });
-
-  it('should set display bounds if there is one explicitly set in constructor',
-     () => {
-       const loincGroup = new LOINCCodeGroup(
-           undefined /* FHIR service */,
-           'label',
-           [
-             ResourceCode.fromCodeString('26464-8'),  // WBC
-             ResourceCode.fromCodeString('8310-5')    // Temperature
-           ],
-           vitalSign,
-           ChartType.LINE,
-           [80, 200],
-           true,
-       );
-       expect(loincGroup.displayBounds).toEqual([80, 200]);
-     });
 
   it('should make annotated observation if a function is passed through for that',
      (done: DoneFn) => {
@@ -286,7 +249,7 @@ describe('LOINCCodeGroup', () => {
            [
              ResourceCode.fromCodeString('4090-7'),
            ],
-           vitalSign, ChartType.LINE, [80, 200], true,
+           vitalSign, ChartType.LINE,
            (o: Observation, range: Interval): Promise<AnnotatedObservation> => {
              return Promise.resolve(new AnnotatedObservation(
                  o, [['annotation 1', 'annotation a']]));
