@@ -28,17 +28,12 @@ const allDefaultCardLabels = [
   'Complete Blood Count White Blood Cell',
   'Vancomycin & Gentamicin Summary',
   'Vancomycin',
-  'Stool',
-  'Respiratory',
-  'Other',
-  'Blood',
-  'CSF Microbiology'
 ];
 
 describe('Card Container', () => {
   const page = new CardContainerPage();
   const index = new IndexPage();
-  const cards = page.getCards();
+  let cards = page.getCards();
   const intialBackgroundColor = 'rgba(248, 248, 248, 1)';
   const finalBackgroundColor = 'rgba(240, 240, 240, 1)';
 
@@ -106,9 +101,9 @@ describe('Card Container', () => {
          }
        });
 
-       // We display 23 cards by default, with one being a textbox. A textbox
+       // We display 18 cards by default, with one being a textbox. A textbox
        // does not have a label, and would not be in this list.
-       expect(cardLabels.length).toEqual(23);
+       expect(cardLabels.length).toEqual(18);
 
        expect(cardLabels).toEqual(allDefaultCardLabels);
      });
@@ -145,6 +140,7 @@ describe('Card Container', () => {
   });
 
   it('should correctly delete card', async () => {
+    cards = page.getCards();
     const cardLabels = [];
     await cards.each(async function(el) {
       if (await page.hasCardLabel(el)) {

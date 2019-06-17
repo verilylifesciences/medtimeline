@@ -7,6 +7,7 @@ import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
 import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {FhirService} from '../fhir.service';
 
 import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
 
@@ -18,8 +19,14 @@ import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
 export class BCHMicrobioCode extends ResourceCode {
   static readonly CODING_STRING = 'http://cerner.com/bch_mapping/';
 
-  dataAvailableInAppTimeScope(): Promise<boolean> {
-    return Promise.resolve(false);
+  dataAvailableInAppTimeScope(fhirService: FhirService): Promise<boolean> {
+    // This is not an elegant way of implementing this function but since it's
+    // a non-standard API server we aren't going to put much effort into
+    // developing it further at this point.
+    return fhirService.diagnosticReportsPresentWithCodes(
+        new BCHMicrobioCodeGroup(
+            fhirService, this.label, [this], undefined, undefined),
+        APP_TIMESPAN);
   }
 }
 
