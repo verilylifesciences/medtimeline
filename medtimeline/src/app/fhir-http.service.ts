@@ -12,6 +12,7 @@ import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
+import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {documentReferenceLoinc} from './clinicalconcepts/resource-code-manager';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DebuggerService} from './debugger.service';
