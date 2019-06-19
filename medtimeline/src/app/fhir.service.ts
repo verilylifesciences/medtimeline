@@ -16,7 +16,6 @@ import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
-import {ChartType} from './graphtypes/graph/graph.component';
 
 @Injectable()
 export abstract class FhirService {
@@ -28,8 +27,10 @@ export abstract class FhirService {
    */
   observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
       Promise<boolean> {
-    // Just ask for one result to reduce the call time.
-    return this.getObservationsWithCode(code, dateRange, 1)
+    // Cerner says that asking for a limited count of resources can slow down
+    // queries, so we don't restrict a count limit here.
+    // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+    return this.getObservationsWithCode(code, dateRange)
         .then(obs => obs.length > 0, rejection => {
           // If any Observation for this code results in an error, do not show
           // any Observations at all.
@@ -93,8 +94,10 @@ export abstract class FhirService {
    */
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
-    // Just ask for one result to reduce the call time.
-    return this.getMedicationAdministrationsWithCode(code, dateRange, 1)
+    // Cerner says that asking for a limited count of resources can slow down
+    // queries, so we don't restrict a count limit here.
+    // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+    return this.getMedicationAdministrationsWithCode(code, dateRange)
         .then(obs => obs.length > 0, rejection => {
           // If any MedicationAdministration for this code results in an error,
           // do not show any MedicationAdministrations at all.
