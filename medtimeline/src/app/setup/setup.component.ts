@@ -80,6 +80,10 @@ export class SetupComponent implements OnInit, OnDestroy {
 
   // Fixed time periods to offer as options for selection.
   today: DateTime = DateTime.local().startOf('day');
+  readonly lastOneDay =
+      Interval.fromDateTimes(this.today.minus({days: 1}), this.today);
+  readonly lastThreeDays =
+      Interval.fromDateTimes(this.today.minus({days: 3}), this.today);
   readonly lastSevenDays =
       Interval.fromDateTimes(this.today.minus({days: 7}), this.today);
   readonly lastMonth =

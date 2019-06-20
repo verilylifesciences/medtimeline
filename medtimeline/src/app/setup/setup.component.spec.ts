@@ -7,7 +7,7 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, By} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
@@ -65,4 +65,18 @@ describe('SetupComponent', () => {
        expect(element[1][0].label).toEqual('Bilirubin, Direct');
        expect(element[1][1].label).toEqual('Bilirubin, Total');
      }));
+
+  it('should have radio buttons for each time option', () => {
+    const buttons = fixture.debugElement.queryAll(By.css('mat-radio-button'));
+    const buttonText = [];
+    buttons.forEach(function(button) {
+      buttonText.push(button.nativeElement.textContent.trim());
+    });
+    const timeOptions = [UI_CONSTANTS.LAST_MONTH, UI_CONSTANTS.LAST_ONE_DAY,
+      UI_CONSTANTS.LAST_SEVEN_DAYS, UI_CONSTANTS.LAST_THREE_DAYS,
+      UI_CONSTANTS.LAST_THREE_MONTHS];
+    for (let i = 0; i < timeOptions.length; i++) {
+      expect(buttonText).toContain(timeOptions[i]);
+    }
+  });
 });

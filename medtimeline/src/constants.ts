@@ -96,6 +96,8 @@ export const UI_CONSTANTS = {
       ' You can select any time period in the past six months.',
   // Setup screen
   INITIAL_CONFIGURATION_HEADER: 'MedTimeLine',
+  LAST_ONE_DAY: 'Since midnight yesterday',
+  LAST_THREE_DAYS: 'Last three days',
   LAST_SEVEN_DAYS: 'Last seven days',
   LAST_MONTH: 'Last month',
   LAST_THREE_MONTHS: 'Last three months',

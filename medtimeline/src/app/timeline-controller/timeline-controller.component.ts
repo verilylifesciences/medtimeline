@@ -120,6 +120,20 @@ export class TimelineControllerComponent implements OnInit {
             start.format('MM/DD/YYYY') + '-' + end.format('MM/DD/YYYY');
         this.datePickerRanges[label] = [start, end];
       }
+      this.datePickerRanges[this.uiConstants.LAST_ONE_DAY] = [
+        moment(DateTime.local()
+                    .minus(Duration.fromObject({days: 1}))
+                    .startOf('day')
+                    .toJSDate()),
+        this.defaultDateRange.endDate
+      ];
+      this.datePickerRanges[this.uiConstants.LAST_THREE_DAYS] = [
+        moment(DateTime.local()
+                   .minus(Duration.fromObject({days: 3}))
+                   .startOf('day')
+                   .toJSDate()),
+        this.defaultDateRange.endDate
+      ];
       this.datePickerRanges[this.uiConstants.LAST_SEVEN_DAYS] =
           [this.defaultDateRange.startDate, this.defaultDateRange.endDate];
       this.datePickerRanges[this.uiConstants.LAST_MONTH] = [
