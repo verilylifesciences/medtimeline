@@ -289,23 +289,23 @@ export class ResourceCodeManager {
         'Blood Pressure')]));
 
     const cbc = [
-      new LOINCCodeGroup(
-          this.fhirService, 'Hematocrit',
-          [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
-          labResult, ChartType.LINE, [10, 70]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Hemoglobin',
-          [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
-          labResult, ChartType.LINE, [0.5, 30]),
-      new LOINCCodeGroup(
-          this.fhirService, 'Platelet',
-          [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
-          labResult, ChartType.LINE, [2, 900]),
-      new LOINCCodeGroup(
-          this.fhirService, 'WBC',
-          [new LOINCCode('26464-8', labResult, 'WBC', false, [0, 150])],
-          labResult, ChartType.LINE, [0, 150]),
-    ];
+        new LOINCCodeGroup(
+            this.fhirService, 'WBC',
+            [new LOINCCode('26464-8', labResult, 'WBC', false, [0, 150])],
+            labResult, ChartType.LINE, [0, 150]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Hemoglobin',
+            [new LOINCCode('718-7', labResult, 'Hemoglobin', false, [0.5, 30])],
+            labResult, ChartType.LINE, [0.5, 30]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Hematocrit',
+            [new LOINCCode('4544-3', labResult, 'Hematocrit', false, [10, 70])],
+            labResult, ChartType.LINE, [10, 70]),
+        new LOINCCodeGroup(
+            this.fhirService, 'Platelet',
+            [new LOINCCode('777-3', labResult, 'Platelet', false, [2, 900])],
+            labResult, ChartType.LINE, [2, 900]),
+        ];
 
     codeGroups.push(new AxisGroup(
         cbc.map(

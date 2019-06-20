@@ -15,7 +15,7 @@
       <mat-spinner *ngIf="!axis.alreadyResolvedData && !axis.errorMessage" [diameter]="30"></mat-spinner>
       <mat-expansion-panel *ngIf="axis.errorMessage">
         <mat-expansion-panel-header>
-          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}
+          <mat-icon>error</mat-icon>Error loading data.
         </mat-expansion-panel-header>
         Technical details: {{axis.errorMessage}}
       </mat-expansion-panel>
