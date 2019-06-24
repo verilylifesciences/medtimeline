@@ -15,7 +15,7 @@ import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
-import {makeSampleObservationJson, StubFhirService} from '../../test_utils';
+import {makeSampleObservation, StubFhirService} from '../../test_utils';
 import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
@@ -58,10 +58,10 @@ describe('LineGraphComponent', () => {
 
   it('graph x and y values are correctly passed through', () => {
     const obsSet = new ObservationSet([
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(15, DateTime.utc(1995, 7, 21)))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(20, DateTime.utc(1995, 7, 22))))
+      new AnnotatedObservation(
+          makeSampleObservation(15, DateTime.utc(1995, 7, 21))),
+      new AnnotatedObservation(
+          makeSampleObservation(20, DateTime.utc(1995, 7, 22)))
     ]);
 
     component.data = LineGraphData.fromObservationSetList(
@@ -81,14 +81,14 @@ describe('LineGraphComponent', () => {
        // [0, 30] (normal range), the display bounds should stretch to fit the
        // data.
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             100, DateTime.utc(1988, 3, 23), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             -10, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 25), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             -40, DateTime.utc(1988, 3, 23), normalRange)))
+         new AnnotatedObservation(makeSampleObservation(
+             100, DateTime.utc(1988, 3, 23), normalRange)),
+         new AnnotatedObservation(makeSampleObservation(
+             -10, DateTime.utc(1988, 3, 24), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(10, DateTime.utc(1988, 3, 25), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(-40, DateTime.utc(1988, 3, 23), normalRange))
        ]);
 
        component.data = LineGraphData.fromObservationSetList(
@@ -110,10 +110,10 @@ describe('LineGraphComponent', () => {
        // and [0, 40] (LOINC range) the display bounds
        // should be the normal bounds.
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             2, DateTime.utc(1995, 7, 21), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             3, DateTime.utc(1995, 7, 22), normalRange)))
+         new AnnotatedObservation(
+             makeSampleObservation(2, DateTime.utc(1995, 7, 21), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(3, DateTime.utc(1995, 7, 22), normalRange))
        ]);
 
        component.data = LineGraphData.fromObservationSetList(
@@ -136,10 +136,10 @@ describe('LineGraphComponent', () => {
        // Since the data falls outside of [0, 40] (LOINC display bounds) and
        // [0, 30] (normal range), the display bounds should be [0, 100].
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             100, DateTime.utc(1995, 7, 22), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             1, DateTime.utc(1995, 7, 21), normalRange))),
+         new AnnotatedObservation(makeSampleObservation(
+             100, DateTime.utc(1995, 7, 22), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(1, DateTime.utc(1995, 7, 21), normalRange)),
        ]);
 
        component.data = LineGraphData.fromObservationSetList(
@@ -160,12 +160,12 @@ describe('LineGraphComponent', () => {
          ' passed in if forceDisplayBounds is true',
      () => {
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             40, DateTime.utc(1988, 3, 23), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             1, DateTime.utc(1988, 3, 24), normalRange))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 25), normalRange)))
+         new AnnotatedObservation(
+             makeSampleObservation(40, DateTime.utc(1988, 3, 23), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(1, DateTime.utc(1988, 3, 24), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(10, DateTime.utc(1988, 3, 25), normalRange))
        ]);
 
        const loincCodeGroup2 = new LOINCCodeGroup(

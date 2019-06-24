@@ -8,9 +8,10 @@
 /* tslint:disable:object-literal-shorthand*/
 
 import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
-import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
+import {FhirResourceSet, ResultClass} from '../fhir-resource-set';
 import {FhirService} from '../fhir.service';
 import {fixUnitAbbreviations} from '../unit_utils';
+import {ResultError} from './../result-error';
 
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
@@ -20,13 +21,14 @@ import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrat
  * https://www.hl7.org/fhir/DSTU2/medicationorder.html) but instead
  * stores only the information we're interested in seeing.
  */
-export class MedicationOrder extends LabeledClass {
+export class MedicationOrder extends ResultClass {
   readonly rxNormCode: RxNormCode;
   readonly dosageRetrievalError = 'Could not retrieve dosage instructions.';
   firstAdministration: MedicationAdministration;
   lastAdmininistration: MedicationAdministration;
   administrationsForOrder: MedicationAdministrationSet;
   readonly orderId: string;
+
   // By default, we set the instruction message as the retrieval error message,
   // and change it if we find a valid dosage instruction.
   dosageInstruction = this.dosageRetrievalError;
@@ -34,8 +36,10 @@ export class MedicationOrder extends LabeledClass {
    * Makes an MedicationOrder out of a list of MedicationAdministrations.
    * https://www.hl7.org/fhir/DSTU2/medicationorder.html
    * @param json The json representing this MedicationOrder.
+   * @param requestId The x-request-id of the request that acquired this
+   *     medication order's data.
    */
-  constructor(private json: any) {
+  constructor(private json: any, requestId: string) {
     // A MedicationOrder's label is one of the following in order of preference:
     // 1) the medication reference's display anme
     // 2) the medication encoding's text
@@ -44,31 +48,35 @@ export class MedicationOrder extends LabeledClass {
         json.medicationReference ? json.medicationReference.display :
                                    json.medicationCodeableConcept ?
                                    json.medicationCodeableConcept.text :
-                                   json.id);
+                                   json.id,
+        requestId);
 
     if (json.dosageInstruction && json.dosageInstruction[0]) {
       if (json.dosageInstruction.length > 1) {
-        throw Error('JSON must only include one dosage instruction.');
+        throw new ResultError(
+            new Set([this.requestId]),
+            'JSON must only include one dosage instruction.', json);
       }
       this.dosageInstruction = json.dosageInstruction[0].text;
     }
     this.orderId = json.id;
 
-    this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
+    this.rxNormCode = ResultClass.extractMedicationEncoding(json);
 
     if (!(this.rxNormCode && this.label)) {
-      throw Error(
-          'JSON must include RxNormCode and a label' +
-          ' to be included as a MedicationOrder. JSON: ' +
-          JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'JSON must include RxNormCode and a label to be included as a MedicationOrder.',
+          json);
     }
 
     // Check this MedicationOrder label against the RxNorm label.
     if (this.label.toLowerCase() !== this.rxNormCode.label.toLowerCase()) {
-      throw Error(
-          'The label for this MedicationOrder\'s RxNorm code doesn\'t match ' +
-          ' the label in the data. MedicationOrder label: ' + this.label +
-          ' RxNorm label: ' + this.rxNormCode.label);
+      throw new ResultError(
+          new Set([this.requestId]),
+          `The label for this MedicationOrder's RxNorm code doesn't match ` +
+              `the label in the data. MedicationOrder label: ${this.label}. ` +
+              `RxNorm label: ${this.rxNormCode.label}.`);
     }
   }
 
@@ -154,14 +162,20 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
     // Set the RxNormCode and MedicationConceptGroup for this
     // MedicationOrderSet.
     if (medicationOrderList.length > 0) {
+      const requestIdsString = Array.from(this.requestIds).join(', ');
+
       const firstRxNorm = medicationOrderList[0].rxNormCode;
       if (!firstRxNorm) {
-        throw Error('The first resource does not have an RxNorm code.');
+        throw new ResultError(
+            this.requestIds,
+            'The first resource does not have an RxNorm code.');
       }
 
       for (const rs of medicationOrderList) {
         if (rs.rxNormCode !== firstRxNorm) {
-          throw Error('The resource list in this set has mixed RxNorm codes.');
+          throw new ResultError(
+              this.requestIds,
+              'The resource list in this set has mixed RxNorm codes.');
         }
       }
       this.rxNormCode = firstRxNorm;
@@ -175,8 +189,9 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
       const units =
           new Set(medicationOrderList.map(x => x.administrationsForOrder.unit));
       if (units.size > 1) {
-        throw Error(
-            'Different units in the order set: ' + Array.from(units.values()));
+        throw new ResultError(
+            this.requestIds,
+            `Different units in the order set: ${Array.from(units.values())}`);
       }
       this.unit = fixUnitAbbreviations(Array.from(units.values())[0]);
     }

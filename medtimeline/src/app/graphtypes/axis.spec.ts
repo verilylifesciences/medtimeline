@@ -13,7 +13,7 @@ import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
-import {makeSampleDiscreteObservationJson, makeSampleObservationJson, StubFhirService} from '../test_utils';
+import {makeSampleDiscreteObservation, makeSampleObservation, StubFhirService} from '../test_utils';
 
 import {Axis} from './axis';
 import {ChartType} from './graph/graph.component';
@@ -30,14 +30,13 @@ describe('Axis', () => {
     fhirServiceStub = {
       // Should throw an error, since the Observations' y-values/results are of
       // mixed types.
-      getObservationsForCodeGroup: (
-          codeGroup: LOINCCodeGroup, dates: Interval) => {
-        return Promise.all([
-          [new Observation(makeSampleObservationJson(10, this.dateRangeStart))],
-          [new Observation(
-              makeSampleDiscreteObservationJson('result', this.dateRangeStart))]
-        ]);
-      },
+      getObservationsForCodeGroup:
+          (codeGroup: LOINCCodeGroup, dates: Interval) => {
+            return Promise.all([
+              [makeSampleObservation(10, this.dateRangeStart)],
+              [makeSampleDiscreteObservation('result', this.dateRangeStart)]
+            ]);
+          },
     };
   }));
 

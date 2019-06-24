@@ -18,6 +18,8 @@ import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
 
+const REQUEST_ID = '1234';
+
 // We use vancomycin for our test med.
 export const medicationCodingConcept = {
   coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
@@ -81,6 +83,16 @@ export function makeSampleObservationJson(
   };
 }
 
+export function makeSampleObservation(
+    value: number, timestamp: DateTime,
+    referenceRange: [number, number] = [10, 20], interpretation = 'N',
+    requestId = REQUEST_ID): any {
+  return new Observation(
+      makeSampleObservationJson(
+          value, timestamp, referenceRange, interpretation),
+      requestId);
+}
+
 export function makeMedicationAdministration(timestamp: string, dose = 50) {
   return new MedicationAdministration(
       {
@@ -94,15 +106,17 @@ export function makeMedicationAdministration(timestamp: string, dose = 50) {
         medicationCodeableConcept: medicationCodingConcept,
         prescription: 'order_id'
       },
-  );
+      REQUEST_ID);
 }
 
 export function makeMedicationOrder(): MedicationOrder {
-  return new MedicationOrder({
-    medicationReference: {display: 'vancomycin'},
-    medicationCodeableConcept: medicationCodingConcept,
-    id: 'order_id'
-  });
+  return new MedicationOrder(
+      {
+        medicationReference: {display: 'vancomycin'},
+        medicationCodeableConcept: medicationCodingConcept,
+        id: 'order_id'
+      },
+      REQUEST_ID);
 }
 
 export function makeSampleDiscreteObservationJson(
@@ -123,144 +137,170 @@ export function makeSampleDiscreteObservationJson(
   };
 }
 
+export function makeSampleDiscreteObservation(
+    result: string, timestamp: DateTime, interpretation = 'N',
+    requestId = REQUEST_ID): any {
+  return new Observation(
+      makeSampleDiscreteObservationJson(result, timestamp, interpretation),
+      requestId);
+}
+
 export function getEmptyFhirService() {
   return new StubFhirService();
 }
 
 export function makeEncounter(start: DateTime, end: DateTime) {
-  return new Encounter({identifier: 'id', period: {start: start, end: end}});
+  return new Encounter(
+      {identifier: 'id', period: {start: start, end: end}}, REQUEST_ID);
 }
 
 export function makeDiagnosticReports(): DiagnosticReport[] {
   return [
-    new DiagnosticReport({
-      id: 'id',
-      contained: [
+    new DiagnosticReport(
         {
-          resourceType: 'Specimen',
-          id: '1',
-          type: {text: 'Stool'},
-          collection: {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+          id: 'id',
+          contained: [
+            {
+              resourceType: 'Specimen',
+              id: '1',
+              type: {text: 'Stool'},
+              collection:
+                  {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+            },
+            {
+              resourceType: 'Observation',
+              id: '2',
+              code: {
+                coding: [{
+                  system: 'http://cerner.com/bch_mapping/',
+                  code: 'OVAANDPARASITEEXAM',
+                  display: 'Ova and Parasite Exam'
+                }]
+              },
+              interpretation: {
+                coding: [{
+                  system:
+                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                  code: 'NEGORFLORA',
+                  display: 'Neg or Flora'
+                }]
+              }
+            },
+            {
+              resourceType: 'Observation',
+              id: '3',
+              code: {
+                coding: [{
+                  system: 'http://cerner.com/bch_mapping/',
+                  code: 'SALMONELLAANDSHIGELLACULTURE',
+                  display: 'Salmonella and Shigella Culture'
+                }]
+              },
+              interpretation: {
+                coding: [{
+                  system:
+                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                  code: 'CHECKRESULT',
+                  display: 'Check Result'
+                }]
+              }
+            }
+          ],
+          status: 'final',
+          category:
+              {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
         },
+        REQUEST_ID),
+    new DiagnosticReport(
         {
-          resourceType: 'Observation',
-          id: '2',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'OVAANDPARASITEEXAM',
-              display: 'Ova and Parasite Exam'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'NEGORFLORA',
-              display: 'Neg or Flora'
-            }]
-          }
+          id: 'id2',
+          contained: [
+            {
+              resourceType: 'Specimen',
+              id: '1',
+              type: {text: 'Stool'},
+              collection:
+                  {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+            },
+            {
+              resourceType: 'Observation',
+              id: '2',
+              code: {
+                coding: [{
+                  system: 'http://cerner.com/bch_mapping/',
+                  code: 'SALMONELLAANDSHIGELLACULTURE',
+                  display: 'Salmonella and Shigella Culture'
+                }]
+              },
+              interpretation: {
+                coding: [{
+                  system:
+                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                  code: 'NEGORFLORA',
+                  display: 'Neg or Flora'
+                }]
+              }
+            }
+          ],
+          status: 'final',
+          category:
+              {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
         },
+        REQUEST_ID),
+    new DiagnosticReport(
         {
-          resourceType: 'Observation',
-          id: '3',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'CHECKRESULT',
-              display: 'Check Result'
-            }]
-          }
-        }
-      ],
-      status: 'final',
-      category: {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-    }),
-    new DiagnosticReport({
-      id: 'id2',
-      contained: [
-        {
-          resourceType: 'Specimen',
-          id: '1',
-          type: {text: 'Stool'},
-          collection: {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+          id: 'id3',
+          contained: [
+            {
+              resourceType: 'Specimen',
+              id: '1',
+              type: {text: 'Stool'},
+              collection:
+                  {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+            },
+            {
+              resourceType: 'Observation',
+              id: '2',
+              code: {
+                coding: [{
+                  system: 'http://cerner.com/bch_mapping/',
+                  code: 'SALMONELLAANDSHIGELLACULTURE',
+                  display: 'Salmonella and Shigella Culture'
+                }]
+              },
+              interpretation: {
+                coding: [{
+                  system:
+                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                  code: 'NEGORFLORA',
+                  display: 'Neg or Flora'
+                }]
+              }
+            },
+            {
+              resourceType: 'Observation',
+              id: '3',
+              code: {
+                coding: [{
+                  system: 'http://cerner.com/bch_mapping/',
+                  code: 'SALMONELLAANDSHIGELLACULTURE',
+                  display: 'Salmonella and Shigella Culture'
+                }]
+              },
+              interpretation: {
+                coding: [{
+                  system:
+                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                  code: 'CHECKRESULT',
+                  display: 'Check Result'
+                }]
+              }
+            }
+          ],
+          status: 'corrected',
+          category:
+              {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
         },
-        {
-          resourceType: 'Observation',
-          id: '2',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'NEGORFLORA',
-              display: 'Neg or Flora'
-            }]
-          }
-        }
-      ],
-      status: 'final',
-      category: {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-    }),
-    new DiagnosticReport({
-      id: 'id3',
-      contained: [
-        {
-          resourceType: 'Specimen',
-          id: '1',
-          type: {text: 'Stool'},
-          collection: {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
-        },
-        {
-          resourceType: 'Observation',
-          id: '2',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'NEGORFLORA',
-              display: 'Neg or Flora'
-            }]
-          }
-        },
-        {
-          resourceType: 'Observation',
-          id: '3',
-          code: {
-            coding: [{
-              system: 'http://cerner.com/bch_mapping/',
-              code: 'SALMONELLAANDSHIGELLACULTURE',
-              display: 'Salmonella and Shigella Culture'
-            }]
-          },
-          interpretation: {
-            coding: [{
-              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation',
-              code: 'CHECKRESULT',
-              display: 'Check Result'
-            }]
-          }
-        }
-      ],
-      status: 'corrected',
-      category: {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-    }),
+        REQUEST_ID),
   ];
 }

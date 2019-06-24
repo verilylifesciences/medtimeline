@@ -13,7 +13,7 @@ import {DiagnosticReport, DiagnosticReportStatus} from './diagnostic-report';
 import {Observation} from './observation';
 import {Specimen} from './specimen';
 
-
+const REQUEST_ID = '1234';
 
 const SAMPLE_MICROBIO_JSON = {
   'resourceType': 'Bundle',
@@ -198,50 +198,53 @@ describe('DiagnosticReport', () => {
   };
 
   it('should get ID from json if it is present', () => {
-    const dr = new DiagnosticReport(drString);
+    const dr = new DiagnosticReport(drString, REQUEST_ID);
     expect(dr.id).toBe('dr_id');
   });
 
   it('should raise an error if there is no status', () => {
     expect(() => {
-      const dr = new DiagnosticReport({
-        id: 'dr_id',
-        contained: [{
-          resourceType: 'Specimen',
-          id: 'specimen_id',
-          type: {text: 'specimen_source_type'},
-          collection: {
-            collectedPeriod: {
-              start: '2018-08-31T13:48:00-04:00',
-              end: '2018-09-21T13:48:00-04:00'
-            }
-          }
-        }]
-      });
-    }).toThrowError();
+      const dr = new DiagnosticReport(
+          {
+            id: 'dr_id',
+            contained: [{
+              resourceType: 'Specimen',
+              id: 'specimen_id',
+              type: {text: 'specimen_source_type'},
+              collection: {
+                collectedPeriod: {
+                  start: '2018-08-31T13:48:00-04:00',
+                  end: '2018-09-21T13:48:00-04:00'
+                }
+              }
+            }]
+          },
+          REQUEST_ID);
+    }).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
 
   it('should raise an error if there are multiple specimens', () => {
     expect(() => {
       const dr = new DiagnosticReport(
-          {id: 'dr_id', contained: [specimen, specimen2, observation1]});
-    }).toThrowError();
+          {id: 'dr_id', contained: [specimen, specimen2, observation1]},
+          REQUEST_ID);
+    }).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
 
   it('should get status from json if it is present', () => {
-    const dr = new DiagnosticReport(drString);
+    const dr = new DiagnosticReport(drString, REQUEST_ID);
     expect(dr.status).toBe(DiagnosticReportStatus.Final);
   });
 
   it('should get contained specimen from json if it is present', () => {
-    const dr = new DiagnosticReport(drString);
-    expect(dr.specimen).toEqual(new Specimen(specimen));
+    const dr = new DiagnosticReport(drString, REQUEST_ID);
+    expect(dr.specimen).toEqual(new Specimen(specimen, REQUEST_ID));
   });
 
   it('should get contained observations from json if they are present', () => {
-    const dr = new DiagnosticReport(drString);
+    const dr = new DiagnosticReport(drString, REQUEST_ID);
     expect(dr.results.length).toBe(1);
-    expect(dr.results).toEqual([new Observation(observation1)]);
+    expect(dr.results).toEqual([new Observation(observation1, REQUEST_ID)]);
   });
 
   it('parseMicrobioData should parse and filter out results', () => {

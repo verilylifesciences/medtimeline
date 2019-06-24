@@ -8,6 +8,7 @@ import {DateTime} from 'luxon';
 import {FhirResourceType} from '../../constants';
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {ResultError} from '../result-error';
 
 import {Observation} from './observation';
 import {Specimen} from './specimen';
@@ -65,7 +66,12 @@ export class DiagnosticReport {
   /** Status for this test */
   readonly status: DiagnosticReportStatus;
 
-  constructor(json: any) {
+  /** Request ID of the request that obtained this report data */
+  readonly requestId: string;
+
+  constructor(json: any, requestId: string) {
+    this.requestId = requestId;
+
     if (json.id) {
       this.id = json.id;
     }
@@ -75,21 +81,23 @@ export class DiagnosticReport {
     const specimens = [];
     for (const rsc of contained) {
       if (rsc.resourceType === FhirResourceType.Specimen) {
-        specimens.push(new Specimen(rsc));
+        specimens.push(new Specimen(rsc, this.requestId));
       } else if (rsc.resourceType === FhirResourceType.Observation) {
-        this.results.push(new Observation(rsc));
+        this.results.push(new Observation(rsc, this.requestId));
       }
       // Silently ignore all other contained resource types.
     }
     if (specimens.length > 1) {
-      throw Error('The report cannot have multiple specimens.');
+      throw new ResultError(
+          new Set([this.requestId]),
+          'The report cannot have multiple specimens.');
     }
     this.specimen = specimens[0];
 
     if (!json.status) {
-      throw Error(
-          'The report needs a status to be useful. JSON: ' +
-          JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'The report needs a status to be useful.' + json);
     }
 
     this.status = statusToEnumMap.get(json.status);
@@ -107,8 +115,13 @@ export class DiagnosticReport {
     if (!json || !json.entry) {
       return [];
     }
-    const diagnosticReports: DiagnosticReport[] =
-        json.entry.map(result => new DiagnosticReport(result.resource));
+
+    // We cannot get the request ID from the Microbiology response. Therefore
+    // we hardcode the request ID to just be a constant string.
+    const requestId = 'Microbiology Request';
+
+    const diagnosticReports: DiagnosticReport[] = json.entry.map(
+        result => new DiagnosticReport(result.resource, requestId));
 
     const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
     // Get all unique codes for all DiagnosticReport results.

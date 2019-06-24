@@ -18,6 +18,7 @@ import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 import {MedicationOrder, MedicationOrderSet} from './medication-order';
 
+const REQUEST_ID = '1234';
 
 const vancMedConcept = {
   medicationCodeableConcept: {
@@ -52,64 +53,72 @@ describe('MedicationOrder', () => {
     };
   }));
   it('should get rxNorm code from json', () => {
-    const medicationOrder = new MedicationOrder({
-      medicationCodeableConcept: {
-        coding: [
-          {system: 'not RxNorm', code: '2744-1'},
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ],
-        text: 'Vancomycin'
-      }
-    });
+    const medicationOrder = new MedicationOrder(
+        {
+          medicationCodeableConcept: {
+            coding: [
+              {system: 'not RxNorm', code: '2744-1'},
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ],
+            text: 'Vancomycin'
+          }
+        },
+        REQUEST_ID);
     expect(medicationOrder.rxNormCode).toBeDefined();
     expect(medicationOrder.rxNormCode as ResourceCode)
         .toBe(RxNormCode.fromCodeString('11124'));
   });
 
   it('should get label from json', () => {
-    const medicationOrder = new MedicationOrder({
-      medicationReference: {display: 'vancomycin'},
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ]
-      },
-    });
+    const medicationOrder = new MedicationOrder(
+        {
+          medicationReference: {display: 'vancomycin'},
+          medicationCodeableConcept: {
+            coding: [
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ]
+          },
+        },
+        REQUEST_ID);
     expect(medicationOrder.label).toBeDefined();
     expect(medicationOrder.label).toEqual('vancomycin');
   });
 
   it('should get rxnorm code from label if it\'s not encoded', () => {
-    const medicationOrder =
-        new MedicationOrder({medicationCodeableConcept: {text: 'Vancomycin'}});
+    const medicationOrder = new MedicationOrder(
+        {medicationCodeableConcept: {text: 'Vancomycin'}}, REQUEST_ID);
     expect(medicationOrder.rxNormCode).toBeDefined();
     expect(medicationOrder.rxNormCode as ResourceCode)
         .toBe(RxNormCode.fromCodeString('11124'));
   });
 
   it('should get dosage instruction from json', () => {
-    const medicationOrder = new MedicationOrder({
-      medicationReference: {display: 'vancomycin'},
-      dosageInstruction: [{text: 'dosage'}],
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ]
-      },
-    });
+    const medicationOrder = new MedicationOrder(
+        {
+          medicationReference: {display: 'vancomycin'},
+          dosageInstruction: [{text: 'dosage'}],
+          medicationCodeableConcept: {
+            coding: [
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ]
+          },
+        },
+        REQUEST_ID);
     expect(medicationOrder.dosageInstruction).toBeDefined();
     expect(medicationOrder.dosageInstruction).toEqual('dosage');
   });
 
   it('should indicate lack of dosage instructions when applicable', () => {
-    const medicationOrder = new MedicationOrder({
-      medicationReference: {display: 'vancomycin'},
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ]
-      },
-    });
+    const medicationOrder = new MedicationOrder(
+        {
+          medicationReference: {display: 'vancomycin'},
+          medicationCodeableConcept: {
+            coding: [
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ]
+          },
+        },
+        REQUEST_ID);
     expect(medicationOrder.dosageInstruction).toBeDefined();
     expect(medicationOrder.dosageInstruction)
         .toEqual('Could not retrieve dosage instructions.');
@@ -126,27 +135,29 @@ describe('MedicationOrder', () => {
       },
     };
     expect(() => {
-      const x = new MedicationOrder(json);
-    }).toThrowError();
+      const x = new MedicationOrder(json, REQUEST_ID);
+    }).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
 
   it('should get label from medicationCodeableConcept if medicationReference is absent',
      () => {
-       const medicationOrder = new MedicationOrder({
-         medicationCodeableConcept: {
-           text: 'vancomycin',
-           coding: [
-             {system: RxNormCode.CODING_STRING, code: '11124'},
-           ]
-         },
-       });
+       const medicationOrder = new MedicationOrder(
+           {
+             medicationCodeableConcept: {
+               text: 'vancomycin',
+               coding: [
+                 {system: RxNormCode.CODING_STRING, code: '11124'},
+               ]
+             },
+           },
+           REQUEST_ID);
        expect(medicationOrder.label).toBeDefined();
        expect(medicationOrder.label).toEqual('vancomycin');
      });
 
   it('should get the first and last MedicationAdministration from list of MedicationAdministrations',
      () => {
-       const medicationOrder = new MedicationOrder(vancMedConcept);
+       const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
        Promise
            .resolve(
                medicationOrder.setMedicationAdministrations(fhirServiceStub))
@@ -159,7 +170,7 @@ describe('MedicationOrder', () => {
      });
 
   it('should annotate medication administrations', () => {
-    const medicationOrder = new MedicationOrder(vancMedConcept);
+    const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
     Promise
         .resolve(medicationOrder.setMedicationAdministrations(fhirServiceStub))
         .then(help => {
@@ -240,40 +251,61 @@ describe('MedicationOrderSet', () => {
 
   it('should throw error if units do not match', () => {
     const medicationAdministrations = [new MedicationAdministration(
-        {...vancMedConcept, dosage: {quantity: {unit: 'unit'}}})];
+        {
+          ...vancMedConcept,
+          dosage: {quantity: {unit: 'unit'}},
+          effectiveTimeDateTime: DateTime.utc(1965, 3, 22).toString()
+        },
+        REQUEST_ID)];
 
     const medicationAdministrations2 = [new MedicationAdministration(
-        {...vancMedConcept, dosage: {quantity: {unit: 'different unit'}}})];
+        {
+          ...vancMedConcept,
+          dosage: {quantity: {unit: 'different unit'}},
+          effectiveTimeDateTime: DateTime.utc(1965, 3, 19).toString()
+        },
+        REQUEST_ID)];
 
     const order = makeMedicationOrder();
     order.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations.map(
             // annotations not important for this test
             x => new AnnotatedAdministration(x, 0, 0)));
+    order.firstAdministration = medicationAdministrations[0];
+    order.lastAdmininistration = medicationAdministrations[0];
+
     const order2 = makeMedicationOrder();
     order2.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations2.map(
             // annotations not important for this test
             x => new AnnotatedAdministration(x, 0, 0)));
+    order2.firstAdministration = medicationAdministrations2[0];
+    order2.lastAdmininistration = medicationAdministrations2[0];
 
     expect(() => {
       const x = new MedicationOrderSet([order, order2]);
-    }).toThrowError();
+    }).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
 
+
+  // TODO: This test is not actually throwing an error because of the RxNorms
+  // not matching. We should fix this test and update the expect clause to
+  // ensure the constructor is erroring for the reason being tested.
   it('should throw error if RxNorms do not match.', () => {
     const medicationAdministrations =
-        [new MedicationAdministration({...vancMedConcept})];
+        [new MedicationAdministration({...vancMedConcept}, REQUEST_ID)];
 
-    const medicationAdministrations2 = [new MedicationAdministration({
-      medicationCodeableConcept: {
-        coding: [
-          {system: 'not RxNorm', code: '2744-1'},
-          {system: RxNormCode.CODING_STRING, code: '1596450'},
-        ],
-        text: 'Gentamicin'
-      }
-    })];
+    const medicationAdministrations2 = [new MedicationAdministration(
+        {
+          medicationCodeableConcept: {
+            coding: [
+              {system: 'not RxNorm', code: '2744-1'},
+              {system: RxNormCode.CODING_STRING, code: '1596450'},
+            ],
+            text: 'Gentamicin'
+          }
+        },
+        REQUEST_ID)];
 
     const order = makeMedicationOrder();
     order.administrationsForOrder =

@@ -5,7 +5,7 @@
 
 import {Duration, Interval} from 'luxon';
 
-import {LabeledClass} from '../fhir-resource-set';
+import {ResultClass} from '../fhir-resource-set';
 
 import {MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
@@ -14,7 +14,7 @@ import {ObservationSet} from './observation-set';
 /**
  * An Observation with additional information to display in its tooltip.
  */
-export class AnnotatedObservation extends LabeledClass {
+export class AnnotatedObservation extends ResultClass {
   constructor(
       readonly observation: Observation,
       /**
@@ -23,7 +23,7 @@ export class AnnotatedObservation extends LabeledClass {
        * This array should be treated as immutable.
        */
       readonly annotationValues = new Array<[string, string]>()) {
-    super(observation.label);
+    super(observation.label, observation.requestId);
   }
 
   /**

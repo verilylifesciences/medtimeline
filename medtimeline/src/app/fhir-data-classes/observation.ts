@@ -8,8 +8,9 @@ import {DateTime} from 'luxon';
 import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {LabeledClass} from '../fhir-resource-set';
+import {ResultClass} from '../fhir-resource-set';
 import {fixUnitAbbreviations} from '../unit_utils';
+import {ResultError} from './../result-error';
 
 import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';
 
@@ -62,7 +63,7 @@ const statusToEnumMap = new Map<string, ObservationStatus>([
  * information about microbiology report results that show up in the
  * microbiology graph tooltips.
  */
-export class Observation extends LabeledClass {
+export class Observation extends ResultClass {
   readonly codes: ResourceCode[] = [];
   timestamp: DateTime;
   readonly value: Quantity;
@@ -84,9 +85,12 @@ export class Observation extends LabeledClass {
    * Makes an Observation out of a JSON object that represents a
    * a FHIR observation.
    * @param json A JSON object that represents a FHIR observation.
+   * @param requestId The x-request-id of the request that acquired this
+   *     observation's data.
    */
-  constructor(private json: any) {
-    super(Observation.getLabel(json));
+  constructor(private json: any, requestId: string) {
+    super(Observation.getLabel(json), requestId);
+
     this.timestamp = json.effectiveDateTime ?
         DateTime.fromISO(json.effectiveDateTime).toUTC() :
         json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
@@ -121,8 +125,9 @@ export class Observation extends LabeledClass {
             this.interpretation =
                 ObservationInterpretation.codeToObject.get(coding.code);
           } else {
-            throw Error(
-                'Unsupported interpretation code: ' + JSON.stringify(coding));
+            throw new ResultError(
+                new Set([this.requestId]), 'Unsupported interpretation code.',
+                coding);
           }
         }
       } else if (json.interpretation.text) {
@@ -135,7 +140,7 @@ export class Observation extends LabeledClass {
 
     if (json.component) {
       json.component.forEach(element => {
-        const innerObs = new Observation(element);
+        const innerObs = new Observation(element, this.requestId);
         if (!innerObs.timestamp) {
           innerObs.timestamp = this.timestamp;
         }
@@ -144,23 +149,27 @@ export class Observation extends LabeledClass {
     }
 
     if (!this.codes || this.codes.length === 0) {
-      throw Error(
-          'Observations have to have a LOINC code to be useful.' +
-          ' Label: ' + this.label + '\nJSON: ' + JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'Observations have to have a LOINC code to be useful. ' +
+              `Label: ${this.label}.`,
+          json);
     }
 
     if (!this.label) {
-      throw Error(
-          'Observations have to have a label to be useful. ' +
-          'JSON: ' + JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'Observations have to have a label to be useful.', json);
     }
 
     // Check the observation label against the LOINC code label.
     if (this.label.toLowerCase() !== this.codes[0].label.toLowerCase()) {
-      throw Error(
-          'The label for this observation\'s LOINC code doesn\'t match ' +
-          ' the label in the data. Observation label: ' + this.label +
-          ' LOINC label: ' + this.codes[0].label);
+      throw new ResultError(
+          new Set([this.requestId]),
+          `The label for this observation's LOINC code doesn't match ` +
+              `the label in the data. Observation label: ${this.label}. ` +
+              `LOINC label: ${this.codes[0].label}. `,
+          json);
     }
 
 
@@ -180,9 +189,11 @@ export class Observation extends LabeledClass {
         json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
     if (this.value === null && this.result === null && !this.interpretation &&
         (this.innerComponents && this.innerComponents.length === 0)) {
-      throw Error(
+      throw new ResultError(
+          new Set([this.requestId]),
           'An Observation must have a value, result, inner components, ' +
-          'or an interpretation to be useful. JSON: ' + JSON.stringify(json));
+              'or an interpretation to be useful.',
+          json);
     }
 
     // The FHIR standard says that if there's only one range then it should be

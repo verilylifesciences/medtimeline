@@ -18,38 +18,46 @@ import {vitalSign} from './display-grouping';
 import {LOINCCode, LOINCCodeGroup} from './loinc-code';
 import {ResourceCode} from './resource-code-group';
 
+const REQUEST_ID = '1234';
+
 describe('LOINCCodeGroup', () => {
   it('should correctly separate list of Observations into ObservationSets if ' +
          'inner components are present',
      (done: DoneFn) => {
        const observations: Observation[][] = [[
-         new Observation({
-           code: {
-             text: 'ALT',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
-           },
-           valueQuantity: {value: 97},
-         }),
-         new Observation({
-           code: {
-             text: 'ALT',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
-           },
-           valueQuantity: {value: 98},
-         }),
-         new Observation({
-           code: {
-             text: 'ALT',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
-           },
-           component: [{
-             code: {
-               coding: [{system: LOINCCode.CODING_STRING, code: '8462-4'}],
-               text: 'Diastolic Blood Pressure'
+         new Observation(
+             {
+               code: {
+                 text: 'ALT',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
+               },
+               valueQuantity: {value: 97},
              },
-             valueQuantity: {value: 69}
-           }]
-         })
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'ALT',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
+               },
+               valueQuantity: {value: 98},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'ALT',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
+               },
+               component: [{
+                 code: {
+                   coding: [{system: LOINCCode.CODING_STRING, code: '8462-4'}],
+                   text: 'Diastolic Blood Pressure'
+                 },
+                 valueQuantity: {value: 69}
+               }]
+             },
+             REQUEST_ID)
        ]];
 
        const fhirServiceStub: any = {
@@ -77,48 +85,60 @@ describe('LOINCCodeGroup', () => {
   it('should return one observation set for each observation type',
      (done: DoneFn) => {
        const observationsOfDifferentCodes: Observation[][] = [[
-         new Observation({
-           code: {
-             text: 'ALT',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
-           },
-           valueQuantity: {value: 97},
-         }),
-         new Observation({
-           code: {
-             text: 'ALT',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
-           },
-           valueQuantity: {value: 98},
-         }),
-         new Observation({
-           code: {
-             text: 'Bilirubin, Direct',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
-           },
-           valueQuantity: {value: 1},
-         }),
-         new Observation({
-           code: {
-             text: 'Bilirubin, Direct',
-             coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
-           },
-           valueQuantity: {value: 2},
-         }),
-         new Observation({
-           code: {
-             text: 'Basophil',
-             coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
-           },
-           valueQuantity: {value: 1},
-         }),
-         new Observation({
-           code: {
-             text: 'Basophil',
-             coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
-           },
-           valueQuantity: {value: 2},
-         })
+         new Observation(
+             {
+               code: {
+                 text: 'ALT',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
+               },
+               valueQuantity: {value: 97},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'ALT',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
+               },
+               valueQuantity: {value: 98},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'Bilirubin, Direct',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
+               },
+               valueQuantity: {value: 1},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'Bilirubin, Direct',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
+               },
+               valueQuantity: {value: 2},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'Basophil',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
+               },
+               valueQuantity: {value: 1},
+             },
+             REQUEST_ID),
+         new Observation(
+             {
+               code: {
+                 text: 'Basophil',
+                 coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
+               },
+               valueQuantity: {value: 2},
+             },
+             REQUEST_ID)
        ]];
 
        const fhirServiceStub: any = {
@@ -150,13 +170,15 @@ describe('LOINCCodeGroup', () => {
      });
 
   it('should work for qualitative results', (done: DoneFn) => {
-    const obs = new Observation({
-      code: {
-        text: 'Vanc Pk',
-        coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
-      },
-      valueCodeableConcept: {text: 'textresult'}
-    });
+    const obs = new Observation(
+        {
+          code: {
+            text: 'Vanc Pk',
+            coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
+          },
+          valueCodeableConcept: {text: 'textresult'}
+        },
+        REQUEST_ID);
     const fhirServiceStub: any = {
       getObservationsForCodeGroup(id: string): Promise<Observation[][]> {
         return Promise.resolve([[obs]]);
@@ -189,15 +211,18 @@ describe('LOINCCodeGroup', () => {
 
 
   it('should work for interpretation results', (done: DoneFn) => {
-    const obs = new Observation({
-      code: {
-        text: 'Vanc Pk',
-        coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
-      },
-      interpretation: {
-        coding: [{system: OBSERVATION_INTERPRETATION_VALUESET_URL, code: '<'}]
-      }
-    });
+    const obs = new Observation(
+        {
+          code: {
+            text: 'Vanc Pk',
+            coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
+          },
+          interpretation: {
+            coding:
+                [{system: OBSERVATION_INTERPRETATION_VALUESET_URL, code: '<'}]
+          }
+        },
+        REQUEST_ID);
     const fhirServiceStub: any = {
       getObservationsForCodeGroup(id: string): Promise<Observation[][]> {
         return Promise.resolve([[obs]]);
@@ -231,13 +256,15 @@ describe('LOINCCodeGroup', () => {
 
   it('should make annotated observation if a function is passed through for that',
      (done: DoneFn) => {
-       const obs = new Observation({
-         code: {
-           text: 'Vanc Pk',
-           coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
-         },
-         valueQuantity: {value: 97},
-       });
+       const obs = new Observation(
+           {
+             code: {
+               text: 'Vanc Pk',
+               coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
+             },
+             valueQuantity: {value: 97},
+           },
+           REQUEST_ID);
        const fhirServiceStub: any = {
          getObservationsForCodeGroup(id: string): Promise<Observation[][]> {
            return Promise.resolve([[obs]]);

@@ -13,11 +13,10 @@
   <div fxFlex *ngIf="axisGroup" fxLayout="column" class="contents-block">
     <div fxFlex *ngFor="let axis of axisGroup.axes" fxShrink="0" fxGrow="0">
       <mat-spinner *ngIf="!axis.alreadyResolvedData && !axis.errorMessage" [diameter]="30"></mat-spinner>
-      <mat-expansion-panel *ngIf="axis.errorMessage">
+      <mat-expansion-panel *ngIf="axis.errorMessage" class="card-error">
         <mat-expansion-panel-header>
           <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}
-        </mat-expansion-panel-header>
-        Technical details: {{axis.errorMessage}}
+        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}
       </mat-expansion-panel>
       <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage" [ngSwitch]="axis.chartType">
         <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.alreadyResolvedData" [dateRange]="this.dateRange"

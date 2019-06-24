@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
+import {ResultError} from '../result-error';
 /**
  * FHIR resource for a Specimen, from the DSTU2 standard.
  * https://www.hl7.org/fhir/DSTU2/specimen.html
@@ -25,28 +26,33 @@ export class Specimen {
   readonly collectedDateTime: DateTime;
   readonly collectedPeriod: Interval;
 
-  constructor(json: any) {
+  readonly requestId: string;
+
+  constructor(json: any, requestId: string) {
+    this.requestId = requestId;
+
     if (json.id) {
       this.id = json.id;
     }
 
     if (!json.type) {
-      throw Error(
-          'A specimen must have a type to be useful. JSON: ' +
-          JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'A specimen must have a type to be useful.', json);
     }
 
     this.type = json.type.text;
 
     if (!json.collection) {
-      throw Error(
-          'A specimen must have collection information to be useful. JSON: ' +
-          JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'A specimen must have collection information to be useful.', json);
     }
     if (json.collection.collectedPeriod && json.collection.collectedDateTime) {
-      throw Error(
-          'Only collectedPeriod or collectionDateTime should be defined. JSON: ' +
-          JSON.stringify(json));
+      throw new ResultError(
+          new Set([this.requestId]),
+          'Only collectedPeriod or collectionDateTime should be defined.' +
+              json);
     }
 
     if (json.collection.collectedPeriod) {

@@ -6,7 +6,7 @@
 import {DateTime} from 'luxon';
 
 // tslint:disable-next-line:max-line-length
-import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from './medication-administration';
@@ -19,9 +19,11 @@ import {ObservationSet} from './observation-set';
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+const REQUEST_ID = '1234';
+
 describe('AnnotatedObservation', () => {
-  const obs = new Observation(makeSampleObservationJson(
-      10, DateTime.fromISO('1992-11-06T00:00:00.00')));
+  const obs =
+      makeSampleObservation(10, DateTime.fromISO('1992-11-06T00:00:00.00'));
 
   it('withBlankAnnotations should have no annotations', () => {
     const annotated = new AnnotatedObservation(obs);
@@ -115,7 +117,7 @@ describe('AnnotatedObservation', () => {
          text: 'Blood Pressure Location'
        };
        const locationObservationSet = new ObservationSet(
-           [new AnnotatedObservation(new Observation(json))]);
+           [new AnnotatedObservation(new Observation(json, REQUEST_ID))]);
        const annotated =
            AnnotatedObservation.forBloodPressure(obs, locationObservationSet);
        expect(annotated.observation).toEqual(obs);
@@ -140,8 +142,8 @@ describe('AnnotatedObservation', () => {
          text: 'Blood Pressure Location'
        };
        const locationObservationSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(json1)),
-         new AnnotatedObservation(new Observation(json2))
+         new AnnotatedObservation(new Observation(json1, REQUEST_ID)),
+         new AnnotatedObservation(new Observation(json2, REQUEST_ID))
        ]);
        const annotated =
            AnnotatedObservation.forBloodPressure(obs, locationObservationSet);

@@ -20,7 +20,7 @@ import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
-import {LabeledClass} from './fhir-resource-set';
+import {ResultClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
@@ -49,6 +49,66 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
+   * Gets the next page of search results from the smart API. This function
+   * assumes that the same smartApi was used to call the original search.
+   *
+   * @param smartApi The resolved smartOnFhirClient
+   * @param response The response from the previous page of search results
+   * @param results The list of all formatted results processed in previous page
+   *     responses
+   * @param createFunction A function to create a result object from the
+   *     response
+   */
+  getNextSearchResultsPage<T>(
+      smartApi, response, results,
+      createFunction: (json: any, requestId: string) => T): Promise<T[]> {
+    const requestId = response.headers('x-request-id');
+    const responseData = response.data.entry || [];
+
+    results = results.concat(
+        responseData.map(result => createFunction(result.resource, requestId)));
+
+    // if there are anymore pages, get the next set of results.
+    if (response.data.link.some((link) => link.relation === 'next')) {
+      return smartApi.patient.api.nextPage({bundle: response.data})
+          .then(nextResponse => {
+            return this.getNextSearchResultsPage(
+                smartApi, nextResponse, results, createFunction);
+          });
+    }
+    return Promise.resolve(results);
+  }
+
+  /**
+   * Gets all pages of search results for the given query params. Formats
+   * the results using the given createFunction.
+   *
+   * @param smartApi The resolved smartOnFhirClient
+   * @param queryParams the params to pass to the search function
+   * @param createFunction A function to create result objects from
+   *  the response data.
+   */
+  fetchAll<T>(
+      smartApi, queryParams,
+      createFunction: ((json: any, requestId: string) => T)): Promise<T[]> {
+    const results = [];
+    return smartApi.patient.api.search(queryParams)
+        .then(
+            response => {
+              return this
+                  .getNextSearchResultsPage(
+                      smartApi, response, results, createFunction)
+                  .then(results => {
+                    return results;
+                  });
+            },
+            rejection => {
+              this.debugService.logError(rejection);
+              throw rejection;
+            });
+  }
+
+  /**
    * Gets observations from a specified date range with a specific LOINC code.
    * @param code The LOINC code for which to get observations.
    * @param dateRange The time interval observations should fall between.
@@ -74,22 +134,13 @@ export class FhirHttpService extends FhirService {
 
     return this.smartApiPromise.then(
         smartApi =>
-            smartApi.patient.api.fetchAll(queryParams)
+            this.fetchAll(
+                    smartApi, queryParams,
+                    (json, requestId) => new Observation(json, requestId))
                 .then(
-                    (results: any[]) =>
-                        results
-                            .map(result => {
-                              return new Observation(result);
-                            })
-                            .filter(
-                                result => result.status !==
-                                    ObservationStatus.EnteredInError),
-                    // Do not return any Observations for this code if one of
-                    // the Observation constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+                    (results: Observation[]) => results.filter(
+                        (result: Observation) => result.status !==
+                            ObservationStatus.EnteredInError)));
   }
 
   /**
@@ -120,29 +171,14 @@ export class FhirHttpService extends FhirService {
 
     return this.smartApiPromise.then(
         smartApi =>
-            smartApi.patient.api.fetchAll(queryParams)
+            this.fetchAll(
+                    smartApi, queryParams,
+                    (json, requestId) =>
+                        new MedicationAdministration(json, requestId))
                 .then(
-                    (results: any[]) =>
-                        results
-                            .filter(
-                                result =>
-                                    LabeledClass.extractMedicationEncoding(
-                                        result) === code)
-                            .map(result => {
-                              try {
-                                return new MedicationAdministration(result);
-                              } catch (e) {
-                                this.debugService.logError(e);
-                                throw e;
-                              }
-                            }),
-                    // Do not return any MedicationAdministrations for
-                    // this code if one of the MedicationAdministration
-                    // constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+                    (results: MedicationAdministration[]) => results.filter(
+                        (result: MedicationAdministration) =>
+                            result.rxNormCode === code)));
   }
 
   /**
@@ -156,7 +192,8 @@ export class FhirHttpService extends FhirService {
                 .read({type: FhirResourceType.MedicationOrder, 'id': id})
                 .then(
                     (result: any) => {
-                      return new MedicationOrder(result.data);
+                      const requestId = result.headers('x-request-id');
+                      return new MedicationOrder(result.data, requestId);
                     },
                     // Do not return any MedicationOrders for
                     // this code if one of the MedicationOrder
@@ -177,26 +214,19 @@ export class FhirHttpService extends FhirService {
       type: FhirResourceType.MedicationAdministration,
     };
     return this.smartApiPromise.then(
-        smartApi =>
-            smartApi.patient.api.fetchAll(queryParams)
-                .then(
-                    (results: any[]) => {
-                      return results
-                          .filter(
-                              result => LabeledClass.extractMedicationEncoding(
-                                            result) === code)
-                          .map(result => {
-                            return new MedicationAdministration(result);
-                          })
-                          .filter(admin => admin.medicationOrderId === id);
-                    },
-                    // Do not return any MedicationOrders for
-                    // this code if one of the MedicationOrder
-                    // constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+        smartApi => this.fetchAll(
+                            smartApi, queryParams,
+                            (json, requestId) =>
+                                new MedicationAdministration(json, requestId))
+                        .then(
+                            (results: MedicationAdministration[]) =>
+                                results
+                                    .filter(
+                                        (result: MedicationAdministration) =>
+                                            result.rxNormCode === code)
+                                    .filter(
+                                        (result: MedicationAdministration) =>
+                                            result.medicationOrderId === id)));
   }
 
   /**
@@ -219,27 +249,20 @@ export class FhirHttpService extends FhirService {
     // we query, and those that have a start date no earlier than a year prior
     // to now.
     return this.smartApiPromise.then(
-        smartApi => smartApi.patient.api.fetchAll(queryParams)
-                        .then(
-                            (results: any[]) => {
-                              results =
-                                  results
-                                      .map(result => {
-                                        return new Encounter(result);
-                                      })
-                                      .filter(
-                                          encounter =>
-                                              dateRange.intersection(
-                                                  encounter.period) !== null)
-                                      .filter(
-                                          encounter => encounter.period.start >=
-                                              EARLIEST_ENCOUNTER_START_DATE);
-                              return results;
-                            },
-                            rejection => {
-                              this.debugService.logError(rejection);
-                              throw rejection;
-                            }));
+        smartApi =>
+            this.fetchAll(
+                    smartApi, queryParams,
+                    (json, requestId) => new Encounter(json, requestId))
+                .then(
+                    (results: Encounter[]) =>
+                        results
+                            .filter(
+                                (result: Encounter) =>
+                                    dateRange.intersection(result.period) !==
+                                    null)
+                            .filter(
+                                (result: Encounter) => result.period.start >=
+                                    EARLIEST_ENCOUNTER_START_DATE)));
   }
 
   /**
