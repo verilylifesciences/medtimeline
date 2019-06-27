@@ -36,13 +36,15 @@ describe('StandardTooltip', () => {
             Tooltip.formatTimestamp(DateTime.fromJSDate(new Date(2001, 1, 1))) +
             '</th></tr>' +
             '<tr><td class="name">' +
-            '<span style="background-color: rgb(244, 244, 244);' +
-            ' display: inline-block; height: 10px; width: 10px; margin-right: 6px;"></span>' +
+            '<span style="background-color: rgb(244, 244, 244); ' +
+            'display: inline-block; height: 10px; width: 10px; ' +
+            'margin-right: 6px; border-radius: 50%;"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">15 unit</td></tr>' +
             '<tr><td class="name">' +
-            '<span style="background-color: rgb(244, 244, 244);' +
-            ' display: inline-block; height: 10px; width: 10px; margin-right: 6px;"></span>' +
+            '<span style="background-color: rgb(244, 244, 244); ' +
+            'display: inline-block; height: 10px; width: 10px; ' +
+            'margin-right: 6px; border-radius: 50%;"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">25 unit</td></tr></tbody></table>');
   });
