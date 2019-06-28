@@ -7,12 +7,10 @@ import {DateTime, Interval} from 'luxon';
 
 import {Encounter} from './encounter';
 
-const REQUEST_ID = '1234';
-
 describe('Encounter', () => {
   it('should throw error if json is not of type Encounter', () => {
     const constructor = () => {
-      const x = new Encounter({}, REQUEST_ID);
+      const x = new Encounter({});
     };
     expect(constructor).toThrowError();
   });
@@ -27,7 +25,7 @@ describe('Encounter', () => {
       resourceType: 'Encounter',
     };
 
-    const encounter = new Encounter(testEncounter, REQUEST_ID);
+    const encounter = new Encounter(testEncounter);
     expect(encounter.encounterId).toEqual('4027918');
   });
 
@@ -41,7 +39,7 @@ describe('Encounter', () => {
       'resourceType': 'Encounter',
     };
 
-    const encounter = new Encounter(testEncounter, REQUEST_ID);
+    const encounter = new Encounter(testEncounter);
     expect(encounter.period)
         .toEqual(Interval.fromDateTimes(
             DateTime.fromISO('2018-10-01T06:00:00.000Z').toLocal(),
@@ -59,7 +57,7 @@ describe('Encounter', () => {
       resourceType: 'Encounter',
     };
 
-    const encounter = new Encounter(testEncounter, REQUEST_ID);
+    const encounter = new Encounter(testEncounter);
     expect(encounter.period.start)
         .toEqual(DateTime.fromISO('2018-10-01T06:00:00.000Z').toLocal());
     expect(encounter.period.end.toMillis())
@@ -79,7 +77,7 @@ describe('Encounter', () => {
       resourceType: 'Encounter',
     };
 
-    const encounter = new Encounter(testEncounter, REQUEST_ID);
+    const encounter = new Encounter(testEncounter);
     expect(encounter.period.start)
         .toEqual(DateTime.fromISO('2018-10-01T06:00:00.000Z').toLocal());
     expect(encounter.period.end.toMillis())
@@ -99,9 +97,9 @@ describe('Encounter', () => {
     };
 
     const constructor = () => {
-      const encounter = new Encounter(testEncounter, REQUEST_ID);
+      const encounter = new Encounter(testEncounter);
     };
-    expect(constructor).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
+    expect(constructor).toThrowError();
   });
 
   it('should throw an error if start time is after end time', () => {
@@ -117,9 +115,9 @@ describe('Encounter', () => {
     };
 
     const constructor = () => {
-      const encounter = new Encounter(testEncounter, REQUEST_ID);
+      const encounter = new Encounter(testEncounter);
     };
-    expect(constructor).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
+    expect(constructor).toThrowError();
   });
 
   it('should throw an error if start time is in the future', () => {
@@ -135,8 +133,8 @@ describe('Encounter', () => {
     };
 
     const constructor = () => {
-      const encounter = new Encounter(testEncounter, REQUEST_ID);
+      const encounter = new Encounter(testEncounter);
     };
-    expect(constructor).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
+    expect(constructor).toThrowError();
   });
 });

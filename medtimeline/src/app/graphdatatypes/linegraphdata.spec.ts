@@ -18,7 +18,7 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
-import {makeSampleDiscreteObservation, makeSampleObservation} from '../test_utils';
+import {makeSampleDiscreteObservationJson, makeSampleObservationJson} from '../test_utils';
 
 import {LineGraphData} from './linegraphdata';
 
@@ -33,12 +33,12 @@ describe('LineGraphData', () => {
          'each ObservationSet passed in',
      () => {
        const obsSet = new ObservationSet([
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90])),
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 24), [1, 90])),
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 25), [1, 90]))
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 23), [1, 90]))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), [1, 90]))),
+         new AnnotatedObservation(new Observation(
+             makeSampleObservationJson(10, DateTime.utc(1988, 3, 25), [1, 90])))
        ]);
        const obsSetList = new Array(obsSet, obsSet, obsSet);
 
@@ -50,10 +50,12 @@ describe('LineGraphData', () => {
 
   it('fromObservationSetList should pass in the tooltips correctly', () => {
     const obs1 = new AnnotatedObservation(
-        makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+        new Observation(
+            makeSampleObservationJson(10, DateTime.utc(1988, 3, 23), [1, 90])),
         [['labelA', 'valueA']]);
     const obs2 = new AnnotatedObservation(
-        makeSampleObservation(10, DateTime.utc(1988, 3, 24), [1, 90]),
+        new Observation(
+            makeSampleObservationJson(10, DateTime.utc(1988, 3, 24), [1, 90])),
         [['labelB', 'valueB']]);
 
     const lgData = LineGraphData.fromObservationSetList(
@@ -75,10 +77,12 @@ describe('LineGraphData', () => {
   it('fromObservationSetList should handle two tooltips for same timestamp',
      () => {
        const obs1 = new AnnotatedObservation(
-           makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+           new Observation(makeSampleObservationJson(
+               10, DateTime.utc(1988, 3, 23), [1, 90])),
            [['labelA', 'valueA']]);
        const obs2 = new AnnotatedObservation(
-           makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+           new Observation(makeSampleObservationJson(
+               10, DateTime.utc(1988, 3, 23), [1, 90])),
            [['labelB', 'valueB']]);
 
        const lgData = LineGraphData.fromObservationSetList(
@@ -98,21 +102,21 @@ describe('LineGraphData', () => {
   it('fromObservationSetList should set y axis display so that all data included',
      () => {
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 23), normalRange)),
-         new AnnotatedObservation(
-             makeSampleObservation(1, DateTime.utc(1988, 3, 24), normalRange)),
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 25), normalRange))
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 25), normalRange)))
        ]);
 
        const obsSet2 = new ObservationSet([
-         new AnnotatedObservation(
-             makeSampleObservation(40, DateTime.utc(1988, 3, 23), normalRange)),
-         new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 24), normalRange)),
-         new AnnotatedObservation(
-             makeSampleObservation(1, DateTime.utc(1988, 3, 25), normalRange))
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             40, DateTime.utc(1988, 3, 23), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             10, DateTime.utc(1988, 3, 24), normalRange))),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             1, DateTime.utc(1988, 3, 25), normalRange)))
        ]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
@@ -125,8 +129,8 @@ describe('LineGraphData', () => {
   it('fromObservationSetList should set abnormal value tooltip correctly.',
      () => {
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(makeSampleObservation(
-             100, DateTime.utc(1988, 3, 23), normalRange)),
+         new AnnotatedObservation(new Observation(makeSampleObservationJson(
+             100, DateTime.utc(1988, 3, 23), normalRange))),
        ]);
        const obsSetList = new Array(obsSet1);
 
@@ -230,12 +234,13 @@ describe('LineGraphData', () => {
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
-       const obsSet1 = new ObservationSet(
-           [new AnnotatedObservation(makeSampleDiscreteObservation(
-               'yellow', DateTime.utc(1988, 3, 23)))]);
+       const obsSet1 = new ObservationSet([new AnnotatedObservation(
+           new Observation(makeSampleDiscreteObservationJson(
+               'yellow', DateTime.utc(1988, 3, 23))))]);
 
        const obsSet2 = new ObservationSet([new AnnotatedObservation(
-           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)))]);
+           new Observation(makeSampleDiscreteObservationJson(
+               'blue', DateTime.utc(1988, 3, 23))))]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetListDiscrete(
@@ -248,12 +253,13 @@ describe('LineGraphData', () => {
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
-       const obsSet1 = new ObservationSet(
-           [new AnnotatedObservation(makeSampleDiscreteObservation(
-               'yellow', DateTime.utc(1988, 3, 23)))]);
+       const obsSet1 = new ObservationSet([new AnnotatedObservation(
+           new Observation(makeSampleDiscreteObservationJson(
+               'yellow', DateTime.utc(1988, 3, 23))))]);
 
        const obsSet2 = new ObservationSet([new AnnotatedObservation(
-           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)))]);
+           new Observation(makeSampleDiscreteObservationJson(
+               'blue', DateTime.utc(1988, 3, 23))))]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetListDiscrete(

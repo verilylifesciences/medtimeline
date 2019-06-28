@@ -20,26 +20,21 @@ const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),
     DateTime.fromISO('2012-08-05T11:00:00.000Z').toUTC());
 
-const REQUEST_ID = '1234';
 const returnedObservationSet: ObservationSet[] = new Array(new ObservationSet([
-  new AnnotatedObservation(new Observation(
-      {
-        code: {
-          text: 'Temperature',
-          coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
-        },
-        valueQuantity: {value: 97},
-      },
-      REQUEST_ID)),
-  new AnnotatedObservation(new Observation(
-      {
-        code: {
-          text: 'Temperature',
-          coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
-        },
-        valueQuantity: {value: 98},
-      },
-      REQUEST_ID))
+  new AnnotatedObservation(new Observation({
+    code: {
+      text: 'Temperature',
+      coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
+    },
+    valueQuantity: {value: 97},
+  })),
+  new AnnotatedObservation(new Observation({
+    code: {
+      text: 'Temperature',
+      coding: [{system: LOINCCode.CODING_STRING, code: '8310-5'}]
+    },
+    valueQuantity: {value: 98},
+  }))
 ]));
 
 class StubCachedResourceCodeGroup extends

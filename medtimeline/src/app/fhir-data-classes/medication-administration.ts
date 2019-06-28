@@ -7,9 +7,8 @@ import {DateTime} from 'luxon';
 import {FhirResourceType} from 'src/constants';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {FhirResourceSet, ResultClass} from '../fhir-resource-set';
+import {FhirResourceSet, LabeledClass} from '../fhir-resource-set';
 import {fixUnitAbbreviations} from '../unit_utils';
-import {ResultError} from './../result-error';
 
 import {Dosage} from './dosage';
 import {ContainedMedication} from './medication';
@@ -21,7 +20,7 @@ import {ContainedMedication} from './medication';
  * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
  * stores only the information we're interested in seeing.
  */
-export class MedicationAdministration extends ResultClass {
+export class MedicationAdministration extends LabeledClass {
   readonly MED_RESOURCE_TYPE = 'Medication';
   readonly rxNormCode: RxNormCode;
   readonly timestamp: DateTime;
@@ -29,23 +28,19 @@ export class MedicationAdministration extends ResultClass {
   readonly dosage: Dosage;
   readonly medicationOrderId: string;
   readonly containedMedications: ContainedMedication[] = [];
-
   /**
    * Makes an MedicationAdministration out of a JSON object that represents a
    * a FHIR MedicationAdministration.
    * https://www.hl7.org/fhir/DSTU2/medicationadministration.html
    * @param json A JSON object that represents a FHIR MedicationAdministration.
-   * @param requestId The x-request-id of the request that acquired this
-   *     medication administration's data.
    */
-  constructor(private json: any, requestId: string) {
+  constructor(private json: any) {
     super(
         json.medicationReference ? json.medicationReference.display :
                                    json.medicationCodeableConcept ?
                                    json.medicationCodeableConcept.text :
-                                   null,
-        requestId);
-    this.rxNormCode = ResultClass.extractMedicationEncoding(json);
+                                   null);
+    this.rxNormCode = LabeledClass.extractMedicationEncoding(json);
 
     this.timestamp = json.effectiveTimeDateTime ?
         DateTime.fromISO(json.effectiveTimeDateTime).toUTC() :
@@ -91,8 +86,8 @@ export class MedicationAdministration extends ResultClass {
         // We map the Medications in the list of ingredients to JSON elements
         // containing the RxNorms for each ingredient.
         for (const ing of json.contained) {
-          this.containedMedications.push(new ContainedMedication(
-              ing, ingredientReferences, this.requestId));
+          this.containedMedications.push(
+              new ContainedMedication(ing, ingredientReferences));
         }
       }
     }
@@ -107,11 +102,10 @@ export class MedicationAdministration extends ResultClass {
       if (this.containedMedications.length === 0 ||
           (this.containedMedications.length > 0 &&
            this.containedMedications.every(med => (med.code === undefined)))) {
-        throw new ResultError(
-            new Set([this.requestId]),
+        throw Error(
             'JSON must include RxNormCode and a label' +
-                ' to be included as a MedicationAdministration.',
-            json);
+            ' to be included as a MedicationAdministration. JSON: ' +
+            JSON.stringify(json));
       }
     }
   }
@@ -139,14 +133,10 @@ export class MedicationAdministrationSet extends
   constructor(medicationAdministrationList: AnnotatedAdministration[]) {
     super(medicationAdministrationList);
 
-    const requestIdsString = Array.from(this.requestIds).join(', ');
-
     const rxNorms =
         medicationAdministrationList.map(x => x.medAdministration.rxNormCode);
     if (new Set(rxNorms).size > 1) {
-      throw new ResultError(
-          this.requestIds,
-          `Different RxNorms for administrations: ${rxNorms}.`);
+      throw Error('Different RxNorms for administrations: ' + rxNorms);
     }
     this.rxNormCode = rxNorms[0];
 
@@ -158,10 +148,9 @@ export class MedicationAdministrationSet extends
     const units = new Set(
         medicationAdministrationList.map(x => x.medAdministration.dosage.unit));
     if (units.size > 1) {
-      throw new ResultError(
-          this.requestIds,
-          `Different units in the administration set: ${
-              Array.from(units.values())}.`);
+      throw Error(
+          'Different units in the administration set: ' +
+          Array.from(units.values()));
     }
     this.unit = fixUnitAbbreviations(Array.from(units.values())[0]);
   }
@@ -171,7 +160,7 @@ export class MedicationAdministrationSet extends
  * A MedicationAdministration with additional information relating it to
  * the other administrations in the same order.
  */
-export class AnnotatedAdministration extends ResultClass {
+export class AnnotatedAdministration extends LabeledClass {
   /** The medication administration to be annotated. */
   readonly medAdministration: MedicationAdministration;
 
@@ -197,7 +186,7 @@ export class AnnotatedAdministration extends ResultClass {
   constructor(
       medAdmin: MedicationAdministration, doseInOrder: number, doseDay: number,
       prevDose?: AnnotatedAdministration) {
-    super(medAdmin.label, medAdmin.requestId);
+    super(medAdmin.label);
     this.medAdministration = medAdmin;
     this.doseInOrder = doseInOrder;
     this.doseDay = doseDay;

@@ -11,7 +11,7 @@ h1, h2 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.search-icon {
+mat-icon {
   padding-top: 20px;
   vertical-align: bottom;
 }
@@ -89,11 +89,4 @@ h1, h2 {
 
 app-setup .mat-input-placeholder {
   color: white;
-}
-
-.encounters-error {
-  width: 50%;
-  margin-bottom: 16px;
-  white-space: pre-wrap;
-  word-break: break-all;
 }

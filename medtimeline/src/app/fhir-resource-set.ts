@@ -1,5 +1,4 @@
 import {RXNORM_CODES, RxNormCode} from './clinicalconcepts/rx-norm';
-import {ResultError} from './result-error';
 
 // Copyright 2018 Verily Life Sciences Inc.
 //
@@ -7,10 +6,10 @@ import {ResultError} from './result-error';
 // license that can be found in the LICENSE file.
 
 /**
- * A class that has label and requestId attributes.
+ * A class that has a label attribute.
  */
-export class ResultClass {
-  constructor(readonly label: string, readonly requestId: string) {}
+export class LabeledClass {
+  constructor(readonly label: string) {}
 
   /**
    * Parses the passed-in JSON and gets out a RxNormCode.
@@ -54,12 +53,11 @@ export class ResultClass {
  * A set of FHIR resources. All resources that are a part of this set must
  * have the same label.
  */
-export class FhirResourceSet<T extends ResultClass> {
+export class FhirResourceSet<T extends LabeledClass> {
   /**
    * The list of resources that belong together.
    */
   readonly resourceList: T[];
-  readonly requestIds: Set<string>;
 
   /*
    * The label for this set of data. All data in this set
@@ -74,25 +72,21 @@ export class FhirResourceSet<T extends ResultClass> {
    *     a label.
    */
   constructor(resourceList: T[]) {
-    this.requestIds = new Set(resourceList.map(resource => resource.requestId));
-
     if (!resourceList) {
-      throw new ResultError(this.requestIds, 'Resource list is undefined.');
+      throw Error('Resource list is undefined.');
     }
 
     if (resourceList.length > 0) {
       const firstLabel = resourceList[0].label;
       if (!firstLabel) {
-        throw new ResultError(
-            this.requestIds, 'The first resource does not have a label.');
+        throw Error('The first resource does not have a label.');
       }
 
       const allLabels = new Set(resourceList.map(rs => rs.label.toLowerCase()));
       if (allLabels.size !== 1) {
-        throw new ResultError(
-            this.requestIds,
-            `The resource list in this set has mixed labels: ${
-                Array.from(allLabels.values())}`);
+        throw Error(
+            'The resource list in this set has mixed labels: ' +
+            Array.from(allLabels.values()));
       }
       this.label = firstLabel;
     }

@@ -8,7 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
 import {Observation} from 'src/app/fhir-data-classes/observation';
-import {makeSampleDiscreteObservation} from 'src/app/test_utils';
+import {makeSampleDiscreteObservationJson} from 'src/app/test_utils';
 
 import {DiscreteObservationTooltip, GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from './observation-tooltips';
 import {Tooltip} from './tooltip';
@@ -21,8 +21,10 @@ describe('DiscreteObservationTooltip', () => {
   it('should create', () => {
     const tooltip = new DiscreteObservationTooltip().getTooltip(
         [
-          makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)),
-          makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
+          new Observation(makeSampleDiscreteObservationJson(
+              'blue', DateTime.utc(1988, 3, 23))),
+          new Observation(makeSampleDiscreteObservationJson(
+              'green', DateTime.utc(1988, 3, 23)))
         ],
         TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
@@ -31,8 +33,10 @@ describe('DiscreteObservationTooltip', () => {
   it('should generate tooltip text', () => {
     const tooltipText = new DiscreteObservationTooltip().getTooltip(
         [
-          makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)),
-          makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
+          new Observation(makeSampleDiscreteObservationJson(
+              'blue', DateTime.utc(1988, 3, 23))),
+          new Observation(makeSampleDiscreteObservationJson(
+              'green', DateTime.utc(1988, 3, 23)))
         ],
         TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();
@@ -52,7 +56,8 @@ describe('DiscreteObservationTooltip', () => {
 
 
 describe('GenericObservationTooltip', () => {
-  const obs = makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23));
+  const obs = new Observation(
+      makeSampleDiscreteObservationJson('green', DateTime.utc(1988, 3, 23)));
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({}).compileComponents();
@@ -61,8 +66,10 @@ describe('GenericObservationTooltip', () => {
   it('should generate tooltip text', () => {
     const tooltipText = new DiscreteObservationTooltip().getTooltip(
         [
-          makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)),
-          makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
+          new Observation(makeSampleDiscreteObservationJson(
+              'blue', DateTime.utc(1988, 3, 23))),
+          new Observation(makeSampleDiscreteObservationJson(
+              'green', DateTime.utc(1988, 3, 23)))
         ],
         TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();

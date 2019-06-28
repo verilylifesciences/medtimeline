@@ -4,8 +4,6 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
-import {ResultError} from './../result-error';
-
 /**
  * This object represents basic information about an Encounter: what its
  * reason and type were, when it happened, and its ID.
@@ -13,22 +11,19 @@ import {ResultError} from './../result-error';
 export class Encounter {
   readonly encounterId: string;
   readonly period: Interval;
-  readonly requestId: string;
 
-  constructor(private json: any, requestId: string) {
+  constructor(private json: any) {
     this.encounterId = json.id;
-    this.requestId = requestId;
 
     if (!json.period) {
-      throw new ResultError(
-          new Set([this.requestId]),
-          'An encounter must have a time period.' + json);
+      throw Error(
+          'An encounter must have a time period. JSON: ' +
+          JSON.stringify(json));
     }
 
     if (!json.period.start) {
-      throw new ResultError(
-          new Set([this.requestId]), 'An encounter must have a start date.',
-          json);
+      throw Error(
+          'An encounter must have a start date. JSON: ' + JSON.stringify(json));
     }
     const startTime = DateTime.fromISO(json.period.start).toLocal();
 
@@ -40,13 +35,13 @@ export class Encounter {
     }
 
     if (endTime < startTime) {
-      throw new ResultError(
-          new Set([this.requestId]),
-          'The start time comes before the end time.' + json);
+      throw Error(
+          'The start time comes before the end time. JSON: ' +
+          JSON.stringify(json));
     }
     if (startTime > DateTime.local()) {
-      throw new ResultError(
-          new Set([this.requestId]), 'The start time is in the future.', json);
+      throw Error(
+          'The start time is in the future.. JSON: ' + JSON.stringify(json));
     }
     this.period = Interval.fromDateTimes(startTime, endTime);
   }

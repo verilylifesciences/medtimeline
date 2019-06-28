@@ -21,83 +21,71 @@ const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),
     DateTime.fromISO('2012-08-05T11:00:00.000Z').toUTC());
 
-const REQUEST_ID = '1234';
-
 const orderAAdmins = [
-  new MedicationAdministration(
-      {
-        effectiveTimeDateTime: '2012-08-04T11:00:00.000Z',
-        medicationReference: {display: 'vancomycin'},
-        dosage: {
-          quantity: {value: 50, unit: 'mg'},
-          route: {text: 'oral'},
-          text: '50 mg tablet daily'
-        },
-        medicationCodeableConcept: {
-          coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-          text: 'vancomycin'
-        },
-        prescription: {reference: 'OrderA'}
-      },
-      REQUEST_ID),
-  new MedicationAdministration(
-      {
-        effectiveTimeDateTime: '2012-08-05T11:00:00.000Z',
-        medicationReference: {display: 'vancomycin'},
-        dosage: {
-          quantity: {value: 50, unit: 'mg'},
-          route: {text: 'oral'},
-          text: '50 mg tablet daily'
-        },
-        medicationCodeableConcept: {
-          coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-          text: 'vancomycin'
-        },
-        prescription: {reference: 'OrderA'}
-      },
-      REQUEST_ID),
+  new MedicationAdministration({
+    effectiveTimeDateTime: '2012-08-04T11:00:00.000Z',
+    medicationReference: {display: 'vancomycin'},
+    dosage: {
+      quantity: {value: 50, unit: 'mg'},
+      route: {text: 'oral'},
+      text: '50 mg tablet daily'
+    },
+    medicationCodeableConcept: {
+      coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+      text: 'vancomycin'
+    },
+    prescription: {reference: 'OrderA'}
+  }),
+  new MedicationAdministration({
+    effectiveTimeDateTime: '2012-08-05T11:00:00.000Z',
+    medicationReference: {display: 'vancomycin'},
+    dosage: {
+      quantity: {value: 50, unit: 'mg'},
+      route: {text: 'oral'},
+      text: '50 mg tablet daily'
+    },
+    medicationCodeableConcept: {
+      coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+      text: 'vancomycin'
+    },
+    prescription: {reference: 'OrderA'}
+  }),
 ];
 
-const orderBAdmins = [new MedicationAdministration(
-    {
-      effectiveTimeDateTime: '2012-08-06T11:00:00.000Z',
-      medicationReference: {display: 'vancomycin'},
-      dosage: {
-        quantity: {value: 10, unit: 'mg'},
-        route: {text: 'oral'},
-        text: '10 mg tablet daily'
-      },
-      medicationCodeableConcept: {
-        coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-        text: 'vancomycin'
-      },
-      prescription: {reference: 'OrderB'}
-    },
-    REQUEST_ID)];
+const orderBAdmins = [new MedicationAdministration({
+  effectiveTimeDateTime: '2012-08-06T11:00:00.000Z',
+  medicationReference: {display: 'vancomycin'},
+  dosage: {
+    quantity: {value: 10, unit: 'mg'},
+    route: {text: 'oral'},
+    text: '10 mg tablet daily'
+  },
+  medicationCodeableConcept: {
+    coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+    text: 'vancomycin'
+  },
+  prescription: {reference: 'OrderB'}
+})];
 
-const medicationOrderA = new MedicationOrder(
-    {
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ],
-        text: 'Vancomycin'
-      },
-      id: 'OrderA'
-    },
-    REQUEST_ID);
+const medicationOrderA = new MedicationOrder({
+  medicationCodeableConcept: {
+    coding: [
+      {system: RxNormCode.CODING_STRING, code: '11124'},
+    ],
+    text: 'Vancomycin'
+  },
+  id: 'OrderA'
+});
 
-const medicationOrderB = new MedicationOrder(
-    {
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ],
-        text: 'Vancomycin'
-      },
-      id: 'OrderB'
-    },
-    REQUEST_ID);
+const medicationOrderB = new MedicationOrder({
+  medicationCodeableConcept: {
+    coding: [
+      {system: RxNormCode.CODING_STRING, code: '11124'},
+    ],
+    text: 'Vancomycin'
+  },
+  id: 'OrderB'
+});
 
 class RxStubFhirService extends StubFhirService {
   getMedicationAdministrationsWithCode(code: RxNormCode, dateRange: Interval):

@@ -25,23 +25,21 @@ medRefMap.set('12', {
   amount: {numerator: {value: 50}}
 });
 
-const REQUEST_ID = '1234';
-
 describe('Medication', () => {
   it('should throw error if json is not of type Medication', () => {
     const constructor = () => {
-      const x = new ContainedMedication({}, new Map(), REQUEST_ID);
+      const x = new ContainedMedication({}, new Map());
     };
     expect(constructor).toThrowError();
   });
 
   it('should get label from json', () => {
-    const medication = new ContainedMedication(med, medRefMap, REQUEST_ID);
+    const medication = new ContainedMedication(med, medRefMap);
     expect(medication.label).toEqual('vancomycin');
   });
 
   it('should get code from json', () => {
-    const medication = new ContainedMedication(med, medRefMap, REQUEST_ID);
+    const medication = new ContainedMedication(med, medRefMap);
     expect(medication.code.codeString).toEqual('11124');
     expect(medication.code.label).toEqual('Vancomycin');
   });
@@ -49,18 +47,18 @@ describe('Medication', () => {
   it('should throw error without code', () => {
     const constructor = () => {
       const medication = new ContainedMedication(
-          {resourceType: FhirResourceType.Medication}, medRefMap, REQUEST_ID);
+          {resourceType: FhirResourceType.Medication}, medRefMap);
     };
     expect(constructor).toThrowError();
   });
 
   it('should get id from json', () => {
-    const medication = new ContainedMedication(med, medRefMap, REQUEST_ID);
+    const medication = new ContainedMedication(med, medRefMap);
     expect(medication.id).toEqual('12');
   });
 
   it('should set dosage from information in map', () => {
-    const medication = new ContainedMedication(med, medRefMap, REQUEST_ID);
+    const medication = new ContainedMedication(med, medRefMap);
     expect(medication.dosage.quantity).toEqual(50);
   });
 
@@ -72,7 +70,7 @@ describe('Medication', () => {
                resourceType: FhirResourceType.Medication,
                code: medicationCoding
              },
-             medRefMap, REQUEST_ID);
+             medRefMap);
        };
        expect(constructor).toThrowError();
      });

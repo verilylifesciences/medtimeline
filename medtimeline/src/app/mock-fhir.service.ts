@@ -7,7 +7,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 import {FhirResourceType} from 'src/constants';
-import {v4 as uuid} from 'uuid';
 
 import {environment} from '../environments/environment';
 
@@ -70,43 +69,40 @@ export class MockFhirService extends FhirService {
             entry = data.map(bundle => bundle.entry).flat();
           }
           for (const json of entry) {
-            const mockRequestId = uuid();
             const resourceType = json.resource.resourceType;
             if (resourceType === FhirResourceType.Observation) {
               this.constructResourceMap(
-                  json, this.loincMap,
-                  (x: any) => new Observation(x, mockRequestId),
+                  json, this.loincMap, (x: any) => new Observation(x),
                   (obs) => obs.codes);
             }
 
             if (resourceType === FhirResourceType.MedicationAdministration) {
               this.constructResourceMap(
                   json, this.medicationAdministrationMapByCode,
-                  (d) => new MedicationAdministration(d, mockRequestId),
+                  (d) => new MedicationAdministration(d),
                   (admin) => [admin.rxNormCode]);
 
               this.constructResourceMap(
                   json, this.medicationAdministrationMapByOrderId,
-                  (d) => new MedicationAdministration(d, mockRequestId),
+                  (d) => new MedicationAdministration(d),
                   (admin) => [admin.medicationOrderId]);
             }
 
             if (resourceType === FhirResourceType.MedicationOrder) {
               this.constructResourceMap(
-                  json, this.medicationOrderMap,
-                  (d) => new MedicationOrder(d, mockRequestId),
+                  json, this.medicationOrderMap, (d) => new MedicationOrder(d),
                   (order) => [order.orderId]);
             }
 
             if (resourceType === FhirResourceType.Encounter) {
-              const encounter = new Encounter(json.resource, mockRequestId);
+              const encounter = new Encounter(json.resource);
               this.encounters.push(encounter);
             }
 
             if (resourceType === FhirResourceType.DiagnosticReport) {
               this.constructResourceMap(
                   json, this.diagnosticReportMap,
-                  (d) => new DiagnosticReport(d, mockRequestId),
+                  (d) => new DiagnosticReport(d),
                   (report) =>
                       report.results.map(x => x.codes)
                           .reduce(

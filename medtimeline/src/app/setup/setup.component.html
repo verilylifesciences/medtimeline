@@ -13,11 +13,6 @@
 <div class="defaultBackgroundColor mainSetup">
   <div>
     <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>
-    <mat-expansion-panel *ngIf="encountersErrorMessage" class="encounters-error">
-        <mat-expansion-panel-header>
-          <mat-icon>error</mat-icon>Error loading patient encounters.
-        </mat-expansion-panel-header>Technical details:<br>{{encountersErrorMessage}}
-    </mat-expansion-panel>
     <mat-radio-group>
       <div *ngFor="let encounter of encounters">
         <mat-radio-button [value]="encounter.period">
@@ -63,7 +58,7 @@
   <form class="conceptForm">
     <mat-form-field class="conceptFormField">
       <input matInput placeholder="{{uiConstants.SEARCH_FOR_A_CONCEPT}}" [formControl]="conceptCtrl">
-      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div *ngFor="let entry of displayGroupingOptions | async">
       <div [style.color]="entry[0].fill.hsl().string()" class="category">

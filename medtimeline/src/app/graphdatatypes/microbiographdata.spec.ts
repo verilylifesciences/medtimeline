@@ -14,8 +14,6 @@ import {makeDiagnosticReports} from '../test_utils';
 
 import {MicrobioGraphData} from './microbiographdata';
 
-const REQUEST_ID = '1234';
-
 describe('MicrobioGraphData', () => {
   let fhirServiceStub: any;
 
@@ -131,10 +129,7 @@ describe('MicrobioGraphData', () => {
        };
 
        const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
-           [
-             new DiagnosticReport(mb1, REQUEST_ID),
-             new DiagnosticReport(mb2, REQUEST_ID)
-           ],
+           [new DiagnosticReport(mb1), new DiagnosticReport(mb2)],
            TestBed.get(DomSanitizer));
 
        expect(stepgraphdata.tooltipMap.size).toBe(1);
