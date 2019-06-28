@@ -78,6 +78,8 @@ export class SetupComponent implements OnInit, OnDestroy {
    */
   encounters: Encounter[];
 
+  private encountersErrorMessage: string;
+
   // Fixed time periods to offer as options for selection.
   today: DateTime = DateTime.local().startOf('day');
   readonly lastOneDay =
@@ -138,12 +140,24 @@ export class SetupComponent implements OnInit, OnDestroy {
 
     // Retrieve the patient encounters. When they load in asynchronously,
     // the radio buttons for encounter selection will show up.
-    this.fhirService.getEncountersForPatient(APP_TIMESPAN).then(encounters => {
-      if (encounters.length > 0) {
-        this.encounters = encounters.sort(
-            (a, b) => a.period.start.toMillis() - b.period.start.toMillis());
-      }
-    });
+    this.encountersErrorMessage = null;
+    this.fhirService.getEncountersForPatient(APP_TIMESPAN)
+        .then(
+            encounters => {
+              if (encounters.length > 0) {
+                this.encounters = encounters.sort(
+                    (a, b) =>
+                        a.period.start.toMillis() - b.period.start.toMillis());
+              }
+            },
+            rejection => {
+              if (rejection instanceof Error) {
+                this.encountersErrorMessage = rejection.message;
+              } else {
+                this.encountersErrorMessage =
+                    JSON.stringify(rejection, null, 4);
+              }
+            });
 
     // Check to see which clinical concepts have any data, and enable/disable
     // on that basis.
