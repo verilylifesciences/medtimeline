@@ -151,9 +151,7 @@ export class Observation extends ResultClass {
     if (!this.codes || this.codes.length === 0) {
       throw new ResultError(
           new Set([this.requestId]),
-          'Observations have to have a LOINC code to be useful. ' +
-              `Label: ${this.label}.`,
-          json);
+          'Observations have to have a LOINC code to be useful. ', json);
     }
 
     if (!this.label) {
