@@ -22,7 +22,7 @@ import * as Colors from '../../theme/verily_colors';
  */
 @Component({
   selector: 'app-multigraphcard',
-  styleUrls: ['../legendstyles.css'],
+  styleUrls: ['../legendstyles.css', './multigraphcard.component.css'],
   templateUrl: './multigraphcard.html',
 })
 export class MultiGraphCardComponent implements OnChanges, OnInit {

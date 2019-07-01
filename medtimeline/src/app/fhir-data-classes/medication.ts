@@ -5,7 +5,9 @@
 
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {LabeledClass} from '../fhir-resource-set';
+import {ResultClass} from '../fhir-resource-set';
+import {ResultError} from '../result-error';
+
 import {Dosage} from './dosage';
 
 /**
@@ -14,15 +16,16 @@ import {Dosage} from './dosage';
  * This is not a FHIR resource, and differs from the defined Medication
  * documentation at http://hl7.org/fhir/dstu2/medication.html.
  */
-export class ContainedMedication extends LabeledClass {
+export class ContainedMedication extends ResultClass {
   readonly code: RxNormCode;
   readonly dosage: Dosage;
   readonly id: string;
-  constructor(json: any, ingredients: Map<string, any>) {
-    super(json.code ? json.code.text : null);
+  constructor(json: any, ingredients: Map<string, any>, requestId: string) {
+    super(json.code ? json.code.text : null, requestId);
     // We want to construct new Medications for jsons containing RxNorm codes.
     if (json.resourceType !== 'Medication') {
-      throw Error('Resource must be of type Medication');
+      throw new ResultError(
+          new Set([this.requestId]), 'Resource must be of type Medication');
     }
     if (json.code) {
       if (json.code.coding) {
@@ -41,12 +44,15 @@ export class ContainedMedication extends LabeledClass {
       }
     }
     if (!this.code) {
-      throw Error('Medication must have RxNorm code to be useful');
+      throw new ResultError(
+          new Set([this.requestId]),
+          'Medication must have RxNorm code to be useful');
     }
     this.id = json.id;
     const reference = ingredients.get(this.id);
     if (!reference) {
-      throw Error(
+      throw new ResultError(
+          new Set([this.requestId]),
           'Medication info must have been contained in ingredient list.');
     }
     if (this.id) {

@@ -19,8 +19,8 @@ import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 import {FhirService} from './../fhir.service';
 // tslint:disable-next-line:max-line-length
-import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservationJson} from './../test_utils';
-import {makeSampleDiscreteObservationJson} from './../test_utils';
+import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation} from './../test_utils';
+import {makeSampleDiscreteObservation, makeSampleDiscreteObservationJson} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
 describe('LabeledSeries', () => {
@@ -54,12 +54,12 @@ describe('LabeledSeries', () => {
 
   it('fromObservationSet should pass through coordinates', () => {
     const obsSet = new ObservationSet([
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(1, DateTime.utc(1988, 3, 23)))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(10, DateTime.utc(1988, 3, 24)))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(100, DateTime.utc(1988, 3, 25))))
+      new AnnotatedObservation(
+          makeSampleObservation(1, DateTime.utc(1988, 3, 23))),
+      new AnnotatedObservation(
+          makeSampleObservation(10, DateTime.utc(1988, 3, 24))),
+      new AnnotatedObservation(
+          makeSampleObservation(100, DateTime.utc(1988, 3, 25)))
     ]);
     const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
     expect(lblSeries.coordinates).toEqual([
@@ -70,13 +70,13 @@ describe('LabeledSeries', () => {
 
   it('fromObservationSet should mark abnormal coordinates', () => {
     const obsSet = new ObservationSet([
-      new AnnotatedObservation(new Observation(makeSampleObservationJson(
-          1, DateTime.utc(1988, 3, 23), undefined, 'A'))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(10, DateTime.utc(1988, 3, 24)))),
+      new AnnotatedObservation(
+          makeSampleObservation(1, DateTime.utc(1988, 3, 23), undefined, 'A')),
+      new AnnotatedObservation(
+          makeSampleObservation(10, DateTime.utc(1988, 3, 24))),
       // This one is out of range.
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(100, DateTime.utc(1988, 3, 25))))
+      new AnnotatedObservation(
+          makeSampleObservation(100, DateTime.utc(1988, 3, 25)))
     ]);
     const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
     expect(Array.from(lblSeries.abnormalCoordinates)).toEqual([
@@ -88,12 +88,12 @@ describe('LabeledSeries', () => {
          ' to include all points even if they are outside the normal range',
      () => {
        const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(1, DateTime.utc(1988, 3, 23), [1, 90]))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             10, DateTime.utc(1988, 3, 24), [1, 90]))),
-         new AnnotatedObservation(new Observation(makeSampleObservationJson(
-             100, DateTime.utc(1988, 3, 25), [1, 90])))
+         new AnnotatedObservation(
+             makeSampleObservation(1, DateTime.utc(1988, 3, 23), [1, 90])),
+         new AnnotatedObservation(
+             makeSampleObservation(10, DateTime.utc(1988, 3, 24), [1, 90])),
+         new AnnotatedObservation(
+             makeSampleObservation(100, DateTime.utc(1988, 3, 25), [1, 90]))
        ]);
 
        const lblSeries = LabeledSeries.fromObservationSet(obsSet, []);
@@ -102,12 +102,12 @@ describe('LabeledSeries', () => {
 
   it('fromObservationSet should add encounter endpoints to series', () => {
     const obsSet = new ObservationSet([
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(1, DateTime.utc(2018, 9, 11)))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(10, DateTime.utc(2018, 9, 12)))),
-      new AnnotatedObservation(new Observation(
-          makeSampleObservationJson(100, DateTime.utc(2018, 9, 14))))
+      new AnnotatedObservation(
+          makeSampleObservation(1, DateTime.utc(2018, 9, 11))),
+      new AnnotatedObservation(
+          makeSampleObservation(10, DateTime.utc(2018, 9, 12))),
+      new AnnotatedObservation(
+          makeSampleObservation(100, DateTime.utc(2018, 9, 14)))
     ]);
     const lblSeries = LabeledSeries.fromObservationSet(obsSet, [encounter]);
     expect(lblSeries.coordinates).toEqual([
@@ -128,15 +128,12 @@ describe('LabeledSeries', () => {
          ' with all points at the same y-Value',
      () => {
        const obsSet = new ObservationSet([
+         new AnnotatedObservation(makeSampleDiscreteObservation(
+             'yellow', DateTime.utc(1988, 3, 23))),
          new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'yellow', DateTime.utc(1988, 3, 23)))),
+             makeSampleDiscreteObservation('red', DateTime.utc(1988, 3, 24))),
          new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'red', DateTime.utc(1988, 3, 24)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'blue', DateTime.utc(1988, 3, 25))))
+             makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 25)))
        ]);
 
        const lblSeries =
@@ -150,15 +147,12 @@ describe('LabeledSeries', () => {
   it('fromObservationSetDiscrete should mark qualitative abnormal coordinates',
      () => {
        const obsSet = new ObservationSet([
+         new AnnotatedObservation(makeSampleDiscreteObservation(
+             'yellow', DateTime.utc(1988, 3, 23))),
          new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'yellow', DateTime.utc(1988, 3, 23)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'red', DateTime.utc(1988, 3, 24)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'blue', DateTime.utc(1988, 3, 25), 'A')))
+             makeSampleDiscreteObservation('red', DateTime.utc(1988, 3, 24))),
+         new AnnotatedObservation(makeSampleDiscreteObservation(
+             'blue', DateTime.utc(1988, 3, 25), 'A'))
        ]);
 
        const lblSeries =
@@ -171,13 +165,12 @@ describe('LabeledSeries', () => {
   it('fromObservationSetDiscrete should mark quantitative abnormal coordinates ' +
          ' when they are out of the numerical range',
      () => {
-       const quantJson = makeSampleObservationJson(
-           1, DateTime.utc(1988, 3, 24), [-1000, -999]);
+       const quant =
+           makeSampleObservation(1, DateTime.utc(1988, 3, 24), [-1000, -999]);
 
-       const quant = new Observation(quantJson);
        const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(1, DateTime.utc(1988, 3, 22), [0, 2]))),
+         new AnnotatedObservation(
+             makeSampleObservation(1, DateTime.utc(1988, 3, 22), [0, 2])),
          new AnnotatedObservation(quant),
        ]);
 
@@ -191,21 +184,23 @@ describe('LabeledSeries', () => {
   it('fromObservationSetDiscrete should mark qualitative abnormal coordinates ' +
          ' with non-standard valueset coding',
      () => {
+       const requestId = '1234';
        const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation({
-           code: {
-             coding: [{system: 'http://loinc.org', code: '4090-7'}],
-             text: 'Vanc pk'
-           },
-           effectiveDateTime: '2019-02-14T00:00:00.000Z',
-           interpretation: {text: 'ABN'},
-           resourceType: 'Observation',
-           status: 'final',
-           valueCodeableConcept: {text: 'Trace graded/hpf'}
-         })),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'red', DateTime.utc(1988, 3, 24)))),
+         new AnnotatedObservation(new Observation(
+             {
+               code: {
+                 coding: [{system: 'http://loinc.org', code: '4090-7'}],
+                 text: 'Vanc pk'
+               },
+               effectiveDateTime: '2019-02-14T00:00:00.000Z',
+               interpretation: {text: 'ABN'},
+               resourceType: 'Observation',
+               status: 'final',
+               valueCodeableConcept: {text: 'Trace graded/hpf'}
+             },
+             requestId)),
+         new AnnotatedObservation(makeSampleDiscreteObservation(
+             'red', DateTime.utc(1988, 3, 24), 'N', requestId)),
        ]);
 
        const lblSeries =
@@ -218,13 +213,12 @@ describe('LabeledSeries', () => {
   it('fromObservationSetDiscrete should mark quantitative abnormal coordinates ' +
          ' when they are marked abnormal of the numerical range',
      () => {
-       const quantJson = makeSampleObservationJson(
+       const quant = makeSampleObservation(
            1, DateTime.utc(1988, 3, 24), [-1000, 999], 'A');
 
-       const quant = new Observation(quantJson);
        const obsSet = new ObservationSet([
-         new AnnotatedObservation(new Observation(
-             makeSampleObservationJson(1, DateTime.utc(1988, 3, 22), [0, 2]))),
+         new AnnotatedObservation(
+             makeSampleObservation(1, DateTime.utc(1988, 3, 22), [0, 2])),
          new AnnotatedObservation(quant)
        ]);
 
@@ -238,15 +232,12 @@ describe('LabeledSeries', () => {
   it('fromObservationSetDiscrete should add encounter endpoints to series',
      () => {
        const obsSet = new ObservationSet([
+         new AnnotatedObservation(makeSampleDiscreteObservation(
+             'yellow', DateTime.utc(2018, 9, 11))),
          new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'yellow', DateTime.utc(2018, 9, 11)))),
+             makeSampleDiscreteObservation('red', DateTime.utc(2018, 9, 12))),
          new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'red', DateTime.utc(2018, 9, 12)))),
-         new AnnotatedObservation(
-             new Observation(makeSampleDiscreteObservationJson(
-                 'blue', DateTime.utc(2018, 9, 14))))
+             makeSampleDiscreteObservation('blue', DateTime.utc(2018, 9, 14)))
        ]);
 
        const lblSeries = LabeledSeries.fromObservationSetsDiscrete(

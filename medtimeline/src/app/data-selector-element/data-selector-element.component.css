@@ -19,10 +19,6 @@
   padding-left: 5px !important;
 }
 
-::ng-deep .mat-expansion-panel-body {
-  padding: 0px !important;
-}
-
 .label {
   height: fit-content;
   line-height: 15px;

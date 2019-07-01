@@ -20,15 +20,23 @@ import {StubFhirService} from '../test_utils';
 
 import {TimelineControllerComponent} from './timeline-controller.component';
 
+const REQUEST_ID = '1234';
+
 const encounters = [
-  new Encounter({
-    identifier: 'encounter1',
-    period: {start: '1988-03-23T00:11:00.000Z', end: '1988-03-28T00:23:00.000Z'}
-  }),
-  new Encounter({
-    identifier: 'encounter2',
-    period: {start: '1987-05-13T00:00:00.000Z', end: '1987-05-20T00:00:00.000Z'}
-  })
+  new Encounter(
+      {
+        identifier: 'encounter1',
+        period:
+            {start: '1988-03-23T00:11:00.000Z', end: '1988-03-28T00:23:00.000Z'}
+      },
+      REQUEST_ID),
+  new Encounter(
+      {
+        identifier: 'encounter2',
+        period:
+            {start: '1987-05-13T00:00:00.000Z', end: '1987-05-20T00:00:00.000Z'}
+      },
+      REQUEST_ID)
 ];
 
 describe('TimelineControllerComponent with encounters', () => {
