@@ -261,13 +261,12 @@ var map = {
 
 function webpackContext(req) {
 	var id = webpackContextResolve(req);
-	var module = __webpack_require__(id);
-	return module;
+	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
 	var id = map[req];
 	if(!(id + 1)) { // check for number or string
-		var e = new Error('Cannot find module "' + req + '".');
+		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
@@ -293,7 +292,7 @@ function webpackEmptyAsyncContext(req) {
 	// Here Promise.resolve().then() is used instead of new Promise() to prevent
 	// uncaught exception popping up in devtools
 	return Promise.resolve().then(function() {
-		var e = new Error('Cannot find module "' + req + '".');
+		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	});
@@ -363,7 +362,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -628,7 +627,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  padding: 15px;\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -ms-flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -ms-flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n"
+module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  padding: 15px;\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0VBQ3hDLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7RUFDbkMsYUFBYTtFQUNiLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLDRCQUFzQjtFQUF0Qiw2QkFBc0I7VUFBdEIsc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxnREFBZ0Q7RUFDaEQsMkJBQTJCLEVBQUUsZUFBZTtFQUM1Qyx5QkFBeUIsRUFBRSxXQUFXO0tBQ25DLHNCQUFzQixFQUFFLFlBQVk7TUFDbkMscUJBQXFCLEVBQUUsMkJBQTJCO1VBQzlDLGlCQUFpQixFQUFFLHFCQUFxQjtBQUNsRDs7QUFFQTtFQUNFLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQjtFQUNwQixZQUFZO0VBQ1osNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0IsRUFDTSxhQUFhO0FBQzNDOztBQUVBO0VBQ0UsbUJBQVk7VUFBWixZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtBQUNqQzs7QUFFQTtFQUNFLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7R0FDRyxnQ0FBZ0M7RUFDakMsNEZBQThEO0VBQTlELDhEQUE4RDtFQUM5RCxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxnRUFBZ0U7RUFDaEUscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsb0JBQW9CLEdBQUcsYUFBYTtBQUN0Qzs7QUFFQTtFQUNFLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CO0VBRW5CLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7RUFDRSw4QkFBbUI7RUFBbkIsNkJBQW1CO1VBQW5CLG1CQUFtQjtFQUVuQixvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0FBQ3JDIiwiZmlsZSI6InNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZENvbnRhaW5lciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMyMDIwMjA7IC8qIEdSRVlfOTAwICovXG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xuICBwYWRkaW5nOiAxNXB4O1xuICB3aWR0aDogMTAwJTtcbiAgbWluLWhlaWdodDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgLyogRGlzYWJsZSBzZWxlY3RpbmcvaGlnaGxpZ2h0aW5nIG9uIHRoZSBwYWdlLiAqL1xuICAtd2Via2l0LXRvdWNoLWNhbGxvdXQ6IG5vbmU7IC8qIGlPUyBTYWZhcmkgKi9cbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTsgLyogU2FmYXJpICovXG4gICAgIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7IC8qIEZpcmVmb3ggKi9cbiAgICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTsgLyogSW50ZXJuZXQgRXhwbG9yZXIvRWRnZSAqL1xuICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lOyAvKiBDaHJvbWUgYW5kIE9wZXJhICovXG59XG5cbi5kcmFnZ2FibGUge1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbiAgaGVpZ2h0OiAxMDAlO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbn1cblxuLmZsZXhTcGFjZXIge1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbjo6bmctZGVlcCAubWF0LXRvb2xiYXIsIC5tYXQtdG9vbGJhciBoMSwgLm1hdC10b29sYmFyIGgyLCAubWF0LXRvb2xiYXIgaDMsIC5tYXQtdG9vbGJhciBoNCwgLm1hdC10b29sYmFyIGg1LCAubWF0LXRvb2xiYXIgaDYsIC5tYXQtdG9vbGJhci1yb3csIC5tYXQtdG9vbGJhci1zaW5nbGUtcm93IHtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG59XG5cbi5tYXQtdG9vbGJhciB7XG4gICAvKiBEZWVwIFB1cnBsZSA4MDAgdG8gUGluayA5MDAgKi9cbiAgYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNDUyN0EwICwgIzg3MEQ0RSk7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIC5ndS11bnNlbGVjdGFibGUgYXBwLWRhdGEtc2VsZWN0b3ItbWVudSB7XG4gIC8qIEhpZGUgdGhlIGRhdGEgc2VsZWN0b3IgbWVudXMgd2hpbGUgYSBjYXJkIGlzIGJlaW5nIGRyYWdnZWQuICovXG4gIG9wYWNpdHk6IDAgIWltcG9ydGFudDtcbn1cblxuLm1ha2VHdXR0ZXJzIHtcbiAgcGFkZGluZy1yaWdodDogNTBweDtcbiAgcGFkZGluZy1sZWZ0OiA1MHB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICB3aGl0ZS1zcGFjZTogdW5zZXQgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIC50aW1lbGluZVRvb2xiYXJNYWluIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDE1cHg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAgLyogRm9yIElFMTAgKi9cbn1cblxuOjpuZy1kZWVwIGFwcC1jYXJkIHtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xufVxuXG46Om5nLWRlZXAgYXBwLWRhdGEtc2VsZWN0b3ItbWVudSB7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogcm93O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -935,8 +934,8 @@ var CardcontainerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cardcontainer',
             template: __webpack_require__(/*! ./cardcontainer.component.html */ "./src/app/cardcontainer/cardcontainer.component.html"),
-            styles: [__webpack_require__(/*! ./cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")],
             entryComponents: [_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__["DeleteDialogComponent"]],
+            styles: [__webpack_require__(/*! ./cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
         }),
         __param(7, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [ng2_dragula__WEBPACK_IMPORTED_MODULE_4__["DragulaService"],
@@ -961,7 +960,7 @@ var CardcontainerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-card {\n  cursor: -webkit-grab;\n  cursor: grab;\n  margin-top:0px;\n  margin-bottom:0px;\n  margin-left: 35px; /* Leave space for the \"add card\" button. */\n  padding-top: 0px;\n  padding-bottom: 0px;\n  padding-right: 20px;\n  padding-left: 0px;\n  -webkit-transition: -webkit-box-shadow .1s;\n  transition: -webkit-box-shadow .1s;\n  transition: box-shadow .1s;\n  transition: box-shadow .1s, -webkit-box-shadow .1s;\n  background-color: rgb(248, 248, 248);\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -ms-flex-direction: row; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n  width: 100%;\n  max-width: 100%;\n}\n\n::ng-deep .inEditMode .mat-card {\n  background-color: rgb(226, 226, 226) !important;\n}\n\n.mat-card:hover {\n  background-color: rgb(240, 240, 240);\n  -webkit-box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);\n          box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);\n}\n\n.colorbar {\n  margin-right: 6px;\n  min-width: 24px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 0%;\n  -ms-flex: 0 0 0%; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center; /* Align content: center conversion for IE10 */\n  -webkit-box-pack: center;\n          justify-content: center;\n  -ms-flex-pack: center;  /* Justify content: center conversion for IE10 */\n  align-self: stretch;\n  -ms-flex-item-align: stretch;  /* Align self: stretch conversion for IE10 */\n}\n\n.mat-icon {\n  color: rgb(34, 44, 66);\n  cursor: pointer;\n  opacity: .3;\n  -webkit-transition: opacity .3s;\n  transition: opacity .3s;\n}\n\n.removeCardButton {\n  opacity: 0;\n}\n\n.mat-card:hover .mat-icon {\n  opacity: .8;\n}\n\n.mat-card:hover .dragCardIcon.mat-icon {\n  opacity: .4;\n}\n\n.dragCardIcon {\n  opacity: 0;\n  margin-bottom: 15px;\n}\n\n.labelColumn {\n  padding: 3px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.label {\n  width: 100%;\n  word-wrap: break-word;\n  -webkit-box-flex: 1;\n          flex: 1 1 auto;\n  -ms-flex: 1 1 auto; /* For IE10 */\n  font-family: 'Montserrat', sans-serif;\n}\n\n::ng-deep .mat-input-element:disabled{\n  color: rgb(0,0,0, .7) !important;\n}\n"
+module.exports = ".mat-card {\n  cursor: -webkit-grab;\n  cursor: grab;\n  margin-top:0px;\n  margin-bottom:0px;\n  margin-left: 35px; /* Leave space for the \"add card\" button. */\n  padding-top: 0px;\n  padding-bottom: 0px;\n  padding-right: 20px;\n  padding-left: 0px;\n  -webkit-transition: box-shadow .1s;\n  transition: box-shadow .1s;\n  background-color: rgb(248, 248, 248);\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n  width: 100%;\n  max-width: 100%;\n}\n\n::ng-deep .inEditMode .mat-card {\n  background-color: rgb(226, 226, 226) !important;\n}\n\n.mat-card:hover {\n  background-color: rgb(240, 240, 240);\n  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);\n}\n\n.colorbar {\n  margin-right: 6px;\n  min-width: 24px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 0%;\n  -ms-flex: 0 0 0%; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center; /* Align content: center conversion for IE10 */\n  -webkit-box-pack: center;\n          justify-content: center;\n  -ms-flex-pack: center;  /* Justify content: center conversion for IE10 */\n  align-self: stretch;\n  -ms-flex-item-align: stretch;  /* Align self: stretch conversion for IE10 */\n}\n\n.mat-icon {\n  color: rgb(34, 44, 66);\n  cursor: pointer;\n  opacity: .3;\n  -webkit-transition: opacity .3s;\n  transition: opacity .3s;\n}\n\n.removeCardButton {\n  opacity: 0;\n}\n\n.mat-card:hover .mat-icon {\n  opacity: .8;\n}\n\n.mat-card:hover .dragCardIcon.mat-icon {\n  opacity: .4;\n}\n\n.dragCardIcon {\n  opacity: 0;\n  margin-bottom: 15px;\n}\n\n.labelColumn {\n  padding: 3px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.label {\n  width: 100%;\n  word-wrap: break-word;\n  -webkit-box-flex: 1;\n          flex: 1 1 auto;\n  -ms-flex: 1 1 auto; /* For IE10 */\n  font-family: 'Montserrat', sans-serif;\n}\n\n::ng-deep .mat-input-element:disabled{\n  color: rgb(0,0,0, .7) !important;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2NhcmQvY2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQVk7RUFBWixZQUFZO0VBQ1osY0FBYztFQUNkLGlCQUFpQjtFQUNqQixpQkFBaUIsRUFBRSwyQ0FBMkM7RUFDOUQsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsaUJBQWlCO0VBQ2pCLGtDQUEwQjtFQUExQiwwQkFBMEI7RUFDMUIsb0NBQW9DO0VBQ3BDLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CLEVBQ00sYUFBYTtFQUN0QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7RUFDL0IsV0FBVztFQUNYLGVBQWU7QUFDakI7O0FBRUE7RUFDRSwrQ0FBK0M7QUFDakQ7O0FBRUE7RUFDRSxvQ0FBb0M7RUFDcEMsOERBQThEO0FBQ2hFOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZiwyQkFBMkI7RUFDM0IsOEJBQThCO0VBQzlCLDRCQUFzQjtFQUF0Qiw2QkFBc0I7VUFBdEIsc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7RUFDL0IscUJBQXFCO0VBQ3JCLDBCQUEwQixFQUFFLDhDQUE4QztFQUMxRSx3QkFBdUI7VUFBdkIsdUJBQXVCO0VBQ3ZCLHFCQUFxQixHQUFHLGdEQUFnRDtFQUN4RSxtQkFBbUI7RUFDbkIsNEJBQTRCLEdBQUcsNENBQTRDO0FBQzdFOztBQUVBO0VBQ0Usc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixXQUFXO0VBQ1gsK0JBQXVCO0VBQXZCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFVBQVU7RUFDVixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0IsRUFDTSxhQUFhO0VBQ3pDLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7RUFDbkMsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtBQUNuQzs7QUFFQTtFQUNFLFdBQVc7RUFDWCxxQkFBcUI7RUFDckIsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtFQUNqQyxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxnQ0FBZ0M7QUFDbEMiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY2FyZC9jYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LWNhcmQge1xuICBjdXJzb3I6IGdyYWI7XG4gIG1hcmdpbi10b3A6MHB4O1xuICBtYXJnaW4tYm90dG9tOjBweDtcbiAgbWFyZ2luLWxlZnQ6IDM1cHg7IC8qIExlYXZlIHNwYWNlIGZvciB0aGUgXCJhZGQgY2FyZFwiIGJ1dHRvbi4gKi9cbiAgcGFkZGluZy10b3A6IDBweDtcbiAgcGFkZGluZy1ib3R0b206IDBweDtcbiAgcGFkZGluZy1yaWdodDogMjBweDtcbiAgcGFkZGluZy1sZWZ0OiAwcHg7XG4gIHRyYW5zaXRpb246IGJveC1zaGFkb3cgLjFzO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQ4LCAyNDgsIDI0OCk7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogcm93OyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG46Om5nLWRlZXAgLmluRWRpdE1vZGUgLm1hdC1jYXJkIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyNiwgMjI2LCAyMjYpICFpbXBvcnRhbnQ7XG59XG5cbi5tYXQtY2FyZDpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyNDAsIDI0MCwgMjQwKTtcbiAgYm94LXNoYWRvdzogMCAwIDhweCByZ2JhKDAsMCwwLC4xOCksMCA4cHggMTZweCByZ2JhKDAsMCwwLC4zNik7XG59XG5cbi5jb2xvcmJhciB7XG4gIG1hcmdpbi1yaWdodDogNnB4O1xuICBtaW4td2lkdGg6IDI0cHg7XG4gIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogNHB4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIGZsZXg6IDAgMCAwJTtcbiAgLW1zLWZsZXg6IDAgMCAwJTsgLyogRm9yIElFMTAgKi9cbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAtbXMtZmxleC1saW5lLXBhY2s6IGNlbnRlcjsgLyogQWxpZ24gY29udGVudDogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIC1tcy1mbGV4LXBhY2s6IGNlbnRlcjsgIC8qIEp1c3RpZnkgY29udGVudDogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgYWxpZ24tc2VsZjogc3RyZXRjaDtcbiAgLW1zLWZsZXgtaXRlbS1hbGlnbjogc3RyZXRjaDsgIC8qIEFsaWduIHNlbGY6IHN0cmV0Y2ggY29udmVyc2lvbiBmb3IgSUUxMCAqL1xufVxuXG4ubWF0LWljb24ge1xuICBjb2xvcjogcmdiKDM0LCA0NCwgNjYpO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIG9wYWNpdHk6IC4zO1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IC4zcztcbn1cblxuLnJlbW92ZUNhcmRCdXR0b24ge1xuICBvcGFjaXR5OiAwO1xufVxuXG4ubWF0LWNhcmQ6aG92ZXIgLm1hdC1pY29uIHtcbiAgb3BhY2l0eTogLjg7XG59XG5cbi5tYXQtY2FyZDpob3ZlciAuZHJhZ0NhcmRJY29uLm1hdC1pY29uIHtcbiAgb3BhY2l0eTogLjQ7XG59XG5cbi5kcmFnQ2FyZEljb24ge1xuICBvcGFjaXR5OiAwO1xuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xufVxuXG4ubGFiZWxDb2x1bW4ge1xuICBwYWRkaW5nOiAzcHg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMCAwIGF1dG87XG4gIC1tcy1mbGV4OiAwIDAgYXV0bzsgLyogRm9yIElFMTAgKi9cbn1cblxuLmxhYmVsIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHdvcmQtd3JhcDogYnJlYWstd29yZDtcbiAgZmxleDogMSAxIGF1dG87XG4gIC1tcy1mbGV4OiAxIDEgYXV0bzsgLyogRm9yIElFMTAgKi9cbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn1cblxuOjpuZy1kZWVwIC5tYXQtaW5wdXQtZWxlbWVudDpkaXNhYmxlZHtcbiAgY29sb3I6IHJnYigwLDAsMCwgLjcpICFpbXBvcnRhbnQ7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1107,7 +1106,7 @@ var CardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ngb-timepicker {\n  font-size: 1rem;\n}\n\n::ng-deep fieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n::ng-deep .ngb-tp {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  -ms-flex-align: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n::ng-deep .ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  -ms-flex-direction: column;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-align: center;\n  -webkit-box-align: center;\n          align-items: center;\n  -ms-flex-pack: distribute;\n  justify-content: space-around;\n}\n\n::ng-deep .ngb-tp-input-container {\n  width: 4em;\n}\n\n::ng-deep .ngb-tp-spacer {\n  width: 50px !important;\n  text-align: center;\n}\n\n::ng-deep .btn-link {\n  font-weight: 400;\n  color: #5E35B1;\n  background-color: transparent;\n  border-width: 1px;\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n::ng-deep .form-control {\n  display: block;\n  width: 100%;\n  padding: .375rem .75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: .25rem;\n}\n\n::ng-deep .ngb-tp-input {\n  text-align: center;\n  width: inherit;\n}\n\n::ng-deep .sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0,0,0,0);\n  white-space: nowrap;\n  -webkit-clip-path: inset(50%);\n  clip-path: inset(50%);\n  border: none;\n}\n\n::ng-deep .mat-error {\n  font-size: 12px;\n}\n\n.mockPlaceholder {\n  font-size: 12px;\n  color: grey;\n  margin-top: 18px;\n}\n\n::ng-deep .dateInput {\n  width: 100px !important;\n}\n\n::ng-deep ngb-datepicker {\n  z-index: 4;\n  background-color:white;\n}\n\n::ng-deep .date {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n::ng-deep .time {\n  display: inline-block;\n  margin-left:30px;\n  vertical-align: middle;\n}\n\n::ng-deep .date .mockPlaceholder {\n  margin-bottom: 20px;\n}\n\n::ng-deep .date .dateInput {\n  margin-bottom: 20px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 400px !important;\n}"
+module.exports = "ngb-timepicker {\n  font-size: 1rem;\n}\n\n::ng-deep fieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n::ng-deep .ngb-tp {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n::ng-deep .ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  justify-content: space-around;\n}\n\n::ng-deep .ngb-tp-input-container {\n  width: 4em;\n}\n\n::ng-deep .ngb-tp-spacer {\n  width: 50px !important;\n  text-align: center;\n}\n\n::ng-deep .btn-link {\n  font-weight: 400;\n  color: #5E35B1;\n  background-color: transparent;\n  border-width: 1px;\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n::ng-deep .form-control {\n  display: block;\n  width: 100%;\n  padding: .375rem .75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: .25rem;\n}\n\n::ng-deep .ngb-tp-input {\n  text-align: center;\n  width: inherit;\n}\n\n::ng-deep .sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0,0,0,0);\n  white-space: nowrap;\n  -webkit-clip-path: inset(50%);\n  clip-path: inset(50%);\n  border: none;\n}\n\n::ng-deep .mat-error {\n  font-size: 12px;\n}\n\n.mockPlaceholder {\n  font-size: 12px;\n  color: grey;\n  margin-top: 18px;\n}\n\n::ng-deep .dateInput {\n  width: 100px !important;\n}\n\n::ng-deep ngb-datepicker {\n  z-index: 4;\n  background-color:white;\n}\n\n::ng-deep .date {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n::ng-deep .time {\n  display: inline-block;\n  margin-left:30px;\n  vertical-align: middle;\n}\n\n::ng-deep .date .mockPlaceholder {\n  margin-bottom: 20px;\n}\n\n::ng-deep .date .dateInput {\n  margin-bottom: 20px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 400px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUtZGlhbG9nL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtFQUNWLFNBQVM7RUFDVCxTQUFTO0FBQ1g7O0FBRUE7RUFFRSxvQkFBYTtFQUFiLGFBQWE7RUFFYix5QkFBbUI7VUFBbkIsbUJBQW1CO0FBQ3JCOztBQUNBO0VBRUUsb0JBQWE7RUFBYixhQUFhO0VBRWIsNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0I7RUFFdEIseUJBQW1CO1VBQW5CLG1CQUFtQjtFQUVuQiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxVQUFVO0FBQ1o7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCw2QkFBNkI7RUFDN0IsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsV0FBVztFQUNYLHVCQUF1QjtFQUN2QixlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCxzQkFBc0I7RUFDdEIsNEJBQTRCO0VBQzVCLHlCQUF5QjtFQUN6QixxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsV0FBVztFQUNYLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsbUJBQW1CO0VBQ25CLG1CQUFtQjtFQUNuQiw2QkFBNkI7RUFDN0IscUJBQXFCO0VBQ3JCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsV0FBVztFQUNYLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFVBQVU7RUFDVixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGdCQUFnQjtFQUNoQixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSw0QkFBNEI7QUFDOUIiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY3VzdG9taXphYmxlLXRpbWVsaW5lL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cvY3VzdG9taXphYmxlLXRpbWVsaW5lLWRpYWxvZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmdiLXRpbWVwaWNrZXIge1xuICBmb250LXNpemU6IDFyZW07XG59XG5cbjo6bmctZGVlcCBmaWVsZHNldCB7XG4gIG1pbi13aWR0aDogMDtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwO1xuICBib3JkZXI6IDA7XG59XG5cbjo6bmctZGVlcCAubmdiLXRwIHtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG46Om5nLWRlZXAgLm5nYi10cC1ob3VyLCAubmdiLXRwLW1lcmlkaWFuLCAubmdiLXRwLW1pbnV0ZSwgLm5nYi10cC1zZWNvbmQge1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbiAgZGlzcGxheTogZmxleDtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC1tcy1mbGV4LXBhY2s6IGRpc3RyaWJ1dGU7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cC1pbnB1dC1jb250YWluZXIge1xuICB3aWR0aDogNGVtO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cC1zcGFjZXIge1xuICB3aWR0aDogNTBweCAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbjo6bmctZGVlcCAuYnRuLWxpbmsge1xuICBmb250LXdlaWdodDogNDAwO1xuICBjb2xvcjogIzVFMzVCMTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci13aWR0aDogMXB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbn1cblxuOjpuZy1kZWVwIC5mb3JtLWNvbnRyb2wge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IC4zNzVyZW0gLjc1cmVtO1xuICBmb250LXNpemU6IDFyZW07XG4gIGxpbmUtaGVpZ2h0OiAxLjU7XG4gIGNvbG9yOiAjNDk1MDU3O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBiYWNrZ3JvdW5kLWNsaXA6IHBhZGRpbmctYm94O1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2VkNGRhO1xuICBib3JkZXItcmFkaXVzOiAuMjVyZW07XG59XG5cbjo6bmctZGVlcCAubmdiLXRwLWlucHV0IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB3aWR0aDogaW5oZXJpdDtcbn1cblxuOjpuZy1kZWVwIC5zci1vbmx5IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMXB4O1xuICBoZWlnaHQ6IDFweDtcbiAgcGFkZGluZzogMDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgY2xpcDogcmVjdCgwLDAsMCwwKTtcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgLXdlYmtpdC1jbGlwLXBhdGg6IGluc2V0KDUwJSk7XG4gIGNsaXAtcGF0aDogaW5zZXQoNTAlKTtcbiAgYm9yZGVyOiBub25lO1xufVxuXG46Om5nLWRlZXAgLm1hdC1lcnJvciB7XG4gIGZvbnQtc2l6ZTogMTJweDtcbn1cblxuLm1vY2tQbGFjZWhvbGRlciB7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgY29sb3I6IGdyZXk7XG4gIG1hcmdpbi10b3A6IDE4cHg7XG59XG5cbjo6bmctZGVlcCAuZGF0ZUlucHV0IHtcbiAgd2lkdGg6IDEwMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBuZ2ItZGF0ZXBpY2tlciB7XG4gIHotaW5kZXg6IDQ7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG59XG5cbjo6bmctZGVlcCAuZGF0ZSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIC50aW1lIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBtYXJnaW4tbGVmdDozMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG46Om5nLWRlZXAgLmRhdGUgLm1vY2tQbGFjZWhvbGRlciB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbjo6bmctZGVlcCAuZGF0ZSAuZGF0ZUlucHV0IHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtZGlhbG9nLWNvbnRhaW5lciB7XG4gIG1heC1oZWlnaHQ6IDQwMHB4ICFpbXBvcnRhbnQ7XG59Il19 */"
 
 /***/ }),
 
@@ -1258,8 +1257,8 @@ var CustomizableTimelineDialogComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-customizable-timeline-dialog',
             template: __webpack_require__(/*! ./customizable-timeline-dialog.component.html */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.html"),
-            styles: [__webpack_require__(/*! ./customizable-timeline-dialog.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.css")],
-            providers: [{ provide: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbDateAdapter"], useClass: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbDateNativeAdapter"] }]
+            providers: [{ provide: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbDateAdapter"], useClass: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbDateNativeAdapter"] }],
+            styles: [__webpack_require__(/*! ./customizable-timeline-dialog.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline-dialog/customizable-timeline-dialog.component.css")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object])
@@ -1278,7 +1277,7 @@ var CustomizableTimelineDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 200px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  -webkit-box-flex: 1;\n          flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}\n"
+module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 200px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  -webkit-box-flex: 1;\n          flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQSwwRUFBMEU7O0FBQzFFO0VBQ0UsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLFlBQVk7QUFDZDs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixpQkFBaUI7RUFDakIsd0JBQXdCO0VBQ3hCLGlCQUFpQjtBQUNuQjs7QUFHQTtFQUNFLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixxQkFBcUI7RUFDckIsc0JBQXNCO0VBQ3RCLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsZUFBZTtFQUNmLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLHlCQUF5QjtFQUN6QixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4Qjs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0I7RUFFdEIsb0JBQWE7RUFBYixhQUFhO0VBQ2Isb0JBQW9CO0VBQ3BCLG1CQUFjO1VBQWQsY0FBYztFQUNkLGtCQUFrQixFQUFFLGFBQWE7QUFDbkMiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY3VzdG9taXphYmxlLXRpbWVsaW5lL2N1c3RvbWl6YWJsZS10aW1lbGluZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOjpuZy1kZWVwIFtjbGFzcyo9XCJ0aW1lbGluZVwiXSAuYzMteGdyaWQtZm9jdXMge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBkZWZhdWx0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAuaW5FZGl0TW9kZSAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBwb2ludGVyICFpbXBvcnRhbnQ7XG59XG5cbi8qIE9ubHkgZGlzcGxheSBpY29ucyBvbiBmbGFncyBpbiB0aGUgQ3VzdG9taXphYmxlR3JhcGggaWYgaW4gZWRpdCBtb2RlLiAqL1xuOjpuZy1kZWVwIGFwcC1jdXN0b21pemFibGUtZ3JhcGguaW5FZGl0TW9kZSAuc2hvd0ljb24ge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBbY2xhc3MqPVwidG9vbHRpcC1jdXN0b21cIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBmb250LXNpemU6IDExcHg7XG4gIGJvcmRlci1zdHlsZTogc29saWQ7XG4gIHBhZGRpbmc6IDNweDtcbiAgYm9yZGVyLXdpZHRoOiAxcHg7XG4gIGJvcmRlci1jb2xvcjogZ3JleTtcbiAgYm9yZGVyLXJhZGl1czogM3B4O1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMjAwcHg7XG4gIG1heC1oZWlnaHQ6IDEwMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtd2hvbGVcIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMHB4O1xuICBtYXgtaGVpZ2h0OiAxMDBweDtcbiAgYm9yZGVyLWxlZnQtc3R5bGU6IHNvbGlkO1xuICBib3JkZXItd2lkdGg6IDFweDtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtdGl0bGUtY3VzdG9tXCJdIHtcbiAgbWFyZ2luOiAwcHg7XG4gIGZvbnQtc2l6ZTogc21hbGw7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWF4LXdpZHRoOiAxMjBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xuICBtaW4td2lkdGg6IDEyMHB4O1xuICBvdmVyZmxvdzogYXV0bztcbiAgbWFyZ2luLXRvcDogNXB4O1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xufVxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtZGV0YWlscy1jdXN0b21cIl0ge1xuICBkaXNwbGF5OiBub25lO1xuICBvdmVyZmxvdzogYXV0bztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xufVxuXG46Om5nLWRlZXAgW2lkKj1cImV4cGFuZFwiXSB7XG4gIHZpc2liaWxpdHk6IGhpZGRlbjtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIFtpZCo9XCJkZWxldGVcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG46Om5nLWRlZXAgW2lkKj1cImVkaXRcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuLmNvbnRlbnRzLWJsb2NrIHtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBmbGV4OiAxIDEgMTAwJTtcbiAgLW1zLWZsZXg6IDEgMSAxMDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1414,7 +1413,18 @@ var CustomizableTimelineComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".legend {\n  cursor: pointer;\n}\n\n/* This is the color swatch for the legends.*/\n\n.legend span {\n  border-style: solid !important;\n  height: 7px;\n  margin: 3px;\n  vertical-align: center;\n  width: 7px;\n}\n\n/* This is a specific style for MultiGraphCard. */\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -ms-flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.axis {\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.mat-body {\n  font-family: 'Work Sans', sans-serif;\n  font-size: 14px;\n}"
+module.exports = ".legend {\n  cursor: pointer;\n}\n\n/* This is the color swatch for the legends.*/\n\n.legend span {\n  border-style: solid !important;\n  height: 7px;\n  margin: 3px;\n  vertical-align: center;\n  width: 7px;\n}\n\n/* This is a specific style for MultiGraphCard. */\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.axis {\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.mat-body {\n  font-family: 'Work Sans', sans-serif;\n  font-size: 14px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2xlZ2VuZHN0eWxlcy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBLDZDQUE2Qzs7QUFDN0M7RUFDRSw4QkFBOEI7RUFDOUIsV0FBVztFQUNYLFdBQVc7RUFDWCxzQkFBc0I7RUFDdEIsVUFBVTtBQUNaOztBQUVBLGlEQUFpRDs7QUFDakQ7RUFDRSw0QkFBc0I7RUFBdEIsNkJBQXNCO1VBQXRCLHNCQUFzQixFQUNNLGFBQWE7RUFDekMsb0JBQWE7RUFBYixhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtFQUNuQyxtQkFBWTtVQUFaLFlBQVk7RUFDWixnQkFBZ0IsRUFBRSxhQUFhO0FBQ2pDOztBQUVBO0VBQ0UsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtBQUNuQzs7QUFFQTtFQUNFLG9DQUFvQztFQUNwQyxlQUFlO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvY2FyZHR5cGVzL2xlZ2VuZHN0eWxlcy5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubGVnZW5kIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4vKiBUaGlzIGlzIHRoZSBjb2xvciBzd2F0Y2ggZm9yIHRoZSBsZWdlbmRzLiovXG4ubGVnZW5kIHNwYW4ge1xuICBib3JkZXItc3R5bGU6IHNvbGlkICFpbXBvcnRhbnQ7XG4gIGhlaWdodDogN3B4O1xuICBtYXJnaW46IDNweDtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgd2lkdGg6IDdweDtcbn1cblxuLyogVGhpcyBpcyBhIHNwZWNpZmljIHN0eWxlIGZvciBNdWx0aUdyYXBoQ2FyZC4gKi9cbi5jb250ZW50cy1ibG9jayB7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uYXhpcyB7XG4gIGZsZXg6IDAgMCBhdXRvO1xuICAtbXMtZmxleDogMCAwIGF1dG87IC8qIEZvciBJRTEwICovXG59XG5cbi5tYXQtYm9keSB7XG4gIGZvbnQtZmFtaWx5OiAnV29yayBTYW5zJywgc2Fucy1zZXJpZjtcbiAgZm9udC1zaXplOiAxNHB4O1xufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/cardtypes/multigraphcard/multigraphcard.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/cardtypes/multigraphcard/multigraphcard.component.css ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n.card-error {\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL211bHRpZ3JhcGhjYXJkL211bHRpZ3JhcGhjYXJkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL2NhcmR0eXBlcy9tdWx0aWdyYXBoY2FyZC9tdWx0aWdyYXBoY2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uY2FyZC1lcnJvciB7XG4gIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcbiAgd29yZC1icmVhazogYnJlYWstYWxsO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1650,8 +1660,8 @@ var MultiGraphCardComponent = /** @class */ (function () {
     MultiGraphCardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-multigraphcard',
-            styles: [__webpack_require__(/*! ../legendstyles.css */ "./src/app/cardtypes/legendstyles.css")],
             template: __webpack_require__(/*! ./multigraphcard.html */ "./src/app/cardtypes/multigraphcard/multigraphcard.html"),
+            styles: [__webpack_require__(/*! ../legendstyles.css */ "./src/app/cardtypes/legendstyles.css"), __webpack_require__(/*! ./multigraphcard.component.css */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.css")]
         })
     ], MultiGraphCardComponent);
     return MultiGraphCardComponent;
@@ -1668,7 +1678,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data.\n        </mat-expansion-panel-header>\n        Technical details: {{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\" class=\"card-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}\n        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -1822,8 +1832,11 @@ var BCHMicrobioCode = /** @class */ (function (_super) {
     function BCHMicrobioCode() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    BCHMicrobioCode.prototype.dataAvailableInAppTimeScope = function () {
-        return Promise.resolve(false);
+    BCHMicrobioCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
+        // This is not an elegant way of implementing this function but since it's
+        // a non-standard API server we aren't going to put much effort into
+        // developing it further at this point.
+        return fhirService.diagnosticReportsPresentWithCodes(new BCHMicrobioCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     BCHMicrobioCode.CODING_STRING = 'http://cerner.com/bch_mapping/';
     return BCHMicrobioCode;
@@ -2004,34 +2017,19 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
     displayGrouping, 
     /** The chart type for this Axis. */
     chartType, 
-    /** Absolute axis bounds for the graph displaying this ResourceCode. */
-    displayBounds, 
-    /**
-     * Whether or not to force the axis bounds, even if a smaller range
-     * containing all the data can be calculated.
-     */
-    forceDisplayBounds, 
     /**
      * The (optional) function that will make an observation into an
      * AnnotatedObservation so that the graph can show the appropriate
      * tooltip.
      */
     makeAnnotated) {
-        if (forceDisplayBounds === void 0) { forceDisplayBounds = false; }
-        var _this = _super.call(this, fhirService, label, resourceCodes, displayGrouping, chartType, displayBounds, forceDisplayBounds) || this;
+        var _this = _super.call(this, fhirService, label, resourceCodes, displayGrouping, chartType) || this;
         _this.fhirService = fhirService;
         _this.label = label;
         _this.resourceCodes = resourceCodes;
         _this.displayGrouping = displayGrouping;
         _this.chartType = chartType;
-        _this.displayBounds = displayBounds;
-        _this.forceDisplayBounds = forceDisplayBounds;
         _this.makeAnnotated = makeAnnotated;
-        // If there's only one resource code in the group, just use its display
-        // bounds as the axis bounds.
-        if (!displayBounds && resourceCodes.length === 1) {
-            _this.displayBounds = resourceCodes[0].displayBounds;
-        }
         return _this;
     }
     /**
@@ -2184,22 +2182,12 @@ var ResourceCodeGroup = /** @class */ (function () {
     /** The display grouping for this resource code group. */
     displayGrouping, 
     /** The chart type for this Axis. */
-    chartType, 
-    /** Absolute axis bounds for the graph displaying this ResourceCode. */
-    displayBounds, 
-    /**
-     * Whether or not to force the axis bounds, even if a smaller range
-     * containing all the data can be calculated.
-     */
-    forceDisplayBounds) {
-        if (forceDisplayBounds === void 0) { forceDisplayBounds = false; }
+    chartType) {
         this.fhirService = fhirService;
         this.label = label;
         this.resourceCodes = resourceCodes;
         this.displayGrouping = displayGrouping;
         this.chartType = chartType;
-        this.displayBounds = displayBounds;
-        this.forceDisplayBounds = forceDisplayBounds;
         // The number of decimal places to show for any value associated with this
         // resource group. The default is 0, to minimize errors caused by unnecessary
         // trailing zeros.
@@ -2347,12 +2335,12 @@ var ResourceCodeManager = /** @class */ (function () {
             var _b = _a[_i], conceptGroup = _b[0], codePairs = _b[1];
             for (var _c = 0, codePairs_1 = codePairs; _c < codePairs_1.length; _c++) {
                 var loinc = codePairs_1[_c];
-                codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, loinc.label, new Array(loinc), conceptGroup, _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, loinc.displayBounds, loinc.forceDisplayBounds), loinc.label)]));
+                codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, loinc.label, new Array(loinc), conceptGroup, _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE), loinc.label)]));
             }
         }
         var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Add the blood pressure LOINCs.
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', ResourceCodeManager_1.bloodPressureLoincs, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [25, 250], false, function (observation, dateRange) {
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', ResourceCodeManager_1.bloodPressureLoincs, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
                 return bpLocation.getResourceSet(dateRange).then(function (obsSet) {
                     return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forBloodPressure(observation, 
                     // We only pass in the first ObservationSet, since we
@@ -2362,19 +2350,19 @@ var ResourceCodeManager = /** @class */ (function () {
                 });
             }), 'Blood Pressure')]));
         var cbc = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [10, 70]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0.5, 30]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [2, 900]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 150]),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbc.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count'));
         var cbcWBC = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Immature Granulocytes', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38518-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Immature Granulocytes', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Lymphocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('736-9', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, [0, 100]),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Immature Granulocytes', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38518-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Immature Granulocytes', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Lymphocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('736-9', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbcWBC.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count White Blood Cell'));
         var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_10__["RXNORM_CODES"];
@@ -2386,8 +2374,7 @@ var ResourceCodeManager = /** @class */ (function () {
         // should be displayed on the same axes.
         var vancMonitoring = [
             vancRxNorm,
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, undefined, // no meaningful y-axis ranges
-            false, function (observation, dateRange) {
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, function (observation, dateRange) {
                 return vancRxNorm.getResourceSet(dateRange).then(function (rxNorms) {
                     // We know that we're only pushing in one RxNorm
                     // so it's safe to grab the first (and only) one in
@@ -2403,7 +2390,7 @@ var ResourceCodeManager = /** @class */ (function () {
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](gentMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Gentamicin'));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Urinalysis', ResourceCodeManager_1.urineGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Urinalysis')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, [0, 100]), 'CSF')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'CSF')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Other Fluid', ResourceCodeManager_1.otherFluidGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Other Fluid')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Stool', ResourceCodeManager_1.stoolGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Stool')]));
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Respiratory', ResourceCodeManager_1.respiratoryGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Respiratory')]));
@@ -2862,7 +2849,7 @@ var RXNORM_CODES = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".previewSave {\n  background-color:#202020; /* GREY_900 */\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px;\n  width: 90%;\n  overflow: auto;\n  max-height: 80%;\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n::ng-deep .previewSave > * {\n  pointer-events: none !important;\n}\n\n.mat-dialog-actions {\n  float: right;\n}\n\nh1 {\n  font-family: 'Montserrat', sans-serif;\n}"
+module.exports = ".previewSave {\n  background-color:#202020; /* GREY_900 */\n  display: -webkit-box;\n  display: flex;\n  padding: 15px;\n  width: 90%;\n  overflow: auto;\n  max-height: 80%;\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n::ng-deep .previewSave > * {\n  pointer-events: none !important;\n}\n\n.mat-dialog-actions {\n  float: right;\n}\n\nh1 {\n  font-family: 'Montserrat', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybS1zYXZlL2NvbmZpcm0tc2F2ZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usd0JBQXdCLEVBQUUsYUFBYTtFQUN2QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixhQUFhO0VBQ2IsVUFBVTtFQUNWLGNBQWM7RUFDZCxlQUFlO0VBQ2YsZ0RBQWdEO0VBQ2hELDJCQUEyQixFQUFFLGVBQWU7RUFDNUMseUJBQXlCLEVBQUUsV0FBVztLQUNuQyxzQkFBc0IsRUFBRSxZQUFZO01BQ25DLHFCQUFxQixFQUFFLDJCQUEyQjtVQUM5QyxpQkFBaUIsRUFBRSxxQkFBcUI7QUFDbEQ7O0FBRUE7RUFDRSwrQkFBK0I7QUFDakM7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkMiLCJmaWxlIjoic3JjL2FwcC9jb25maXJtLXNhdmUvY29uZmlybS1zYXZlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJldmlld1NhdmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiMyMDIwMjA7IC8qIEdSRVlfOTAwICovXG4gIGRpc3BsYXk6IGZsZXg7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIHdpZHRoOiA5MCU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBtYXgtaGVpZ2h0OiA4MCU7XG4gIC8qIERpc2FibGUgc2VsZWN0aW5nL2hpZ2hsaWdodGluZyBvbiB0aGUgcGFnZS4gKi9cbiAgLXdlYmtpdC10b3VjaC1jYWxsb3V0OiBub25lOyAvKiBpT1MgU2FmYXJpICovXG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIFNhZmFyaSAqL1xuICAgICAtbW96LXVzZXItc2VsZWN0OiBub25lOyAvKiBGaXJlZm94ICovXG4gICAgICAtbXMtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIEludGVybmV0IEV4cGxvcmVyL0VkZ2UgKi9cbiAgICAgICAgICB1c2VyLXNlbGVjdDogbm9uZTsgLyogQ2hyb21lIGFuZCBPcGVyYSAqL1xufVxuXG46Om5nLWRlZXAgLnByZXZpZXdTYXZlID4gKiB7XG4gIHBvaW50ZXItZXZlbnRzOiBub25lICFpbXBvcnRhbnQ7XG59XG5cbi5tYXQtZGlhbG9nLWFjdGlvbnMge1xuICBmbG9hdDogcmlnaHQ7XG59XG5cbmgxIHtcbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -2951,7 +2938,7 @@ var ConfirmSaveComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".configurationCard {\n  background-color: transparent;\n  border-left-style: solid;\n  border-left-width: 5px;\n  height: 40px !important;\n  padding: 3px;\n}\n\n\n.disableDragging {\n  color: gray;\n  cursor: not-allowed;\n  padding-top: 4px;\n}\n\n\n.listItem {\n  display: inline-block;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  padding-left: 5px !important;\n}\n\n\n::ng-deep .mat-expansion-panel-body {\n  padding: 0px !important;\n}\n\n\n.label {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  line-height: 15px;\n}\n\n\n.tinytext {\n  font-size: 12px;\n  line-height: 15px;\n}\n"
+module.exports = ".configurationCard {\n  background-color: transparent;\n  border-left-style: solid;\n  border-left-width: 5px;\n  height: 40px !important;\n  padding: 3px;\n}\n\n\n.disableDragging {\n  color: gray;\n  cursor: not-allowed;\n  padding-top: 4px;\n}\n\n\n.listItem {\n  display: inline-block;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  padding-left: 5px !important;\n}\n\n\n.label {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  line-height: 15px;\n}\n\n\n.tinytext {\n  font-size: 12px;\n  line-height: 15px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1lbGVtZW50L2RhdGEtc2VsZWN0b3ItZWxlbWVudC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQTZCO0VBQzdCLHdCQUF3QjtFQUN4QixzQkFBc0I7RUFDdEIsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDs7O0FBR0E7RUFDRSxXQUFXO0VBQ1gsbUJBQW1CO0VBQ25CLGdCQUFnQjtBQUNsQjs7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUI7RUFDbkIsNEJBQTRCO0FBQzlCOzs7QUFFQTtFQUNFLDJCQUFtQjtFQUFuQix3QkFBbUI7RUFBbkIsbUJBQW1CO0VBQ25CLGlCQUFpQjtBQUNuQjs7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvZGF0YS1zZWxlY3Rvci1lbGVtZW50L2RhdGEtc2VsZWN0b3ItZWxlbWVudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbmZpZ3VyYXRpb25DYXJkIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1sZWZ0LXN0eWxlOiBzb2xpZDtcbiAgYm9yZGVyLWxlZnQtd2lkdGg6IDVweDtcbiAgaGVpZ2h0OiA0MHB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmc6IDNweDtcbn1cblxuXG4uZGlzYWJsZURyYWdnaW5nIHtcbiAgY29sb3I6IGdyYXk7XG4gIGN1cnNvcjogbm90LWFsbG93ZWQ7XG4gIHBhZGRpbmctdG9wOiA0cHg7XG59XG5cbi5saXN0SXRlbSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgcGFkZGluZy1sZWZ0OiA1cHggIWltcG9ydGFudDtcbn1cblxuLmxhYmVsIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgbGluZS1oZWlnaHQ6IDE1cHg7XG59XG5cbi50aW55dGV4dCB7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgbGluZS1oZWlnaHQ6IDE1cHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -3050,7 +3037,7 @@ var DataSelectorElementComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-14px;\n  margin-top:-14px;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -ms-flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  -webkit-box-pack: start;\n          justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  -webkit-box-align: center;\n          align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}"
+module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-14px;\n  margin-top:-14px;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  -webkit-box-pack: start;\n          justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  -webkit-box-align: center;\n          align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1tZW51L2RhdGEtc2VsZWN0b3ItbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixhQUFhO0VBQ2IsZ0NBQXdCO0VBQXhCLHdCQUF3QjtFQUN4Qjs0Q0FDMEM7RUFDMUMsbUJBQW1CO0VBQ25CLGdCQUFnQjtFQUNoQixvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CLEVBQ00sYUFBYTtFQUN0QyxxQkFBcUI7RUFDckIsMEJBQTBCLEdBQUcsOENBQThDO0VBQzNFLHVCQUEyQjtVQUEzQiwyQkFBMkI7RUFDM0Isb0JBQW9CLEdBQUcsK0NBQStDO0VBQ3RFLHlCQUFtQjtVQUFuQixtQkFBbUI7RUFDbkIsc0JBQXNCLEdBQUcsNENBQTRDO0VBQ3JFLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsc0RBQXNEO0VBQ3RELDhCQUE4QjtFQUM5QixxQkFBcUI7RUFDckIsbUJBQVk7VUFBWixZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtBQUNqQzs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFFQTtFQUNFLDRCQUE0QjtFQUM1Qiw2QkFBNkI7RUFDN0IsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0Usd0JBQXdCO0VBQ3hCLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxnQkFBZ0IsRUFBRSw4REFBOEQ7QUFDbEY7O0FBRUE7RUFDRSxzQ0FBOEI7RUFBOUIsbUNBQThCO0VBQTlCLDhCQUE4QjtFQUM5Qiw0QkFBNEI7RUFDNUIsdUJBQXVCO0FBQ3pCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLG9DQUFvQztBQUN0QyIsImZpbGUiOiJzcmMvYXBwL2RhdGEtc2VsZWN0b3ItbWVudS9kYXRhLXNlbGVjdG9yLW1lbnUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hZGRDYXJkSW5saW5lIHtcbiAgY29sb3I6IHJnYigyNDgsIDI0OCwgMjQ4KTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBvcGFjaXR5OiAwLjE1O1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuM3M7XG4gIC8qIE5lZWRlZCBzbyB0aGF0IHRoZXJlJ3Mgbm90IGVub3VnaCBzcGFjZSBiZXR3ZWVuIHRoZSBjYXJkcyB0byBob2xkIHRoZSBpY29uLFxuICBqdXN0IGVub3VnaCB0byBob2xkIHRoZSBsaW5lIHBsYWNlaG9sZGVyLiovXG4gIG1hcmdpbi1ib3R0b206LTE0cHg7XG4gIG1hcmdpbi10b3A6LTE0cHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdzsgLyogRm9yIElFMTAgKi9cbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAtbXMtZmxleC1saW5lLXBhY2s6IGNlbnRlcjsgIC8qIEFsaWduIGNvbnRlbnQ6IGNlbnRlciBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgLW1zLWZsZXgtcGFjazogc3RhcnQ7ICAvKiBKdXN0aWZ5IGNvbnRlbnQ6IHN0YXJ0IGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgLW1zLWZsZXgtYWxpZ246IGNlbnRlcjsgIC8qIEFsaWduIGl0ZW1zOiBjZW50ZXIgY29udmVyc2lvbiBmb3IgSUUxMCAqL1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbnNwYW4ge1xuICBib3JkZXI6IDJweCBkYXNoZWQgcmdiKDI0OCwgMjQ4LCAyNDgpO1xuICAvKiBPbmx5IG91dGxpbmUgdGhlIGJvdHRvbSBpbnN0ZWFkIG9mIGFsbCBmb3VyIHNpZGVzLiovXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdHRlZDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbi5hZGRDYXJkSW5saW5lOmhvdmVyIHtcbiAgb3BhY2l0eTogMTtcbn1cblxuLmNvbmNlcHRTZWxlY3RvciB7XG4gIHBhZGRpbmctbGVmdDogMHB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmctcmlnaHQ6IDBweCAhaW1wb3J0YW50O1xuICBtaW4td2lkdGg6IDIwMHB4O1xufVxuXG4ubWFpbkNvbmNlcHRTZWxlY3RvciB7XG4gIGJvcmRlci1sZWZ0LXN0eWxlOiBzb2xpZDtcbiAgYm9yZGVyLWxlZnQtd2lkdGg6IDVweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtbWVudS1pdGVtICB7XG4gIGxpbmUtaGVpZ2h0OiAyMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAubWF0LWxpc3QtaXRlbS1jb250ZW50IHtcbiAgbWFyZ2luLXRvcDogOHB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC1hdXRvY29tcGxldGUtcGFuZWwgLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XG4gIG1hcmdpbi10b3A6IC04cHg7IC8qIFN0eWxpbmcgZm9yIGF1dG9jb21wbGV0ZSBtZW51IGl0ZW1zIG5lZWRzIHRvIGJlIGRpZmZlcmVudC4qL1xufVxuXG46Om5nLWRlZXAgLm1hdC1vcHRpb24ge1xuICBoZWlnaHQ6IGZpdC1jb250ZW50ICFpbXBvcnRhbnQ7XG4gIG92ZXJmbG93OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmc6IDBweCAhaW1wb3J0YW50O1xufVxuXG4uY29uY2VwdEZvcm0ge1xuICBtYXJnaW4tbGVmdDogMTBweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuXG46Om5nLWRlZXAgLmF1dG9NZW51Lm1hdC1tZW51LXBhbmVsIHtcbiAgbWluLXdpZHRoOiAzMDBweDtcbn1cblxuLmNvbmNlcHRGb3JtRmllbGQge1xuICB3aWR0aDogMTAwJTtcbn1cblxuYnV0dG9uIHtcbiAgZm9udC1mYW1pbHk6ICdXb3JrIFNhbnMnLCBzYW5zLXNlcmlmO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -3508,7 +3495,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
      */
     annotationValues) {
         if (annotationValues === void 0) { annotationValues = new Array(); }
-        var _this = _super.call(this, observation.label) || this;
+        var _this = _super.call(this, observation.label, observation.requestId) || this;
         _this.observation = observation;
         _this.annotationValues = annotationValues;
         return _this;
@@ -3602,7 +3589,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         return new AnnotatedObservation(observation, annotations);
     };
     return AnnotatedObservation;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClass"]));
 
 
 
@@ -3621,12 +3608,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReport", function() { return DiagnosticReport; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedDiagnosticReport", function() { return AnnotatedDiagnosticReport; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.ts");
-/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+
 
 
 
@@ -3671,9 +3660,10 @@ var statusToEnumMap = new Map([
  * implementation of the FHIR standard won't allow microbiology retrieval.
  */
 var DiagnosticReport = /** @class */ (function () {
-    function DiagnosticReport(json) {
+    function DiagnosticReport(json, requestId) {
         /** Results in the form of observations */
         this.results = new Array();
+        this.requestId = requestId;
         if (json.id) {
             this.id = json.id;
         }
@@ -3683,20 +3673,19 @@ var DiagnosticReport = /** @class */ (function () {
         for (var _i = 0, contained_1 = contained; _i < contained_1.length; _i++) {
             var rsc = contained_1[_i];
             if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Specimen) {
-                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_2__["Specimen"](rsc));
+                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_3__["Specimen"](rsc, this.requestId));
             }
             else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
-                this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_1__["Observation"](rsc));
+                this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
             }
             // Silently ignore all other contained resource types.
         }
         if (specimens.length > 1) {
-            throw Error('The report cannot have multiple specimens.');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report cannot have multiple specimens.');
         }
         this.specimen = specimens[0];
         if (!json.status) {
-            throw Error('The report needs a status to be useful. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report needs a status to be useful.' + json);
         }
         this.status = statusToEnumMap.get(json.status);
     }
@@ -3711,7 +3700,10 @@ var DiagnosticReport = /** @class */ (function () {
         if (!json || !json.entry) {
             return [];
         }
-        var diagnosticReports = json.entry.map(function (result) { return new DiagnosticReport(result.resource); });
+        // We cannot get the request ID from the Microbiology response. Therefore
+        // we hardcode the request ID to just be a constant string.
+        var requestId = 'Microbiology Request';
+        var diagnosticReports = json.entry.map(function (result) { return new DiagnosticReport(result.resource, requestId); });
         var mapToUpdate = new Map();
         // Get all unique codes for all DiagnosticReport results.
         for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
@@ -3823,25 +3815,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Encounter", function() { return Encounter; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../result-error */ "./src/app/result-error.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+
 
 /**
  * This object represents basic information about an Encounter: what its
  * reason and type were, when it happened, and its ID.
  */
 var Encounter = /** @class */ (function () {
-    function Encounter(json) {
+    function Encounter(json, requestId) {
         this.json = json;
         this.encounterId = json.id;
+        this.requestId = requestId;
         if (!json.period) {
-            throw Error('An encounter must have a time period. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'An encounter must have a time period.' + json);
         }
         if (!json.period.start) {
-            throw Error('An encounter must have a start date. JSON: ' + JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'An encounter must have a start date.', json);
         }
         var startTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.period.start).toLocal();
         var endTime = json.period.end ?
@@ -3851,11 +3845,10 @@ var Encounter = /** @class */ (function () {
             endTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].local();
         }
         if (endTime < startTime) {
-            throw Error('The start time comes before the end time. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The start time comes before the end time.' + json);
         }
         if (startTime > luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].local()) {
-            throw Error('The start time is in the future.. JSON: ' + JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The start time is in the future.', json);
         }
         this.period = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].fromDateTimes(startTime, endTime);
     }
@@ -3883,8 +3876,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 /* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
-/* harmony import */ var _dosage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dosage */ "./src/app/fhir-data-classes/dosage.ts");
-/* harmony import */ var _medication__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./medication */ "./src/app/fhir-data-classes/medication.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _dosage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dosage */ "./src/app/fhir-data-classes/dosage.ts");
+/* harmony import */ var _medication__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./medication */ "./src/app/fhir-data-classes/medication.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3908,6 +3902,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
 /**
  * This object represents a FHIR MedicationAdministration. It does not contain
  * all the information in a standard MedicationAdministration (see
@@ -3921,22 +3916,24 @@ var MedicationAdministration = /** @class */ (function (_super) {
      * a FHIR MedicationAdministration.
      * https://www.hl7.org/fhir/DSTU2/medicationadministration.html
      * @param json A JSON object that represents a FHIR MedicationAdministration.
+     * @param requestId The x-request-id of the request that acquired this
+     *     medication administration's data.
      */
-    function MedicationAdministration(json) {
+    function MedicationAdministration(json, requestId) {
         var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
             json.medicationCodeableConcept ?
                 json.medicationCodeableConcept.text :
-                null) || this;
+                null, requestId) || this;
         _this.json = json;
         _this.MED_RESOURCE_TYPE = 'Medication';
         _this.containedMedications = [];
-        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["LabeledClass"].extractMedicationEncoding(json);
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
         _this.timestamp = json.effectiveTimeDateTime ?
             luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
             (json.effectiveTimePeriod ?
                 luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
                 null);
-        _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_4__["Dosage"](json);
+        _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_5__["Dosage"](json);
         _this.wasNotGiven = json.wasNotGiven;
         _this.medicationOrderId = json.prescription && json.prescription.reference ?
             json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
@@ -3972,7 +3969,7 @@ var MedicationAdministration = /** @class */ (function (_super) {
                 // containing the RxNorms for each ingredient.
                 for (var _b = 0, _c = json.contained; _b < _c.length; _b++) {
                     var ing = _c[_b];
-                    _this.containedMedications.push(new _medication__WEBPACK_IMPORTED_MODULE_5__["ContainedMedication"](ing, ingredientReferences));
+                    _this.containedMedications.push(new _medication__WEBPACK_IMPORTED_MODULE_6__["ContainedMedication"](ing, ingredientReferences, _this.requestId));
                 }
             }
         }
@@ -3985,15 +3982,14 @@ var MedicationAdministration = /** @class */ (function (_super) {
             if (_this.containedMedications.length === 0 ||
                 (_this.containedMedications.length > 0 &&
                     _this.containedMedications.every(function (med) { return (med.code === undefined); }))) {
-                throw Error('JSON must include RxNormCode and a label' +
-                    ' to be included as a MedicationAdministration. JSON: ' +
-                    JSON.stringify(json));
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_4__["ResultError"](new Set([_this.requestId]), 'JSON must include RxNormCode and a label' +
+                    ' to be included as a MedicationAdministration.', json);
             }
         }
         return _this;
     }
     return MedicationAdministration;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"]));
 
 /**
  * A set of MedicalAdministrations that belong together as part of the same
@@ -4011,17 +4007,17 @@ var MedicationAdministrationSet = /** @class */ (function (_super) {
      */
     function MedicationAdministrationSet(medicationAdministrationList) {
         var _this = _super.call(this, medicationAdministrationList) || this;
+        var requestIdsString = Array.from(_this.requestIds).join(', ');
         var rxNorms = medicationAdministrationList.map(function (x) { return x.medAdministration.rxNormCode; });
         if (new Set(rxNorms).size > 1) {
-            throw Error('Different RxNorms for administrations: ' + rxNorms);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_4__["ResultError"](_this.requestIds, "Different RxNorms for administrations: " + rxNorms + ".");
         }
         _this.rxNormCode = rxNorms[0];
         _this.minDose = Math.min.apply(Math, medicationAdministrationList.map(function (x) { return x.medAdministration.dosage.quantity; }));
         _this.maxDose = Math.max.apply(Math, medicationAdministrationList.map(function (x) { return x.medAdministration.dosage.quantity; }));
         var units = new Set(medicationAdministrationList.map(function (x) { return x.medAdministration.dosage.unit; }));
         if (units.size > 1) {
-            throw Error('Different units in the administration set: ' +
-                Array.from(units.values()));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_4__["ResultError"](_this.requestIds, "Different units in the administration set: " + Array.from(units.values()) + ".");
         }
         _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_3__["fixUnitAbbreviations"])(Array.from(units.values())[0]);
         return _this;
@@ -4036,7 +4032,7 @@ var MedicationAdministrationSet = /** @class */ (function (_super) {
 var AnnotatedAdministration = /** @class */ (function (_super) {
     __extends(AnnotatedAdministration, _super);
     function AnnotatedAdministration(medAdmin, doseInOrder, doseDay, prevDose) {
-        var _this = _super.call(this, medAdmin.label) || this;
+        var _this = _super.call(this, medAdmin.label, medAdmin.requestId) || this;
         _this.medAdministration = medAdmin;
         _this.doseInOrder = doseInOrder;
         _this.doseDay = doseDay;
@@ -4044,7 +4040,7 @@ var AnnotatedAdministration = /** @class */ (function (_super) {
         return _this;
     }
     return AnnotatedAdministration;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"]));
 
 
 
@@ -4063,7 +4059,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderSet", function() { return MedicationOrderSet; });
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 /* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
-/* harmony import */ var _medication_administration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _medication_administration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4084,6 +4081,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
 /**
  * This object represents a FHIR MedicationOrder. It does not contain
  * all the information in a standard MedicationOrder (see
@@ -4096,8 +4094,10 @@ var MedicationOrder = /** @class */ (function (_super) {
      * Makes an MedicationOrder out of a list of MedicationAdministrations.
      * https://www.hl7.org/fhir/DSTU2/medicationorder.html
      * @param json The json representing this MedicationOrder.
+     * @param requestId The x-request-id of the request that acquired this
+     *     medication order's data.
      */
-    function MedicationOrder(json) {
+    function MedicationOrder(json, requestId) {
         var _this = 
         // A MedicationOrder's label is one of the following in order of preference:
         // 1) the medication reference's display anme
@@ -4106,7 +4106,7 @@ var MedicationOrder = /** @class */ (function (_super) {
         _super.call(this, json.medicationReference ? json.medicationReference.display :
             json.medicationCodeableConcept ?
                 json.medicationCodeableConcept.text :
-                json.id) || this;
+                json.id, requestId) || this;
         _this.json = json;
         _this.dosageRetrievalError = 'Could not retrieve dosage instructions.';
         // By default, we set the instruction message as the retrieval error message,
@@ -4114,22 +4114,20 @@ var MedicationOrder = /** @class */ (function (_super) {
         _this.dosageInstruction = _this.dosageRetrievalError;
         if (json.dosageInstruction && json.dosageInstruction[0]) {
             if (json.dosageInstruction.length > 1) {
-                throw Error('JSON must only include one dosage instruction.');
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'JSON must only include one dosage instruction.', json);
             }
             _this.dosageInstruction = json.dosageInstruction[0].text;
         }
         _this.orderId = json.id;
-        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["LabeledClass"].extractMedicationEncoding(json);
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["ResultClass"].extractMedicationEncoding(json);
         if (!(_this.rxNormCode && _this.label)) {
-            throw Error('JSON must include RxNormCode and a label' +
-                ' to be included as a MedicationOrder. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'JSON must include RxNormCode and a label to be included as a MedicationOrder.', json);
         }
         // Check this MedicationOrder label against the RxNorm label.
         if (_this.label.toLowerCase() !== _this.rxNormCode.label.toLowerCase()) {
-            throw Error('The label for this MedicationOrder\'s RxNorm code doesn\'t match ' +
-                ' the label in the data. MedicationOrder label: ' + _this.label +
-                ' RxNorm label: ' + _this.rxNormCode.label);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), "The label for this MedicationOrder's RxNorm code doesn't match " +
+                ("the label in the data. MedicationOrder label: " + _this.label + ". ") +
+                ("RxNorm label: " + _this.rxNormCode.label + "."));
         }
         return _this;
     }
@@ -4161,11 +4159,11 @@ var MedicationOrder = /** @class */ (function (_super) {
                 // add 1 to the day count and the index for the dose.
                 var dayCount = admin.timestamp.diff(_this.firstAdministration.timestamp)
                     .as('day') + 1;
-                var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_2__["AnnotatedAdministration"](admin, i + 1 /* dose in order starts at 1 */, dayCount, i > 0 ? admins[i - 1] : undefined);
+                var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["AnnotatedAdministration"](admin, i + 1 /* dose in order starts at 1 */, dayCount, i > 0 ? admins[i - 1] : undefined);
                 admins.push(annotated);
             }
             _this.administrationsForOrder =
-                new _medication_administration__WEBPACK_IMPORTED_MODULE_2__["MedicationAdministrationSet"](admins);
+                new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["MedicationAdministrationSet"](admins);
             return _this;
         }, function (rejection) {
             // Throw an error if the construction of the
@@ -4174,7 +4172,7 @@ var MedicationOrder = /** @class */ (function (_super) {
         });
     };
     return MedicationOrder;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["ResultClass"]));
 
 /**
  * A set of MedicationOrders that belong together as part of the same
@@ -4201,14 +4199,15 @@ var MedicationOrderSet = /** @class */ (function (_super) {
         // Set the RxNormCode and MedicationConceptGroup for this
         // MedicationOrderSet.
         if (medicationOrderList.length > 0) {
+            var requestIdsString = Array.from(_this.requestIds).join(', ');
             var firstRxNorm = medicationOrderList[0].rxNormCode;
             if (!firstRxNorm) {
-                throw Error('The first resource does not have an RxNorm code.');
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, 'The first resource does not have an RxNorm code.');
             }
             for (var _i = 0, medicationOrderList_1 = medicationOrderList; _i < medicationOrderList_1.length; _i++) {
                 var rs = medicationOrderList_1[_i];
                 if (rs.rxNormCode !== firstRxNorm) {
-                    throw Error('The resource list in this set has mixed RxNorm codes.');
+                    throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, 'The resource list in this set has mixed RxNorm codes.');
                 }
             }
             _this.rxNormCode = firstRxNorm;
@@ -4217,7 +4216,7 @@ var MedicationOrderSet = /** @class */ (function (_super) {
             _this.maxDose = Math.max.apply(Math, medicationOrderList.map(function (x) { return x.administrationsForOrder.maxDose; }));
             var units = new Set(medicationOrderList.map(function (x) { return x.administrationsForOrder.unit; }));
             if (units.size > 1) {
-                throw Error('Different units in the order set: ' + Array.from(units.values()));
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, "Different units in the order set: " + Array.from(units.values()));
             }
             _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_1__["fixUnitAbbreviations"])(Array.from(units.values())[0]);
         }
@@ -4243,7 +4242,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContainedMedication", function() { return ContainedMedication; });
 /* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _dosage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dosage */ "./src/app/fhir-data-classes/dosage.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _dosage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dosage */ "./src/app/fhir-data-classes/dosage.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4264,6 +4264,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
 /**
  * This object represents relevant components of a medication contained as part
  * of a MedicationAdministration.
@@ -4272,11 +4273,11 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var ContainedMedication = /** @class */ (function (_super) {
     __extends(ContainedMedication, _super);
-    function ContainedMedication(json, ingredients) {
-        var _this = _super.call(this, json.code ? json.code.text : null) || this;
+    function ContainedMedication(json, ingredients, requestId) {
+        var _this = _super.call(this, json.code ? json.code.text : null, requestId) || this;
         // We want to construct new Medications for jsons containing RxNorm codes.
         if (json.resourceType !== 'Medication') {
-            throw Error('Resource must be of type Medication');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Resource must be of type Medication');
         }
         if (json.code) {
             if (json.code.coding) {
@@ -4294,12 +4295,12 @@ var ContainedMedication = /** @class */ (function (_super) {
             }
         }
         if (!_this.code) {
-            throw Error('Medication must have RxNorm code to be useful');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication must have RxNorm code to be useful');
         }
         _this.id = json.id;
         var reference = ingredients.get(_this.id);
         if (!reference) {
-            throw Error('Medication info must have been contained in ingredient list.');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication info must have been contained in ingredient list.');
         }
         if (_this.id) {
             //  The dosage format is different for contained
@@ -4315,12 +4316,12 @@ var ContainedMedication = /** @class */ (function (_super) {
                     },
                 }
             };
-            _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_2__["Dosage"](dosage);
+            _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_3__["Dosage"](dosage);
         }
         return _this;
     }
     return ContainedMedication;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClass"]));
 
 
 
@@ -4530,7 +4531,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 /* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
-/* harmony import */ var _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4548,6 +4550,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 
@@ -4595,9 +4598,11 @@ var Observation = /** @class */ (function (_super) {
      * Makes an Observation out of a JSON object that represents a
      * a FHIR observation.
      * @param json A JSON object that represents a FHIR observation.
+     * @param requestId The x-request-id of the request that acquired this
+     *     observation's data.
      */
-    function Observation(json) {
-        var _this = _super.call(this, Observation.getLabel(json)) || this;
+    function Observation(json, requestId) {
+        var _this = _super.call(this, Observation.getLabel(json), requestId) || this;
         _this.json = json;
         _this.codes = [];
         _this.innerComponents = [];
@@ -4628,25 +4633,25 @@ var Observation = /** @class */ (function (_super) {
         if (json.interpretation) {
             if (json.interpretation.coding) {
                 var coding = json.interpretation.coding[0];
-                if (coding.system === _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["OBSERVATION_INTERPRETATION_VALUESET_URL"]) {
-                    if (_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.has(coding.code)) {
+                if (coding.system === _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_6__["OBSERVATION_INTERPRETATION_VALUESET_URL"]) {
+                    if (_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_6__["ObservationInterpretation"].codeToObject.has(coding.code)) {
                         _this.interpretation =
-                            _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"].codeToObject.get(coding.code);
+                            _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_6__["ObservationInterpretation"].codeToObject.get(coding.code);
                     }
                     else {
-                        throw Error('Unsupported interpretation code: ' + JSON.stringify(coding));
+                        throw new _result_error__WEBPACK_IMPORTED_MODULE_5__["ResultError"](new Set([_this.requestId]), 'Unsupported interpretation code.', coding);
                     }
                 }
             }
             else if (json.interpretation.text) {
                 // BCH uses a non-standard coding system so we make interpretations on
                 // the fly.
-                _this.interpretation = new _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_5__["ObservationInterpretation"](json.interpretation.text, json.interpretation.text);
+                _this.interpretation = new _observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_6__["ObservationInterpretation"](json.interpretation.text, json.interpretation.text);
             }
         }
         if (json.component) {
             json.component.forEach(function (element) {
-                var innerObs = new Observation(element);
+                var innerObs = new Observation(element, _this.requestId);
                 if (!innerObs.timestamp) {
                     innerObs.timestamp = _this.timestamp;
                 }
@@ -4654,18 +4659,16 @@ var Observation = /** @class */ (function (_super) {
             });
         }
         if (!_this.codes || _this.codes.length === 0) {
-            throw Error('Observations have to have a LOINC code to be useful.' +
-                ' Label: ' + _this.label + '\nJSON: ' + JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_5__["ResultError"](new Set([_this.requestId]), 'Observations have to have a LOINC code to be useful. ', json);
         }
         if (!_this.label) {
-            throw Error('Observations have to have a label to be useful. ' +
-                'JSON: ' + JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_5__["ResultError"](new Set([_this.requestId]), 'Observations have to have a label to be useful.', json);
         }
         // Check the observation label against the LOINC code label.
         if (_this.label.toLowerCase() !== _this.codes[0].label.toLowerCase()) {
-            throw Error('The label for this observation\'s LOINC code doesn\'t match ' +
-                ' the label in the data. Observation label: ' + _this.label +
-                ' LOINC label: ' + _this.codes[0].label);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_5__["ResultError"](new Set([_this.requestId]), "The label for this observation's LOINC code doesn't match " +
+                ("the label in the data. Observation label: " + _this.label + ". ") +
+                ("LOINC label: " + _this.codes[0].label + ". "), json);
         }
         _this.value = json.valueQuantity ? json.valueQuantity : null;
         if (_this.value) {
@@ -4681,8 +4684,8 @@ var Observation = /** @class */ (function (_super) {
             json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
         if (_this.value === null && _this.result === null && !_this.interpretation &&
             (_this.innerComponents && _this.innerComponents.length === 0)) {
-            throw Error('An Observation must have a value, result, inner components, ' +
-                'or an interpretation to be useful. JSON: ' + JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_5__["ResultError"](new Set([_this.requestId]), 'An Observation must have a value, result, inner components, ' +
+                'or an interpretation to be useful.', json);
         }
         // The FHIR standard says that if there's only one range then it should be
         // what is "normal" for that measure. Otherwise they should be labeled.
@@ -4712,7 +4715,7 @@ var Observation = /** @class */ (function (_super) {
         return label;
     };
     return Observation;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__["LabeledClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__["ResultClass"]));
 
 
 
@@ -4730,32 +4733,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Specimen", function() { return Specimen; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+
 
 /**
  * FHIR resource for a Specimen, from the DSTU2 standard.
  * https://www.hl7.org/fhir/DSTU2/specimen.html
  */
 var Specimen = /** @class */ (function () {
-    function Specimen(json) {
+    function Specimen(json, requestId) {
+        this.requestId = requestId;
         if (json.id) {
             this.id = json.id;
         }
         if (!json.type) {
-            throw Error('A specimen must have a type to be useful. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'A specimen must have a type to be useful.', json);
         }
         this.type = json.type.text;
         if (!json.collection) {
-            throw Error('A specimen must have collection information to be useful. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'A specimen must have collection information to be useful.', json);
         }
         if (json.collection.collectedPeriod && json.collection.collectedDateTime) {
-            throw Error('Only collectedPeriod or collectionDateTime should be defined. JSON: ' +
-                JSON.stringify(json));
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'Only collectedPeriod or collectionDateTime should be defined.' +
+                json);
         }
         if (json.collection.collectedPeriod) {
             var collectedPeriod = json.collection.collectedPeriod;
@@ -4803,11 +4807,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
 /* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4853,7 +4856,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var GREATER_OR_EQUAL = 'ge';
 var LESS_OR_EQUAL = 'le';
 // The Cerner implementation has a maximum result return of 100 for
@@ -4872,6 +4874,55 @@ var FhirHttpService = /** @class */ (function (_super) {
         _this.smartApiPromise = new Promise(function (resolve, reject) { return smartOnFhirClient.oauth2.ready(function (smart) { return resolve(smart); }, function (err) { return reject(err); }); });
         return _this;
     }
+    /**
+     * Gets the next page of search results from the smart API. This function
+     * assumes that the same smartApi was used to call the original search.
+     *
+     * @param smartApi The resolved smartOnFhirClient
+     * @param response The response from the previous page of search results
+     * @param results The list of all formatted results processed in previous page
+     *     responses
+     * @param createFunction A function to create a result object from the
+     *     response
+     */
+    FhirHttpService.prototype.getNextSearchResultsPage = function (smartApi, response, results, createFunction) {
+        var _this = this;
+        var requestId = response.headers('x-request-id');
+        var responseData = response.data.entry || [];
+        results = results.concat(responseData.map(function (result) { return createFunction(result.resource, requestId); }));
+        // if there are anymore pages, get the next set of results.
+        if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
+            return smartApi.patient.api.nextPage({ bundle: response.data })
+                .then(function (nextResponse) {
+                return _this.getNextSearchResultsPage(smartApi, nextResponse, results, createFunction);
+            });
+        }
+        return Promise.resolve(results);
+    };
+    /**
+     * Gets all pages of search results for the given query params. Formats
+     * the results using the given createFunction.
+     *
+     * @param smartApi The resolved smartOnFhirClient
+     * @param queryParams the params to pass to the search function
+     * @param createFunction A function to create result objects from
+     *  the response data.
+     */
+    FhirHttpService.prototype.fetchAll = function (smartApi, queryParams, createFunction) {
+        var _this = this;
+        var results = [];
+        return smartApi.patient.api.search(queryParams)
+            .then(function (response) {
+            return _this
+                .getNextSearchResultsPage(smartApi, response, results, createFunction)
+                .then(function (results) {
+                return results;
+            });
+        }, function (rejection) {
+            _this.debugService.logError(rejection);
+            throw rejection;
+        });
+    };
     /**
      * Gets observations from a specified date range with a specific LOINC code.
      * @param code The LOINC code for which to get observations.
@@ -4895,21 +4946,9 @@ var FhirHttpService = /** @class */ (function (_super) {
             }
         };
         return this.smartApiPromise.then(function (smartApi) {
-            return smartApi.patient.api.fetchAll(queryParams)
-                .then(function (results) {
-                return results
-                    .map(function (result) {
-                    return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](result);
-                })
-                    .filter(function (result) { return result.status !==
-                    _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; });
-            }, 
-            // Do not return any Observations for this code if one of
-            // the Observation constructions throws an error.
-            function (rejection) {
-                _this.debugService.logError(rejection);
-                throw rejection;
-            });
+            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](json, requestId); })
+                .then(function (results) { return results.filter(function (result) { return result.status !==
+                _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; }); });
         });
     };
     /**
@@ -4936,29 +4975,12 @@ var FhirHttpService = /** @class */ (function (_super) {
             queryParams.query['_count'] = limitCount;
         }
         return this.smartApiPromise.then(function (smartApi) {
-            return smartApi.patient.api.fetchAll(queryParams)
-                .then(function (results) {
-                return results
-                    .filter(function (result) {
-                    return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["LabeledClass"].extractMedicationEncoding(result) === code;
-                })
-                    .map(function (result) {
-                    try {
-                        return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
-                    }
-                    catch (e) {
-                        _this.debugService.logError(e);
-                        throw e;
-                    }
-                });
-            }, 
-            // Do not return any MedicationAdministrations for
-            // this code if one of the MedicationAdministration
-            // constructions throws an error.
-            function (rejection) {
-                _this.debugService.logError(rejection);
-                throw rejection;
-            });
+            return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
+                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+            })
+                .then(function (results) { return results.filter(function (result) {
+                return result.rxNormCode === code;
+            }); });
         });
     };
     /**
@@ -4971,7 +4993,8 @@ var FhirHttpService = /** @class */ (function (_super) {
             return smartApi.patient.api
                 .read({ type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationOrder, 'id': id })
                 .then(function (result) {
-                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](result.data);
+                var requestId = result.headers('x-request-id');
+                return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](result.data, requestId);
             }, 
             // Do not return any MedicationOrders for
             // this code if one of the MedicationOrder
@@ -4991,24 +5014,18 @@ var FhirHttpService = /** @class */ (function (_super) {
         var queryParams = {
             type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
         };
-        return this.smartApiPromise.then(function (smartApi) {
-            return smartApi.patient.api.fetchAll(queryParams)
-                .then(function (results) {
-                return results
-                    .filter(function (result) { return _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["LabeledClass"].extractMedicationEncoding(result) === code; })
-                    .map(function (result) {
-                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](result);
-                })
-                    .filter(function (admin) { return admin.medicationOrderId === id; });
-            }, 
-            // Do not return any MedicationOrders for
-            // this code if one of the MedicationOrder
-            // constructions throws an error.
-            function (rejection) {
-                _this.debugService.logError(rejection);
-                throw rejection;
+        return this.smartApiPromise.then(function (smartApi) { return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
+            return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+        })
+            .then(function (results) {
+            return results
+                .filter(function (result) {
+                return result.rxNormCode === code;
+            })
+                .filter(function (result) {
+                return result.medicationOrderId === id;
             });
-        });
+        }); });
     };
     /**
      * Gets the encounters for the patient for any encounter that falls in the
@@ -5029,23 +5046,18 @@ var FhirHttpService = /** @class */ (function (_super) {
         // then filter them down to those which intersect with the date range
         // we query, and those that have a start date no earlier than a year prior
         // to now.
-        return this.smartApiPromise.then(function (smartApi) { return smartApi.patient.api.fetchAll(queryParams)
-            .then(function (results) {
-            results =
-                results
-                    .map(function (result) {
-                    return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](result);
+        return this.smartApiPromise.then(function (smartApi) {
+            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](json, requestId); })
+                .then(function (results) {
+                return results
+                    .filter(function (result) {
+                    return dateRange.intersection(result.period) !==
+                        null;
                 })
-                    .filter(function (encounter) {
-                    return dateRange.intersection(encounter.period) !== null;
-                })
-                    .filter(function (encounter) { return encounter.period.start >=
+                    .filter(function (result) { return result.period.start >=
                     _constants__WEBPACK_IMPORTED_MODULE_4__["EARLIEST_ENCOUNTER_START_DATE"]; });
-            return results;
-        }, function (rejection) {
-            _this.debugService.logError(rejection);
-            throw rejection;
-        }); });
+            });
+        });
     };
     /**
      * Saves the current image of the graphs rendered as a DocumentReference
@@ -5100,7 +5112,7 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
         var _this = this;
-        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"]) {
             console.warn('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
@@ -5112,8 +5124,8 @@ var FhirHttpService = /** @class */ (function (_super) {
                 callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('_format', 'json');
-            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].username + ':' +
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].password);
+            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].username + ':' +
+                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].password);
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -5121,7 +5133,7 @@ var FhirHttpService = /** @class */ (function (_super) {
             });
             return _this.http
                 .get([
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].url,
+                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].url,
                 _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
@@ -5135,11 +5147,11 @@ var FhirHttpService = /** @class */ (function (_super) {
     };
     FhirHttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__["SMART_ON_FHIR_CLIENT"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__["SMART_ON_FHIR_CLIENT"])),
         __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
 
 
 
@@ -5152,7 +5164,7 @@ var FhirHttpService = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2ZoaXItbGF1bmNoL2ZoaXItbGF1bmNoLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -5278,25 +5290,28 @@ var FhirLaunchComponent = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/fhir-resource-set.ts ***!
   \**************************************/
-/*! exports provided: LabeledClass, FhirResourceSet */
+/*! exports provided: ResultClass, FhirResourceSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabeledClass", function() { return LabeledClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultClass", function() { return ResultClass; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceSet", function() { return FhirResourceSet; });
 /* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./result-error */ "./src/app/result-error.ts");
+
 
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 /**
- * A class that has a label attribute.
+ * A class that has label and requestId attributes.
  */
-var LabeledClass = /** @class */ (function () {
-    function LabeledClass(label) {
+var ResultClass = /** @class */ (function () {
+    function ResultClass(label, requestId) {
         this.label = label;
+        this.requestId = requestId;
     }
     /**
      * Parses the passed-in JSON and gets out a RxNormCode.
@@ -5306,7 +5321,7 @@ var LabeledClass = /** @class */ (function () {
      * then try to map it back to a RxNorm code. If it can't find a suitable
      * RxNorm code, it will pass back an undefined object.
      */
-    LabeledClass.extractMedicationEncoding = function (json) {
+    ResultClass.extractMedicationEncoding = function (json) {
         var rxNormCode;
         if (json.medicationCodeableConcept) {
             if (json.medicationCodeableConcept.coding) {
@@ -5333,7 +5348,7 @@ var LabeledClass = /** @class */ (function () {
         }
         return rxNormCode;
     };
-    return LabeledClass;
+    return ResultClass;
 }());
 
 /**
@@ -5348,18 +5363,18 @@ var FhirResourceSet = /** @class */ (function () {
      *     a label.
      */
     function FhirResourceSet(resourceList) {
+        this.requestIds = new Set(resourceList.map(function (resource) { return resource.requestId; }));
         if (!resourceList) {
-            throw Error('Resource list is undefined.');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](this.requestIds, 'Resource list is undefined.');
         }
         if (resourceList.length > 0) {
             var firstLabel = resourceList[0].label;
             if (!firstLabel) {
-                throw Error('The first resource does not have a label.');
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](this.requestIds, 'The first resource does not have a label.');
             }
             var allLabels = new Set(resourceList.map(function (rs) { return rs.label.toLowerCase(); }));
             if (allLabels.size !== 1) {
-                throw Error('The resource list in this set has mixed labels: ' +
-                    Array.from(allLabels.values()));
+                throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](this.requestIds, "The resource list in this set has mixed labels: " + Array.from(allLabels.values()));
             }
             this.label = firstLabel;
         }
@@ -5408,8 +5423,10 @@ var FhirService = /** @class */ (function () {
      * @param dateRange The time interval observations should fall between.
      */
     FhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
-        // Just ask for one result to reduce the call time.
-        return this.getObservationsWithCode(code, dateRange, 1)
+        // Cerner says that asking for a limited count of resources can slow down
+        // queries, so we don't restrict a count limit here.
+        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+        return this.getObservationsWithCode(code, dateRange)
             .then(function (obs) { return obs.length > 0; }, function (rejection) {
             // If any Observation for this code results in an error, do not show
             // any Observations at all.
@@ -5457,8 +5474,10 @@ var FhirService = /** @class */ (function () {
      * @param dateRange The time interval observations should fall between.
      */
     FhirService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        // Just ask for one result to reduce the call time.
-        return this.getMedicationAdministrationsWithCode(code, dateRange, 1)
+        // Cerner says that asking for a limited count of resources can slow down
+        // queries, so we don't restrict a count limit here.
+        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+        return this.getMedicationAdministrationsWithCode(code, dateRange)
             .then(function (obs) { return obs.length > 0; }, function (rejection) {
             // If any MedicationAdministration for this code results in an error,
             // do not show any MedicationAdministrations at all.
@@ -6107,17 +6126,17 @@ var LineGraphData = /** @class */ (function (_super) {
     label, 
     /** The LabeledSeries that are a part of this line graph. */
     series, 
-    /** The display bounds of the y-axis. */
-    yAxisDisplayBounds, 
+    /** The minimum and maximum y-values for this data. */
+    yAxisDataBounds, 
     /** The unit for the y-axis of the graph. */
     unit, tooltipMap, tooltipKeyFn, regions, precision, resourceCodeGroup) {
         var _this = _super.call(this, series, tooltipMap, tooltipKeyFn, regions) || this;
         _this.label = label;
-        _this.yAxisDisplayBounds = yAxisDisplayBounds;
+        _this.yAxisDataBounds = yAxisDataBounds;
         _this.unit = unit;
         _this.precision = precision ? precision : 0;
         _this.yTicks =
-            LineGraphData.getYTicks(yAxisDisplayBounds[0], yAxisDisplayBounds[1]);
+            LineGraphData.getYTicks(yAxisDataBounds[0], yAxisDataBounds[1]);
         _this.resourceGroup = resourceCodeGroup;
         return _this;
     }
@@ -6745,8 +6764,12 @@ var Axis = /** @class */ (function () {
             _this.alreadyResolvedData = data;
             return data;
         }, function (rejection) {
-            _this.errorMessage =
-                JSON.stringify(rejection) ? JSON.stringify(rejection) : rejection;
+            if (rejection instanceof Error) {
+                _this.errorMessage = rejection.message;
+            }
+            else {
+                _this.errorMessage = JSON.stringify(rejection, null, 4);
+            }
             return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].emptyData();
         });
     };
@@ -7360,11 +7383,11 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-customizable-graph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
-            styles: [__webpack_require__(/*! ../../cardtypes/customizable-timeline/customizable-timeline.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.css")],
             providers: [{
                     provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return CustomizableGraphComponent_1; })
-                }]
+                }],
+            styles: [__webpack_require__(/*! ../../cardtypes/customizable-timeline/customizable-timeline.component.css */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.css")]
         }),
         __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_5__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
@@ -7383,7 +7406,7 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep canvas {\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  cursor: pointer;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n::ng-deep .c3-tooltip {\n  font-size: 13px;\n  border-collapse: collapse;\n  border-spacing: 0;\n  background-color: #fff;\n  empty-cells: show;\n  -webkit-box-shadow: 7px 7px 12px -9px #777777;\n  box-shadow: 7px 7px 12px -9px #777777;\n  opacity: 0.9;\n}\n::ng-deep table {\n  background: #fff;\n  border: solid 1px #ddd;\n}\n::ng-deep .c3-tooltip tr {\n  border: 1px solid #CCC;\n}\n::ng-deep .c3-tooltip > tbody > tr > th {\n  width: 100%;\n  word-wrap: break-word;\n  background-color: #aaa;\n  font-size: 14px;\n  padding: 2px 5px;\n  text-align: left;\n  color: #FFF;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n  font-size: 13px;\n  padding: 3px 6px;\n  background-color: #fff;\n  border-left: 1px dotted #999;\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n"
+module.exports = "::ng-deep canvas {\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  cursor: pointer;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n::ng-deep .c3-tooltip {\n  font-size: 13px;\n  border-collapse: collapse;\n  border-spacing: 0;\n  background-color: #fff;\n  empty-cells: show;\n  box-shadow: 7px 7px 12px -9px #777777;\n  opacity: 0.9;\n}\n::ng-deep table {\n  background: #fff;\n  border: solid 1px #ddd;\n}\n::ng-deep .c3-tooltip tr {\n  border: 1px solid #CCC;\n}\n::ng-deep .c3-tooltip > tbody > tr > th {\n  width: 100%;\n  word-wrap: break-word;\n  background-color: #aaa;\n  font-size: 14px;\n  padding: 2px 5px;\n  text-align: left;\n  color: #FFF;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n  font-size: 13px;\n  padding: 3px 6px;\n  background-color: #fff;\n  border-left: 1px dotted #999;\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ3JhcGh0eXBlcy9ncmFwaC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxVQUFVO0VBQ1Ysa0JBQWtCO0VBQ2xCLG9CQUFvQjtFQUNwQiw0Q0FBNEM7RUFDNUMsYUFBYTtBQUNmO0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsV0FBVztFQUNYLFlBQVk7RUFDWixrQkFBa0I7QUFDcEI7QUFFQTs7OEJBRThCO0FBRTlCO0VBQ0UsZUFBZTtFQUNmLHlCQUF5QjtFQUN6QixpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLGlCQUFpQjtFQUdqQixxQ0FBcUM7RUFDckMsWUFBWTtBQUNkO0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxzQkFBc0I7QUFDeEI7QUFFQTtFQUNFLFdBQVc7RUFDWCxxQkFBcUI7RUFDckIsc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLFdBQVc7QUFDYjtBQUVBO0VBQ0UsWUFBWTtFQUNaLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsc0JBQXNCO0VBQ3RCLDRCQUE0QjtBQUM5QjtBQUVBO0VBQ0Usd0JBQXdCLEVBQUUsb0JBQW9CO0VBQzlDLDJCQUEyQixFQUFFLG9CQUFvQjtBQUNuRCIsImZpbGUiOiJzcmMvYXBwL2dyYXBodHlwZXMvZ3JhcGguY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOjpuZy1kZWVwIGNhbnZhcyB7XG4gIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuOjpuZy1kZWVwIC5jaGFydGpzLXRvb2x0aXAge1xuICBvcGFjaXR5OiAxO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAvKiBTaG93IHRoZSB0b29sdGlwIGFib3ZlIGV2ZXJ5dGhpbmcgZWxzZS4gKi9cbiAgei1pbmRleDogMTAwMDtcbn1cblxuOjpuZy1kZWVwIC5jaGFydGpzLXRvb2x0aXAta2V5IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB3aWR0aDogMTBweDtcbiAgaGVpZ2h0OiAxMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5cbi8qIEFsbCB0aGUgYmVsb3cgc3R5bGVzIGFwcGx5IHRvIGVsZW1lbnRzIHdpdGhpbiB0aGUgZ3JhcGhzLiBCZWNhdXNlIHRoZXNlXG5hcmUgbmVzdGVkIGluc2lkZSB0aGUgY29tcG9uZW50cyBhbmQgd2l0aGluIEMzIGRpdnMsIHdlIGhhdmUgdG8gcHJlZml4IHRoZVxuc3R5bGUgbmFtZXMgd2l0aCA6Om5nLWRlZXAuICAqL1xuXG46Om5nLWRlZXAgLmMzLXRvb2x0aXAge1xuICBmb250LXNpemU6IDEzcHg7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIGJvcmRlci1zcGFjaW5nOiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBlbXB0eS1jZWxsczogc2hvdztcbiAgLXdlYmtpdC1ib3gtc2hhZG93OiA3cHggN3B4IDEycHggLTlweCAjNzc3Nzc3O1xuICAtbW96LWJveC1zaGFkb3c6IDdweCA3cHggMTJweCAtOXB4ICM3Nzc3Nzc7XG4gIGJveC1zaGFkb3c6IDdweCA3cHggMTJweCAtOXB4ICM3Nzc3Nzc7XG4gIG9wYWNpdHk6IDAuOTtcbn1cblxuOjpuZy1kZWVwIHRhYmxlIHtcbiAgYmFja2dyb3VuZDogI2ZmZjtcbiAgYm9yZGVyOiBzb2xpZCAxcHggI2RkZDtcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwIHRyIHtcbiAgYm9yZGVyOiAxcHggc29saWQgI0NDQztcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwID4gdGJvZHkgPiB0ciA+IHRoIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHdvcmQtd3JhcDogYnJlYWstd29yZDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FhYTtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBwYWRkaW5nOiAycHggNXB4O1xuICB0ZXh0LWFsaWduOiBsZWZ0O1xuICBjb2xvcjogI0ZGRjtcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwIHRkIHtcbiAgd2lkdGg6IDEyNXB4O1xuICBmb250LXNpemU6IDEzcHg7XG4gIHBhZGRpbmc6IDNweCA2cHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gIGJvcmRlci1sZWZ0OiAxcHggZG90dGVkICM5OTk7XG59XG5cbjo6bmctZGVlcCAub3JkZXItcmVnaW9uIHtcbiAgZmlsbDogcmdiKDE3OSwgMTU3LCAyMTkpOyAvKiBTZWNvbmRhcnkgY29sb3IgKi9cbiAgc3Ryb2tlOiAgcmdiKDE3OSwgMTU3LCAyMTkpOyAvKiBTZWNvbmRhcnkgY29sb3IgKi9cbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -7994,17 +8017,6 @@ var LineGraphComponent = /** @class */ (function (_super) {
     LineGraphComponent.prototype.ngOnChanges = function (changes) {
         _super.prototype.ngOnChanges.call(this, changes);
     };
-    LineGraphComponent.prototype.prepareForChartConfiguration = function () {
-        if (this.data.yAxisDisplayBounds) {
-            // We only ever have one y-axis so it's safe to work only on the 0th
-            // subscript here.
-            // Calculate the data range and add a bit of padding at top and bottom
-            // (unless the bottom is zero or the top is 100--those might be
-            // percentages). This reasonably ensures that there's no cropping where
-            // the normal bound labels would get cut off.
-            this.adjustChartYScales(this.data.yAxisDisplayBounds);
-        }
-    };
     LineGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
         // We have to wait until after the data loads up into the graph to iterate
         // over the points and adjust their coloring based on the normal range.
@@ -8026,11 +8038,11 @@ var LineGraphComponent = /** @class */ (function (_super) {
      */
     LineGraphComponent.prototype.addYNormalRange = function () {
         var _this = this;
-        var yDisplayBounds = this.data.yAxisDisplayBounds;
         // Only LineGraphData has y normal bounds.
         if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"])) {
             return;
         }
+        var normalRangeBounds;
         if (this.data.series.length === 1) {
             // Some things are only valid if there are y-axis normal bounds. We
             // also only show normal bounds if there's one data series on the
@@ -8062,25 +8074,23 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 // display bounds accordingly.
                 if (!differentNormalRanges) {
                     this.addGreenRegion(firstNormalRange);
-                    yDisplayBounds = [
-                        Math.min(yDisplayBounds[0], firstNormalRange[0]),
-                        Math.max(yDisplayBounds[1], firstNormalRange[1])
-                    ];
+                    normalRangeBounds = firstNormalRange;
                 }
             }
         }
-        if (this.data.resourceGroup && this.data.resourceGroup.displayBounds) {
-            yDisplayBounds = this.getDisplayBounds(yDisplayBounds[0], yDisplayBounds[1], this.data.resourceGroup);
-        }
-        this.adjustChartYScales(yDisplayBounds);
+        this.adjustChartYScales(normalRangeBounds);
     };
-    LineGraphComponent.prototype.adjustChartYScales = function (yDisplayBounds) {
+    LineGraphComponent.prototype.adjustChartYScales = function (normalRangeBounds) {
         var _this = this;
-        var padding = (yDisplayBounds[1] - yDisplayBounds[0]) * 0.25;
+        var yDisplayBounds = this.getDisplayBounds(normalRangeBounds);
+        // If the display bounds are enforced and all the bounds are the
+        // same, don't pad.
+        var padding = (this.allBoundsAreEnforced() && this.allBoundsAreSame()) ?
+            0 :
+            Math.abs(yDisplayBounds[1] - yDisplayBounds[0]) *
+                LineGraphComponent_1.yAxisPaddingFactor;
         this.chartOptions.scales.yAxes[0].ticks.min = yDisplayBounds[0] - padding;
-        this.chartOptions.scales.yAxes[0].ticks.max = yDisplayBounds[1] === 100 ?
-            yDisplayBounds[1] :
-            yDisplayBounds[1] + padding;
+        this.chartOptions.scales.yAxes[0].ticks.max = yDisplayBounds[1] + padding;
         this.chartOptions.scales.yAxes[0].afterBuildTicks = function (scale) {
             if (_this.data && _this.data.yTicks) {
                 scale.ticks =
@@ -8088,31 +8098,51 @@ var LineGraphComponent = /** @class */ (function (_super) {
             }
         };
     };
-    LineGraphComponent.prototype.getDisplayBounds = function (minInSeries, maxInSeries, resourceCodeGroup) {
-        var yAxisDisplayMin;
-        var yAxisDisplayMax;
-        if (resourceCodeGroup.forceDisplayBounds) {
-            // We use the provided display bounds by default, regardless of the
-            // bounds of the data.
-            yAxisDisplayMin = resourceCodeGroup.displayBounds[0];
-            yAxisDisplayMax = resourceCodeGroup.displayBounds[1];
+    /**
+     * Reconciles together several possible sources of y-axis display bounds. The
+     * bounds can come from three places:
+     * 1) Each ResourceCode has an expected data bound encoded.
+     * 2) Each Observation point may have a normal range encoded (passed in as
+     *    normalRangeBounds only if all the observation points have the same
+     *    normal range; otherwise normalRangeBounds is undefined).
+     * 3) LineGraphData tracks the range of data seen across all data points.
+     *
+     * Our goal here is to show as much data as possible without being misleading
+     * or skewing the graph too much to include outlier points. So, we follow
+     * these rules:
+     *
+     * 1) If all the ResourceCodes have the same expected data bound, and all of
+     *    them are marked to enforce that bound, choose those upper and lower
+     *    bounds.
+     * 2) Else, consider each endpoint of the bound separately.
+     *    a. For the lower bound, choose min(min data, min normal bound)
+     *    b. For the upper bound, choose max(max data, max normal bound)
+     */
+    LineGraphComponent.prototype.getDisplayBounds = function (normalRangeBounds) {
+        if (this.allBoundsAreSame() && this.allBoundsAreEnforced()) {
+            return this.data.resourceGroup.resourceCodes[0].displayBounds;
         }
-        else {
-            // We use the provided display bounds as the y-axis display min and max,
-            // unless the calculated minimum and maximum of the data span a smaller
-            // range.
-            // We choose the provided min bound if it is larger than the min of the
-            // data, to cut off abnormal values.
-            yAxisDisplayMin = (resourceCodeGroup.displayBounds[0] >= minInSeries) ?
-                resourceCodeGroup.displayBounds[0] :
-                minInSeries;
-            // We choose the provided max bound if it is smaller than the max of the
-            // data, to cut off abnormal values.
-            yAxisDisplayMax = (resourceCodeGroup.displayBounds[1] <= maxInSeries) ?
-                resourceCodeGroup.displayBounds[1] :
-                maxInSeries;
+        if (!normalRangeBounds) {
+            return (this.data.yAxisDataBounds);
         }
-        return [yAxisDisplayMin, yAxisDisplayMax];
+        return [
+            Math.min(this.data.yAxisDataBounds[0], normalRangeBounds[0]),
+            Math.max(this.data.yAxisDataBounds[1], normalRangeBounds[1])
+        ];
+    };
+    LineGraphComponent.prototype.allBoundsAreSame = function () {
+        return new Set(this.data.resourceGroup.resourceCodes
+            .map(function (code) { return code.displayBounds; })
+            .filter(function (bound) { return bound !== undefined; })
+            .map(function (bound) {
+            return bound.toString();
+        } // cast to string for hashability
+        ))
+            .size === 1;
+    };
+    LineGraphComponent.prototype.allBoundsAreEnforced = function () {
+        return this.data.resourceGroup.resourceCodes.map(function (x) { return x.forceDisplayBounds; })
+            .every(function (x) { return x === true; });
     };
     /**
      * Draws a green box spanning the entire x-axis and covering y axis normal
@@ -8178,6 +8208,7 @@ var LineGraphComponent = /** @class */ (function (_super) {
     LineGraphComponent.prototype.colorAbnormalPoints = function (chartjsSeries, labeledSeries) {
         var pointBackgroundColors = new Array();
         var pointBorderColors = new Array();
+        var pointStyle = new Array();
         for (var _i = 0, _a = chartjsSeries.data; _i < _a.length; _i++) {
             var pt = _a[_i];
             // pt could also be a number here, so we constrain it to when it's a
@@ -8189,16 +8220,25 @@ var LineGraphComponent = /** @class */ (function (_super) {
             if (inAbnormalSet) {
                 pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
                 pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
+                pointStyle.push('triangle');
             }
             else {
                 pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
                 pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+                pointStyle.push('circle');
             }
             chartjsSeries.pointBackgroundColor = pointBackgroundColors;
             chartjsSeries.pointBorderColor = pointBorderColors;
+            chartjsSeries.pointStyle = pointStyle;
         }
     };
     var LineGraphComponent_1;
+    /**
+     * The amount to pad the y-axis around the displayed data range. This gives
+     * the data points a little cushion so that they don't run off the top or
+     * bottom of the axis.
+     */
+    LineGraphComponent.yAxisPaddingFactor = 0.25;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
@@ -8207,10 +8247,10 @@ var LineGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-linegraph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
-            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [
                 { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
-            ]
+            ],
+            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
@@ -8234,9 +8274,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioGraphComponent", function() { return MicrobioGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8271,6 +8312,7 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var MicrobioGraphComponent = /** @class */ (function (_super) {
     __extends(MicrobioGraphComponent, _super);
     function MicrobioGraphComponent(sanitizer, uiConstants) {
@@ -8287,6 +8329,29 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
             var series = _a[_i];
             series.pointRadius = 5;
             series.pointBorderWidth = 2;
+        }
+    };
+    MicrobioGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
+        // Color points that fall outside of their respective normal ranges.
+        for (var i = 0; i < this.data.series.length; i++) {
+            var isPositive = this.data.series[i].label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["CHECK_RESULT_CODE"]);
+            var chartjsSeries = this.chartData[i];
+            var pointStyle = new Array();
+            for (var _i = 0, _a = chartjsSeries.data; _i < _a.length; _i++) {
+                var pt = _a[_i];
+                // pt could also be a number here, so we constrain it to when it's a
+                // ChartPoint. For some reason Typescript doesn't like it when we do a
+                // test to see if pt is an instanceof ChartPoint so checking for the
+                // y-attribute is a workaround.
+                pt = pt;
+                if (isPositive) {
+                    pointStyle.push('triangle');
+                }
+                else {
+                    pointStyle.push('circle');
+                }
+                chartjsSeries.pointStyle = pointStyle;
+            }
         }
     };
     /***************************
@@ -8309,17 +8374,17 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-microbio-graph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
-            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [{
-                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"],
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return MicrobioGraphComponent_1; })
-                }]
+                }],
+            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], MicrobioGraphComponent);
     return MicrobioGraphComponent;
-}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_4__["StepGraphComponent"]));
+}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_5__["StepGraphComponent"]));
 
 
 
@@ -8388,11 +8453,11 @@ var ScatterplotComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-scatterplot',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
-            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [{
                     provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return ScatterplotComponent_1; })
-                }]
+                }],
+            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
@@ -8503,10 +8568,10 @@ var StepGraphComponent = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-stepgraph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
-            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")],
             providers: [
                 { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return StepGraphComponent_1; }) }
-            ]
+            ],
+            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
@@ -8967,7 +9032,7 @@ var StandardTooltip = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n  font-size: 20px;\n}\n\n::ng-deep .mat-horizontal-content-container {\n  padding-bottom: 0px !important;\n}\n\n.stepperButtons {\n  float: right;\n}\n\n.stepperButtons button {\n  margin-right: 5px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 500px !important;\n}\n\nimg {\n  max-width: 100%;\n}\n\n.divider {\n  margin-bottom: 20px;\n  margin-top: 10px;\n  border-top-width: 5px !important;\n}"
+module.exports = ".stepContent {\n  margin-bottom: 30px;\n  margin-top: 10px;\n  font-size: 20px;\n}\n\n::ng-deep .mat-horizontal-content-container {\n  padding-bottom: 0px !important;\n}\n\n.stepperButtons {\n  float: right;\n}\n\n.stepperButtons button {\n  margin-right: 5px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 500px !important;\n}\n\nimg {\n  max-width: 100%;\n}\n\n.divider {\n  margin-bottom: 20px;\n  margin-top: 10px;\n  border-top-width: 5px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVscC1kaWFsb2cvaGVscC1kaWFsb2cuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFtQjtFQUNuQixnQkFBZ0I7RUFDaEIsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsZ0JBQWdCO0VBQ2hCLGdDQUFnQztBQUNsQyIsImZpbGUiOiJzcmMvYXBwL2hlbHAtZGlhbG9nL2hlbHAtZGlhbG9nLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3RlcENvbnRlbnQge1xuICBtYXJnaW4tYm90dG9tOiAzMHB4O1xuICBtYXJnaW4tdG9wOiAxMHB4O1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbjo6bmctZGVlcCAubWF0LWhvcml6b250YWwtY29udGVudC1jb250YWluZXIge1xuICBwYWRkaW5nLWJvdHRvbTogMHB4ICFpbXBvcnRhbnQ7XG59XG5cbi5zdGVwcGVyQnV0dG9ucyB7XG4gIGZsb2F0OiByaWdodDtcbn1cblxuLnN0ZXBwZXJCdXR0b25zIGJ1dHRvbiB7XG4gIG1hcmdpbi1yaWdodDogNXB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC1kaWFsb2ctY29udGFpbmVyIHtcbiAgbWF4LWhlaWdodDogNTAwcHggIWltcG9ydGFudDtcbn1cblxuaW1nIHtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG4uZGl2aWRlciB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG4gIGJvcmRlci10b3Atd2lkdGg6IDVweCAhaW1wb3J0YW50O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -9037,7 +9102,7 @@ var HelpDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep .ifuViewer {\n  height: 300px;\n}\n"
+module.exports = "::ng-deep .ifuViewer {\n  height: 300px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaWZ1LWRpYWxvZy9pZnUtZGlhbG9nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9pZnUtZGlhbG9nL2lmdS1kaWFsb2cuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjo6bmctZGVlcCAuaWZ1Vmlld2VyIHtcbiAgaGVpZ2h0OiAzMDBweDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -9116,13 +9181,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
-/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9160,13 +9227,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MockFhirService = /** @class */ (function (_super) {
     __extends(MockFhirService, _super);
     function MockFhirService(http) {
         var _this = _super.call(this) || this;
         _this.http = http;
-        _this.assetPath = './assets/' + _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].mockDataFolder + '/';
-        _this.allFilePaths = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].mockDataFiles.map(function (x) { return _this.assetPath + x + '.json'; });
+        _this.assetPath = './assets/' + _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].mockDataFolder + '/';
+        _this.allFilePaths = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].mockDataFiles.map(function (x) { return _this.assetPath + x + '.json'; });
         _this.loincMap = new Map();
         _this.medicationAdministrationMapByCode = new Map();
         _this.medicationAdministrationMapByOrderId = new Map();
@@ -9206,31 +9274,35 @@ var MockFhirService = /** @class */ (function (_super) {
                     if (data.length > 0) {
                         entry = data.map(function (bundle) { return bundle.entry; }).flat();
                     }
-                    for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
-                        var json = entry_1[_i];
+                    var _loop_1 = function (json) {
+                        var mockRequestId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
                         var resourceType = json.resource.resourceType;
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation) {
-                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_9__["Observation"](x); }, function (obs) { return obs.codes; });
+                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration) {
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_7__["MedicationAdministration"](d); }, function (admin) { return [admin.rxNormCode]; });
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_7__["MedicationAdministration"](d); }, function (admin) { return [admin.medicationOrderId]; });
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.medicationOrderId]; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder) {
-                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_8__["MedicationOrder"](d); }, function (order) { return [order.orderId]; });
+                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__["MedicationOrder"](d, mockRequestId); }, function (order) { return [order.orderId]; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter) {
-                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_6__["Encounter"](json.resource);
+                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__["Encounter"](json.resource, mockRequestId);
                             _this.encounters.push(encounter);
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport) {
-                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_5__["DiagnosticReport"](d); }, function (report) {
+                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__["DiagnosticReport"](d, mockRequestId); }, function (report) {
                                 return report.results.map(function (x) { return x.codes; })
                                     .reduce(function (prev, curr) {
                                     return prev.concat(curr);
                                 }, []);
                             });
                         }
+                    };
+                    for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
+                        var json = entry_1[_i];
+                        _loop_1(json);
                     }
                 }
                 catch (_a) {
@@ -9258,7 +9330,7 @@ var MockFhirService = /** @class */ (function (_super) {
         return map.has(code) ?
             map.get(code)
                 .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_9__["ObservationStatus"].EnteredInError; })
+                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["ObservationStatus"].EnteredInError; })
                 .slice(0, limitCount ? limitCount : undefined) :
             [];
     };
@@ -9345,7 +9417,54 @@ var MockFhirService = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], MockFhirService);
     return MockFhirService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_10__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_11__["FhirService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/result-error.ts":
+/*!*********************************!*\
+  !*** ./src/app/result-error.ts ***!
+  \*********************************/
+/*! exports provided: ResultError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultError", function() { return ResultError; });
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * Error class for errors with request IDs.
+ * Formats the error message with the list of request IDs, the message,
+ * and optional json.
+ */
+var ResultError = /** @class */ (function (_super) {
+    __extends(ResultError, _super);
+    function ResultError(requestIds, message, json) {
+        var _this = this;
+        var completeMessage = "Request IDs: " + Array.from(requestIds).join(', ') + "." +
+            ("\n" + message);
+        if (json) {
+            completeMessage += "\nJSON: " + JSON.stringify(json, null, 4);
+        }
+        _this = _super.call(this, completeMessage) || this;
+        return _this;
+    }
+    return ResultError;
+}(Error));
 
 
 
@@ -9397,7 +9516,7 @@ var SetupDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\nmat-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n"
+module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\n.search-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.encounters-error {\n  width: 50%;\n  margin-bottom: 16px;\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0I7QUFDdEI7O0FBRUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0FBQzFDOztBQUVBO0VBQ0UsZ0NBQWdDO0NBQ2pDLDRGQUE4RDtDQUE5RCw4REFBOEQ7Q0FDOUQsWUFBWTtBQUNiOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUNBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsVUFBVTtFQUNWLG1CQUFtQjtFQUNuQixxQkFBcUI7RUFDckIscUJBQXFCO0FBQ3ZCIiwiZmlsZSI6InNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJ1dHRvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuaDMge1xuICBwYWRkaW5nOiA1cHg7XG4gIG1hcmdpbjogMTBweDtcbn1cblxuaDEsIGgyIHtcbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn1cblxuLnNlYXJjaC1pY29uIHtcbiAgcGFkZGluZy10b3A6IDIwcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBib3R0b207XG59XG5cbi5hY3Rpb25zIHtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIHBhZGRpbmc6IDIwcHg7XG59XG5cbi5jYXRlZ29yeSB7XG4gIHBhZGRpbmctbGVmdDogMTBweDtcbn1cblxuLm1haW5TZXR1cCB7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nLXRvcDogMjBweDtcbiAgcGFkZGluZy1sZWZ0OiA0MHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuLmNvbmNlcHRPcHRpb25zIHtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLXJvdywgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbn1cblxuLmRlZmF1bHRCYWNrZ3JvdW5kQ29sb3Ige1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjAyMDIwOyAvKiBHcmV5IDkwMCAqL1xufVxuXG4uYWNjZW50QmFja2dyb3VuZENvbG9yIHtcbiAgLyogRGVlcCBQdXJwbGUgODAwIHRvIFBpbmsgOTAwICovXG4gYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNDUyN0EwICwgIzg3MEQ0RSk7XG4gY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtd3JhcHBlciB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWNoZWNrYm94LWZyYW1lIHtcbiAgYm9yZGVyLWNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LXJhZGlvLW91dGVyLWNpcmNsZSB7XG4gIGJvcmRlci1jb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1jaGVja2JveC1kaXNhYmxlZCAubWF0LWNoZWNrYm94LWxhYmVsIHtcbiAgY29sb3I6IGdyYXk7XG59XG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC1lbXB0eS5tYXQtZm9ybS1maWVsZC1sYWJlbCB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtbGFiZWwge1xuICBjb2xvcjp3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC11bmRlcmxpbmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC5tYXQtZm9jdXNlZCAubWF0LWZvcm0tZmllbGQtcmlwcGxlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtdW5kZXJsaW5lIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuYXBwLXNldHVwIC5tYXQtaW5wdXQtcGxhY2Vob2xkZXIge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5lbmNvdW50ZXJzLWVycm9yIHtcbiAgd2lkdGg6IDUwJTtcbiAgbWFyZ2luLWJvdHRvbTogMTZweDtcbiAgd2hpdGUtc3BhY2U6IHByZS13cmFwO1xuICB3b3JkLWJyZWFrOiBicmVhay1hbGw7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -9408,7 +9527,7 @@ module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix>search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"encountersErrorMessage\" class=\"encounters-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading patient encounters.\n        </mat-expansion-panel-header>Technical details:<br>{{encountersErrorMessage}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeDays\">\n          {{uiConstants.LAST_THREE_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastOneDay\">\n          {{uiConstants.LAST_ONE_DAY}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9495,6 +9614,8 @@ var SetupComponent = /** @class */ (function () {
         this.codeGroupAvailable = new Map();
         // Fixed time periods to offer as options for selection.
         this.today = luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].local().startOf('day');
+        this.lastOneDay = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ days: 1 }), this.today);
+        this.lastThreeDays = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ days: 3 }), this.today);
         this.lastSevenDays = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ days: 7 }), this.today);
         this.lastMonth = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ months: 1 }), this.today);
         this.lastThreeMonths = luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ months: 3 }), this.today);
@@ -9534,9 +9655,21 @@ var SetupComponent = /** @class */ (function () {
         }
         // Retrieve the patient encounters. When they load in asynchronously,
         // the radio buttons for encounter selection will show up.
-        this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_6__["APP_TIMESPAN"]).then(function (encounters) {
+        this.encountersErrorMessage = null;
+        this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_6__["APP_TIMESPAN"])
+            .then(function (encounters) {
             if (encounters.length > 0) {
-                _this.encounters = encounters.sort(function (a, b) { return a.period.start.toMillis() - b.period.start.toMillis(); });
+                _this.encounters = encounters.sort(function (a, b) {
+                    return a.period.start.toMillis() - b.period.start.toMillis();
+                });
+            }
+        }, function (rejection) {
+            if (rejection instanceof Error) {
+                _this.encountersErrorMessage = rejection.message;
+            }
+            else {
+                _this.encountersErrorMessage =
+                    JSON.stringify(rejection, null, 4);
             }
         });
         // Check to see which clinical concepts have any data, and enable/disable
@@ -9747,7 +9880,7 @@ function getDataColors() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".datePicker {\n  background-color: white;\n  padding-top: 20px;\n}\n\n.mat-form-field {\n  width: 40%;\n  margin-right: 5%;\n  margin-left: 5%;\n}\n\n::ng-deep .mat-h2 {\n  margin-bottom: 0px !important;\n}\n\n/* Remove extra padding below the button. */\n\n::ng-deep .mat-mini-fab .mat-button-wrapper {\n  padding: 0px !important;\n}\n\n::ng-deep .mat-h2 {\n  margin-bottom: 0px !important;\n}\n\n::ng-deep td.available{\n  color: black;\n}\n\n::ng-deep td.notInEncounter {\n  color: grey !important;\n  opacity: .5;\n  text-decoration: line-through;\n}\n\n::ng-deep td.inEncounter {\n  color: #4527A0 !important; /* Deep Purple 800 */\n  background-color: #e5f3ec;\n}\n\n::ng-deep td.active.available.inEncounter {\n  color: white !important;\n}\n\ninput {\n  font-family: 'Work Sans', sans-serif;\n}\n\n/* Change colors of ngx-datepicker to match custom material theme */\n\n::ng-deep .ranges button.active {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n::ng-deep .md-drppicker .btn {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n::ng-deep td.active.available {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n.errorIcon {\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  cursor: default;\n}\n"
+module.exports = ".datePicker {\n  background-color: white;\n  padding-top: 20px;\n}\n\n.mat-form-field {\n  width: 40%;\n  margin-right: 5%;\n  margin-left: 5%;\n}\n\n::ng-deep .mat-h2 {\n  margin-bottom: 0px !important;\n}\n\n/* Remove extra padding below the button. */\n\n::ng-deep .mat-mini-fab .mat-button-wrapper {\n  padding: 0px !important;\n}\n\n::ng-deep .mat-h2 {\n  margin-bottom: 0px !important;\n}\n\n::ng-deep td.available{\n  color: black;\n}\n\n::ng-deep td.notInEncounter {\n  color: grey !important;\n  opacity: .5;\n  text-decoration: line-through;\n}\n\n::ng-deep td.inEncounter {\n  color: #4527A0 !important; /* Deep Purple 800 */\n  background-color: #e5f3ec;\n}\n\n::ng-deep td.active.available.inEncounter {\n  color: white !important;\n}\n\ninput {\n  font-family: 'Work Sans', sans-serif;\n}\n\n/* Change colors of ngx-datepicker to match custom material theme */\n\n::ng-deep .ranges button.active {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n::ng-deep .md-drppicker .btn {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n::ng-deep td.active.available {\n  background-color: #4527A0 !important; /* Deep Purple 800 */\n}\n\n.errorIcon {\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  cursor: default;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGltZWxpbmUtY29udHJvbGxlci90aW1lbGluZS1jb250cm9sbGVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx1QkFBdUI7RUFDdkIsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsVUFBVTtFQUNWLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsNkJBQTZCO0FBQy9COztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSx1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsV0FBVztFQUNYLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLHlCQUF5QixFQUFFLG9CQUFvQjtFQUMvQyx5QkFBeUI7QUFDM0I7O0FBRUE7RUFDRSx1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSxvQ0FBb0M7QUFDdEM7O0FBRUEsbUVBQW1FOztBQUNuRTtFQUNFLG9DQUFvQyxFQUFFLG9CQUFvQjtBQUM1RDs7QUFFQTtFQUNFLG9DQUFvQyxFQUFFLG9CQUFvQjtBQUM1RDs7QUFFQTtFQUNFLG9DQUFvQyxFQUFFLG9CQUFvQjtBQUM1RDs7QUFFQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLGVBQWU7QUFDakIiLCJmaWxlIjoic3JjL2FwcC90aW1lbGluZS1jb250cm9sbGVyL3RpbWVsaW5lLWNvbnRyb2xsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kYXRlUGlja2VyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHBhZGRpbmctdG9wOiAyMHB4O1xufVxuXG4ubWF0LWZvcm0tZmllbGQge1xuICB3aWR0aDogNDAlO1xuICBtYXJnaW4tcmlnaHQ6IDUlO1xuICBtYXJnaW4tbGVmdDogNSU7XG59XG5cbjo6bmctZGVlcCAubWF0LWgyIHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4ICFpbXBvcnRhbnQ7XG59XG5cbi8qIFJlbW92ZSBleHRyYSBwYWRkaW5nIGJlbG93IHRoZSBidXR0b24uICovXG46Om5nLWRlZXAgLm1hdC1taW5pLWZhYiAubWF0LWJ1dHRvbi13cmFwcGVyIHtcbiAgcGFkZGluZzogMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAubWF0LWgyIHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCB0ZC5hdmFpbGFibGV7XG4gIGNvbG9yOiBibGFjaztcbn1cblxuOjpuZy1kZWVwIHRkLm5vdEluRW5jb3VudGVyIHtcbiAgY29sb3I6IGdyZXkgIWltcG9ydGFudDtcbiAgb3BhY2l0eTogLjU7XG4gIHRleHQtZGVjb3JhdGlvbjogbGluZS10aHJvdWdoO1xufVxuXG46Om5nLWRlZXAgdGQuaW5FbmNvdW50ZXIge1xuICBjb2xvcjogIzQ1MjdBMCAhaW1wb3J0YW50OyAvKiBEZWVwIFB1cnBsZSA4MDAgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogI2U1ZjNlYztcbn1cblxuOjpuZy1kZWVwIHRkLmFjdGl2ZS5hdmFpbGFibGUuaW5FbmNvdW50ZXIge1xuICBjb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuaW5wdXQge1xuICBmb250LWZhbWlseTogJ1dvcmsgU2FucycsIHNhbnMtc2VyaWY7XG59XG5cbi8qIENoYW5nZSBjb2xvcnMgb2Ygbmd4LWRhdGVwaWNrZXIgdG8gbWF0Y2ggY3VzdG9tIG1hdGVyaWFsIHRoZW1lICovXG46Om5nLWRlZXAgLnJhbmdlcyBidXR0b24uYWN0aXZlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzQ1MjdBMCAhaW1wb3J0YW50OyAvKiBEZWVwIFB1cnBsZSA4MDAgKi9cbn1cblxuOjpuZy1kZWVwIC5tZC1kcnBwaWNrZXIgLmJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICM0NTI3QTAgIWltcG9ydGFudDsgLyogRGVlcCBQdXJwbGUgODAwICovXG59XG5cbjo6bmctZGVlcCB0ZC5hY3RpdmUuYXZhaWxhYmxlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzQ1MjdBMCAhaW1wb3J0YW50OyAvKiBEZWVwIFB1cnBsZSA4MDAgKi9cbn1cblxuLmVycm9ySWNvbiB7XG4gIHdpZHRoOiA0MHB4O1xuICBoZWlnaHQ6IDQwcHg7XG4gIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICBjdXJzb3I6IGRlZmF1bHQ7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -9884,6 +10017,20 @@ var TimelineControllerComponent = /** @class */ (function () {
                 var label = start.format('MM/DD/YYYY') + '-' + end.format('MM/DD/YYYY');
                 this.datePickerRanges[label] = [start, end];
             }
+            this.datePickerRanges[this.uiConstants.LAST_ONE_DAY] = [
+                moment__WEBPACK_IMPORTED_MODULE_2__(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].local()
+                    .minus(luxon__WEBPACK_IMPORTED_MODULE_1__["Duration"].fromObject({ days: 1 }))
+                    .startOf('day')
+                    .toJSDate()),
+                this.defaultDateRange.endDate
+            ];
+            this.datePickerRanges[this.uiConstants.LAST_THREE_DAYS] = [
+                moment__WEBPACK_IMPORTED_MODULE_2__(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].local()
+                    .minus(luxon__WEBPACK_IMPORTED_MODULE_1__["Duration"].fromObject({ days: 3 }))
+                    .startOf('day')
+                    .toJSDate()),
+                this.defaultDateRange.endDate
+            ];
             this.datePickerRanges[this.uiConstants.LAST_SEVEN_DAYS] =
                 [this.defaultDateRange.startDate, this.defaultDateRange.endDate];
             this.datePickerRanges[this.uiConstants.LAST_MONTH] = [
@@ -10156,7 +10303,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.1.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.2.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
@@ -10192,6 +10339,8 @@ var UI_CONSTANTS = {
         ' You can select any time period in the past six months.',
     // Setup screen
     INITIAL_CONFIGURATION_HEADER: 'MedTimeLine',
+    LAST_ONE_DAY: 'Since midnight yesterday',
+    LAST_THREE_DAYS: 'Last three days',
     LAST_SEVEN_DAYS: 'Last seven days',
     LAST_MONTH: 'Last month',
     LAST_THREE_MONTHS: 'Last three months',
