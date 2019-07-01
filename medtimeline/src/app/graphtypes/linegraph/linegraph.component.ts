@@ -10,7 +10,6 @@ import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
 import {ABNORMAL} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
-import {DateTime} from 'luxon';
 
 import {GraphComponent} from '../graph/graph.component';
 
@@ -25,10 +24,10 @@ import {GraphComponent} from '../graph/graph.component';
 export class LineGraphComponent extends GraphComponent<LineGraphData> implements
     OnChanges {
   /**
-  * The amount to pad the y-axis around the displayed data range. This gives
-  * the data points a little cushion so that they don't run off the top or
-  * bottom of the axis.
-  */
+   * The amount to pad the y-axis around the displayed data range. This gives
+   * the data points a little cushion so that they don't run off the top or
+   * bottom of the axis.
+   */
   static readonly yAxisPaddingFactor = 0.25;
 
   @Input() showTicks: boolean;
@@ -46,24 +45,10 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   adjustGeneratedChartConfiguration() {
     // We have to wait until after the data loads up into the graph to iterate
     // over the points and adjust their coloring based on the normal range.
-    const hasNormalBound = this.addYNormalRange();
-
-    const seriesLength = this.data.series.length;
-    if (hasNormalBound) {
-      // Gives the last labeledSeries in the array a different set of
-      // characteristics. The last labeledSeries depicts the normal boundary.
-      const chartjsSeries = this.chartData[seriesLength - 1];
-      chartjsSeries.pointStyle = 'crossRot';
-      chartjsSeries.pointBorderColor = 'rgba(0,0,0,0.5)'; // medium-gray color
-      chartjsSeries.pointBorderWidth = 2;
-      chartjsSeries.pointRadius = 4;
-      chartjsSeries.borderColor = 'transparent';
-    }
+    this.addYNormalRange();
 
     // Color points that fall outside of their respective normal ranges.
-    // If it hasNormalBound, then the last labeledSeries does not need to
-    // be styled in this for loop.
-    for (let i = 0; i < (hasNormalBound ? seriesLength - 1 : seriesLength); i++) {
+    for (let i = 0; i < this.data.series.length; i++) {
       const chartjsSeries = this.chartData[i];
       const labeledSeries = this.data.series[i];
       this.colorAbnormalPoints(chartjsSeries, labeledSeries);
@@ -77,11 +62,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   /**
    * Adds y normal ranges to the graph and colors points the designated
    * "abnormal" color if they fall outside the normal range.
-   * @returns Boolean value that reflects whether a normal boundary
-   * should be depicted or not.
    */
-  private addYNormalRange(): boolean {
-    let hasNormalBound = false;
+  private addYNormalRange() {
     // Only LineGraphData has y normal bounds.
     if (!(this.data instanceof LineGraphData)) {
       return;
@@ -117,15 +99,12 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
         // range are the same, then add the region to the chart, and adjust
         // display bounds accordingly.
         if (!differentNormalRanges) {
-          this.createNormalBoundsLabel(firstNormalRange);
           this.addGreenRegion(firstNormalRange);
           normalRangeBounds = firstNormalRange;
-          hasNormalBound = true;
         }
       }
     }
     this.adjustChartYScales(normalRangeBounds);
-    return hasNormalBound;
   }
 
   private adjustChartYScales(normalRangeBounds: [number, number]) {
@@ -201,48 +180,6 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   }
 
   /**
-   * Creates a LabeledSeries that represents the normal bounds on the y-axis
-   * for users to interact with in a tooltip hover.
-   * @param yNormalBounds The bounds of the y range considered normal.
-   */
-  private createNormalBoundsLabel(yNormalBounds: [number, number])  {
-    // TypeScript requires a separate declaration for arrays of tuples.
-    let coordinatesLblSeries: [DateTime, number][];
-    coordinatesLblSeries = [[this.dateRange.start, yNormalBounds[0]],
-                            [this.dateRange.start, yNormalBounds[1]]];
-    const lblSeries = new LabeledSeries('normalBound', coordinatesLblSeries, this.data.unit);
-
-    let coordinatesChartPoint: ChartPoint[];
-    coordinatesChartPoint = [{x: this.dateRange.start.toISO(), y: yNormalBounds[0]},
-                             {x: this.dateRange.start.toISO(), y: yNormalBounds[1]}];
-
-    if (this.data) {
-      this.data.series.push(lblSeries);
-
-      // Creates an HTML table for the tooltip text, and adds it to the tooltip
-      // map. This was done separately because not all line graphs have normal bounds
-      // depicted.
-      const tooltipText = '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
-                          'Normal Boundary</th></tr>' +
-                          '<tr><td><div style="white-space:pre-line; text-align:center;">' +
-                          '<b>Upper: </b>' + yNormalBounds[1] + ' ' + this.data.unit + '\n' +
-                          '<b>Lower: </b>' + yNormalBounds[0] + ' ' + this.data.unit +
-                          '</div></td></tr></tbody></table>';
-
-      const mapKey = this.dateRange.start.valueOf().toString();
-      if (this.data.tooltipMap.has(mapKey)) {
-        const value = this.data.tooltipMap.get(mapKey);
-        this.data.tooltipMap.set(mapKey, value + tooltipText);
-      } else {
-        this.data.tooltipMap.set(mapKey, tooltipText);
-      }
-    }
-    this.chartData.push(
-      {data : coordinatesChartPoint,
-      label : 'normalBound'});
-  }
-
-  /**
    * Draws a green box spanning the entire x-axis and covering y axis normal
    * range. Also puts descriptive labels at the top and bottom of the range.
    * @param yNormalBounds The bounds of the y range considered normal.
@@ -260,6 +197,41 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
       // Color the region light green.
       backgroundColor: 'rgba(64, 191, 128, 0.15)',
     };
+
+    // Draw label lines for the high and low bounds of the normal range.
+    const lines = [
+      ['Normal boundary: ', yNormalBounds[1], -8],
+      ['Normal boundary: ', yNormalBounds[0], 8]
+    ];
+
+    for (const line of lines) {
+      const lbl = line[0];
+      const val = line[1];
+      const yOffsetPx = line[2];
+      const bound = {
+        type: 'line',
+        mode: 'horizontal',
+        scaleID: GraphComponent.Y_AXIS_ID,
+        value: val,
+        borderColor: 'rgba(64, 191, 128, 0.25)',
+        borderWidth: 1,
+        label: {
+          enabled: true,
+          // Clear background color.
+          backgroundColor: 'rgba(0,0,0,0.0)',
+          // Black text for label.
+          fontColor: 'rgba(0, 0, 0, 0.8)',
+          fontFamily: 'Work Sans',
+          content: lbl + val.toString() + ' ' + this.data.unit,
+          // Shift the text above or below the line, and to the right side of
+          // the axis.
+          position: 'right',
+          yAdjust: yOffsetPx
+        }
+      };
+
+      this.chartOptions.annotation.annotations.push(bound);
+    }
     this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
   }
 

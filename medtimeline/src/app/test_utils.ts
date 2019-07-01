@@ -64,14 +64,7 @@ export class StubFhirService extends FhirService {
 
 export function makeSampleObservationJson(
     value: number, timestamp: DateTime,
-    referenceRange: [number, number] = [10, 20], interpretation = 'N',
-    hasReferenceRange: boolean = true): any {
-  let referenceRangeJSON;
-  if (hasReferenceRange) {
-    referenceRangeJSON = [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}];
-  } else {
-    referenceRangeJSON = '';
-  }
+    referenceRange: [number, number] = [10, 20], interpretation = 'N'): any {
   return {
     code: {
       coding: [{system: 'http://loinc.org', code: '718-7'}],
@@ -85,7 +78,8 @@ export function makeSampleObservationJson(
         system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
       }]
     },
-    referenceRange: referenceRangeJSON
+    referenceRange:
+        [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}]
   };
 }
 
