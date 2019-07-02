@@ -7966,11 +7966,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineGraphComponent", function() { return LineGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var src_app_graphdatatypes_labeled_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
-/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
-/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
+/* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8006,7 +8005,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var LineGraphComponent = /** @class */ (function (_super) {
     __extends(LineGraphComponent, _super);
     function LineGraphComponent(sanitizer, uiConstants) {
@@ -8022,22 +8020,9 @@ var LineGraphComponent = /** @class */ (function (_super) {
     LineGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
         // We have to wait until after the data loads up into the graph to iterate
         // over the points and adjust their coloring based on the normal range.
-        var hasNormalBound = this.addYNormalRange();
-        var seriesLength = this.data.series.length;
-        if (hasNormalBound) {
-            // Gives the last labeledSeries in the array a different set of
-            // characteristics. The last labeledSeries depicts the normal boundary.
-            var chartjsSeries = this.chartData[seriesLength - 1];
-            chartjsSeries.pointStyle = 'crossRot';
-            chartjsSeries.pointBorderColor = 'rgba(0,0,0,0.5)'; // medium-gray color
-            chartjsSeries.pointBorderWidth = 2;
-            chartjsSeries.pointRadius = 4;
-            chartjsSeries.borderColor = 'transparent';
-        }
+        this.addYNormalRange();
         // Color points that fall outside of their respective normal ranges.
-        // If it hasNormalBound, then the last labeledSeries does not need to
-        // be styled in this for loop.
-        for (var i = 0; i < (hasNormalBound ? seriesLength - 1 : seriesLength); i++) {
+        for (var i = 0; i < this.data.series.length; i++) {
             var chartjsSeries = this.chartData[i];
             var labeledSeries = this.data.series[i];
             this.colorAbnormalPoints(chartjsSeries, labeledSeries);
@@ -8050,14 +8035,11 @@ var LineGraphComponent = /** @class */ (function (_super) {
     /**
      * Adds y normal ranges to the graph and colors points the designated
      * "abnormal" color if they fall outside the normal range.
-     * @returns Boolean value that reflects whether a normal boundary
-     * should be depicted or not.
      */
     LineGraphComponent.prototype.addYNormalRange = function () {
         var _this = this;
-        var hasNormalBound = false;
         // Only LineGraphData has y normal bounds.
-        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"])) {
+        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"])) {
             return;
         }
         var normalRangeBounds;
@@ -8091,15 +8073,12 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 // range are the same, then add the region to the chart, and adjust
                 // display bounds accordingly.
                 if (!differentNormalRanges) {
-                    this.createNormalBoundsLabel(firstNormalRange);
                     this.addGreenRegion(firstNormalRange);
                     normalRangeBounds = firstNormalRange;
-                    hasNormalBound = true;
                 }
             }
         }
         this.adjustChartYScales(normalRangeBounds);
-        return hasNormalBound;
     };
     LineGraphComponent.prototype.adjustChartYScales = function (normalRangeBounds) {
         var _this = this;
@@ -8115,7 +8094,7 @@ var LineGraphComponent = /** @class */ (function (_super) {
         this.chartOptions.scales.yAxes[0].afterBuildTicks = function (scale) {
             if (_this.data && _this.data.yTicks) {
                 scale.ticks =
-                    src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"].getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
+                    src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"].getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
             }
         };
     };
@@ -8166,43 +8145,6 @@ var LineGraphComponent = /** @class */ (function (_super) {
             .every(function (x) { return x === true; });
     };
     /**
-     * Creates a LabeledSeries that represents the normal bounds on the y-axis
-     * for users to interact with in a tooltip hover.
-     * @param yNormalBounds The bounds of the y range considered normal.
-     */
-    LineGraphComponent.prototype.createNormalBoundsLabel = function (yNormalBounds) {
-        // TypeScript requires a separate declaration for arrays of tuples.
-        var coordinatesLblSeries;
-        coordinatesLblSeries = [[this.dateRange.start, yNormalBounds[0]],
-            [this.dateRange.start, yNormalBounds[1]]];
-        var lblSeries = new src_app_graphdatatypes_labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"]('normalBound', coordinatesLblSeries, this.data.unit);
-        var coordinatesChartPoint;
-        coordinatesChartPoint = [{ x: this.dateRange.start.toISO(), y: yNormalBounds[0] },
-            { x: this.dateRange.start.toISO(), y: yNormalBounds[1] }];
-        if (this.data) {
-            this.data.series.push(lblSeries);
-            // Creates an HTML table for the tooltip text, and adds it to the tooltip
-            // map. This was done separately because not all line graphs have normal bounds
-            // depicted.
-            var tooltipText = '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
-                'Normal Boundary</th></tr>' +
-                '<tr><td><div style="white-space:pre-line; text-align:center;">' +
-                '<b>Upper: </b>' + yNormalBounds[1] + ' ' + this.data.unit + '\n' +
-                '<b>Lower: </b>' + yNormalBounds[0] + ' ' + this.data.unit +
-                '</div></td></tr></tbody></table>';
-            var mapKey = this.dateRange.start.valueOf().toString();
-            if (this.data.tooltipMap.has(mapKey)) {
-                var value = this.data.tooltipMap.get(mapKey);
-                this.data.tooltipMap.set(mapKey, value + tooltipText);
-            }
-            else {
-                this.data.tooltipMap.set(mapKey, tooltipText);
-            }
-        }
-        this.chartData.push({ data: coordinatesChartPoint,
-            label: 'normalBound' });
-    };
-    /**
      * Draws a green box spanning the entire x-axis and covering y axis normal
      * range. Also puts descriptive labels at the top and bottom of the range.
      * @param yNormalBounds The bounds of the y range considered normal.
@@ -8215,11 +8157,44 @@ var LineGraphComponent = /** @class */ (function (_super) {
             yMin: yNormalBounds[0],
             yMax: yNormalBounds[1],
             // No x-axis bounds so it extends to cover the whole graph.
-            xScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].X_AXIS_ID,
-            yScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].Y_AXIS_ID,
+            xScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].X_AXIS_ID,
+            yScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].Y_AXIS_ID,
             // Color the region light green.
             backgroundColor: 'rgba(64, 191, 128, 0.15)',
         };
+        // Draw label lines for the high and low bounds of the normal range.
+        var lines = [
+            ['Normal boundary: ', yNormalBounds[1], -8],
+            ['Normal boundary: ', yNormalBounds[0], 8]
+        ];
+        for (var _i = 0, lines_1 = lines; _i < lines_1.length; _i++) {
+            var line = lines_1[_i];
+            var lbl = line[0];
+            var val = line[1];
+            var yOffsetPx = line[2];
+            var bound = {
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].Y_AXIS_ID,
+                value: val,
+                borderColor: 'rgba(64, 191, 128, 0.25)',
+                borderWidth: 1,
+                label: {
+                    enabled: true,
+                    // Clear background color.
+                    backgroundColor: 'rgba(0,0,0,0.0)',
+                    // Black text for label.
+                    fontColor: 'rgba(0, 0, 0, 0.8)',
+                    fontFamily: 'Work Sans',
+                    content: lbl + val.toString() + ' ' + this.data.unit,
+                    // Shift the text above or below the line, and to the right side of
+                    // the axis.
+                    position: 'right',
+                    yAdjust: yOffsetPx
+                }
+            };
+            this.chartOptions.annotation.annotations.push(bound);
+        }
         this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
     };
     /**
@@ -8244,7 +8219,7 @@ var LineGraphComponent = /** @class */ (function (_super) {
             var inAbnormalSet = labeledSeries.abnormalCoordinates.has(pt.x);
             if (inAbnormalSet) {
                 pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
-                pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__["ABNORMAL"].rgb().string());
+                pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
                 pointStyle.push('triangle');
             }
             else {
@@ -8259,10 +8234,10 @@ var LineGraphComponent = /** @class */ (function (_super) {
     };
     var LineGraphComponent_1;
     /**
-    * The amount to pad the y-axis around the displayed data range. This gives
-    * the data points a little cushion so that they don't run off the top or
-    * bottom of the axis.
-    */
+     * The amount to pad the y-axis around the displayed data range. This gives
+     * the data points a little cushion so that they don't run off the top or
+     * bottom of the axis.
+     */
     LineGraphComponent.yAxisPaddingFactor = 0.25;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -8273,15 +8248,15 @@ var LineGraphComponent = /** @class */ (function (_super) {
             selector: 'app-linegraph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             providers: [
-                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
+                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
             ],
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_5__["UI_CONSTANTS_TOKEN"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], LineGraphComponent);
     return LineGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"]));
 
 
 
@@ -10491,7 +10466,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/bchclean/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })

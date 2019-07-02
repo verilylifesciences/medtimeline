@@ -68,7 +68,8 @@ export function makeSampleObservationJson(
     hasReferenceRange: boolean = true): any {
   let referenceRangeJSON;
   if (hasReferenceRange) {
-    referenceRangeJSON = [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}];
+    referenceRangeJSON =
+        [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}];
   } else {
     referenceRangeJSON = '';
   }
@@ -92,10 +93,10 @@ export function makeSampleObservationJson(
 export function makeSampleObservation(
     value: number, timestamp: DateTime,
     referenceRange: [number, number] = [10, 20], interpretation = 'N',
-    requestId = REQUEST_ID): any {
+    hasReferenceRange: boolean = true, requestId = REQUEST_ID): any {
   return new Observation(
       makeSampleObservationJson(
-          value, timestamp, referenceRange, interpretation),
+          value, timestamp, referenceRange, interpretation, hasReferenceRange),
       requestId);
 }
 
