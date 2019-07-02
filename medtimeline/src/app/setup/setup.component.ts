@@ -18,6 +18,7 @@ import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
+import {ResultError} from '../result-error';
 import {SetupDataService} from '../setup-data.service';
 
 enum LoadStatus {
@@ -77,8 +78,6 @@ export class SetupComponent implements OnInit, OnDestroy {
    * List of times the patient was in the hospital.
    */
   encounters: Encounter[];
-
-  private encountersErrorMessage: string;
 
   // Fixed time periods to offer as options for selection.
   today: DateTime = DateTime.local().startOf('day');
@@ -140,7 +139,7 @@ export class SetupComponent implements OnInit, OnDestroy {
 
     // Retrieve the patient encounters. When they load in asynchronously,
     // the radio buttons for encounter selection will show up.
-    this.encountersErrorMessage = null;
+    this.setupDataService.encountersError = null;
     this.fhirService.getEncountersForPatient(APP_TIMESPAN)
         .then(
             encounters => {
@@ -151,11 +150,14 @@ export class SetupComponent implements OnInit, OnDestroy {
               }
             },
             rejection => {
-              if (rejection instanceof Error) {
-                this.encountersErrorMessage = rejection.message;
+              if (rejection instanceof ResultError) {
+                this.setupDataService.encountersError = rejection;
+              } else if (rejection instanceof Error) {
+                this.setupDataService.encountersError =
+                    new ResultError(new Set<string>(), rejection.message);
               } else {
-                this.encountersErrorMessage =
-                    JSON.stringify(rejection, null, 4);
+                this.setupDataService.encountersError =
+                    new ResultError(new Set<string>(), '', rejection);
               }
             });
 

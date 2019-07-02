@@ -8,6 +8,7 @@ import {Interval} from 'luxon';
 
 import {Encounter} from './fhir-data-classes/encounter';
 import {AxisGroup} from './graphtypes/axis-group';
+import {ResultError} from './result-error';
 
 /**
  * This class is a service that communicates the user-selected concepts on the
@@ -19,6 +20,7 @@ export class SetupDataService {
   selectedConcepts: AxisGroup[];
   /** Which encounters to show in the date picker. */
   encounters: Encounter[];
+  encountersError?: ResultError;
   /**
    * The first date range to load into the app.
    */
