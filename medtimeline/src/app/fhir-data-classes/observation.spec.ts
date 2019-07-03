@@ -115,6 +115,14 @@ describe('Observation', () => {
     expect(observation.precision).toEqual(2);
   });
 
+  it('should set precision from json even if no explicit value', () => {
+    const observation = new Observation(
+        {'valueQuantity': {'value': ''}, ...observationCodingString},
+        REQUEST_ID);
+    expect(observation.precision).toBeDefined();
+    expect(observation.precision).toEqual(1);
+  });
+
   it('should set normal range from JSON', () => {
     const observation = new Observation(
         {

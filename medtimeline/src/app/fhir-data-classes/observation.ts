@@ -177,10 +177,20 @@ export class Observation extends ResultClass {
     }
 
     // We must calculate precision before the value is stored as a number,
-    // where precision is lost.
+    // where precision is lost. If the value stored in the json has
+    // a precision of 0 and is less than 1, then we change the precision to
+    // 1 to display decimals and better UI.
+
     if (json.valueQuantity && json.valueQuantity.value) {
       const values = json.valueQuantity.value.toString().split('.');
       this.precision = values.length > 1 ? values[1].length : 0;
+      if (values[0] === '0' && this.precision === 0) {
+        this.precision = 1;
+      }
+    } else {
+      // If the values are not present and are instead displayed as a value
+      // of 0, the precision is set to 1 to prevent duplicated display of values
+      this.precision = 1;
     }
 
     this.result =
