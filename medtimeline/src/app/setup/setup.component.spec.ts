@@ -70,7 +70,7 @@ describe('SetupComponent', () => {
   it('should have radio buttons for each time option', () => {
     const buttons = fixture.debugElement.queryAll(By.css('mat-radio-button'));
     const buttonText = [];
-    buttons.forEach((button) => {
+    buttons.forEach(function(button) {
       buttonText.push(button.nativeElement.textContent.trim());
     });
     const timeOptions = [

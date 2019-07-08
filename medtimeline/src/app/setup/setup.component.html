@@ -13,10 +13,10 @@
 <div class="defaultBackgroundColor mainSetup">
   <div>
     <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>
-    <mat-expansion-panel *ngIf="setupDataService.encountersError" class="encounters-error">
+    <mat-expansion-panel *ngIf="encountersErrorMessage" class="encounters-error">
         <mat-expansion-panel-header>
           <mat-icon>error</mat-icon>Error loading patient encounters.
-        </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}
+        </mat-expansion-panel-header>Technical details:<br>{{encountersErrorMessage}}
     </mat-expansion-panel>
     <mat-radio-group>
       <div *ngFor="let encounter of encounters">

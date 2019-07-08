@@ -3,8 +3,6 @@
     [minDate]="earliestAvailableDate" [maxDate]="latestAvailableDate" [linkedCalendars]="true"
     [isCustomDate]="addCustomClass" (datesUpdated)="datesUpdated($event)" [ranges]="datePickerRanges"
     [alwaysShowCalendars]="true" [keepCalendarOpeningWithRange]="true" matTooltip="{{uiConstants.CHANGE_DATE_RANGE}}" />
-  <mat-icon *ngIf="hasEncounterError" class="errorIcon"
-    matTooltip="{{uiConstants.BAD_ENCOUNTER_ERROR}} {{encountersError ? encountersError.shortMessage : ''}}">
-    warning
-  </mat-icon>
+  <mat-icon *ngIf="encounterError" class="errorIcon" matTooltip="{{uiConstants.BAD_ENCOUNTER_ERROR}}">
+    warning</mat-icon>
 </div>

@@ -11,8 +11,6 @@ import {APP_TIMESPAN, recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/
 
 import {getDaysForIntervalSet} from '../date_utils';
 import {Encounter} from '../fhir-data-classes/encounter';
-import {ResultClass} from '../fhir-resource-set';
-import {ResultError} from '../result-error';
 
 /**
  * Date range picker for selecting the time span to show in all the charts.
@@ -37,11 +35,6 @@ export class TimelineControllerComponent implements OnInit {
    * Holds the encounters for this patient.
    */
   @Input() encounters: Encounter[];
-
-  /**
-   * Holds the error if there was an error getting the encounters.
-   */
-  @Input() encountersError: ResultError;
 
   /**
    * Holds the date range to default to on initial setup. If unset, we'll
@@ -80,7 +73,7 @@ export class TimelineControllerComponent implements OnInit {
   /**
    * Whether there was an encounter input into this component.
    */
-  hasEncounterError = false;
+  encounterError = false;
 
   constructor(
       private renderer: Renderer2,
@@ -96,9 +89,8 @@ export class TimelineControllerComponent implements OnInit {
     this.datesUpdated(selectedRange);
 
     // Set up the encounters in the date picker.
-    if (this.encounters && this.encounters.length > 0 &&
-        !this.encountersError) {
-      this.hasEncounterError = false;
+    if (this.encounters && this.encounters.length > 0) {
+      this.encounterError = false;
 
       this.encounters = this.encounters.sort(
           (a, b) => a.period.start.toMillis() - b.period.start.toMillis());
@@ -130,9 +122,9 @@ export class TimelineControllerComponent implements OnInit {
       }
       this.datePickerRanges[this.uiConstants.LAST_ONE_DAY] = [
         moment(DateTime.local()
-                   .minus(Duration.fromObject({days: 1}))
-                   .startOf('day')
-                   .toJSDate()),
+                    .minus(Duration.fromObject({days: 1}))
+                    .startOf('day')
+                    .toJSDate()),
         this.defaultDateRange.endDate
       ];
       this.datePickerRanges[this.uiConstants.LAST_THREE_DAYS] = [
@@ -159,7 +151,7 @@ export class TimelineControllerComponent implements OnInit {
         this.defaultDateRange.endDate
       ];
     } else {
-      this.hasEncounterError = true;
+      this.encounterError = true;
     }
   }
 
