@@ -97,11 +97,8 @@ export class Observation extends ResultClass {
     if (json.code) {
       if (json.code.coding) {
         if (json.code.coding[0].system === BCHMicrobioCode.CODING_STRING) {
-          this.codes =
-              json.code.coding
-                  .map((coding) => BCHMicrobioCode.fromCodeString(coding.code))
-                  // Filter out any codes that are not in our mapping.
-                  .filter((code) => !!code);
+          this.codes = json.code.coding.map(
+              (coding) => BCHMicrobioCode.fromCodeString(coding.code));
           this.display = json.code.coding[0].display;
         } else {
           this.codes =

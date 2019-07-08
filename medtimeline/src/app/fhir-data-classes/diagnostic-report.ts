@@ -83,15 +83,7 @@ export class DiagnosticReport {
       if (rsc.resourceType === FhirResourceType.Specimen) {
         specimens.push(new Specimen(rsc, this.requestId));
       } else if (rsc.resourceType === FhirResourceType.Observation) {
-        try {
-          this.results.push(new Observation(rsc, this.requestId));
-        } catch (err) {
-          // silently ignore observations within diagnostic reports that have
-          // errors. Errors may occur because an observation may not have a
-          // LOINC code we recognize or may have an inconsistent label.
-          // Please see Observation constructor for all error cases.
-          console.log(err);
-        }
+        this.results.push(new Observation(rsc, this.requestId));
       }
       // Silently ignore all other contained resource types.
     }
@@ -123,6 +115,7 @@ export class DiagnosticReport {
     if (!json || !json.entry) {
       return [];
     }
+
     // We cannot get the request ID from the Microbiology response. Therefore
     // we hardcode the request ID to just be a constant string.
     const requestId = 'Microbiology Request';

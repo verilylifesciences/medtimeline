@@ -34,9 +34,10 @@ export class MockFhirService extends FhirService {
   private readonly medicationAdministrationMapByOrderId =
       new Map<string, MedicationAdministration[]>();
   private readonly medicationOrderMap = new Map<string, MedicationOrder[]>();
+  private readonly diagnosticReportMap =
+      new Map<ResourceCode, DiagnosticReport[]>();
   private readonly encounters = new Array<Encounter>();
   private readonly allDataPromise: Promise<void[]>;
-  private microbioJson: JSON;
 
   private constructResourceMap<K, V>(
       json: any, mapToUpdate: Map<K, V[]>, constructorFn: (any) => V,
@@ -61,9 +62,6 @@ export class MockFhirService extends FhirService {
   private mapAllData(): Promise<void[]> {
     return Promise.all(this.allFilePaths.map(filePath => {
       return this.http.get(filePath).toPromise<any>().then(data => {
-        if (filePath.includes('_MB_data')) {
-          this.microbioJson = data;
-        }
         try {
           let entry = data.entry;
           // Sometimes data comes to us in bundles, and then we want to flatten
@@ -103,6 +101,19 @@ export class MockFhirService extends FhirService {
             if (resourceType === FhirResourceType.Encounter) {
               const encounter = new Encounter(json.resource, mockRequestId);
               this.encounters.push(encounter);
+            }
+
+            if (resourceType === FhirResourceType.DiagnosticReport) {
+              this.constructResourceMap(
+                  json, this.diagnosticReportMap,
+                  (d) => new DiagnosticReport(d, mockRequestId),
+                  (report) =>
+                      report.results.map(x => x.codes)
+                          .reduce(
+                              (prev: ResourceCode[], curr: ResourceCode[]) => {
+                                return prev.concat(curr);
+                              },
+                              []));
             }
           }
         } catch {
@@ -221,8 +232,14 @@ export class MockFhirService extends FhirService {
       codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<DiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      return DiagnosticReport.parseAndFilterMicrobioData(
-          this.microbioJson, codeGroup);
+      let reports = new Array<DiagnosticReport>();
+      for (const code of codeGroup.resourceCodes) {
+        if (this.diagnosticReportMap.has(code)) {
+          reports = reports.concat(this.diagnosticReportMap.get(code));
+        }
+      }
+      reports.slice(0, limitCount ? limitCount : undefined);
+      return reports;
     });
   }
 }

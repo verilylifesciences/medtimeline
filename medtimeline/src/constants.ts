@@ -8,7 +8,6 @@ import {DateTime, Duration, Interval} from 'luxon';
 
 import {environment} from './environments/environment';
 
-
 export function recordGoogleAnalyticsEvent(
     eventName: string, eventCategory: string, eventLabel: string) {
   if ((<any>window).gtag) {
