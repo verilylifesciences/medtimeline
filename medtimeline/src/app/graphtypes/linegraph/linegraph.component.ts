@@ -184,7 +184,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   }
 
   private allBoundsAreSame(): boolean {
-    return new Set(
+    if (this.data.resourceGroup) {
+      return new Set(
                this.data.resourceGroup.resourceCodes
                    .map(code => code.displayBounds)
                    .filter(bound => bound !== undefined)
@@ -193,11 +194,16 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
                            bound.toString()  // cast to string for hashability
                        ))
                .size === 1;
+    }
+    return false;
   }
 
   private allBoundsAreEnforced(): boolean {
-    return this.data.resourceGroup.resourceCodes.map(x => x.forceDisplayBounds)
+    if (this.data.resourceGroup) {
+      return this.data.resourceGroup.resourceCodes.map(x => x.forceDisplayBounds)
         .every(x => x === true);
+    }
+    return false;
   }
 
   /**
