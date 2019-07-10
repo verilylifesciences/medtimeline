@@ -7,6 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
+import {NORMAL} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
 import {Observation} from '../../fhir-data-classes/observation';
 
@@ -22,13 +23,29 @@ export class DiscreteObservationTooltip extends Tooltip<Observation[]> {
     super();
   }
 
+  /**
+   * Returns the HTML for a generic tooltip for discrete observations.
+   * @param observations An array of type Observation
+   * @param sanitizer A DOM sanitizer
+   * @param isAbnormal A boolean used to change the color of the text if abnormal
+   * @returns A string representing the HTML table.
+   */
   getTooltip(observations: Observation[], sanitizer: DomSanitizer): string {
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(observations[0].timestamp, table, sanitizer);
     }
     for (const obs of observations) {
-      Tooltip.addRow(table, [obs.label, obs.result], sanitizer);
+      let isAbnormal = false;
+      let obsValue = obs.result;
+      if (obs.interpretation && obs.interpretation.code !== NORMAL) {
+        isAbnormal = true;
+        obsValue = obs.result + ' (' + obs.interpretation.display + ')';
+      }
+      Tooltip.addRow(table,
+                    [obs.label, obsValue], sanitizer,
+                    undefined,    // color
+                    isAbnormal);
     }
     return table.outerHTML;
   }
@@ -48,10 +65,11 @@ export class GenericAnnotatedObservationTooltip extends
    * Returns the HTML for a generic tooltip.
    * @param observation The AnnotatedObservation used to generate the tooltip
    * @param sanitizer A DOM sanitizer
+   * @param isAbnormal A boolean used to change the color of the text if abnormal
    * @returns If the observation has annotations, a HTML table with the
    *     annotation values. If there are no annotations, will return undefined.
    */
-  getTooltip(observation: AnnotatedObservation, sanitizer: DomSanitizer): string
+  getTooltip(observation: AnnotatedObservation, sanitizer: DomSanitizer, isAbnormal: boolean = false): string
       |undefined {
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
@@ -63,19 +81,37 @@ export class GenericAnnotatedObservationTooltip extends
         table,
         [
           observation.label,
-          observation.observation.value ?
-              observation.observation.value.value.toString() + ' ' +
-                  observation.observation.unit :
-              observation.observation.result
+          this.getObservationValue(observation)
         ],
-        sanitizer, this.color);
+        sanitizer, this.color, isAbnormal);
     for (const annotation of observation.annotationValues) {
       Tooltip.addRow(table, annotation, sanitizer);
     }
     return table.outerHTML;
   }
-}
+  /**
+   * Helper function that returns a string that reflects the observation
+   * value depicted on the tooltip.
+   * @param observation The AnnotatedObservation used to generate the tooltip
+   */
 
+  private getObservationValue(observation: AnnotatedObservation): string {
+    const interpretation = observation.observation.interpretation ?
+              ' (' + observation.observation.interpretation.display + ')' :
+              '';
+    // Example: Temperature | 38.8 Deg C (HI)
+    if (observation.observation.value && observation.observation.unit) {
+      return observation.observation.value.value.toString() + ' ' +
+             observation.observation.unit + interpretation;
+    }
+    // Example: Bacteria Urinalysis | Trace Graded/hpf (ABN)
+    if (observation.observation.result) {
+      return observation.observation.result + interpretation;
+    }
+    // Example: Blood Pressure | (HI)
+    return interpretation;
+  }
+}
 
 /**
  * Makes a generic tooltip for an AnnotatedObservation with rows for each of
