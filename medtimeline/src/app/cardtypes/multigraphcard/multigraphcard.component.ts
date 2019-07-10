@@ -14,6 +14,7 @@ import {LegendInfo} from 'src/app/graphtypes/legend-info';
 import {recordGoogleAnalyticsEvent} from 'src/constants';
 
 import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
+import {LineGraphComponent} from '../../graphtypes/linegraph/linegraph.component';
 import * as Colors from '../../theme/verily_colors';
 
 /**
@@ -103,6 +104,10 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
   }
 
   private addSeriesToLegendMap(series: LabeledSeries) {
+    // We do not want to add the normalBound series to the legend
+    if (series.legendInfo.label === LineGraphComponent.NORMAL_BOUND_SERIES_NAME) {
+      return;
+    }
     if (!this.legendToSeries.has(series.legendInfo)) {
       this.legendToSeries.set(series.legendInfo, []);
     }

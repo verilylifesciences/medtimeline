@@ -13,7 +13,6 @@ import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 // tslint:disable-next-line:max-line-length
 import {DiscreteObservationTooltip, GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
-import {NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
@@ -135,7 +134,6 @@ export class LineGraphData extends GraphData {
       const obsGroup: ObservationSet = entry[0];
       const series: LabeledSeries = entry[1];
       for (const obs of obsGroup.resourceList) {
-        const isAbnormal = series.abnormalCoordinates.has(obs.observation.timestamp.toISO());
         const timestamp = obs.observation.timestamp.toMillis().toString();
         // The key for this tooltip is the administration's timestamp.
         // There may be multiple data points associated with the timestamp
@@ -146,13 +144,13 @@ export class LineGraphData extends GraphData {
               tooltipMap.get(timestamp) +
                   new GenericAnnotatedObservationTooltip(
                       false, series.legendInfo.fill)
-                      .getTooltip(obs, sanitizer, isAbnormal));
+                      .getTooltip(obs, sanitizer));
         } else {
           tooltipMap.set(
               timestamp,
               new GenericAnnotatedObservationTooltip(
                   true, series.legendInfo.fill)
-                  .getTooltip(obs, sanitizer, isAbnormal));
+                  .getTooltip(obs, sanitizer));
         }
       }
     }
@@ -281,9 +279,6 @@ export class LineGraphData extends GraphData {
     let tooltipMap = new Map<string, string>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
-        const isAbnormal = (obs.observation.interpretation &&
-                            obs.observation.interpretation.code !== NORMAL) ?
-                            true : false;
         const tsString = obs.observation.timestamp.toMillis().toString();
         // Only add the timestamp to the tooltip for the first entry.
         let tooltipText: string;
@@ -291,7 +286,7 @@ export class LineGraphData extends GraphData {
           tooltipText =
               new GenericAnnotatedObservationTooltip(
                   !tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                  .getTooltip(obs, sanitizer, isAbnormal);
+                  .getTooltip(obs, sanitizer);
         } else {
           tooltipText =
               new DiscreteObservationTooltip(!tooltipMap.has(tsString))

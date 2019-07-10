@@ -21,8 +21,8 @@ export class Encounter {
 
     if (!json.period) {
       throw new ResultError(
-          new Set([this.requestId]),
-          'An encounter must have a time period.' + json);
+          new Set([this.requestId]), 'An encounter must have a time period.',
+          json);
     }
 
     if (!json.period.start) {
@@ -42,7 +42,7 @@ export class Encounter {
     if (endTime < startTime) {
       throw new ResultError(
           new Set([this.requestId]),
-          'The start time comes before the end time.' + json);
+          'The start time comes before the end time.', json);
     }
     if (startTime > DateTime.local()) {
       throw new ResultError(

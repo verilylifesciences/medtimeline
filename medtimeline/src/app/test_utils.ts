@@ -65,52 +65,27 @@ export class StubFhirService extends FhirService {
 export function makeSampleObservationJson(
     value: number, timestamp: DateTime,
     referenceRange: [number, number] = [10, 20], interpretation = 'N',
-    hasInterpretation = true, hasValueAndResult = true,
-    hasReferenceRange = true): any {
-
-  // Testing for missing 'interpretation' value in JSON
-  let interpretationJSON;
-  if (hasInterpretation) {
-    interpretationJSON = {
-      coding: [{
-        code: interpretation,
-        system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
-      }]
-    };
-  } else {
-    interpretationJSON = '';
-  }
-  // Testing for missing 'value' and 'result' in JSON
-  let valueJSON;
-  if (hasValueAndResult) {
-    valueJSON = {value: value, unit: 'g/dL'};
-  } else {
-    valueJSON = '';
-  }
-
-  // Testing for missing 'referenceRange' in JSON
+    hasReferenceRange: boolean = true): any {
   let referenceRangeJSON;
   if (hasReferenceRange) {
-    referenceRangeJSON = [{
-      low:
-        {value: referenceRange[0],
-        unit: 'g/dL'},
-      high:
-      {value: referenceRange[1],
-        unit: 'g/dL'}
-    }];
+    referenceRangeJSON =
+        [{low: {value: referenceRange[0]}, high: {value: referenceRange[1]}}];
   } else {
     referenceRangeJSON = '';
   }
-
   return {
     code: {
       coding: [{system: 'http://loinc.org', code: '718-7'}],
       text: 'Hemoglobin'
     },
     effectiveDateTime: timestamp.toISO(),
-    valueQuantity: valueJSON,
-    interpretation: interpretationJSON,
+    valueQuantity: {value: value},
+    interpretation: {
+      coding: [{
+        code: interpretation,
+        system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
+      }]
+    },
     referenceRange: referenceRangeJSON
   };
 }
@@ -118,12 +93,10 @@ export function makeSampleObservationJson(
 export function makeSampleObservation(
     value: number, timestamp: DateTime,
     referenceRange: [number, number] = [10, 20], interpretation = 'N',
-    hasInterpretation = true, hasValueAndResult= true, hasReferenceRange = true,
-    requestId = REQUEST_ID): any {
+    hasReferenceRange: boolean = true, requestId = REQUEST_ID): any {
   return new Observation(
       makeSampleObservationJson(
-          value, timestamp, referenceRange, interpretation,
-          hasInterpretation, hasValueAndResult, hasReferenceRange),
+          value, timestamp, referenceRange, interpretation, hasReferenceRange),
       requestId);
 }
 

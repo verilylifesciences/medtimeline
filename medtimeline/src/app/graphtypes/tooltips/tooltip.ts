@@ -6,7 +6,6 @@
 import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
-import * as Colors from '../../theme/verily_colors';
 import {DateTime} from 'luxon';
 
 /*
@@ -21,22 +20,12 @@ import {DateTime} from 'luxon';
  * @param T The type of data that the tooltip is derived from.
  */
 export abstract class Tooltip<T> {
-  /**
-   * Creates a new table for the tooltip. Returns a HTMLTableElement.
-   */
   static createNewTable(): HTMLTableElement {
     const table: HTMLTableElement = document.createElement('table');
     table.setAttribute('class', 'c3-tooltip');
     return table;
   }
 
-  /**
-   * Adds a header on the tooltips depicting the timepoint of the data
-   * @param timestamp DateTime reflecting the datapoint depicted on the tooltip
-   * @param table HTMLTableElement on the tooltip that needs to be edited
-   * @param sanitizer A DOM sanitizer
-   * @param colSpan The number of columns that the header spans
-   */
   static addTimeHeader(
       timestamp: DateTime, table: HTMLTableElement, sanitizer: DomSanitizer,
       colSpan = 2) {
@@ -44,22 +33,11 @@ export abstract class Tooltip<T> {
         Tooltip.formatTimestamp(timestamp), table, sanitizer, colSpan);
   }
 
-  /**
-   * Returns a string of the timestamp in format: MM/DD/YYYY HH:MM
-   * @param timestamp DateTime reflecting the datapoint depicted on the tooltip
-   */
   static formatTimestamp(timestamp: DateTime) {
     return timestamp.toLocal().toLocaleString() + ' ' +
         timestamp.toLocal().toLocaleString(DateTime.TIME_24_SIMPLE);
   }
 
-  /**
-   * Adds a header to the HTMLTableElement
-   * @param content String reflecting content inside the header
-   * @param table HTMLTableElement on the tooltip that needs to be edited
-   * @param sanitizer A DOM sanitizer
-   * @param colSpan The number of columns that the header spans
-   */
   static addHeader(
       content: string, table: HTMLTableElement, sanitizer: DomSanitizer,
       colSpan = 2) {
@@ -71,27 +49,16 @@ export abstract class Tooltip<T> {
     headerCell.innerHTML = sanitizer.sanitize(SecurityContext.HTML, content);
   }
 
-  /**
-   * Adds row to the HTMLTableElement
-   * @param table HTMLTableElement on the tooltip that needs to be edited
-   * @param cellText String array reflecting the content on the tooltip
-   * @param sanitizer A DOM sanitizer
-   * @param color Color that is displayed on the legend and the graph.
-   * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
-   */
   static addRow(
       table: HTMLTableElement, cellText: string[], sanitizer: DomSanitizer,
-      color?: Color, isAbnormal?: boolean) {
+      color?: Color) {
     const row = table.insertRow();
     for (let i = 0; i < cellText.length; i++) {
       const cell1 = row.insertCell();
       if (i === 0) {
         cell1.className = 'name';
-        if (isAbnormal) {
-          cell1.setAttribute('style', 'color: ' + Colors.ABNORMAL);
-        }
         if (color) {
-          cell1.appendChild(Tooltip.makeColorSwatch(color, isAbnormal));
+          cell1.appendChild(Tooltip.makeColorSwatch(color));
           const div = document.createElement('div');
           div.setAttribute('style', 'display: inline-block;');
           div.innerHTML = sanitizer.sanitize(SecurityContext.HTML, cellText[i]);
@@ -99,39 +66,19 @@ export abstract class Tooltip<T> {
           continue;
         }
       } else {
-          cell1.className = 'value';
-          if (isAbnormal) {
-            cell1.setAttribute('style', 'color: ' + Colors.ABNORMAL);
-          }
+        cell1.className = 'value';
       }
       cell1.innerHTML = sanitizer.sanitize(SecurityContext.HTML, cellText[i]);
     }
   }
 
-  /**
-   * Helper function that creates the color swatch on the tooltips. If it
-   * is regular, it is rectangular. If it is abnormal, it is triangular.
-   * @param color Color that is displayed on the legend and the graph.
-   * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
-   */
-  static makeColorSwatch(color: Color, isAbnormal: boolean = false): HTMLSpanElement {
+  static makeColorSwatch(color: Color): HTMLSpanElement {
     const colorSpan: HTMLSpanElement = document.createElement('span');
-    if (isAbnormal) {
-      // Creates a triangular color swatch
-      colorSpan.setAttribute(
-        'style',
-        'width: 0; display:inline-block; margin-right: 6px; ' +
-            'height: 0; border-left: 6px solid transparent; ' +
-            'border-right: 6px solid transparent; border-bottom: ' +
-            '6px solid ' + color.toString() );
-    } else {
-      // Creates a rectangular color swatch
-      colorSpan.setAttribute(
+    colorSpan.setAttribute(
         'style',
         'background-color: ' + color.toString() +
             '; display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px; border-radius: 50%;');
-    }
+            'margin-right: 6px;');
     return colorSpan;
   }
 

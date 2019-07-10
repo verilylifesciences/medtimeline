@@ -30,8 +30,11 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   * bottom of the axis.
   */
   static readonly yAxisPaddingFactor = 0.25;
+  static readonly NORMAL_BOUND_SERIES_NAME = 'normalBound';
 
   @Input() showTicks: boolean;
+
+  private addedNormalBound = false;
 
   constructor(
       readonly sanitizer: DomSanitizer,
@@ -46,10 +49,12 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   adjustGeneratedChartConfiguration() {
     // We have to wait until after the data loads up into the graph to iterate
     // over the points and adjust their coloring based on the normal range.
-    const hasNormalBound = this.addYNormalRange();
+    this.addedNormalBound = this.isNormalBoundAdded(this.data.series);
+    this.addYNormalRange();
 
     const seriesLength = this.data.series.length;
-    if (hasNormalBound) {
+
+    if (this.addedNormalBound) {
       // Gives the last labeledSeries in the array a different set of
       // characteristics. The last labeledSeries depicts the normal boundary.
       const chartjsSeries = this.chartData[seriesLength - 1];
@@ -63,7 +68,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
     // Color points that fall outside of their respective normal ranges.
     // If it hasNormalBound, then the last labeledSeries does not need to
     // be styled in this for loop.
-    for (let i = 0; i < (hasNormalBound ? seriesLength - 1 : seriesLength); i++) {
+    for (let i = 0; i < (this.addedNormalBound ? seriesLength - 1 : seriesLength); i++) {
       const chartjsSeries = this.chartData[i];
       const labeledSeries = this.data.series[i];
       this.colorAbnormalPoints(chartjsSeries, labeledSeries);
@@ -77,18 +82,15 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   /**
    * Adds y normal ranges to the graph and colors points the designated
    * "abnormal" color if they fall outside the normal range.
-   * @returns Boolean value that reflects whether a normal boundary
-   * should be depicted or not.
    */
-  private addYNormalRange(): boolean {
-    let hasNormalBound = false;
+  private addYNormalRange() {
     // Only LineGraphData has y normal bounds.
     if (!(this.data instanceof LineGraphData)) {
       return;
     }
 
     let normalRangeBounds;
-    if (this.data.series.length === 1) {
+    if (this.data.series.length === 1 || this.addedNormalBound) {
       // Some things are only valid if there are y-axis normal bounds. We
       // also only show normal bounds if there's one data series on the
       // axis, and all normal bounds for the current date range are the same.
@@ -117,15 +119,17 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
         // range are the same, then add the region to the chart, and adjust
         // display bounds accordingly.
         if (!differentNormalRanges) {
-          this.createNormalBoundsLabel(firstNormalRange);
+          // To prevent the creation of multiple normal bound tooltips
+          if (this.addedNormalBound === false) {
+            this.createNormalBoundsTooltip(firstNormalRange);
+          }
           this.addGreenRegion(firstNormalRange);
           normalRangeBounds = firstNormalRange;
-          hasNormalBound = true;
+          this.addedNormalBound = true;
         }
       }
     }
     this.adjustChartYScales(normalRangeBounds);
-    return hasNormalBound;
   }
 
   private adjustChartYScales(normalRangeBounds: [number, number]) {
@@ -145,6 +149,23 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
             LineGraphData.getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
       }
     };
+  }
+
+  /**
+   * Helper function that determines whether the LabeledSeries has
+   * a normal bound or not.
+   * @param series LabeledSeries[] that presents the data that is to
+   * be presented in the graph.
+   * @returns boolean value that reflects whether there is a normal
+   * bound or not.
+   */
+  private isNormalBoundAdded(series: LabeledSeries[]): boolean {
+    for (const s of series) {
+      if (s.label === LineGraphComponent.NORMAL_BOUND_SERIES_NAME) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -184,7 +205,8 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
   }
 
   private allBoundsAreSame(): boolean {
-    return new Set(
+    if (this.data.resourceGroup) {
+      return new Set(
                this.data.resourceGroup.resourceCodes
                    .map(code => code.displayBounds)
                    .filter(bound => bound !== undefined)
@@ -193,24 +215,30 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
                            bound.toString()  // cast to string for hashability
                        ))
                .size === 1;
+    }
+    return false;
   }
 
   private allBoundsAreEnforced(): boolean {
-    return this.data.resourceGroup.resourceCodes.map(x => x.forceDisplayBounds)
+    if (this.data.resourceGroup) {
+      return this.data.resourceGroup.resourceCodes.map(x => x.forceDisplayBounds)
         .every(x => x === true);
+    }
+    return false;
   }
 
   /**
-   * Creates a LabeledSeries that represents the normal bounds on the y-axis
-   * for users to interact with in a tooltip hover.
+   * Adds a LabeledSeries that represents the normal bounds on the y-axis
+   * to the Tooltip Map.
    * @param yNormalBounds The bounds of the y range considered normal.
    */
-  private createNormalBoundsLabel(yNormalBounds: [number, number])  {
+  private createNormalBoundsTooltip(yNormalBounds: [number, number])  {
     // TypeScript requires a separate declaration for arrays of tuples.
     let coordinatesLblSeries: [DateTime, number][];
     coordinatesLblSeries = [[this.dateRange.start, yNormalBounds[0]],
                             [this.dateRange.start, yNormalBounds[1]]];
-    const lblSeries = new LabeledSeries('normalBound', coordinatesLblSeries, this.data.unit);
+    const lblSeries = new LabeledSeries(LineGraphComponent.NORMAL_BOUND_SERIES_NAME,
+                                        coordinatesLblSeries, this.data.unit);
 
     let coordinatesChartPoint: ChartPoint[];
     coordinatesChartPoint = [{x: this.dateRange.start.toISO(), y: yNormalBounds[0]},
@@ -239,7 +267,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
     }
     this.chartData.push(
       {data : coordinatesChartPoint,
-      label : 'normalBound'});
+      label : LineGraphComponent.NORMAL_BOUND_SERIES_NAME});
   }
 
   /**
