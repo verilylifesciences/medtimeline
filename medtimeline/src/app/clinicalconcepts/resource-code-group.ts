@@ -3,7 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
+
+import {TimestampedObject} from '../fhir-resource-set';
 import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
@@ -105,8 +107,9 @@ export class ResourceCodeGroup {
  * by time interval.
  * @param T The type of data to be cached.
  */
-export abstract class CachedResourceCodeGroup<T> extends ResourceCodeGroup {
-  private dataCache = new Map<Interval, T[]>();
+export abstract class CachedResourceCodeGroup<
+    T, R extends TimestampedObject> extends ResourceCodeGroup {
+  dataCache = new Map<string, R[]>();
 
   /**
    * Looks in the cache to see if data for this time interval exists. If not,
@@ -114,25 +117,119 @@ export abstract class CachedResourceCodeGroup<T> extends ResourceCodeGroup {
    * its data, then returns the data for the given time interval.
    */
   getResourceSet(dateRange: Interval): Promise<T[]> {
-    if (this.dataCache.has(dateRange)) {
-      return Promise.resolve(this.dataCache.get(dateRange));
-    } else {
-      return this.getResourceFromFhir(dateRange).then(
-          res => {
-            this.dataCache.set(dateRange, res);
-            return Promise.resolve(this.dataCache.get(dateRange));
-          },
-          rejection => {
-            // If there is any error with getting the resources for this
-            // ResourceCodeGroup, throw an error.
-            throw rejection;
-          });
+    const originalDataCacheCopy = new Map(this.dataCache);
+
+    // today's results will never be in the cache since we always want to get
+    // updated results for today.
+    const today = DateTime.utc().toISODate();
+    const todaysResults = new Array();
+
+    // get the days during the dateRange Inteval that we do not have in the
+    // cache already.
+    const daysToFetchFromFhir = new Array<Interval>();
+
+    // splits dateRange into an array of intervals - each 1 day long.
+    const daysInRange =
+        Interval
+            .fromDateTimes(
+                dateRange.start.startOf('day'), dateRange.end.endOf('day'))
+            .splitBy({days: 1});
+
+    // for each day in the range, check if it is in the cache already.
+    // If not, add the day to the daysToFetchFromFhir and add an empty array
+    // to the cache. We add an empty array so that if we don't get any results
+    // back for a particular day, we know there is no data and we don't need to
+    // request that day again.
+    for (const dayRange of daysInRange) {
+      const cacheKey = dayRange.start.toISODate();
+      if (!this.dataCache.has(cacheKey)) {
+        daysToFetchFromFhir.push(dayRange);
+        // We do not want to cache today's results since their may be
+        // additional results next time this data is fetched
+        // from FHIR
+        if (cacheKey !== today) {
+          this.dataCache.set(cacheKey, new Array());
+        }
+      }
     }
+
+    // This will give a list of the minimal covering set of intervals that
+    // are not cached.
+    const dateRangesToFetchFromFhir = Interval.merge(daysToFetchFromFhir);
+    let fetchPromises = [];
+
+    try {
+      fetchPromises = dateRangesToFetchFromFhir.map(
+          dateRangeToFetch =>
+              this.getResourceFromFhir(dateRangeToFetch)
+                  .then(
+                      response => {
+                        for (const result of response) {
+                          const resultDate = result.timestamp.toISODate();
+                          // we keep today's results separate so that we
+                          // don't cache them.
+                          if (resultDate === today) {
+                            todaysResults.push(result);
+                          } else {
+                            this.dataCache.get(resultDate).push(result);
+                          }
+                        }
+                      },
+                      rejection => {
+                        // reset back to cache if any call to FHIR results in
+                        // an error.
+                        this.dataCache = originalDataCacheCopy;
+                        throw rejection;
+                      }));
+    } catch (err) {
+      // reset back to original cache if there were any issues adding to the
+      // cache (such as a result not having a timestamp) - we do not want to
+      // cache partial data.
+      this.dataCache = originalDataCacheCopy;
+      throw err;
+    }
+
+    return Promise.all(fetchPromises)
+        .then(
+            responseList => {
+              return this.getResourceFromCache(dateRange).then(
+                  rawResults => this.formatRawResults(
+                      [].concat(rawResults, todaysResults)));
+            },
+            rejection => {
+              this.dataCache = originalDataCacheCopy;
+              throw rejection;
+            });
   }
+
+  /**
+   * Gets data from the cache for the given date range.
+   * @param dateRange date range to get data for
+   */
+  private getResourceFromCache(dateRange: Interval): Promise<R[]> {
+    // split the dateRange by day intervals and get data from the Cache.
+    const allRawResults = new Array<R>();
+    dateRange.splitBy({days: 1}).forEach(dayRange => {
+      allRawResults.push(...this.dataCache.get(dayRange.start.toISODate()));
+    });
+    return Promise.resolve(allRawResults);
+  }
+
+  /**
+   * Formats raw results from the cache to results expected by the rendering
+   * code.
+   *
+   * Note: This should really be a private method and never called by anything
+   * except for getResourceSet. Since it is abstract though, we cannot make it
+   * private.
+   *
+   * @param rawResults raw results from the cache that should be formatted.
+   */
+  abstract formatRawResults(rawResults: R[]): Promise<T[]>;
 
   /**
    * This function should make the FHIR calls to get promises for the
    * resources corresponding to this resource code group.
    */
-  abstract getResourceFromFhir(dateRange: Interval): Promise<T[]>;
+  abstract getResourceFromFhir(dateRange: Interval): Promise<R[]>;
 }

@@ -5,21 +5,18 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {AnnotatedAdministration, MedicationAdministration} from '../fhir-data-classes/medication-administration';
+import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
 import {MedicationOrder} from '../fhir-data-classes/medication-order';
-import {Observation} from '../fhir-data-classes/observation';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {StubFhirService} from '../test_utils';
 
-import {BCHMicrobioCodeGroup} from './bch-microbio-code';
 import {DisplayGrouping} from './display-grouping';
-import {LOINCCode} from './loinc-code';
 import {RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
 
 const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),
-    DateTime.fromISO('2012-08-05T11:00:00.000Z').toUTC());
+    DateTime.fromISO('2012-08-07T11:00:00.000Z').toUTC());
 
 const REQUEST_ID = '1234';
 
@@ -139,7 +136,7 @@ describe(
               [RxNormCode.fromCodeString('11124')],
               new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
-          rxNormGroup.getResourceFromFhir(interval).then(rxNorms => {
+          rxNormGroup.getResourceSet(interval).then(rxNorms => {
             // Check to see that each rxNorm got its correct orders and
             // administrations.
             const vanc: RxNormCode =

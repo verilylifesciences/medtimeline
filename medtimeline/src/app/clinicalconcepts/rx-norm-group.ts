@@ -15,29 +15,31 @@ import {RxNormCode} from './rx-norm';
  * case of multiple RxNorm codes in a group, you should provide a label for that
  * group.
  */
-export class RxNormCodeGroup extends CachedResourceCodeGroup<RxNormCode> {
+export class RxNormCodeGroup extends
+    CachedResourceCodeGroup<RxNormCode, MedicationAdministration> {
   /**
-   * Fills out the order and administration information for each for each
+   * Gets all Medication Administrations in this group from FHIR for the given
+   * date range.
+   * @param dateRange date range to get medication administrations for
+   */
+  getResourceFromFhir(dateRange: Interval):
+      Promise<MedicationAdministration[]> {
+    return this.fhirService.getMedicationAdministrationsWithCodes(
+        this, dateRange);
+  }
+
+  /**
+   * Fills out the order and administration information for each
    * RxNormCode in this group, and returns a list of the populated RxNormCodes.
    * This is a roundabout process because the Cerner implementation of the
    * FHIR standard doesn't allow for searching MedicationOrders by RxNorm code,
    * so we have to search for MedicationAdministrations by RxNorm code and work
    * up from there.
    */
-  getResourceFromFhir(dateRange: Interval): Promise<RxNormCode[]> {
-    return this.fhirService
-        .getMedicationAdministrationsWithCodes(this, dateRange)
-        .then(
-            medAdmins => {
-              const groupedByOrder =
-                  this.groupAdministrationsByOrderId(medAdmins);
-              return this.getMedicationOrdersAndMapToMed(groupedByOrder);
-            },
-            rejection => {
-              // If there are any errors constructing MedicationAdministrations
-              // or MedicationOrders for this RxNormCode[], throw the error.
-              throw rejection;
-            });
+  formatRawResults(rawResults: MedicationAdministration[]):
+      Promise<RxNormCode[]> {
+    const groupedByOrder = this.groupAdministrationsByOrderId(rawResults);
+    return this.getMedicationOrdersAndMapToMed(groupedByOrder);
   }
 
   /**
@@ -60,27 +62,25 @@ export class RxNormCodeGroup extends CachedResourceCodeGroup<RxNormCode> {
    * @returns A map of order IDs to a list of corresponding
    *     MedicationAdministrations.
    */
-  private groupAdministrationsByOrderId(medAdmins:
-                                            MedicationAdministration[][]):
+  private groupAdministrationsByOrderId(medAdmins: MedicationAdministration[]):
       Map<string, MedicationAdministration[]> {
     let groupedByOrder = new Map<string, MedicationAdministration[]>();
-    for (const medAdminForDrug of medAdmins) {
-      // Group medication administrations by medication order.
-      groupedByOrder = medAdminForDrug.reduce(
-          (groups: Map<string, MedicationAdministration[]>,
-           medAdmin: MedicationAdministration) => {
-            // Append this administration to whatever order list it belongs to.
-            const orderId: string = medAdmin.medicationOrderId;
-            if (!groups.has(orderId)) {
-              groups.set(orderId, new Array<MedicationAdministration>());
-            }
-            groups.set(orderId, groups.get(orderId).concat(medAdmin));
-            return groups;
-          },
-          // Use whatever existed in groupedByOrder prior to this iteration as
-          // the basis for the reducer to add to.
-          groupedByOrder);
-    }
+    // Group medication administrations by medication order.
+    groupedByOrder = medAdmins.reduce(
+        (groups: Map<string, MedicationAdministration[]>,
+         medAdmin: MedicationAdministration) => {
+          // Append this administration to whatever order list it belongs to.
+          const orderId: string = medAdmin.medicationOrderId;
+          if (!groups.has(orderId)) {
+            groups.set(orderId, new Array<MedicationAdministration>());
+          }
+          groups.set(orderId, groups.get(orderId).concat(medAdmin));
+          return groups;
+        },
+        // Use whatever existed in groupedByOrder prior to this iteration as
+        // the basis for the reducer to add to.
+        groupedByOrder);
+
     return groupedByOrder;
   }
 

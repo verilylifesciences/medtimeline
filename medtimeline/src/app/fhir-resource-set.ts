@@ -1,3 +1,11 @@
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+
+import {DateTime} from 'luxon';
+
 import {RXNORM_CODES, RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResultError} from './result-error';
 
@@ -6,8 +14,23 @@ import {ResultError} from './result-error';
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+
+export class TimestampedObject {
+  constructor(readonly timestamp: DateTime) {}
+}
+
+export class ResultClassWithTimestamp extends TimestampedObject {
+  constructor(
+      readonly label: string, readonly requestId: string,
+      readonly timestamp: DateTime) {
+    super(timestamp);
+  }
+}
+
 /**
  * A class that has label and requestId attributes.
+ *
+ * TODO: Figure out how to combine with ResultClassWithTimestamp.
  */
 export class ResultClass {
   constructor(readonly label: string, readonly requestId: string) {}

@@ -4,7 +4,9 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedDiagnosticReport, DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnotic-report';
+import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
 import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 

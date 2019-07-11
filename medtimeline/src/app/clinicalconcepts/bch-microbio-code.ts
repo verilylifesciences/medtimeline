@@ -6,6 +6,7 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnotic-report';
 import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {FhirService} from '../fhir.service';
 
@@ -36,15 +37,25 @@ export class BCHMicrobioCode extends ResourceCode {
  * group.
  */
 export class BCHMicrobioCodeGroup extends
-    CachedResourceCodeGroup<DiagnosticReport> {
+    CachedResourceCodeGroup<DiagnosticReport, AnnotatedDiagnosticReport> {
   /**
    * Gets a list of DiagnosticReports corresponding to this code group. Each
    * item in the list has the same specimen type as the label of this group, and
    * each report's list of results has a code that is in this group's list of
    * codes.
    */
-  getResourceFromFhir(dateRange: Interval): Promise<DiagnosticReport[]> {
-    return this.fhirService.getDiagnosticReports(this, dateRange);
+  getResourceFromFhir(dateRange: Interval):
+      Promise<AnnotatedDiagnosticReport[]> {
+    return this.fhirService.getDiagnosticReports(this, dateRange)
+        .then(
+            reports =>
+                reports.map(report => new AnnotatedDiagnosticReport(report)));
+  }
+
+  formatRawResults(rawResults: AnnotatedDiagnosticReport[]):
+      Promise<DiagnosticReport[]> {
+    const diagnosticReports = rawResults.map(result => result.report);
+    return Promise.resolve(diagnosticReports);
   }
 
   /**

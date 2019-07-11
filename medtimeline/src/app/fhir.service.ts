@@ -125,7 +125,7 @@ export abstract class FhirService {
    */
   getMedicationAdministrationsWithCodes(
       codes: RxNormCodeGroup,
-      dateRange: Interval): Promise<MedicationAdministration[][]> {
+      dateRange: Interval): Promise<MedicationAdministration[]> {
     if (!codes || !dateRange) {
       return of([]).toPromise();
     }
@@ -135,7 +135,12 @@ export abstract class FhirService {
           code as RxNormCode, dateRange));
     }
     // This will be rejected if any Promise is rejected.
-    return Promise.all(medicationPromises);
+    return Promise.all(medicationPromises)
+        .then(
+            resolvedMedications =>
+                // flatten the results into single medication administrations
+                // list
+                    [].concat(...resolvedMedications));
   }
 
   /**

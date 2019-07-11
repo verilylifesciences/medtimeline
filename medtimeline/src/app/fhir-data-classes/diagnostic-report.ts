@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DateTime} from 'luxon';
 
 import {FhirResourceType} from '../../constants';
-import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {ResultError} from '../result-error';
 
@@ -148,25 +147,5 @@ export class DiagnosticReport {
       }
     }
     return reports;
-  }
-}
-
-/**
- * A diagnostic report with the timestamp for a specific culture type extended.
- */
-export class AnnotatedDiagnosticReport {
-  readonly timestamp: DateTime;
-  readonly report: DiagnosticReport;
-
-  constructor(report: DiagnosticReport) {
-    // Get the timestamp from the collection time of the specimen.
-    const specimen = report.specimen;
-    if (specimen) {
-      this.timestamp = specimen.collectedDateTime ?
-          specimen.collectedDateTime :
-          (specimen.collectedPeriod ? specimen.collectedPeriod.start :
-                                      undefined);
-    }
-    this.report = report;
   }
 }

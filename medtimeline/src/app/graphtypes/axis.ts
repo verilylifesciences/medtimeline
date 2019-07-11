@@ -224,7 +224,7 @@ export class Axis {
    */
   getStepGraphDataForMedicationSummary(
       rxNorms: RxNormCodeGroup, dateRange: Interval): Promise<StepGraphData> {
-    return rxNorms.getResourceFromFhir(dateRange).then(medOrderSets => {
+    return rxNorms.getResourceSet(dateRange).then(medOrderSets => {
       return StepGraphData.fromMedicationOrderSetList(
           medOrderSets.map(x => x.orders), dateRange, this.sanitizer);
     });
@@ -232,7 +232,7 @@ export class Axis {
 
   getStepGraphDataForMB(bchCodes: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<StepGraphData> {
-    return bchCodes.getResourceFromFhir(dateRange).then(diagReports => {
+    return bchCodes.getResourceSet(dateRange).then(diagReports => {
       return MicrobioGraphData.fromDiagnosticReports(
           diagReports, this.sanitizer);
     });
@@ -244,7 +244,7 @@ export class Axis {
    */
   getLineGraphDataForMedicationDetail(
       rxNorms: RxNormCodeGroup, dateRange: Interval): Promise<LineGraphData> {
-    return rxNorms.getResourceFromFhir(dateRange)
+    return rxNorms.getResourceSet(dateRange)
         .then(rxNs => {
           const medOrders: MedicationOrder[] =
               [].concat(...rxNs.map(rx => rx.orders.resourceList));

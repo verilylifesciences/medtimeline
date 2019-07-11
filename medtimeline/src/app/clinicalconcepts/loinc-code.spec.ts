@@ -7,7 +7,7 @@
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
 
-import {Interval} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
@@ -19,6 +19,10 @@ import {LOINCCode, LOINCCodeGroup} from './loinc-code';
 import {ResourceCode} from './resource-code-group';
 
 const REQUEST_ID = '1234';
+const EFFECTIVE_DATETIME = '2012-08-04T12:00:00.000Z';
+const INTERVAL = Interval.fromDateTimes(
+    DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),
+    DateTime.fromISO('2012-08-05T11:00:00.000Z').toUTC());
 
 describe('LOINCCodeGroup', () => {
   it('should correctly separate list of Observations into ObservationSets if ' +
@@ -32,6 +36,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
                },
                valueQuantity: {value: 97},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -41,6 +46,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
                },
                valueQuantity: {value: 98},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -54,8 +60,10 @@ describe('LOINCCodeGroup', () => {
                    coding: [{system: LOINCCode.CODING_STRING, code: '8462-4'}],
                    text: 'Diastolic Blood Pressure'
                  },
-                 valueQuantity: {value: 69}
-               }]
+                 valueQuantity: {value: 69},
+                 effectiveDateTime: EFFECTIVE_DATETIME
+               }],
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID)
        ]];
@@ -68,18 +76,17 @@ describe('LOINCCodeGroup', () => {
 
        const loincGroup = new LOINCCodeGroup(
            fhirServiceStub, 'label', [], vitalSign, ChartType.LINE);
-       Promise.resolve(loincGroup.getResourceFromFhir(this.interval))
-           .then(result => {
-             // We should have two ObservationSets; one for the first two
-             // Observations corresponding to BP that have values, and one for
-             // the inner component of the last Observation.
-             expect(result.length).toEqual(2);
-             expect(result[0].label).toEqual('ALT');
-             expect(result[0].resourceList.length).toEqual(2);
-             expect(result[1].label).toEqual('Diastolic Blood Pressure');
-             expect(result[1].resourceList.length).toEqual(1);
-             done();
-           });
+       Promise.resolve(loincGroup.getResourceSet(INTERVAL)).then(result => {
+         // We should have two ObservationSets; one for the first two
+         // Observations corresponding to BP that have values, and one for
+         // the inner component of the last Observation.
+         expect(result.length).toEqual(2);
+         expect(result[0].label).toEqual('ALT');
+         expect(result[0].resourceList.length).toEqual(2);
+         expect(result[1].label).toEqual('Diastolic Blood Pressure');
+         expect(result[1].resourceList.length).toEqual(1);
+         done();
+       });
      });
 
   it('should return one observation set for each observation type',
@@ -92,6 +99,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
                },
                valueQuantity: {value: 97},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -101,6 +109,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1742-6'}]
                },
                valueQuantity: {value: 98},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -110,6 +119,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
                },
                valueQuantity: {value: 1},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -119,6 +129,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '1968-7'}]
                },
                valueQuantity: {value: 2},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -128,6 +139,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
                },
                valueQuantity: {value: 1},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID),
          new Observation(
@@ -137,6 +149,7 @@ describe('LOINCCodeGroup', () => {
                  coding: [{system: LOINCCode.CODING_STRING, code: '706-2'}]
                },
                valueQuantity: {value: 2},
+               effectiveDateTime: EFFECTIVE_DATETIME
              },
              REQUEST_ID)
        ]];
@@ -155,18 +168,17 @@ describe('LOINCCodeGroup', () => {
              LOINCCode.fromCodeString('706-2')
            ],
            vitalSign, ChartType.LINE);
-       Promise.resolve(loincGroup.getResourceFromFhir(this.interval))
-           .then(result => {
-             // We should have three observation sets, one for each concept in
-             // the LOINCCodeGroup.
-             expect(result.length).toEqual(3);
-             // Each one of those series should have the two datapoints we
-             // passed.
-             for (const series of result) {
-               expect(series.resourceList.length).toBe(2);
-             }
-             done();
-           });
+       Promise.resolve(loincGroup.getResourceSet(INTERVAL)).then(result => {
+         // We should have three observation sets, one for each concept in
+         // the LOINCCodeGroup.
+         expect(result.length).toEqual(3);
+         // Each one of those series should have the two datapoints we
+         // passed.
+         for (const series of result) {
+           expect(series.resourceList.length).toBe(2);
+         }
+         done();
+       });
      });
 
   it('should work for qualitative results', (done: DoneFn) => {
@@ -176,7 +188,8 @@ describe('LOINCCodeGroup', () => {
             text: 'Vanc Pk',
             coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
           },
-          valueCodeableConcept: {text: 'textresult'}
+          valueCodeableConcept: {text: 'textresult'},
+          effectiveDateTime: EFFECTIVE_DATETIME
         },
         REQUEST_ID);
     const fhirServiceStub: any = {
@@ -196,7 +209,7 @@ describe('LOINCCodeGroup', () => {
               new AnnotatedObservation(o, [['annotation 1', 'annotation a']]));
         });
 
-    loincGroup.getResourceFromFhir(undefined).then(rscSet => {
+    loincGroup.getResourceSet(INTERVAL).then(rscSet => {
       expect(rscSet.length).toEqual(1);
       const obsSet = rscSet[0];
 
@@ -220,7 +233,8 @@ describe('LOINCCodeGroup', () => {
           interpretation: {
             coding:
                 [{system: OBSERVATION_INTERPRETATION_VALUESET_URL, code: '<'}]
-          }
+          },
+          effectiveDateTime: EFFECTIVE_DATETIME
         },
         REQUEST_ID);
     const fhirServiceStub: any = {
@@ -240,7 +254,7 @@ describe('LOINCCodeGroup', () => {
               new AnnotatedObservation(o, [['annotation 1', 'annotation a']]));
         });
 
-    loincGroup.getResourceFromFhir(undefined).then(rscSet => {
+    loincGroup.getResourceSet(INTERVAL).then(rscSet => {
       expect(rscSet.length).toEqual(1);
       const obsSet = rscSet[0];
 
@@ -263,6 +277,7 @@ describe('LOINCCodeGroup', () => {
                coding: [{system: LOINCCode.CODING_STRING, code: '4090-7'}]
              },
              valueQuantity: {value: 97},
+             effectiveDateTime: EFFECTIVE_DATETIME
            },
            REQUEST_ID);
        const fhirServiceStub: any = {
@@ -282,15 +297,12 @@ describe('LOINCCodeGroup', () => {
                  o, [['annotation 1', 'annotation a']]));
            });
 
-       loincGroup.getResourceFromFhir(undefined).then(rscSet => {
-         expect(rscSet.length).toEqual(1);
-         for (const obsSet of rscSet) {
-           expect(obsSet.resourceList.length).toEqual(1);
-           for (const o of obsSet.resourceList) {
-             expect(o.annotationValues).toEqual([
-               ['annotation 1', 'annotation a']
-             ]);
-           }
+       loincGroup.getResourceFromFhir(INTERVAL).then(results => {
+         expect(results.length).toEqual(1);
+         for (const obs of results) {
+           expect(obs.annotationValues).toEqual([
+             ['annotation 1', 'annotation a']
+           ]);
          }
          done();
        });

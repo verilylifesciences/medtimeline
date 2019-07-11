@@ -4,9 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {Duration, Interval} from 'luxon';
-
-import {ResultClass} from '../fhir-resource-set';
-
+import {ResultClassWithTimestamp} from '../fhir-resource-set';
 import {MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
@@ -14,7 +12,7 @@ import {ObservationSet} from './observation-set';
 /**
  * An Observation with additional information to display in its tooltip.
  */
-export class AnnotatedObservation extends ResultClass {
+export class AnnotatedObservation extends ResultClassWithTimestamp {
   constructor(
       readonly observation: Observation,
       /**
@@ -23,7 +21,7 @@ export class AnnotatedObservation extends ResultClass {
        * This array should be treated as immutable.
        */
       readonly annotationValues = new Array<[string, string]>()) {
-    super(observation.label, observation.requestId);
+    super(observation.label, observation.requestId, observation.timestamp);
   }
 
   /**

@@ -32,7 +32,8 @@ export class LOINCCode extends ResourceCode {
  * case of multiple LOINC codes in a group, you should provide a label for that
  * group.
  */
-export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
+export class LOINCCodeGroup extends
+    CachedResourceCodeGroup<ObservationSet, AnnotatedObservation> {
   constructor(
       /** FHIR service for retrieving data */
       readonly fhirService: FhirService,
@@ -56,13 +57,52 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
   }
 
   /**
-   * Gets one ObservationSet for each LOINCCode in this group, and returns
+   * Gets one ObservationSet for each LOINCCode in the rawResults, and returns
    * a list of those ObservationSets.
-   * If an Observation contains "inner components", this returns separate
-   * ObservationSets for those LOINCCodes, provided that they are mapped.
+   * @param rawResults: List of AnnotatedObservations to group into
+   *     ObservationSets
+   * @returns: list of ObservationSets. One ObservationSet for each LOINCCode
+   * found in the rawResults.
    */
-  getResourceFromFhir(dateRange: Interval): Promise<ObservationSet[]> {
+  formatRawResults(rawResults: AnnotatedObservation[]):
+      Promise<ObservationSet[]> {
+    const mapObs = new Map<string, AnnotatedObservation[]>();
     let maxPrecision = 0;
+    for (const annotatedObservation of rawResults) {
+      const observation = annotatedObservation.observation;
+      // From this point on, each observation should have a value,
+      // result, or interpretation. All observations that just had
+      // innerComponents have been flattened out.
+      let obsList = mapObs.get(observation.label);
+      if (!obsList) {
+        obsList = new Array<AnnotatedObservation>();
+      }
+      obsList.push(annotatedObservation);
+      if (observation.precision > maxPrecision) {
+        maxPrecision = observation.precision;
+      }
+      mapObs.set(observation.label, obsList);
+    }
+    this.precision = maxPrecision;
+    const doubleAnnotationArray = Array.from(mapObs.values());
+
+    return Promise.all(doubleAnnotationArray.map(
+        singleAnnotationArray =>
+            Promise.all(singleAnnotationArray)
+                .then(
+                    resolvedAnnotations =>
+                        new ObservationSet(resolvedAnnotations))));
+  }
+
+  /**
+   * Gets list of Observations from the FHIR server and makes them annotated
+   * if makeAnnotated function is defined.
+   * If an Observation contains "inner components", this returns separate
+   * Observations for those.
+   * @param dateRange: date range to get results from FHIR for
+   * @returns: List of Annotated Observations
+   */
+  getResourceFromFhir(dateRange: Interval): Promise<AnnotatedObservation[]> {
     return this.fhirService.getObservationsForCodeGroup(this, dateRange)
         .then(
             observationDoubleArray => {
@@ -95,39 +135,18 @@ export class LOINCCodeGroup extends CachedResourceCodeGroup<ObservationSet> {
               throw rejection;
             })
         .then(flattened => {
-          const mapObs =
-              new Map<string, Array<Promise<AnnotatedObservation>>>();
+          const resultList = new Array<Promise<AnnotatedObservation>>();
           flattened.forEach(conceptList => {
             for (const observation of conceptList) {
-              // From this point on, each observation should have a value,
-              // result, or interpretation. All observations that just had
-              // innerComponents have been flattened out.
-              let obsList = mapObs.get(observation.label);
-              if (!obsList) {
-                obsList = new Array<Promise<AnnotatedObservation>>();
-              }
-              if (observation.precision > maxPrecision) {
-                maxPrecision = observation.precision;
-              }
               if (this.makeAnnotated) {
-                obsList.push(this.makeAnnotated(observation, dateRange));
+                resultList.push(this.makeAnnotated(observation, dateRange));
               } else {
-                obsList.push(
+                resultList.push(
                     Promise.resolve(new AnnotatedObservation(observation)));
               }
-              mapObs.set(observation.label, obsList);
             }
           });
-          this.precision = maxPrecision;
-          return Array.from(mapObs.values());
-        })
-        .then(
-            doubleAnnotationArray => doubleAnnotationArray.map(
-                singleAnnotationArray =>
-                    Promise.all(singleAnnotationArray)
-                        .then(
-                            resolvedAnnotations =>
-                                new ObservationSet(resolvedAnnotations))))
-        .then(observationSetArray => Promise.all(observationSetArray));
+          return Promise.all(resultList);
+        });
   }
 }

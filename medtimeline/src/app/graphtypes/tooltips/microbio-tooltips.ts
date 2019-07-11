@@ -4,8 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedDiagnosticReport, DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 import * as Color from 'color';
+
+import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnotic-report';
+import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 
 import {Tooltip} from '../tooltips/tooltip';
 
@@ -20,8 +22,7 @@ export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
   }
 
   getTooltip(
-      annotatedReport: AnnotatedDiagnosticReport,
-      sanitizer: DomSanitizer,
+      annotatedReport: AnnotatedDiagnosticReport, sanitizer: DomSanitizer,
       isAbnormal: boolean = false): string {
     const status = DiagnosticReportStatus[annotatedReport.report.status];
     const results = annotatedReport.report.results;
@@ -37,8 +38,8 @@ export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
 
     for (const result of results) {
       Tooltip.addRow(
-          table, [result.display, result.interpretation.display],
-          sanitizer, this.color, isAbnormal);
+          table, [result.display, result.interpretation.display], sanitizer,
+          this.color, isAbnormal);
     }
     Tooltip.addRow(table, ['Status', status], sanitizer);
     Tooltip.addRow(table, ['Specimen', specimen], sanitizer);
