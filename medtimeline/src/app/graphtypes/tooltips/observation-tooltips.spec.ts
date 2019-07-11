@@ -122,10 +122,8 @@ describe('GenericAnnotatedObservationTooltip', () => {
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) + '</th></tr>' +
             '<tr>' +
-            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="width: 0; display:inline-block; ' +
-            'margin-right: 6px; height: 0; border-left: 6px solid transparent; ' +
-            'border-right: 6px solid transparent; border-bottom: 6px solid ' +
-            seriesColor + '"></span>' +
+            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
+            Tooltip.TOOLTIP_ABNORMAL_CSS + seriesColor + '"></span>' +
             '<div style="display: inline-block;">Hemoglobin</div></td>' +
             '<td class="value" style="color: ' + Colors.ABNORMAL + '">100 g/dL (High)</td>' +
             '</tr>' +
@@ -149,10 +147,8 @@ describe('GenericAnnotatedObservationTooltip', () => {
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) + '</th></tr>' +
             '<tr>' +
-            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="width: 0; display:inline-block; ' +
-            'margin-right: 6px; height: 0; border-left: 6px solid transparent; ' +
-            'border-right: 6px solid transparent; border-bottom: 6px solid ' +
-            seriesColor + '"></span>' +
+            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
+            Tooltip.TOOLTIP_ABNORMAL_CSS + seriesColor + '"></span>' +
             '<div style="display: inline-block;">Hemoglobin</div></td>' +
             '<td class="value" style="color: ' + Colors.ABNORMAL + '">100 g/dL</td>' +
             '</tr>' +
@@ -178,10 +174,8 @@ describe('GenericAnnotatedObservationTooltip', () => {
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) + '</th></tr>' +
             '<tr>' +
-            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="width: 0; display:inline-block; ' +
-            'margin-right: 6px; height: 0; border-left: 6px solid transparent; ' +
-            'border-right: 6px solid transparent; border-bottom: 6px solid ' +
-            seriesColor + '"></span>' +
+            '<td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
+            Tooltip.TOOLTIP_ABNORMAL_CSS + seriesColor + '"></span>' +
             '<div style="display: inline-block;">Hemoglobin</div></td>' +
             '<td class="value" style="color: ' + Colors.ABNORMAL + '"> (High)</td>' +
             '</tr>' +

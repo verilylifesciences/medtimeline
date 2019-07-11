@@ -21,6 +21,15 @@ import {DateTime} from 'luxon';
  * @param T The type of data that the tooltip is derived from.
  */
 export abstract class Tooltip<T> {
+  /**CSS styling for normal tooltip circular color swatch */
+  static readonly TOOLTIP_NORMAL_CSS = 'display: inline-block; height: 10px; width: 10px; ' +
+                                        'margin-right: 6px; border-radius: 50%;';
+  /**CSS styling for abnormal tooltip triangular color swatch */
+  static readonly TOOLTIP_ABNORMAL_CSS = 'width: 0; display:inline-block; margin-right: 6px; ' +
+                                        'height: 0; border-left: 6px solid transparent; ' +
+                                        'border-right: 6px solid transparent; border-bottom: ' +
+                                        '6px solid ';
+
   /**
    * Creates a new table for the tooltip. Returns a HTMLTableElement.
    */
@@ -120,17 +129,12 @@ export abstract class Tooltip<T> {
       // Creates a triangular color swatch
       colorSpan.setAttribute(
         'style',
-        'width: 0; display:inline-block; margin-right: 6px; ' +
-            'height: 0; border-left: 6px solid transparent; ' +
-            'border-right: 6px solid transparent; border-bottom: ' +
-            '6px solid ' + color.toString() );
+        this.TOOLTIP_ABNORMAL_CSS + color.toString());
     } else {
-      // Creates a rectangular color swatch
+      // Creates a circular color swatch
       colorSpan.setAttribute(
         'style',
-        'background-color: ' + color.toString() +
-            '; display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px; border-radius: 50%;');
+        'background-color: ' + color.toString() + '; ' + this.TOOLTIP_NORMAL_CSS);
     }
     return colorSpan;
   }

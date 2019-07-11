@@ -6,6 +6,7 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {AnnotatedDiagnosticReport, DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
+import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
 import {LabeledSeries} from './labeled-series';
 import {StepGraphData} from './stepgraphdata';
@@ -41,23 +42,26 @@ export class MicrobioGraphData extends StepGraphData {
       const specimen = report.specimen;
       if (specimen) {
         const annotatedReport = new AnnotatedDiagnosticReport(report);
-        // For this tooltip, the keys are timestamps.
-        if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
-          const existingTT =
-              tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
-          tooltipMap.set(
-              annotatedReport.timestamp.toMillis().toString(),
-              existingTT +
-                  new MicrobioTooltip(false).getTooltip(
-                      annotatedReport, sanitizer));
-        } else {
-          tooltipMap.set(
-              annotatedReport.timestamp.toMillis().toString(),
-              new MicrobioTooltip().getTooltip(annotatedReport, sanitizer));
-        }
         for (const series of LabeledSeries.fromDiagnosticReport(
-                 report, annotatedReport.timestamp)) {
+                  report, annotatedReport.timestamp)) {
           points.push(series);
+          const isAbnormal = series.label.includes(CHECK_RESULT_CODE);
+          const color = series.legendInfo.fill;
+          // For this tooltip, the keys are timestamps.
+          if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+            const existingTT =
+                tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
+            tooltipMap.set(
+                annotatedReport.timestamp.toMillis().toString(),
+                existingTT +
+                    new MicrobioTooltip(false, color).getTooltip(
+                        annotatedReport, sanitizer, isAbnormal));
+          } else {
+            tooltipMap.set(
+                annotatedReport.timestamp.toMillis().toString(),
+                new MicrobioTooltip(true, color).getTooltip(
+                        annotatedReport, sanitizer, isAbnormal));
+          }
         }
       }
     }

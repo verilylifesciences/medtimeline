@@ -5,6 +5,7 @@
 
 import {DomSanitizer} from '@angular/platform-browser';
 import {AnnotatedDiagnosticReport, DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
+import * as Color from 'color';
 
 import {Tooltip} from '../tooltips/tooltip';
 
@@ -14,13 +15,14 @@ import {Tooltip} from '../tooltips/tooltip';
  * status, as well as all results contained in the report.
  */
 export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
-  constructor(private addTimestampRow = true) {
+  constructor(private addTimestampRow = true, private color?: Color) {
     super();
   }
 
   getTooltip(
       annotatedReport: AnnotatedDiagnosticReport,
-      sanitizer: DomSanitizer): string {
+      sanitizer: DomSanitizer,
+      isAbnormal: boolean = false): string {
     const status = DiagnosticReportStatus[annotatedReport.report.status];
     const results = annotatedReport.report.results;
     const timestamp = annotatedReport.timestamp;
@@ -35,7 +37,8 @@ export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
 
     for (const result of results) {
       Tooltip.addRow(
-          table, [result.display, result.interpretation.display], sanitizer);
+          table, [result.display, result.interpretation.display],
+          sanitizer, this.color, isAbnormal);
     }
     Tooltip.addRow(table, ['Status', status], sanitizer);
     Tooltip.addRow(table, ['Specimen', specimen], sanitizer);

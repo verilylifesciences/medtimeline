@@ -37,14 +37,12 @@ describe('StandardTooltip', () => {
             '</th></tr>' +
             '<tr><td class="name">' +
             '<span style="background-color: rgb(244, 244, 244); ' +
-            'display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px; border-radius: 50%;"></span>' +
+            Tooltip.TOOLTIP_NORMAL_CSS + '"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">15 unit</td></tr>' +
             '<tr><td class="name">' +
             '<span style="background-color: rgb(244, 244, 244); ' +
-            'display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px; border-radius: 50%;"></span>' +
+            Tooltip.TOOLTIP_NORMAL_CSS + '"></span>' +
             '<div style="display: inline-block;">name</div></td>' +
             '<td class="value">25 unit</td></tr></tbody></table>');
   });
