@@ -164,16 +164,11 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
-   * Gets medication data from a specified date range with a specific Rx code
-   * @param code The RxNormCode codes for which to get observations.
-   * @param dateRange The time interval observations should fall between.
-   * @param limitCount If provided, the maximum number of observations to
-   *     query for.
+   * Formats query parameters for searching for Medication Administrations.
+   * @param dateRange Date range to search within
    */
-  getMedicationAdministrationsWithCode(
-      code: RxNormCode, dateRange?: Interval,
-      limitCount?: number): Promise<MedicationAdministration[]> {
-    const queryParams = {
+  private getMedicationAdministrationSearchParams(dateRange: Interval) {
+    return {
       type: FhirResourceType.MedicationAdministration,
       query: {
         effectivetime: {
@@ -184,6 +179,19 @@ export class FhirHttpService extends FhirService {
         }
       }
     };
+  }
+
+  /**
+   * Gets medication data from a specified date range with a specific Rx code
+   * @param code The RxNormCode codes for which to get observations.
+   * @param dateRange The time interval observations should fall between.
+   * @param limitCount If provided, the maximum number of observations to
+   *     query for.
+   */
+  getMedicationAdministrationsWithCode(
+      code: RxNormCode, dateRange: Interval,
+      limitCount?: number): Promise<MedicationAdministration[]> {
+    const queryParams = this.getMedicationAdministrationSearchParams(dateRange);
 
     if (limitCount) {
       queryParams.query['_count'] = limitCount;
@@ -202,6 +210,58 @@ export class FhirHttpService extends FhirService {
                 .then(
                     (results: MedicationAdministration[]) =>
                         results.filter((result) => !!result)));
+  }
+
+  /**
+   * Determines whether a medication with the given RxNormCode exists.
+   *
+   * Checks a single response page and only calls the next page if no
+   * medications with the given code exist. Cerner's implementation of FHIR
+   * does not support searching by RxNormCode, so we need to get all of the
+   * medications and filter the response.
+   *
+   * @param smartApi The resolved smartOnFhirClient which called the original
+   *     "search"
+   * @param response The response of the previous page
+   * @param code The RxNormCode to search for
+   */
+  private checkMedicationsPresentNextPage(smartApi, response, code: RxNormCode):
+      Promise<boolean> {
+    const results = response.data.entry || [];
+    const resultsWithCode = results.filter(
+        result =>
+            code === ResultClass.extractMedicationEncoding(result.resource));
+
+    if (resultsWithCode.length > 0) {
+      return Promise.resolve(true);
+    } else {
+      if (response.data.link.some((link) => link.relation === 'next')) {
+        return smartApi.patient.api.nextPage({bundle: response.data})
+            .then(nextResponse => {
+              return this.checkMedicationsPresentNextPage(
+                  smartApi, nextResponse, code);
+            });
+      } else {
+        return Promise.resolve(false);
+      }
+    }
+  }
+
+  /**
+   * Determines whether their is a medication present with the given code
+   * during the given date range
+   * @param code The RxNormCode to get medications for
+   * @param dateRange The date range to get medications for
+   */
+  medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
+      Promise<boolean> {
+    const queryParams = this.getMedicationAdministrationSearchParams(dateRange);
+    return this.smartApiPromise.then(smartApi => {
+      return smartApi.patient.api.search(queryParams)
+          .then(
+              response => this.checkMedicationsPresentNextPage(
+                  smartApi, response, code));
+    });
   }
 
   /**

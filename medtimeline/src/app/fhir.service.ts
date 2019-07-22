@@ -83,18 +83,8 @@ export abstract class FhirService {
    * @param code The RxNorm code for which to get observations.
    * @param dateRange The time interval observations should fall between.
    */
-  medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
-      Promise<boolean> {
-    // Cerner says that asking for a limited count of resources can slow down
-    // queries, so we don't restrict a count limit here.
-    // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
-    return this.getMedicationAdministrationsWithCode(code, dateRange)
-        .then(obs => obs.length > 0, rejection => {
-          // If any MedicationAdministration for this code results in an error,
-          // do not show any MedicationAdministrations at all.
-          throw rejection;
-        });
-  }
+  abstract medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
+      Promise<boolean>;
 
   /**
    * Gets medication data from a specified date range with a specific Rx code

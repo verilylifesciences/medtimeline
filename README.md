@@ -133,7 +133,7 @@ If instead you want to run against the mock data, you have your pick of test dat
 Look in src/assets/demo_data. There is a readme describing available data sets.
 Here is an example of running against one of them.
 
-`ng serve --port 8000 --configuration=dev_test_bmedtimeA`
+`ng serve --port 8000 --configuration dev_mock_test_bMedtimeA`
 
 Navigate to `http://localhost:8000/` to see the application.
 

@@ -43,6 +43,11 @@ export class StubFhirService extends FhirService {
         [makeMedicationAdministration(DateTime.utc().toISO())]);
   }
 
+  medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
+      Promise<boolean> {
+    return Promise.resolve(true);
+  }
+
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
     return Promise.resolve(makeMedicationOrder());
   }

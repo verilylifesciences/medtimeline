@@ -9,6 +9,7 @@ import {DateTime, Interval} from 'luxon';
 
 import {DisplayGrouping, microbio} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
+import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {FhirHttpService} from './fhir-http.service';
 import {makeSampleObservationJson} from './test_utils';
 
@@ -142,5 +143,163 @@ describe('FhirHttpService', () => {
          expect(response).toBe(false);
          done();
        });
+     });
+
+  it('should resolve medicationsPresentWithCode to true with only one API call if first response has a medication with the given code.',
+     (done: DoneFn) => {
+       const medicationReponse = {
+         data: {
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+                 text: 'vancomycin'
+               }
+             }
+           }]
+         }
+       };
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(medicationReponse));
+       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
+
+       service
+           .medicationsPresentWithCode(
+               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
+           .then(response => {
+             expect(response).toEqual(true);
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             expect(nextPageSpy).not.toHaveBeenCalled();
+             done();
+           });
+       clientReadyCallback(smartApi);
+     });
+
+  it('should resolve medicationsPresentWithCode to false if first response has no medication with the given code and there is no next page.',
+     (done: DoneFn) => {
+       const medicationReponse = {
+         data: {
+           link: [],
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
+                 text: 'gentamicin'
+               }
+             }
+           }]
+         }
+       };
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(medicationReponse));
+       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
+
+       service
+           .medicationsPresentWithCode(
+               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
+           .then(response => {
+             expect(response).toEqual(false);
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             expect(nextPageSpy).not.toHaveBeenCalled();
+             done();
+           });
+       clientReadyCallback(smartApi);
+     });
+
+  it('should resolve medicationsPresentWithCode to true if second page has medication with given code.',
+     (done: DoneFn) => {
+       const firstMedicationReponse = {
+         data: {
+           link: [{relation: 'next'}],
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
+                 text: 'gentamicin'
+               }
+             }
+           }]
+         }
+       };
+
+       const secondMedicationReponse = {
+         data: {
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+                 text: 'vancomycin'
+               }
+             }
+           }]
+         }
+       };
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(firstMedicationReponse));
+       const nextPageSpy =
+           spyOn(smartApi.patient.api, 'nextPage')
+               .and.returnValue(Promise.resolve(secondMedicationReponse));
+
+       service
+           .medicationsPresentWithCode(
+               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
+           .then(response => {
+             expect(response).toEqual(true);
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             expect(nextPageSpy).toHaveBeenCalledTimes(1);
+             done();
+           });
+       clientReadyCallback(smartApi);
+     });
+
+  it('should resolve medicationsPresentWithCode to false if no medication with code on multiple pages.',
+     (done: DoneFn) => {
+       const firstMedicationReponse = {
+         data: {
+           link: [{relation: 'next'}],
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
+                 text: 'gentamicin'
+               }
+             }
+           }]
+         }
+       };
+
+       const secondMedicationReponse = {
+         data: {
+           link: [],
+           entry: [{
+             resource: {
+               medicationCodeableConcept: {
+                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
+                 text: 'gentamicin'
+               }
+             }
+           }]
+         }
+       };
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(firstMedicationReponse));
+       const nextPageSpy =
+           spyOn(smartApi.patient.api, 'nextPage')
+               .and.returnValue(Promise.resolve(secondMedicationReponse));
+
+       service
+           .medicationsPresentWithCode(
+               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
+           .then(response => {
+             expect(response).toEqual(false);
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             expect(nextPageSpy).toHaveBeenCalledTimes(1);
+             done();
+           });
+       clientReadyCallback(smartApi);
      });
 });

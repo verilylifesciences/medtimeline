@@ -169,6 +169,16 @@ export class MockFhirService extends FhirService {
     });
   }
 
+  medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
+      Promise<boolean> {
+    return this.getMedicationAdministrationsWithCode(code, dateRange)
+        .then(obs => obs.length > 0, rejection => {
+          // If any MedicationAdministration for this code results in an error,
+          // do not show any MedicationAdministrations at all.
+          throw rejection;
+        });
+  }
+
   /**
    * Returns arbitrary orders for current mock medications.
    * @param id The id to pull the order from.
