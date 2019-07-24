@@ -5,8 +5,8 @@
 
 import {DomSanitizer} from '@angular/platform-browser';
 
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnotic-report';
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {AnnotatedMicrobioReport} from '../fhir-data-classes/annotated-microbio-report';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
 import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 
@@ -27,24 +27,23 @@ export class MicrobioGraphData extends StepGraphData {
   }
 
   /**
-   * Converts a list of DiagnosticReports to a StepGraphData object.
-   * All DiagnosticReports in the list should belong to the same culture type.
-   * @param diagnosticReports A list of DiagnosticReports to display.
+   * Converts a list of MicrobioReports to a StepGraphData object.
+   * All MicrobioReports in the list should belong to the same culture type.
+   * @param microbioReports A list of MicrobioReports to display.
    * @returns a new StepGraphData for this set.
    */
-  static fromDiagnosticReports(
-      diagnosticReports: DiagnosticReport[],
+  static fromMicrobioReports(
+      microbioReports: MicrobioReport[],
       sanitizer: DomSanitizer): MicrobioGraphData {
     const points: LabeledSeries[] = [];
 
     const tooltipMap = new Map<string, string>();
-
-    for (const report of diagnosticReports) {
+    for (const report of microbioReports) {
       // Get the timestamp from the collection time of the specimen.
       const specimen = report.specimen;
       if (specimen) {
-        const annotatedReport = new AnnotatedDiagnosticReport(report);
-        for (const series of LabeledSeries.fromDiagnosticReport(
+        const annotatedReport = new AnnotatedMicrobioReport(report);
+        for (const series of LabeledSeries.fromMicrobioReport(
                   report, annotatedReport.timestamp)) {
           points.push(series);
           const isAbnormal = series.label.includes(CHECK_RESULT_CODE);

@@ -29,7 +29,7 @@
           [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
           [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
         </app-stepgraph>
-        <app-microbio-graph *ngSwitchCase="ChartType.MICROBIO" [data]="axis.alreadyResolvedData"
+        <app-microbio-graph *ngSwitchCase="ChartType.DIAGNOSTIC" [data]="axis.alreadyResolvedData"
           [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
           [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
         </app-microbio-graph>

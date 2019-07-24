@@ -15,7 +15,7 @@ import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {documentReferenceLoinc} from './clinicalconcepts/resource-code-manager';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DebuggerService} from './debugger.service';
-import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration, RawMedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
@@ -24,6 +24,8 @@ import {ResultClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
+import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';
@@ -597,15 +599,14 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
-   * Gets the DiagnosticReports for the patient for any report that falls in
+   * Gets the MicrobioReports for the patient for any report that falls in
    * the given date range.
-   * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-   * @param dateRange Return all DiagnosticReports that covered any time in
-   *     this
+   * @param codeGroup The CodeGroup to retrieve MicrobioReports for.
+   * @param dateRange Return all MicrobioReports that covered any time in this
    *   date range.
    */
-  getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
-      Promise<DiagnosticReport[]> {
+  getMicrobioReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
+      Promise<MicrobioReport[]> {
     if (!FhirConfig.microbiology) {
       console.warn(
           'No microbiology parameters available in the configuration.');
@@ -641,7 +642,7 @@ export class FhirHttpService extends FhirService {
                   {headers: httpHeaders, params: callParams})
               .toPromise()
               .then((res: any) => {
-                return DiagnosticReport.parseAndFilterMicrobioData(
+                return MicrobioReport.parseAndFilterMicrobioData(
                     res, codeGroup);
               });
         },
@@ -649,5 +650,19 @@ export class FhirHttpService extends FhirService {
           this.debugService.logError(rejection);
           throw rejection;
         });
+  }
+
+  /**
+   * TODO: This is currently just a placeholder so we can test fhir-mock.
+   * It does not return anything of value.
+   *
+   * Should get diagnosticReport from a specified date range with a specific
+   * DiagnosticReportCodeGroup code.
+   * @param code The DiagnosticReportCodeGroup for which to get observations.
+   * @param dateRange The time interval observations should fall between.
+   */
+  getDiagnosticReports(code: DiagnosticReportCodeGroup, dateRange: Interval):
+      Promise<DiagnosticReport[]> {
+        return Promise.resolve([]);
   }
 }

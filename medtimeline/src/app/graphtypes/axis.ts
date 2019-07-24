@@ -7,6 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
@@ -76,6 +77,7 @@ export class Axis {
   private allLoinc: boolean;
   private allRx: boolean;
   private allBCHMicrobio: boolean;
+  private allDiagnosticReport: boolean;
 
   /**
    * The constructor for this axis.
@@ -104,7 +106,9 @@ export class Axis {
     this.allRx = resourceCodeList.every(code => code instanceof RxNormCode);
     this.allBCHMicrobio =
         resourceCodeList.every(code => code instanceof BCHMicrobioCode);
-    if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio) {
+    this.allDiagnosticReport =
+        resourceCodeList.every(code => code instanceof DiagnosticReportCode);
+    if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio && !this.allDiagnosticReport) {
       throw Error('All resource codes must be of the same type.');
     }
   }
@@ -233,9 +237,9 @@ export class Axis {
 
   getStepGraphDataForMB(bchCodes: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<StepGraphData> {
-    return bchCodes.getResourceSet(dateRange).then(diagReports => {
-      return MicrobioGraphData.fromDiagnosticReports(
-          diagReports, this.sanitizer);
+    return bchCodes.getResourceSet(dateRange).then(microbioReports => {
+      return MicrobioGraphData.fromMicrobioReports(
+        microbioReports, this.sanitizer);
     });
   }
 

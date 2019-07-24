@@ -94,6 +94,14 @@
                 }
               ]
             },
+            "dev_mock_test_radReport": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment_test_radReport.ts"
+                }
+              ]
+            },
             "dev_http": {
               "fileReplacements": [
                 {
@@ -139,6 +147,9 @@
             "dev_mock_test_bMedtimeE": {
               "browserTarget": "medtimeline:build:dev_mock_test_bMedtimeE"
             },
+            "dev_mock_test_radReport": {
+              "browserTarget": "medtimeline:build:dev_mock_test_radReport"
+            },
             "dev_mock_synth_data": {
               "browserTarget": "medtimeline:build:dev_mock_synth_data"
             },
@@ -162,7 +173,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "karmaConfig": "src/karma.conf.js"
           }
         },
         "lint": {

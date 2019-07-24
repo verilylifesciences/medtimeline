@@ -9,8 +9,10 @@ import {of} from 'rxjs';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode, LOINCCodeGroup} from './clinicalconcepts/loinc-code';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from './clinicalconcepts/rx-norm-group';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
@@ -29,13 +31,30 @@ export abstract class FhirService {
       Promise<boolean>;
 
   /**
-   * Returns whether there are any observations with this code in the given
+   * Returns whether there are any microbio Reports with this code in the given
    * time range.
    * @param code The BCHMicrobio code for which to get observations.
    * @param dateRange The time interval observations should fall between.
    */
+  microbioReportsPresentWithCodes(
+    codeGroup: BCHMicrobioCodeGroup, dateRange: Interval): Promise<boolean> {
+  // Just ask for one result to reduce the call time.
+  return this.getMicrobioReports(codeGroup, dateRange, 1)
+      .then(reports => reports.length > 0, rejection => {
+        // If any MicrobioReports for this code results in an error, do not
+        // show any MicrobioReports at all.
+        throw rejection;
+      });
+}
+
+  /**
+   * Returns whether there are any diagnosticreports with this code in the given
+   * time range.
+   * @param code The resource code (for diagnostic reports) for which to get observations.
+   * @param dateRange The time interval observations should fall between.
+   */
   diagnosticReportsPresentWithCodes(
-      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval): Promise<boolean> {
+      codeGroup: DiagnosticReportCodeGroup, dateRange: Interval): Promise<boolean> {
     // Just ask for one result to reduce the call time.
     return this.getDiagnosticReports(codeGroup, dateRange, 1)
         .then(reports => reports.length > 0, rejection => {
@@ -145,6 +164,17 @@ export abstract class FhirService {
       Promise<boolean>;
 
   /**
+   * Gets the MicrobioReports for the patient for any report that falls in
+   * the given date range.
+   * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
+   * @param dateRange Return all DiagnosticReports that covered any time in this
+   *   date range.
+   */
+  abstract getMicrobioReports(
+    codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+    limitCount?: number): Promise<MicrobioReport[]>;
+
+  /**
    * Gets the DiagnosticReports for the patient for any report that falls in
    * the given date range.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
@@ -152,6 +182,6 @@ export abstract class FhirService {
    *   date range.
    */
   abstract getDiagnosticReports(
-      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<DiagnosticReport[]>;
 }

@@ -6,7 +6,8 @@
 import {DateTime, Interval} from 'luxon';
 
 // tslint:disable-next-line:max-line-length
-import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB, radiology} from '../clinicalconcepts/display-grouping';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
@@ -333,12 +334,12 @@ export class LabeledSeries {
   }
 
   /**
-   * Generates LabeledSeries from the given DiagnosticReport.
-   * @param report The DiagnosticReport to chart.
+   * Generates LabeledSeries from the given MicrobioReport.
+   * @param report The MicrobioReport to chart.
    * @param date the DateTime corresponding to the Observations in the
-   *     DiagnosticReport.
+   *     MicrobioReport.
    */
-  static fromDiagnosticReport(report: DiagnosticReport, date: DateTime):
+  static fromMicrobioReport(report: MicrobioReport, date: DateTime):
       LabeledSeries[] {
     const series = [];
     const interpretationMap = new Map<string, Array<[DateTime, string]>>();
@@ -371,8 +372,8 @@ export class LabeledSeries {
   }
 
   /**
-   * Returns the correct legend info for a diagnostic report.
-   * @param status The DiagnosticReport's status.
+   * Returns the correct legend info for a microbio report.
+   * @param status The MicrobioReport's status.
    * @param isPositive Whether the report appears to be positive.
    * @returns The correct legend info for the report.
    */

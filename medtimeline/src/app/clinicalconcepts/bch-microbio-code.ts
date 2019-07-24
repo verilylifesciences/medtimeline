@@ -6,8 +6,8 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnotic-report';
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {AnnotatedMicrobioReport} from '../fhir-data-classes/annotated-microbio-report';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {FhirService} from '../fhir.service';
 
 import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
@@ -24,7 +24,7 @@ export class BCHMicrobioCode extends ResourceCode {
     // This is not an elegant way of implementing this function but since it's
     // a non-standard API server we aren't going to put much effort into
     // developing it further at this point.
-    return fhirService.diagnosticReportsPresentWithCodes(
+    return fhirService.microbioReportsPresentWithCodes(
         new BCHMicrobioCodeGroup(
             fhirService, this.label, [this], undefined, undefined),
         APP_TIMESPAN);
@@ -37,25 +37,25 @@ export class BCHMicrobioCode extends ResourceCode {
  * group.
  */
 export class BCHMicrobioCodeGroup extends
-    CachedResourceCodeGroup<DiagnosticReport, AnnotatedDiagnosticReport> {
+    CachedResourceCodeGroup<MicrobioReport, AnnotatedMicrobioReport> {
   /**
-   * Gets a list of DiagnosticReports corresponding to this code group. Each
+   * Gets a list of MicrobioReports corresponding to this code group. Each
    * item in the list has the same specimen type as the label of this group, and
    * each report's list of results has a code that is in this group's list of
    * codes.
    */
   getResourceFromFhir(dateRange: Interval):
-      Promise<AnnotatedDiagnosticReport[]> {
-    return this.fhirService.getDiagnosticReports(this, dateRange)
+      Promise<AnnotatedMicrobioReport[]> {
+    return this.fhirService.getMicrobioReports(this, dateRange)
         .then(
             reports =>
-                reports.map(report => new AnnotatedDiagnosticReport(report)));
+                reports.map(report => new AnnotatedMicrobioReport(report)));
   }
 
-  formatRawResults(rawResults: AnnotatedDiagnosticReport[]):
-      Promise<DiagnosticReport[]> {
-    const diagnosticReports = rawResults.map(result => result.report);
-    return Promise.resolve(diagnosticReports);
+  formatRawResults(rawResults: AnnotatedMicrobioReport[]):
+      Promise<MicrobioReport[]> {
+    const microbioReports = rawResults.map(result => result.report);
+    return Promise.resolve(microbioReports);
   }
 
   /**
@@ -64,7 +64,7 @@ export class BCHMicrobioCodeGroup extends
    * @override
    */
   dataAvailableInAppTimeScope(): Promise<boolean> {
-    return this.fhirService.diagnosticReportsPresentWithCodes(
+    return this.fhirService.microbioReportsPresentWithCodes(
         this, APP_TIMESPAN);
   }
 }

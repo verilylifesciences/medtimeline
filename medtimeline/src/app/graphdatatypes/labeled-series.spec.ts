@@ -19,7 +19,7 @@ import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 import {FhirService} from './../fhir.service';
 // tslint:disable-next-line:max-line-length
-import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation} from './../test_utils';
+import {makeMicrobioReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation} from './../test_utils';
 import {makeSampleDiscreteObservation, makeSampleDiscreteObservationJson} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
@@ -394,26 +394,26 @@ describe('LabeledSeries', () => {
        expect(lblSeries.coordinates).toEqual([]);
      });
 
-  it('fromDiagnosticReport should make a series for' +
+  it('fromMicrobioReport should make a series for' +
          'each interpretation in the report.',
      () => {
-       const diagnosticReport = makeDiagnosticReports()[0];
+       const microbioReport = makeMicrobioReports()[0];
        const yAxisMap = new Map<number, string>();
        yAxisMap.set(10, 'Salmonella and Shigella Culture');
        yAxisMap.set(20, 'Ova and Parasite Exam');
-       const series = LabeledSeries.fromDiagnosticReport(
-           diagnosticReport, DateTime.fromJSDate(new Date()));
+       const series = LabeledSeries.fromMicrobioReport(
+        microbioReport, DateTime.fromJSDate(new Date()));
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id-NEGORFLORA-Final');
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');
      });
 
-  it('fromDiagnosticReport should make a series for ' +
+  it('fromMicrobioReport should make a series for ' +
          'corrected statuses in the report',
      () => {
-       const diagnosticReport = makeDiagnosticReports()[2];
-       const series = LabeledSeries.fromDiagnosticReport(
-           diagnosticReport, DateTime.fromJSDate(new Date()));
+       const microbioReport = makeMicrobioReports()[2];
+       const series = LabeledSeries.fromMicrobioReport(
+        microbioReport, DateTime.fromJSDate(new Date()));
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id3-NEGORFLORA-Corrected');
        expect(series[1].label).toEqual('id3-CHECKRESULT-Corrected');

@@ -15,7 +15,9 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnotic-report';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
@@ -35,6 +37,7 @@ export class MockFhirService extends FhirService {
   private readonly medicationAdministrationMapByOrderId =
       new Map<string, MedicationAdministration[]>();
   private readonly medicationOrderMap = new Map<string, MedicationOrder[]>();
+  private readonly diagnosticReportMap = new Map<ResourceCode, DiagnosticReport[]>();
   private readonly encounters = new Array<Encounter>();
   private readonly allDataPromise: Promise<void[]>;
   private microbioJson: JSON;
@@ -105,6 +108,14 @@ export class MockFhirService extends FhirService {
               const encounter = new Encounter(json.resource, mockRequestId);
               this.encounters.push(encounter);
             }
+
+            // Not used for microbio data, but only for diagnosticReport data
+            if (resourceType === FhirResourceType.DiagnosticReport) {
+                this.constructResourceMap(
+                  json, this.diagnosticReportMap,
+                  (d) => new DiagnosticReport(d, mockRequestId),
+                  (report) => [report.code]);
+                }
           }
         } catch {
           console.warn(
@@ -227,6 +238,23 @@ export class MockFhirService extends FhirService {
   }
 
   /**
+   * Gets the MicrobioReports for the patient for any report that falls in
+   * the given date range, whose contained Observations are in the codeGroup
+   * provided.
+   * @param codeGroup The CodeGroup to retrieve MicrobioReports for.
+   * @param dateRange Return all MicrobioReports that covered any time in
+   *     this date range.
+   */
+  getMicrobioReports(
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      limitCount?: number): Promise<MicrobioReport[]> {
+    return this.allDataPromise.then(x => {
+      return MicrobioReport.parseAndFilterMicrobioData(
+          this.microbioJson, codeGroup);
+  });
+}
+
+  /**
    * Gets the DiagnosticReports for the patient for any report that falls in
    * the given date range, whose contained Observations are in the codeGroup
    * provided.
@@ -235,17 +263,17 @@ export class MockFhirService extends FhirService {
    *     this date range.
    */
   getDiagnosticReports(
-      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<DiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      return Promise
-          .resolve(DiagnosticReport.parseAndFilterMicrobioData(
-              this.microbioJson, codeGroup))
-          .then(reports => {
-            return reports.filter(
-                report => dateRange.contains(
-                    new AnnotatedDiagnosticReport(report).timestamp));
-          });
+      let reports = new Array<DiagnosticReport>();
+      for (const code of codeGroup.resourceCodes) {
+        if (this.diagnosticReportMap.has(code)) {
+          reports = reports.concat(this.diagnosticReportMap.get(code));
+        }
+      }
+      reports.slice(0, limitCount ? limitCount : undefined);
+      return reports;
     });
   }
 }

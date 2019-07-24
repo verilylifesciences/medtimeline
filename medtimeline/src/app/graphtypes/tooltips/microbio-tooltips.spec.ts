@@ -5,8 +5,8 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnotic-report';
-import {makeDiagnosticReports} from 'src/app/test_utils';
+import {AnnotatedMicrobioReport} from 'src/app/fhir-data-classes/annotated-microbio-report';
+import {makeMicrobioReports} from 'src/app/test_utils';
 
 import {MicrobioTooltip} from './microbio-tooltips';
 import {Tooltip} from './tooltip';
@@ -18,13 +18,13 @@ describe('MicrobioTooltip', () => {
 
   it('should create', () => {
     const tooltip = new MicrobioTooltip().getTooltip(
-        new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]),
+        new AnnotatedMicrobioReport(makeMicrobioReports()[0]),
         TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
   });
 
   it('should generate tooltip text', () => {
-    const annotated = new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]);
+    const annotated = new AnnotatedMicrobioReport(makeMicrobioReports()[0]);
     const tooltipText =
         new MicrobioTooltip().getTooltip(annotated, TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();
@@ -46,7 +46,7 @@ describe('MicrobioTooltip', () => {
   });
 
   it('should drop timestamp text if indicated', () => {
-    const annotated = new AnnotatedDiagnosticReport(makeDiagnosticReports()[0]);
+    const annotated = new AnnotatedMicrobioReport(makeMicrobioReports()[0]);
     const tooltipText = new MicrobioTooltip(false).getTooltip(
         annotated, TestBed.get(DomSanitizer));
     expect(tooltipText).toBeDefined();

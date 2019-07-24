@@ -52,3 +52,5 @@ export const posOtherNB =
     new DisplayGrouping('Check Result, Other', Colors.DEEP_GOLD);
 export const negOtherMB =
     new DisplayGrouping('Negative, Other', Colors.DEEP_GOLD);
+// Radiology Report categories
+export const radiology = new DisplayGrouping('Radiology', Colors.PINK_900);

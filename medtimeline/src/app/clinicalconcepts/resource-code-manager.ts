@@ -16,9 +16,10 @@ import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
-import {DisplayGrouping, labResult, med, microbio, vitalSign} from './display-grouping';
 import {bloodPressureLoincs} from './resource-code-manager-exports';
 
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
+import {DisplayGrouping, labResult, med, microbio, vitalSign, radiology} from './display-grouping';
 import {LOINCCode} from './loinc-code';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
@@ -238,6 +239,13 @@ export class ResourceCodeManager {
         'ENTEROVIRUSPCRCSFQUAL', microbio, 'Enterovirus PCR, CSF, QuaL', true)
   ];
 
+  // TODO: Add more as we get more information about the radiology report types
+  // Issue #30: Add more codes to DiagnosticReportCode as we get more data
+  private static radiologyGroup = [
+    new DiagnosticReportCode('RADRPT', radiology, 'Radiology Report', true),
+    new DiagnosticReportCode('CT', radiology, 'CT Report', true)
+  ];
+
   private static typeToPairs: Array<[DisplayGrouping, LOINCCode[]]> = [
     [vitalSign, ResourceCodeManager.vitalLoincs],
     [labResult, ResourceCodeManager.labLoincs],
@@ -426,7 +434,7 @@ export class ResourceCodeManager {
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
             this.fhirService, 'Stool', ResourceCodeManager.stoolGroupMB,
-            microbio, ChartType.MICROBIO),
+            microbio, ChartType.DIAGNOSTIC),
         'Stool')]));
 
     codeGroups.push(new AxisGroup([new Axis(
@@ -434,29 +442,36 @@ export class ResourceCodeManager {
         new BCHMicrobioCodeGroup(
             this.fhirService, 'Respiratory',
             ResourceCodeManager.respiratoryGroupMB, microbio,
-            ChartType.MICROBIO),
+            ChartType.DIAGNOSTIC),
         'Respiratory')]));
 
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
             this.fhirService, 'Other', ResourceCodeManager.otherGroupMB,
-            microbio, ChartType.MICROBIO),
+            microbio, ChartType.DIAGNOSTIC),
         'Other')]));
 
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
             this.fhirService, 'Blood', ResourceCodeManager.bloodGroupMB,
-            microbio, ChartType.MICROBIO),
+            microbio, ChartType.DIAGNOSTIC),
         'Blood')]));
 
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new BCHMicrobioCodeGroup(
             this.fhirService, 'CSF Microbiology',
-            ResourceCodeManager.csfGroupMB, microbio, ChartType.MICROBIO),
+            ResourceCodeManager.csfGroupMB, microbio, ChartType.DIAGNOSTIC),
         'CSF Microbiology')]));
+
+    codeGroups.push(new AxisGroup([new Axis(
+        this.fhirService, this.sanitizer,
+        new DiagnosticReportCodeGroup(
+            this.fhirService, 'Radiology',
+            ResourceCodeManager.radiologyGroup, radiology, ChartType.DIAGNOSTIC),
+        'Radiology')]));
 
     ResourceCodeManager.axisGroups = codeGroups;
 

@@ -7,10 +7,10 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {FhirService} from '../fhir.service';
 import {Tooltip} from '../graphtypes/tooltips/tooltip';
-import {makeDiagnosticReports} from '../test_utils';
+import {makeMicrobioReports} from '../test_utils';
 import * as Colors from 'src/app/theme/verily_colors';
 
 import {MicrobioGraphData} from './microbiographdata';
@@ -26,22 +26,22 @@ describe('MicrobioGraphData', () => {
     fhirServiceStub = {};
   }));
 
-  it('fromDiagnosticReports should correctly calculate a ' +
+  it('fromMicrobioReports should correctly calculate a ' +
          'LabeledSeries for each DiagnosticReport.',
      () => {
-       const diagnosticReports = makeDiagnosticReports();
-       const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
-           diagnosticReports, TestBed.get(DomSanitizer));
+       const microbioReports = makeMicrobioReports();
+       const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
+            microbioReports, TestBed.get(DomSanitizer));
        // All the endpoint series are also in the master series list.
        expect(stepgraphdata.series.length).toEqual(5);
      });
 
-  it('fromDiagnosticReports should correctly calculate ' +
+  it('fromMicrobioReports should correctly calculate ' +
          'time and position for each Diagnostic Report Observation',
      () => {
-       const diagnosticReports = makeDiagnosticReports();
-       const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
-           diagnosticReports, TestBed.get(DomSanitizer));
+       const microbioReports = makeMicrobioReports();
+       const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
+            microbioReports, TestBed.get(DomSanitizer));
        const series1 = stepgraphdata.series[0];
        expect(series1.coordinates[0]).toEqual([
          DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
@@ -55,7 +55,7 @@ describe('MicrobioGraphData', () => {
      });
 
 
-  it('fromDiagnosticReports should make tooltip for multiple reports at same timestamp',
+  it('fromMicrobioReports should make tooltip for multiple reports at same timestamp',
      () => {
        const mb1 = {
          contained: [
@@ -131,10 +131,10 @@ describe('MicrobioGraphData', () => {
          subject: {reference: 'Patient/XXXXXXX'}
        };
 
-       const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
+       const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
            [
-             new DiagnosticReport(mb1, REQUEST_ID),
-             new DiagnosticReport(mb2, REQUEST_ID)
+             new MicrobioReport(mb1, REQUEST_ID),
+             new MicrobioReport(mb2, REQUEST_ID)
            ],
            TestBed.get(DomSanitizer));
 
@@ -211,9 +211,9 @@ describe('MicrobioGraphData', () => {
       status: 'partial',
       subject: {reference: 'Patient/XXXXXXX'}
     };
-    const diagnosticReports = [new DiagnosticReport(mb1, REQUEST_ID)];
-    const stepgraphdata = MicrobioGraphData.fromDiagnosticReports(
-        diagnosticReports, TestBed.get(DomSanitizer));
+    const microbioReports = [new MicrobioReport(mb1, REQUEST_ID)];
+    const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
+        microbioReports, TestBed.get(DomSanitizer));
     const mbKey = DateTime.fromISO('2019-02-14T17:34:43-05:00')
         .toUTC().toMillis().toString();
     expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();

@@ -11,12 +11,14 @@ import {DateTime, Interval} from 'luxon';
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 
 const REQUEST_ID = '1234';
 
@@ -67,7 +69,12 @@ export class StubFhirService extends FhirService {
     return Promise.resolve(true);
   }
 
-  getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
+  getMicrobioReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
+      Promise<MicrobioReport[]> {
+    return Promise.resolve([]);
+  }
+
+  getDiagnosticReports(codeGroup: DiagnosticReportCodeGroup, dateRange: Interval):
       Promise<DiagnosticReport[]> {
     return Promise.resolve([]);
   }
@@ -194,9 +201,9 @@ export function makeEncounter(start: DateTime, end: DateTime) {
       {identifier: 'id', period: {start: start, end: end}}, REQUEST_ID);
 }
 
-export function makeDiagnosticReports(): DiagnosticReport[] {
+export function makeMicrobioReports(): MicrobioReport[] {
   return [
-    new DiagnosticReport(
+    new MicrobioReport(
         {
           id: 'id',
           contained: [
@@ -251,7 +258,7 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
               {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
         },
         REQUEST_ID),
-    new DiagnosticReport(
+    new MicrobioReport(
         {
           id: 'id2',
           contained: [
@@ -287,7 +294,7 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
               {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
         },
         REQUEST_ID),
-    new DiagnosticReport(
+    new MicrobioReport(
         {
           id: 'id3',
           contained: [

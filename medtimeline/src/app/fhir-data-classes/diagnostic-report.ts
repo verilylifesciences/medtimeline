@@ -1,16 +1,17 @@
-// Copyright 2018 Verily Life Sciences Inc.
+// Copyright 2019 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 
-import {FhirResourceType} from '../../constants';
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {ResultError} from '../result-error';
+import {DateTime} from 'luxon';
 
-import {Observation} from './observation';
-import {Specimen} from './specimen';
+import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
+import {ResultClassWithTimestamp} from '../fhir-resource-set';
+import {Attachment} from './attachment';
+import {Narrative} from './narrative';
 
 /**
  * FHIR element for DiagnosticReportStatus, from the DSTU2 version of the
@@ -44,115 +45,98 @@ const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
 ]);
 
 /**
+ * FHIR element for DiagnosticServiceSectionCodes, from the DSTU2 version
+ * of the standard. Used to represent the department/diagnostic service
+ * that created the request.
+ * TODO: Add more codes when we get more data. (Issue #30)
+ * http://hl7.org/fhir/DSTU2/valueset-diagnostic-service-sections.html
+ */
+export enum DiagnosticServiceSectionCodes {
+  RadiologyReport = 'RAD',
+  CTReport = 'CT'
+}
+
+const categoryToEnumMap = new Map<string, DiagnosticServiceSectionCodes>([
+  ['RADRPT', DiagnosticServiceSectionCodes.RadiologyReport],
+  ['CT', DiagnosticServiceSectionCodes.CTReport],
+]);
+
+/**
  * FHIR resource for DiagnosticReport, from the DSTU2 version of the standard.
  * https://www.hl7.org/fhir/DSTU2/diagnosticreport.html
  *
- * The parsing for this class is heavily influenced by the custom API BCH
- * built to return DiagnosticReports for microbiology data. In particular, we
- * only parse out specimens and results from the "contained" portion of the
- * resource instead of supporting retrieval by reference since the Cerner
- * implementation of the FHIR standard won't allow microbiology retrieval.
+ * Cerner currently only supports radiology reports
  */
-export class DiagnosticReport {
+export class DiagnosticReport extends ResultClassWithTimestamp {
+  /** Request ID of the request that obtained this report data.
+   * Returned by Cerner; not a FHIR standard.
+   * TODO: Issue #24
+  */
+  readonly requestId: string;
+
   readonly id: string;
-
-  /** Specimen this report is based on */
-  readonly specimen: Specimen;
-
-  /** Results in the form of observations */
-  readonly results = new Array<Observation>();
 
   /** Status for this test */
   readonly status: DiagnosticReportStatus;
 
-  /** Request ID of the request that obtained this report data */
-  readonly requestId: string;
+  /** Category of the report*/
+  readonly category: DiagnosticServiceSectionCodes;
+
+  /** Report code */
+  readonly code: ResourceCode;
+
+  /** Link to the html/pdf version of the report */
+  readonly presentedForm = new Array<Attachment>();
+
+  /** Json returned from FHIR; source of truth */
+  readonly json: any;
 
   constructor(json: any, requestId: string) {
+    super(DiagnosticReport.getLabel(json, requestId),
+          requestId, DateTime.fromISO(json.effectiveDateTime));
+
     this.requestId = requestId;
+    this.json = json;
 
     if (json.id) {
       this.id = json.id;
     }
 
-    // Contained resources may be either specimens or observations.
-    const contained = json.contained;
-    const specimens = [];
-    for (const rsc of contained) {
-      if (rsc.resourceType === FhirResourceType.Specimen) {
-        specimens.push(new Specimen(rsc, this.requestId));
-      } else if (rsc.resourceType === FhirResourceType.Observation) {
-        try {
-          this.results.push(new Observation(rsc, this.requestId));
-        } catch (err) {
-          // silently ignore observations within diagnostic reports that have
-          // errors. Errors may occur because an observation may not have a
-          // LOINC code we recognize or may have an inconsistent label.
-          // Please see Observation constructor for all error cases.
-          console.log(err);
-        }
-      }
-      // Silently ignore all other contained resource types.
-    }
-    if (specimens.length > 1) {
-      throw new ResultError(
-          new Set([this.requestId]),
-          'The report cannot have multiple specimens.');
-    }
-    this.specimen = specimens[0];
-
     if (!json.status) {
       throw new ResultError(
           new Set([this.requestId]),
-          'The report needs a status to be useful.' + json);
+          'The report needs a status to be useful.', json);
     }
-
     this.status = statusToEnumMap.get(json.status);
+
+    if (json.category) {
+      this.category = categoryToEnumMap.get(json.category.text);
+    }
+    if (json.presentedForm) {
+      for (const presented of json.presentedForm) {
+        this.presentedForm.push(new Attachment(presented));
+      }
+    }
+    if (json.code) {
+      this.code = DiagnosticReportCode.fromCodeString(json.code.text);
+    }
   }
-
   /**
-   * The custom microbiology API provided does not allow for calling for
-   * a specific microbio code, so this function parses the entire anticipated
-   * JSON repsonse and filters by code.
+   * Helper function to extract the label to satisfy the requirement
+   * for labels in the ResultClassWithTimestamp.
+   * Label currently just text of the code, which is 'RADRPT' in the
+   * Cerner examples.
    * @param json The JSON retrieved from the server.
-   * @param codeGroup The CodeGroup of tests we're looking for.
    */
-  static parseAndFilterMicrobioData(json: any, codeGroup: BCHMicrobioCodeGroup):
-      Array<DiagnosticReport> {
-    if (!json || !json.entry) {
-      return [];
+  private static getLabel(json: any, requestId: string) {
+    let label;
+    if (json.code) {
+      label = json.code.text;
+    } else {
+      throw new ResultError(
+        new Set([requestId]),
+        'The report needs a code to be useful.', json);
     }
-    // We cannot get the request ID from the Microbiology response. Therefore
-    // we hardcode the request ID to just be a constant string.
-    const requestId = 'Microbiology Request';
-
-    const diagnosticReports: DiagnosticReport[] = json.entry.map(
-        result => new DiagnosticReport(result.resource, requestId));
-
-    const mapToUpdate = new Map<ResourceCode, DiagnosticReport[]>();
-    // Get all unique codes for all DiagnosticReport results.
-    for (const report of diagnosticReports) {
-      const codes: ResourceCode[] =
-          report.results.map(r => r.codes)
-              .reduce((prev: ResourceCode[], curr: ResourceCode[]) => {
-                return prev.concat(curr);
-              }, []);
-      const uniqueCodes: ResourceCode[] = Array.from(new Set(codes));
-      for (const code of uniqueCodes) {
-        let existing = mapToUpdate.get(code);
-        if (!existing) {
-          existing = [];
-        }
-        existing.push(report);
-        mapToUpdate.set(code, existing);
-      }
-    }
-    let reports = new Array<DiagnosticReport>();
-    for (const code of codeGroup.resourceCodes) {
-      if (mapToUpdate.has(code)) {
-        reports = reports.concat(mapToUpdate.get(code));
-      }
-    }
-    return reports;
+    return label;
   }
 }

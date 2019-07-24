@@ -6,23 +6,23 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 
-import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnotic-report';
+import {AnnotatedMicrobioReport} from 'src/app/fhir-data-classes/annotated-microbio-report';
 import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
 
 import {Tooltip} from '../tooltips/tooltip';
 
 /*
- * This class makes a tooltip for a DiagnosticReport that applies to all points
+ * This class makes a tooltip for BCH Microbio DiagnosticReport that applies to all points
  * charted from the same report. It lists the time of the report, the report
  * status, as well as all results contained in the report.
  */
-export class MicrobioTooltip extends Tooltip<AnnotatedDiagnosticReport> {
+export class MicrobioTooltip extends Tooltip<AnnotatedMicrobioReport> {
   constructor(private addTimestampRow = true, private color?: Color) {
     super();
   }
 
   getTooltip(
-      annotatedReport: AnnotatedDiagnosticReport, sanitizer: DomSanitizer,
+      annotatedReport: AnnotatedMicrobioReport, sanitizer: DomSanitizer,
       isAbnormal: boolean = false): string {
     const status = DiagnosticReportStatus[annotatedReport.report.status];
     const results = annotatedReport.report.results;

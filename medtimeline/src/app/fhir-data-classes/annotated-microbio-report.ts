@@ -6,18 +6,21 @@
 
 
 import {TimestampedObject} from '../fhir-resource-set';
-import {DiagnosticReport} from './diagnostic-report';
+import {MicrobioReport} from './microbio-report';
 
 /**
- * A diagnostic report with the timestamp for a specific culture type extended.
+ * A microbio report with the timestamp for a specific culture type extended.
+ * Necessary because Cerner's implementation of the microbio data
+ * does not include the timestamp with the report, but rather with
+ * the object.
  */
-export class AnnotatedDiagnosticReport extends TimestampedObject {
-  readonly report: DiagnosticReport;
+export class AnnotatedMicrobioReport extends TimestampedObject {
+  readonly report: MicrobioReport;
 
-  constructor(report: DiagnosticReport) {
+  constructor(report: MicrobioReport) {
     // Get the timestamp from the collection time of the specimen.
-    const specimen = report.specimen;
     let timestamp;
+    const specimen = report.specimen;
     if (specimen) {
       timestamp = specimen.collectedDateTime ?
           specimen.collectedDateTime :
