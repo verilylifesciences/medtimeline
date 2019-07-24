@@ -16,6 +16,20 @@ import {ResultError} from './../result-error';
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
 /**
+ * FHIR element for MedicationOrderStatus, from the DSTU2 version of the
+ * standard.
+ * http://hl7.org/fhir/DSTU2/valueset-medication-order-status.html
+ */
+export const MedicationOrderStatus = {
+  ACTIVE: 'active',
+  ON_HOLD: 'on-hold',
+  COMPLETED: 'completed',
+  ENTERED_IN_ERROR: 'entered-in-error',
+  STOPPED: 'stopped',
+  DRAFT: 'draft',
+}
+
+/**
  * This object represents a FHIR MedicationOrder. It does not contain
  * all the information in a standard MedicationOrder (see
  * https://www.hl7.org/fhir/DSTU2/medicationorder.html) but instead
@@ -27,6 +41,7 @@ export class MedicationOrder extends ResultClass {
   firstAdministration: MedicationAdministration;
   lastAdmininistration: MedicationAdministration;
   administrationsForOrder: MedicationAdministrationSet;
+  readonly status: string;
   readonly orderId: string;
 
   // By default, we set the instruction message as the retrieval error message,
@@ -60,6 +75,7 @@ export class MedicationOrder extends ResultClass {
       this.dosageInstruction = json.dosageInstruction[0].text;
     }
     this.orderId = json.id;
+    this.status = json.status;
 
     this.rxNormCode = ResultClass.extractMedicationEncoding(json);
 

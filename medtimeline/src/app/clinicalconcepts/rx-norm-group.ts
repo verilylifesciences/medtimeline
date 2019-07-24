@@ -6,7 +6,7 @@
 import {Interval} from 'luxon';
 import {CachedResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {MedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-data-classes/medication-order';
 
 import {RxNormCode} from './rx-norm';
 
@@ -17,6 +17,8 @@ import {RxNormCode} from './rx-norm';
  */
 export class RxNormCodeGroup extends
     CachedResourceCodeGroup<RxNormCode, MedicationAdministration> {
+  medicationOrderCache = new Map<string, MedicationOrder>();
+
   /**
    * Gets all Medication Administrations in this group from FHIR for the given
    * date range.
@@ -119,23 +121,41 @@ export class RxNormCodeGroup extends
       Promise<RxNormCode[]> {
     const groupedByMed = new Map<RxNormCode, MedicationOrder[]>();
     const allPromises = Array.from(groupedByOrder.keys()).map(orderId => {
-      return this.fhirService.getMedicationOrderWithId(orderId)
-          .then(
-              order => {
-                // We only have the MedicationAdministrations from within the
-                // specified time window, so we have to search again for all the
-                // MedicationAdministrations present for this order and assign
-                // them to the order.
-                // We assume that an administration will always have a
-                // corresponding order.
-                return order.setMedicationAdministrations(this.fhirService);
-              },
-              rejection => {
-                // If there are any errors constructing MedicationOrders for
-                // this RxNormCode[], throw the error.
-                throw rejection;
-              })
-          .then(
+      if (this.medicationOrderCache.has(orderId)) {
+        return Promise.resolve(this.medicationOrderCache.get(orderId));
+      } else {
+        return this.fhirService.getMedicationOrderWithId(orderId).then(
+            order => {
+              // We only have the MedicationAdministrations from within the
+              // specified time window, so we have to search again for all the
+              // MedicationAdministrations present for this order and assign
+              // them to the order.
+              // We assume that an administration will always have a
+              // corresponding order.
+              return order.setMedicationAdministrations(this.fhirService)
+                  .then(order => {
+                    // if this order will not have any additional data added,
+                    // we add it to the medication order cache.
+                    if (order.status === MedicationOrderStatus.COMPLETED ||
+                        order.status === MedicationOrderStatus.STOPPED) {
+                      this.medicationOrderCache.set(orderId, order);
+                    }
+                    return order;
+                  });
+            },
+            rejection => {
+              // If there are any errors constructing MedicationOrders for
+              // this RxNormCode[], throw the error.
+              throw rejection;
+            });
+      }
+    });
+
+    // Resolve all the promises and set the corresponding orders for each
+    // RxNorm.
+    return Promise.all(allPromises)
+        .then(orders => {
+          orders.map(
               (order: MedicationOrder) => {
                 // Verify all the administrations have the same RxNormCode and
                 // same Order ID.
@@ -172,10 +192,7 @@ export class RxNormCodeGroup extends
                 // this RxNormCode[], throw the error.
                 throw rejection;
               });
-    });
-    // Resolve all the promises and set the corresponding orders for each
-    // RxNorm.
-    return Promise.all(allPromises)
+        })
         .then(
             _ => {
               Array.from(groupedByMed.entries()).forEach(medEntry => {
