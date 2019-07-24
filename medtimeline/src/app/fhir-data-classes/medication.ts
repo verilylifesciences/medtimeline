@@ -25,7 +25,8 @@ export class ContainedMedication extends ResultClass {
     // We want to construct new Medications for jsons containing RxNorm codes.
     if (json.resourceType !== 'Medication') {
       throw new ResultError(
-          new Set([this.requestId]), 'Resource must be of type Medication');
+          new Set([this.requestId]), 'Resource must be of type Medication',
+          json);
     }
     if (json.code) {
       if (json.code.coding) {
@@ -46,14 +47,14 @@ export class ContainedMedication extends ResultClass {
     if (!this.code) {
       throw new ResultError(
           new Set([this.requestId]),
-          'Medication must have RxNorm code to be useful');
+          'Medication must have RxNorm code to be useful', json);
     }
     this.id = json.id;
     const reference = ingredients.get(this.id);
     if (!reference) {
       throw new ResultError(
           new Set([this.requestId]),
-          'Medication info must have been contained in ingredient list.');
+          'Medication info must have been contained in ingredient list.', json);
     }
     if (this.id) {
       //  The dosage format is different for contained

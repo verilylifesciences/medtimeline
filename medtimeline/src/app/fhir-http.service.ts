@@ -151,7 +151,7 @@ export class FhirHttpService extends FhirService {
    *     query for.
    */
   getMedicationAdministrationsWithCode(
-      code: RxNormCode, dateRange: Interval,
+      code: RxNormCode, dateRange?: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
     const queryParams = {
       type: FhirResourceType.MedicationAdministration,
@@ -173,12 +173,15 @@ export class FhirHttpService extends FhirService {
         smartApi =>
             this.fetchAll(
                     smartApi, queryParams,
-                    (json, requestId) =>
-                        new MedicationAdministration(json, requestId))
+                    (json, requestId) => {
+                      if (ResultClass.extractMedicationEncoding(json) ===
+                          code) {
+                        return new MedicationAdministration(json, requestId);
+                      }
+                    })
                 .then(
-                    (results: MedicationAdministration[]) => results.filter(
-                        (result: MedicationAdministration) =>
-                            result.rxNormCode === code)));
+                    (results: MedicationAdministration[]) =>
+                        results.filter((result) => !!result)));
   }
 
   /**
@@ -214,19 +217,21 @@ export class FhirHttpService extends FhirService {
       type: FhirResourceType.MedicationAdministration,
     };
     return this.smartApiPromise.then(
-        smartApi => this.fetchAll(
-                            smartApi, queryParams,
-                            (json, requestId) =>
-                                new MedicationAdministration(json, requestId))
-                        .then(
-                            (results: MedicationAdministration[]) =>
-                                results
-                                    .filter(
-                                        (result: MedicationAdministration) =>
-                                            result.rxNormCode === code)
-                                    .filter(
-                                        (result: MedicationAdministration) =>
-                                            result.medicationOrderId === id)));
+        smartApi =>
+            this.fetchAll(
+                    smartApi, queryParams,
+                    (json, requestId) => {
+                      if (ResultClass.extractMedicationEncoding(json) ===
+                          code) {
+                        return new MedicationAdministration(json, requestId);
+                      }
+                    })
+                .then(
+                    (results: MedicationAdministration[]) =>
+                        results.filter((result) => !!result)
+                            .filter(
+                                (result: MedicationAdministration) =>
+                                    result.medicationOrderId === id)));
   }
 
   /**
