@@ -14,6 +14,7 @@ import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication
 // tslint:disable-next-line:max-line-length
 import {DiscreteObservationTooltip, GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
+import {bloodPressureLoincs} from '../clinicalconcepts/resource-code-manager-exports';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
@@ -141,6 +142,13 @@ export class LineGraphData extends GraphData {
         // There may be multiple data points associated with the timestamp
         // so we stack the administrations on top of one another in that case.
         if (tooltipMap.get(timestamp)) {
+          // Blood pressure is read into the ObservationSet differently,
+          // causing an edge case in the presentation of the values in the
+          // tooltips. We only want to display 'Blood pressure' once
+          if (obs.observation.codes[0].codeString === bloodPressureLoincs[0].codeString
+              && tooltipMap.get(timestamp).includes(bloodPressureLoincs[0].label)) {
+            continue;
+          }
           tooltipMap.set(
               timestamp,
               tooltipMap.get(timestamp) +

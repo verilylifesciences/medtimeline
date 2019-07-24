@@ -17,8 +17,10 @@ import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
+import {Tooltip} from '../graphtypes/tooltips/tooltip';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../test_utils';
+import * as Colors from 'src/app/theme/verily_colors';
 
 import {LineGraphData} from './linegraphdata';
 
@@ -94,6 +96,75 @@ describe('LineGraphData', () => {
                new GenericAnnotatedObservationTooltip(false, seriesColor)
                    .getTooltip(obs2, TestBed.get(DomSanitizer)));
      });
+  it('BP tooltip should not display blood pressure twice',
+  () => {
+    const BP_json1 = {
+      code: {
+        coding: [{system: 'http://loinc.org', code: '55284-4'}],
+        text: 'Blood Pressure'
+      },
+      effectiveDateTime: DateTime.utc(1988, 3, 23).toISO(),
+      valueQuantity: {value: 80, unit: 'mmHg'},
+      interpretation: {
+        coding: [{
+          code: 'L',
+          system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
+        }]
+      },
+      referenceRange: [{
+        low:
+          {value: 90,
+          unit: 'g/dL'},
+        high:
+        {value: 100,
+          unit: 'g/dL'}
+      }]
+    };
+    const BP_json2 = {
+      code: {
+        coding: [{system: 'http://loinc.org', code: '55284-4'}],
+        text: 'Blood Pressure'
+      },
+      effectiveDateTime: DateTime.utc(1988, 3, 23).toISO(),
+      valueQuantity: {value: 90, unit: 'mmHg'},
+      interpretation: {
+        coding: [{
+          code: 'L',
+          system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
+        }]
+      },
+      referenceRange: [{
+        low:
+          {value: 90,
+          unit: 'g/dL'},
+        high:
+        {value: 100,
+          unit: 'g/dL'}
+      }]
+    };
+    const REQUEST_ID = '1234';
+    const obs1 = new AnnotatedObservation(new Observation(BP_json1, REQUEST_ID));
+    const obs2 = new AnnotatedObservation(new Observation(BP_json2, REQUEST_ID));
+
+    const lgData = LineGraphData.fromObservationSetList(
+        'lbl', new Array(new ObservationSet([obs1, obs2])), loincCodeGroup,
+        TestBed.get(DomSanitizer), []);
+
+    const seriesColor = lgData.series[0].legendInfo.fill;
+    expect(lgData.tooltipMap.size).toBe(1);
+    // Expect the tooltip to only have one instance of Blood Pressure despite passing in
+    // two observations occuring at the same time point. The blood pressure
+    // tooltip has different styling than the GenericAnnotatedObservationToolTip
+    expect(lgData.tooltipMap.get('575078400000'))
+        .toEqual('<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
+        Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) +
+        '</th></tr><tr><td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
+        Tooltip.TOOLTIP_ABNORMAL_CSS + 'rgb(69, 39, 160)"></span>' +
+        '<div style="display: inline-block;">Blood Pressure</div></td><td class="value" ' +
+        'style="color: ' + Colors.ABNORMAL + '">80 mmHg (Low)</td></tr></tbody></table>' +
+        '<table class="c3-tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
+        '</tbody></table>');
+  });
 
   it('fromObservationSetList should set y axis display so that all data included',
      () => {

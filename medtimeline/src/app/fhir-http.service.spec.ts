@@ -120,27 +120,4 @@ describe('FhirHttpService', () => {
          done();
        });
      });
-
-  it('observationsPresentWithCode should resolve to True if any observations are returned',
-     (done: DoneFn) => {
-       spyOn(smartApi.patient.api, 'search')
-           .and.returnValue(Promise.resolve(responseWithNextPage));
-       clientReadyCallback(smartApi);
-       service.observationsPresentWithCode(code, dateRange).then(response => {
-         expect(response).toBe(true);
-         done();
-       });
-     });
-
-  it('observationsPresentWithCode should resolve to False if no observations are returned',
-     (done: DoneFn) => {
-       const emptyResponse = {data: {}};
-       spyOn(smartApi.patient.api, 'search')
-           .and.returnValue(Promise.resolve(emptyResponse));
-       clientReadyCallback(smartApi);
-       service.observationsPresentWithCode(code, dateRange).then(response => {
-         expect(response).toBe(false);
-         done();
-       });
-     });
 });

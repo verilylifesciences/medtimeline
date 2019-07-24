@@ -127,27 +127,22 @@ export class MockFhirService extends FhirService {
    *     queried for
    */
   getObservationsWithCode(
-      code: LOINCCode,
-      dateRange: Interval,
-      ): Promise<Observation[]> {
+      code: LOINCCode, dateRange: Interval,
+      limitCount?: number): Promise<Observation[]> {
     return this.allDataPromise.then(
-        map => this.getObservations(this.loincMap, code, dateRange));
+        map =>
+            this.getObservations(this.loincMap, code, dateRange, limitCount));
   }
 
   private getObservations(
-      map: Map<LOINCCode, Observation[]>, code: LOINCCode,
-      dateRange: Interval) {
+      map: Map<LOINCCode, Observation[]>, code: LOINCCode, dateRange: Interval,
+      limitCount = 0) {
     return map.has(code) ?
         map.get(code)
             .filter(obs => dateRange.contains(obs.timestamp))
-            .filter(obs => obs.status !== ObservationStatus.EnteredInError) :
+            .filter(obs => obs.status !== ObservationStatus.EnteredInError)
+            .slice(0, limitCount ? limitCount : undefined) :
         [];
-  }
-
-  observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
-      Promise<boolean> {
-    return this.getObservationsWithCode(code, dateRange)
-        .then(results => results.length > 0);
   }
 
   /**

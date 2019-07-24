@@ -17,6 +17,8 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
 import {DisplayGrouping, labResult, med, microbio, vitalSign} from './display-grouping';
+import {bloodPressureLoincs} from './resource-code-manager-exports';
+
 import {LOINCCode} from './loinc-code';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
@@ -43,6 +45,7 @@ const salmonella = new BCHMicrobioCode(
 export class ResourceCodeManager {
   private static axisGroups: AxisGroup[];
   private static displayGroupMapping: Map<DisplayGrouping, AxisGroup[]>;
+
 
   static readonly labLoincs = [
     // Pull all the defaults to the top.
@@ -80,11 +83,8 @@ export class ResourceCodeManager {
   private static readonly systolicBP = new LOINCCode(
       '8480-6', vitalSign, 'Systolic Blood Pressure', true, [30, 250]);
 
-  private static readonly bloodPressureLoincs = [
-    new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true),
-    new LOINCCode(
-        '8478-0', vitalSign, 'Mean Arterial Pressure (Device)', true, [25, 200])
-  ];
+  // "bloodPressureLoincs" is in file resource-code-manager-exports.ts because
+  // of circular dependency issues.
 
   private static readonly gentMonitoring = [
     new LOINCCode('31091-2', labResult, 'Gentamicin, Peak/Post Q24H'),
@@ -273,7 +273,7 @@ export class ResourceCodeManager {
         this.fhirService, this.sanitizer,
         new LOINCCodeGroup(
             this.fhirService, 'Blood Pressure',
-            ResourceCodeManager.bloodPressureLoincs, vitalSign, ChartType.LINE,
+            bloodPressureLoincs, vitalSign, ChartType.LINE,
             (observation: Observation, dateRange: Interval):
                 Promise<AnnotatedObservation> => {
                   return bpLocation.getResourceSet(dateRange).then(obsSet => {

@@ -25,8 +25,18 @@ export abstract class FhirService {
    * @param code The LOINC code for which to get observations.
    * @param dateRange The time interval observations should fall between.
    */
-  abstract observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
-      Promise<boolean>;
+  observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
+      Promise<boolean> {
+    // Cerner says that asking for a limited count of resources can slow down
+    // queries, so we don't restrict a count limit here.
+    // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+    return this.getObservationsWithCode(code, dateRange)
+        .then(obs => obs.length > 0, rejection => {
+          // If any Observation for this code results in an error, do not show
+          // any Observations at all.
+          throw rejection;
+        });
+  }
 
   /**
    * Returns whether there are any observations with this code in the given
@@ -53,9 +63,8 @@ export abstract class FhirService {
    *     query for.
    */
   abstract getObservationsWithCode(
-      code: LOINCCode,
-      dateRange: Interval,
-      ): Promise<Observation[]>;
+      code: LOINCCode, dateRange: Interval,
+      limitCount?: number): Promise<Observation[]>;
 
   /**
    * Gets observations from a specified date range with a specific code group.
@@ -131,7 +140,7 @@ export abstract class FhirService {
             resolvedMedications =>
                 // flatten the results into single medication administrations
                 // list
-                [].concat(...resolvedMedications));
+                    [].concat(...resolvedMedications));
   }
 
   /**
