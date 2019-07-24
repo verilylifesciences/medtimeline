@@ -32,6 +32,11 @@ export class StubFhirService extends FhirService {
     return Promise.resolve([]);
   }
 
+  observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
+      Promise<boolean> {
+    return Promise.resolve(false);
+  }
+
   getMedicationAdministrationsWithCode(code: RxNormCode, dateRange: Interval):
       Promise<MedicationAdministration[]> {
     return Promise.resolve(
@@ -67,7 +72,6 @@ export function makeSampleObservationJson(
     referenceRange: [number, number] = [10, 20], interpretation = 'N',
     hasInterpretation = true, hasValueAndResult = true,
     hasReferenceRange = true): any {
-
   // Testing for missing 'interpretation' value in JSON
   let interpretationJSON;
   if (hasInterpretation) {
@@ -92,12 +96,8 @@ export function makeSampleObservationJson(
   let referenceRangeJSON;
   if (hasReferenceRange) {
     referenceRangeJSON = [{
-      low:
-        {value: referenceRange[0],
-        unit: 'g/dL'},
-      high:
-      {value: referenceRange[1],
-        unit: 'g/dL'}
+      low: {value: referenceRange[0], unit: 'g/dL'},
+      high: {value: referenceRange[1], unit: 'g/dL'}
     }];
   } else {
     referenceRangeJSON = '';
@@ -118,12 +118,12 @@ export function makeSampleObservationJson(
 export function makeSampleObservation(
     value: number, timestamp: DateTime,
     referenceRange: [number, number] = [10, 20], interpretation = 'N',
-    hasInterpretation = true, hasValueAndResult= true, hasReferenceRange = true,
-    requestId = REQUEST_ID): any {
+    hasInterpretation = true, hasValueAndResult = true,
+    hasReferenceRange = true, requestId = REQUEST_ID): any {
   return new Observation(
       makeSampleObservationJson(
-          value, timestamp, referenceRange, interpretation,
-          hasInterpretation, hasValueAndResult, hasReferenceRange),
+          value, timestamp, referenceRange, interpretation, hasInterpretation,
+          hasValueAndResult, hasReferenceRange),
       requestId);
 }
 
