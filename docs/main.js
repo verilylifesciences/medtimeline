@@ -638,7 +638,7 @@ module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <app-timeline-controller (changeDateRange)=\"changeDateRange($event)\" [encounters]=\"this.setupDataService.encounters\"\n    [selectedDateRange]=\"this.setupDataService.selectedDateRange\"></app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\"\n        [dateRange]=\"dateRange\" [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [dateRange]=\"dateRange\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n  <!-- Leave some cushion at the bottom so that tooltips show up. -->\n  <div style=\"height: 500px\"></div>\n</div>\n"
+module.exports = "<mat-toolbar>\n  <app-timeline-controller\n    (changeDateRange)=\"changeDateRange($event)\"\n    [encounters]=\"this.setupDataService.encounters\"\n    [encountersError]=\"this.setupDataService.encountersError\"\n    [selectedDateRange]=\"this.setupDataService.selectedDateRange\">\n  </app-timeline-controller>\n  <!--Push the buttons to the right and left sides.-->\n  <div fxFlex class=\"flexSpacer\"></div>\n  <app-timeline-toolbar (saveSnapshot)=\"snapshot()\" (addTextbox)=\"addTextbox()\">\n  </app-timeline-toolbar>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div fxLayout=\"column\" class=\"cardContainer makeGutters\" fxLayoutAlign=\"start\">\n  <app-data-selector-menu (addCard)=\"addConceptCard($event)\" (addTextbox)=\"addTextbox()\"\n    (addCustomTimeline)=\"addCustomTimeline()\"></app-data-selector-menu>\n  <div fxLayout=\"column\" dragula=\"graphcards\" class=\"draggable\">\n    <div *ngFor=\"let element of displayedConcepts\" [attr.data-index]=\"element['id']\" class=\"displayedConcept\">\n      <app-textboxcard *ngIf=\"element['concept'] ==='textbox'\" [id]=\"element['id']\" [noteString]=\"element['value']\"\n        (removeEvent)=\"removeDisplayedCard($event)\"></app-textboxcard>\n      <app-customizable-timeline *ngIf=\"element['concept']==='customTimeline'\" [id]=\"element['id']\"\n        [dateRange]=\"dateRange\" [deletedData]=\"element['value']\" (updateEventLines)=\"updateEventLines($event)\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-customizable-timeline>\n      <app-multigraphcard *ngIf=\"element['concept'] !=='textbox' && element['concept'] !== 'customTimeline'\"\n        [axisGroup]=\"element['concept']\" [dateRange]=\"dateRange\" [eventlines]=\"eventlines\" [id]=\"element['id']\"\n        (removeEvent)=\"removeDisplayedCard($event)\">\n      </app-multigraphcard>\n      <app-data-selector-menu (addCard)=\"addConceptCard($event, element['id'])\" (addTextbox)=\"addTextbox(element['id'])\"\n        (addCustomTimeline)=\"addCustomTimeline(element['id'])\"></app-data-selector-menu>\n    </div>\n  </div>\n  <!-- Leave some cushion at the bottom so that tooltips show up. -->\n  <div style=\"height: 500px\"></div>\n</div>\n"
 
 /***/ }),
 
@@ -1444,7 +1444,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
+/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -1465,6 +1466,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 /**
  * This card holds a label, one or more graphs on one or more axes, and a
  * dragger handle.
@@ -1478,7 +1480,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
          */
         this.unitsLabel = '';
         /** Holds the color corresponding to this card. */
-        this.color = _theme_verily_colors__WEBPACK_IMPORTED_MODULE_5__["BLUE_GREY_500"]; // Default color for a card component.
+        this.color = _theme_verily_colors__WEBPACK_IMPORTED_MODULE_6__["BLUE_GREY_500"]; // Default color for a card component.
         /** Hold an instance of this enum so the HTML template can reference it. */
         this.ChartType = _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["ChartType"];
         /**
@@ -1508,6 +1510,10 @@ var MultiGraphCardComponent = /** @class */ (function () {
         }
     };
     MultiGraphCardComponent.prototype.addSeriesToLegendMap = function (series) {
+        // We do not want to add the normalBound series to the legend
+        if (series.legendInfo.label === _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_5__["LineGraphComponent"].NORMAL_BOUND_SERIES_NAME) {
+            return;
+        }
         if (!this.legendToSeries.has(series.legendInfo)) {
             this.legendToSeries.set(series.legendInfo, []);
         }
@@ -1802,7 +1808,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCode", function() { return BCHMicrobioCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCodeGroup", function() { return BCHMicrobioCodeGroup; });
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/clinicalconcepts/resource-code-group.ts");
+/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
+/* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/clinicalconcepts/resource-code-group.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -1820,6 +1827,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 /**
@@ -1840,7 +1848,7 @@ var BCHMicrobioCode = /** @class */ (function (_super) {
     };
     BCHMicrobioCode.CODING_STRING = 'http://cerner.com/bch_mapping/';
     return BCHMicrobioCode;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["ResourceCode"]));
 
 /**
  * Represents one or more LOINC codes that should be displayed together. In the
@@ -1859,7 +1867,14 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
      * codes.
      */
     BCHMicrobioCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
-        return this.fhirService.getDiagnosticReports(this, dateRange);
+        return this.fhirService.getDiagnosticReports(this, dateRange)
+            .then(function (reports) {
+            return reports.map(function (report) { return new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_1__["AnnotatedDiagnosticReport"](report); });
+        });
+    };
+    BCHMicrobioCodeGroup.prototype.formatRawResults = function (rawResults) {
+        var diagnosticReports = rawResults.map(function (result) { return result.report; });
+        return Promise.resolve(diagnosticReports);
     };
     /**
      * Returns whether there is any data available for this ResourceCode within
@@ -1870,7 +1885,7 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
         return this.fhirService.diagnosticReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     return BCHMicrobioCodeGroup;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["CachedResourceCodeGroup"]));
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["CachedResourceCodeGroup"]));
 
 
 
@@ -2033,14 +2048,51 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * Gets one ObservationSet for each LOINCCode in this group, and returns
+     * Gets one ObservationSet for each LOINCCode in the rawResults, and returns
      * a list of those ObservationSets.
+     * @param rawResults: List of AnnotatedObservations to group into
+     *     ObservationSets
+     * @returns: list of ObservationSets. One ObservationSet for each LOINCCode
+     * found in the rawResults.
+     */
+    LOINCCodeGroup.prototype.formatRawResults = function (rawResults) {
+        var mapObs = new Map();
+        var maxPrecision = 0;
+        for (var _i = 0, rawResults_1 = rawResults; _i < rawResults_1.length; _i++) {
+            var annotatedObservation = rawResults_1[_i];
+            var observation = annotatedObservation.observation;
+            // From this point on, each observation should have a value,
+            // result, or interpretation. All observations that just had
+            // innerComponents have been flattened out.
+            var obsList = mapObs.get(observation.label);
+            if (!obsList) {
+                obsList = new Array();
+            }
+            obsList.push(annotatedObservation);
+            if (observation.precision > maxPrecision) {
+                maxPrecision = observation.precision;
+            }
+            mapObs.set(observation.label, obsList);
+        }
+        this.precision = maxPrecision;
+        var doubleAnnotationArray = Array.from(mapObs.values());
+        return Promise.all(doubleAnnotationArray.map(function (singleAnnotationArray) {
+            return Promise.all(singleAnnotationArray)
+                .then(function (resolvedAnnotations) {
+                return new _fhir_data_classes_observation_set__WEBPACK_IMPORTED_MODULE_2__["ObservationSet"](resolvedAnnotations);
+            });
+        }));
+    };
+    /**
+     * Gets list of Observations from the FHIR server and makes them annotated
+     * if makeAnnotated function is defined.
      * If an Observation contains "inner components", this returns separate
-     * ObservationSets for those LOINCCodes, provided that they are mapped.
+     * Observations for those.
+     * @param dateRange: date range to get results from FHIR for
+     * @returns: List of Annotated Observations
      */
     LOINCCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
         var _this = this;
-        var maxPrecision = 0;
         return this.fhirService.getObservationsForCodeGroup(this, dateRange)
             .then(function (observationDoubleArray) {
             // Unnest the inner and outer observations into one flattened
@@ -2071,39 +2123,20 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
             throw rejection;
         })
             .then(function (flattened) {
-            var mapObs = new Map();
+            var resultList = new Array();
             flattened.forEach(function (conceptList) {
                 for (var _i = 0, conceptList_1 = conceptList; _i < conceptList_1.length; _i++) {
                     var observation = conceptList_1[_i];
-                    // From this point on, each observation should have a value,
-                    // result, or interpretation. All observations that just had
-                    // innerComponents have been flattened out.
-                    var obsList = mapObs.get(observation.label);
-                    if (!obsList) {
-                        obsList = new Array();
-                    }
-                    if (observation.precision > maxPrecision) {
-                        maxPrecision = observation.precision;
-                    }
                     if (_this.makeAnnotated) {
-                        obsList.push(_this.makeAnnotated(observation, dateRange));
+                        resultList.push(_this.makeAnnotated(observation, dateRange));
                     }
                     else {
-                        obsList.push(Promise.resolve(new _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_1__["AnnotatedObservation"](observation)));
+                        resultList.push(Promise.resolve(new _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_1__["AnnotatedObservation"](observation)));
                     }
-                    mapObs.set(observation.label, obsList);
                 }
             });
-            _this.precision = maxPrecision;
-            return Array.from(mapObs.values());
-        })
-            .then(function (doubleAnnotationArray) { return doubleAnnotationArray.map(function (singleAnnotationArray) {
-            return Promise.all(singleAnnotationArray)
-                .then(function (resolvedAnnotations) {
-                return new _fhir_data_classes_observation_set__WEBPACK_IMPORTED_MODULE_2__["ObservationSet"](resolvedAnnotations);
-            });
-        }); })
-            .then(function (observationSetArray) { return Promise.all(observationSetArray); });
+            return Promise.all(resultList);
+        });
     };
     return LOINCCodeGroup;
 }(_resource_code_group__WEBPACK_IMPORTED_MODULE_3__["CachedResourceCodeGroup"]));
@@ -2124,6 +2157,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCode", function() { return ResourceCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeGroup", function() { return ResourceCodeGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CachedResourceCodeGroup", function() { return CachedResourceCodeGroup; });
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -2141,6 +2176,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 /**
  * A code specifying the medication or observation type as well as the specific
  * medication or observation.
@@ -2239,23 +2275,121 @@ var CachedResourceCodeGroup = /** @class */ (function (_super) {
      */
     CachedResourceCodeGroup.prototype.getResourceSet = function (dateRange) {
         var _this = this;
-        if (this.dataCache.has(dateRange)) {
-            return Promise.resolve(this.dataCache.get(dateRange));
+        var originalDataCacheCopy = new Map(this.dataCache);
+        // today's results will never be in the cache since we always want to get
+        // updated results for today.
+        var today = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().toISODate();
+        var todaysResults = new Array();
+        // get the days during the dateRange Inteval that we do not have in the
+        // cache already.
+        var daysToFetchFromFhir = new Array();
+        // splits dateRange into an array of intervals - each 1 day long.
+        var daysInRange = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"]
+            .fromDateTimes(dateRange.start.startOf('day'), dateRange.end.endOf('day'))
+            .splitBy({ days: 1 });
+        // for each day in the range, check if it is in the cache already.
+        // If not, add the day to the daysToFetchFromFhir and add an empty array
+        // to the cache. We add an empty array so that if we don't get any results
+        // back for a particular day, we know there is no data and we don't need to
+        // request that day again.
+        for (var _i = 0, daysInRange_1 = daysInRange; _i < daysInRange_1.length; _i++) {
+            var dayRange = daysInRange_1[_i];
+            var cacheKey = dayRange.start.toISODate();
+            if (!this.dataCache.has(cacheKey)) {
+                daysToFetchFromFhir.push(dayRange);
+                // We do not want to cache today's results since their may be
+                // additional results next time this data is fetched
+                // from FHIR
+                if (cacheKey !== today) {
+                    this.dataCache.set(cacheKey, new Array());
+                }
+            }
         }
-        else {
-            return this.getResourceFromFhir(dateRange).then(function (res) {
-                _this.dataCache.set(dateRange, res);
-                return Promise.resolve(_this.dataCache.get(dateRange));
-            }, function (rejection) {
-                // If there is any error with getting the resources for this
-                // ResourceCodeGroup, throw an error.
-                throw rejection;
+        // This will give a list of the minimal covering set of intervals that
+        // are not cached.
+        var dateRangesToFetchFromFhir = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].merge(daysToFetchFromFhir);
+        var fetchPromises = [];
+        try {
+            fetchPromises = dateRangesToFetchFromFhir.map(function (dateRangeToFetch) {
+                return _this.getResourceFromFhir(dateRangeToFetch)
+                    .then(function (response) {
+                    for (var _i = 0, response_1 = response; _i < response_1.length; _i++) {
+                        var result = response_1[_i];
+                        var resultDate = result.timestamp.toISODate();
+                        // we keep today's results separate so that we
+                        // don't cache them.
+                        if (resultDate === today) {
+                            todaysResults.push(result);
+                        }
+                        else {
+                            _this.dataCache.get(resultDate).push(result);
+                        }
+                    }
+                }, function (rejection) {
+                    // reset back to cache if any call to FHIR results in
+                    // an error.
+                    _this.dataCache = originalDataCacheCopy;
+                    throw rejection;
+                });
             });
         }
+        catch (err) {
+            // reset back to original cache if there were any issues adding to the
+            // cache (such as a result not having a timestamp) - we do not want to
+            // cache partial data.
+            this.dataCache = originalDataCacheCopy;
+            throw err;
+        }
+        return Promise.all(fetchPromises)
+            .then(function (responseList) {
+            return _this.getResourceFromCache(dateRange).then(function (rawResults) { return _this.formatRawResults([].concat(rawResults, todaysResults)); });
+        }, function (rejection) {
+            _this.dataCache = originalDataCacheCopy;
+            throw rejection;
+        });
+    };
+    /**
+     * Gets data from the cache for the given date range.
+     * @param dateRange date range to get data for
+     */
+    CachedResourceCodeGroup.prototype.getResourceFromCache = function (dateRange) {
+        var _this = this;
+        // split the dateRange by day intervals and get data from the Cache.
+        var allRawResults = new Array();
+        dateRange.splitBy({ days: 1 }).forEach(function (dayRange) {
+            allRawResults.push.apply(allRawResults, _this.dataCache.get(dayRange.start.toISODate()));
+        });
+        return Promise.resolve(allRawResults);
     };
     return CachedResourceCodeGroup;
 }(ResourceCodeGroup));
 
+
+
+/***/ }),
+
+/***/ "./src/app/clinicalconcepts/resource-code-manager-exports.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/clinicalconcepts/resource-code-manager-exports.ts ***!
+  \*******************************************************************/
+/*! exports provided: bloodPressureLoincs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bloodPressureLoincs", function() { return bloodPressureLoincs; });
+/* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
+/* harmony import */ var _loinc_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+
+var bloodPressureLoincs = [
+    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Blood Pressure', true),
+    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Mean Arterial Pressure (Device)', true, [25, 200])
+];
 
 
 /***/ }),
@@ -2281,8 +2415,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 /* harmony import */ var _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
 /* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var _rx_norm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
+/* harmony import */ var _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
+/* harmony import */ var _rx_norm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -2296,6 +2431,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2340,7 +2476,7 @@ var ResourceCodeManager = /** @class */ (function () {
         }
         var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Add the blood pressure LOINCs.
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', ResourceCodeManager_1.bloodPressureLoincs, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_10__["bloodPressureLoincs"], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
                 return bpLocation.getResourceSet(dateRange).then(function (obsSet) {
                     return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forBloodPressure(observation, 
                     // We only pass in the first ObservationSet, since we
@@ -2365,11 +2501,11 @@ var ResourceCodeManager = /** @class */ (function () {
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbcWBC.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count White Blood Cell'));
-        var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_10__["RXNORM_CODES"];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
+        var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_11__["RXNORM_CODES"];
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
-        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
+        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_11__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
         var vancMonitoring = [
@@ -2385,7 +2521,7 @@ var ResourceCodeManager = /** @class */ (function () {
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](vancMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Vancomycin'));
         var gentMonitoring = [
-            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_11__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_10__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
+            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_11__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
             new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.gentMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER)
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](gentMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Gentamicin'));
@@ -2454,10 +2590,8 @@ var ResourceCodeManager = /** @class */ (function () {
      */
     ResourceCodeManager.diastolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8462-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Diastolic Blood Pressure', true, [25, 150]);
     ResourceCodeManager.systolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8480-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Systolic Blood Pressure', true, [30, 250]);
-    ResourceCodeManager.bloodPressureLoincs = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Mean Arterial Pressure (Device)', true, [25, 200])
-    ];
+    // "bloodPressureLoincs" is in file resource-code-manager-exports.ts because
+    // of circular dependency issues.
     ResourceCodeManager.gentMonitoring = [
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31091-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Peak/Post Q24H'),
         new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3663-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Peak/Post Q8H'),
@@ -2605,28 +2739,29 @@ var __extends = (undefined && undefined.__extends) || (function () {
 var RxNormCodeGroup = /** @class */ (function (_super) {
     __extends(RxNormCodeGroup, _super);
     function RxNormCodeGroup() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.medicationOrderCache = new Map();
+        return _this;
     }
     /**
-     * Fills out the order and administration information for each for each
+     * Gets all Medication Administrations in this group from FHIR for the given
+     * date range.
+     * @param dateRange date range to get medication administrations for
+     */
+    RxNormCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
+        return this.fhirService.getMedicationAdministrationsWithCodes(this, dateRange);
+    };
+    /**
+     * Fills out the order and administration information for each
      * RxNormCode in this group, and returns a list of the populated RxNormCodes.
      * This is a roundabout process because the Cerner implementation of the
      * FHIR standard doesn't allow for searching MedicationOrders by RxNorm code,
      * so we have to search for MedicationAdministrations by RxNorm code and work
      * up from there.
      */
-    RxNormCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
-        var _this = this;
-        return this.fhirService
-            .getMedicationAdministrationsWithCodes(this, dateRange)
-            .then(function (medAdmins) {
-            var groupedByOrder = _this.groupAdministrationsByOrderId(medAdmins);
-            return _this.getMedicationOrdersAndMapToMed(groupedByOrder);
-        }, function (rejection) {
-            // If there are any errors constructing MedicationAdministrations
-            // or MedicationOrders for this RxNormCode[], throw the error.
-            throw rejection;
-        });
+    RxNormCodeGroup.prototype.formatRawResults = function (rawResults) {
+        var groupedByOrder = this.groupAdministrationsByOrderId(rawResults);
+        return this.getMedicationOrdersAndMapToMed(groupedByOrder);
     };
     /**
      * Takes a list of lists of MedicationAdministrations and groups them by their
@@ -2650,22 +2785,19 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
      */
     RxNormCodeGroup.prototype.groupAdministrationsByOrderId = function (medAdmins) {
         var groupedByOrder = new Map();
-        for (var _i = 0, medAdmins_1 = medAdmins; _i < medAdmins_1.length; _i++) {
-            var medAdminForDrug = medAdmins_1[_i];
-            // Group medication administrations by medication order.
-            groupedByOrder = medAdminForDrug.reduce(function (groups, medAdmin) {
-                // Append this administration to whatever order list it belongs to.
-                var orderId = medAdmin.medicationOrderId;
-                if (!groups.has(orderId)) {
-                    groups.set(orderId, new Array());
-                }
-                groups.set(orderId, groups.get(orderId).concat(medAdmin));
-                return groups;
-            }, 
-            // Use whatever existed in groupedByOrder prior to this iteration as
-            // the basis for the reducer to add to.
-            groupedByOrder);
-        }
+        // Group medication administrations by medication order.
+        groupedByOrder = medAdmins.reduce(function (groups, medAdmin) {
+            // Append this administration to whatever order list it belongs to.
+            var orderId = medAdmin.medicationOrderId;
+            if (!groups.has(orderId)) {
+                groups.set(orderId, new Array());
+            }
+            groups.set(orderId, groups.get(orderId).concat(medAdmin));
+            return groups;
+        }, 
+        // Use whatever existed in groupedByOrder prior to this iteration as
+        // the basis for the reducer to add to.
+        groupedByOrder);
         return groupedByOrder;
     };
     /**
@@ -2702,21 +2834,39 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
         var _this = this;
         var groupedByMed = new Map();
         var allPromises = Array.from(groupedByOrder.keys()).map(function (orderId) {
-            return _this.fhirService.getMedicationOrderWithId(orderId)
-                .then(function (order) {
-                // We only have the MedicationAdministrations from within the
-                // specified time window, so we have to search again for all the
-                // MedicationAdministrations present for this order and assign
-                // them to the order.
-                // We assume that an administration will always have a
-                // corresponding order.
-                return order.setMedicationAdministrations(_this.fhirService);
-            }, function (rejection) {
-                // If there are any errors constructing MedicationOrders for
-                // this RxNormCode[], throw the error.
-                throw rejection;
-            })
-                .then(function (order) {
+            if (_this.medicationOrderCache.has(orderId)) {
+                return Promise.resolve(_this.medicationOrderCache.get(orderId));
+            }
+            else {
+                return _this.fhirService.getMedicationOrderWithId(orderId).then(function (order) {
+                    // We only have the MedicationAdministrations from within the
+                    // specified time window, so we have to search again for all the
+                    // MedicationAdministrations present for this order and assign
+                    // them to the order.
+                    // We assume that an administration will always have a
+                    // corresponding order.
+                    return order.setMedicationAdministrations(_this.fhirService)
+                        .then(function (order) {
+                        // if this order will not have any additional data added,
+                        // we add it to the medication order cache.
+                        if (order.status === _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_1__["MedicationOrderStatus"].COMPLETED ||
+                            order.status === _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_1__["MedicationOrderStatus"].STOPPED) {
+                            _this.medicationOrderCache.set(orderId, order);
+                        }
+                        return order;
+                    });
+                }, function (rejection) {
+                    // If there are any errors constructing MedicationOrders for
+                    // this RxNormCode[], throw the error.
+                    throw rejection;
+                });
+            }
+        });
+        // Resolve all the promises and set the corresponding orders for each
+        // RxNorm.
+        return Promise.all(allPromises)
+            .then(function (orders) {
+            orders.map(function (order) {
                 // Verify all the administrations have the same RxNormCode and
                 // same Order ID.
                 var rxNormCodeSet = new Set(Array.from(groupedByOrder.get(order.orderId).values())
@@ -2745,10 +2895,7 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
                 // this RxNormCode[], throw the error.
                 throw rejection;
             });
-        });
-        // Resolve all the promises and set the corresponding orders for each
-        // RxNorm.
-        return Promise.all(allPromises)
+        })
             .then(function (_) {
             Array.from(groupedByMed.entries()).forEach(function (medEntry) {
                 var rxNorm = medEntry[0];
@@ -3450,6 +3597,62 @@ var DeleteDialogComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/fhir-data-classes/annotated-diagnotic-report.ts ***!
+  \*****************************************************************/
+/*! exports provided: AnnotatedDiagnosticReport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedDiagnosticReport", function() { return AnnotatedDiagnosticReport; });
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+/**
+ * A diagnostic report with the timestamp for a specific culture type extended.
+ */
+var AnnotatedDiagnosticReport = /** @class */ (function (_super) {
+    __extends(AnnotatedDiagnosticReport, _super);
+    function AnnotatedDiagnosticReport(report) {
+        var _this = this;
+        // Get the timestamp from the collection time of the specimen.
+        var specimen = report.specimen;
+        var timestamp;
+        if (specimen) {
+            timestamp = specimen.collectedDateTime ?
+                specimen.collectedDateTime :
+                (specimen.collectedPeriod ? specimen.collectedPeriod.start :
+                    undefined);
+        }
+        _this = _super.call(this, timestamp) || this;
+        _this.report = report;
+        return _this;
+    }
+    return AnnotatedDiagnosticReport;
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["TimestampedObject"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/fhir-data-classes/annotated-observation.ts":
 /*!************************************************************!*\
   !*** ./src/app/fhir-data-classes/annotated-observation.ts ***!
@@ -3495,7 +3698,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
      */
     annotationValues) {
         if (annotationValues === void 0) { annotationValues = new Array(); }
-        var _this = _super.call(this, observation.label, observation.requestId) || this;
+        var _this = _super.call(this, observation.label, observation.requestId, observation.timestamp) || this;
         _this.observation = observation;
         _this.annotationValues = annotationValues;
         return _this;
@@ -3589,7 +3792,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         return new AnnotatedObservation(observation, annotations);
     };
     return AnnotatedObservation;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClassWithTimestamp"]));
 
 
 
@@ -3599,14 +3802,13 @@ var AnnotatedObservation = /** @class */ (function (_super) {
 /*!********************************************************!*\
   !*** ./src/app/fhir-data-classes/diagnostic-report.ts ***!
   \********************************************************/
-/*! exports provided: DiagnosticReportStatus, DiagnosticReport, AnnotatedDiagnosticReport */
+/*! exports provided: DiagnosticReportStatus, DiagnosticReport */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportStatus", function() { return DiagnosticReportStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReport", function() { return DiagnosticReport; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedDiagnosticReport", function() { return AnnotatedDiagnosticReport; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.ts");
 /* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
 /* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
@@ -3676,7 +3878,16 @@ var DiagnosticReport = /** @class */ (function () {
                 specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_3__["Specimen"](rsc, this.requestId));
             }
             else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
-                this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
+                try {
+                    this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
+                }
+                catch (err) {
+                    // silently ignore observations within diagnostic reports that have
+                    // errors. Errors may occur because an observation may not have a
+                    // LOINC code we recognize or may have an inconsistent label.
+                    // Please see Observation constructor for all error cases.
+                    console.log(err);
+                }
             }
             // Silently ignore all other contained resource types.
         }
@@ -3733,24 +3944,6 @@ var DiagnosticReport = /** @class */ (function () {
         return reports;
     };
     return DiagnosticReport;
-}());
-
-/**
- * A diagnostic report with the timestamp for a specific culture type extended.
- */
-var AnnotatedDiagnosticReport = /** @class */ (function () {
-    function AnnotatedDiagnosticReport(report) {
-        // Get the timestamp from the collection time of the specimen.
-        var specimen = report.specimen;
-        if (specimen) {
-            this.timestamp = specimen.collectedDateTime ?
-                specimen.collectedDateTime :
-                (specimen.collectedPeriod ? specimen.collectedPeriod.start :
-                    undefined);
-        }
-        this.report = report;
-    }
-    return AnnotatedDiagnosticReport;
 }());
 
 
@@ -3832,7 +4025,7 @@ var Encounter = /** @class */ (function () {
         this.encounterId = json.id;
         this.requestId = requestId;
         if (!json.period) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'An encounter must have a time period.' + json);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'An encounter must have a time period.', json);
         }
         if (!json.period.start) {
             throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'An encounter must have a start date.', json);
@@ -3845,7 +4038,7 @@ var Encounter = /** @class */ (function () {
             endTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].local();
         }
         if (endTime < startTime) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The start time comes before the end time.' + json);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The start time comes before the end time.', json);
         }
         if (startTime > luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].local()) {
             throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The start time is in the future.', json);
@@ -3923,16 +4116,15 @@ var MedicationAdministration = /** @class */ (function (_super) {
         var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
             json.medicationCodeableConcept ?
                 json.medicationCodeableConcept.text :
-                null, requestId) || this;
+                null, requestId, json.effectiveTimeDateTime ?
+            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
+            json.effectiveTimePeriod ?
+                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
+                null) || this;
         _this.json = json;
         _this.MED_RESOURCE_TYPE = 'Medication';
         _this.containedMedications = [];
         _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
-        _this.timestamp = json.effectiveTimeDateTime ?
-            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
-            (json.effectiveTimePeriod ?
-                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
-                null);
         _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_5__["Dosage"](json);
         _this.wasNotGiven = json.wasNotGiven;
         _this.medicationOrderId = json.prescription && json.prescription.reference ?
@@ -3989,7 +4181,7 @@ var MedicationAdministration = /** @class */ (function (_super) {
         return _this;
     }
     return MedicationAdministration;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
 
 /**
  * A set of MedicalAdministrations that belong together as part of the same
@@ -4050,11 +4242,12 @@ var AnnotatedAdministration = /** @class */ (function (_super) {
 /*!*******************************************************!*\
   !*** ./src/app/fhir-data-classes/medication-order.ts ***!
   \*******************************************************/
-/*! exports provided: MedicationOrder, MedicationOrderSet */
+/*! exports provided: MedicationOrderStatus, MedicationOrder, MedicationOrderSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderStatus", function() { return MedicationOrderStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrder", function() { return MedicationOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderSet", function() { return MedicationOrderSet; });
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
@@ -4082,6 +4275,19 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * FHIR element for MedicationOrderStatus, from the DSTU2 version of the
+ * standard.
+ * http://hl7.org/fhir/DSTU2/valueset-medication-order-status.html
+ */
+var MedicationOrderStatus = {
+    ACTIVE: 'active',
+    ON_HOLD: 'on-hold',
+    COMPLETED: 'completed',
+    ENTERED_IN_ERROR: 'entered-in-error',
+    STOPPED: 'stopped',
+    DRAFT: 'draft',
+};
 /**
  * This object represents a FHIR MedicationOrder. It does not contain
  * all the information in a standard MedicationOrder (see
@@ -4119,6 +4325,7 @@ var MedicationOrder = /** @class */ (function (_super) {
             _this.dosageInstruction = json.dosageInstruction[0].text;
         }
         _this.orderId = json.id;
+        _this.status = json.status;
         _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["ResultClass"].extractMedicationEncoding(json);
         if (!(_this.rxNormCode && _this.label)) {
             throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'JSON must include RxNormCode and a label to be included as a MedicationOrder.', json);
@@ -4277,7 +4484,7 @@ var ContainedMedication = /** @class */ (function (_super) {
         var _this = _super.call(this, json.code ? json.code.text : null, requestId) || this;
         // We want to construct new Medications for jsons containing RxNorm codes.
         if (json.resourceType !== 'Medication') {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Resource must be of type Medication');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Resource must be of type Medication', json);
         }
         if (json.code) {
             if (json.code.coding) {
@@ -4295,12 +4502,12 @@ var ContainedMedication = /** @class */ (function (_super) {
             }
         }
         if (!_this.code) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication must have RxNorm code to be useful');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication must have RxNorm code to be useful', json);
         }
         _this.id = json.id;
         var reference = ingredients.get(_this.id);
         if (!reference) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication info must have been contained in ingredient list.');
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](new Set([_this.requestId]), 'Medication info must have been contained in ingredient list.', json);
         }
         if (_this.id) {
             //  The dosage format is different for contained
@@ -4612,7 +4819,11 @@ var Observation = /** @class */ (function (_super) {
         if (json.code) {
             if (json.code.coding) {
                 if (json.code.coding[0].system === _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__["BCHMicrobioCode"].CODING_STRING) {
-                    _this.codes = json.code.coding.map(function (coding) { return _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__["BCHMicrobioCode"].fromCodeString(coding.code); });
+                    _this.codes =
+                        json.code.coding
+                            .map(function (coding) { return _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__["BCHMicrobioCode"].fromCodeString(coding.code); })
+                            // Filter out any codes that are not in our mapping.
+                            .filter(function (code) { return !!code; });
                     _this.display = json.code.coding[0].display;
                 }
                 else {
@@ -4675,10 +4886,20 @@ var Observation = /** @class */ (function (_super) {
             _this.unit = Object(_unit_utils__WEBPACK_IMPORTED_MODULE_4__["fixUnitAbbreviations"])(_this.value.unit);
         }
         // We must calculate precision before the value is stored as a number,
-        // where precision is lost.
+        // where precision is lost. If the value stored in the json has
+        // a precision of 0 and is less than 1, then we change the precision to
+        // 1 to display decimals and better UI.
         if (json.valueQuantity && json.valueQuantity.value) {
             var values = json.valueQuantity.value.toString().split('.');
             _this.precision = values.length > 1 ? values[1].length : 0;
+            if (values[0] === '0' && _this.precision === 0) {
+                _this.precision = 1;
+            }
+        }
+        else {
+            // If the values are not present and are instead displayed as a value
+            // of 0, the precision is set to 1 to prevent duplicated display of values
+            _this.precision = 1;
         }
         _this.result =
             json.valueCodeableConcept ? json.valueCodeableConcept.text : null;
@@ -4807,10 +5028,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
 /* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4840,6 +5062,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -4923,16 +5146,11 @@ var FhirHttpService = /** @class */ (function (_super) {
             throw rejection;
         });
     };
-    /**
-     * Gets observations from a specified date range with a specific LOINC code.
-     * @param code The LOINC code for which to get observations.
-     * @param dateRange The time interval observations should fall between.
-     * @param limitCount If set, the number of observations that should be
-     *     queried for
-     */
-    FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange, limitCount) {
-        var _this = this;
-        var queryParams = {
+    FhirHttpService.prototype.getObservationsSearchParams = function (code, dateRange) {
+        // Cerner says that asking for a limited count of resources can slow down
+        // queries, so we don't restrict a count limit here.
+        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+        return {
             type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Observation,
             query: {
                 code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"].CODING_STRING + '|' + code.codeString,
@@ -4942,9 +5160,17 @@ var FhirHttpService = /** @class */ (function (_super) {
                         LESS_OR_EQUAL + dateRange.end.toISODate()
                     ]
                 },
-                _count: limitCount ? limitCount : CERNER_MAX_OBS_RESULTS_RETURNED
             }
         };
+    };
+    /**
+     * Gets observations from a specified date range with a specific LOINC code.
+     * @param code The LOINC code for which to get observations.
+     * @param dateRange The time interval observations should fall between.
+     */
+    FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange) {
+        var _this = this;
+        var queryParams = this.getObservationsSearchParams(code, dateRange);
         return this.smartApiPromise.then(function (smartApi) {
             return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](json, requestId); })
                 .then(function (results) { return results.filter(function (result) { return result.status !==
@@ -4952,15 +5178,26 @@ var FhirHttpService = /** @class */ (function (_super) {
         });
     };
     /**
-     * Gets medication data from a specified date range with a specific Rx code
-     * @param code The RxNormCode codes for which to get observations.
-     * @param dateRange The time interval observations should fall between.
-     * @param limitCount If provided, the maximum number of observations to
-     *     query for.
+     * Checks if there are any observations with the given LOINC Code within the
+     * given date range.
+     *
+     * Note: Only fetches single page of results from FHIR server to enhance
+     * performance.
+     *
+     * @param code LOINC code to check if there are any observations for
+     * @param dateRange the time interval the observations should fall between
      */
-    FhirHttpService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
-        var _this = this;
-        var queryParams = {
+    FhirHttpService.prototype.observationsPresentWithCode = function (code, dateRange) {
+        var queryParams = this.getObservationsSearchParams(code, dateRange);
+        return this.smartApiPromise.then(function (smartApi) { return smartApi.patient.api.search(queryParams)
+            .then(function (response) { return !!response.data.entry; }); });
+    };
+    /**
+     * Formats query parameters for searching for Medication Administrations.
+     * @param dateRange Date range to search within
+     */
+    FhirHttpService.prototype.getMedicationAdministrationSearchParams = function (dateRange) {
+        return {
             type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
             query: {
                 effectivetime: {
@@ -4971,16 +5208,78 @@ var FhirHttpService = /** @class */ (function (_super) {
                 }
             }
         };
+    };
+    /**
+     * Gets medication data from a specified date range with a specific Rx code
+     * @param code The RxNormCode codes for which to get observations.
+     * @param dateRange The time interval observations should fall between.
+     * @param limitCount If provided, the maximum number of observations to
+     *     query for.
+     */
+    FhirHttpService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
+        var _this = this;
+        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
         if (limitCount) {
             queryParams.query['_count'] = limitCount;
         }
         return this.smartApiPromise.then(function (smartApi) {
             return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
-                return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+                if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json) ===
+                    code) {
+                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+                }
             })
-                .then(function (results) { return results.filter(function (result) {
-                return result.rxNormCode === code;
-            }); });
+                .then(function (results) {
+                return results.filter(function (result) { return !!result; });
+            });
+        });
+    };
+    /**
+     * Determines whether a medication with the given RxNormCode exists.
+     *
+     * Checks a single response page and only calls the next page if no
+     * medications with the given code exist. Cerner's implementation of FHIR
+     * does not support searching by RxNormCode, so we need to get all of the
+     * medications and filter the response.
+     *
+     * @param smartApi The resolved smartOnFhirClient which called the original
+     *     "search"
+     * @param response The response of the previous page
+     * @param code The RxNormCode to search for
+     */
+    FhirHttpService.prototype.checkMedicationsPresentNextPage = function (smartApi, response, code) {
+        var _this = this;
+        var results = response.data.entry || [];
+        var resultsWithCode = results.filter(function (result) {
+            return code === _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(result.resource);
+        });
+        if (resultsWithCode.length > 0) {
+            return Promise.resolve(true);
+        }
+        else {
+            if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
+                return smartApi.patient.api.nextPage({ bundle: response.data })
+                    .then(function (nextResponse) {
+                    return _this.checkMedicationsPresentNextPage(smartApi, nextResponse, code);
+                });
+            }
+            else {
+                return Promise.resolve(false);
+            }
+        }
+    };
+    /**
+     * Determines whether their is a medication present with the given code
+     * during the given date range
+     * @param code The RxNormCode to get medications for
+     * @param dateRange The date range to get medications for
+     */
+    FhirHttpService.prototype.medicationsPresentWithCode = function (code, dateRange) {
+        var _this = this;
+        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
+        return this.smartApiPromise.then(function (smartApi) {
+            return smartApi.patient.api.search(queryParams)
+                .then(function (response) { return _this.checkMedicationsPresentNextPage(smartApi, response, code); });
         });
     };
     /**
@@ -5014,18 +5313,20 @@ var FhirHttpService = /** @class */ (function (_super) {
         var queryParams = {
             type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
         };
-        return this.smartApiPromise.then(function (smartApi) { return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
-            return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
-        })
-            .then(function (results) {
-            return results
-                .filter(function (result) {
-                return result.rxNormCode === code;
+        return this.smartApiPromise.then(function (smartApi) {
+            return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
+                if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json) ===
+                    code) {
+                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+                }
             })
-                .filter(function (result) {
-                return result.medicationOrderId === id;
+                .then(function (results) {
+                return results.filter(function (result) { return !!result; })
+                    .filter(function (result) {
+                    return result.medicationOrderId === id;
+                });
             });
-        }); });
+        });
     };
     /**
      * Gets the encounters for the patient for any encounter that falls in the
@@ -5112,7 +5413,7 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
         var _this = this;
-        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"]) {
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
             console.warn('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
@@ -5124,8 +5425,8 @@ var FhirHttpService = /** @class */ (function (_super) {
                 callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('_format', 'json');
-            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].username + ':' +
-                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].password);
+            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].username + ':' +
+                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].password);
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -5133,7 +5434,7 @@ var FhirHttpService = /** @class */ (function (_super) {
             });
             return _this.http
                 .get([
-                _fhir_config__WEBPACK_IMPORTED_MODULE_14__["microbiology"].url,
+                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].url,
                 _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
@@ -5147,11 +5448,11 @@ var FhirHttpService = /** @class */ (function (_super) {
     };
     FhirHttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_15__["SMART_ON_FHIR_CLIENT"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__["SMART_ON_FHIR_CLIENT"])),
         __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
 
 
 
@@ -5290,23 +5591,63 @@ var FhirLaunchComponent = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/fhir-resource-set.ts ***!
   \**************************************/
-/*! exports provided: ResultClass, FhirResourceSet */
+/*! exports provided: TimestampedObject, ResultClassWithTimestamp, ResultClass, FhirResourceSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TimestampedObject", function() { return TimestampedObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultClassWithTimestamp", function() { return ResultClassWithTimestamp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultClass", function() { return ResultClass; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceSet", function() { return FhirResourceSet; });
 /* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
 /* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./result-error */ "./src/app/result-error.ts");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
 
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+var TimestampedObject = /** @class */ (function () {
+    function TimestampedObject(timestamp) {
+        this.timestamp = timestamp;
+    }
+    return TimestampedObject;
+}());
+
+var ResultClassWithTimestamp = /** @class */ (function (_super) {
+    __extends(ResultClassWithTimestamp, _super);
+    function ResultClassWithTimestamp(label, requestId, timestamp) {
+        var _this = _super.call(this, timestamp) || this;
+        _this.label = label;
+        _this.requestId = requestId;
+        _this.timestamp = timestamp;
+        return _this;
+    }
+    return ResultClassWithTimestamp;
+}(TimestampedObject));
+
 /**
  * A class that has label and requestId attributes.
+ *
+ * TODO: Figure out how to combine with ResultClassWithTimestamp.
  */
 var ResultClass = /** @class */ (function () {
     function ResultClass(label, requestId) {
@@ -5419,23 +5760,6 @@ var FhirService = /** @class */ (function () {
     /**
      * Returns whether there are any observations with this code in the given
      * time range.
-     * @param code The LOINC code for which to get observations.
-     * @param dateRange The time interval observations should fall between.
-     */
-    FhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
-        // Cerner says that asking for a limited count of resources can slow down
-        // queries, so we don't restrict a count limit here.
-        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
-        return this.getObservationsWithCode(code, dateRange)
-            .then(function (obs) { return obs.length > 0; }, function (rejection) {
-            // If any Observation for this code results in an error, do not show
-            // any Observations at all.
-            throw rejection;
-        });
-    };
-    /**
-     * Returns whether there are any observations with this code in the given
-     * time range.
      * @param code The BCHMicrobio code for which to get observations.
      * @param dateRange The time interval observations should fall between.
      */
@@ -5468,23 +5792,6 @@ var FhirService = /** @class */ (function () {
         return Promise.all(observationPromises);
     };
     /**
-     * Returns whether there are any observations with this code in the given
-     * time range.
-     * @param code The RxNorm code for which to get observations.
-     * @param dateRange The time interval observations should fall between.
-     */
-    FhirService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        // Cerner says that asking for a limited count of resources can slow down
-        // queries, so we don't restrict a count limit here.
-        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
-        return this.getMedicationAdministrationsWithCode(code, dateRange)
-            .then(function (obs) { return obs.length > 0; }, function (rejection) {
-            // If any MedicationAdministration for this code results in an error,
-            // do not show any MedicationAdministrations at all.
-            throw rejection;
-        });
-    };
-    /**
      * Gets medication data from a specified date range with specific Rx codes,
      * since multiple medications are displayed on a single chart.
      * @param codes The RxNormCode codes for which to get observations.
@@ -5500,7 +5807,12 @@ var FhirService = /** @class */ (function () {
             medicationPromises.push(this.getMedicationAdministrationsWithCode(code, dateRange));
         }
         // This will be rejected if any Promise is rejected.
-        return Promise.all(medicationPromises);
+        return Promise.all(medicationPromises)
+            .then(function (resolvedMedications) {
+            // flatten the results into single medication administrations
+            // list
+            return [].concat.apply([], resolvedMedications);
+        });
     };
     FhirService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -6091,8 +6403,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineGraphData", function() { return LineGraphData; });
 /* harmony import */ var _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphtypes/tooltips/medication-tooltips */ "./src/app/graphtypes/tooltips/medication-tooltips.ts");
 /* harmony import */ var _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/observation-tooltips */ "./src/app/graphtypes/tooltips/observation-tooltips.ts");
-/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
-/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
+/* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6112,6 +6426,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 // tslint:disable-next-line:max-line-length
+
+
 
 
 
@@ -6162,7 +6478,7 @@ var LineGraphData = /** @class */ (function (_super) {
         var obsGroupToSeries = new Map();
         for (var _i = 0, observationGroup_1 = observationGroup; _i < observationGroup_1.length; _i++) {
             var obsSet = observationGroup_1[_i];
-            var lblSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromObservationSet(obsSet, encounters);
+            var lblSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromObservationSet(obsSet, encounters);
             obsGroupToSeries.set(obsSet, lblSeries);
             allSeries.push(lblSeries);
             /* Find the minimum and maximum y values for all the series. */
@@ -6206,18 +6522,26 @@ var LineGraphData = /** @class */ (function (_super) {
             var series = entry[1];
             for (var _b = 0, _c = obsGroup.resourceList; _b < _c.length; _b++) {
                 var obs = _c[_b];
+                var isAbnormal = series.abnormalCoordinates.has(obs.observation.timestamp.toISO());
                 var timestamp = obs.observation.timestamp.toMillis().toString();
                 // The key for this tooltip is the administration's timestamp.
                 // There may be multiple data points associated with the timestamp
                 // so we stack the administrations on top of one another in that case.
                 if (tooltipMap.get(timestamp)) {
+                    // Blood pressure is read into the ObservationSet differently,
+                    // causing an edge case in the presentation of the values in the
+                    // tooltips. We only want to display 'Blood pressure' once
+                    if (obs.observation.codes[0].codeString === _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].codeString
+                        && tooltipMap.get(timestamp).includes(_clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].label)) {
+                        continue;
+                    }
                     tooltipMap.set(timestamp, tooltipMap.get(timestamp) +
                         new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](false, series.legendInfo.fill)
-                            .getTooltip(obs, sanitizer));
+                            .getTooltip(obs, sanitizer, isAbnormal));
                 }
                 else {
                     tooltipMap.set(timestamp, new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](true, series.legendInfo.fill)
-                        .getTooltip(obs, sanitizer));
+                        .getTooltip(obs, sanitizer, isAbnormal));
                 }
             }
         }
@@ -6303,7 +6627,7 @@ var LineGraphData = /** @class */ (function (_super) {
                 }
             }
         }
-        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, regions);
+        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, regions);
     };
     /**
      * Converts a list of ObservationSets with discrete y-values (results) to
@@ -6323,19 +6647,22 @@ var LineGraphData = /** @class */ (function (_super) {
         // For ObservationSets with discrete categories, we display a
         // scatterplot with one series, with most information in the tooltip.
         var yValue = 10;
-        var lblSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromObservationSetsDiscrete(observationGroup, yValue, label, encounters);
+        var lblSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromObservationSetsDiscrete(observationGroup, yValue, label, encounters);
         var tooltipMap = new Map();
         for (var _i = 0, observationGroup_2 = observationGroup; _i < observationGroup_2.length; _i++) {
             var observationSet = observationGroup_2[_i];
             for (var _a = 0, _b = observationSet.resourceList; _a < _b.length; _a++) {
                 var obs = _b[_a];
+                var isAbnormal = (obs.observation.interpretation &&
+                    obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["NORMAL"]) ?
+                    true : false;
                 var tsString = obs.observation.timestamp.toMillis().toString();
                 // Only add the timestamp to the tooltip for the first entry.
                 var tooltipText = void 0;
                 if (obs.observation.value) {
                     tooltipText =
                         new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                            .getTooltip(obs, sanitizer);
+                            .getTooltip(obs, sanitizer, isAbnormal);
                 }
                 else {
                     tooltipText =
@@ -6358,7 +6685,7 @@ var LineGraphData = /** @class */ (function (_super) {
         tooltipMap);
     };
     return LineGraphData;
-}(_graphdata__WEBPACK_IMPORTED_MODULE_2__["GraphData"]));
+}(_graphdata__WEBPACK_IMPORTED_MODULE_4__["GraphData"]));
 
 
 
@@ -6374,10 +6701,11 @@ var LineGraphData = /** @class */ (function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioGraphData", function() { return MicrobioGraphData; });
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
 /* harmony import */ var _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/microbio-tooltips */ "./src/app/graphtypes/tooltips/microbio-tooltips.ts");
-/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
-/* harmony import */ var _stepgraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
+/* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _stepgraphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6395,6 +6723,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 
@@ -6424,26 +6753,28 @@ var MicrobioGraphData = /** @class */ (function (_super) {
             // Get the timestamp from the collection time of the specimen.
             var specimen = report.specimen;
             if (specimen) {
-                var annotatedReport = new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report);
-                // For this tooltip, the keys are timestamps.
-                if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
-                    var existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
-                    tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), existingTT +
-                        new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](false).getTooltip(annotatedReport, sanitizer));
-                }
-                else {
-                    tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"]().getTooltip(annotatedReport, sanitizer));
-                }
-                for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
+                var annotatedReport = new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report);
+                for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
                     var series = _b[_a];
                     points.push(series);
+                    var isAbnormal = series.label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["CHECK_RESULT_CODE"]);
+                    var color = series.legendInfo.fill;
+                    // For this tooltip, the keys are timestamps.
+                    if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+                        var existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
+                        tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), existingTT +
+                            new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](false, color).getTooltip(annotatedReport, sanitizer, isAbnormal));
+                    }
+                    else {
+                        tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](true, color).getTooltip(annotatedReport, sanitizer, isAbnormal));
+                    }
                 }
             }
         }
         return new MicrobioGraphData(points, tooltipMap);
     };
     return MicrobioGraphData;
-}(_stepgraphdata__WEBPACK_IMPORTED_MODULE_3__["StepGraphData"]));
+}(_stepgraphdata__WEBPACK_IMPORTED_MODULE_4__["StepGraphData"]));
 
 
 
@@ -6851,13 +7182,13 @@ var Axis = /** @class */ (function () {
      */
     Axis.prototype.getStepGraphDataForMedicationSummary = function (rxNorms, dateRange) {
         var _this = this;
-        return rxNorms.getResourceFromFhir(dateRange).then(function (medOrderSets) {
+        return rxNorms.getResourceSet(dateRange).then(function (medOrderSets) {
             return _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_6__["StepGraphData"].fromMedicationOrderSetList(medOrderSets.map(function (x) { return x.orders; }), dateRange, _this.sanitizer);
         });
     };
     Axis.prototype.getStepGraphDataForMB = function (bchCodes, dateRange) {
         var _this = this;
-        return bchCodes.getResourceFromFhir(dateRange).then(function (diagReports) {
+        return bchCodes.getResourceSet(dateRange).then(function (diagReports) {
             return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_5__["MicrobioGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
         });
     };
@@ -6867,7 +7198,7 @@ var Axis = /** @class */ (function () {
      */
     Axis.prototype.getLineGraphDataForMedicationDetail = function (rxNorms, dateRange) {
         var _this = this;
-        return rxNorms.getResourceFromFhir(dateRange)
+        return rxNorms.getResourceSet(dateRange)
             .then(function (rxNs) {
             var medOrders = [].concat.apply([], rxNs.map(function (rx) { return rx.orders.resourceList; }));
             return medOrders.map(function (order) { return order.setMedicationAdministrations(_this.fhirService); });
@@ -7966,10 +8297,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineGraphComponent", function() { return LineGraphComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
-/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var src_app_graphdatatypes_labeled_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/graphdatatypes/labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
+/* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8005,12 +8337,14 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var LineGraphComponent = /** @class */ (function (_super) {
     __extends(LineGraphComponent, _super);
     function LineGraphComponent(sanitizer, uiConstants) {
         var _this = _super.call(this, sanitizer, uiConstants) || this;
         _this.sanitizer = sanitizer;
         _this.uiConstants = uiConstants;
+        _this.addedNormalBound = false;
         return _this;
     }
     LineGraphComponent_1 = LineGraphComponent;
@@ -8020,9 +8354,23 @@ var LineGraphComponent = /** @class */ (function (_super) {
     LineGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
         // We have to wait until after the data loads up into the graph to iterate
         // over the points and adjust their coloring based on the normal range.
+        this.addedNormalBound = this.isNormalBoundAdded(this.data.series);
         this.addYNormalRange();
+        var seriesLength = this.data.series.length;
+        if (this.addedNormalBound) {
+            // Gives the last labeledSeries in the array a different set of
+            // characteristics. The last labeledSeries depicts the normal boundary.
+            var chartjsSeries = this.chartData[seriesLength - 1];
+            chartjsSeries.pointStyle = 'crossRot';
+            chartjsSeries.pointBorderColor = 'rgba(0,0,0,0.5)'; // medium-gray color
+            chartjsSeries.pointBorderWidth = 2;
+            chartjsSeries.pointRadius = 4;
+            chartjsSeries.borderColor = 'transparent';
+        }
         // Color points that fall outside of their respective normal ranges.
-        for (var i = 0; i < this.data.series.length; i++) {
+        // If it hasNormalBound, then the last labeledSeries does not need to
+        // be styled in this for loop.
+        for (var i = 0; i < (this.addedNormalBound ? seriesLength - 1 : seriesLength); i++) {
             var chartjsSeries = this.chartData[i];
             var labeledSeries = this.data.series[i];
             this.colorAbnormalPoints(chartjsSeries, labeledSeries);
@@ -8039,11 +8387,11 @@ var LineGraphComponent = /** @class */ (function (_super) {
     LineGraphComponent.prototype.addYNormalRange = function () {
         var _this = this;
         // Only LineGraphData has y normal bounds.
-        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"])) {
+        if (!(this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"])) {
             return;
         }
         var normalRangeBounds;
-        if (this.data.series.length === 1) {
+        if (this.data.series.length === 1 || this.addedNormalBound) {
             // Some things are only valid if there are y-axis normal bounds. We
             // also only show normal bounds if there's one data series on the
             // axis, and all normal bounds for the current date range are the same.
@@ -8073,8 +8421,13 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 // range are the same, then add the region to the chart, and adjust
                 // display bounds accordingly.
                 if (!differentNormalRanges) {
+                    // To prevent the creation of multiple normal bound tooltips
+                    if (this.addedNormalBound === false) {
+                        this.createNormalBoundsTooltip(firstNormalRange);
+                    }
                     this.addGreenRegion(firstNormalRange);
                     normalRangeBounds = firstNormalRange;
+                    this.addedNormalBound = true;
                 }
             }
         }
@@ -8094,9 +8447,26 @@ var LineGraphComponent = /** @class */ (function (_super) {
         this.chartOptions.scales.yAxes[0].afterBuildTicks = function (scale) {
             if (_this.data && _this.data.yTicks) {
                 scale.ticks =
-                    src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_2__["LineGraphData"].getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
+                    src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_3__["LineGraphData"].getYTicks(yDisplayBounds[0], yDisplayBounds[1]);
             }
         };
+    };
+    /**
+     * Helper function that determines whether the LabeledSeries has
+     * a normal bound or not.
+     * @param series LabeledSeries[] that presents the data that is to
+     * be presented in the graph.
+     * @returns boolean value that reflects whether there is a normal
+     * bound or not.
+     */
+    LineGraphComponent.prototype.isNormalBoundAdded = function (series) {
+        for (var _i = 0, series_1 = series; _i < series_1.length; _i++) {
+            var s = series_1[_i];
+            if (s.label === LineGraphComponent_1.NORMAL_BOUND_SERIES_NAME) {
+                return true;
+            }
+        }
+        return false;
     };
     /**
      * Reconciles together several possible sources of y-axis display bounds. The
@@ -8131,18 +8501,61 @@ var LineGraphComponent = /** @class */ (function (_super) {
         ];
     };
     LineGraphComponent.prototype.allBoundsAreSame = function () {
-        return new Set(this.data.resourceGroup.resourceCodes
-            .map(function (code) { return code.displayBounds; })
-            .filter(function (bound) { return bound !== undefined; })
-            .map(function (bound) {
-            return bound.toString();
-        } // cast to string for hashability
-        ))
-            .size === 1;
+        if (this.data.resourceGroup) {
+            return new Set(this.data.resourceGroup.resourceCodes
+                .map(function (code) { return code.displayBounds; })
+                .filter(function (bound) { return bound !== undefined; })
+                .map(function (bound) {
+                return bound.toString();
+            } // cast to string for hashability
+            ))
+                .size === 1;
+        }
+        return false;
     };
     LineGraphComponent.prototype.allBoundsAreEnforced = function () {
-        return this.data.resourceGroup.resourceCodes.map(function (x) { return x.forceDisplayBounds; })
-            .every(function (x) { return x === true; });
+        if (this.data.resourceGroup) {
+            return this.data.resourceGroup.resourceCodes.map(function (x) { return x.forceDisplayBounds; })
+                .every(function (x) { return x === true; });
+        }
+        return false;
+    };
+    /**
+     * Adds a LabeledSeries that represents the normal bounds on the y-axis
+     * to the Tooltip Map.
+     * @param yNormalBounds The bounds of the y range considered normal.
+     */
+    LineGraphComponent.prototype.createNormalBoundsTooltip = function (yNormalBounds) {
+        // TypeScript requires a separate declaration for arrays of tuples.
+        var coordinatesLblSeries;
+        coordinatesLblSeries = [[this.dateRange.start, yNormalBounds[0]],
+            [this.dateRange.start, yNormalBounds[1]]];
+        var lblSeries = new src_app_graphdatatypes_labeled_series__WEBPACK_IMPORTED_MODULE_2__["LabeledSeries"](LineGraphComponent_1.NORMAL_BOUND_SERIES_NAME, coordinatesLblSeries, this.data.unit);
+        var coordinatesChartPoint;
+        coordinatesChartPoint = [{ x: this.dateRange.start.toISO(), y: yNormalBounds[0] },
+            { x: this.dateRange.start.toISO(), y: yNormalBounds[1] }];
+        if (this.data) {
+            this.data.series.push(lblSeries);
+            // Creates an HTML table for the tooltip text, and adds it to the tooltip
+            // map. This was done separately because not all line graphs have normal bounds
+            // depicted.
+            var tooltipText = '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
+                'Normal Boundary</th></tr>' +
+                '<tr><td><div style="white-space:pre-line; text-align:center;">' +
+                '<b>Upper: </b>' + yNormalBounds[1] + ' ' + this.data.unit + '\n' +
+                '<b>Lower: </b>' + yNormalBounds[0] + ' ' + this.data.unit +
+                '</div></td></tr></tbody></table>';
+            var mapKey = this.dateRange.start.valueOf().toString();
+            if (this.data.tooltipMap.has(mapKey)) {
+                var value = this.data.tooltipMap.get(mapKey);
+                this.data.tooltipMap.set(mapKey, value + tooltipText);
+            }
+            else {
+                this.data.tooltipMap.set(mapKey, tooltipText);
+            }
+        }
+        this.chartData.push({ data: coordinatesChartPoint,
+            label: LineGraphComponent_1.NORMAL_BOUND_SERIES_NAME });
     };
     /**
      * Draws a green box spanning the entire x-axis and covering y axis normal
@@ -8157,44 +8570,11 @@ var LineGraphComponent = /** @class */ (function (_super) {
             yMin: yNormalBounds[0],
             yMax: yNormalBounds[1],
             // No x-axis bounds so it extends to cover the whole graph.
-            xScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].X_AXIS_ID,
-            yScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].Y_AXIS_ID,
+            xScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].X_AXIS_ID,
+            yScaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"].Y_AXIS_ID,
             // Color the region light green.
             backgroundColor: 'rgba(64, 191, 128, 0.15)',
         };
-        // Draw label lines for the high and low bounds of the normal range.
-        var lines = [
-            ['Normal boundary: ', yNormalBounds[1], -8],
-            ['Normal boundary: ', yNormalBounds[0], 8]
-        ];
-        for (var _i = 0, lines_1 = lines; _i < lines_1.length; _i++) {
-            var line = lines_1[_i];
-            var lbl = line[0];
-            var val = line[1];
-            var yOffsetPx = line[2];
-            var bound = {
-                type: 'line',
-                mode: 'horizontal',
-                scaleID: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"].Y_AXIS_ID,
-                value: val,
-                borderColor: 'rgba(64, 191, 128, 0.25)',
-                borderWidth: 1,
-                label: {
-                    enabled: true,
-                    // Clear background color.
-                    backgroundColor: 'rgba(0,0,0,0.0)',
-                    // Black text for label.
-                    fontColor: 'rgba(0, 0, 0, 0.8)',
-                    fontFamily: 'Work Sans',
-                    content: lbl + val.toString() + ' ' + this.data.unit,
-                    // Shift the text above or below the line, and to the right side of
-                    // the axis.
-                    position: 'right',
-                    yAdjust: yOffsetPx
-                }
-            };
-            this.chartOptions.annotation.annotations.push(bound);
-        }
         this.chartOptions.annotation.annotations.push(normalRegionAnnotation);
     };
     /**
@@ -8219,7 +8599,7 @@ var LineGraphComponent = /** @class */ (function (_super) {
             var inAbnormalSet = labeledSeries.abnormalCoordinates.has(pt.x);
             if (inAbnormalSet) {
                 pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
-                pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_3__["ABNORMAL"].rgb().string());
+                pointBorderColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__["ABNORMAL"].rgb().string());
                 pointStyle.push('triangle');
             }
             else {
@@ -8234,11 +8614,12 @@ var LineGraphComponent = /** @class */ (function (_super) {
     };
     var LineGraphComponent_1;
     /**
-     * The amount to pad the y-axis around the displayed data range. This gives
-     * the data points a little cushion so that they don't run off the top or
-     * bottom of the axis.
-     */
+    * The amount to pad the y-axis around the displayed data range. This gives
+    * the data points a little cushion so that they don't run off the top or
+    * bottom of the axis.
+    */
     LineGraphComponent.yAxisPaddingFactor = 0.25;
+    LineGraphComponent.NORMAL_BOUND_SERIES_NAME = 'normalBound';
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
@@ -8248,15 +8629,15 @@ var LineGraphComponent = /** @class */ (function (_super) {
             selector: 'app-linegraph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             providers: [
-                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
+                { provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"], useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return LineGraphComponent_1; }) }
             ],
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_5__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], LineGraphComponent);
     return LineGraphComponent;
-}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"]));
+}(_graph_graph_component__WEBPACK_IMPORTED_MODULE_6__["GraphComponent"]));
 
 
 
@@ -8722,13 +9103,15 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 var MicrobioTooltip = /** @class */ (function (_super) {
     __extends(MicrobioTooltip, _super);
-    function MicrobioTooltip(addTimestampRow) {
+    function MicrobioTooltip(addTimestampRow, color) {
         if (addTimestampRow === void 0) { addTimestampRow = true; }
         var _this = _super.call(this) || this;
         _this.addTimestampRow = addTimestampRow;
+        _this.color = color;
         return _this;
     }
-    MicrobioTooltip.prototype.getTooltip = function (annotatedReport, sanitizer) {
+    MicrobioTooltip.prototype.getTooltip = function (annotatedReport, sanitizer, isAbnormal) {
+        if (isAbnormal === void 0) { isAbnormal = false; }
         var status = src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__["DiagnosticReportStatus"][annotatedReport.report.status];
         var results = annotatedReport.report.results;
         var timestamp = annotatedReport.timestamp;
@@ -8740,7 +9123,7 @@ var MicrobioTooltip = /** @class */ (function (_super) {
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Result set', table, sanitizer);
         for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
             var result = results_1[_i];
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [result.display, result.interpretation.display], sanitizer);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [result.display, result.interpretation.display], sanitizer, this.color, isAbnormal);
         }
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Status', status], sanitizer);
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Specimen', specimen], sanitizer);
@@ -8767,7 +9150,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GenericAbnormalTooltip", function() { return GenericAbnormalTooltip; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8787,6 +9171,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 
+
 /*
  * This class makes a tooltip for a list of Observations containing discrete, or
  * qualitative, values rather than quantitative results. The list of
@@ -8800,19 +9185,33 @@ var DiscreteObservationTooltip = /** @class */ (function (_super) {
         _this.addTimestampRow = addTimestampRow;
         return _this;
     }
+    /**
+     * Returns the HTML for a generic tooltip for discrete observations.
+     * @param observations An array of type Observation
+     * @param sanitizer A DOM sanitizer
+     * @param isAbnormal A boolean used to change the color of the text if abnormal
+     * @returns A string representing the HTML table.
+     */
     DiscreteObservationTooltip.prototype.getTooltip = function (observations, sanitizer) {
-        var table = _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        var table = _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
         if (this.addTimestampRow) {
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(observations[0].timestamp, table, sanitizer);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addTimeHeader(observations[0].timestamp, table, sanitizer);
         }
         for (var _i = 0, observations_1 = observations; _i < observations_1.length; _i++) {
             var obs = observations_1[_i];
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [obs.label, obs.result], sanitizer);
+            var isAbnormal = false;
+            var obsValue = obs.result;
+            if (obs.interpretation && obs.interpretation.code !== src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_1__["NORMAL"]) {
+                isAbnormal = true;
+                obsValue = obs.result + ' (' + obs.interpretation.display + ')';
+            }
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [obs.label, obsValue], sanitizer, undefined, // color
+            isAbnormal);
         }
         return table.outerHTML;
     };
     return DiscreteObservationTooltip;
-}(_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 /**
  * Makes a generic tooltip for an AnnotatedObservation with rows for each of
@@ -8830,29 +9229,49 @@ var GenericAnnotatedObservationTooltip = /** @class */ (function (_super) {
      * Returns the HTML for a generic tooltip.
      * @param observation The AnnotatedObservation used to generate the tooltip
      * @param sanitizer A DOM sanitizer
+     * @param isAbnormal A boolean used to change the color of the text if abnormal
      * @returns If the observation has annotations, a HTML table with the
      *     annotation values. If there are no annotations, will return undefined.
      */
-    GenericAnnotatedObservationTooltip.prototype.getTooltip = function (observation, sanitizer) {
-        var table = _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+    GenericAnnotatedObservationTooltip.prototype.getTooltip = function (observation, sanitizer, isAbnormal) {
+        if (isAbnormal === void 0) { isAbnormal = false; }
+        var table = _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
         if (this.addTimestampRow) {
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(observation.observation.timestamp, table, sanitizer);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addTimeHeader(observation.observation.timestamp, table, sanitizer);
         }
-        _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
+        _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [
             observation.label,
-            observation.observation.value ?
-                observation.observation.value.value.toString() + ' ' +
-                    observation.observation.unit :
-                observation.observation.result
-        ], sanitizer, this.color);
+            this.getObservationValue(observation)
+        ], sanitizer, this.color, isAbnormal);
         for (var _i = 0, _a = observation.annotationValues; _i < _a.length; _i++) {
             var annotation = _a[_i];
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, annotation, sanitizer);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, annotation, sanitizer);
         }
         return table.outerHTML;
     };
+    /**
+     * Helper function that returns a string that reflects the observation
+     * value depicted on the tooltip.
+     * @param observation The AnnotatedObservation used to generate the tooltip
+     */
+    GenericAnnotatedObservationTooltip.prototype.getObservationValue = function (observation) {
+        var interpretation = observation.observation.interpretation ?
+            ' (' + observation.observation.interpretation.display + ')' :
+            '';
+        // Example: Temperature | 38.8 Deg C (HI)
+        if (observation.observation.value && observation.observation.unit) {
+            return observation.observation.value.value.toString() + ' ' +
+                observation.observation.unit + interpretation;
+        }
+        // Example: Bacteria Urinalysis | Trace Graded/hpf (ABN)
+        if (observation.observation.result) {
+            return observation.observation.result + interpretation;
+        }
+        // Example: Blood Pressure | (HI)
+        return interpretation;
+    };
     return GenericAnnotatedObservationTooltip;
-}(_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 /**
  * Makes a generic tooltip for an AnnotatedObservation with rows for each of
@@ -8876,17 +9295,17 @@ var GenericAbnormalTooltip = /** @class */ (function (_super) {
      *     annotation values. If there are no annotations, will return undefined.
      */
     GenericAbnormalTooltip.prototype.getTooltip = function (params, sanitizer) {
-        var table = _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        var table = _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
         var millis = params['timestamp'];
         var timestamp = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromMillis(millis).toLocal();
         if (this.addTimestampRow) {
-            _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
         }
-        _tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Caution: abnormal value', table, sanitizer);
+        _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addHeader('Caution: abnormal value', table, sanitizer);
         return table.outerHTML;
     };
     return GenericAbnormalTooltip;
-}(_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 
 
@@ -8904,8 +9323,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandardTooltip", function() { return StandardTooltip; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8925,6 +9345,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 
+
 /*
  * This base class contains useful helper methods used while making a custom
  * tooltip for a c3 chart, including adding a row to the table, resetting the
@@ -8939,19 +9360,40 @@ var __extends = (undefined && undefined.__extends) || (function () {
 var Tooltip = /** @class */ (function () {
     function Tooltip() {
     }
+    /**
+     * Creates a new table for the tooltip. Returns a HTMLTableElement.
+     */
     Tooltip.createNewTable = function () {
         var table = document.createElement('table');
         table.setAttribute('class', 'c3-tooltip');
         return table;
     };
+    /**
+     * Adds a header on the tooltips depicting the timepoint of the data
+     * @param timestamp DateTime reflecting the datapoint depicted on the tooltip
+     * @param table HTMLTableElement on the tooltip that needs to be edited
+     * @param sanitizer A DOM sanitizer
+     * @param colSpan The number of columns that the header spans
+     */
     Tooltip.addTimeHeader = function (timestamp, table, sanitizer, colSpan) {
         if (colSpan === void 0) { colSpan = 2; }
         Tooltip.addHeader(Tooltip.formatTimestamp(timestamp), table, sanitizer, colSpan);
     };
+    /**
+     * Returns a string of the timestamp in format: MM/DD/YYYY HH:MM
+     * @param timestamp DateTime reflecting the datapoint depicted on the tooltip
+     */
     Tooltip.formatTimestamp = function (timestamp) {
         return timestamp.toLocal().toLocaleString() + ' ' +
-            timestamp.toLocal().toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].TIME_24_SIMPLE);
+            timestamp.toLocal().toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].TIME_24_SIMPLE);
     };
+    /**
+     * Adds a header to the HTMLTableElement
+     * @param content String reflecting content inside the header
+     * @param table HTMLTableElement on the tooltip that needs to be edited
+     * @param sanitizer A DOM sanitizer
+     * @param colSpan The number of columns that the header spans
+     */
     Tooltip.addHeader = function (content, table, sanitizer, colSpan) {
         if (colSpan === void 0) { colSpan = 2; }
         // Header row
@@ -8961,14 +9403,25 @@ var Tooltip = /** @class */ (function () {
         headerCell.colSpan = colSpan;
         headerCell.innerHTML = sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, content);
     };
-    Tooltip.addRow = function (table, cellText, sanitizer, color) {
+    /**
+     * Adds row to the HTMLTableElement
+     * @param table HTMLTableElement on the tooltip that needs to be edited
+     * @param cellText String array reflecting the content on the tooltip
+     * @param sanitizer A DOM sanitizer
+     * @param color Color that is displayed on the legend and the graph.
+     * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
+     */
+    Tooltip.addRow = function (table, cellText, sanitizer, color, isAbnormal) {
         var row = table.insertRow();
         for (var i = 0; i < cellText.length; i++) {
             var cell1 = row.insertCell();
             if (i === 0) {
                 cell1.className = 'name';
+                if (isAbnormal) {
+                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["ABNORMAL"]);
+                }
                 if (color) {
-                    cell1.appendChild(Tooltip.makeColorSwatch(color));
+                    cell1.appendChild(Tooltip.makeColorSwatch(color, isAbnormal));
                     var div = document.createElement('div');
                     div.setAttribute('style', 'display: inline-block;');
                     div.innerHTML = sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, cellText[i]);
@@ -8978,17 +9431,40 @@ var Tooltip = /** @class */ (function () {
             }
             else {
                 cell1.className = 'value';
+                if (isAbnormal) {
+                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["ABNORMAL"]);
+                }
             }
             cell1.innerHTML = sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, cellText[i]);
         }
     };
-    Tooltip.makeColorSwatch = function (color) {
+    /**
+     * Helper function that creates the color swatch on the tooltips. If it
+     * is regular, it is rectangular. If it is abnormal, it is triangular.
+     * @param color Color that is displayed on the legend and the graph.
+     * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
+     */
+    Tooltip.makeColorSwatch = function (color, isAbnormal) {
+        if (isAbnormal === void 0) { isAbnormal = false; }
         var colorSpan = document.createElement('span');
-        colorSpan.setAttribute('style', 'background-color: ' + color.toString() +
-            '; display: inline-block; height: 10px; width: 10px; ' +
-            'margin-right: 6px;');
+        if (isAbnormal) {
+            // Creates a triangular color swatch
+            colorSpan.setAttribute('style', this.TOOLTIP_ABNORMAL_CSS + color.toString());
+        }
+        else {
+            // Creates a circular color swatch
+            colorSpan.setAttribute('style', 'background-color: ' + color.toString() + '; ' + this.TOOLTIP_NORMAL_CSS);
+        }
         return colorSpan;
     };
+    /**CSS styling for normal tooltip circular color swatch */
+    Tooltip.TOOLTIP_NORMAL_CSS = 'display: inline-block; height: 10px; width: 10px; ' +
+        'margin-right: 6px; border-radius: 50%;';
+    /**CSS styling for abnormal tooltip triangular color swatch */
+    Tooltip.TOOLTIP_ABNORMAL_CSS = 'width: 0; display:inline-block; margin-right: 6px; ' +
+        'height: 0; border-left: 6px solid transparent; ' +
+        'border-right: 6px solid transparent; border-bottom: ' +
+        '6px solid ';
     return Tooltip;
 }());
 
@@ -9011,7 +9487,7 @@ var StandardTooltip = /** @class */ (function (_super) {
     }
     StandardTooltip.prototype.getTooltip = function (unused, sanitizer) {
         var table = Tooltip.createNewTable();
-        Tooltip.addTimeHeader(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].fromJSDate(new Date(this.dataPoints[0].x)), table, sanitizer);
+        Tooltip.addTimeHeader(luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromJSDate(new Date(this.dataPoints[0].x)), table, sanitizer);
         for (var _i = 0, _a = this.dataPoints; _i < _a.length; _i++) {
             var pt = _a[_i];
             Tooltip.addRow(table, [pt.name, pt.value + ' ' + this.unit], sanitizer, this.color(pt));
@@ -9239,7 +9715,6 @@ var MockFhirService = /** @class */ (function (_super) {
         _this.medicationAdministrationMapByCode = new Map();
         _this.medicationAdministrationMapByOrderId = new Map();
         _this.medicationOrderMap = new Map();
-        _this.diagnosticReportMap = new Map();
         _this.encounters = new Array();
         _this.allDataPromise = _this.mapAllData();
         return _this;
@@ -9267,6 +9742,9 @@ var MockFhirService = /** @class */ (function (_super) {
         var _this = this;
         return Promise.all(this.allFilePaths.map(function (filePath) {
             return _this.http.get(filePath).toPromise().then(function (data) {
+                if (filePath.includes('_MB_data')) {
+                    _this.microbioJson = data;
+                }
                 try {
                     var entry = data.entry;
                     // Sometimes data comes to us in bundles, and then we want to flatten
@@ -9291,14 +9769,6 @@ var MockFhirService = /** @class */ (function (_super) {
                             var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__["Encounter"](json.resource, mockRequestId);
                             _this.encounters.push(encounter);
                         }
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport) {
-                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__["DiagnosticReport"](d, mockRequestId); }, function (report) {
-                                return report.results.map(function (x) { return x.codes; })
-                                    .reduce(function (prev, curr) {
-                                    return prev.concat(curr);
-                                }, []);
-                            });
-                        }
                     };
                     for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
                         var json = entry_1[_i];
@@ -9319,20 +9789,20 @@ var MockFhirService = /** @class */ (function (_super) {
      * @param limitCount If set, the number of observations that should be
      *     queried for
      */
-    MockFhirService.prototype.getObservationsWithCode = function (code, dateRange, limitCount) {
+    MockFhirService.prototype.getObservationsWithCode = function (code, dateRange) {
         var _this = this;
-        return this.allDataPromise.then(function (map) {
-            return _this.getObservations(_this.loincMap, code, dateRange, limitCount);
-        });
+        return this.allDataPromise.then(function (map) { return _this.getObservations(_this.loincMap, code, dateRange); });
     };
-    MockFhirService.prototype.getObservations = function (map, code, dateRange, limitCount) {
-        if (limitCount === void 0) { limitCount = 0; }
+    MockFhirService.prototype.getObservations = function (map, code, dateRange) {
         return map.has(code) ?
             map.get(code)
                 .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["ObservationStatus"].EnteredInError; })
-                .slice(0, limitCount ? limitCount : undefined) :
+                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["ObservationStatus"].EnteredInError; }) :
             [];
+    };
+    MockFhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
+        return this.getObservationsWithCode(code, dateRange)
+            .then(function (results) { return results.length > 0; });
     };
     /**
      * Gets medication data from a specified date range with a specific Rx code
@@ -9349,6 +9819,14 @@ var MockFhirService = /** @class */ (function (_super) {
                     .filter(function (obs) { return dateRange.contains(obs.timestamp); })
                     .slice(0, limitCount ? limitCount : undefined) :
                 [];
+        });
+    };
+    MockFhirService.prototype.medicationsPresentWithCode = function (code, dateRange) {
+        return this.getMedicationAdministrationsWithCode(code, dateRange)
+            .then(function (obs) { return obs.length > 0; }, function (rejection) {
+            // If any MedicationAdministration for this code results in an error,
+            // do not show any MedicationAdministrations at all.
+            throw rejection;
         });
     };
     /**
@@ -9401,15 +9879,7 @@ var MockFhirService = /** @class */ (function (_super) {
     MockFhirService.prototype.getDiagnosticReports = function (codeGroup, dateRange, limitCount) {
         var _this = this;
         return this.allDataPromise.then(function (x) {
-            var reports = new Array();
-            for (var _i = 0, _a = codeGroup.resourceCodes; _i < _a.length; _i++) {
-                var code = _a[_i];
-                if (_this.diagnosticReportMap.has(code)) {
-                    reports = reports.concat(_this.diagnosticReportMap.get(code));
-                }
-            }
-            reports.slice(0, limitCount ? limitCount : undefined);
-            return reports;
+            return _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__["DiagnosticReport"].parseAndFilterMicrobioData(_this.microbioJson, codeGroup);
         });
     };
     MockFhirService = __decorate([
@@ -9455,12 +9925,18 @@ var ResultError = /** @class */ (function (_super) {
     __extends(ResultError, _super);
     function ResultError(requestIds, message, json) {
         var _this = this;
-        var completeMessage = "Request IDs: " + Array.from(requestIds).join(', ') + "." +
-            ("\n" + message);
+        var requestIDMessage = requestIds.size > 0 ?
+            "Request IDs: " + Array.from(requestIds).join(', ') + ".\n" :
+            '';
+        var shortMessage = requestIDMessage + message;
+        var completeMessage = shortMessage;
         if (json) {
             completeMessage += "\nJSON: " + JSON.stringify(json, null, 4);
         }
         _this = _super.call(this, completeMessage) || this;
+        // 'super' needs to be called before accessing 'this', so we need to set
+        // this.shortMessage after calling 'super'.
+        _this.shortMessage = shortMessage;
         return _this;
     }
     return ResultError;
@@ -9527,7 +10003,7 @@ module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"encountersErrorMessage\" class=\"encounters-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading patient encounters.\n        </mat-expansion-panel-header>Technical details:<br>{{encountersErrorMessage}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeDays\">\n          {{uiConstants.LAST_THREE_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastOneDay\">\n          {{uiConstants.LAST_ONE_DAY}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"setupDataService.encountersError\" class=\"encounters-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading patient encounters.\n        </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeDays\">\n          {{uiConstants.LAST_THREE_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastOneDay\">\n          {{uiConstants.LAST_ONE_DAY}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -9552,7 +10028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
 /* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9569,6 +10046,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -9655,7 +10133,7 @@ var SetupComponent = /** @class */ (function () {
         }
         // Retrieve the patient encounters. When they load in asynchronously,
         // the radio buttons for encounter selection will show up.
-        this.encountersErrorMessage = null;
+        this.setupDataService.encountersError = null;
         this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_6__["APP_TIMESPAN"])
             .then(function (encounters) {
             if (encounters.length > 0) {
@@ -9664,12 +10142,16 @@ var SetupComponent = /** @class */ (function () {
                 });
             }
         }, function (rejection) {
-            if (rejection instanceof Error) {
-                _this.encountersErrorMessage = rejection.message;
+            if (rejection instanceof _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"]) {
+                _this.setupDataService.encountersError = rejection;
+            }
+            else if (rejection instanceof Error) {
+                _this.setupDataService.encountersError =
+                    new _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"](new Set(), rejection.message);
             }
             else {
-                _this.encountersErrorMessage =
-                    JSON.stringify(rejection, null, 4);
+                _this.setupDataService.encountersError =
+                    new _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"](new Set(), '', rejection);
             }
         });
         // Check to see which clinical concepts have any data, and enable/disable
@@ -9749,7 +10231,7 @@ var SetupComponent = /** @class */ (function () {
         }),
         __param(5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_10__["SetupDataService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_11__["SetupDataService"],
             _fhir_service__WEBPACK_IMPORTED_MODULE_9__["FhirService"], Object])
     ], SetupComponent);
     return SetupComponent;
@@ -9891,7 +10373,7 @@ module.exports = ".datePicker {\n  background-color: white;\n  padding-top: 20px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"datePickerRanges\"\n    [alwaysShowCalendars]=\"true\" [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"{{uiConstants.CHANGE_DATE_RANGE}}\" />\n  <mat-icon *ngIf=\"encounterError\" class=\"errorIcon\" matTooltip=\"{{uiConstants.BAD_ENCOUNTER_ERROR}}\">\n    warning</mat-icon>\n</div>\n"
+module.exports = "<div class=\"datePicker\" fxLayout=\"row\" fxLayoutGap=\"10px\" class=\"mat-h2\">\n  <input type=\"button\" class=\"mat-raised-button\" ngxDaterangepickerMd [(ngModel)]=\"selected\"\n    [minDate]=\"earliestAvailableDate\" [maxDate]=\"latestAvailableDate\" [linkedCalendars]=\"true\"\n    [isCustomDate]=\"addCustomClass\" (datesUpdated)=\"datesUpdated($event)\" [ranges]=\"datePickerRanges\"\n    [alwaysShowCalendars]=\"true\" [keepCalendarOpeningWithRange]=\"true\" matTooltip=\"{{uiConstants.CHANGE_DATE_RANGE}}\" />\n  <mat-icon *ngIf=\"hasEncounterError\" class=\"errorIcon\"\n    matTooltip=\"{{uiConstants.BAD_ENCOUNTER_ERROR}} {{encountersError ? encountersError.shortMessage : ''}}\">\n    warning\n  </mat-icon>\n</div>\n"
 
 /***/ }),
 
@@ -9913,6 +10395,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_daterangepicker_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-daterangepicker-material */ "./node_modules/ngx-daterangepicker-material/esm5/ngx-daterangepicker-material.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _date_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../date_utils */ "./src/app/date_utils.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9929,6 +10412,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -9972,7 +10456,7 @@ var TimelineControllerComponent = /** @class */ (function () {
         /**
          * Whether there was an encounter input into this component.
          */
-        this.encounterError = false;
+        this.hasEncounterError = false;
         /**
          * Used to add a style to dates in the date picker so that the user can
          * differentiate between dates inside and outside of encounters.
@@ -9993,8 +10477,9 @@ var TimelineControllerComponent = /** @class */ (function () {
         this.selected = selectedRange;
         this.datesUpdated(selectedRange);
         // Set up the encounters in the date picker.
-        if (this.encounters && this.encounters.length > 0) {
-            this.encounterError = false;
+        if (this.encounters && this.encounters.length > 0 &&
+            !this.encountersError) {
+            this.hasEncounterError = false;
             this.encounters = this.encounters.sort(function (a, b) { return a.period.start.toMillis() - b.period.start.toMillis(); });
             // Set the minimum date to select to be the beginning of the
             // earliest encounter that had days that fell inside the app
@@ -10049,7 +10534,7 @@ var TimelineControllerComponent = /** @class */ (function () {
             ];
         }
         else {
-            this.encounterError = true;
+            this.hasEncounterError = true;
         }
     };
     /**
@@ -10083,6 +10568,10 @@ var TimelineControllerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
     ], TimelineControllerComponent.prototype, "encounters", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _result_error__WEBPACK_IMPORTED_MODULE_6__["ResultError"])
+    ], TimelineControllerComponent.prototype, "encountersError", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", luxon__WEBPACK_IMPORTED_MODULE_1__["Interval"])
@@ -10466,7 +10955,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/laurendukes/charmander-bch/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })
