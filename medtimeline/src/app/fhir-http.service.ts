@@ -108,17 +108,11 @@ export class FhirHttpService extends FhirService {
             });
   }
 
-  /**
-   * Gets observations from a specified date range with a specific LOINC code.
-   * @param code The LOINC code for which to get observations.
-   * @param dateRange The time interval observations should fall between.
-   * @param limitCount If set, the number of observations that should be
-   *     queried for
-   */
-  getObservationsWithCode(
-      code: LOINCCode, dateRange: Interval,
-      limitCount?: number): Promise<Observation[]> {
-    const queryParams = {
+  private getObservationsSearchParams(code: LOINCCode, dateRange: Interval) {
+    // Cerner says that asking for a limited count of resources can slow down
+    // queries, so we don't restrict a count limit here.
+    // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
+    return {
       type: FhirResourceType.Observation,
       query: {
         code: LOINCCode.CODING_STRING + '|' + code.codeString,
@@ -128,10 +122,18 @@ export class FhirHttpService extends FhirService {
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
         },
-        _count: limitCount ? limitCount : CERNER_MAX_OBS_RESULTS_RETURNED
       }
     };
+  }
 
+  /**
+   * Gets observations from a specified date range with a specific LOINC code.
+   * @param code The LOINC code for which to get observations.
+   * @param dateRange The time interval observations should fall between.
+   */
+  getObservationsWithCode(code: LOINCCode, dateRange: Interval):
+      Promise<Observation[]> {
+    const queryParams = this.getObservationsSearchParams(code, dateRange);
     return this.smartApiPromise.then(
         smartApi =>
             this.fetchAll(
@@ -141,6 +143,24 @@ export class FhirHttpService extends FhirService {
                     (results: Observation[]) => results.filter(
                         (result: Observation) => result.status !==
                             ObservationStatus.EnteredInError)));
+  }
+
+  /**
+   * Checks if there are any observations with the given LOINC Code within the
+   * given date range.
+   *
+   * Note: Only fetches single page of results from FHIR server to enhance
+   * performance.
+   *
+   * @param code LOINC code to check if there are any observations for
+   * @param dateRange the time interval the observations should fall between
+   */
+  observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
+      Promise<boolean> {
+    const queryParams = this.getObservationsSearchParams(code, dateRange);
+    return this.smartApiPromise.then(
+        smartApi => smartApi.patient.api.search(queryParams)
+                        .then(response => !!response.data.entry));
   }
 
   /**
