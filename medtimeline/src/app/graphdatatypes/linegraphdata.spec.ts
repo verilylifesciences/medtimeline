@@ -298,6 +298,33 @@ describe('LineGraphData', () => {
                 TestBed.get(DomSanitizer)));
   });
 
+  it('fromMedicationOrderSet should always have precision to be 0', () => {
+    const order1 = makeMedicationOrder();
+
+    const medAdmin1 =
+        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 95);
+    const medAdmin2 =
+        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 100);
+
+    // Set administrations manually to avoid FHIR call.
+    order1.administrationsForOrder =
+        new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
+            // annotations not important for this test
+            x => new AnnotatedAdministration(x, 1, 1)));
+    order1.firstAdministration = medAdmin1;
+    order1.lastAdmininistration = medAdmin2;
+
+    const medOrderSet = new MedicationOrderSet([order1]);
+
+    const lgData = LineGraphData.fromMedicationOrderSet(
+        medOrderSet,
+        Interval.fromDateTimes(
+            DateTime.utc(1988, 3, 22), DateTime.utc(1988, 3, 28)),
+        TestBed.get(DomSanitizer), []);
+
+    expect(lgData.precision).toBe(0);
+  });
+
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
