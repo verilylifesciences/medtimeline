@@ -94,8 +94,8 @@ export abstract class FhirService {
    * @param limitCount If provided, the maximum number of observations to
    *     query for.
    */
-  abstract getMedicationAdministrationsWithCode(
-      code: RxNormCode, dateRange: Interval,
+  abstract getMedicationAdministrationsWithCodes(
+      codes: RxNormCode[], dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]>;
 
   /**
@@ -104,24 +104,14 @@ export abstract class FhirService {
    * @param codes The RxNormCode codes for which to get observations.
    * @param dateRanges The time interval observations should fall between.
    */
-  getMedicationAdministrationsWithCodes(
-      codes: RxNormCodeGroup,
+  getMedicationAdministrationsWithCodeGroup(
+      group: RxNormCodeGroup,
       dateRange: Interval): Promise<MedicationAdministration[]> {
-    if (!codes || !dateRange) {
+    if (!group || !dateRange) {
       return of([]).toPromise();
     }
-    const medicationPromises = new Array<Promise<MedicationAdministration[]>>();
-    for (const code of codes.resourceCodes) {
-      medicationPromises.push(this.getMedicationAdministrationsWithCode(
-          code as RxNormCode, dateRange));
-    }
-    // This will be rejected if any Promise is rejected.
-    return Promise.all(medicationPromises)
-        .then(
-            resolvedMedications =>
-                // flatten the results into single medication administrations
-                // list
-                [].concat(...resolvedMedications));
+    return this.getMedicationAdministrationsWithCodes(
+        (group.resourceCodes as RxNormCode[]), dateRange);
   }
 
   /**

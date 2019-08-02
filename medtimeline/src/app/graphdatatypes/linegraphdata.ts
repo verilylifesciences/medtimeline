@@ -233,7 +233,6 @@ export class LineGraphData extends GraphData {
       sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
     const tooltipMap = new Map<string, string>();
     const regions = new Array<[DateTime, DateTime]>();
-    const precision = 0;
     for (const order of medicationOrderSet.resourceList) {
       regions.push([
         order.firstAdministration.timestamp,
@@ -261,7 +260,7 @@ export class LineGraphData extends GraphData {
         [LabeledSeries.fromMedicationOrderSet(
             medicationOrderSet, dateRange, encounters)],
         [medicationOrderSet.minDose, medicationOrderSet.maxDose],
-        medicationOrderSet.unit, tooltipMap, undefined, regions, precision);
+        medicationOrderSet.unit, tooltipMap, undefined, regions);
   }
 
   /**

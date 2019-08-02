@@ -17,7 +17,7 @@ import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DebuggerService} from './debugger.service';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration} from './fhir-data-classes/medication-administration';
+import {MedicationAdministration, RawMedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {ResultClass} from './fhir-resource-set';
@@ -28,13 +28,65 @@ import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';
 
-// The Cerner implementation has a maximum result return of 100 for
-// observations.
-const CERNER_MAX_OBS_RESULTS_RETURNED = 100;
-
 @Injectable()
 export class FhirHttpService extends FhirService {
+  /**
+   * Cerner has not implemented searching for MedicationAdministrations by
+   * medication code or by prescription (MedicationOrder) ID. In addition,
+   * a MedicationOrder will not necessarily have a start time.
+   * This means that to get all MedicationAdministrations for an order,
+   * we will need to fetch all MedicationAdministrations for a patient.
+   * Since this is slow, we will use the following 3 properties to help us
+   * cache that information. They are currently not set as "private" so that
+   * we can test them in unit tests.
+   */
+
+  /**
+   * Visible for testing purposes only.
+   *
+   * Cache of all RawMedicationAdministrations for a patient.
+   * It is a mapping of RxNormCodes to their corresponding
+   * RawMedicationAdministration objects. Once defined, this will contain all
+   * RawMedicationAdministrations for the patient. We store
+   * RawMedicationAdministrations because no validation is done on
+   * RawMedicationAdministration creation. This enables us to not throw errors
+   * if we fetch invalid medications unless those medications are in the date
+   * range we are trying to show.
+   *
+   * This will contain all medications for the patient up until the
+   * lastMedicationRefreshTime.
+   */
+  medicationAdministrationsByCode:
+      Map<RxNormCode, RawMedicationAdministration[]>;
+
+  /**
+   * Visible for testing purposes only.
+   *
+   * If a MedicationAdministration fetch from FHIR is in progress, we set this
+   * variable to the Promise that when resolved will give all of the
+   * RawMedicationAdministrations for the patient.
+   * This enables us to asyncronously call for MedicationAdministrations
+   * multiple times, but only fetch the MedicationAdministrations a single time.
+   * It helps ensure that we do not fetch duplicate MedicationAdministrations.
+   * After the promise has been resolved, it is set back to undefined.
+   * If this is undefined, a medication refresh is not in progress.
+   */
+  medicationRefreshInProgress:
+      Promise<Map<RxNormCode, RawMedicationAdministration[]>>;
+
+  /**
+   * Visible for testing purposes only.
+   *
+   * The time that the medicationRefreshInProgress Promise was resolved. This is
+   * the time that MedicationAdministrations were most recently fetched from
+   * FHIR.
+   * If this is not defined, we have not previously fetched all
+   * MedicationAdministrations for the patient from FHIR.
+   */
+  lastMedicationRefreshTime: DateTime;
+
   readonly smartApiPromise: Promise<any>;
+
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,
@@ -99,7 +151,7 @@ export class FhirHttpService extends FhirService {
                   .getNextSearchResultsPage(
                       smartApi, response, results, createFunction)
                   .then(results => {
-                    return results;
+                    return results.filter(result => !!result);
                   });
             },
             rejection => {
@@ -182,86 +234,246 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
-   * Gets medication data from a specified date range with a specific Rx code
-   * @param code The RxNormCode codes for which to get observations.
-   * @param dateRange The time interval observations should fall between.
-   * @param limitCount If provided, the maximum number of observations to
-   *     query for.
+   * Creates a RawMedicationAdministration object from the passed in json
+   * and requestId if the json contains a mapped RxNormCode.
+   *
+   * @param json data used to create RawMedicationAdministration
+   * @param requestId the FHIR request ID that obtained the json data.
    */
-  getMedicationAdministrationsWithCode(
-      code: RxNormCode, dateRange: Interval,
-      limitCount?: number): Promise<MedicationAdministration[]> {
-    const queryParams = this.getMedicationAdministrationSearchParams(dateRange);
-
-    if (limitCount) {
-      queryParams.query['_count'] = limitCount;
+  private createRawMedicationAdministration(json: any, requestId: string):
+      RawMedicationAdministration {
+    if (ResultClass.extractMedicationEncoding(json)) {
+      return new RawMedicationAdministration(json, requestId);
     }
+  }
 
+  /**
+   * Fetches all FHIR MedicationAdministrations using the given query params.
+   * Returns the created RawMedicationAdministrations grouped by RxNormCode.
+   *
+   * @param queryParams the search params to pass to the FHIR search request.
+   */
+  private fetchRawMedicationAdministrations(queryParams):
+      Promise<Map<RxNormCode, RawMedicationAdministration[]>> {
     return this.smartApiPromise.then(
         smartApi =>
             this.fetchAll(
                     smartApi, queryParams,
-                    (json, requestId) => {
-                      if (ResultClass.extractMedicationEncoding(json) ===
-                          code) {
-                        return new MedicationAdministration(json, requestId);
-                      }
-                    })
-                .then(
-                    (results: MedicationAdministration[]) =>
-                        results.filter((result) => !!result)));
+                    this.createRawMedicationAdministration)
+                .then((rawMedAdmins: RawMedicationAdministration[]) => {
+                  // group RawMedicationAdministrations by RxNormCode
+                  const medAdminsByCode =
+                      new Map<RxNormCode, RawMedicationAdministration[]>();
+                  for (const rawMedAdmin of rawMedAdmins) {
+                    const medAdminCode = rawMedAdmin.rxNormCode;
+                    if (!medAdminsByCode.has(medAdminCode)) {
+                      medAdminsByCode.set(medAdminCode, new Array());
+                    }
+                    medAdminsByCode.get(medAdminCode).push(rawMedAdmin);
+                  }
+                  return medAdminsByCode;
+                }));
   }
 
   /**
-   * Determines whether a medication with the given RxNormCode exists.
+   * Fetches all FHIR MedicationAdministrations for the patient.
    *
-   * Checks a single response page and only calls the next page if no
-   * medications with the given code exist. Cerner's implementation of FHIR
-   * does not support searching by RxNormCode, so we need to get all of the
-   * medications and filter the response.
+   * Updates medicationAdministrationsByCode with the results and sets the
+   * lastMedicationRefreshTime with the current time.
    *
-   * @param smartApi The resolved smartOnFhirClient which called the original
-   *     "search"
-   * @param response The response of the previous page
-   * @param code The RxNormCode to search for
+   * @returns all RawMedicationAdministration objects for the patient grouped
+   *   by RxNormCode.
    */
-  private checkMedicationsPresentNextPage(smartApi, response, code: RxNormCode):
-      Promise<boolean> {
-    const results = response.data.entry || [];
-    const resultsWithCode = results.filter(
-        result =>
-            code === ResultClass.extractMedicationEncoding(result.resource));
+  private loadAllRawMedicationAdministrations():
+      Promise<Map<RxNormCode, RawMedicationAdministration[]>> {
+    const currentTime = DateTime.utc();
+    const queryParams = {
+      type: FhirResourceType.MedicationAdministration,
+    };
 
-    if (resultsWithCode.length > 0) {
-      return Promise.resolve(true);
-    } else {
-      if (response.data.link.some((link) => link.relation === 'next')) {
-        return smartApi.patient.api.nextPage({bundle: response.data})
-            .then(nextResponse => {
-              return this.checkMedicationsPresentNextPage(
-                  smartApi, nextResponse, code);
-            });
-      } else {
-        return Promise.resolve(false);
-      }
+    return this.fetchRawMedicationAdministrations(queryParams)
+        .then(medAdminsByCode => {
+          this.medicationAdministrationsByCode = medAdminsByCode;
+          this.lastMedicationRefreshTime = currentTime;
+          return medAdminsByCode;
+        });
+  }
+
+  /**
+   * Fetches FHIR MedicationAdministrations that have been created since the
+   * lastMedicationRefreshTime.
+   *
+   * Updates medicationAdministrationsByCode with the results and sets the
+   * lastMedicationRefreshTime with the current time.
+   *
+   * @returns all RawMedicationAdministration objects for the patient grouped
+   *   by RxNormCode.
+   */
+  private incrementalRawMedicationAdministrationRefresh():
+      Promise<Map<RxNormCode, RawMedicationAdministration[]>> {
+    const currentTime = DateTime.utc();
+    const dateRange =
+        Interval.fromDateTimes(this.lastMedicationRefreshTime, currentTime);
+    const queryParams = this.getMedicationAdministrationSearchParams(dateRange);
+    return this.fetchRawMedicationAdministrations(queryParams)
+        .then(medAdminsByCode => {
+          // Add the returned medication administrations to the
+          // medicationAdministrationsByCode mapping.
+          medAdminsByCode.forEach((medAdmins, code) => {
+            if (!this.medicationAdministrationsByCode.has(code)) {
+              this.medicationAdministrationsByCode.set(code, new Array());
+            }
+            this.medicationAdministrationsByCode.get(code).push(...medAdmins);
+          });
+          this.lastMedicationRefreshTime = currentTime;
+          return this.medicationAdministrationsByCode;
+        });
+  }
+
+  /**
+   * Gets all RawMedicationAdministrations for a patient grouped by RxNormCode.
+   *
+   * If any FHIR fetches are needed to refresh the medication administrations,
+   * medicationRefreshInProgress is set to the fetch promise. As soon as the
+   * promise is resolved, medicationRefreshInProgress is set back to undefined.
+   * If there is another FHIR fetch in progress for medications, this function
+   * will wait until that one is done, and then resolve those results.
+   *
+   * Because we cannot search for MedicationAdministrations by medication code
+   * or order ID, we need to get all of the MedicationAdministrations from FHIR
+   * and then filter them down. If we have already fetched all
+   * MedicationAdministrations, this function will take advantage of the cached
+   * data. If not, it will call to FHIR for all MedicationAdministrations and
+   * cache them in medicationAdministrationsByCode. If all
+   * MedicationAdministrations need to be fetched, then this will be a slow
+   * call.
+   *
+   * @returns RawMedicationAdministrations for a patient grouped by RxNormCode.
+   */
+  getAllRawMedicationAdministrations():
+      Promise<Map<RxNormCode, RawMedicationAdministration[]>> {
+    const currentTime = DateTime.utc();
+    // if there is already a medication refresh in progress, just use the
+    // results of that refresh when it resolves. The original creation of
+    // medicationRefreshInProgress promise will set the property back to
+    // undefined, so we do not need to do so here.
+    if (this.medicationRefreshInProgress) {
+      return Promise.resolve(this.medicationRefreshInProgress);
     }
+
+    // If medication administrations were last loaded within a minute, we do not
+    // need to refresh again. This may happen if this method gets called
+    // multiple times within a single request. An example of this is on
+    // application setup, when we load all of the medications for the patient.
+    // This does not require a FHIR call.
+    // It should return immediately since data has already been cached.
+    if (this.lastMedicationRefreshTime &&
+        currentTime.diff(this.lastMedicationRefreshTime, 'minutes').minutes <
+            1) {
+      return Promise.resolve(this.medicationAdministrationsByCode);
+    }
+
+    // if there has been a previous refresh, then we only need to fetch
+    // MedicationAdministrations that are new since the last refresh. This
+    // is the case when you are looking to refresh today's medications.
+    // Medications from previous days will not change, so they do not need to be
+    // refreshed. The time of the previous refresh is stored in
+    // this.lastMedicationRefreshTime
+    if (this.lastMedicationRefreshTime) {
+      this.medicationRefreshInProgress =
+          this.incrementalRawMedicationAdministrationRefresh();
+
+      // otherwise we need to do a full load of all the medications. This should
+      // only happen once for a patient.
+    } else {
+      this.medicationRefreshInProgress =
+          this.loadAllRawMedicationAdministrations();
+    }
+    // as soon as the refresh is done, we need to set the
+    // medicationRefreshInProgress back to undefined so that if we request
+    // another refresh of medications, we make a new FHIR call to get the most
+    // recent data.
+    return Promise.resolve(this.medicationRefreshInProgress)
+        .then(
+            results => {
+              this.medicationRefreshInProgress = undefined;
+              return results;
+            },
+            rejection => {
+              this.medicationRefreshInProgress = undefined;
+              throw rejection;
+            });
+  }
+
+  /**
+   * Gets MedicationAdministrations from a specified date range with specific
+   * RxNormCodes.
+   *
+   * If the last medication refresh happened after the date range needed,
+   * we will just format RawMedicationAdministrations to
+   * MedicationAdministrations for that date range.
+   *
+   * Otherwise, we will refresh medicationAdministrationsByCode and then
+   * do the formatting.
+   *
+   * @param codes The RxNormCodes for which to get MedicationAdministrations.
+   * @param dateRange The time interval MedicationAdministrations should fall
+   *     between.
+   */
+  getMedicationAdministrationsWithCodes(
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]> {
+    let medAdministrationPromise:
+        Promise<Map<RxNormCode, RawMedicationAdministration[]>>;
+
+    if (this.lastMedicationRefreshTime &&
+        dateRange.start < this.lastMedicationRefreshTime &&
+        dateRange.end < this.lastMedicationRefreshTime) {
+      // if the date range is completely before the last medication refresh,
+      // we do not need to get any additional medication data.
+      medAdministrationPromise =
+          Promise.resolve(this.medicationAdministrationsByCode);
+
+      // otherwise, we need to refresh the medication administrations.
+    } else {
+      medAdministrationPromise = this.getAllRawMedicationAdministrations();
+    }
+
+    return Promise.resolve(medAdministrationPromise)
+        .then(rawMedAdminsByCode => {
+          // return all the MedicationAdmins with the codes that are within
+          // the given date range.
+          const medAdmins = new Array<MedicationAdministration>();
+          for (const code of codes) {
+            const rawMedAdminsForCode = rawMedAdminsByCode.get(code) || [];
+            medAdmins.push(
+                ...rawMedAdminsForCode
+                    .filter(
+                        rawMedAdmin =>
+                            (dateRange.contains(rawMedAdmin.timestamp)))
+                    .map(
+                        rawMedAdmin =>
+                            rawMedAdmin.convertToMedicationAdministration()));
+          }
+          return medAdmins;
+        });
   }
 
   /**
    * Determines whether their is a medication present with the given code
-   * during the given date range
+   * during the given date range.
+   *
+   * This will refresh all medications for the patient.
+   *
    * @param code The RxNormCode to get medications for
    * @param dateRange The date range to get medications for
    */
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
-    const queryParams = this.getMedicationAdministrationSearchParams(dateRange);
-    return this.smartApiPromise.then(smartApi => {
-      return smartApi.patient.api.search(queryParams)
-          .then(
-              response => this.checkMedicationsPresentNextPage(
-                  smartApi, response, code));
-    });
+    return this.getMedicationAdministrationsWithCodes([code], dateRange)
+        .then(medAdmins => {
+          return medAdmins.length > 0;
+        });
   }
 
   /**
@@ -293,25 +505,11 @@ export class FhirHttpService extends FhirService {
    */
   getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
       Promise<MedicationAdministration[]> {
-    const queryParams = {
-      type: FhirResourceType.MedicationAdministration,
-    };
-    return this.smartApiPromise.then(
-        smartApi =>
-            this.fetchAll(
-                    smartApi, queryParams,
-                    (json, requestId) => {
-                      if (ResultClass.extractMedicationEncoding(json) ===
-                          code) {
-                        return new MedicationAdministration(json, requestId);
-                      }
-                    })
-                .then(
-                    (results: MedicationAdministration[]) =>
-                        results.filter((result) => !!result)
-                            .filter(
-                                (result: MedicationAdministration) =>
-                                    result.medicationOrderId === id)));
+    return this.getAllRawMedicationAdministrations().then(adminsByCode => {
+      return (adminsByCode.get(code) || [])
+          .filter(rawMedAdmin => rawMedAdmin.medicationOrderId === id)
+          .map(rawMedAdmin => rawMedAdmin.convertToMedicationAdministration());
+    });
   }
 
   /**
@@ -402,7 +600,8 @@ export class FhirHttpService extends FhirService {
    * Gets the DiagnosticReports for the patient for any report that falls in
    * the given date range.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-   * @param dateRange Return all DiagnosticReports that covered any time in this
+   * @param dateRange Return all DiagnosticReports that covered any time in
+   *     this
    *   date range.
    */
   getDiagnosticReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):

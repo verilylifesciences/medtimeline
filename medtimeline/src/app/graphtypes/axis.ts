@@ -120,6 +120,7 @@ export class Axis {
     // has to be re-evaluated.
     this.dateRange = dateRange;
     this.alreadyResolvedData = undefined;
+    this.errorMessage = undefined;
     return this.getDataFromFhir(dateRange).then(
         data => {
           this.alreadyResolvedData = data;

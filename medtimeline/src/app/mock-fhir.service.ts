@@ -15,7 +15,6 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnotic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
@@ -155,24 +154,25 @@ export class MockFhirService extends FhirService {
    * Gets medication data from a specified date range with a specific Rx code
    * @param code The RxNormCode codes for which to get observations.
    * @param dateRange The time interval observations should fall between.
-   * @param limitCount Unused in this implementation, as this is just a
-   *     time-saving feature for HTTP calls.
    */
-  getMedicationAdministrationsWithCode(
-      code: RxNormCode, dateRange: Interval,
-      limitCount?: number): Promise<MedicationAdministration[]> {
+  getMedicationAdministrationsWithCodes(
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]> {
     return this.allDataPromise.then(x => {
-      return this.medicationAdministrationMapByCode.has(code) ?
-          this.medicationAdministrationMapByCode.get(code)
-              .filter(obs => dateRange.contains(obs.timestamp))
-              .slice(0, limitCount ? limitCount : undefined) :
-          [];
+      const allMedAdmins = new Array<MedicationAdministration>();
+      this.medicationAdministrationMapByCode.forEach((medAdmins, code) => {
+        if (codes.includes(code)) {
+          allMedAdmins.push(...medAdmins.filter(
+              medAdmin => dateRange.contains(medAdmin.timestamp)));
+        }
+      });
+      return Promise.resolve(allMedAdmins);
     });
   }
 
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
-    return this.getMedicationAdministrationsWithCode(code, dateRange)
+    return this.getMedicationAdministrationsWithCodes([code], dateRange)
         .then(obs => obs.length > 0, rejection => {
           // If any MedicationAdministration for this code results in an error,
           // do not show any MedicationAdministrations at all.
@@ -237,14 +237,8 @@ export class MockFhirService extends FhirService {
       codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<DiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      return Promise
-          .resolve(DiagnosticReport.parseAndFilterMicrobioData(
-              this.microbioJson, codeGroup))
-          .then(reports => {
-            return reports.filter(
-                report => dateRange.contains(
-                    new AnnotatedDiagnosticReport(report).timestamp));
-          });
+      return DiagnosticReport.parseAndFilterMicrobioData(
+          this.microbioJson, codeGroup);
     });
   }
 }

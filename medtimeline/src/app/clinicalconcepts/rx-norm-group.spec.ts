@@ -99,11 +99,12 @@ const medicationOrderB = new MedicationOrder(
     REQUEST_ID);
 
 class RxStubFhirService extends StubFhirService {
-  getMedicationAdministrationsWithCode(code: RxNormCode, dateRange: Interval):
-      Promise<MedicationAdministration[]> {
+  getMedicationAdministrationsWithCodes(
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]> {
     // Only return a partial set for each drug so that we ensure all the calls
     // work to get all administrations for the orders.
-    if (code === RxNormCode.fromCodeString('11124')) {
+    if (codes.includes(RxNormCode.fromCodeString('11124') as RxNormCode)) {
       return Promise.resolve([orderAAdmins[0], orderBAdmins[0]]);
     }
   }

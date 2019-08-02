@@ -14,30 +14,20 @@ import {ResultError} from './../result-error';
 import {Dosage} from './dosage';
 import {ContainedMedication} from './medication';
 
-
 /**
- * This object represents a FHIR MedicationAdministration. It does not contain
- * all the information in a standard MedicationAdministration (see
- * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
- * stores only the information we're interested in seeing.
+ * This is a sparsely defined MedicationAdministration. It does not have any
+ * validation done during object instantiation. It only holds raw data that
+ * is returned from FHIR.
+ *
+ * It should only be used for storing raw data. It should not be surfaced to
+ * the UI.
  */
-export class MedicationAdministration extends ResultClassWithTimestamp {
+export class RawMedicationAdministration extends ResultClassWithTimestamp {
   readonly MED_RESOURCE_TYPE = 'Medication';
+  readonly effectiveDateTime: DateTime;
   readonly rxNormCode: RxNormCode;
-  readonly timestamp: DateTime;
-  readonly wasNotGiven: boolean;
-  readonly dosage: Dosage;
   readonly medicationOrderId: string;
-  readonly containedMedications: ContainedMedication[] = [];
 
-  /**
-   * Makes an MedicationAdministration out of a JSON object that represents a
-   * a FHIR MedicationAdministration.
-   * https://www.hl7.org/fhir/DSTU2/medicationadministration.html
-   * @param json A JSON object that represents a FHIR MedicationAdministration.
-   * @param requestId The x-request-id of the request that acquired this
-   *     medication administration's data.
-   */
   constructor(private json: any, requestId: string) {
     super(
         json.medicationReference ? json.medicationReference.display :
@@ -50,14 +40,43 @@ export class MedicationAdministration extends ResultClassWithTimestamp {
             json.effectiveTimePeriod ?
             DateTime.fromISO(json.effectiveTimePeriod.start).toUTC() :
             null);
+    this.json = json;
     this.rxNormCode = ResultClass.extractMedicationEncoding(json);
-
-    this.dosage = new Dosage(json);
-    this.wasNotGiven = json.wasNotGiven;
     this.medicationOrderId = json.prescription && json.prescription.reference ?
         json.prescription.reference.replace(
             FhirResourceType.MedicationOrder + '/', '') :
         null;
+  }
+  convertToMedicationAdministration() {
+    return new MedicationAdministration(this.json, this.requestId);
+  }
+}
+
+
+/**
+ * This object represents a FHIR MedicationAdministration. It does not contain
+ * all the information in a standard MedicationAdministration (see
+ * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
+ * stores only the information we're interested in seeing.
+ */
+export class MedicationAdministration extends RawMedicationAdministration {
+  readonly wasNotGiven: boolean;
+  readonly dosage: Dosage;
+  readonly containedMedications: ContainedMedication[] = [];
+
+  /**
+   * Makes an MedicationAdministration out of a JSON object that represents a
+   * a FHIR MedicationAdministration.
+   * https://www.hl7.org/fhir/DSTU2/medicationadministration.html
+   * @param json A JSON object that represents a FHIR MedicationAdministration.
+   * @param requestId The x-request-id of the request that acquired this
+   *     medication administration's data.
+   */
+  constructor(json: any, requestId: string) {
+    super(json, requestId);
+
+    this.dosage = new Dosage(json);
+    this.wasNotGiven = json.wasNotGiven;
 
     if (json.contained && json.contained.length > 0) {
       // We first find the element that lists the "ingredients" of this

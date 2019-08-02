@@ -26,7 +26,7 @@ export class RxNormCodeGroup extends
    */
   getResourceFromFhir(dateRange: Interval):
       Promise<MedicationAdministration[]> {
-    return this.fhirService.getMedicationAdministrationsWithCodes(
+    return this.fhirService.getMedicationAdministrationsWithCodeGroup(
         this, dateRange);
   }
 

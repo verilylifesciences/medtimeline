@@ -37,8 +37,9 @@ export class StubFhirService extends FhirService {
     return Promise.resolve(false);
   }
 
-  getMedicationAdministrationsWithCode(code: RxNormCode, dateRange: Interval):
-      Promise<MedicationAdministration[]> {
+  getMedicationAdministrationsWithCodes(
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]> {
     return Promise.resolve(
         [makeMedicationAdministration(DateTime.utc().toISO())]);
   }
