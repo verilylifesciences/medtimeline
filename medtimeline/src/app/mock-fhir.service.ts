@@ -15,6 +15,7 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnotic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
@@ -236,8 +237,14 @@ export class MockFhirService extends FhirService {
       codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<DiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      return DiagnosticReport.parseAndFilterMicrobioData(
-          this.microbioJson, codeGroup);
+      return Promise
+          .resolve(DiagnosticReport.parseAndFilterMicrobioData(
+              this.microbioJson, codeGroup))
+          .then(reports => {
+            return reports.filter(
+                report => dateRange.contains(
+                    new AnnotatedDiagnosticReport(report).timestamp));
+          });
     });
   }
 }
