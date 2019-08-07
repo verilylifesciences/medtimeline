@@ -2749,7 +2749,7 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
      * @param dateRange date range to get medication administrations for
      */
     RxNormCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
-        return this.fhirService.getMedicationAdministrationsWithCodes(this, dateRange);
+        return this.fhirService.getMedicationAdministrationsWithCodeGroup(this, dateRange);
     };
     /**
      * Fills out the order and administration information for each
@@ -4056,11 +4056,12 @@ var Encounter = /** @class */ (function () {
 /*!****************************************************************!*\
   !*** ./src/app/fhir-data-classes/medication-administration.ts ***!
   \****************************************************************/
-/*! exports provided: MedicationAdministration, MedicationAdministrationSet, AnnotatedAdministration */
+/*! exports provided: RawMedicationAdministration, MedicationAdministration, MedicationAdministrationSet, AnnotatedAdministration */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RawMedicationAdministration", function() { return RawMedicationAdministration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministration", function() { return MedicationAdministration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationSet", function() { return MedicationAdministrationSet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedAdministration", function() { return AnnotatedAdministration; });
@@ -4097,6 +4098,40 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 /**
+ * This is a sparsely defined MedicationAdministration. It does not have any
+ * validation done during object instantiation. It only holds raw data that
+ * is returned from FHIR.
+ *
+ * It should only be used for storing raw data. It should not be surfaced to
+ * the UI.
+ */
+var RawMedicationAdministration = /** @class */ (function (_super) {
+    __extends(RawMedicationAdministration, _super);
+    function RawMedicationAdministration(json, requestId) {
+        var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
+            json.medicationCodeableConcept ?
+                json.medicationCodeableConcept.text :
+                null, requestId, json.effectiveTimeDateTime ?
+            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
+            json.effectiveTimePeriod ?
+                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
+                null) || this;
+        _this.json = json;
+        _this.MED_RESOURCE_TYPE = 'Medication';
+        _this.json = json;
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
+        _this.medicationOrderId = json.prescription && json.prescription.reference ?
+            json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
+            null;
+        return _this;
+    }
+    RawMedicationAdministration.prototype.convertToMedicationAdministration = function () {
+        return new MedicationAdministration(this.json, this.requestId);
+    };
+    return RawMedicationAdministration;
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
+
+/**
  * This object represents a FHIR MedicationAdministration. It does not contain
  * all the information in a standard MedicationAdministration (see
  * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
@@ -4113,23 +4148,10 @@ var MedicationAdministration = /** @class */ (function (_super) {
      *     medication administration's data.
      */
     function MedicationAdministration(json, requestId) {
-        var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
-            json.medicationCodeableConcept ?
-                json.medicationCodeableConcept.text :
-                null, requestId, json.effectiveTimeDateTime ?
-            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
-            json.effectiveTimePeriod ?
-                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
-                null) || this;
-        _this.json = json;
-        _this.MED_RESOURCE_TYPE = 'Medication';
+        var _this = _super.call(this, json, requestId) || this;
         _this.containedMedications = [];
-        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
         _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_5__["Dosage"](json);
         _this.wasNotGiven = json.wasNotGiven;
-        _this.medicationOrderId = json.prescription && json.prescription.reference ?
-            json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
-            null;
         if (json.contained && json.contained.length > 0) {
             // We first find the element that lists the "ingredients" of this
             // MedicationAdministration with each corresponding dosage and reference
@@ -4181,7 +4203,7 @@ var MedicationAdministration = /** @class */ (function (_super) {
         return _this;
     }
     return MedicationAdministration;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
+}(RawMedicationAdministration));
 
 /**
  * A set of MedicalAdministrations that belong together as part of the same
@@ -5081,9 +5103,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 var GREATER_OR_EQUAL = 'ge';
 var LESS_OR_EQUAL = 'le';
-// The Cerner implementation has a maximum result return of 100 for
-// observations.
-var CERNER_MAX_OBS_RESULTS_RETURNED = 100;
 var FhirHttpService = /** @class */ (function (_super) {
     __extends(FhirHttpService, _super);
     function FhirHttpService(debugService, smartOnFhirClient, sanitizer, http) {
@@ -5139,7 +5158,7 @@ var FhirHttpService = /** @class */ (function (_super) {
             return _this
                 .getNextSearchResultsPage(smartApi, response, results, createFunction)
                 .then(function (results) {
-                return results;
+                return results.filter(function (result) { return !!result; });
             });
         }, function (rejection) {
             _this.debugService.logError(rejection);
@@ -5210,76 +5229,225 @@ var FhirHttpService = /** @class */ (function (_super) {
         };
     };
     /**
-     * Gets medication data from a specified date range with a specific Rx code
-     * @param code The RxNormCode codes for which to get observations.
-     * @param dateRange The time interval observations should fall between.
-     * @param limitCount If provided, the maximum number of observations to
-     *     query for.
+     * Creates a RawMedicationAdministration object from the passed in json
+     * and requestId if the json contains a mapped RxNormCode.
+     *
+     * @param json data used to create RawMedicationAdministration
+     * @param requestId the FHIR request ID that obtained the json data.
      */
-    FhirHttpService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
-        var _this = this;
-        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
-        if (limitCount) {
-            queryParams.query['_count'] = limitCount;
+    FhirHttpService.prototype.createRawMedicationAdministration = function (json, requestId) {
+        if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json)) {
+            return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["RawMedicationAdministration"](json, requestId);
         }
+    };
+    /**
+     * Fetches all FHIR MedicationAdministrations using the given query params.
+     * Returns the created RawMedicationAdministrations grouped by RxNormCode.
+     *
+     * @param queryParams the search params to pass to the FHIR search request.
+     */
+    FhirHttpService.prototype.fetchRawMedicationAdministrations = function (queryParams) {
+        var _this = this;
         return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
-                if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json) ===
-                    code) {
-                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
+            return _this.fetchAll(smartApi, queryParams, _this.createRawMedicationAdministration)
+                .then(function (rawMedAdmins) {
+                // group RawMedicationAdministrations by RxNormCode
+                var medAdminsByCode = new Map();
+                for (var _i = 0, rawMedAdmins_1 = rawMedAdmins; _i < rawMedAdmins_1.length; _i++) {
+                    var rawMedAdmin = rawMedAdmins_1[_i];
+                    var medAdminCode = rawMedAdmin.rxNormCode;
+                    if (!medAdminsByCode.has(medAdminCode)) {
+                        medAdminsByCode.set(medAdminCode, new Array());
+                    }
+                    medAdminsByCode.get(medAdminCode).push(rawMedAdmin);
                 }
-            })
-                .then(function (results) {
-                return results.filter(function (result) { return !!result; });
+                return medAdminsByCode;
             });
         });
     };
     /**
-     * Determines whether a medication with the given RxNormCode exists.
+     * Fetches all FHIR MedicationAdministrations for the patient.
      *
-     * Checks a single response page and only calls the next page if no
-     * medications with the given code exist. Cerner's implementation of FHIR
-     * does not support searching by RxNormCode, so we need to get all of the
-     * medications and filter the response.
+     * Updates medicationAdministrationsByCode with the results and sets the
+     * lastMedicationRefreshTime with the current time.
      *
-     * @param smartApi The resolved smartOnFhirClient which called the original
-     *     "search"
-     * @param response The response of the previous page
-     * @param code The RxNormCode to search for
+     * @returns all RawMedicationAdministration objects for the patient grouped
+     *   by RxNormCode.
      */
-    FhirHttpService.prototype.checkMedicationsPresentNextPage = function (smartApi, response, code) {
+    FhirHttpService.prototype.loadAllRawMedicationAdministrations = function () {
         var _this = this;
-        var results = response.data.entry || [];
-        var resultsWithCode = results.filter(function (result) {
-            return code === _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(result.resource);
+        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
+        var queryParams = {
+            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
+        };
+        return this.fetchRawMedicationAdministrations(queryParams)
+            .then(function (medAdminsByCode) {
+            _this.medicationAdministrationsByCode = medAdminsByCode;
+            _this.lastMedicationRefreshTime = currentTime;
+            return medAdminsByCode;
         });
-        if (resultsWithCode.length > 0) {
-            return Promise.resolve(true);
+    };
+    /**
+     * Fetches FHIR MedicationAdministrations that have been created since the
+     * lastMedicationRefreshTime.
+     *
+     * Updates medicationAdministrationsByCode with the results and sets the
+     * lastMedicationRefreshTime with the current time.
+     *
+     * @returns all RawMedicationAdministration objects for the patient grouped
+     *   by RxNormCode.
+     */
+    FhirHttpService.prototype.incrementalRawMedicationAdministrationRefresh = function () {
+        var _this = this;
+        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
+        var dateRange = luxon__WEBPACK_IMPORTED_MODULE_3__["Interval"].fromDateTimes(this.lastMedicationRefreshTime, currentTime);
+        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
+        return this.fetchRawMedicationAdministrations(queryParams)
+            .then(function (medAdminsByCode) {
+            // Add the returned medication administrations to the
+            // medicationAdministrationsByCode mapping.
+            medAdminsByCode.forEach(function (medAdmins, code) {
+                var _a;
+                if (!_this.medicationAdministrationsByCode.has(code)) {
+                    _this.medicationAdministrationsByCode.set(code, new Array());
+                }
+                (_a = _this.medicationAdministrationsByCode.get(code)).push.apply(_a, medAdmins);
+            });
+            _this.lastMedicationRefreshTime = currentTime;
+            return _this.medicationAdministrationsByCode;
+        });
+    };
+    /**
+     * Gets all RawMedicationAdministrations for a patient grouped by RxNormCode.
+     *
+     * If any FHIR fetches are needed to refresh the medication administrations,
+     * medicationRefreshInProgress is set to the fetch promise. As soon as the
+     * promise is resolved, medicationRefreshInProgress is set back to undefined.
+     * If there is another FHIR fetch in progress for medications, this function
+     * will wait until that one is done, and then resolve those results.
+     *
+     * Because we cannot search for MedicationAdministrations by medication code
+     * or order ID, we need to get all of the MedicationAdministrations from FHIR
+     * and then filter them down. If we have already fetched all
+     * MedicationAdministrations, this function will take advantage of the cached
+     * data. If not, it will call to FHIR for all MedicationAdministrations and
+     * cache them in medicationAdministrationsByCode. If all
+     * MedicationAdministrations need to be fetched, then this will be a slow
+     * call.
+     *
+     * @returns RawMedicationAdministrations for a patient grouped by RxNormCode.
+     */
+    FhirHttpService.prototype.getAllRawMedicationAdministrations = function () {
+        var _this = this;
+        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
+        // if there is already a medication refresh in progress, just use the
+        // results of that refresh when it resolves. The original creation of
+        // medicationRefreshInProgress promise will set the property back to
+        // undefined, so we do not need to do so here.
+        if (this.medicationRefreshInProgress) {
+            return Promise.resolve(this.medicationRefreshInProgress);
+        }
+        // If medication administrations were last loaded within a minute, we do not
+        // need to refresh again. This may happen if this method gets called
+        // multiple times within a single request. An example of this is on
+        // application setup, when we load all of the medications for the patient.
+        // This does not require a FHIR call.
+        // It should return immediately since data has already been cached.
+        if (this.lastMedicationRefreshTime &&
+            currentTime.diff(this.lastMedicationRefreshTime, 'minutes').minutes <
+                1) {
+            return Promise.resolve(this.medicationAdministrationsByCode);
+        }
+        // if there has been a previous refresh, then we only need to fetch
+        // MedicationAdministrations that are new since the last refresh. This
+        // is the case when you are looking to refresh today's medications.
+        // Medications from previous days will not change, so they do not need to be
+        // refreshed. The time of the previous refresh is stored in
+        // this.lastMedicationRefreshTime
+        if (this.lastMedicationRefreshTime) {
+            this.medicationRefreshInProgress =
+                this.incrementalRawMedicationAdministrationRefresh();
+            // otherwise we need to do a full load of all the medications. This should
+            // only happen once for a patient.
         }
         else {
-            if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
-                return smartApi.patient.api.nextPage({ bundle: response.data })
-                    .then(function (nextResponse) {
-                    return _this.checkMedicationsPresentNextPage(smartApi, nextResponse, code);
-                });
-            }
-            else {
-                return Promise.resolve(false);
-            }
+            this.medicationRefreshInProgress =
+                this.loadAllRawMedicationAdministrations();
         }
+        // as soon as the refresh is done, we need to set the
+        // medicationRefreshInProgress back to undefined so that if we request
+        // another refresh of medications, we make a new FHIR call to get the most
+        // recent data.
+        return Promise.resolve(this.medicationRefreshInProgress)
+            .then(function (results) {
+            _this.medicationRefreshInProgress = undefined;
+            return results;
+        }, function (rejection) {
+            _this.medicationRefreshInProgress = undefined;
+            throw rejection;
+        });
+    };
+    /**
+     * Gets MedicationAdministrations from a specified date range with specific
+     * RxNormCodes.
+     *
+     * If the last medication refresh happened after the date range needed,
+     * we will just format RawMedicationAdministrations to
+     * MedicationAdministrations for that date range.
+     *
+     * Otherwise, we will refresh medicationAdministrationsByCode and then
+     * do the formatting.
+     *
+     * @param codes The RxNormCodes for which to get MedicationAdministrations.
+     * @param dateRange The time interval MedicationAdministrations should fall
+     *     between.
+     */
+    FhirHttpService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange) {
+        var medAdministrationPromise;
+        if (this.lastMedicationRefreshTime &&
+            dateRange.start < this.lastMedicationRefreshTime &&
+            dateRange.end < this.lastMedicationRefreshTime) {
+            // if the date range is completely before the last medication refresh,
+            // we do not need to get any additional medication data.
+            medAdministrationPromise =
+                Promise.resolve(this.medicationAdministrationsByCode);
+            // otherwise, we need to refresh the medication administrations.
+        }
+        else {
+            medAdministrationPromise = this.getAllRawMedicationAdministrations();
+        }
+        return Promise.resolve(medAdministrationPromise)
+            .then(function (rawMedAdminsByCode) {
+            // return all the MedicationAdmins with the codes that are within
+            // the given date range.
+            var medAdmins = new Array();
+            for (var _i = 0, codes_1 = codes; _i < codes_1.length; _i++) {
+                var code = codes_1[_i];
+                var rawMedAdminsForCode = rawMedAdminsByCode.get(code) || [];
+                medAdmins.push.apply(medAdmins, rawMedAdminsForCode
+                    .filter(function (rawMedAdmin) {
+                    return (dateRange.contains(rawMedAdmin.timestamp));
+                })
+                    .map(function (rawMedAdmin) {
+                    return rawMedAdmin.convertToMedicationAdministration();
+                }));
+            }
+            return medAdmins;
+        });
     };
     /**
      * Determines whether their is a medication present with the given code
-     * during the given date range
+     * during the given date range.
+     *
+     * This will refresh all medications for the patient.
+     *
      * @param code The RxNormCode to get medications for
      * @param dateRange The date range to get medications for
      */
     FhirHttpService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        var _this = this;
-        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
-        return this.smartApiPromise.then(function (smartApi) {
-            return smartApi.patient.api.search(queryParams)
-                .then(function (response) { return _this.checkMedicationsPresentNextPage(smartApi, response, code); });
+        return this.getMedicationAdministrationsWithCodes([code], dateRange)
+            .then(function (medAdmins) {
+            return medAdmins.length > 0;
         });
     };
     /**
@@ -5309,23 +5477,10 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param id The id to pull the order from.
      */
     FhirHttpService.prototype.getMedicationAdministrationsWithOrder = function (id, code) {
-        var _this = this;
-        var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
-        };
-        return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, function (json, requestId) {
-                if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json) ===
-                    code) {
-                    return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](json, requestId);
-                }
-            })
-                .then(function (results) {
-                return results.filter(function (result) { return !!result; })
-                    .filter(function (result) {
-                    return result.medicationOrderId === id;
-                });
-            });
+        return this.getAllRawMedicationAdministrations().then(function (adminsByCode) {
+            return (adminsByCode.get(code) || [])
+                .filter(function (rawMedAdmin) { return rawMedAdmin.medicationOrderId === id; })
+                .map(function (rawMedAdmin) { return rawMedAdmin.convertToMedicationAdministration(); });
         });
     };
     /**
@@ -5408,7 +5563,8 @@ var FhirHttpService = /** @class */ (function (_super) {
      * Gets the DiagnosticReports for the patient for any report that falls in
      * the given date range.
      * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-     * @param dateRange Return all DiagnosticReports that covered any time in this
+     * @param dateRange Return all DiagnosticReports that covered any time in
+     *     this
      *   date range.
      */
     FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
@@ -5797,22 +5953,11 @@ var FhirService = /** @class */ (function () {
      * @param codes The RxNormCode codes for which to get observations.
      * @param dateRanges The time interval observations should fall between.
      */
-    FhirService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange) {
-        if (!codes || !dateRange) {
+    FhirService.prototype.getMedicationAdministrationsWithCodeGroup = function (group, dateRange) {
+        if (!group || !dateRange) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])([]).toPromise();
         }
-        var medicationPromises = new Array();
-        for (var _i = 0, _a = codes.resourceCodes; _i < _a.length; _i++) {
-            var code = _a[_i];
-            medicationPromises.push(this.getMedicationAdministrationsWithCode(code, dateRange));
-        }
-        // This will be rejected if any Promise is rejected.
-        return Promise.all(medicationPromises)
-            .then(function (resolvedMedications) {
-            // flatten the results into single medication administrations
-            // list
-            return [].concat.apply([], resolvedMedications);
-        });
+        return this.getMedicationAdministrationsWithCodes(group.resourceCodes, dateRange);
     };
     FhirService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -6605,6 +6750,7 @@ var LineGraphData = /** @class */ (function (_super) {
     LineGraphData.fromMedicationOrderSet = function (medicationOrderSet, dateRange, sanitizer, encounters) {
         var tooltipMap = new Map();
         var regions = new Array();
+        var precision = 0;
         for (var _i = 0, _a = medicationOrderSet.resourceList; _i < _a.length; _i++) {
             var order = _a[_i];
             regions.push([
@@ -6627,7 +6773,7 @@ var LineGraphData = /** @class */ (function (_super) {
                 }
             }
         }
-        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, regions);
+        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, regions, precision);
     };
     /**
      * Converts a list of ObservationSets with discrete y-values (results) to
@@ -7091,6 +7237,7 @@ var Axis = /** @class */ (function () {
         // has to be re-evaluated.
         this.dateRange = dateRange;
         this.alreadyResolvedData = undefined;
+        this.errorMessage = undefined;
         return this.getDataFromFhir(dateRange).then(function (data) {
             _this.alreadyResolvedData = data;
             return data;
@@ -9660,12 +9807,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
-/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9692,6 +9840,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -9756,17 +9905,17 @@ var MockFhirService = /** @class */ (function (_super) {
                         var mockRequestId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
                         var resourceType = json.resource.resourceType;
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation) {
-                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
+                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration) {
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_8__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.medicationOrderId]; });
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.medicationOrderId]; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder) {
-                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_9__["MedicationOrder"](d, mockRequestId); }, function (order) { return [order.orderId]; });
+                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__["MedicationOrder"](d, mockRequestId); }, function (order) { return [order.orderId]; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter) {
-                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_7__["Encounter"](json.resource, mockRequestId);
+                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__["Encounter"](json.resource, mockRequestId);
                             _this.encounters.push(encounter);
                         }
                     };
@@ -9797,7 +9946,7 @@ var MockFhirService = /** @class */ (function (_super) {
         return map.has(code) ?
             map.get(code)
                 .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_10__["ObservationStatus"].EnteredInError; }) :
+                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["ObservationStatus"].EnteredInError; }) :
             [];
     };
     MockFhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
@@ -9808,21 +9957,21 @@ var MockFhirService = /** @class */ (function (_super) {
      * Gets medication data from a specified date range with a specific Rx code
      * @param code The RxNormCode codes for which to get observations.
      * @param dateRange The time interval observations should fall between.
-     * @param limitCount Unused in this implementation, as this is just a
-     *     time-saving feature for HTTP calls.
      */
-    MockFhirService.prototype.getMedicationAdministrationsWithCode = function (code, dateRange, limitCount) {
+    MockFhirService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange) {
         var _this = this;
         return this.allDataPromise.then(function (x) {
-            return _this.medicationAdministrationMapByCode.has(code) ?
-                _this.medicationAdministrationMapByCode.get(code)
-                    .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                    .slice(0, limitCount ? limitCount : undefined) :
-                [];
+            var allMedAdmins = new Array();
+            _this.medicationAdministrationMapByCode.forEach(function (medAdmins, code) {
+                if (codes.includes(code)) {
+                    allMedAdmins.push.apply(allMedAdmins, medAdmins.filter(function (medAdmin) { return dateRange.contains(medAdmin.timestamp); }));
+                }
+            });
+            return Promise.resolve(allMedAdmins);
         });
     };
     MockFhirService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        return this.getMedicationAdministrationsWithCode(code, dateRange)
+        return this.getMedicationAdministrationsWithCodes([code], dateRange)
             .then(function (obs) { return obs.length > 0; }, function (rejection) {
             // If any MedicationAdministration for this code results in an error,
             // do not show any MedicationAdministrations at all.
@@ -9879,7 +10028,11 @@ var MockFhirService = /** @class */ (function (_super) {
     MockFhirService.prototype.getDiagnosticReports = function (codeGroup, dateRange, limitCount) {
         var _this = this;
         return this.allDataPromise.then(function (x) {
-            return _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_6__["DiagnosticReport"].parseAndFilterMicrobioData(_this.microbioJson, codeGroup);
+            return Promise
+                .resolve(_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__["DiagnosticReport"].parseAndFilterMicrobioData(_this.microbioJson, codeGroup))
+                .then(function (reports) {
+                return reports.filter(function (report) { return dateRange.contains(new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_6__["AnnotatedDiagnosticReport"](report).timestamp); });
+            });
         });
     };
     MockFhirService = __decorate([
@@ -9887,7 +10040,7 @@ var MockFhirService = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], MockFhirService);
     return MockFhirService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_11__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_12__["FhirService"]));
 
 
 
@@ -10792,7 +10945,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.3.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.4.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
