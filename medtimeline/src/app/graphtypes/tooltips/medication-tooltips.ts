@@ -6,6 +6,7 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {Duration} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-data-classes/medication-administration';
+import {formatNumberWithPrecision} from 'src/app/number_utils';
 
 import {MedicationOrder} from '../../fhir-data-classes/medication-order';
 import {Tooltip} from '../tooltips/tooltip';
@@ -83,7 +84,7 @@ export class MedicationAdministrationTooltip extends
   }
 
   private formatDosage(administration: MedicationAdministration) {
-    return administration.dosage.quantity.toLocaleString() + ' ' +
+    return formatNumberWithPrecision(administration.dosage.quantity) + ' ' +
         administration.dosage.unit;
   }
 }
