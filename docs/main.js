@@ -7920,10 +7920,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
 /* harmony import */ var src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var src_app_number_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/number_utils */ "./src/app/number_utils.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7940,6 +7941,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -8042,7 +8044,7 @@ var GraphComponent = /** @class */ (function () {
          */
         this.chartTypeString = 'line';
         // Generate a unique ID for this chart.
-        var chartId = Object(uuid__WEBPACK_IMPORTED_MODULE_8__["v4"])();
+        var chartId = Object(uuid__WEBPACK_IMPORTED_MODULE_9__["v4"])();
         // Replace the dashes in the UUID to meet HTML requirements.
         var re = /\-/gi;
         this.chartDivId = 'chart' + chartId.replace(re, '');
@@ -8215,7 +8217,7 @@ var GraphComponent = /** @class */ (function () {
             var xCoordinate = chart.width / 2;
             var yCoordinate = chart.height / 2;
             chart.ctx.textAlign = 'center';
-            chart.ctx.fillText(src_constants__WEBPACK_IMPORTED_MODULE_7__["UI_CONSTANTS"].NO_DATA_AVAILABLE_TMPL +
+            chart.ctx.fillText(src_constants__WEBPACK_IMPORTED_MODULE_8__["UI_CONSTANTS"].NO_DATA_AVAILABLE_TMPL +
                 this.entireInterval.start.toLocal().toLocaleString() + ' and ' +
                 this.entireInterval.end.toLocal().toLocaleString(), xCoordinate, yCoordinate);
         }
@@ -8277,7 +8279,7 @@ var GraphComponent = /** @class */ (function () {
         var tooltipText;
         if (!this.data.tooltipMap || !this.data.tooltipMap.has(keyToUse)) {
             tooltipText =
-                new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_9__["StandardTooltip"]([], undefined, this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"] ? this.data.unit : '')
+                new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_10__["StandardTooltip"]([], undefined, this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"] ? this.data.unit : '')
                     .getTooltip(undefined, this.sanitizer);
         }
         else {
@@ -8334,13 +8336,10 @@ var GraphComponent = /** @class */ (function () {
                 // autoskip.
                 autoSkip: false,
                 callback: function (value, index, values) {
-                    if (!_this.data) {
+                    if (!_this.data || (typeof value) !== 'number') {
                         return value;
                     }
-                    return (value).toLocaleString('en-us', {
-                        minimumFractionDigits: _this.data.precision,
-                        maximumFractionDigits: _this.data.precision
-                    });
+                    return Object(src_app_number_utils__WEBPACK_IMPORTED_MODULE_7__["formatNumberWithPrecision"])(value, _this.data.precision);
                 }
             }
         };
@@ -8384,7 +8383,7 @@ var GraphComponent = /** @class */ (function () {
         __metadata("design:type", ng2_charts__WEBPACK_IMPORTED_MODULE_5__["BaseChartDirective"])
     ], GraphComponent.prototype, "chart", void 0);
     GraphComponent = __decorate([
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_7__["UI_CONSTANTS_TOKEN"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_8__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], GraphComponent);
     return GraphComponent;
@@ -9122,7 +9121,8 @@ var StepGraphComponent = /** @class */ (function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationTooltip", function() { return MedicationTooltip; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationTooltip", function() { return MedicationAdministrationTooltip; });
-/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/number_utils */ "./src/app/number_utils.ts");
+/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9141,6 +9141,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
     };
 })();
 
+
 /**
  * Makes a tooltip for a medication order that lists the order's first and last
  * doses in a table.
@@ -9152,18 +9153,18 @@ var MedicationTooltip = /** @class */ (function (_super) {
     }
     MedicationTooltip.prototype.getTooltip = function (order, sanitizer) {
         var medication = order.label;
-        var firstDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].formatTimestamp(order.firstAdministration.timestamp);
-        var lastDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].formatTimestamp(order.lastAdmininistration.timestamp);
+        var firstDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(order.firstAdministration.timestamp);
+        var lastDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(order.lastAdmininistration.timestamp);
         var dosageInstruction = order.dosageInstruction;
-        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].createNewTable();
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addHeader(medication, table, sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, ['First Dose', firstDose], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, ['Last Dose', lastDose], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, ['Dosage Instructions', dosageInstruction], sanitizer);
+        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader(medication, table, sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['First Dose', firstDose], sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Last Dose', lastDose], sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Dosage Instructions', dosageInstruction], sanitizer);
         return table.outerHTML;
     };
     return MedicationTooltip;
-}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"]));
+}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
 
 /**
  * Makes a tooltip for a medication administration that shows its dose
@@ -9176,24 +9177,24 @@ var MedicationAdministrationTooltip = /** @class */ (function (_super) {
     }
     MedicationAdministrationTooltip.prototype.getTooltip = function (administrations, sanitizer) {
         var timestamp = administrations[0].medAdministration.timestamp;
-        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].createNewTable();
+        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
         for (var _i = 0, administrations_1 = administrations; _i < administrations_1.length; _i++) {
             var administration = administrations_1[_i];
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addHeader(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].formatTimestamp(timestamp) + ': Dose ' +
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(timestamp) + ': Dose ' +
                 administration.doseInOrder + ' of ' +
                 administration.medAdministration.rxNormCode.label, table, sanitizer, 3);
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, ['', 'Time', 'Dose'], sanitizer);
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, [
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['', 'Time', 'Dose'], sanitizer);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
                 'This dose',
-                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].formatTimestamp(administration.medAdministration.timestamp),
+                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(administration.medAdministration.timestamp),
                 this.formatDosage(administration.medAdministration)
             ], sanitizer);
             if (administration.previousDose) {
                 var timestampDifference = administration.medAdministration.timestamp.diff(administration.previousDose.medAdministration.timestamp);
-                var doseDiffText = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].formatTimestamp(administration.previousDose.medAdministration.timestamp) +
+                var doseDiffText = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(administration.previousDose.medAdministration.timestamp) +
                     '<br>(' + timestampDifference.toFormat('h:m') + ' after dose ' +
                     administration.previousDose.doseInOrder + ')';
-                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"].addRow(table, [
+                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
                     'Previous dose', doseDiffText,
                     this.formatDosage(administration.previousDose.medAdministration)
                 ], sanitizer);
@@ -9202,11 +9203,11 @@ var MedicationAdministrationTooltip = /** @class */ (function (_super) {
         return table.outerHTML;
     };
     MedicationAdministrationTooltip.prototype.formatDosage = function (administration) {
-        return administration.dosage.quantity.toLocaleString() + ' ' +
+        return Object(src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__["formatNumberWithPrecision"])(administration.dosage.quantity) + ' ' +
             administration.dosage.unit;
     };
     return MedicationAdministrationTooltip;
-}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_0__["Tooltip"]));
+}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
 
 
 
@@ -10042,6 +10043,51 @@ var MockFhirService = /** @class */ (function (_super) {
     return MockFhirService;
 }(_fhir_service__WEBPACK_IMPORTED_MODULE_12__["FhirService"]));
 
+
+
+/***/ }),
+
+/***/ "./src/app/number_utils.ts":
+/*!*********************************!*\
+  !*** ./src/app/number_utils.ts ***!
+  \*********************************/
+/*! exports provided: formatNumberWithPrecision */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatNumberWithPrecision", function() { return formatNumberWithPrecision; });
+/**
+ * Formats a number as a string to the correct precision.
+ *
+ * Formats the number into a more "human-readable" format.
+ * For example, the number 10000 would get formatted to 10,000.
+ *
+ * @param number the number to format
+ * @param precision the precision to format the number to. Passing 0 means
+ *   no decimal. Passing 1 means 1 digit after the decimal point.
+ */
+function formatNumberWithPrecision(number, precision) {
+    // The function Number.toLocalString formats into a more "human-readable"
+    // format. In IE10 and below, toLocalString always rounds to 2 decimal places.
+    // https://stackoverflow.com/questions/21536984/javascript-format-whole-numbers-using-tolocalestring
+    // In order to ensure the correct precision in all browsers, We need to adjust
+    // the decimal portion of the string after formatting it with the correct
+    // precision.
+    // get the number rounded to the correct precision.
+    var numberAtPrecision = precision !== undefined ? number.toFixed(precision) : number.toString();
+    // numberParts will always contain the integer part of the number as the first
+    // element in the list.
+    var numberParts = numberAtPrecision.split('.');
+    var integer = numberParts[0];
+    var formattedInteger = Number(integer).toLocaleString('en-us').split('.')[0];
+    // if the precision is 0 or there was no decimal value, then just return the
+    // formatted integer. Otherwise, add the decimal part back to the formatted
+    // integer.
+    return (precision === 0 || numberParts.length === 1) ?
+        formattedInteger :
+        formattedInteger + "." + numberParts[1];
+}
 
 
 /***/ }),
@@ -10945,7 +10991,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.4.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.5.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
