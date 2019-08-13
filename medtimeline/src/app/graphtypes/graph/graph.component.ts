@@ -12,6 +12,7 @@ import {BaseChartDirective, Color} from 'ng2-charts';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphdatatypes/linegraphdata';
+import {formatNumberWithPrecision} from 'src/app/number_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
@@ -495,13 +496,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
         // autoskip.
         autoSkip: false,
         callback: (value, index, values) => {
-          if (!this.data) {
+          if (!this.data || (typeof value) !== 'number') {
             return value;
           }
-          return (value).toLocaleString('en-us', {
-            minimumFractionDigits: this.data.precision,
-            maximumFractionDigits: this.data.precision
-          });
+          return formatNumberWithPrecision(value, this.data.precision);
         }
       }
     };
