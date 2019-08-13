@@ -23,9 +23,12 @@ export class AnnotatedDiagnosticReport extends TimestampedObject {
   constructor(report: DiagnosticReport) {
     super(report.timestamp);
 
-    // Grabbing information from the html text in json
-    const narrative = new Narrative(report.json.text);
-    this.text = new AnnotatedNarrative(narrative);
+    // Grabbing information from the html text in json only if
+    // it exists
+    if (report.json.text) {
+      const narrative = new Narrative(report.json.text);
+      this.text = new AnnotatedNarrative(narrative);
+    }
 
     this.report = report;
   }

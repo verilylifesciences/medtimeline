@@ -22,6 +22,7 @@ import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {ChartType} from 'src/app/graphtypes/graph/graph.component';
 import {LineGraphComponent} from 'src/app/graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from 'src/app/graphtypes/microbio-graph/microbio-graph.component';
+import {DiagnosticGraphComponent} from 'src/app/graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ScatterplotComponent} from 'src/app/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphtypes/stepgraph/stepgraph.component';
 import {StubFhirService} from 'src/app/test_utils';
@@ -53,6 +54,7 @@ describe('MultiGraphCardComponent', () => {
             StepGraphComponent,
             ScatterplotComponent,
             MicrobioGraphComponent,
+            DiagnosticGraphComponent,
             CardComponent,
           ],
           providers: [

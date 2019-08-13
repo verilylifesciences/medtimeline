@@ -19,6 +19,7 @@ import {FhirService} from '../fhir.service';
 import {GraphData} from '../graphdatatypes/graphdata';
 import {LineGraphData} from '../graphdatatypes/linegraphdata';
 import {MicrobioGraphData} from '../graphdatatypes/microbiographdata';
+import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {StepGraphData} from '../graphdatatypes/stepgraphdata';
 
 import {ChartType} from './graph/graph.component';
@@ -187,7 +188,12 @@ export class Axis {
       // Microbiology always shows up as a step chart.
       return this.getStepGraphDataForMB(
           this.resourceGroup as BCHMicrobioCodeGroup, dateRange);
-    } else {
+    }
+
+    if (this.allDiagnosticReport) {
+      return this.getStepGraphDataForDiagnosticReport(
+        this.resourceGroup as DiagnosticReportCodeGroup, dateRange);
+      } else {
       // In this case it is all LOINC codes.
       // We use LineGraphData for both ChartType.Scatter and
       // ChartType.Line, for plotting LOINC Codes.
@@ -240,6 +246,14 @@ export class Axis {
     return bchCodes.getResourceSet(dateRange).then(microbioReports => {
       return MicrobioGraphData.fromMicrobioReports(
         microbioReports, this.sanitizer);
+    });
+  }
+
+  getStepGraphDataForDiagnosticReport(diagCodes: DiagnosticReportCodeGroup, dateRange: Interval):
+      Promise<StepGraphData> {
+    return diagCodes.getResourceSet(dateRange).then(diagReports => {
+      return DiagnosticGraphData.fromDiagnosticReports(
+          diagReports, this.sanitizer);
     });
   }
 

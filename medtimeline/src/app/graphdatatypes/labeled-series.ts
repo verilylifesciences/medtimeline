@@ -8,7 +8,8 @@ import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
 import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB, radiology} from '../clinicalconcepts/display-grouping';
 import {MicrobioReport} from '../fhir-data-classes/microbio-report';
-import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
+import {DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
 import {CHECK_RESULT_CODE, NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
@@ -395,6 +396,31 @@ export class LabeledSeries {
       return negOtherMB;
     }
   }
+
+   /**
+    * Generates LabeledSeries from the given DiagnosticReport.
+    * @param report The DiagnosticReport to chart.
+    * @param date the DateTime corresponding to the Observations in the
+    *     DiagnosticReport.
+    */
+   static fromDiagnosticReport(annotatedReport: AnnotatedDiagnosticReport, date: DateTime):
+       LabeledSeries[] {
+     const report = annotatedReport.report;
+     const seriesLabel = report.id + '-' + (annotatedReport.text ? annotatedReport.text.title : 'unnamedReport');
+     let coordinates: Array<[DateTime, number | string]> = [];
+
+     if (annotatedReport.text) {
+       coordinates = [[report.timestamp, annotatedReport.text.modality]];
+     } else {
+       // If the additional text (Narrative) does not exist, we will
+       // display the points according to the category
+       coordinates = [[report.timestamp, report.category]];
+     }
+     const series = [new LabeledSeries(seriesLabel, coordinates,
+                                   undefined, // unit
+                                   radiology)];
+     return series;
+   }
 
   private static getYPositionForMed(
       medAdmin: MedicationAdministration, categoricalYPosition: string): string

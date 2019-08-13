@@ -6,6 +6,7 @@
 import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
+import {DiagnosticGraphData} from 'src/app/graphdatatypes/diagnosticgraphdata';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
@@ -20,7 +21,7 @@ import {GraphComponent} from '../graph/graph.component';
   ]
 })
 export class StepGraphComponent extends
-    GraphComponent<StepGraphData|MicrobioGraphData> {
+    GraphComponent<StepGraphData|MicrobioGraphData|DiagnosticGraphData> {
   constructor(
       readonly sanitizer: DomSanitizer,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {

@@ -15,7 +15,9 @@ export class Narrative {
   readonly status: string;
 
   constructor(jsonText: any) {
-    this.div = jsonText.div;
-    this.status = jsonText.status;
+    if (jsonText) {
+      this.div = jsonText.div;
+      this.status = jsonText.status;
+    }
   }
 }

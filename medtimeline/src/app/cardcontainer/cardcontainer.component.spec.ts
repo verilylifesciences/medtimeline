@@ -44,6 +44,7 @@ import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/cust
 import {CustomizableGraphComponent} from '../graphtypes/customizable-graph/customizable-graph.component';
 import {LineGraphComponent} from '../graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from '../graphtypes/microbio-graph/microbio-graph.component';
+import {DiagnosticGraphComponent} from '../graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ScatterplotComponent} from '../graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from '../graphtypes/stepgraph/stepgraph.component';
 import {SetupDataService} from '../setup-data.service';
@@ -100,7 +101,7 @@ describe('CardcontainerComponent', () => {
             CardcontainerComponent, TextboxcardComponent,
             TimelineControllerComponent, MultiGraphCardComponent,
             CustomizableGraphComponent, LineGraphComponent, StepGraphComponent,
-            ScatterplotComponent, MicrobioGraphComponent,
+            ScatterplotComponent, MicrobioGraphComponent, DiagnosticGraphComponent,
             CustomizableTimelineComponent, TimelineToolbarComponent,
             DataSelectorElementComponent, DataSelectorMenuComponent,
             CardComponent, DebuggerComponent, DeleteDialogComponent

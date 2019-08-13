@@ -22,6 +22,7 @@ export enum ChartType {
   SCATTER,
   LINE,
   STEP,
+  MICROBIO,
   DIAGNOSTIC
 }
 

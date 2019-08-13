@@ -45,6 +45,7 @@ import {FhirService} from './fhir.service';
 import {CustomizableGraphComponent} from './graphtypes/customizable-graph/customizable-graph.component';
 import {LineGraphComponent} from './graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from './graphtypes/microbio-graph/microbio-graph.component';
+import {DiagnosticGraphComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {HelpDialogComponent} from './help-dialog/help-dialog.component';
@@ -70,6 +71,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     CustomizableGraphComponent,
     CustomizableTimelineDialogComponent,
     MicrobioGraphComponent,
+    DiagnosticGraphComponent,
     TimelineToolbarComponent,
     DataSelectorElementComponent,
     DataSelectorMenuComponent,

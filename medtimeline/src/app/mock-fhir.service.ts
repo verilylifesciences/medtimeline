@@ -16,7 +16,6 @@ import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';

@@ -351,3 +351,161 @@ export function makeMicrobioReports(): MicrobioReport[] {
         REQUEST_ID),
   ];
 }
+
+export function makeDiagnosticReports(): DiagnosticReport[] {
+  return [
+    new DiagnosticReport(
+      {
+        category: {
+            text: 'RADRPT'
+        },
+        code: {
+            text: 'RADRPT'
+        },
+        effectiveDateTime: '2019-02-11T20:03:09.000Z',
+        encounter: {
+            reference: 'Encounter/2787906'
+        },
+        id: '1',
+        issued: '2019-02-11T20:03:21.000Z',
+        meta: {
+            lastUpdated: '2019-02-11T20:03:21.000Z',
+            versionId: '3'
+        },
+        performer: {
+            display: 'Interfaced-Unknown'
+        },
+        presentedForm: [
+            {
+                contentType: 'text/html',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-5153487'
+            },
+            {
+                contentType: 'application/pdf',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-5153487'
+            }
+        ],
+        request: [
+            {
+                reference: 'ProcedureRequest/18954087'
+            }
+        ],
+        resourceType: 'DiagnosticReport',
+        status: 'unknown',
+        subject: {
+            display: 'Peralta, Jake',
+            reference: 'Patient/1316020'
+        },
+        text: {
+            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
+            '<p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p>' +
+            '<p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: ' +
+            '<ul><li>Song, River</li></ul></p></div>',
+            status: 'additional'
+        }
+      }
+      , REQUEST_ID),
+
+    new DiagnosticReport(
+      {
+        category: {
+            text: 'RADRPT'
+        },
+        code: {
+            text: 'RADRPT'
+        },
+        effectiveDateTime: '2019-02-12T22:31:02.000Z',
+        encounter: {
+            reference: 'Encounter/2153909'
+        },
+        id: '2',
+        issued: '2019-02-12T16:33:11.000Z',
+        meta: {
+            lastUpdated: '2019-02-12T16:33:16.000Z',
+            versionId: '5'
+        },
+        performer: {
+            display: 'Chase, Robert',
+            reference: 'Practitioner/1314015'
+        },
+        presentedForm: [
+            {
+                contentType: 'text/html',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365'
+            },
+            {
+                contentType: 'application/pdf',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
+            }
+        ],
+        request: [
+            {
+              reference: 'ProcedureRequest/17233929'
+            }
+        ],
+        resouceType: 'DiagnosticReport',
+        status: 'final',
+        subject: {
+            display: 'Peralta, Jake',
+            reference: 'Patient/1316020'
+        },
+        text: {
+            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
+            '<p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p>' +
+            '<p><b>Verifying Provider</b>: Chase, Robert</p>' +
+            '<p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>',
+            status: 'additional'
+        }
+      }
+      , REQUEST_ID)
+    ];
+  }
+
+  // Does not have the additional text property (Narrative); used to test edge cases
+  export function makeDiagnosticReportWithoutTextField(): DiagnosticReport {
+    return (new DiagnosticReport(
+      {
+        category: {
+            text: 'RADRPT'
+        },
+        code: {
+            text: 'RADRPT'
+        },
+        effectiveDateTime: '2019-02-12T22:31:02.000Z',
+        encounter: {
+            reference: 'Encounter/2153909'
+        },
+        id: '2',
+        issued: '2019-02-12T16:33:11.000Z',
+        meta: {
+            lastUpdated: '2019-02-12T16:33:16.000Z',
+            versionId: '5'
+        },
+        performer: {
+            display: 'Chase, Robert',
+            reference: 'Practitioner/1314015'
+        },
+        presentedForm: [
+            {
+                contentType: 'text/html',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365'
+            },
+            {
+                contentType: 'application/pdf',
+                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
+            }
+        ],
+        request: [
+            {
+              reference: 'ProcedureRequest/17233929'
+            }
+        ],
+        resouceType: 'DiagnosticReport',
+        status: 'final',
+        subject: {
+            display: 'Peralta, Jake',
+            reference: 'Patient/1316020'
+        }
+      }
+      , REQUEST_ID));
+}

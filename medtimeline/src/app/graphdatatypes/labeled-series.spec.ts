@@ -13,14 +13,15 @@ import {DateTime, Interval} from 'luxon';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 
 import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 import {FhirService} from './../fhir.service';
 // tslint:disable-next-line:max-line-length
-import {makeMicrobioReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation} from './../test_utils';
-import {makeSampleDiscreteObservation, makeSampleDiscreteObservationJson} from './../test_utils';
+import {makeMicrobioReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation, makeDiagnosticReports} from './../test_utils';
+import {makeSampleDiscreteObservation, makeDiagnosticReportWithoutTextField} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
 describe('LabeledSeries', () => {
@@ -402,7 +403,7 @@ describe('LabeledSeries', () => {
        yAxisMap.set(10, 'Salmonella and Shigella Culture');
        yAxisMap.set(20, 'Ova and Parasite Exam');
        const series = LabeledSeries.fromMicrobioReport(
-        microbioReport, DateTime.fromJSDate(new Date()));
+        microbioReport, DateTime.utc());
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id-NEGORFLORA-Final');
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');
@@ -413,10 +414,42 @@ describe('LabeledSeries', () => {
      () => {
        const microbioReport = makeMicrobioReports()[2];
        const series = LabeledSeries.fromMicrobioReport(
-        microbioReport, DateTime.fromJSDate(new Date()));
+        microbioReport, DateTime.utc());
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id3-NEGORFLORA-Corrected');
        expect(series[1].label).toEqual('id3-CHECKRESULT-Corrected');
      });
+
+  it ('fromDiagnosticReport should make correct labeled series',
+      () => {
+        const diagnosticReport = makeDiagnosticReports()[0];
+        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
+          DateTime.utc());
+        expect(series.length).toEqual(1);
+        expect(series[0].label).toEqual('1-XR Wrist Complete Left');
+      });
+
+  it ('fromDiagnosticReport should make correct seriesLabel even if ' +
+        'annotatedReport.text does not exist', () => {
+        const diagnosticReport = makeDiagnosticReportWithoutTextField();
+        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
+          DateTime.utc());
+        expect(series.length).toEqual(1);
+        expect(series[0].label).toEqual('2-unnamedReport');
+      });
+
+  it('fromDiagnosticReports should correctly calculate ' +
+      'time and position for each Diagnostic Report Observation even if ' +
+      'annotatedReport.text (AnnotatedNarrative) does not exist',
+      () => {
+        const diagnosticReport = makeDiagnosticReportWithoutTextField();
+        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
+          DateTime.utc());
+        expect(series[0].coordinates[0]).toEqual([
+          DateTime.fromISO('2019-02-12T22:31:02.000Z'), 'RAD']);
+      });
 });
 /* tslint:enable:object-literal-shorthand*/
