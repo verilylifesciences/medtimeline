@@ -11,6 +11,7 @@ export const environment = {
     'radReport_Encounter'
   ],
   useDebugger: false,
+  showRadiology: true,
 };
 
 /*

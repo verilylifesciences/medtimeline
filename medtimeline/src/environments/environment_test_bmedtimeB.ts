@@ -15,6 +15,7 @@ export const environment = {
     'BMedTimeB_Med_Orders',
   ],
   useDebugger: false,
+  showRadiology: false,
 };
 
 /*

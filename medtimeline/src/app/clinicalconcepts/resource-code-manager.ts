@@ -24,6 +24,8 @@ import {LOINCCode} from './loinc-code';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
 
+import {environment} from '../../environments/environment';
+
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
 // configuration sidebar.
@@ -466,12 +468,15 @@ export class ResourceCodeManager {
             ResourceCodeManager.csfGroupMB, microbio, ChartType.DIAGNOSTIC),
         'CSF Microbiology')]));
 
-    codeGroups.push(new AxisGroup([new Axis(
-        this.fhirService, this.sanitizer,
-        new DiagnosticReportCodeGroup(
-            this.fhirService, 'Radiology',
-            ResourceCodeManager.radiologyGroup, radiology, ChartType.DIAGNOSTIC),
-        'Radiology')]));
+    // Add flag to environment to toggle radiology feature
+    if (environment.showRadiology) {
+        codeGroups.push(new AxisGroup([new Axis(
+            this.fhirService, this.sanitizer,
+            new DiagnosticReportCodeGroup(
+                this.fhirService, 'Radiology',
+                ResourceCodeManager.radiologyGroup, radiology, ChartType.DIAGNOSTIC),
+            'Radiology')]));
+    }
 
     ResourceCodeManager.axisGroups = codeGroups;
 

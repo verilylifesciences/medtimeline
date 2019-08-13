@@ -12,6 +12,7 @@ export const environment = {
     'ObservationMockData'
   ],
   useDebugger: false,
+  showRadiology: false,
 };
 
 /*

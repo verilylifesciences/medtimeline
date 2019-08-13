@@ -12,6 +12,7 @@ export const environment = {
     'BMedTimeD_Encounter',
   ],
   useDebugger: false,
+  showRadiology: false,
 };
 
 /*

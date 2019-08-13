@@ -35,7 +35,7 @@ const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
  * only parse out specimens and results from the "contained" portion of the
  * resource instead of supporting retrieval by reference since the Cerner
  * implementation of the FHIR standard won't allow microbiology retrieval.
- * 
+ *
  * This currently does not extend DiagnosticReport. TODO: Issue #24- maintain
  * More clearly delineate what belongs in FHIR resources and what is added/derived
  */

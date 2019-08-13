@@ -7,7 +7,8 @@ export const environment = {
   useMockServer: false,
   mockDataFolder: '',
   mockDataFiles: [],
-  useDebugger: true
+  useDebugger: true,
+  showRadiology: false,
 };
 
 /*

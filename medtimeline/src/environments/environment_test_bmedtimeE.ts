@@ -13,6 +13,7 @@ export const environment = {
     'BMedtimeE_MB_data',
   ],
   useDebugger: false,
+  showRadiology: false,
 };
 
 /*

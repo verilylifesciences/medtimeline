@@ -8,6 +8,7 @@ export const environment = {
   mockDataFolder: '',
   mockDataFiles: [],
   useDebugger: false,
+  showRadiology: false,
 };
 
 /*
