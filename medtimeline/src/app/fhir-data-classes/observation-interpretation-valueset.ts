@@ -15,6 +15,7 @@ export const CHECK_RESULT_CODE = 'CHECKRESULT';
 export const NEGFLORA_CODE = 'NEGORFLORA';
 export const NEG_CODE = 'NEG';
 export const NORMAL = 'N';
+export const PARTIAL = 'Partial';
 
 /**
  * Represents the possible interpretations for observations. Each interpretation

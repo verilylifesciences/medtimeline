@@ -29,7 +29,6 @@ export class DiagnosticGraphComponent extends StepGraphComponent {
       sanitizer: DomSanitizer,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     super(sanitizer, uiConstants);
-    this.clickableTooltip = true;
   }
 
   prepareForChartConfiguration() {

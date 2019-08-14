@@ -127,31 +127,17 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
             const tooltipEl = this.findOrCreateTooltipElement(
                 canvas, 'chartjs-tooltip' + this.chartDivId);
 
-            if (this.clickableTooltip) {
-              // We have this as a separate case rather than allowing all
-              // tooltips to be interactable to ensure that the tooltip
-              // functionality remains normal for the other graphs
-
-              // Allows the tooltip to be clickable.
-              tooltipEl.style.pointerEvents = 'auto';
-              // When the mouse is no longer on the tooltip, the tooltip is
-              // hidden.
-              tooltipEl.addEventListener('mouseleave', function() {
-                tooltipEl.style.opacity = '0';
-              });
-
-            } else {
-              // Hide the element if there is no tooltip-- this function gets
-              // called back whether you're hovering over an element or not.
-              if (tooltipContext.opacity === 0) {
-                tooltipEl.style.opacity = '0';
-                return;
-              }
+            // Hide the element if there is no tooltip-- this function gets
+            // called back whether you're hovering over an element or not.
+            if (tooltipContext.opacity === 0) {
+              tooltipEl.style.opacity = '0';
+              return;
             }
 
             if (tooltipContext.body) {
               tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
             }
+
             // Display the tooltip lined up with the data point.
             const positionY = canvas.offsetTop;
             const positionX = canvas.offsetLeft;
@@ -179,12 +165,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * to this string to tell chart.js which chart type to use.
    */
   chartTypeString = 'line';
-
-  /**
-   * Boolean representing if the tooltip needs to be interactable, allowing
-   * for clicks into the tooltip links
-   */
-  clickableTooltip = false;
 
   constructor(
       readonly sanitizer: DomSanitizer,
