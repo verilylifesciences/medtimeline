@@ -3,33 +3,170 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
+import {Inject} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {OverlayContainer} from '@angular/cdk/overlay';
 import {ChartsModule} from 'ng2-charts';
+import {MatDialog, MAT_DIALOG_DATA, MatIconModule, MatDialogModule, MatDialogRef} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {Interval, DateTime} from 'luxon';
+
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {DiagnosticGraphComponent} from './diagnostic-graph.component';
+import {DiagnosticReport} from 'src/app/fhir-data-classes/diagnostic-report';
+import {makeDiagnosticReports} from 'src/app/test_utils';
+import {DiagnosticGraphData} from 'src/app/graphdatatypes/diagnosticgraphdata';
+import {DiagnosticGraphDialogComponent} from './diagnostic-graph.dialog.component';
+import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
+
+class StubDiagnosticGraphComponent extends DiagnosticGraphComponent {
+  diagnosticReport: DiagnosticReport[];
+
+  constructor(diagnosticGraphDialog: MatDialog,
+    @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+    super(TestBed.get(DomSanitizer), diagnosticGraphDialog, uiConstants);
+    this.diagnosticReport = makeDiagnosticReports();
+    this.data = DiagnosticGraphData.fromDiagnosticReports(this.diagnosticReport, this.sanitizer);
+  }
+}
 
 describe('DiagnosticGraphComponent', () => {
+  let diagnosticReport: DiagnosticReport[];
+  const dateRange = Interval.fromDateTimes(
+    DateTime.utc(2019, 2, 10), DateTime.utc(2019, 2, 15));
+
   let component: DiagnosticGraphComponent;
-  let fixture: ComponentFixture<DiagnosticGraphComponent>;
+
+  let dialogComponent: DiagnosticGraphDialogComponent;
+  let dialogFixture: ComponentFixture<DiagnosticGraphDialogComponent>;
+
+  let dialog: MatDialog;
+  let overlayContainer: OverlayContainer;
 
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          declarations: [DiagnosticGraphComponent],
-          imports: [ChartsModule],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
-        })
-        .compileComponents();
+          declarations: [DiagnosticGraphComponent, DiagnosticGraphDialogComponent],
+          imports: [ChartsModule,
+                    MatIconModule,
+                    MatDialogModule,
+                    BrowserAnimationsModule],
+          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+                      {provide: MatDialogRef, useValue: {}},
+                      {provide: MAT_DIALOG_DATA}]
+        });
+        TestBed.overrideModule(
+          BrowserDynamicTestingModule,
+          {set: {entryComponents: [DiagnosticGraphDialogComponent]}});
+
+        component = new StubDiagnosticGraphComponent(dialog, UI_CONSTANTS_TOKEN);
+
+        dialogFixture = TestBed.createComponent(DiagnosticGraphDialogComponent);
+        dialogComponent = dialogFixture.componentInstance;
+
+        dialogFixture.detectChanges();
+
+        TestBed.compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiagnosticGraphComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    diagnosticReport = makeDiagnosticReports();
+
+    component.dateRange = dateRange;
+    component.data = DiagnosticGraphData.fromDiagnosticReports(diagnosticReport, TestBed.get(DomSanitizer));
+    component.generateChart();
+  });
+
+  beforeEach(inject(
+    [MatDialog, OverlayContainer], (d: MatDialog, oc: OverlayContainer) => {
+      dialog = d;
+      overlayContainer = oc;
+  }));
+
+  afterEach(() => {
+    overlayContainer.ngOnDestroy();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should populate chartData correctly', () => {
+    expect(component.chartData.map(d => d.label))
+      .toEqual(['1-XR Wrist Complete Left', '2-CT Abdomen w/ Contrast']);
+  });
+
+  it('should create correct TooltipMap', () => {
+    const tooltipMap = component.data.tooltipMap;
+
+    for (const report of diagnosticReport) {
+      const timestamp = report.timestamp;
+      const annotatedTT = tooltipMap.get(timestamp.toMillis().toString())[0];
+      expect(annotatedTT.additionalAttachment[0]).toEqual(report.presentedForm[0].html);
+    }
+  });
+
+  it('should create same id for button and for AnnotatedTooltip', () => {
+    const tooltipMap = component.data.tooltipMap;
+    for (const report of diagnosticReport) {
+      const timestamp = report.timestamp;
+      const annotatedTT = tooltipMap.get(timestamp.toMillis().toString())[0];
+      const id = annotatedTT.id;
+      expect(annotatedTT.tooltipChart).toContain(id);
+    }
+  });
+
+  it('should call openDiagnosticGraphDialog() when button on tooltip is clicked', () => {
+    const tooltipMap = component.data.tooltipMap;
+    const spy = spyOn(component, 'openDiagnosticGraphDialog').and.callThrough();
+    const tooltipArray = new Array<AnnotatedTooltip>();
+    const buttonArray = new Array<HTMLButtonElement>();
+
+    for (const report of diagnosticReport) {
+      const annotatedTT = tooltipMap.get(report.timestamp.toMillis().toString())[0];
+      tooltipArray.push(annotatedTT);
+
+      // Creating arbitrary button to test the binding of the openDiagnosticGraphDialog to the buttons
+      const button = document.createElement('button');
+      button.setAttribute('id', annotatedTT.id);
+      document.documentElement.append(button);
+      buttonArray.push(button);
+    }
+
+    component.addAdditionalElementTooltip(tooltipArray);
+    for (const button of buttonArray) {
+      button.click();
+      expect(spy).toHaveBeenCalled();
+    }
+  });
+
+  it('should throw error if there are no buttons ' +
+        'when addAdditionalElementTooltip() is called', () => {
+    const tooltipMap = component.data.tooltipMap;
+    const tooltipArray = new Array<AnnotatedTooltip>();
+
+    for (const report of diagnosticReport) {
+      const annotatedTT = tooltipMap.get(report.timestamp.toMillis().toString())[0];
+      tooltipArray.push(annotatedTT);
+    }
+    const uniqueID = tooltipArray[0].id;
+
+    expect(() => {
+      component.addAdditionalElementTooltip(tooltipArray); })
+        .toThrowError(`The AnnotatedTooltip does not correspond to ` +
+        `any buttons on the tooltip. ID: ${uniqueID}`);
+  });
+
+    it('should throw error if AnnotatedTooltip has no id ' +
+        'when addAdditionalElementTooltip() is called', () => {
+    const annotatedTTnoID = new AnnotatedTooltip('tooltipChart test string');
+    const tooltipArray = [annotatedTTnoID];
+
+    expect(() => {
+      component.addAdditionalElementTooltip(tooltipArray); })
+        .toThrowError('AnnotatedTooltip has undefined id');
   });
 });

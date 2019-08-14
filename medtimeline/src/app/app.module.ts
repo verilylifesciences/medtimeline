@@ -55,6 +55,7 @@ import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 import {TimelineControllerComponent} from './timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.component';
+import {DiagnosticGraphDialogComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     SetupComponent,
     ConfirmSaveComponent,
     IfuDialogComponent,
+    DiagnosticGraphDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,12 +127,13 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },
     {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-    {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+    {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     CustomizableTimelineDialogComponent, HelpDialogComponent,
-    DeleteDialogComponent, ConfirmSaveComponent, IfuDialogComponent
+    DeleteDialogComponent, ConfirmSaveComponent, IfuDialogComponent,
+    DiagnosticGraphDialogComponent
   ]
 })
 export class AppModule {

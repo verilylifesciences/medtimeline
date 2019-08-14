@@ -25,12 +25,14 @@ describe('MicrobioTooltip', () => {
 
   it('should generate tooltip text', () => {
     const annotated = new AnnotatedMicrobioReport(makeMicrobioReports()[0]);
-    const tooltipText =
+    const tooltip =
         new MicrobioTooltip().getTooltip(annotated, TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+
     // Angular generates a numerical idenitifer for each table and this
     // regular expression strips it from the HTML check.
-    expect(tooltipText)
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="2">' +
@@ -47,12 +49,13 @@ describe('MicrobioTooltip', () => {
 
   it('should drop timestamp text if indicated', () => {
     const annotated = new AnnotatedMicrobioReport(makeMicrobioReports()[0]);
-    const tooltipText = new MicrobioTooltip(false).getTooltip(
+    const tooltip = new MicrobioTooltip(false).getTooltip(
         annotated, TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
     // Angular generates a numerical idenitifer for each table and this
     // regular expression strips it from the HTML check.
-    expect(tooltipText)
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="2">Result set</th></tr>' +

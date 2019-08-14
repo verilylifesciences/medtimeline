@@ -31,14 +31,15 @@ describe('DiscreteObservationTooltip', () => {
   });
 
   it('should generate tooltip text', () => {
-    const tooltipText = new DiscreteObservationTooltip().getTooltip(
+    const tooltip = new DiscreteObservationTooltip().getTooltip(
         [
           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)),
           makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
         ],
         TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -52,14 +53,15 @@ describe('DiscreteObservationTooltip', () => {
   });
 
   it('should generate correct tooltip text if abnormal', () => {
-    const tooltipText = new DiscreteObservationTooltip().getTooltip(
+    const tooltip = new DiscreteObservationTooltip().getTooltip(
         [
           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23), 'H'),
           makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
         ],
         TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -82,14 +84,15 @@ describe('GenericObservationTooltip', () => {
   }));
 
   it('should generate tooltip text', () => {
-    const tooltipText = new DiscreteObservationTooltip().getTooltip(
+    const tooltip = new DiscreteObservationTooltip().getTooltip(
         [
           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)),
           makeSampleDiscreteObservation('green', DateTime.utc(1988, 3, 23))
         ],
         TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -112,10 +115,11 @@ describe('GenericAnnotatedObservationTooltip', () => {
   () => {
     const seriesColor = Color.rgb(12, 67, 199);
     const obs = new AnnotatedObservation(makeSampleObservation(100, DateTime.utc(1988, 3, 25), [10, 20], 'H'));
-    const tooltipText = new GenericAnnotatedObservationTooltip(true, seriesColor)
+    const tooltip = new GenericAnnotatedObservationTooltip(true, seriesColor)
                             .getTooltip(obs, TestBed.get(DomSanitizer), true);
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -137,10 +141,11 @@ describe('GenericAnnotatedObservationTooltip', () => {
                                         false      // hasInterpretation
     );
     const obs = new AnnotatedObservation(observation);
-    const tooltipText = new GenericAnnotatedObservationTooltip(true, seriesColor)
+    const tooltip = new GenericAnnotatedObservationTooltip(true, seriesColor)
                             .getTooltip(obs, TestBed.get(DomSanitizer), true);
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -164,10 +169,11 @@ describe('GenericAnnotatedObservationTooltip', () => {
                                         false // hasValueAndResult
     );
     const obs = new AnnotatedObservation(observation);
-    const tooltipText = new GenericAnnotatedObservationTooltip(true, seriesColor)
+    const tooltip = new GenericAnnotatedObservationTooltip(true, seriesColor)
                             .getTooltip(obs, TestBed.get(DomSanitizer), true);
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
@@ -194,10 +200,11 @@ describe('GenericAbnormalTooltip', () => {
   }));
 
   it('should generate tooltip text', () => {
-    const tooltipText = new GenericAbnormalTooltip(true, Color.rgb(12, 67, 199))
+    const tooltip = new GenericAbnormalTooltip(true, Color.rgb(12, 67, 199))
                             .getTooltip(params, TestBed.get(DomSanitizer));
-    expect(tooltipText).toBeDefined();
-    expect(tooltipText)
+    expect(tooltip).toBeDefined();
+    expect(tooltip.additionalAttachment).toBeUndefined();
+    expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody>' +
