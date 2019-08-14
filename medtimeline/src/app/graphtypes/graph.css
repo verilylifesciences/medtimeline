@@ -7,6 +7,9 @@
 ::ng-deep .chartjs-tooltip {
   opacity: 1;
   position: absolute;
+  /* Disables interactions with the tooltip. Used here to remove
+  odd behavior where the tooltip does not immediately show up
+  despite hovering over the point */
   pointer-events: none;
   /* Show the tooltip above everything else. */
   z-index: 1000;
