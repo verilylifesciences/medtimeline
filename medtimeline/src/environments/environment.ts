@@ -8,13 +8,23 @@
 // `environment.prod.ts`. The list of file replacements can be found in
 // `angular.json`.
 
+// This file is used in the e2e tests.
+
 export const environment = {
-  production: true,
-  useMockServer: false,
-  mockDataFolder: '',
-  mockDataFiles: [],
+  production: false,
+  useMockServer: true,
+  mockDataFolder: 'demo_data/test_e2e',
+  mockDataFiles: [
+    'e2e_DiagReport',
+    'e2e_Encounter',
+    'e2e_Obs_labs',
+    'e2e_Obs_vitals',
+    'e2e_MB_data',
+    'e2e_Med_Admins',
+    'e2e_Med_Orders',
+  ],
   useDebugger: false,
-  showRadiology: false,
+  showRadiology: true,
 };
 
 /*

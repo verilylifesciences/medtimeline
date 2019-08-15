@@ -11,6 +11,7 @@ import {IndexPage} from '../index.po';
 
 import {DataSelectorPage} from './dataselector.po';
 
+import {SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MEDICATION, SUBMENU_MICROBIO, SUBMENU_VITALS, SUBMENU_DIAGNOSTIC} from '../constants';
 
 describe('Data Selector', () => {
   const index: IndexPage = new IndexPage();
@@ -53,17 +54,14 @@ describe('Data Selector', () => {
     await dataSelector.clickOnAddCard();
 
     const itemsText = await dataSelector.getItems(subMenu).getText();
-    expect(itemsText).toEqual([
-      'Search for a concept', 'Vital Signs', 'Lab Results',
-      'Vancomycin and Gentamicin', 'Microbiology'
-    ]);
+    expect(itemsText).toEqual(SUBMENU_LABELS);
   });
 
   it('top option of submenu should be searching for a concept', async () => {
     await dataSelector.clickOnAddCard();
 
     const itemText = await dataSelector.getItems(subMenu).get(0).getText();
-    expect(itemText).toEqual('Search for a concept');
+    expect(itemText).toEqual(SUBMENU_LABELS[0]);
   });
 
   it('vital signs option menu should have correct options', async () => {
@@ -79,10 +77,7 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(vitalsMenu).getText();
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set([
-          'Temperature', 'Heart Rate', 'Respiratory Rate', 'Blood Pressure',
-          'Oxygen Saturation (SpO2)'
-        ]));
+        .toEqual(new Set(SUBMENU_VITALS));
   });
 
   it('lab results option menu should have correct options', async () => {
@@ -98,13 +93,7 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(labsMenu).getText();
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set([
-          'ALT', 'Alkaline Phosphatase', 'AST (Aspartate Aminotransferase)',
-          'Bilirubin, Direct', 'Bilirubin, Total', 'BUN', 'C-Reactive Protein',
-          'Complete Blood Count', 'Complete Blood Count White Blood Cell',
-          'Creatinine', 'CSF', 'ESR (Erythrocyte Sedimentation Rate)',
-          'Other Fluid', 'Uric acid', 'Urinalysis'
-        ]));
+        .toEqual(new Set(SUBMENU_LABS));
   });
 
   it('vanc and gent option menu should have correct options', async () => {
@@ -120,8 +109,7 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(medsMenu).getText();
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(
-            ['Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin']));
+        .toEqual(new Set(SUBMENU_MEDICATION));
     expect(itemsText.length).toEqual(3);
   });
 
@@ -138,7 +126,22 @@ describe('Data Selector', () => {
     const itemsText: any = await dataSelector.getItems(mbMenu).getText();
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(
-            ['Blood', 'CSF Microbiology', 'Other', 'Respiratory', 'Stool']));
+        .toEqual(new Set(SUBMENU_MICROBIO));
+  });
+
+  it('radiology option menu should have correct options', async () => {
+    await dataSelector.clickOnAddCard();
+
+    const addRad = await dataSelector.getItems(subMenu).get(5);
+
+    await index.waitForClickable(addRad, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+
+    await addRad.click();
+
+    const radMenu = await dataSelector.getSubMenu(2);
+    const itemsText: any = await dataSelector.getItems(radMenu).getText();
+
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set(SUBMENU_DIAGNOSTIC));
   });
 });

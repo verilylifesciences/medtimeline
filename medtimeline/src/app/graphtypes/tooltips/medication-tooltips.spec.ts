@@ -41,11 +41,10 @@ describe('MedicationTooltip', () => {
   });
 
   it('should generate tooltip text', () => {
-    const tooltip =
+    const tooltipText =
         new MedicationTooltip().getTooltip(order, TestBed.get(DomSanitizer));
-    expect(tooltip).toBeDefined();
-    expect(tooltip.additionalAttachment).toBeUndefined();
-    expect(tooltip.tooltipChart)
+    expect(tooltipText).toBeDefined();
+    expect(tooltipText)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody><tr><th colspan="2">vancomycin</th></tr>' +
@@ -65,11 +64,10 @@ describe('MedicationTooltip', () => {
 
   it('should show dosage instruction information', () => {
     order.dosageInstruction = 'dosage';
-    const tooltip =
+    const tooltipText =
         new MedicationTooltip().getTooltip(order, TestBed.get(DomSanitizer));
-    expect(tooltip).toBeDefined();
-    expect(tooltip.additionalAttachment).toBeUndefined();
-    expect(tooltip.tooltipChart)
+    expect(tooltipText).toBeDefined();
+    expect(tooltipText)
         .toEqual(
             '<table class="c3-tooltip">' +
             '<tbody><tr><th colspan="2">vancomycin</th></tr>' +
@@ -111,11 +109,10 @@ describe('MedicationAdministrationTooltip', () => {
   });
 
   it('should generate tooltip text for tooltip with no prior dose', () => {
-    const tooltip = new MedicationAdministrationTooltip().getTooltip(
+    const tooltipText = new MedicationAdministrationTooltip().getTooltip(
         [admin1], TestBed.get(DomSanitizer));
-    expect(tooltip).toBeDefined();
-    expect(tooltip.additionalAttachment).toBeUndefined();
-    expect(tooltip.tooltipChart)
+    expect(tooltipText).toBeDefined();
+    expect(tooltipText)
         .toEqual(
             '<table class="c3-tooltip"><tbody>' +
             '<tr>' +
@@ -135,11 +132,10 @@ describe('MedicationAdministrationTooltip', () => {
   });
 
   it('should generate tooltip text for tooltip with a prior dose', () => {
-    const tooltip = new MedicationAdministrationTooltip().getTooltip(
+    const tooltipText = new MedicationAdministrationTooltip().getTooltip(
         [admin2], TestBed.get(DomSanitizer));
-    expect(tooltip).toBeDefined();
-    expect(tooltip.additionalAttachment).toBeUndefined();
-    expect(tooltip.tooltipChart)
+    expect(tooltipText).toBeDefined();
+    expect(tooltipText)
         .toEqual(
             '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="3">' +

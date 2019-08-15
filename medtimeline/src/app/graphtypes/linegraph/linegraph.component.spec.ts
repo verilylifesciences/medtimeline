@@ -12,13 +12,13 @@ import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {makeSampleObservation, StubFhirService} from '../../test_utils';
 import {ChartType} from '../graph/graph.component';
 
 import {LineGraphComponent} from './linegraph.component';
-import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 
 describe('LineGraphComponent', () => {
   // All the observations in this class will report a normal range of [0, 30].
@@ -192,10 +192,8 @@ describe('LineGraphComponent', () => {
     component.data = LineGraphData.fromObservationSetList(
         'lbl', [obsSet], loincCodeGroup, TestBed.get(DomSanitizer), []);
     component.generateChart();
-    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
-                component.data.tooltipMap.get(
-                    component.dateRange.start.valueOf().toString()));
-    expect(annotatedTT.tooltipChart)
+    expect(component.data.tooltipMap.get(
+               component.dateRange.start.valueOf().toString()))
         .toEqual(
             '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
             'Normal Boundary</th></tr>' +

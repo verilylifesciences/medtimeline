@@ -11,7 +11,6 @@ import {DiagnosticTooltip} from '../graphtypes/tooltips/diagnostic-tooltips';
 
 import {LabeledSeries} from './labeled-series';
 import {StepGraphData} from './stepgraphdata';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 /**
  * DiagnosticGraphData holds configurations for a diagnosticReport graph. The format
@@ -22,7 +21,7 @@ import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 export class DiagnosticGraphData extends StepGraphData {
   private constructor(
-      endpointSeries: LabeledSeries[], tooltipMap: Map<string, AnnotatedTooltip[]>) {
+      endpointSeries: LabeledSeries[], tooltipMap: Map<string, string>) {
     super(endpointSeries, tooltipMap, undefined);
   }
 
@@ -37,9 +36,8 @@ export class DiagnosticGraphData extends StepGraphData {
     const points: LabeledSeries[] = [];
 
     // The key of the map is the DateTime timestamp while the values
-    // of the map is an array contains AnnotatedTooltip (the innerhtml
-    // of the tooltip chart, optional html of the attachment, and optional id).
-    const tooltipMap = new Map<string, AnnotatedTooltip[]>();
+    // of the map contain the inner html of the tooltip.
+    const tooltipMap = new Map<string, string>();
 
     // Iterate through diagnosticReports to generate tooltips and
     // values for the DiagnosticGraphData
@@ -49,14 +47,19 @@ export class DiagnosticGraphData extends StepGraphData {
       // If there is already a tooltip at the timestamp, we do not
       // overwrite the existing tooltip but rather add to it.
       if (tooltipMap.has(report.timestamp.toMillis().toString())) {
-        const existingTT = tooltipMap.get(report.timestamp.toMillis().toString());
-        const newTT = new DiagnosticTooltip(false).getTooltip(annotatedReport, sanitizer);
-        existingTT.push(newTT);
+        const existingTT =
+            tooltipMap.get(report.timestamp.toMillis().toString());
+        tooltipMap.set(
+            report.timestamp.toMillis().toString(),
+            existingTT +
+                new DiagnosticTooltip(false).getTooltip(
+                  annotatedReport, sanitizer));
       } else {
         // If there is no existing tooltip, we create a new tooltip.
         tooltipMap.set(
             report.timestamp.toMillis().toString(),
-            [new DiagnosticTooltip().getTooltip(annotatedReport, sanitizer)]);
+            new DiagnosticTooltip().getTooltip(
+              annotatedReport, sanitizer));
       }
       // Pushing the LabeledSeries generated from the Diagnostic
       // Report to generate a new DiagnosticGraphData

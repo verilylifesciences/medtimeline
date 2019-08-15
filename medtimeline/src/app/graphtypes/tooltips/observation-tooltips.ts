@@ -12,7 +12,6 @@ import {NORMAL} from 'src/app/fhir-data-classes/observation-interpretation-value
 import {Observation} from '../../fhir-data-classes/observation';
 
 import {Tooltip} from './tooltip';
-import {AnnotatedTooltip} from './annotated-tooltip';
 
 /*
  * This class makes a tooltip for a list of Observations containing discrete, or
@@ -31,7 +30,7 @@ export class DiscreteObservationTooltip extends Tooltip<Observation[]> {
    * @param isAbnormal A boolean used to change the color of the text if abnormal
    * @returns A string representing the HTML table.
    */
-  getTooltip(observations: Observation[], sanitizer: DomSanitizer): AnnotatedTooltip {
+  getTooltip(observations: Observation[], sanitizer: DomSanitizer): string {
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(observations[0].timestamp, table, sanitizer);
@@ -48,8 +47,7 @@ export class DiscreteObservationTooltip extends Tooltip<Observation[]> {
                     undefined,    // color
                     isAbnormal);
     }
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 }
 
@@ -68,11 +66,11 @@ export class GenericAnnotatedObservationTooltip extends
    * @param observation The AnnotatedObservation used to generate the tooltip
    * @param sanitizer A DOM sanitizer
    * @param isAbnormal A boolean used to change the color of the text if abnormal
-   * @returns If the observation has annotations, a AnnotatedTooltip.
-   *    If there are no annotations, will return undefined.
+   * @returns If the observation has annotations, a HTML table with the
+   *     annotation values. If there are no annotations, will return undefined.
    */
-  getTooltip(observation: AnnotatedObservation, sanitizer: DomSanitizer, isAbnormal: boolean = false)
-            : AnnotatedTooltip|undefined {
+  getTooltip(observation: AnnotatedObservation, sanitizer: DomSanitizer, isAbnormal: boolean = false): string
+      |undefined {
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(
@@ -89,8 +87,7 @@ export class GenericAnnotatedObservationTooltip extends
     for (const annotation of observation.annotationValues) {
       Tooltip.addRow(table, annotation, sanitizer);
     }
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
   /**
    * Helper function that returns a string that reflects the observation
@@ -132,11 +129,11 @@ export class GenericAbnormalTooltip extends
    *     should contain a timestamp field, a value field, a label field, and a
    *     unit field.
    * @param sanitizer A DOM sanitizer
-   * @returns If the observation has annotations, an AnnotatedTooltip.
-   *  If there are no annotations, will return undefined.
+   * @returns If the observation has annotations, a HTML table with the
+   *     annotation values. If there are no annotations, will return undefined.
    */
   getTooltip(params: {[key: string]: number|string}, sanitizer: DomSanitizer):
-      AnnotatedTooltip|undefined {
+      string|undefined {
     const table = Tooltip.createNewTable();
     const millis: any = params['timestamp'];
     const timestamp = DateTime.fromMillis(millis).toLocal();
@@ -145,7 +142,6 @@ export class GenericAbnormalTooltip extends
     }
 
     Tooltip.addHeader('Caution: abnormal value', table, sanitizer);
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 }

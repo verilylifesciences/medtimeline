@@ -10,14 +10,13 @@ import {formatNumberWithPrecision} from 'src/app/number_utils';
 
 import {MedicationOrder} from '../../fhir-data-classes/medication-order';
 import {Tooltip} from '../tooltips/tooltip';
-import {AnnotatedTooltip} from './annotated-tooltip';
 
 /**
  * Makes a tooltip for a medication order that lists the order's first and last
  * doses in a table.
  */
 export class MedicationTooltip extends Tooltip<MedicationOrder> {
-  getTooltip(order: MedicationOrder, sanitizer: DomSanitizer): AnnotatedTooltip {
+  getTooltip(order: MedicationOrder, sanitizer: DomSanitizer): string {
     const medication = order.label;
     const firstDose =
         Tooltip.formatTimestamp(order.firstAdministration.timestamp);
@@ -30,9 +29,7 @@ export class MedicationTooltip extends Tooltip<MedicationOrder> {
     Tooltip.addRow(table, ['Last Dose', lastDose], sanitizer);
     Tooltip.addRow(
         table, ['Dosage Instructions', dosageInstruction], sanitizer);
-
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 }
 
@@ -44,7 +41,7 @@ export class MedicationAdministrationTooltip extends
     Tooltip<AnnotatedAdministration[]> {
   getTooltip(
       administrations: AnnotatedAdministration[],
-      sanitizer: DomSanitizer): AnnotatedTooltip {
+      sanitizer: DomSanitizer): string {
     const timestamp = administrations[0].medAdministration.timestamp;
     const table = Tooltip.createNewTable();
     for (const administration of administrations) {
@@ -83,8 +80,7 @@ export class MedicationAdministrationTooltip extends
             sanitizer);
       }
     }
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 
   private formatDosage(administration: MedicationAdministration) {

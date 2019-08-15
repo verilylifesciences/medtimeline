@@ -13,7 +13,6 @@ import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {DateTime} from 'luxon';
 
 import {GraphComponent} from '../graph/graph.component';
-import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 
 @Component({
   selector: 'app-linegraph',
@@ -258,13 +257,12 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
                           '<b>Lower: </b>' + yNormalBounds[0] + ' ' + this.data.unit +
                           '</div></td></tr></tbody></table>';
 
-      const newTT = new AnnotatedTooltip(tooltipText);
-
       const mapKey = this.dateRange.start.valueOf().toString();
       if (this.data.tooltipMap.has(mapKey)) {
-        this.data.tooltipMap.get(mapKey).push(newTT);
+        const value = this.data.tooltipMap.get(mapKey);
+        this.data.tooltipMap.set(mapKey, value + tooltipText);
       } else {
-        this.data.tooltipMap.set(mapKey, [newTT]);
+        this.data.tooltipMap.set(mapKey, tooltipText);
       }
     }
     this.chartData.push(

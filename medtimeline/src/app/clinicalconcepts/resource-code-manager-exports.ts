@@ -7,7 +7,7 @@ import {vitalSign} from './display-grouping';
 import {LOINCCode} from './loinc-code';
 
 export const bloodPressureLoincs = [
-    new LOINCCode('55284-4', vitalSign, 'Blood pressure', true),
+    new LOINCCode('55284-4', vitalSign, 'Blood Pressure', true),
     new LOINCCode(
         '8478-0', vitalSign, 'Mean Arterial Pressure (Device)', true, [25, 200])
   ];

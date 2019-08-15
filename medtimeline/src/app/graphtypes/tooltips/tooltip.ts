@@ -8,7 +8,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import * as Colors from '../../theme/verily_colors';
 import {DateTime} from 'luxon';
-import {AnnotatedTooltip} from './annotated-tooltip';
 
 /*
  * This base class contains useful helper methods used while making a custom
@@ -24,7 +23,7 @@ import {AnnotatedTooltip} from './annotated-tooltip';
 export abstract class Tooltip<T> {
   /**CSS styling for normal tooltip circular color swatch */
   static readonly TOOLTIP_NORMAL_CSS = 'display: inline-block; height: 10px; width: 10px; ' +
-                                       'margin-right: 6px; border-radius: 50%;';
+                                        'margin-right: 6px; border-radius: 50%;';
   /**CSS styling for abnormal tooltip triangular color swatch */
   static readonly TOOLTIP_ABNORMAL_CSS = 'width: 0; display:inline-block; margin-right: 6px; ' +
                                         'height: 0; border-left: 6px solid transparent; ' +
@@ -140,7 +139,7 @@ export abstract class Tooltip<T> {
     return colorSpan;
   }
 
-  abstract getTooltip(inputValue: T, sanitizer: DomSanitizer): AnnotatedTooltip;
+  abstract getTooltip(inputValue: T, sanitizer: DomSanitizer): string;
 }
 
 /**
@@ -156,7 +155,7 @@ export class StandardTooltip extends Tooltip<any> {
     super();
   }
 
-  getTooltip(unused: any, sanitizer: DomSanitizer): AnnotatedTooltip {
+  getTooltip(unused: any, sanitizer: DomSanitizer): string {
     const table = Tooltip.createNewTable();
     Tooltip.addTimeHeader(
         DateTime.fromJSDate(new Date(this.dataPoints[0].x)), table, sanitizer);
@@ -166,7 +165,6 @@ export class StandardTooltip extends Tooltip<any> {
           table, [pt.name, pt.value + ' ' + this.unit], sanitizer,
           this.color(pt));
     }
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 }

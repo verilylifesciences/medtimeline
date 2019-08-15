@@ -9,26 +9,7 @@ import {IndexPage} from '../index.po';
 
 import {CardContainerPage} from './cardcontainer.po';
 
-const allDefaultCardLabels = [
-  'Custom Timeline',
-  'Temperature',
-  'Heart Rate',
-  'Respiratory Rate',
-  'Oxygen Saturation (SpO2)',
-  'Blood Pressure',
-  'C-Reactive Protein',
-  'ESR (Erythrocyte Sedimentation Rate)',
-  'BUN',
-  'Creatinine',
-  'ALT',
-  'AST (Aspartate Aminotransferase)',
-  'Alkaline Phosphatase',
-  'Bilirubin, Direct',
-  'Bilirubin, Total',
-  'Complete Blood Count White Blood Cell',
-  'Vancomycin & Gentamicin Summary',
-  'Vancomycin',
-];
+import {ALL_DEFAULT_CARD_LABELS} from '../constants';
 
 describe('Card Container', () => {
   const page = new CardContainerPage();
@@ -101,11 +82,11 @@ describe('Card Container', () => {
          }
        });
 
-       // We display 18 cards by default, with one being a textbox. A textbox
+       // We display 22 cards by default, with one being a textbox. A textbox
        // does not have a label, and would not be in this list.
-       expect(cardLabels.length).toEqual(18);
+       expect(cardLabels.length).toEqual(ALL_DEFAULT_CARD_LABELS.length);
 
-       expect(cardLabels).toEqual(allDefaultCardLabels);
+       expect(cardLabels).toEqual(ALL_DEFAULT_CARD_LABELS);
      });
 
   it('all cards should have a data selector after the card', async () => {
@@ -169,7 +150,7 @@ describe('Card Container', () => {
     expect(updatedCardLabels.length).toEqual(cardLabels.length - 1);
 
     expect(updatedCardLabels)
-        .toEqual(allDefaultCardLabels.filter(x => x !== 'Temperature'));
+        .toEqual(ALL_DEFAULT_CARD_LABELS.filter(x => x !== 'Temperature'));
   });
 
   it('should correctly undo a deletion of card', async () => {

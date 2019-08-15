@@ -352,66 +352,6 @@ export function makeMicrobioReports(): MicrobioReport[] {
   ];
 }
 
-export function makePartialMicrobioReports(): MicrobioReport[] {
-  return [
-    new MicrobioReport(
-        {
-          id: 'id',
-          contained: [
-            {
-              resourceType: 'Specimen',
-              id: '1',
-              type: {text: 'Stool'},
-              collection:
-                  {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
-            },
-            {
-              resourceType: 'Observation',
-              id: '2',
-              code: {
-                coding: [{
-                  system: 'http://cerner.com/bch_mapping/',
-                  code: 'OVAANDPARASITEEXAM',
-                  display: 'Ova and Parasite Exam'
-                }]
-              },
-              interpretation: {
-                coding: [{
-                  system:
-                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
-                  code: 'NEGORFLORA',
-                  display: 'Neg or Flora'
-                }]
-              }
-            },
-            {
-              resourceType: 'Observation',
-              id: '3',
-              code: {
-                coding: [{
-                  system: 'http://cerner.com/bch_mapping/',
-                  code: 'SALMONELLAANDSHIGELLACULTURE',
-                  display: 'Salmonella and Shigella Culture'
-                }]
-              },
-              interpretation: {
-                coding: [{
-                  system:
-                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
-                  code: 'CHECKRESULT',
-                  display: 'Check Result'
-                }]
-              }
-            }
-          ],
-          status: 'partial',
-          category:
-              {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-        },
-        REQUEST_ID)
-    ];
-}
-
 export function makeDiagnosticReports(): DiagnosticReport[] {
   return [
     new DiagnosticReport(

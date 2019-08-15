@@ -14,7 +14,6 @@ import {makeMicrobioReports} from '../test_utils';
 import * as Colors from 'src/app/theme/verily_colors';
 
 import {MicrobioGraphData} from './microbiographdata';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 const REQUEST_ID = '1234';
 
@@ -145,8 +144,7 @@ describe('MicrobioGraphData', () => {
                          .toMillis()
                          .toString();
        expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();
-       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(stepgraphdata.tooltipMap.get(mbKey));
-       expect(annotatedTT.tooltipChart)
+       expect(stepgraphdata.tooltipMap.get(mbKey))
            .toEqual(
                '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
                Tooltip.formatTimestamp(
@@ -219,8 +217,7 @@ describe('MicrobioGraphData', () => {
     const mbKey = DateTime.fromISO('2019-02-14T17:34:43-05:00')
         .toUTC().toMillis().toString();
     expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();
-    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(stepgraphdata.tooltipMap.get(mbKey));
-    expect(annotatedTT.tooltipChart).toEqual(
+    expect(stepgraphdata.tooltipMap.get(mbKey)).toEqual(
           '<table class="c3-tooltip"><tbody>' +
           '<tr><th colspan="2">' +
           Tooltip.formatTimestamp(DateTime.fromISO('2019-02-14T17:34:43-05:00')) +

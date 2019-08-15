@@ -18,7 +18,6 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {Tooltip} from '../graphtypes/tooltips/tooltip';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../test_utils';
 import * as Colors from 'src/app/theme/verily_colors';
@@ -67,12 +66,12 @@ describe('LineGraphData', () => {
 
     const seriesColor = lgData.series[0].legendInfo.fill;
     expect(lgData.tooltipMap.get('575078400000'))
-        .toEqual([new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs1, TestBed.get(DomSanitizer))]);
+        .toEqual(new GenericAnnotatedObservationTooltip(true, seriesColor)
+                     .getTooltip(obs1, TestBed.get(DomSanitizer)));
 
     expect(lgData.tooltipMap.get('575164800000'))
-        .toEqual([new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs2, TestBed.get(DomSanitizer))]);
+        .toEqual(new GenericAnnotatedObservationTooltip(true, seriesColor)
+                     .getTooltip(obs2, TestBed.get(DomSanitizer)));
   });
 
   it('fromObservationSetList should handle two tooltips for same timestamp',
@@ -92,18 +91,17 @@ describe('LineGraphData', () => {
        expect(lgData.tooltipMap.size).toBe(1);
        expect(lgData.tooltipMap.get('575078400000'))
            .toEqual(
-               [new GenericAnnotatedObservationTooltip(true, seriesColor)
-                   .getTooltip(obs1, TestBed.get(DomSanitizer)),
+               new GenericAnnotatedObservationTooltip(true, seriesColor)
+                   .getTooltip(obs1, TestBed.get(DomSanitizer)) +
                new GenericAnnotatedObservationTooltip(false, seriesColor)
-                   .getTooltip(obs2, TestBed.get(DomSanitizer))]);
+                   .getTooltip(obs2, TestBed.get(DomSanitizer)));
      });
-
   it('BP tooltip should not display blood pressure twice',
   () => {
     const BP_json1 = {
       code: {
         coding: [{system: 'http://loinc.org', code: '55284-4'}],
-        text: 'Blood pressure'
+        text: 'Blood Pressure'
       },
       effectiveDateTime: DateTime.utc(1988, 3, 23).toISO(),
       valueQuantity: {value: 80, unit: 'mmHg'},
@@ -125,7 +123,7 @@ describe('LineGraphData', () => {
     const BP_json2 = {
       code: {
         coding: [{system: 'http://loinc.org', code: '55284-4'}],
-        text: 'Blood pressure'
+        text: 'Blood Pressure'
       },
       effectiveDateTime: DateTime.utc(1988, 3, 23).toISO(),
       valueQuantity: {value: 90, unit: 'mmHg'},
@@ -157,13 +155,12 @@ describe('LineGraphData', () => {
     // Expect the tooltip to only have one instance of Blood Pressure despite passing in
     // two observations occuring at the same time point. The blood pressure
     // tooltip has different styling than the GenericAnnotatedObservationToolTip
-    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(lgData.tooltipMap.get('575078400000'));
-    expect(annotatedTT.tooltipChart)
+    expect(lgData.tooltipMap.get('575078400000'))
         .toEqual('<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
         Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) +
         '</th></tr><tr><td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
-        Tooltip.TOOLTIP_ABNORMAL_CSS + seriesColor.toString() + '"></span>' +
-        '<div style="display: inline-block;">Blood pressure</div></td><td class="value" ' +
+        Tooltip.TOOLTIP_ABNORMAL_CSS + 'rgb(69, 39, 160)"></span>' +
+        '<div style="display: inline-block;">Blood Pressure</div></td><td class="value" ' +
         'style="color: ' + Colors.ABNORMAL + '">80 mmHg (Low)</td></tr></tbody></table>' +
         '<table class="c3-tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
         '</tbody></table>');
@@ -212,10 +209,9 @@ describe('LineGraphData', () => {
        params['value'] = 100;
        params['timestamp'] = 575078400000;
        expect(lgData.tooltipMap.size).toBe(1);
-       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(lgData.tooltipMap.get('575078400000'));
-       expect(annotatedTT.tooltipChart)
+       expect(lgData.tooltipMap.get('575078400000'))
            .toContain(new GenericAbnormalTooltip(false, seriesColor)
-                          .getTooltip(params, TestBed.get(DomSanitizer)).tooltipChart);
+                          .getTooltip(params, TestBed.get(DomSanitizer)));
      });
 
   it('fromMedicationOrderSet should have one data series' +
@@ -293,13 +289,13 @@ describe('LineGraphData', () => {
 
     expect(lgData.tooltipMap.size).toBe(1);
     expect(lgData.tooltipMap.get('575078400000'))
-        .toEqual(
-            [new MedicationAdministrationTooltip().getTooltip(
+        .toBe(
+            new MedicationAdministrationTooltip().getTooltip(
                 [new AnnotatedAdministration(medAdmin1, 1, 1)],
-                TestBed.get(DomSanitizer)),
+                TestBed.get(DomSanitizer)) +
             new MedicationAdministrationTooltip().getTooltip(
                 [new AnnotatedAdministration(medAdmin2, 1, 1)],
-                TestBed.get(DomSanitizer))]);
+                TestBed.get(DomSanitizer)));
   });
 
   it('fromMedicationOrderSet should always have precision to be 0', () => {

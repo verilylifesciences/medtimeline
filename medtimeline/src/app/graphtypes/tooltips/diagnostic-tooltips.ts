@@ -3,13 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {DiagnosticReportStatus, DiagnosticReport} from 'src/app/fhir-data-classes/diagnostic-report';
+
 import {Tooltip} from '../tooltips/tooltip';
-import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
-import {UI_CONSTANTS} from 'src/constants';
-import {v4 as uuid} from 'uuid';
 
 /*
  * This class makes a tooltip for a DiagnosticReport that applies to all points
@@ -23,53 +21,22 @@ export class DiagnosticTooltip extends Tooltip<AnnotatedDiagnosticReport> {
 
   getTooltip(
       annotatedReport: AnnotatedDiagnosticReport,
-      sanitizer: DomSanitizer): AnnotatedTooltip {
+      sanitizer: DomSanitizer): string {
     const timestamp = annotatedReport.timestamp;
-
     const table = Tooltip.createNewTable();
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
     if (annotatedReport.text) {
       const htmlText = annotatedReport.text.narrative.div;
-      Tooltip.addHeader(UI_CONSTANTS.SUMMARY, table, sanitizer);
+      Tooltip.addHeader('Summary', table, sanitizer);
       Tooltip.addRow(table, [htmlText], sanitizer);
     } else {
       // If there is no additional text (Narrative) that is added, the tooltip
       // will display some other default information.
-      Tooltip.addRow(table, [UI_CONSTANTS.CATEGORY, annotatedReport.report.category], sanitizer);
-      Tooltip.addRow(table, [UI_CONSTANTS.STATUS, annotatedReport.report.status], sanitizer);
+      Tooltip.addRow(table, ['Category', annotatedReport.report.category], sanitizer);
+      Tooltip.addRow(table, ['Status', annotatedReport.report.status], sanitizer);
     }
-    // The AnnotatedTooltip will have the same ID as the button that it corresponds with
-    const uniqueID = uuid();
-    // Replace the dashes in the UUID to meet HTML requirements.
-    const re = /\-/gi;
-    const buttonID = 'button' + uniqueID.replace(re, '');
-    // Attach button to the tooltip to display attachments
-    this.addAttachmentButton(buttonID, UI_CONSTANTS.REPORT_ATTACHMENT, table, sanitizer);
-
-    const tooltipChart = table.outerHTML;
-    const additionalAttachment = [annotatedReport.report.presentedForm[0].html];
-    return new AnnotatedTooltip(tooltipChart, additionalAttachment, buttonID);
-  }
-
-  /**
-   * Adds a button that spans the whole row in the tooltip table.
-   * @param buttonID UniqueID that helps identify the button
-   * @param buttonLabel String reflecting content inside the button
-   * @param table HTMLTableElement on the tooltip that needs to be edited
-   * @param sanitizer A DOM sanitizer
-   */
-  private addAttachmentButton(buttonID: string, buttonLabel: string,
-        table: HTMLTableElement, sanitizer: DomSanitizer) {
-    const row = table.insertRow();
-    const cell1 = row.insertCell();
-    const button = document.createElement('button');
-    // Styles the button
-    button.setAttribute('class', 'mat-menu-item');
-    // Sets unique button ID (matches the AnnotatedTooltip ID)
-    button.setAttribute('id', buttonID);
-    button.innerHTML = sanitizer.sanitize(SecurityContext.HTML, buttonLabel);
-    cell1.appendChild(button);
+    return table.outerHTML;
   }
 }

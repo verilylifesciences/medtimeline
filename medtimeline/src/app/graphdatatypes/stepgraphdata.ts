@@ -11,7 +11,6 @@ import {MedicationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 /**
  * StepGraphData holds configurations for a step graph. A step graph displays
@@ -25,7 +24,7 @@ export class StepGraphData extends GraphData {
       /** A list of the LabeledSeries representing end points. */
       // readonly endpointSeries: LabeledSeries[],
       /** A map of tooltips for the data points. */
-      tooltipMap: Map<string, AnnotatedTooltip[]>,
+      tooltipMap: Map<string, string>,
       /**
        *  The function to call to get the key for the tooltip map for a point.
        */
@@ -52,7 +51,7 @@ export class StepGraphData extends GraphData {
               .lastAdmininistration.timestamp.toMillis();
     });
 
-    const tooltipMap = new Map<string, AnnotatedTooltip[]>();
+    const tooltipMap = new Map<string, string>();
     for (const medOrderSet of medicationOrderListGroup) {
       // Each MedicationOrderSet represents multiple MedicationOrders
       // for the same medicine.
@@ -70,11 +69,11 @@ export class StepGraphData extends GraphData {
         tooltipMap.set(
             medOrderSet.rxNormCode.label.toLowerCase() +
                 medOrder.firstAdministration.timestamp,
-            [new MedicationTooltip().getTooltip(medOrder, sanitizer)]);
+            new MedicationTooltip().getTooltip(medOrder, sanitizer));
         tooltipMap.set(
             medOrderSet.rxNormCode.label.toLowerCase() +
                 medOrder.lastAdmininistration.timestamp,
-            [new MedicationTooltip().getTooltip(medOrder, sanitizer)]);
+            new MedicationTooltip().getTooltip(medOrder, sanitizer));
       }
     }
     // Do not display the units for Medication administration values on the card

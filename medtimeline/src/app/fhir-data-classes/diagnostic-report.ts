@@ -11,6 +11,7 @@ import {DateTime} from 'luxon';
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
 import {ResultClassWithTimestamp} from '../fhir-resource-set';
 import {Attachment} from './attachment';
+import {Narrative} from './narrative';
 
 /**
  * FHIR element for DiagnosticReportStatus, from the DSTU2 version of the

@@ -8,10 +8,8 @@ import * as Color from 'color';
 
 import {AnnotatedMicrobioReport} from 'src/app/fhir-data-classes/annotated-microbio-report';
 import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
-import {UI_CONSTANTS} from 'src/constants';
 
-import {Tooltip} from './tooltip';
-import {AnnotatedTooltip} from './annotated-tooltip';
+import {Tooltip} from '../tooltips/tooltip';
 
 /*
  * This class makes a tooltip for BCH Microbio DiagnosticReport that applies to all points
@@ -25,7 +23,7 @@ export class MicrobioTooltip extends Tooltip<AnnotatedMicrobioReport> {
 
   getTooltip(
       annotatedReport: AnnotatedMicrobioReport, sanitizer: DomSanitizer,
-      isAbnormal: boolean = false): AnnotatedTooltip {
+      isAbnormal: boolean = false): string {
     const status = DiagnosticReportStatus[annotatedReport.report.status];
     const results = annotatedReport.report.results;
     const timestamp = annotatedReport.timestamp;
@@ -36,17 +34,16 @@ export class MicrobioTooltip extends Tooltip<AnnotatedMicrobioReport> {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
 
-    Tooltip.addHeader(UI_CONSTANTS.RESULT, table, sanitizer);
+    Tooltip.addHeader('Result set', table, sanitizer);
 
     for (const result of results) {
       Tooltip.addRow(
           table, [result.display, result.interpretation.display], sanitizer,
           this.color, isAbnormal);
     }
-    Tooltip.addRow(table, [UI_CONSTANTS.STATUS, status], sanitizer);
-    Tooltip.addRow(table, [UI_CONSTANTS.SPECIMEN, specimen], sanitizer);
+    Tooltip.addRow(table, ['Status', status], sanitizer);
+    Tooltip.addRow(table, ['Specimen', specimen], sanitizer);
 
-    const tooltipChart = table.outerHTML;
-    return new AnnotatedTooltip(tooltipChart);
+    return table.outerHTML;
   }
 }
