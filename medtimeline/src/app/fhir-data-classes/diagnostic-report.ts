@@ -84,8 +84,11 @@ export class DiagnosticReport extends ResultClassWithTimestamp {
   /** Report code */
   readonly code: ResourceCode;
 
-  /** Link to the html/pdf version of the report */
-  readonly presentedForm = new Array<Attachment>();
+  /**
+   * Not readonly to allow editing in fhir-service
+   * Attachment representing html/pdf version of the report.
+  */
+  presentedForm = new Array<Attachment>();
 
   /** Json returned from FHIR; source of truth */
   readonly json: any;

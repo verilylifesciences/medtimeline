@@ -25,7 +25,7 @@
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-5153487"
+                        "url": "assets/demo_data/test_radReport/radReport_mockXRay.html"
                     }, 
                     {
                         "contentType": "application/pdf", 
@@ -75,7 +75,7 @@
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365"
+                        "url": "assets/demo_data/test_radReport/radReport_mockCTReport.html"
                     }, 
                     {
                         "contentType": "application/pdf", 
@@ -125,7 +125,7 @@
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-3411366"
+                        "url": "assets/demo_data/test_radReport/radReport_mockMammogram_Benign.html"
                     }, 
                     {
                         "contentType": "application/pdf", 

@@ -49,7 +49,7 @@ export class DiagnosticTooltip extends Tooltip<AnnotatedDiagnosticReport> {
     this.addAttachmentButton(buttonID, UI_CONSTANTS.REPORT_ATTACHMENT, table, sanitizer);
 
     const tooltipChart = table.outerHTML;
-    const additionalAttachment = [annotatedReport.report.presentedForm[0].html];
+    const additionalAttachment = [annotatedReport.attachmentHtml];
     return new AnnotatedTooltip(tooltipChart, additionalAttachment, buttonID);
   }
 

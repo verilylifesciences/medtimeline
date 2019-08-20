@@ -19,6 +19,7 @@ import {Observation} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 const REQUEST_ID = '1234';
 
@@ -74,8 +75,8 @@ export class StubFhirService extends FhirService {
     return Promise.resolve([]);
   }
 
-  getDiagnosticReports(codeGroup: DiagnosticReportCodeGroup, dateRange: Interval):
-      Promise<DiagnosticReport[]> {
+  getAnnotatedDiagnosticReports(codeGroup: DiagnosticReportCodeGroup, dateRange: Interval):
+      Promise<AnnotatedDiagnosticReport[]> {
     return Promise.resolve([]);
   }
 }
@@ -438,7 +439,7 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
         presentedForm: [
             {
                 contentType: 'text/html',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-5153487'
+                url: 'assets/demo_data/test_radReport/radReport_mockXRay.html'
             },
             {
                 contentType: 'application/pdf',
@@ -491,7 +492,7 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
         presentedForm: [
             {
                 contentType: 'text/html',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365'
+                url: 'assets/demo_data/test_radReport/radReport_mockCTReport.html'
             },
             {
                 contentType: 'application/pdf',

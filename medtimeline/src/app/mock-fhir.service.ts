@@ -23,6 +23,7 @@ import {MedicationAdministration} from './fhir-data-classes/medication-administr
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 @Injectable()
 export class MockFhirService extends FhirService {
@@ -254,25 +255,75 @@ export class MockFhirService extends FhirService {
 }
 
   /**
-   * Gets the DiagnosticReports for the patient for any report that falls in
+   * Gets the AnnotatedDiagnosticReports for the patient for any report that falls in
    * the given date range, whose contained Observations are in the codeGroup
-   * provided.
+   * provided. Gets the html attachments linked in the json files as well.
+   *
+   * We are returning AnnotatedDiagnosticReport rather than DiagnosticReport because
+   * we need to access the html attachments.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-   * @param dateRange Return all DiagnosticReports that covered any time in
+   * @param dateRange Return all AnnotatedDiagnosticReports that covered any time in
    *     this date range.
    */
-  getDiagnosticReports(
+  getAnnotatedDiagnosticReports(
       codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
-      limitCount?: number): Promise<DiagnosticReport[]> {
+      limitCount?: number): Promise<AnnotatedDiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      let reports = new Array<DiagnosticReport>();
+      const annotatedReportsArr = new Array<Promise<AnnotatedDiagnosticReport>>();
       for (const code of codeGroup.resourceCodes) {
         if (this.diagnosticReportMap.has(code)) {
-          reports = reports.concat(this.diagnosticReportMap.get(code));
+          const reports = this.diagnosticReportMap.get(code);
+          for (const report of reports) {
+            annotatedReportsArr.push(this.addAttachment(report));
+          }
         }
       }
-      reports.slice(0, limitCount ? limitCount : undefined);
-      return reports;
+      return Promise.all(annotatedReportsArr).then(annotatedReports => {
+        annotatedReports.slice(0, limitCount ? limitCount : undefined);
+        return annotatedReports;
+      });
     });
+  }
+
+  /**
+   * Visibility set to public for testing purposes
+   *
+   * Helper function to getAnnotatedDiagnosticReports() that makes the http calls
+   * to get the corresponding html attachments. Edits the DiagnosticReports'
+   * presentedForm parameter.
+   * @param report DiagnosticReport that will be edited to include the
+   * html attachment in string format
+   */
+  public addAttachment(report: DiagnosticReport):
+      Promise<AnnotatedDiagnosticReport> {
+    if (report.presentedForm) {
+      for (const presented of report.presentedForm) {
+        // Currently Cerner only supports text/html files and not pdf
+        if (presented.contentType === 'text/html') {
+          return this.getAttachment(presented.url)
+            .then(html => {
+              return new AnnotatedDiagnosticReport(report, html);
+            });
+        }
+      }
+    }
+    // If there is no presentedForm section in the report or none of the presentedForm
+    // contentTypes are 'text/html', return the annotated diagnostic report without
+    // the attachment.
+    return Promise.resolve(new AnnotatedDiagnosticReport(report));
+  }
+
+  /**
+   * Visibility set to public for testing purposes
+   *
+   * Helper function that makes the HTTP call to get the html attachment.
+   * The responseType will always be text, and not the default json.
+   * If any error exists, it will catch the http error and return the message
+   * @param url Fhir link to location of data
+   */
+  public getAttachment(url: string): Promise<string> {
+    return this.http.get(url, {responseType: 'text'}).toPromise()
+      .then((res: any) => res)
+      .catch((err => err.message));
   }
 }

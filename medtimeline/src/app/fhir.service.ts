@@ -18,6 +18,7 @@ import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {Observation} from './fhir-data-classes/observation';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 @Injectable()
 export abstract class FhirService {
@@ -48,7 +49,7 @@ export abstract class FhirService {
 }
 
   /**
-   * Returns whether there are any diagnosticreports with this code in the given
+   * Returns whether there are any annotated diagnosticreports with this code in the given
    * time range.
    * @param code The resource code (for diagnostic reports) for which to get observations.
    * @param dateRange The time interval observations should fall between.
@@ -56,10 +57,10 @@ export abstract class FhirService {
   diagnosticReportsPresentWithCodes(
       codeGroup: DiagnosticReportCodeGroup, dateRange: Interval): Promise<boolean> {
     // Just ask for one result to reduce the call time.
-    return this.getDiagnosticReports(codeGroup, dateRange, 1)
+    return this.getAnnotatedDiagnosticReports(codeGroup, dateRange, 1)
         .then(reports => reports.length > 0, rejection => {
-          // If any DiagnosticReports for this code results in an error, do not
-          // show any DiagnosticReports at all.
+          // If any AnnotatedDiagnosticReports for this code results in an error, do not
+          // show any AnnotatedDiagnosticReports at all.
           throw rejection;
         });
   }
@@ -181,7 +182,7 @@ export abstract class FhirService {
    * @param dateRange Return all DiagnosticReports that covered any time in this
    *   date range.
    */
-  abstract getDiagnosticReports(
+  abstract getAnnotatedDiagnosticReports(
       codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
-      limitCount?: number): Promise<DiagnosticReport[]>;
+      limitCount?: number): Promise<AnnotatedDiagnosticReport[]>;
 }

@@ -21,20 +21,22 @@ import {makeDiagnosticReports} from 'src/app/test_utils';
 import {DiagnosticGraphData} from 'src/app/graphdatatypes/diagnosticgraphdata';
 import {DiagnosticGraphDialogComponent} from './diagnostic-graph.dialog.component';
 import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
+import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
 
 class StubDiagnosticGraphComponent extends DiagnosticGraphComponent {
-  diagnosticReport: DiagnosticReport[];
+  annotatedDiagnosticReport: AnnotatedDiagnosticReport[];
 
   constructor(diagnosticGraphDialog: MatDialog,
     @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     super(TestBed.get(DomSanitizer), diagnosticGraphDialog, uiConstants);
-    this.diagnosticReport = makeDiagnosticReports();
-    this.data = DiagnosticGraphData.fromDiagnosticReports(this.diagnosticReport, this.sanitizer);
+    this.annotatedDiagnosticReport = makeDiagnosticReports()
+                    .map(report => new AnnotatedDiagnosticReport(report));
+    this.data = DiagnosticGraphData.fromDiagnosticReports(this.annotatedDiagnosticReport, this.sanitizer);
   }
 }
 
 describe('DiagnosticGraphComponent', () => {
-  let diagnosticReport: DiagnosticReport[];
+  let annotatedDiagnosticReports: AnnotatedDiagnosticReport[];
   const dateRange = Interval.fromDateTimes(
     DateTime.utc(2019, 2, 10), DateTime.utc(2019, 2, 15));
 
@@ -73,10 +75,11 @@ describe('DiagnosticGraphComponent', () => {
   }));
 
   beforeEach(() => {
-    diagnosticReport = makeDiagnosticReports();
+    annotatedDiagnosticReports = makeDiagnosticReports()
+                    .map(report => new AnnotatedDiagnosticReport(report));
 
     component.dateRange = dateRange;
-    component.data = DiagnosticGraphData.fromDiagnosticReports(diagnosticReport, TestBed.get(DomSanitizer));
+    component.data = DiagnosticGraphData.fromDiagnosticReports(annotatedDiagnosticReports, TestBed.get(DomSanitizer));
     component.generateChart();
   });
 
@@ -102,16 +105,16 @@ describe('DiagnosticGraphComponent', () => {
   it('should create correct TooltipMap', () => {
     const tooltipMap = component.data.tooltipMap;
 
-    for (const report of diagnosticReport) {
+    for (const report of annotatedDiagnosticReports) {
       const timestamp = report.timestamp;
       const annotatedTT = tooltipMap.get(timestamp.toMillis().toString())[0];
-      expect(annotatedTT.additionalAttachment[0]).toEqual(report.presentedForm[0].html);
+      expect(annotatedTT.additionalAttachment[0]).toEqual(report.attachmentHtml);
     }
   });
 
   it('should create same id for button and for AnnotatedTooltip', () => {
     const tooltipMap = component.data.tooltipMap;
-    for (const report of diagnosticReport) {
+    for (const report of annotatedDiagnosticReports) {
       const timestamp = report.timestamp;
       const annotatedTT = tooltipMap.get(timestamp.toMillis().toString())[0];
       const id = annotatedTT.id;
@@ -125,7 +128,7 @@ describe('DiagnosticGraphComponent', () => {
     const tooltipArray = new Array<AnnotatedTooltip>();
     const buttonArray = new Array<HTMLButtonElement>();
 
-    for (const report of diagnosticReport) {
+    for (const report of annotatedDiagnosticReports) {
       const annotatedTT = tooltipMap.get(report.timestamp.toMillis().toString())[0];
       tooltipArray.push(annotatedTT);
 
@@ -148,7 +151,7 @@ describe('DiagnosticGraphComponent', () => {
     const tooltipMap = component.data.tooltipMap;
     const tooltipArray = new Array<AnnotatedTooltip>();
 
-    for (const report of diagnosticReport) {
+    for (const report of annotatedDiagnosticReports) {
       const annotatedTT = tooltipMap.get(report.timestamp.toMillis().toString())[0];
       tooltipArray.push(annotatedTT);
     }

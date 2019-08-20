@@ -32,7 +32,7 @@ export class DiagnosticGraphData extends StepGraphData {
    * @returns a new DiagnosticGraphData for this set.
    */
   static fromDiagnosticReports(
-      diagnosticReports: DiagnosticReport[],
+      annotatedDiagnosticReports: AnnotatedDiagnosticReport[],
       sanitizer: DomSanitizer): DiagnosticGraphData {
     const points: LabeledSeries[] = [];
 
@@ -43,25 +43,24 @@ export class DiagnosticGraphData extends StepGraphData {
 
     // Iterate through diagnosticReports to generate tooltips and
     // values for the DiagnosticGraphData
-    for (const report of diagnosticReports) {
-      const annotatedReport = new AnnotatedDiagnosticReport(report);
+    for (const annotatedReport of annotatedDiagnosticReports) {
       // Adding a new DiagnosticTooltip to the tooltipMap.
       // If there is already a tooltip at the timestamp, we do not
       // overwrite the existing tooltip but rather add to it.
-      if (tooltipMap.has(report.timestamp.toMillis().toString())) {
-        const existingTT = tooltipMap.get(report.timestamp.toMillis().toString());
+      if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+        const existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
         const newTT = new DiagnosticTooltip(false).getTooltip(annotatedReport, sanitizer);
         existingTT.push(newTT);
       } else {
         // If there is no existing tooltip, we create a new tooltip.
         tooltipMap.set(
-            report.timestamp.toMillis().toString(),
+            annotatedReport.timestamp.toMillis().toString(),
             [new DiagnosticTooltip().getTooltip(annotatedReport, sanitizer)]);
       }
       // Pushing the LabeledSeries generated from the Diagnostic
       // Report to generate a new DiagnosticGraphData
       for (const series of LabeledSeries.fromDiagnosticReport(
-            annotatedReport, report.timestamp)) {
+            annotatedReport, annotatedReport.timestamp)) {
         points.push(series);
       }
     }

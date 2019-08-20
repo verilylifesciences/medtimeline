@@ -36,22 +36,18 @@ export class DiagnosticReportCode extends ResourceCode {
  * label for that group.
  */
 export class DiagnosticReportCodeGroup extends
-    CachedResourceCodeGroup<DiagnosticReport, AnnotatedDiagnosticReport> {
+    CachedResourceCodeGroup<AnnotatedDiagnosticReport, AnnotatedDiagnosticReport> {
   /**
    * Gets a list of AnnotatedDiagnosticReports corresponding to this code group.
    */
   getResourceFromFhir(dateRange: Interval):
       Promise<AnnotatedDiagnosticReport[]> {
-    return this.fhirService.getDiagnosticReports(this, dateRange)
-          .then(
-            reports =>
-              reports.map(report => new AnnotatedDiagnosticReport(report)));
+    return this.fhirService.getAnnotatedDiagnosticReports(this, dateRange);
   }
 
   formatRawResults(rawResults: AnnotatedDiagnosticReport[]):
-      Promise<DiagnosticReport[]> {
-    const diagnosticReports = rawResults.map(result => result.report);
-    return Promise.resolve(diagnosticReports);
+      Promise<AnnotatedDiagnosticReport[]> {
+    return Promise.resolve(rawResults);
   }
 
   /**

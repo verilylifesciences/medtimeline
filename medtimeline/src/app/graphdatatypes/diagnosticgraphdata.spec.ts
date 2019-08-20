@@ -11,6 +11,7 @@ import {FhirService} from '../fhir.service';
 import {makeDiagnosticReports} from '../test_utils';
 
 import {DiagnosticGraphData} from './diagnosticgraphdata';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 
 describe('DiagnosticGraphData', () => {
   let fhirServiceStub: any;
@@ -25,8 +26,10 @@ describe('DiagnosticGraphData', () => {
          'LabeledSeries for each DiagnosticReport.',
     () => {
       const diagnosticReports = makeDiagnosticReports();
+      const annotatedDiagnosticReports = diagnosticReports
+                    .map(report => new AnnotatedDiagnosticReport(report));
       const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
-         diagnosticReports, TestBed.get(DomSanitizer));
+        annotatedDiagnosticReports, TestBed.get(DomSanitizer));
       expect(diagnosticgraphdata.series.length).toEqual(2);
     });
 
@@ -34,8 +37,10 @@ describe('DiagnosticGraphData', () => {
          'time and position for each Diagnostic Report Observation',
     () => {
       const diagnosticReports = makeDiagnosticReports();
+      const annotatedDiagnosticReports = diagnosticReports
+                    .map(report => new AnnotatedDiagnosticReport(report));
       const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
-        diagnosticReports, TestBed.get(DomSanitizer));
+        annotatedDiagnosticReports, TestBed.get(DomSanitizer));
 
       const series1 = diagnosticgraphdata.series[0];
       expect(series1.coordinates[0]).toEqual([

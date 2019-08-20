@@ -26,6 +26,7 @@ import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';
@@ -661,8 +662,8 @@ export class FhirHttpService extends FhirService {
    * @param code The DiagnosticReportCodeGroup for which to get observations.
    * @param dateRange The time interval observations should fall between.
    */
-  getDiagnosticReports(code: DiagnosticReportCodeGroup, dateRange: Interval):
-      Promise<DiagnosticReport[]> {
+  getAnnotatedDiagnosticReports(code: DiagnosticReportCodeGroup, dateRange: Interval):
+      Promise<AnnotatedDiagnosticReport[]> {
         return Promise.resolve([]);
   }
 }

@@ -20,7 +20,10 @@ export class AnnotatedDiagnosticReport extends TimestampedObject {
   /** Text containing details of the radiology report */
   readonly text: AnnotatedNarrative;
 
-  constructor(report: DiagnosticReport) {
+  /** HTML string reflecting the content inside the url. */
+  readonly attachmentHtml: string;
+
+  constructor(report: DiagnosticReport, attachmentHtml?: string) {
     super(report.timestamp);
 
     // Grabbing information from the html text in json only if
@@ -28,6 +31,10 @@ export class AnnotatedDiagnosticReport extends TimestampedObject {
     if (report.json.text) {
       const narrative = new Narrative(report.json.text);
       this.text = new AnnotatedNarrative(narrative);
+    }
+
+    if (attachmentHtml) {
+      this.attachmentHtml = attachmentHtml;
     }
 
     this.report = report;
