@@ -17,6 +17,8 @@ import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {StandardTooltip} from '../tooltips/tooltip';
+import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
+import { AnnotatedNarrative } from 'src/app/fhir-data-classes/annotated-narrative';
 
 export enum ChartType {
   SCATTER,
@@ -148,9 +150,13 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
                 return;
               }
             }
-
             if (tooltipContext.body) {
-              tooltipEl.innerHTML = this.getTooltipInnerHtml(tooltipContext);
+              const tooltipArray = this.getTooltipValue(tooltipContext);
+              const tooltipValue = AnnotatedTooltip.combineAnnotatedTooltipArr(tooltipArray);
+              tooltipEl.innerHTML = tooltipValue.tooltipChart;
+              if (tooltipValue.additionalAttachment) {
+                this.addAdditionalElementTooltip(tooltipArray);
+              }
             }
             // Display the tooltip lined up with the data point.
             const positionY = canvas.offsetTop;
@@ -433,12 +439,22 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     return tooltipEl;
   }
 
+ /**
+   * Adds any additional elements from AnnotatedTooltip that are not
+   * in the normal tooltip. Currently logic in the children class, but
+   * when we need more overarching logic, we can populate this function.
+   *
+   * @param tooltipArray AnnotatedTooltip[] containing the attachment we wish
+   *                     to display in the matDialog.
+   */
+  protected addAdditionalElementTooltip(tooltipArray: AnnotatedTooltip[]) {}
+
   /**
-   * Gets the tooltip text for the given context.
+   * Gets the tooltip for the given context.
    * @param tooltipContext The tooltip context passed into the tooltip
    *     callback
    */
-  private getTooltipInnerHtml(tooltipContext: any): string {
+  private getTooltipValue(tooltipContext: any): AnnotatedTooltip[] {
     // We squish together all points at the same timestamp preemptively
     // in our tooltip creation so that we just find the index of the
     // tooltip based on the first point's x-value.
@@ -455,17 +471,16 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
 
     // If something bad happens and we don't have a tooltip for the
     // key, return a generic tooltip with the value.
-    let tooltipText;
+    let newTT: AnnotatedTooltip[];
     if (!this.data.tooltipMap || !this.data.tooltipMap.has(keyToUse)) {
-      tooltipText =
-          new StandardTooltip(
+      newTT = [new StandardTooltip(
               [], undefined,
               this.data instanceof LineGraphData ? this.data.unit : '')
-              .getTooltip(undefined, this.sanitizer);
+              .getTooltip(undefined, this.sanitizer)];
     } else {
-      tooltipText = this.data.tooltipMap.get(keyToUse);
+      newTT = this.data.tooltipMap.get(keyToUse);
     }
-    return tooltipText;
+    return newTT;
   }
 
   /*************************

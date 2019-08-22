@@ -125,4 +125,11 @@ export const UI_CONSTANTS = {
   SAVED_TO_POWERCHART: 'Screenshot saved to PowerChart.',
   ERROR_SAVED_TO_POWERCHART: 'Error saving to PowerChart.',
   DISMISS: 'Dismiss',
+  // Tooltip headings
+  SUMMARY: 'Summary',
+  RESULT: 'Result set',
+  CATEGORY: 'Category',
+  STATUS: 'Status',
+  SPECIMEN: 'Specimen',
+  REPORT_ATTACHMENT: 'Report Attachment',
 };

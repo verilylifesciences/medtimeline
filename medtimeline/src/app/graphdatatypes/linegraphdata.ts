@@ -18,6 +18,7 @@ import {bloodPressureLoincs} from '../clinicalconcepts/resource-code-manager-exp
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
+import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 /**
  * LineGraphData holds configurations for a line graph. A line graph may display
@@ -43,7 +44,8 @@ export class LineGraphData extends GraphData {
       /** The minimum and maximum y-values for this data. */
       readonly yAxisDataBounds: [number, number],
       /** The unit for the y-axis of the graph. */
-      readonly unit: string, tooltipMap?: Map<string, string>,
+      readonly unit: string,
+      tooltipMap?: Map<string, AnnotatedTooltip[]>,
       tooltipKeyFn?: (key: string) => string, regions?: any[],
       precision?: number, resourceCodeGroup?: ResourceCodeGroup) {
     super(series, tooltipMap, tooltipKeyFn, regions);
@@ -129,8 +131,8 @@ export class LineGraphData extends GraphData {
   private static makeTooltipMap(
       obsGroupToSeries: Map<ObservationSet, LabeledSeries>,
       sanitizer: DomSanitizer,
-      ): Map<string, string> {
-    const tooltipMap = new Map<string, string>();
+      ): Map<string, AnnotatedTooltip[]> {
+    const tooltipMap = new Map<string, AnnotatedTooltip[]>();
 
     for (const entry of Array.from(obsGroupToSeries.entries())) {
       const obsGroup: ObservationSet = entry[0];
@@ -145,22 +147,25 @@ export class LineGraphData extends GraphData {
           // Blood pressure is read into the ObservationSet differently,
           // causing an edge case in the presentation of the values in the
           // tooltips. We only want to display 'Blood pressure' once
-          if (obs.observation.codes[0].codeString === bloodPressureLoincs[0].codeString
-              && tooltipMap.get(timestamp).includes(bloodPressureLoincs[0].label)) {
-            continue;
+          if (obs.observation.codes[0].codeString === bloodPressureLoincs[0].codeString) {
+            // We are combining the array into one AnnotatedTooltip in order to check
+            // to see if "Blood pressure" has already been added to any of the previous
+            // tooltips
+            const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(tooltipMap.get(timestamp));
+            if (annotatedTT.tooltipChart.includes(bloodPressureLoincs[0].label)) {
+              continue;
+            }
           }
-          tooltipMap.set(
-              timestamp,
-              tooltipMap.get(timestamp) +
-                  new GenericAnnotatedObservationTooltip(
-                      false, series.legendInfo.fill)
-                      .getTooltip(obs, sanitizer, isAbnormal));
+          tooltipMap.get(timestamp).push(
+            new GenericAnnotatedObservationTooltip(
+                false, series.legendInfo.fill)
+                .getTooltip(obs, sanitizer, isAbnormal));
         } else {
           tooltipMap.set(
               timestamp,
-              new GenericAnnotatedObservationTooltip(
+              [new GenericAnnotatedObservationTooltip(
                   true, series.legendInfo.fill)
-                  .getTooltip(obs, sanitizer, isAbnormal));
+                  .getTooltip(obs, sanitizer, isAbnormal)]);
         }
       }
     }
@@ -180,10 +185,10 @@ export class LineGraphData extends GraphData {
    *     abnormal.
    */
   private static addAbnormalValueTooltips(
-      tooltipMap: Map<string, string>,
+      tooltipMap: Map<string, AnnotatedTooltip[]>,
       sanitizer: DomSanitizer,
       labeledSeries: LabeledSeries[],
-      ): Map<string, string> {
+      ): Map<string, AnnotatedTooltip[]> {
     const alreadyMarked = new Set<string>();
     for (const series of labeledSeries) {
       // Add a tooltip for any value with an abnormal value.
@@ -200,17 +205,15 @@ export class LineGraphData extends GraphData {
           // timestamp so we stack the administrations on top of one
           // another in that case.
           if (tooltipMap.get(timestamp) && !alreadyMarked.has(timestamp)) {
-            tooltipMap.set(
-                timestamp,
-                tooltipMap.get(timestamp) +
-                    new GenericAbnormalTooltip(false, series.legendInfo.fill)
-                        .getTooltip(params, sanitizer));
+            tooltipMap.get(timestamp).push(
+              new GenericAbnormalTooltip(false, series.legendInfo.fill)
+                  .getTooltip(params, sanitizer));
             alreadyMarked.add(timestamp);
           } else if (!tooltipMap.get(timestamp)) {
             tooltipMap.set(
                 timestamp,
-                new GenericAbnormalTooltip(true, series.legendInfo.fill)
-                    .getTooltip(params, sanitizer));
+                [new GenericAbnormalTooltip(true, series.legendInfo.fill)
+                    .getTooltip(params, sanitizer)]);
           }
         }
       }
@@ -231,7 +234,7 @@ export class LineGraphData extends GraphData {
   static fromMedicationOrderSet(
       medicationOrderSet: MedicationOrderSet, dateRange: Interval,
       sanitizer: DomSanitizer, encounters: Encounter[]): LineGraphData {
-    const tooltipMap = new Map<string, string>();
+    const tooltipMap = new Map<string, AnnotatedTooltip[]>();
     const regions = new Array<[DateTime, DateTime]>();
     const precision = 0;
     for (const order of medicationOrderSet.resourceList) {
@@ -246,12 +249,12 @@ export class LineGraphData extends GraphData {
         // There may be multiple data points associated with the timestamp
         // so we stack the administrations on top of one another in that
         // case.
-        const tooltipText = new MedicationAdministrationTooltip().getTooltip(
+        const newTT = new MedicationAdministrationTooltip().getTooltip(
             [admin], sanitizer);
         if (tooltipMap.get(timestamp)) {
-          tooltipMap.set(timestamp, tooltipMap.get(timestamp) + tooltipText);
+          tooltipMap.get(timestamp).push(newTT);
         } else {
-          tooltipMap.set(timestamp, tooltipText);
+          tooltipMap.set(timestamp, [newTT]);
         }
       }
     }
@@ -287,7 +290,7 @@ export class LineGraphData extends GraphData {
     const lblSeries = LabeledSeries.fromObservationSetsDiscrete(
         observationGroup, yValue, label, encounters);
 
-    let tooltipMap = new Map<string, string>();
+    let tooltipMap = new Map<string, AnnotatedTooltip[]>();
     for (const observationSet of observationGroup) {
       for (const obs of observationSet.resourceList) {
         const isAbnormal = (obs.observation.interpretation &&
@@ -295,15 +298,13 @@ export class LineGraphData extends GraphData {
                             true : false;
         const tsString = obs.observation.timestamp.toMillis().toString();
         // Only add the timestamp to the tooltip for the first entry.
-        let tooltipText: string;
+        let newTT: AnnotatedTooltip;
         if (obs.observation.value) {
-          tooltipText =
-              new GenericAnnotatedObservationTooltip(
+          newTT = new GenericAnnotatedObservationTooltip(
                   !tooltipMap.has(tsString), lblSeries.legendInfo.fill)
                   .getTooltip(obs, sanitizer, isAbnormal);
         } else {
-          tooltipText =
-              new DiscreteObservationTooltip(!tooltipMap.has(tsString))
+          newTT = new DiscreteObservationTooltip(!tooltipMap.has(tsString))
                   .getTooltip([obs.observation], sanitizer);
         }
 
@@ -311,9 +312,9 @@ export class LineGraphData extends GraphData {
         // There may be multiple data points associated with the timestamp
         // so we stack the tooltips on top of one another in that case.
         if (tooltipMap.has(tsString)) {
-          tooltipMap.set(tsString, tooltipMap.get(tsString) + tooltipText);
+          tooltipMap.get(tsString).push(newTT);
         } else {
-          tooltipMap.set(tsString, tooltipText);
+          tooltipMap.set(tsString, [newTT]);
         }
       }
     }
