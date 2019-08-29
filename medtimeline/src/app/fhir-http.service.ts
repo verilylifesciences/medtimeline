@@ -24,13 +24,12 @@ import {ResultClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
-import {DiagnosticReport, DiagnosticReportStatus} from './fhir-data-classes/diagnostic-report';
+import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';
-const LESS_THAN = 'lt';
 
 @Injectable()
 export class FhirHttpService extends FhirService {
@@ -655,64 +654,16 @@ export class FhirHttpService extends FhirService {
   }
 
   /**
-   * Returns AnnotateDiagnosticReport from a specified date range with a specific
-   * DiagnosticReportCodeGroup code.
+   * TODO: This is currently just a placeholder so we can test fhir-mock.
+   * It does not return anything of value.
    *
+   * Should get diagnosticReport from a specified date range with a specific
+   * DiagnosticReportCodeGroup code.
    * @param code The DiagnosticReportCodeGroup for which to get observations.
    * @param dateRange The time interval observations should fall between.
    */
   getAnnotatedDiagnosticReports(code: DiagnosticReportCodeGroup, dateRange: Interval):
       Promise<AnnotatedDiagnosticReport[]> {
-    const queryParams = {
-      type: FhirResourceType.DiagnosticReport,
-      query: {
-        date: {
-          $and: [
-            GREATER_OR_EQUAL + dateRange.start.toISODate(),
-            // We are adding one millisecond to the end date because the specs for DiagnosticReport
-            // requires it to be greater or equal and strictly less than.
-            LESS_THAN + dateRange.end.plus({millisecond: 1}).toISODate()
-          ]
-        },
-      }
-    };
-
-    return this.smartApiPromise.then(
-      smartApi => {
-        return this.fetchAll(smartApi, queryParams,
-                (json, requestId) => new DiagnosticReport(json, requestId))
-          .then((results: DiagnosticReport[]) => {
-            const annotatedReportsArr = results.filter(
-              (result: DiagnosticReport) => result.status !== DiagnosticReportStatus.EnteredInError)
-              .map(report => this.addAttachment(report));
-            return Promise.all(annotatedReportsArr);
-          },
-          rejection => {
-            this.debugService.logError(rejection);
-            throw rejection;
-          }
-        );
-    });
-  }
-
-  /**
-   * Helper function that makes the HTTP call to get the html attachment.
-   * The responseType will always be text, and not the default json.
-   * If any error exists, it will catch the http error and return the message
-   * @param url Fhir link to location of data
-   */
-  getAttachment(url: string): Promise<string> {
-    return this.smartApiPromise.then(
-      smartApi => {
-        const httpHeaders = new HttpHeaders({
-          'Accept': 'text/html',
-          'Authorization': 'Bearer ' + smartApi.tokenResponse.access_token
-        });
-        return this.http.get(url,
-                {headers: httpHeaders,
-                responseType: 'text'}).toPromise()
-                  .then((res: any) => res)
-                  .catch(err => err.message);
-      });
+        return Promise.resolve([]);
   }
 }

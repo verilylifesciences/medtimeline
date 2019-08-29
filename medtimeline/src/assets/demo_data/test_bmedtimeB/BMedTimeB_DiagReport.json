@@ -1,0 +1,165 @@
+{
+    "entry": [
+        {
+            "fullUrl": "https://xxxxxxxx", 
+            "resource": {
+                "category": {
+                    "text": "RADRPT"
+                }, 
+                "code": {
+                    "text": "RADRPT"
+                }, 
+                "effectiveDateTime": "2019-02-11T20:03:09.000Z", 
+                "encounter": {
+                    "reference": "Encounter/EncounterID"
+                }, 
+                "id": "Mxxxxxxxxxxx", 
+                "issued": "2019-02-11T20:03:21.000Z", 
+                "meta": {
+                    "lastUpdated": "2019-02-11T20:03:21.000Z", 
+                    "versionId": "3"
+                }, 
+                "performer": {
+                    "display": "Interfaced-Unknown"
+                }, 
+                "presentedForm": [
+                    {
+                        "contentType": "text/html", 
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockXRay.html"
+                    }, 
+                    {
+                        "contentType": "application/pdf", 
+                        "url": "https://xxxxxxxx"
+                    }
+                ], 
+                "request": [
+                    {
+                        "reference": "ProcedureRequestID"
+                    }
+                ], 
+                "resourceType": "DiagnosticReport", 
+                "status": "unknown", 
+                "subject": {
+                    "display": "Peralta, Jake", 
+                    "reference": "Patient/PatientID"
+                }, 
+                "text": {
+                    "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p><p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p><p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: <ul><li>Song, River</li></ul></p></div>", 
+                    "status": "additional"
+                }
+            }
+        }, 
+        {
+            "fullUrl": "https://xxxxxxxx", 
+            "resource": {
+                "category": {
+                    "text": "RADRPT"
+                }, 
+                "code": {
+                    "text": "RADRPT"
+                }, 
+                "effectiveDateTime": "2019-02-12T22:31:02.000Z", 
+                "encounter": {
+                    "reference": "Encounter/EncounterID"
+                }, 
+                "id": "4135365", 
+                "issued": "2019-02-12T16:33:11.000Z", 
+                "meta": {
+                    "lastUpdated": "2019-02-12T16:33:16.000Z", 
+                    "versionId": "5"
+                }, 
+                "performer": {
+                    "display": "Chase, Robert", 
+                    "reference": "Practitioner/PractitionerID"
+                }, 
+                "presentedForm": [
+                    {
+                        "contentType": "text/html", 
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockCTReport.html"
+                    }, 
+                    {
+                        "contentType": "application/pdf", 
+                        "url": "https://xxxxxxxx"
+                    }
+                ], 
+                "request": [
+                    {
+                        "reference": "ProcedureRequest/ProcedureRequestID"
+                    }
+                ], 
+                "resourceType": "DiagnosticReport", 
+                "status": "final", 
+                "subject": {
+                    "display": "Peralta, Jake", 
+                    "reference": "Patient/PatientID"
+                }, 
+                "text": {
+                    "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p><p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p><p><b>Verifying Provider</b>: Chase, Robert</p><p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>", 
+                    "status": "additional"
+                }
+            }
+        }, 
+        {
+            "fullUrl": "https://xxxxxxxx", 
+            "resource": {
+                "category": {
+                    "text": "RADRPT"
+                }, 
+                "code": {
+                    "text": "RADRPT"
+                }, 
+                "effectiveDateTime": "2019-02-14T18:43:11.000Z", 
+                "encounter": {
+                    "reference": "Encounter/EncounterID"
+                }, 
+                "id": "3411366", 
+                "issued": "2019-02-14T18:43:26.000Z", 
+                "meta": {
+                    "lastUpdated": "2019-02-14T18:43:26.000Z", 
+                    "versionId": "2"
+                }, 
+                "performer": {
+                    "display": "House, Gregory", 
+                    "reference": "Practitioner/PractitionerID"
+                }, 
+                "presentedForm": [
+                    {
+                        "contentType": "text/html", 
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockMammogram_Benign.html"
+                    }, 
+                    {
+                        "contentType": "application/pdf", 
+                        "url": "https://xxxxxxxx"
+                    }
+                ], 
+                "request": [
+                    {
+                        "reference": "ProcedureRequest/ProcedureRequestID"
+                    }, 
+                    {
+                        "reference": "ProcedureRequest/ProcedureRequestID"
+                    }
+                ], 
+                "resourceType": "DiagnosticReport", 
+                "status": "unknown", 
+                "subject": {
+                    "display": "Peralta, Jake", 
+                    "reference": "Patient/PatientID"
+                }, 
+                "text": {
+                    "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p><p><b>Document Title</b>: XR Abdomen AP | XR Abdomen Series w/ Chest 1 View</p><p><b>Status</b>: Unknown</p><p><b>Verifying Provider</b>: House, Gregory</p><p><b>Ordering Provider</b>: <ul><li>Wilson, James</li><li>Cameron, Allison</li></ul></p></div>", 
+                    "status": "additional"
+                }
+            }
+        }
+    ], 
+    "id": "9791066f-1dcb-42ff-838a-ade00f4037f0", 
+    "link": [
+        {
+            "relation": "self", 
+            "url": "https://xxxxxxxx"
+        }
+    ], 
+    "resourceType": "Bundle", 
+    "type": "searchset"
+}
