@@ -28,7 +28,8 @@ export class FhirLaunchComponent implements OnInit {
     'launch', 'patient/Observation.read', 'patient/Patient.read',
     'patient/MedicationOrder.read', 'patient/MedicationAdministration.read',
     'patient/DocumentReference.read', 'patient/DocumentReference.write',
-    'patient/Encounter.read'
+    'patient/Encounter.read', 'patient/DiagnosticReport.read',
+    'patient/Binary.read'
   ].join(' ');
 
   // We hold these variables in-class for authentication debugging.

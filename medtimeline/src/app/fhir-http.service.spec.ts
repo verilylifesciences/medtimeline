@@ -6,6 +6,7 @@
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
@@ -13,14 +14,23 @@ import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {MedicationAdministration, RawMedicationAdministration} from './fhir-data-classes/medication-administration';
 import {FhirHttpService} from './fhir-http.service';
 import {makeSampleObservationJson} from './test_utils';
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {ChartType} from './graphtypes/graph/graph.component';
 
 describe('FhirHttpService', () => {
   let service: FhirHttpService;
   let clientReadyCallback: (any) => void;
   let clientError: (any) => void;
-  const smartApi = {patient: {api: {search: () => {}, nextPage: () => {}}}};
+  const smartApi = {
+    patient: {api: {search: () => {}, nextPage: () => {}}},
+    tokenResponse: {access_token: 'access_token'}
+  };
   const code = new LOINCCode(
       '44123', new DisplayGrouping('concept', 'red'), 'lbl1', true);
+  const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
+      service, 'radiology',
+      [DiagnosticReportCode.fromCodeString('RADRPT')],
+      new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
   const dateRange: Interval = Interval.fromDateTimes(
       DateTime.fromISO('2018-08-20T00:00:00.00'),
       DateTime.fromISO('2018-08-28T00:00:00.00'));
@@ -83,7 +93,51 @@ describe('FhirHttpService', () => {
     }
   };
 
+  const fullDiagnosticResponse = {
+    headers: (requestId) => '1234',
+    data: {
+      link: [],
+      entry: [
+        {
+          resource: {
+            category: {text: 'RADRPT'},
+            code: {text: 'RADRPT'},
+            effectiveDateTime: '2018-08-22T22:31:02.000Z',
+            id: 'id1',
+            presentedForm: [
+              {
+                contentType: 'text/html',
+                url: 'url'
+              },
+            ],
+            resourceType: 'DiagnosticReport',
+            status: 'unknown',
+            }
+        },
+        {
+          resource: {
+            category: {text: 'RADRPT'},
+            code: {text: 'RADRPT'},
+            effectiveDateTime: '2018-08-24T22:31:02.000Z',
+            id: 'id2',
+            presentedForm: [
+              {
+                contentType: 'text/html',
+                url: 'url'
+              },
+            ],
+            resourceType: 'DiagnosticReport',
+            status: 'final',
+            }
+        },
+      ]
+    }
+  };
+
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule]
+    });
     const smartOnFhirClient = {
       oauth2: {
         ready: (smart, err) => {
@@ -93,7 +147,7 @@ describe('FhirHttpService', () => {
       }
     };
     service = new FhirHttpService(
-        null, smartOnFhirClient, TestBed.get(DomSanitizer), undefined);
+        null, smartOnFhirClient, TestBed.get(DomSanitizer), TestBed.get(HttpClient));
   });
 
 
@@ -447,4 +501,169 @@ describe('FhirHttpService', () => {
              done();
            });
      });
+
+  it('getAnnotatedDiagnosticReport should return AnnotatedDiagnosticReport ' +
+    'and call getAttachment()', (done: DoneFn) => {
+      // We are not actually calling the getAttachment or search
+      // functions. We are setting a default return value.
+      const serviceSpy = spyOn(service, 'getAttachment')
+        .and.returnValue(Promise.resolve('mockhtml'));
+      const diagnosticReadSpy = spyOn(smartApi.patient.api, 'search')
+        .and.returnValue(Promise.resolve(fullDiagnosticResponse));
+      clientReadyCallback(smartApi);
+      service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
+        .then(annotatedReports => {
+          expect(annotatedReports.length).toBe(2);
+          expect(diagnosticReadSpy.calls.count()).toBe(1);
+          expect(annotatedReports[0].report.id).toEqual('id1');
+          expect(annotatedReports[1].report.id).toEqual('id2');
+          for (const annotatedR of annotatedReports) {
+            expect(annotatedR.attachmentHtml).toEqual('mockhtml');
+          }
+          expect(serviceSpy).toHaveBeenCalled();
+          done();
+        });
+    });
+
+  it('getAnnotatedDiagnosticReport should return AnnotatedDiagnosticReport ' +
+    'with undefined attachmentHtml if the presentedForm does not exist',
+     (done: DoneFn) => {
+      const diagnosticResponseWithoutPresentedForm = {
+        headers: (requestId) => '1234',
+        data: {
+          link: [],
+          entry: [
+            {
+              resource: {
+                category: {text: 'RADRPT'},
+                code: {text: 'RADRPT'},
+                effectiveDateTime: '2018-08-22T22:31:02.000Z',
+                id: 'id123',
+                resourceType: 'DiagnosticReport',
+                status: 'unknown',
+                }
+            }
+          ]
+        }
+      };
+       const diagnosticReadSpy = spyOn(smartApi.patient.api, 'search')
+          .and.returnValue(Promise.resolve(diagnosticResponseWithoutPresentedForm));
+       clientReadyCallback(smartApi);
+       service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
+        .then(annotatedReports => {
+          expect(annotatedReports.length).toBe(1);
+          expect(diagnosticReadSpy.calls.count()).toBe(1);
+          expect(annotatedReports[0].report.id).toEqual('id123');
+          expect(annotatedReports[0].attachmentHtml).toBeUndefined();
+          done();
+       });
+    });
+
+  it('getAnnotatedDiagnosticReport should return AnnotatedDiagnosticReport ' +
+    'with undefined attachmentHtml if the presentedForm type is not text/html',
+    (done: DoneFn) => {
+    const diagnosticResponseWithWrongContentType = {
+      headers: (requestId) => '1234',
+      data: {
+        link: [],
+        entry: [
+          {
+            resource: {
+              category: {text: 'RADRPT'},
+              code: {text: 'RADRPT'},
+              effectiveDateTime: '2018-08-22T22:31:02.000Z',
+              id: 'id123',
+              presentedForm: [
+                {
+                  contentType: 'wrongtype',
+                  url: 'url'
+                },
+              ],
+              resourceType: 'DiagnosticReport',
+              status: 'unknown',
+              }
+          }
+        ]
+      }
+    };
+     const diagnosticReadSpy = spyOn(smartApi.patient.api, 'search')
+        .and.returnValue(Promise.resolve(diagnosticResponseWithWrongContentType));
+     clientReadyCallback(smartApi);
+     service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
+      .then(annotatedReports => {
+        expect(annotatedReports.length).toBe(1);
+        expect(diagnosticReadSpy.calls.count()).toBe(1);
+        expect(annotatedReports[0].report.id).toEqual('id123');
+        expect(annotatedReports[0].attachmentHtml).toBeUndefined();
+        done();
+     });
+  });
+
+  it('getAnnotatedDiagnosticReport should filter out reports with status' +
+  ' of EnteredInError',
+   (done: DoneFn) => {
+    const diagnosticResponseErrorStatus = {
+      headers: (requestId) => '1234',
+      data: {
+        link: [],
+        entry: [
+          {
+            resource: {
+              category: {text: 'RADRPT'},
+              code: {text: 'RADRPT'},
+              effectiveDateTime: '2018-08-22T22:31:02.000Z',
+              id: 'id123',
+              resourceType: 'DiagnosticReport',
+              status: 'final',
+              }
+          },
+          { // This should not be returned
+            resource: {
+              category: {text: 'RADRPT'},
+              code: {text: 'RADRPT'},
+              effectiveDateTime: '2018-08-23T22:31:02.000Z',
+              id: 'idwrong',
+              resourceType: 'DiagnosticReport',
+              status: 'entered-in-error',
+              }
+          }
+        ]
+      }
+    };
+    const diagnosticReadSpy = spyOn(smartApi.patient.api, 'search')
+      .and.returnValue(Promise.resolve(diagnosticResponseErrorStatus));
+    clientReadyCallback(smartApi);
+    service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
+      .then(annotatedReports => {
+      // One of the input has 'entered-in-error' status and an annotated
+      // diagnostic report should not be created.
+      expect(annotatedReports.length).toBe(1);
+      expect(diagnosticReadSpy.calls.count()).toBe(1);
+      expect(annotatedReports[0].report.id).toEqual('id123');
+      done();
+    });
+  });
+
+  it('getAttachment should correctly catch error if there is a faulty url',
+      (done: DoneFn) => {
+    // We are calling the original getAttachment function to check the error
+    // message in the html calls
+    const serviceSpy = spyOn(service, 'getAttachment').and.callThrough();
+    const diagnosticReadSpy = spyOn(smartApi.patient.api, 'search')
+      .and.returnValue(Promise.resolve(fullDiagnosticResponse));
+    clientReadyCallback(smartApi);
+    service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
+      .then(annotatedReports => {
+        expect(annotatedReports.length).toBe(2);
+        expect(diagnosticReadSpy.calls.count()).toBe(1);
+        expect(annotatedReports[0].report.id).toEqual('id1');
+        expect(annotatedReports[1].report.id).toEqual('id2');
+        for (const annotatedR of annotatedReports) {
+          expect(annotatedR.attachmentHtml)
+            .toEqual('Http failure response for http://localhost:9876/url: 404 Not Found');
+        }
+        expect(serviceSpy).toHaveBeenCalled();
+        done();
+      });
+  });
 });

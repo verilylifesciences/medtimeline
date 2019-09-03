@@ -79,6 +79,10 @@ export class StubFhirService extends FhirService {
       Promise<AnnotatedDiagnosticReport[]> {
     return Promise.resolve([]);
   }
+
+  getAttachment(url: string): Promise<string> {
+    return Promise.resolve('');
+  }
 }
 
 export function makeSampleObservationJson(

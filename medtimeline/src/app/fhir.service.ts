@@ -185,4 +185,42 @@ export abstract class FhirService {
   abstract getAnnotatedDiagnosticReports(
       codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<AnnotatedDiagnosticReport[]>;
+
+  /**
+   * Helper function to getAnnotatedDiagnosticReports() that makes the http calls
+   * to get the corresponding html attachments. Creates a new AnnotatedDiagnosticReport
+   * that includes the html attachment.
+   *
+   * @param report DiagnosticReport that will be edited to include the
+   * html attachment in string format
+   */
+  addAttachment(report: DiagnosticReport):
+      Promise<AnnotatedDiagnosticReport> {
+    if (report.presentedForm) {
+      for (const presented of report.presentedForm) {
+        // Currently Cerner only supports text/html files and not pdf
+        if (presented.contentType === 'text/html') {
+          return this.getAttachment(presented.url)
+            .then(html => {
+              return new AnnotatedDiagnosticReport(report, html);
+            });
+        }
+      }
+    }
+    // If there is no presentedForm section in the report or none of the presentedForm
+    // contentTypes are 'text/html', return the annotated diagnostic report without
+    // the attachment.
+    return Promise.resolve(new AnnotatedDiagnosticReport(report));
+  }
+
+  /**
+   * Helper function that makes the HTTP call to get the html attachment.
+   * The responseType will always be text, and not the default json.
+   * If any error exists, it will catch the http error and return the message
+   *
+   * We will overwrite the abstract function because http and mock have
+   * different authentication processes.
+   * @param url Fhir link to location of data
+   */
+  abstract getAttachment(url: string): Promise<string>;
 }
