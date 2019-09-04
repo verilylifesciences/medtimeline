@@ -31,7 +31,7 @@ export class DiagnosticTooltip extends Tooltip<AnnotatedDiagnosticReport> {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
     if (annotatedReport.text) {
-      const htmlText = annotatedReport.text.narrative.div;
+      const htmlText = annotatedReport.text.div;
       Tooltip.addHeader(UI_CONSTANTS.SUMMARY, table, sanitizer);
       Tooltip.addRow(table, [htmlText], sanitizer);
     } else {

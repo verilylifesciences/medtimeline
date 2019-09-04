@@ -242,9 +242,11 @@ export class ResourceCodeManager {
   ];
 
   // TODO- Issue #30: Add more codes to DiagnosticReportCode as we get more data
+  // The values 'RADRPT' and 'CT Report' are not actually in the official FHIR
+  // documentation, but are seen in the Cerner sandbox. 
   private static radiologyGroup = [
     new DiagnosticReportCode('RADRPT', radiology, 'Radiology Report', true),
-    new DiagnosticReportCode('CT', radiology, 'CT Report', true)
+    new DiagnosticReportCode('CT Report', radiology, 'CT Report', true)
   ];
 
   private static typeToPairs: Array<[DisplayGrouping, LOINCCode[]]> = [

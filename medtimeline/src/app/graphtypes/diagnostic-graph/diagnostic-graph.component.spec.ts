@@ -99,7 +99,7 @@ describe('DiagnosticGraphComponent', () => {
 
   it('should populate chartData correctly', () => {
     expect(component.chartData.map(d => d.label))
-      .toEqual(['1-XR Wrist Complete Left', '2-CT Abdomen w/ Contrast']);
+      .toEqual(['1-RAD', '2-CT']);
   });
 
   it('should create correct TooltipMap', () => {

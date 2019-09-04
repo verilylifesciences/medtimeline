@@ -44,7 +44,7 @@ describe('DiagnosticGraphData', () => {
 
       const series1 = diagnosticgraphdata.series[0];
       expect(series1.coordinates[0]).toEqual([
-        DateTime.fromISO('2019-02-11T20:03:09.000Z'), 'XR']);
+        DateTime.fromISO('2019-02-11T20:03:09.000Z'), 'RAD']);
 
       const series2 = diagnosticgraphdata.series[1];
       expect(series2.coordinates[0]).toEqual([

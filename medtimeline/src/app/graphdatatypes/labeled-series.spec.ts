@@ -427,7 +427,7 @@ describe('LabeledSeries', () => {
         const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
           DateTime.utc());
         expect(series.length).toEqual(1);
-        expect(series[0].label).toEqual('1-XR Wrist Complete Left');
+        expect(series[0].label).toEqual('1-RAD');
       });
 
   it ('fromDiagnosticReport should make correct seriesLabel even if ' +
@@ -437,12 +437,12 @@ describe('LabeledSeries', () => {
         const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
           DateTime.utc());
         expect(series.length).toEqual(1);
-        expect(series[0].label).toEqual('2-unnamedReport');
+        expect(series[0].label).toEqual('2-RAD');
       });
 
   it('fromDiagnosticReports should correctly calculate ' +
       'time and position for each Diagnostic Report Observation even if ' +
-      'annotatedReport.text (AnnotatedNarrative) does not exist',
+      'annotatedReport.text (Narrative) does not exist',
       () => {
         const diagnosticReport = makeDiagnosticReportWithoutTextField();
         const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);

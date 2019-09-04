@@ -6,7 +6,6 @@
 import {TimestampedObject} from '../fhir-resource-set';
 import {DiagnosticReport} from './diagnostic-report';
 import {Narrative} from './narrative';
-import {AnnotatedNarrative} from './annotated-narrative';
 
 /**
  * A diagnostic report with Narrative text extended.
@@ -18,7 +17,7 @@ export class AnnotatedDiagnosticReport extends TimestampedObject {
   readonly report: DiagnosticReport;
 
   /** Text containing details of the radiology report */
-  readonly text: AnnotatedNarrative;
+  readonly text: Narrative;
 
   /** HTML string reflecting the content inside the url. */
   readonly attachmentHtml: string;
@@ -29,8 +28,7 @@ export class AnnotatedDiagnosticReport extends TimestampedObject {
     // Grabbing information from the html text in json only if
     // it exists
     if (report.json.text) {
-      const narrative = new Narrative(report.json.text);
-      this.text = new AnnotatedNarrative(narrative);
+      this.text = new Narrative(report.json.text);
     }
 
     if (attachmentHtml) {

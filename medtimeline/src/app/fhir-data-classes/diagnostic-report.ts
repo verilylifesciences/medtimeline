@@ -46,7 +46,9 @@ const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
 /**
  * FHIR element for DiagnosticServiceSectionCodes, from the DSTU2 version
  * of the standard. Used to represent the department/diagnostic service
- * that created the request.
+ * that created the request. The section codes that we are currently
+ * using are not in the FHIR documentation, but are in the examples
+ * given in the Cerner sandbox environment.
  * TODO: Add more codes when we get more data. (Issue #30)
  * http://hl7.org/fhir/DSTU2/valueset-diagnostic-service-sections.html
  */
@@ -57,7 +59,7 @@ export enum DiagnosticServiceSectionCodes {
 
 const categoryToEnumMap = new Map<string, DiagnosticServiceSectionCodes>([
   ['RADRPT', DiagnosticServiceSectionCodes.RadiologyReport],
-  ['CT', DiagnosticServiceSectionCodes.CTReport],
+  ['CT Report', DiagnosticServiceSectionCodes.CTReport],
 ]);
 
 /**

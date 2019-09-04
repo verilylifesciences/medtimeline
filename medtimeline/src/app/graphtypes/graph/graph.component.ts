@@ -18,7 +18,6 @@ import {v4 as uuid} from 'uuid';
 
 import {StandardTooltip} from '../tooltips/tooltip';
 import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
-import { AnnotatedNarrative } from 'src/app/fhir-data-classes/annotated-narrative';
 
 export enum ChartType {
   SCATTER,

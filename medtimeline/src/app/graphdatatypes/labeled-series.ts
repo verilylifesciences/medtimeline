@@ -406,16 +406,11 @@ export class LabeledSeries {
    static fromDiagnosticReport(annotatedReport: AnnotatedDiagnosticReport, date: DateTime):
        LabeledSeries[] {
      const report = annotatedReport.report;
-     const seriesLabel = report.id + '-' + (annotatedReport.text ? annotatedReport.text.title : 'unnamedReport');
+     const seriesLabel = report.id + '-' + (annotatedReport.report ? annotatedReport.report.category : 'unnamedReport');
      let coordinates: Array<[DateTime, number | string]> = [];
 
-     if (annotatedReport.text) {
-       coordinates = [[report.timestamp, annotatedReport.text.modality]];
-     } else {
-       // If the additional text (Narrative) does not exist, we will
-       // display the points according to the category
-       coordinates = [[report.timestamp, report.category]];
-     }
+     // We are setting the coordinates to the category of the document (RADRPT, CT Report, etc.)
+     coordinates = [[report.timestamp, report.category]];
      const series = [new LabeledSeries(seriesLabel, coordinates,
                                    undefined, // unit
                                    radiology)];

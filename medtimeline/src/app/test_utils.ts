@@ -474,10 +474,10 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
     new DiagnosticReport(
       {
         category: {
-            text: 'RADRPT'
+            text: 'CT Report'
         },
         code: {
-            text: 'RADRPT'
+            text: 'CT Report'
         },
         effectiveDateTime: '2019-02-12T22:31:02.000Z',
         encounter: {
@@ -515,7 +515,7 @@ export function makeDiagnosticReports(): DiagnosticReport[] {
             reference: 'Patient/1316020'
         },
         text: {
-            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
+            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: CT Report</p>' +
             '<p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p>' +
             '<p><b>Verifying Provider</b>: Chase, Robert</p>' +
             '<p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>',

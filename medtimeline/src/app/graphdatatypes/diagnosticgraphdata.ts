@@ -16,7 +16,7 @@ import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 /**
  * DiagnosticGraphData holds configurations for a diagnosticReport graph. The format
  * of a diagnostic graph is simliar to a step graph in that each y-axis
- * position represents a single modality test, and points plotted along
+ * position represents a report category, and points plotted along
  * that position represent results for that test.
  */
 

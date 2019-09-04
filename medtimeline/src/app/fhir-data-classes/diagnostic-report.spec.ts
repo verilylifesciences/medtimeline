@@ -86,54 +86,12 @@ describe('DiagnosticReport', () => {
   it('should get correct text from radiology json', () => {
     const dr = new DiagnosticReport(SAMPLE_RADIOLOGY, REQUEST_ID);
     const annotatedDr = new AnnotatedDiagnosticReport(dr);
-    expect(annotatedDr.text.modality).toEqual('XR');
-    expect(annotatedDr.text.title).toEqual('XR Wrist Complete Left');
-    expect(annotatedDr.text.narrative.status).toEqual('additional');
-    expect(annotatedDr.text.narrative.div).toEqual(
+    expect(annotatedDr.text.status).toEqual('additional');
+    expect(annotatedDr.text.div).toEqual(
       '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
       '<p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p>' +
       '<p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: ' +
       '<ul><li>Song, River</li></ul></p></div>');
-  });
-
-  it('should return an empty title and modalty if the html text does not contain title section', () => {
-    const sample_radiology_wrong_modality = {
-      status: 'final',
-      code: {
-        text: 'RADRPT'
-      },
-      text: {
-        div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
-        '<p>Where Title Should Have Been</p><p><b>Status</b>: Unknown</p>' +
-        '<p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: ' +
-        '<ul><li>Song, River</li></ul></p></div>',
-        status: 'additional'
-      }
-    };
-    const dr = new DiagnosticReport(sample_radiology_wrong_modality, REQUEST_ID);
-    const annotatedDr = new AnnotatedDiagnosticReport(dr);
-    expect(annotatedDr.text.title).toBe('');
-    expect(annotatedDr.text.modality).toBe('');
-  });
-
-  it('should return an empty title and modality if the html text has more than one title section', () => {
-    const sample_radiology_wrong_modality = {
-      status: 'final',
-      code: {
-        text: 'RADRPT'
-      },
-      text: {
-        div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
-        '<p><b>Document Title</b>: XR Wrist Complete Left<b>Document Title</b>: Second Title</p>' +
-        '<p><b>Status</b>: Unknown</p><p><b>Verifying Provider</b>: Interfaced-Unknown</p>' +
-        '<p><b>Ordering Provider</b>: <ul><li>Song, River</li></ul></p></div>',
-        status: 'additional'
-      }
-    };
-    const dr = new DiagnosticReport(sample_radiology_wrong_modality, REQUEST_ID);
-    const annotatedDr = new AnnotatedDiagnosticReport(dr);
-    expect(annotatedDr.text.title).toBe('');
-    expect(annotatedDr.text.modality).toBe('');
   });
 
   it('should get effectiveDate from radiology json', () => {
