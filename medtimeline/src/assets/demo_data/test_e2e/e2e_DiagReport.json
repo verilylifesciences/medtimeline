@@ -11,9 +11,9 @@
                 }, 
                 "effectiveDateTime": "2019-02-11T20:03:09.000Z", 
                 "encounter": {
-                    "reference": "Encounter/2787906"
+                    "reference": "Encounter/EncounterID"
                 }, 
-                "id": "5153487", 
+                "id": "Mxxxxxxxxxxx", 
                 "issued": "2019-02-11T20:03:21.000Z", 
                 "meta": {
                     "lastUpdated": "2019-02-11T20:03:21.000Z", 
@@ -25,23 +25,23 @@
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-5153487"
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockXRay.html"
                     }, 
                     {
                         "contentType": "application/pdf", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-5153487"
+                        "url": "https://xxxxxxxx"
                     }
                 ], 
                 "request": [
                     {
-                        "reference": "ProcedureRequest/18954087"
+                        "reference": "ProcedureRequestID"
                     }
                 ], 
                 "resourceType": "DiagnosticReport", 
                 "status": "unknown", 
                 "subject": {
                     "display": "Peralta, Jake", 
-                    "reference": "Patient/1316020"
+                    "reference": "Patient/PatientID"
                 }, 
                 "text": {
                     "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p><p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p><p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: <ul><li>Song, River</li></ul></p></div>", 
@@ -60,7 +60,7 @@
                 }, 
                 "effectiveDateTime": "2019-02-12T22:31:02.000Z", 
                 "encounter": {
-                    "reference": "Encounter/2153909"
+                    "reference": "Encounter/EncounterID"
                 }, 
                 "id": "4135365", 
                 "issued": "2019-02-12T16:33:11.000Z", 
@@ -70,28 +70,28 @@
                 }, 
                 "performer": {
                     "display": "Chase, Robert", 
-                    "reference": "Practitioner/1314015"
+                    "reference": "Practitioner/PractitionerID"
                 }, 
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365"
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockCTReport.html"
                     }, 
                     {
                         "contentType": "application/pdf", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365"
+                        "url": "https://xxxxxxxx"
                     }
                 ], 
                 "request": [
                     {
-                        "reference": "ProcedureRequest/17233929"
+                        "reference": "ProcedureRequest/ProcedureRequestID"
                     }
                 ], 
                 "resourceType": "DiagnosticReport", 
                 "status": "final", 
                 "subject": {
                     "display": "Peralta, Jake", 
-                    "reference": "Patient/1316020"
+                    "reference": "Patient/PatientID"
                 }, 
                 "text": {
                     "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: CT Report</p><p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p><p><b>Verifying Provider</b>: Chase, Robert</p><p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>", 
@@ -110,7 +110,7 @@
                 }, 
                 "effectiveDateTime": "2019-02-14T18:43:11.000Z", 
                 "encounter": {
-                    "reference": "Encounter/1309912"
+                    "reference": "Encounter/EncounterID"
                 }, 
                 "id": "3411366", 
                 "issued": "2019-02-14T18:43:26.000Z", 
@@ -120,31 +120,31 @@
                 }, 
                 "performer": {
                     "display": "House, Gregory", 
-                    "reference": "Practitioner/1985700"
+                    "reference": "Practitioner/PractitionerID"
                 }, 
                 "presentedForm": [
                     {
                         "contentType": "text/html", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-3411366"
+                        "url": "assets/demo_data/test_bmedtimeB/BMedTimeB_mockMammogram_Benign.html"
                     }, 
                     {
                         "contentType": "application/pdf", 
-                        "url": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-3411366"
+                        "url": "https://xxxxxxxx"
                     }
                 ], 
                 "request": [
                     {
-                        "reference": "ProcedureRequest/15785901"
+                        "reference": "ProcedureRequest/ProcedureRequestID"
                     }, 
                     {
-                        "reference": "ProcedureRequest/15717975"
+                        "reference": "ProcedureRequest/ProcedureRequestID"
                     }
                 ], 
                 "resourceType": "DiagnosticReport", 
                 "status": "unknown", 
                 "subject": {
                     "display": "Peralta, Jake", 
-                    "reference": "Patient/1316020"
+                    "reference": "Patient/PatientID"
                 }, 
                 "text": {
                     "div": "<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p><p><b>Document Title</b>: XR Abdomen AP | XR Abdomen Series w/ Chest 1 View</p><p><b>Status</b>: Unknown</p><p><b>Verifying Provider</b>: House, Gregory</p><p><b>Ordering Provider</b>: <ul><li>Wilson, James</li><li>Cameron, Allison</li></ul></p></div>", 

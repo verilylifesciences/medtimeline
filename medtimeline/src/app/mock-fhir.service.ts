@@ -12,18 +12,19 @@ import {v4 as uuid} from 'uuid';
 import {environment} from '../environments/environment';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
+import {AnnotatedMicrobioReport} from './fhir-data-classes/annotated-microbio-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 @Injectable()
 export class MockFhirService extends FhirService {
@@ -37,7 +38,8 @@ export class MockFhirService extends FhirService {
   private readonly medicationAdministrationMapByOrderId =
       new Map<string, MedicationAdministration[]>();
   private readonly medicationOrderMap = new Map<string, MedicationOrder[]>();
-  private readonly diagnosticReportMap = new Map<ResourceCode, DiagnosticReport[]>();
+  private readonly diagnosticReportMap =
+      new Map<ResourceCode, DiagnosticReport[]>();
   private readonly encounters = new Array<Encounter>();
   private readonly allDataPromise: Promise<void[]>;
   private microbioJson: JSON;
@@ -111,11 +113,11 @@ export class MockFhirService extends FhirService {
 
             // Not used for microbio data, but only for diagnosticReport data
             if (resourceType === FhirResourceType.DiagnosticReport) {
-                this.constructResourceMap(
+              this.constructResourceMap(
                   json, this.diagnosticReportMap,
                   (d) => new DiagnosticReport(d, mockRequestId),
                   (report) => [report.code]);
-                }
+            }
           }
         } catch {
           console.warn(
@@ -249,27 +251,34 @@ export class MockFhirService extends FhirService {
       codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<MicrobioReport[]> {
     return this.allDataPromise.then(x => {
-      return MicrobioReport.parseAndFilterMicrobioData(
-          this.microbioJson, codeGroup);
-  });
-}
+      const microbioReports =
+          MicrobioReport
+              .parseAndFilterMicrobioData(this.microbioJson, codeGroup)
+              .filter(
+                  report => dateRange.contains(
+                      new AnnotatedMicrobioReport(report).timestamp));
+      return microbioReports.slice(0, limitCount ? limitCount : undefined);
+    });
+  }
 
   /**
-   * Gets the AnnotatedDiagnosticReports for the patient for any report that falls in
-   * the given date range, whose contained Observations are in the codeGroup
-   * provided. Gets the html attachments linked in the json files as well.
+   * Gets the AnnotatedDiagnosticReports for the patient for any report that
+   * falls in the given date range, whose contained Observations are in the
+   * codeGroup provided. Gets the html attachments linked in the json files as
+   * well.
    *
-   * We are returning AnnotatedDiagnosticReport rather than DiagnosticReport because
-   * we need to access the html attachments.
+   * We are returning AnnotatedDiagnosticReport rather than DiagnosticReport
+   * because we need to access the html attachments.
    * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-   * @param dateRange Return all AnnotatedDiagnosticReports that covered any time in
-   *     this date range.
+   * @param dateRange Return all AnnotatedDiagnosticReports that covered any
+   *     time in this date range.
    */
   getAnnotatedDiagnosticReports(
       codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
       limitCount?: number): Promise<AnnotatedDiagnosticReport[]> {
     return this.allDataPromise.then(x => {
-      const annotatedReportsArr = new Array<Promise<AnnotatedDiagnosticReport>>();
+      const annotatedReportsArr =
+          new Array<Promise<AnnotatedDiagnosticReport>>();
       for (const code of codeGroup.resourceCodes) {
         if (this.diagnosticReportMap.has(code)) {
           const reports = this.diagnosticReportMap.get(code);
@@ -279,8 +288,9 @@ export class MockFhirService extends FhirService {
         }
       }
       return Promise.all(annotatedReportsArr).then(annotatedReports => {
-        annotatedReports.slice(0, limitCount ? limitCount : undefined);
-        return annotatedReports;
+        annotatedReports = annotatedReports.filter(
+            report => dateRange.contains(report.timestamp));
+        return annotatedReports.slice(0, limitCount ? limitCount : undefined);
       });
     });
   }
@@ -292,8 +302,9 @@ export class MockFhirService extends FhirService {
    * @param url Fhir link to location of data
    */
   getAttachment(url: string): Promise<string> {
-    return this.http.get(url, {responseType: 'text'}).toPromise()
-      .then((res: any) => res)
-      .catch((err => err.message));
+    return this.http.get(url, {responseType: 'text'})
+        .toPromise()
+        .then((res: any) => res)
+        .catch((err => err.message));
   }
 }
