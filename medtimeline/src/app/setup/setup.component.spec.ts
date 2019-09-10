@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
+import {MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {By, DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,7 +33,7 @@ describe('SetupComponent', () => {
             MatToolbarModule, MatCheckboxModule, MatFormFieldModule,
             ReactiveFormsModule, FormsModule, MatInputModule,
             BrowserAnimationsModule, MatIconModule, MatRadioModule,
-            MatExpansionModule, MatGridListModule
+            MatExpansionModule
           ],
           providers: [
             {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},

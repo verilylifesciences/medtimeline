@@ -180,18 +180,12 @@ describe('MedicationOrder', () => {
 
           expect(annotated[0].medAdministration)
               .toEqual(earliestAdministration);
-          expect(annotated[0].doseDay).toEqual(1);
-          expect(annotated[0].doseInOrder).toEqual(1);
           expect(annotated[0].previousDose).toBeUndefined();
 
           expect(annotated[1].medAdministration).toEqual(middleAdministration);
-          expect(annotated[1].doseDay).toEqual(6);
-          expect(annotated[1].doseInOrder).toEqual(2);
           expect(annotated[1].previousDose).toEqual(annotated[0]);
 
           expect(annotated[2].medAdministration).toEqual(latestAdministration);
-          expect(annotated[2].doseDay).toEqual(15);
-          expect(annotated[2].doseInOrder).toEqual(3);
           expect(annotated[2].previousDose).toEqual(annotated[1]);
         });
   });
@@ -215,13 +209,13 @@ describe('MedicationOrderSet', () => {
     // Set administrations manually to avoid FHIR call.
     order.administrationsForOrder = new MedicationAdministrationSet(
         // annotations not important for this test
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x, 0, 0)));
+        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
     order.firstAdministration = medAdmin1;
     order.lastAdmininistration = medAdmin2;
 
     order2.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order2.firstAdministration = medAdmin1Order2;
     order2.lastAdmininistration = medAdmin2Order2;
 
@@ -241,7 +235,7 @@ describe('MedicationOrderSet', () => {
     order.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order.firstAdministration = medAdmin1;
     order.lastAdmininistration = medAdmin2;
 
@@ -270,7 +264,7 @@ describe('MedicationOrderSet', () => {
     order.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order.firstAdministration = medicationAdministrations[0];
     order.lastAdmininistration = medicationAdministrations[0];
 
@@ -278,7 +272,7 @@ describe('MedicationOrderSet', () => {
     order2.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations2.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order2.firstAdministration = medicationAdministrations2[0];
     order2.lastAdmininistration = medicationAdministrations2[0];
 
@@ -311,12 +305,12 @@ describe('MedicationOrderSet', () => {
     order.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     const order2 = makeMedicationOrder();
     order2.administrationsForOrder =
         new MedicationAdministrationSet(medicationAdministrations2.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
 
     expect(() => {
       const x = new MedicationOrderSet([order, order2]);

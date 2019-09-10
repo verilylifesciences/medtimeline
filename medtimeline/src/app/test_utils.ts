@@ -9,17 +9,17 @@
 import {DateTime, Interval} from 'luxon';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
+import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
-import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 const REQUEST_ID = '1234';
 
@@ -75,8 +75,9 @@ export class StubFhirService extends FhirService {
     return Promise.resolve([]);
   }
 
-  getAnnotatedDiagnosticReports(codeGroup: DiagnosticReportCodeGroup, dateRange: Interval):
-      Promise<AnnotatedDiagnosticReport[]> {
+  getAnnotatedDiagnosticReports(
+      codeGroup: DiagnosticReportCodeGroup,
+      dateRange: Interval): Promise<AnnotatedDiagnosticReport[]> {
     return Promise.resolve([]);
   }
 
@@ -156,7 +157,7 @@ export function makeMedicationAdministration(timestamp: string, dose = 50) {
           text: dose + 'mg tablet daily'
         },
         medicationCodeableConcept: medicationCodingConcept,
-        prescription: 'order_id'
+        prescription: {reference: 'MedicationOrder/12'}
       },
       REQUEST_ID);
 }
@@ -166,7 +167,7 @@ export function makeMedicationOrder(): MedicationOrder {
       {
         medicationReference: {display: 'vancomycin'},
         medicationCodeableConcept: medicationCodingConcept,
-        id: 'order_id'
+        id: 12
       },
       REQUEST_ID);
 }
@@ -358,219 +359,169 @@ export function makeMicrobioReports(): MicrobioReport[] {
 }
 
 export function makePartialMicrobioReports(): MicrobioReport[] {
-  return [
-    new MicrobioReport(
-        {
-          id: 'id',
-          contained: [
-            {
-              resourceType: 'Specimen',
-              id: '1',
-              type: {text: 'Stool'},
-              collection:
-                  {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+  return [new MicrobioReport(
+      {
+        id: 'id',
+        contained: [
+          {
+            resourceType: 'Specimen',
+            id: '1',
+            type: {text: 'Stool'},
+            collection: {collectedPeriod: {start: '2018-08-31T13:48:00-04:00'}}
+          },
+          {
+            resourceType: 'Observation',
+            id: '2',
+            code: {
+              coding: [{
+                system: 'http://cerner.com/bch_mapping/',
+                code: 'OVAANDPARASITEEXAM',
+                display: 'Ova and Parasite Exam'
+              }]
             },
-            {
-              resourceType: 'Observation',
-              id: '2',
-              code: {
-                coding: [{
-                  system: 'http://cerner.com/bch_mapping/',
-                  code: 'OVAANDPARASITEEXAM',
-                  display: 'Ova and Parasite Exam'
-                }]
-              },
-              interpretation: {
-                coding: [{
-                  system:
-                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
-                  code: 'NEGORFLORA',
-                  display: 'Neg or Flora'
-                }]
-              }
-            },
-            {
-              resourceType: 'Observation',
-              id: '3',
-              code: {
-                coding: [{
-                  system: 'http://cerner.com/bch_mapping/',
-                  code: 'SALMONELLAANDSHIGELLACULTURE',
-                  display: 'Salmonella and Shigella Culture'
-                }]
-              },
-              interpretation: {
-                coding: [{
-                  system:
-                      'http://hl7.org/fhir/ValueSet/observation-interpretation',
-                  code: 'CHECKRESULT',
-                  display: 'Check Result'
-                }]
-              }
+            interpretation: {
+              coding: [{
+                system:
+                    'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                code: 'NEGORFLORA',
+                display: 'Neg or Flora'
+              }]
             }
-          ],
-          status: 'partial',
-          category:
-              {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
-        },
-        REQUEST_ID)
-    ];
+          },
+          {
+            resourceType: 'Observation',
+            id: '3',
+            code: {
+              coding: [{
+                system: 'http://cerner.com/bch_mapping/',
+                code: 'SALMONELLAANDSHIGELLACULTURE',
+                display: 'Salmonella and Shigella Culture'
+              }]
+            },
+            interpretation: {
+              coding: [{
+                system:
+                    'http://hl7.org/fhir/ValueSet/observation-interpretation',
+                code: 'CHECKRESULT',
+                display: 'Check Result'
+              }]
+            }
+          }
+        ],
+        status: 'partial',
+        category:
+            {coding: [{system: 'http://hl7.org/fhir/v2/0074', code: 'MB'}]},
+      },
+      REQUEST_ID)];
 }
 
 export function makeDiagnosticReports(): DiagnosticReport[] {
   return [
     new DiagnosticReport(
-      {
-        category: {
-            text: 'RADRPT'
-        },
-        code: {
-            text: 'RADRPT'
-        },
-        effectiveDateTime: '2019-02-11T20:03:09.000Z',
-        encounter: {
-            reference: 'Encounter/2787906'
-        },
-        id: '1',
-        issued: '2019-02-11T20:03:21.000Z',
-        meta: {
-            lastUpdated: '2019-02-11T20:03:21.000Z',
-            versionId: '3'
-        },
-        performer: {
-            display: 'Interfaced-Unknown'
-        },
-        presentedForm: [
+        {
+          category: {text: 'RADRPT'},
+          code: {text: 'RADRPT'},
+          effectiveDateTime: '2019-02-11T20:03:09.000Z',
+          encounter: {reference: 'Encounter/2787906'},
+          id: '1',
+          issued: '2019-02-11T20:03:21.000Z',
+          meta: {lastUpdated: '2019-02-11T20:03:21.000Z', versionId: '3'},
+          performer: {display: 'Interfaced-Unknown'},
+          presentedForm: [
             {
-                contentType: 'text/html',
-                url: 'assets/demo_data/test_radReport/radReport_mockXRay.html'
+              contentType: 'text/html',
+              url: 'assets/demo_data/test_radReport/radReport_mockXRay.html'
             },
             {
-                contentType: 'application/pdf',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-5153487'
+              contentType: 'application/pdf',
+              url:
+                  'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-5153487'
             }
-        ],
-        request: [
-            {
-                reference: 'ProcedureRequest/18954087'
-            }
-        ],
-        resourceType: 'DiagnosticReport',
-        status: 'unknown',
-        subject: {
-            display: 'Peralta, Jake',
-            reference: 'Patient/1316020'
-        },
-        text: {
-            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
-            '<p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p>' +
-            '<p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: ' +
-            '<ul><li>Song, River</li></ul></p></div>',
+          ],
+          request: [{reference: 'ProcedureRequest/18954087'}],
+          resourceType: 'DiagnosticReport',
+          status: 'unknown',
+          subject: {display: 'Peralta, Jake', reference: 'Patient/1316020'},
+          text: {
+            div:
+                '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: RADRPT</p>' +
+                '<p><b>Document Title</b>: XR Wrist Complete Left</p><p><b>Status</b>: Unknown</p>' +
+                '<p><b>Verifying Provider</b>: Interfaced-Unknown</p><p><b>Ordering Provider</b>: ' +
+                '<ul><li>Song, River</li></ul></p></div>',
             status: 'additional'
-        }
-      }
-      , REQUEST_ID),
+          }
+        },
+        REQUEST_ID),
 
     new DiagnosticReport(
-      {
-        category: {
-            text: 'CT Report'
-        },
-        code: {
-            text: 'CT Report'
-        },
-        effectiveDateTime: '2019-02-12T22:31:02.000Z',
-        encounter: {
-            reference: 'Encounter/2153909'
-        },
-        id: '2',
-        issued: '2019-02-12T16:33:11.000Z',
-        meta: {
-            lastUpdated: '2019-02-12T16:33:16.000Z',
-            versionId: '5'
-        },
-        performer: {
-            display: 'Chase, Robert',
-            reference: 'Practitioner/1314015'
-        },
-        presentedForm: [
+        {
+          category: {text: 'CT Report'},
+          code: {text: 'CT Report'},
+          effectiveDateTime: '2019-02-12T22:31:02.000Z',
+          encounter: {reference: 'Encounter/2153909'},
+          id: '2',
+          issued: '2019-02-12T16:33:11.000Z',
+          meta: {lastUpdated: '2019-02-12T16:33:16.000Z', versionId: '5'},
+          performer:
+              {display: 'Chase, Robert', reference: 'Practitioner/1314015'},
+          presentedForm: [
             {
-                contentType: 'text/html',
-                url: 'assets/demo_data/test_radReport/radReport_mockCTReport.html'
+              contentType: 'text/html',
+              url: 'assets/demo_data/test_radReport/radReport_mockCTReport.html'
             },
             {
-                contentType: 'application/pdf',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
+              contentType: 'application/pdf',
+              url:
+                  'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
             }
-        ],
-        request: [
-            {
-              reference: 'ProcedureRequest/17233929'
-            }
-        ],
-        resouceType: 'DiagnosticReport',
-        status: 'final',
-        subject: {
-            display: 'Peralta, Jake',
-            reference: 'Patient/1316020'
-        },
-        text: {
-            div: '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: CT Report</p>' +
-            '<p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p>' +
-            '<p><b>Verifying Provider</b>: Chase, Robert</p>' +
-            '<p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>',
+          ],
+          request: [{reference: 'ProcedureRequest/17233929'}],
+          resouceType: 'DiagnosticReport',
+          status: 'final',
+          subject: {display: 'Peralta, Jake', reference: 'Patient/1316020'},
+          text: {
+            div:
+                '<div><p><b>Diagnostic Report</b></p><p><b>Document Type</b>: CT Report</p>' +
+                '<p><b>Document Title</b>: CT Abdomen w/ Contrast</p><p><b>Status</b>: Final</p>' +
+                '<p><b>Verifying Provider</b>: Chase, Robert</p>' +
+                '<p><b>Ordering Provider</b>: <ul><li>Cuddy, Lisa</li></ul></p></div>',
             status: 'additional'
-        }
-      }
-      , REQUEST_ID)
-    ];
-  }
+          }
+        },
+        REQUEST_ID)
+  ];
+}
 
-  // Does not have the additional text property (Narrative); used to test edge cases
-  export function makeDiagnosticReportWithoutTextField(): DiagnosticReport {
-    return (new DiagnosticReport(
+// Does not have the additional text property (Narrative); used to test edge
+// cases
+export function makeDiagnosticReportWithoutTextField(): DiagnosticReport {
+  return (new DiagnosticReport(
       {
-        category: {
-            text: 'RADRPT'
-        },
-        code: {
-            text: 'RADRPT'
-        },
+        category: {text: 'RADRPT'},
+        code: {text: 'RADRPT'},
         effectiveDateTime: '2019-02-12T22:31:02.000Z',
-        encounter: {
-            reference: 'Encounter/2153909'
-        },
+        encounter: {reference: 'Encounter/2153909'},
         id: '2',
         issued: '2019-02-12T16:33:11.000Z',
-        meta: {
-            lastUpdated: '2019-02-12T16:33:16.000Z',
-            versionId: '5'
-        },
-        performer: {
-            display: 'Chase, Robert',
-            reference: 'Practitioner/1314015'
-        },
+        meta: {lastUpdated: '2019-02-12T16:33:16.000Z', versionId: '5'},
+        performer:
+            {display: 'Chase, Robert', reference: 'Practitioner/1314015'},
         presentedForm: [
-            {
-                contentType: 'text/html',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365'
-            },
-            {
-                contentType: 'application/pdf',
-                url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
-            }
+          {
+            contentType: 'text/html',
+            url:
+                'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/TR-4135365'
+          },
+          {
+            contentType: 'application/pdf',
+            url:
+                'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Binary/XR-4135365'
+          }
         ],
-        request: [
-            {
-              reference: 'ProcedureRequest/17233929'
-            }
-        ],
+        request: [{reference: 'ProcedureRequest/17233929'}],
         resouceType: 'DiagnosticReport',
         status: 'final',
-        subject: {
-            display: 'Peralta, Jake',
-            reference: 'Patient/1316020'
-        }
-      }
-      , REQUEST_ID));
+        subject: {display: 'Peralta, Jake', reference: 'Patient/1316020'}
+      },
+      REQUEST_ID));
 }

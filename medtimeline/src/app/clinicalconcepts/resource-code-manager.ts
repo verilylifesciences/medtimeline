@@ -7,7 +7,6 @@ import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
-import {environment} from '../../environments/environment';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
@@ -17,12 +16,15 @@ import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
-import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from './display-grouping';
-import {LOINCCode} from './loinc-code';
 import {bloodPressureLoincs} from './resource-code-manager-exports';
+
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
+import {DisplayGrouping, labResult, med, microbio, vitalSign, radiology} from './display-grouping';
+import {LOINCCode} from './loinc-code';
 import {RXNORM_CODES, RxNormCode} from './rx-norm';
 import {RxNormCodeGroup} from './rx-norm-group';
+
+import {environment} from '../../environments/environment';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
@@ -241,7 +243,7 @@ export class ResourceCodeManager {
 
   // TODO- Issue #30: Add more codes to DiagnosticReportCode as we get more data
   // The values 'RADRPT' and 'CT Report' are not actually in the official FHIR
-  // documentation, but are seen in the Cerner sandbox.
+  // documentation, but are seen in the Cerner sandbox. 
   private static radiologyGroup = [
     new DiagnosticReportCode('RADRPT', radiology, 'Radiology Report', true),
     new DiagnosticReportCode('CT Report', radiology, 'CT Report', true)
@@ -281,8 +283,8 @@ export class ResourceCodeManager {
     codeGroups.push(new AxisGroup([new Axis(
         this.fhirService, this.sanitizer,
         new LOINCCodeGroup(
-            this.fhirService, 'Blood Pressure', bloodPressureLoincs, vitalSign,
-            ChartType.LINE,
+            this.fhirService, 'Blood Pressure',
+            bloodPressureLoincs, vitalSign, ChartType.LINE,
             (observation: Observation, dateRange: Interval):
                 Promise<AnnotatedObservation> => {
                   return bpLocation.getResourceSet(dateRange).then(obsSet => {
@@ -355,16 +357,6 @@ export class ResourceCodeManager {
             codeGroup => new Axis(
                 this.fhirService, this.sanitizer, codeGroup, codeGroup.label)),
         'Complete Blood Count White Blood Cell'));
-
-    // Add flag to environment to toggle radiology feature
-    if (environment.showRadiology) {
-      codeGroups.push(new AxisGroup([new Axis(
-          this.fhirService, this.sanitizer,
-          new DiagnosticReportCodeGroup(
-              this.fhirService, 'Radiology', ResourceCodeManager.radiologyGroup,
-              radiology, ChartType.DIAGNOSTIC),
-          'Radiology')]));
-    }
 
     const medsSummaryGroup = RXNORM_CODES;
     codeGroups.push(new AxisGroup([new Axis(
@@ -476,6 +468,16 @@ export class ResourceCodeManager {
             this.fhirService, 'CSF Microbiology',
             ResourceCodeManager.csfGroupMB, microbio, ChartType.MICROBIO),
         'CSF Microbiology')]));
+
+    // Add flag to environment to toggle radiology feature
+    if (environment.showRadiology) {
+        codeGroups.push(new AxisGroup([new Axis(
+            this.fhirService, this.sanitizer,
+            new DiagnosticReportCodeGroup(
+                this.fhirService, 'Radiology',
+                ResourceCodeManager.radiologyGroup, radiology, ChartType.DIAGNOSTIC),
+            'Radiology')]));
+    }
 
     ResourceCodeManager.axisGroups = codeGroups;
 

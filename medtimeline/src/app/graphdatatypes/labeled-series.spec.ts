@@ -11,17 +11,17 @@ import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 
 import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 import {FhirService} from './../fhir.service';
 // tslint:disable-next-line:max-line-length
-import {makeMicrobioReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeSampleObservation, makeDiagnosticReports} from './../test_utils';
-import {makeSampleDiscreteObservation, makeDiagnosticReportWithoutTextField} from './../test_utils';
+import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from './../test_utils';
+import {makeDiagnosticReportWithoutTextField, makeSampleDiscreteObservation} from './../test_utils';
 import {LabeledSeries} from './labeled-series';
 
 describe('LabeledSeries', () => {
@@ -319,14 +319,14 @@ describe('LabeledSeries', () => {
 
     // Set administrations manually to avoid FHIR call.
     order1.administrationsForOrder = new MedicationAdministrationSet(
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x, 0, 0)));
+        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
     order1.firstAdministration = medAdmin1;
     order1.lastAdmininistration = medAdmin2;
 
     order2.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order2.firstAdministration = medAdmin1Order2;
     order2.lastAdmininistration = medAdmin2Order2;
 
@@ -365,14 +365,14 @@ describe('LabeledSeries', () => {
 
     // Set administrations manually to avoid FHIR call.
     order1.administrationsForOrder = new MedicationAdministrationSet(
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x, 0, 0)));
+        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
     order1.firstAdministration = medAdmin1;
     order1.lastAdmininistration = medAdmin2;
 
     order2.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
     order2.firstAdministration = medAdmin1Order2;
     order2.lastAdmininistration = medAdmin2Order2;
 
@@ -402,8 +402,8 @@ describe('LabeledSeries', () => {
        const yAxisMap = new Map<number, string>();
        yAxisMap.set(10, 'Salmonella and Shigella Culture');
        yAxisMap.set(20, 'Ova and Parasite Exam');
-       const series = LabeledSeries.fromMicrobioReport(
-        microbioReport, DateTime.utc());
+       const series =
+           LabeledSeries.fromMicrobioReport(microbioReport, DateTime.utc());
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id-NEGORFLORA-Final');
        expect(series[1].label).toEqual('id-CHECKRESULT-Final');
@@ -413,43 +413,44 @@ describe('LabeledSeries', () => {
          'corrected statuses in the report',
      () => {
        const microbioReport = makeMicrobioReports()[2];
-       const series = LabeledSeries.fromMicrobioReport(
-        microbioReport, DateTime.utc());
+       const series =
+           LabeledSeries.fromMicrobioReport(microbioReport, DateTime.utc());
        expect(series.length).toEqual(2);
        expect(series[0].label).toEqual('id3-NEGORFLORA-Corrected');
        expect(series[1].label).toEqual('id3-CHECKRESULT-Corrected');
      });
 
-  it ('fromDiagnosticReport should make correct labeled series',
-      () => {
-        const diagnosticReport = makeDiagnosticReports()[0];
-        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
-        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
-          DateTime.utc());
-        expect(series.length).toEqual(1);
-        expect(series[0].label).toEqual('1-RAD');
-      });
+  it('fromDiagnosticReport should make correct labeled series', () => {
+    const diagnosticReport = makeDiagnosticReports()[0];
+    const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+    const series =
+        LabeledSeries.fromDiagnosticReport(annotatedReport, DateTime.utc());
+    expect(series.length).toEqual(1);
+    expect(series[0].label).toEqual('1-RAD');
+  });
 
-  it ('fromDiagnosticReport should make correct seriesLabel even if ' +
-        'annotatedReport.text does not exist', () => {
-        const diagnosticReport = makeDiagnosticReportWithoutTextField();
-        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
-        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
-          DateTime.utc());
-        expect(series.length).toEqual(1);
-        expect(series[0].label).toEqual('2-RAD');
-      });
+  it('fromDiagnosticReport should make correct seriesLabel even if ' +
+         'annotatedReport.text does not exist',
+     () => {
+       const diagnosticReport = makeDiagnosticReportWithoutTextField();
+       const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+       const series =
+           LabeledSeries.fromDiagnosticReport(annotatedReport, DateTime.utc());
+       expect(series.length).toEqual(1);
+       expect(series[0].label).toEqual('2-RAD');
+     });
 
   it('fromDiagnosticReports should correctly calculate ' +
-      'time and position for each Diagnostic Report Observation even if ' +
-      'annotatedReport.text (Narrative) does not exist',
-      () => {
-        const diagnosticReport = makeDiagnosticReportWithoutTextField();
-        const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
-        const series = LabeledSeries.fromDiagnosticReport(annotatedReport,
-          DateTime.utc());
-        expect(series[0].coordinates[0]).toEqual([
-          DateTime.fromISO('2019-02-12T22:31:02.000Z'), 'RAD']);
-      });
+         'time and position for each Diagnostic Report Observation even if ' +
+         'annotatedReport.text (Narrative) does not exist',
+     () => {
+       const diagnosticReport = makeDiagnosticReportWithoutTextField();
+       const annotatedReport = new AnnotatedDiagnosticReport(diagnosticReport);
+       const series =
+           LabeledSeries.fromDiagnosticReport(annotatedReport, DateTime.utc());
+       expect(series[0].coordinates[0]).toEqual([
+         DateTime.fromISO('2019-02-12T22:31:02.000Z'), 'RAD'
+       ]);
+     });
 });
 /* tslint:enable:object-literal-shorthand*/

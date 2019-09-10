@@ -127,9 +127,12 @@ export class MedicationOrder extends ResultClass {
                 const dayCount =
                     admin.timestamp.diff(this.firstAdministration.timestamp)
                         .as('day') + 1;
-                const annotated = new AnnotatedAdministration(
-                    admin, i + 1 /* dose in order starts at 1 */, dayCount,
-                    i > 0 ? admins[i - 1] : undefined);
+                // if i = 0, this is the first dose so we set the previous
+                // dose to undefined. Otherwise, the previous dose is the
+                // medication administration at the previous index
+                const previousDose = i > 0 ? admins[i - 1] : undefined;
+                const annotated =
+                    new AnnotatedAdministration(admin, previousDose);
                 admins.push(annotated);
               }
               this.administrationsForOrder =

@@ -205,7 +205,7 @@ describe('MedicationAdministrationSet', () => {
       const obsSet =
           new MedicationAdministrationSet(medicationAdministrations.map(
               // annotations not important for this test
-              x => new AnnotatedAdministration(x, 0, 0)));
+              x => new AnnotatedAdministration(x)));
     };
     expect(constructor).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
@@ -232,7 +232,7 @@ describe('MedicationAdministrationSet', () => {
       const obsSet =
           new MedicationAdministrationSet(medicationAdministrations.map(
               // annotations not important for this test
-              x => new AnnotatedAdministration(x, 0, 0)));
+              x => new AnnotatedAdministration(x)));
     };
     expect(constructor).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
@@ -269,7 +269,7 @@ describe('MedicationAdministrationSet', () => {
     const obsSet =
         new MedicationAdministrationSet(medicationAdministrations.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
 
     expect(obsSet.maxDose).toEqual(500);
     expect(obsSet.minDose).toEqual(100);
@@ -288,7 +288,7 @@ describe('MedicationAdministrationSet', () => {
     const obsSet =
         new MedicationAdministrationSet(medicationAdministrations.map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 0, 0)));
+            x => new AnnotatedAdministration(x)));
 
     expect(obsSet.unit).toEqual('unit');
     expect(obsSet.rxNormCode.codeString).toEqual('1596450');

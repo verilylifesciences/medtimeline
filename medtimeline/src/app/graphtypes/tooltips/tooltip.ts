@@ -6,8 +6,10 @@
 import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
-import * as Colors from '../../theme/verily_colors';
 import {DateTime} from 'luxon';
+
+import * as Colors from '../../theme/verily_colors';
+
 import {AnnotatedTooltip} from './annotated-tooltip';
 
 /*
@@ -23,13 +25,15 @@ import {AnnotatedTooltip} from './annotated-tooltip';
  */
 export abstract class Tooltip<T> {
   /**CSS styling for normal tooltip circular color swatch */
-  static readonly TOOLTIP_NORMAL_CSS = 'display: inline-block; height: 10px; width: 10px; ' +
-                                       'margin-right: 6px; border-radius: 50%;';
+  static readonly TOOLTIP_NORMAL_CSS =
+      'display: inline-block; height: 10px; width: 10px; ' +
+      'margin-right: 6px; border-radius: 50%;';
   /**CSS styling for abnormal tooltip triangular color swatch */
-  static readonly TOOLTIP_ABNORMAL_CSS = 'width: 0; display:inline-block; margin-right: 6px; ' +
-                                        'height: 0; border-left: 6px solid transparent; ' +
-                                        'border-right: 6px solid transparent; border-bottom: ' +
-                                        '6px solid ';
+  static readonly TOOLTIP_ABNORMAL_CSS =
+      'width: 0; display:inline-block; margin-right: 6px; ' +
+      'height: 0; border-left: 6px solid transparent; ' +
+      'border-right: 6px solid transparent; border-bottom: ' +
+      '6px solid ';
 
   /**
    * Creates a new table for the tooltip. Returns a HTMLTableElement.
@@ -88,13 +92,17 @@ export abstract class Tooltip<T> {
    * @param sanitizer A DOM sanitizer
    * @param color Color that is displayed on the legend and the graph.
    * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
+   * @param colspan Number that specifies how many columns each cell should span
    */
   static addRow(
       table: HTMLTableElement, cellText: string[], sanitizer: DomSanitizer,
-      color?: Color, isAbnormal?: boolean) {
+      color?: Color, isAbnormal?: boolean, colspan?: number) {
     const row = table.insertRow();
     for (let i = 0; i < cellText.length; i++) {
       const cell1 = row.insertCell();
+      if (colspan) {
+        cell1.setAttribute('colspan', colspan.toString());
+      }
       if (i === 0) {
         cell1.className = 'name';
         if (isAbnormal) {
@@ -109,10 +117,10 @@ export abstract class Tooltip<T> {
           continue;
         }
       } else {
-          cell1.className = 'value';
-          if (isAbnormal) {
-            cell1.setAttribute('style', 'color: ' + Colors.ABNORMAL);
-          }
+        cell1.className = 'value';
+        if (isAbnormal) {
+          cell1.setAttribute('style', 'color: ' + Colors.ABNORMAL);
+        }
       }
       cell1.innerHTML = sanitizer.sanitize(SecurityContext.HTML, cellText[i]);
     }
@@ -124,18 +132,19 @@ export abstract class Tooltip<T> {
    * @param color Color that is displayed on the legend and the graph.
    * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
    */
-  static makeColorSwatch(color: Color, isAbnormal: boolean = false): HTMLSpanElement {
+  static makeColorSwatch(color: Color, isAbnormal: boolean = false):
+      HTMLSpanElement {
     const colorSpan: HTMLSpanElement = document.createElement('span');
     if (isAbnormal) {
       // Creates a triangular color swatch
       colorSpan.setAttribute(
-        'style',
-        this.TOOLTIP_ABNORMAL_CSS + color.toString());
+          'style', this.TOOLTIP_ABNORMAL_CSS + color.toString());
     } else {
       // Creates a circular color swatch
       colorSpan.setAttribute(
-        'style',
-        'background-color: ' + color.toString() + '; ' + this.TOOLTIP_NORMAL_CSS);
+          'style',
+          'background-color: ' + color.toString() + '; ' +
+              this.TOOLTIP_NORMAL_CSS);
     }
     return colorSpan;
   }

@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
+import {UI_CONSTANTS} from 'src/constants';
 
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
@@ -41,15 +42,14 @@ describe('AnnotatedObservation', () => {
            DateTime.fromISO('1992-11-01T00:00:00.00').toString());
        const lastAdmin = makeMedicationAdministration(
            DateTime.fromISO('1992-11-04T00:00:00.00').toString());
-       const firstAnnotatedAdmin =
-           new AnnotatedAdministration(firstAdmin, 1, 1);
+       const firstAnnotatedAdmin = new AnnotatedAdministration(firstAdmin);
 
        // Make the administrations between November 1 and November 4.
        // Manually set the administrations and first and last timestamps so
        // that we don't have to do a FHIR call.
        medOrder.administrationsForOrder = new MedicationAdministrationSet([
          firstAnnotatedAdmin,
-         new AnnotatedAdministration(lastAdmin, 2, 4, firstAnnotatedAdmin)
+         new AnnotatedAdministration(lastAdmin, firstAnnotatedAdmin)
        ]);
        medOrder.firstAdministration = firstAdmin;
        medOrder.lastAdmininistration = lastAdmin;
@@ -75,12 +75,11 @@ describe('AnnotatedObservation', () => {
        const thirdAdmin = makeMedicationAdministration(
            DateTime.fromISO('1992-11-09T00:00:00.00').toString());
 
-       const firstAnnotatedAdmin =
-           new AnnotatedAdministration(firstAdmin, 1, 1);
+       const firstAnnotatedAdmin = new AnnotatedAdministration(firstAdmin);
        const secondAnnotatedAdmin =
-           new AnnotatedAdministration(firstAdmin, 2, 4, firstAnnotatedAdmin);
+           new AnnotatedAdministration(firstAdmin, firstAnnotatedAdmin);
        const thirdAnnotatedAdmin =
-           new AnnotatedAdministration(thirdAdmin, 3, 4, secondAnnotatedAdmin);
+           new AnnotatedAdministration(thirdAdmin, secondAnnotatedAdmin);
 
        // Make the administrations between November 1 and November 4.
        // Manually set the administrations and first and last timestamps so
@@ -100,10 +99,10 @@ describe('AnnotatedObservation', () => {
        expect(annotated.observation).toEqual(obs);
        expect(annotated.annotationValues.length).toEqual(2);
        expect(annotated.annotationValues[0]).toEqual([
-         'Time since dose #2', '120:00'
+         UI_CONSTANTS.TIME_SINCE_PREVIOUS_DOSE, '120:00'
        ]);
        expect(annotated.annotationValues[1]).toEqual([
-         'Time before dose #3', '72:00'
+         UI_CONSTANTS.TIME_BEFORE_NEXT_DOSE, '72:00'
        ]);
        expect(annotated.label).toBe(obs.label);
      });

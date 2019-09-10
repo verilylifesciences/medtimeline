@@ -5,7 +5,7 @@
 
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatGridListModule, MatTooltipModule} from '@angular/material';
+import {MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -25,8 +25,7 @@ describe('TextboxcardComponent', () => {
         .configureTestingModule({
           imports: [
             BrowserAnimationsModule, MatCardModule, MatInputModule,
-            MatIconModule, FormsModule, ReactiveFormsModule, MatTooltipModule,
-            MatGridListModule
+            MatIconModule, FormsModule, ReactiveFormsModule, MatTooltipModule
           ],
           declarations: [TextboxcardComponent, CardComponent],
           providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]

@@ -10,7 +10,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSnackBarModule, MatStepperModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -43,10 +43,9 @@ import {FhirHttpService} from './fhir-http.service';
 import {FhirLaunchComponent} from './fhir-launch/fhir-launch.component';
 import {FhirService} from './fhir.service';
 import {CustomizableGraphComponent} from './graphtypes/customizable-graph/customizable-graph.component';
-import {DiagnosticGraphComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.component';
-import {DiagnosticGraphDialogComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.dialog.component';
 import {LineGraphComponent} from './graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from './graphtypes/microbio-graph/microbio-graph.component';
+import {DiagnosticGraphComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {HelpDialogComponent} from './help-dialog/help-dialog.component';
@@ -56,6 +55,7 @@ import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 import {TimelineControllerComponent} from './timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.component';
+import {DiagnosticGraphDialogComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +89,6 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     BrowserModule,
     NgbModule,
     MatCardModule,
-    MatGridListModule,
     HttpClientModule,
     MatListModule,
     MatDividerModule,
@@ -117,14 +116,13 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
     ChartsModule,
     DragulaModule.forRoot(),
     AppRoutingModule,
-    MatExpansionModule,
+    MatExpansionModule
   ],
   providers: [
     // This sets up a provider for the smart on fhir client defined by
     // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
     // injected into the service that uses it to allow for easier testing.
-    {provide: SMART_ON_FHIR_CLIENT, useValue: FHIR},
-    {
+    {provide: SMART_ON_FHIR_CLIENT, useValue: FHIR}, {
       provide: FhirService,
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },

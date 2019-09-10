@@ -25,17 +25,6 @@ h1, h2 {
   padding-left: 10px;
 }
 
-.category-group-tile {
-  padding-bottom: 10px;
-}
-
-.category-label {
-  line-height: 28px;
-  margin: 0px;
-  padding: 0px;
-  padding-left: 15px;
-}
-
 .mainSetup {
   width: 100%;
   padding-top: 20px;
@@ -46,15 +35,6 @@ h1, h2 {
 
 .conceptOptions {
   padding-left: 25px;
-}
-
-::ng-deep .mat-figure {
-  align-items: flex-start !important;
-  justify-content: left !important;
-}
-
-::ng-deep .mat-checkbox-label {
-  line-height: 28px !important;
 }
 
 ::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {

@@ -6,6 +6,7 @@
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import * as Colors from 'src/app/theme/verily_colors';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
@@ -15,15 +16,18 @@ import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
+import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 import {GenericAbnormalTooltip, GenericAnnotatedObservationTooltip} from '../graphtypes/tooltips/observation-tooltips';
 import {Tooltip} from '../graphtypes/tooltips/tooltip';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../test_utils';
-import * as Colors from 'src/app/theme/verily_colors';
 
 import {LineGraphData} from './linegraphdata';
+
+const MARCH_23_DATETIME = DateTime.utc(1988, 3, 23);
+const MARCH_24_DATETIME = DateTime.utc(1988, 3, 24);
+const MARCH_25_DATETIME = DateTime.utc(1988, 3, 25);
 
 describe('LineGraphData', () => {
   const normalRange: [number, number] = [1, 30];
@@ -37,11 +41,11 @@ describe('LineGraphData', () => {
      () => {
        const obsSet = new ObservationSet([
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90])),
+             makeSampleObservation(10, MARCH_23_DATETIME, [1, 90])),
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 24), [1, 90])),
+             makeSampleObservation(10, MARCH_24_DATETIME, [1, 90])),
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 25), [1, 90]))
+             makeSampleObservation(10, MARCH_25_DATETIME, [1, 90]))
        ]);
        const obsSetList = new Array(obsSet, obsSet, obsSet);
 
@@ -53,10 +57,10 @@ describe('LineGraphData', () => {
 
   it('fromObservationSetList should pass in the tooltips correctly', () => {
     const obs1 = new AnnotatedObservation(
-        makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+        makeSampleObservation(10, MARCH_23_DATETIME, [1, 90]),
         [['labelA', 'valueA']]);
     const obs2 = new AnnotatedObservation(
-        makeSampleObservation(10, DateTime.utc(1988, 3, 24), [1, 90]),
+        makeSampleObservation(10, MARCH_24_DATETIME, [1, 90]),
         [['labelB', 'valueB']]);
 
     const lgData = LineGraphData.fromObservationSetList(
@@ -66,22 +70,22 @@ describe('LineGraphData', () => {
     expect(lgData.tooltipMap.size).toBe(2);
 
     const seriesColor = lgData.series[0].legendInfo.fill;
-    expect(lgData.tooltipMap.get('575078400000'))
+    expect(lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()))
         .toEqual([new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs1, TestBed.get(DomSanitizer))]);
+                      .getTooltip(obs1, TestBed.get(DomSanitizer))]);
 
-    expect(lgData.tooltipMap.get('575164800000'))
+    expect(lgData.tooltipMap.get(MARCH_24_DATETIME.toMillis().toString()))
         .toEqual([new GenericAnnotatedObservationTooltip(true, seriesColor)
-                     .getTooltip(obs2, TestBed.get(DomSanitizer))]);
+                      .getTooltip(obs2, TestBed.get(DomSanitizer))]);
   });
 
   it('fromObservationSetList should handle two tooltips for same timestamp',
      () => {
        const obs1 = new AnnotatedObservation(
-           makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+           makeSampleObservation(10, MARCH_23_DATETIME, [1, 90]),
            [['labelA', 'valueA']]);
        const obs2 = new AnnotatedObservation(
-           makeSampleObservation(10, DateTime.utc(1988, 3, 23), [1, 90]),
+           makeSampleObservation(10, MARCH_23_DATETIME, [1, 90]),
            [['labelB', 'valueB']]);
 
        const lgData = LineGraphData.fromObservationSetList(
@@ -90,16 +94,16 @@ describe('LineGraphData', () => {
 
        const seriesColor = lgData.series[0].legendInfo.fill;
        expect(lgData.tooltipMap.size).toBe(1);
-       expect(lgData.tooltipMap.get('575078400000'))
-           .toEqual(
-               [new GenericAnnotatedObservationTooltip(true, seriesColor)
-                   .getTooltip(obs1, TestBed.get(DomSanitizer)),
-               new GenericAnnotatedObservationTooltip(false, seriesColor)
-                   .getTooltip(obs2, TestBed.get(DomSanitizer))]);
+       expect(lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()))
+           .toEqual([
+             new GenericAnnotatedObservationTooltip(true, seriesColor)
+                 .getTooltip(obs1, TestBed.get(DomSanitizer)),
+             new GenericAnnotatedObservationTooltip(false, seriesColor)
+                 .getTooltip(obs2, TestBed.get(DomSanitizer))
+           ]);
      });
 
-  it('BP tooltip should not display blood pressure twice',
-  () => {
+  it('BP tooltip should not display blood pressure twice', () => {
     const BP_json1 = {
       code: {
         coding: [{system: 'http://loinc.org', code: '55284-4'}],
@@ -113,21 +117,15 @@ describe('LineGraphData', () => {
           system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
         }]
       },
-      referenceRange: [{
-        low:
-          {value: 90,
-          unit: 'g/dL'},
-        high:
-        {value: 100,
-          unit: 'g/dL'}
-      }]
+      referenceRange:
+          [{low: {value: 90, unit: 'g/dL'}, high: {value: 100, unit: 'g/dL'}}]
     };
     const BP_json2 = {
       code: {
         coding: [{system: 'http://loinc.org', code: '55284-4'}],
         text: 'Blood pressure'
       },
-      effectiveDateTime: DateTime.utc(1988, 3, 23).toISO(),
+      effectiveDateTime: MARCH_23_DATETIME.toISO(),
       valueQuantity: {value: 90, unit: 'mmHg'},
       interpretation: {
         coding: [{
@@ -135,18 +133,14 @@ describe('LineGraphData', () => {
           system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
         }]
       },
-      referenceRange: [{
-        low:
-          {value: 90,
-          unit: 'g/dL'},
-        high:
-        {value: 100,
-          unit: 'g/dL'}
-      }]
+      referenceRange:
+          [{low: {value: 90, unit: 'g/dL'}, high: {value: 100, unit: 'g/dL'}}]
     };
     const REQUEST_ID = '1234';
-    const obs1 = new AnnotatedObservation(new Observation(BP_json1, REQUEST_ID));
-    const obs2 = new AnnotatedObservation(new Observation(BP_json2, REQUEST_ID));
+    const obs1 =
+        new AnnotatedObservation(new Observation(BP_json1, REQUEST_ID));
+    const obs2 =
+        new AnnotatedObservation(new Observation(BP_json2, REQUEST_ID));
 
     const lgData = LineGraphData.fromObservationSetList(
         'lbl', new Array(new ObservationSet([obs1, obs2])), loincCodeGroup,
@@ -154,39 +148,44 @@ describe('LineGraphData', () => {
 
     const seriesColor = lgData.series[0].legendInfo.fill;
     expect(lgData.tooltipMap.size).toBe(1);
-    // Expect the tooltip to only have one instance of Blood Pressure despite passing in
-    // two observations occuring at the same time point. The blood pressure
-    // tooltip has different styling than the GenericAnnotatedObservationToolTip
-    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(lgData.tooltipMap.get('575078400000'));
+    // Expect the tooltip to only have one instance of Blood Pressure despite
+    // passing in two observations occuring at the same time point. The blood
+    // pressure tooltip has different styling than the
+    // GenericAnnotatedObservationToolTip
+    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+        lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()));
     expect(annotatedTT.tooltipChart)
-        .toEqual('<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
-        Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) +
-        '</th></tr><tr><td class="name" style="color: ' + Colors.ABNORMAL + '"><span style="' +
-        Tooltip.TOOLTIP_ABNORMAL_CSS + seriesColor.toString() + '"></span>' +
-        '<div style="display: inline-block;">Blood pressure</div></td><td class="value" ' +
-        'style="color: ' + Colors.ABNORMAL + '">80 mmHg (Low)</td></tr></tbody></table>' +
-        '<table class="c3-tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
-        '</tbody></table>');
+        .toEqual(
+            '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
+            Tooltip.formatTimestamp(MARCH_23_DATETIME) +
+            '</th></tr><tr><td class="name" style="color: ' + Colors.ABNORMAL +
+            '"><span style="' + Tooltip.TOOLTIP_ABNORMAL_CSS +
+            seriesColor.toString() + '"></span>' +
+            '<div style="display: inline-block;">Blood pressure</div></td><td class="value" ' +
+            'style="color: ' + Colors.ABNORMAL +
+            '">80 mmHg (Low)</td></tr></tbody></table>' +
+            '<table class="c3-tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
+            '</tbody></table>');
   });
 
   it('fromObservationSetList should set y axis display so that all data included',
      () => {
        const obsSet1 = new ObservationSet([
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 23), normalRange)),
+             makeSampleObservation(10, MARCH_23_DATETIME, normalRange)),
          new AnnotatedObservation(
-             makeSampleObservation(1, DateTime.utc(1988, 3, 24), normalRange)),
+             makeSampleObservation(1, MARCH_24_DATETIME, normalRange)),
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 25), normalRange))
+             makeSampleObservation(10, MARCH_25_DATETIME, normalRange))
        ]);
 
        const obsSet2 = new ObservationSet([
          new AnnotatedObservation(
-             makeSampleObservation(40, DateTime.utc(1988, 3, 23), normalRange)),
+             makeSampleObservation(40, MARCH_23_DATETIME, normalRange)),
          new AnnotatedObservation(
-             makeSampleObservation(10, DateTime.utc(1988, 3, 24), normalRange)),
+             makeSampleObservation(10, MARCH_24_DATETIME, normalRange)),
          new AnnotatedObservation(
-             makeSampleObservation(1, DateTime.utc(1988, 3, 25), normalRange))
+             makeSampleObservation(1, MARCH_25_DATETIME, normalRange))
        ]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
@@ -199,8 +198,8 @@ describe('LineGraphData', () => {
   it('fromObservationSetList should set abnormal value tooltip correctly.',
      () => {
        const obsSet1 = new ObservationSet([
-         new AnnotatedObservation(makeSampleObservation(
-             100, DateTime.utc(1988, 3, 23), normalRange)),
+         new AnnotatedObservation(
+             makeSampleObservation(100, MARCH_23_DATETIME, normalRange)),
        ]);
        const obsSetList = new Array(obsSet1);
 
@@ -210,12 +209,14 @@ describe('LineGraphData', () => {
        const params = {};
        params['label'] = 'Hemoglobin';
        params['value'] = 100;
-       params['timestamp'] = 575078400000;
+       params['timestamp'] = MARCH_23_DATETIME.toMillis();
        expect(lgData.tooltipMap.size).toBe(1);
-       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(lgData.tooltipMap.get('575078400000'));
+       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+           lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()));
        expect(annotatedTT.tooltipChart)
            .toContain(new GenericAbnormalTooltip(false, seriesColor)
-                          .getTooltip(params, TestBed.get(DomSanitizer)).tooltipChart);
+                          .getTooltip(params, TestBed.get(DomSanitizer))
+                          .tooltipChart);
      });
 
   it('fromMedicationOrderSet should have one data series' +
@@ -223,10 +224,10 @@ describe('LineGraphData', () => {
      () => {
        const order1 = makeMedicationOrder();
        const order2 = makeMedicationOrder();
-       const medAdmin1 = makeMedicationAdministration(
-           DateTime.utc(1988, 3, 23).toString(), 95);
-       const medAdmin2 = makeMedicationAdministration(
-           DateTime.utc(1988, 3, 24).toString(), 100);
+       const medAdmin1 =
+           makeMedicationAdministration(MARCH_23_DATETIME.toString(), 95);
+       const medAdmin2 =
+           makeMedicationAdministration(MARCH_24_DATETIME.toString(), 100);
 
        const medAdmin1Order2 = makeMedicationAdministration(
            DateTime.utc(1988, 3, 26).toString(), 105);
@@ -237,14 +238,14 @@ describe('LineGraphData', () => {
        order1.administrationsForOrder =
            new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
                // annotations not important for this test
-               x => new AnnotatedAdministration(x, 0, 0)));
+               x => new AnnotatedAdministration(x)));
        order1.firstAdministration = medAdmin1;
        order1.lastAdmininistration = medAdmin2;
 
        order2.administrationsForOrder = new MedicationAdministrationSet(
            [medAdmin1Order2, medAdmin2Order2].map(
                // annotations not important for this test
-               x => new AnnotatedAdministration(x, 0, 0)));
+               x => new AnnotatedAdministration(x)));
        order2.firstAdministration = medAdmin1Order2;
        order2.lastAdmininistration = medAdmin2Order2;
 
@@ -271,15 +272,15 @@ describe('LineGraphData', () => {
     const order1 = makeMedicationOrder();
 
     const medAdmin1 =
-        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 95);
+        makeMedicationAdministration(MARCH_23_DATETIME.toString(), 95);
     const medAdmin2 =
-        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 100);
+        makeMedicationAdministration(MARCH_23_DATETIME.toString(), 100);
 
     // Set administrations manually to avoid FHIR call.
     order1.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 1, 1)));
+            x => new AnnotatedAdministration(x)));
     order1.firstAdministration = medAdmin1;
     order1.lastAdmininistration = medAdmin2;
 
@@ -292,29 +293,30 @@ describe('LineGraphData', () => {
         TestBed.get(DomSanitizer), []);
 
     expect(lgData.tooltipMap.size).toBe(1);
-    expect(lgData.tooltipMap.get('575078400000'))
-        .toEqual(
-            [new MedicationAdministrationTooltip().getTooltip(
-                [new AnnotatedAdministration(medAdmin1, 1, 1)],
-                TestBed.get(DomSanitizer)),
-            new MedicationAdministrationTooltip().getTooltip(
-                [new AnnotatedAdministration(medAdmin2, 1, 1)],
-                TestBed.get(DomSanitizer))]);
+    expect(lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()))
+        .toEqual([
+          new MedicationAdministrationTooltip().getTooltip(
+              [new AnnotatedAdministration(medAdmin1)],
+              TestBed.get(DomSanitizer)),
+          new MedicationAdministrationTooltip().getTooltip(
+              [new AnnotatedAdministration(medAdmin2)],
+              TestBed.get(DomSanitizer))
+        ]);
   });
 
   it('fromMedicationOrderSet should always have precision to be 0', () => {
     const order1 = makeMedicationOrder();
 
     const medAdmin1 =
-        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 95);
+        makeMedicationAdministration(MARCH_23_DATETIME.toString(), 95);
     const medAdmin2 =
-        makeMedicationAdministration(DateTime.utc(1988, 3, 23).toString(), 100);
+        makeMedicationAdministration(MARCH_23_DATETIME.toString(), 100);
 
     // Set administrations manually to avoid FHIR call.
     order1.administrationsForOrder =
         new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
             // annotations not important for this test
-            x => new AnnotatedAdministration(x, 1, 1)));
+            x => new AnnotatedAdministration(x)));
     order1.firstAdministration = medAdmin1;
     order1.lastAdmininistration = medAdmin2;
 
@@ -332,12 +334,11 @@ describe('LineGraphData', () => {
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
-       const obsSet1 = new ObservationSet(
-           [new AnnotatedObservation(makeSampleDiscreteObservation(
-               'yellow', DateTime.utc(1988, 3, 23)))]);
+       const obsSet1 = new ObservationSet([new AnnotatedObservation(
+           makeSampleDiscreteObservation('yellow', MARCH_23_DATETIME))]);
 
        const obsSet2 = new ObservationSet([new AnnotatedObservation(
-           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)))]);
+           makeSampleDiscreteObservation('blue', MARCH_23_DATETIME))]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetListDiscrete(
@@ -350,12 +351,11 @@ describe('LineGraphData', () => {
   it('fromObservationSetListDiscrete should calculate one' +
          'LabeledSeries for all ObservationSets.',
      () => {
-       const obsSet1 = new ObservationSet(
-           [new AnnotatedObservation(makeSampleDiscreteObservation(
-               'yellow', DateTime.utc(1988, 3, 23)))]);
+       const obsSet1 = new ObservationSet([new AnnotatedObservation(
+           makeSampleDiscreteObservation('yellow', MARCH_23_DATETIME))]);
 
        const obsSet2 = new ObservationSet([new AnnotatedObservation(
-           makeSampleDiscreteObservation('blue', DateTime.utc(1988, 3, 23)))]);
+           makeSampleDiscreteObservation('blue', MARCH_23_DATETIME))]);
        const obsSetList = new Array(obsSet1, obsSet2);
 
        const lgData = LineGraphData.fromObservationSetListDiscrete(

@@ -7,9 +7,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Duration} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-data-classes/medication-administration';
 import {formatNumberWithPrecision} from 'src/app/number_utils';
+import {UI_CONSTANTS} from 'src/constants';
 
 import {MedicationOrder} from '../../fhir-data-classes/medication-order';
 import {Tooltip} from '../tooltips/tooltip';
+
 import {AnnotatedTooltip} from './annotated-tooltip';
 
 /**
@@ -17,7 +19,8 @@ import {AnnotatedTooltip} from './annotated-tooltip';
  * doses in a table.
  */
 export class MedicationTooltip extends Tooltip<MedicationOrder> {
-  getTooltip(order: MedicationOrder, sanitizer: DomSanitizer): AnnotatedTooltip {
+  getTooltip(order: MedicationOrder, sanitizer: DomSanitizer):
+      AnnotatedTooltip {
     const medication = order.label;
     const firstDose =
         Tooltip.formatTimestamp(order.firstAdministration.timestamp);
@@ -25,11 +28,13 @@ export class MedicationTooltip extends Tooltip<MedicationOrder> {
         Tooltip.formatTimestamp(order.lastAdmininistration.timestamp);
     const dosageInstruction = order.dosageInstruction;
     const table = Tooltip.createNewTable();
-    Tooltip.addHeader(medication, table, sanitizer);
-    Tooltip.addRow(table, ['First Dose', firstDose], sanitizer);
-    Tooltip.addRow(table, ['Last Dose', lastDose], sanitizer);
+    Tooltip.addHeader(
+        `${medication}: Order #${order.orderId}`, table, sanitizer);
+    Tooltip.addRow(table, [UI_CONSTANTS.FIRST_DOSE, firstDose], sanitizer);
+    Tooltip.addRow(table, [UI_CONSTANTS.LAST_DOSE, lastDose], sanitizer);
     Tooltip.addRow(
-        table, ['Dosage Instructions', dosageInstruction], sanitizer);
+        table, [UI_CONSTANTS.DOSAGE_INSTRUCTIONS, dosageInstruction],
+        sanitizer);
 
     const tooltipChart = table.outerHTML;
     return new AnnotatedTooltip(tooltipChart);
@@ -49,15 +54,16 @@ export class MedicationAdministrationTooltip extends
     const table = Tooltip.createNewTable();
     for (const administration of administrations) {
       Tooltip.addHeader(
-          Tooltip.formatTimestamp(timestamp) + ': Dose ' +
-              administration.doseInOrder + ' of ' +
-              administration.medAdministration.rxNormCode.label,
+          `${Tooltip.formatTimestamp(timestamp)}: ${
+              administration.medAdministration.rxNormCode
+                  .label} dose. Part of Order #${
+              administration.medAdministration.medicationOrderId}`,
           table, sanitizer, 3);
       Tooltip.addRow(table, ['', 'Time', 'Dose'], sanitizer);
       Tooltip.addRow(
           table,
           [
-            'This dose',
+            UI_CONSTANTS.THIS_DOSE,
             Tooltip.formatTimestamp(administration.medAdministration.timestamp),
             this.formatDosage(administration.medAdministration)
           ],
@@ -71,16 +77,20 @@ export class MedicationAdministrationTooltip extends
         const doseDiffText =
             Tooltip.formatTimestamp(
                 administration.previousDose.medAdministration.timestamp) +
-            '<br>(' + timestampDifference.toFormat('h:m') + ' after dose ' +
-            administration.previousDose.doseInOrder + ')';
+            '<br>(' + timestampDifference.toFormat('h:m') +
+            ' before this dose)';
 
         Tooltip.addRow(
             table,
             [
-              'Previous dose', doseDiffText,
+              UI_CONSTANTS.PREVIOUS_DOSE, doseDiffText,
               this.formatDosage(administration.previousDose.medAdministration)
             ],
             sanitizer);
+      } else {
+        Tooltip.addRow(
+            table, [UI_CONSTANTS.NO_PREVIOUS_DOSE], sanitizer, undefined, false,
+            3);
       }
     }
     const tooltipChart = table.outerHTML;

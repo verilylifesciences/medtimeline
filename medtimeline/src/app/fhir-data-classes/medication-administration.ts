@@ -157,8 +157,6 @@ export class MedicationAdministrationSet extends
   constructor(medicationAdministrationList: AnnotatedAdministration[]) {
     super(medicationAdministrationList);
 
-    const requestIdsString = Array.from(this.requestIds).join(', ');
-
     const rxNorms =
         medicationAdministrationList.map(x => x.medAdministration.rxNormCode);
     if (new Set(rxNorms).size > 1) {
@@ -194,31 +192,15 @@ export class AnnotatedAdministration extends ResultClass {
   readonly medAdministration: MedicationAdministration;
 
   /**
-   * The dose number for this administration in this order. The first dose is
-   * numbered 1.
-   */
-  readonly doseInOrder: number;
-
-  /**
-   * The numbered day for this dose within this order. The first dose will
-   * be on day 1. Day 2 starts 24 hours after the first dose administration,
-   * day 3 24 hours after that, etc.
-   */
-  readonly doseDay: number;
-
-  /**
    * The annotated dose for the dose prior to this one. Undefined if this is
    * the first dose.
    */
   readonly previousDose: AnnotatedAdministration;
 
   constructor(
-      medAdmin: MedicationAdministration, doseInOrder: number, doseDay: number,
-      prevDose?: AnnotatedAdministration) {
+      medAdmin: MedicationAdministration, prevDose?: AnnotatedAdministration) {
     super(medAdmin.label, medAdmin.requestId);
     this.medAdministration = medAdmin;
-    this.doseInOrder = doseInOrder;
-    this.doseDay = doseDay;
     this.previousDose = prevDose;
   }
 }

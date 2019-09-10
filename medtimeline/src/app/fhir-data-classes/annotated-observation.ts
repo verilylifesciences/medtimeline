@@ -4,7 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {Duration, Interval} from 'luxon';
+import {UI_CONSTANTS} from 'src/constants';
+
 import {ResultClassWithTimestamp} from '../fhir-resource-set';
+
 import {MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
@@ -39,8 +42,6 @@ export class AnnotatedObservation extends ResultClassWithTimestamp {
       medicationOrderSet: MedicationOrderSet): AnnotatedObservation {
     // Look in the medication order set's administrations and find the ones
     // closest in time to this observation.
-    let doseCountBefore: number;
-    let doseCountAfter: number;
     let timeSinceLast: Duration;
     let timeBeforeNext: Duration;
 
@@ -84,20 +85,18 @@ export class AnnotatedObservation extends ResultClassWithTimestamp {
       const doseBeforeObs = sortedAdmins[idx - 1];
       const doseAfterObs = sortedAdmins[idx];
 
-      doseCountBefore = doseBeforeObs.doseInOrder;
       timeSinceLast =
           observation.timestamp.diff(doseBeforeObs.medAdministration.timestamp);
 
-      doseCountAfter = doseAfterObs.doseInOrder;
       timeBeforeNext =
           doseAfterObs.medAdministration.timestamp.diff(observation.timestamp);
 
       annotations.push([
-        'Time since dose #' + doseCountBefore, timeSinceLast.toFormat('h:mm')
+        UI_CONSTANTS.TIME_SINCE_PREVIOUS_DOSE, timeSinceLast.toFormat('h:mm')
       ]);
 
       annotations.push([
-        'Time before dose #' + doseCountAfter, timeBeforeNext.toFormat('h:mm')
+        UI_CONSTANTS.TIME_BEFORE_NEXT_DOSE, timeBeforeNext.toFormat('h:mm')
       ]);
     }
 
