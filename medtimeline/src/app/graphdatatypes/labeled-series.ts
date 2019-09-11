@@ -7,15 +7,15 @@ import {DateTime, Interval} from 'luxon';
 
 // tslint:disable-next-line:max-line-length
 import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB, radiology} from '../clinicalconcepts/display-grouping';
-import {MicrobioReport} from '../fhir-data-classes/microbio-report';
-import {DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
+import {DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {CHECK_RESULT_CODE, NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
 import {LegendInfo} from '../graphtypes/legend-info';
 
-import {MedicationOrder, MedicationOrderSet} from './../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from './../fhir-data-classes/medication-order';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
 
 /**
@@ -243,21 +243,21 @@ export class LabeledSeries {
    * order, there are two LabeledSeries -- one for the corresponding
    * MedicationAdministrations, and one for the endpoints displayed for the
    * order.
-   * @param order The MedicationOrder to chart.
+   * @param annotatedOrder The AnnotatedMedicationOrder to chart.
    * @param dateRange The date range displayed on the chart.
    * @param categoricalYPosition If set, we use this categorical y-position
    *    for all the datapoints in both returned series. If unset, we use the
    *    dosage quantity for each administration as the numerical y-value.
    */
   static fromMedicationOrder(
-      order: MedicationOrder, dateRange: Interval,
+      annotatedOrder: AnnotatedMedicationOrder, dateRange: Interval,
       categoricalYPosition?: string): LabeledSeries[] {
     const coordinates = new Array<[DateTime, string | number, string?]>();
     const endpointCoordinates = new Array<[DateTime, string | number]>();
-    const medAdminsForOrder = order.administrationsForOrder;
+    const medAdminsForOrder = annotatedOrder.medicationAdministrationSet;
 
-    const label = order.label + order.orderId;
-    const legend = order.rxNormCode.displayGrouping;
+    const label = annotatedOrder.label + annotatedOrder.order.orderId;
+    const legend = annotatedOrder.order.rxNormCode.displayGrouping;
 
     if (medAdminsForOrder) {
       for (const annotatedAdmin of medAdminsForOrder.resourceList) {
@@ -276,34 +276,34 @@ export class LabeledSeries {
       // time range of the chart, and if the time of the last Administration
       // of the order is before the end of the chart's time range.
       const firstAdministrationIsAfterStartTime =
-          order.firstAdministration.timestamp.toMillis() >=
+          annotatedOrder.firstAdministration.timestamp.toMillis() >=
           dateRange.start.toMillis();
       const lastAdministrationIsBeforeEndTime =
-          order.lastAdmininistration.timestamp.toMillis() <=
+          annotatedOrder.lastAdministration.timestamp.toMillis() <=
           dateRange.end.toMillis();
 
       if (firstAdministrationIsAfterStartTime) {
         endpointCoordinates.push([
-          order.firstAdministration.timestamp,
+          annotatedOrder.firstAdministration.timestamp,
           this.getYPositionForMed(
-              order.firstAdministration, categoricalYPosition)
+              annotatedOrder.firstAdministration, categoricalYPosition)
         ]);
       } else if (
           categoricalYPosition &&
-          (order.lastAdmininistration.timestamp.toMillis() >
+          (annotatedOrder.lastAdministration.timestamp.toMillis() >
            dateRange.start.toMillis())) {
         // Only add a point for continuity if we have a fixed y position.
         coordinates.push([dateRange.start, categoricalYPosition]);
       }
       if (lastAdministrationIsBeforeEndTime) {
         endpointCoordinates.push([
-          order.lastAdmininistration.timestamp,
+          annotatedOrder.lastAdministration.timestamp,
           this.getYPositionForMed(
-              order.lastAdmininistration, categoricalYPosition)
+              annotatedOrder.lastAdministration, categoricalYPosition)
         ]);
       } else if (
           categoricalYPosition &&
-          order.firstAdministration.timestamp.toMillis() <
+          annotatedOrder.firstAdministration.timestamp.toMillis() <
               dateRange.end.toMillis()) {
         // Only add a point for continuity if we have a fixed y position.
         coordinates.push([dateRange.end, categoricalYPosition]);
@@ -318,7 +318,7 @@ export class LabeledSeries {
           // LabeledSeries, as we only show normal ranges for Observations with
           // a normal range given in the data.
           undefined,  // normalRanges
-          order.rxNormCode.displayGrouping),
+          annotatedOrder.order.rxNormCode.displayGrouping),
       new LabeledSeries(
           'endpoint' + label, endpointCoordinates, medAdminsForOrder.unit,
           legend)
@@ -397,25 +397,30 @@ export class LabeledSeries {
     }
   }
 
-   /**
-    * Generates LabeledSeries from the given DiagnosticReport.
-    * @param report The DiagnosticReport to chart.
-    * @param date the DateTime corresponding to the Observations in the
-    *     DiagnosticReport.
-    */
-   static fromDiagnosticReport(annotatedReport: AnnotatedDiagnosticReport, date: DateTime):
-       LabeledSeries[] {
-     const report = annotatedReport.report;
-     const seriesLabel = report.id + '-' + (annotatedReport.report ? annotatedReport.report.category : 'unnamedReport');
-     let coordinates: Array<[DateTime, number | string]> = [];
+  /**
+   * Generates LabeledSeries from the given DiagnosticReport.
+   * @param report The DiagnosticReport to chart.
+   * @param date the DateTime corresponding to the Observations in the
+   *     DiagnosticReport.
+   */
+  static fromDiagnosticReport(
+      annotatedReport: AnnotatedDiagnosticReport,
+      date: DateTime): LabeledSeries[] {
+    const report = annotatedReport.report;
+    const seriesLabel = report.id + '-' +
+        (annotatedReport.report ? annotatedReport.report.category :
+                                  'unnamedReport');
+    let coordinates: Array<[DateTime, number | string]> = [];
 
-     // We are setting the coordinates to the category of the document (RADRPT, CT Report, etc.)
-     coordinates = [[report.timestamp, report.category]];
-     const series = [new LabeledSeries(seriesLabel, coordinates,
-                                   undefined, // unit
-                                   radiology)];
-     return series;
-   }
+    // We are setting the coordinates to the category of the document (RADRPT,
+    // CT Report, etc.)
+    coordinates = [[report.timestamp, report.category]];
+    const series = [new LabeledSeries(
+        seriesLabel, coordinates,
+        undefined,  // unit
+        radiology)];
+    return series;
+  }
 
   private static getYPositionForMed(
       medAdmin: MedicationAdministration, categoricalYPosition: string): string

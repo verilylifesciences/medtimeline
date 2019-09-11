@@ -4,9 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {Interval} from 'luxon';
+
 import {CachedResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-data-classes/medication-order';
 
 import {RxNormCode} from './rx-norm';
 
@@ -119,32 +120,17 @@ export class RxNormCodeGroup extends
   private getMedicationOrdersAndMapToMed(
       groupedByOrder: Map<string, MedicationAdministration[]>):
       Promise<RxNormCode[]> {
-    const groupedByMed = new Map<RxNormCode, MedicationOrder[]>();
     const allPromises = Array.from(groupedByOrder.keys()).map(orderId => {
       if (this.medicationOrderCache.has(orderId)) {
         return Promise.resolve(this.medicationOrderCache.get(orderId));
       } else {
         return this.fhirService.getMedicationOrderWithId(orderId).then(
             order => {
-              // We only have the MedicationAdministrations from within the
-              // specified time window, so we have to search again for all the
-              // MedicationAdministrations present for this order and assign
-              // them to the order.
-              // We assume that an administration will always have a
-              // corresponding order.
-              return order.setMedicationAdministrations(this.fhirService)
-                  .then(order => {
-                    // if this order will not have any additional data added,
-                    // we add it to the medication order cache.
-                    if (order.status === MedicationOrderStatus.COMPLETED ||
-                        order.status === MedicationOrderStatus.STOPPED) {
-                      this.medicationOrderCache.set(orderId, order);
-                    }
-                    return order;
-                  });
+              this.medicationOrderCache.set(orderId, order);
+              return order;
             },
             rejection => {
-              // If there are any errors constructing MedicationOrders for
+              // If there are any errors getting a MedicationOrder for
               // this RxNormCode[], throw the error.
               throw rejection;
             });
@@ -153,38 +139,42 @@ export class RxNormCodeGroup extends
 
     // Resolve all the promises and set the corresponding orders for each
     // RxNorm.
+    const groupedByMed = new Map<RxNormCode, AnnotatedMedicationOrder[]>();
     return Promise.all(allPromises)
         .then(orders => {
           orders.map(
               (order: MedicationOrder) => {
+                const orderId = order.orderId;
+                const medicationAdminsForOrder =
+                    Array.from(groupedByOrder.get(orderId).values());
                 // Verify all the administrations have the same RxNormCode and
                 // same Order ID.
                 const rxNormCodeSet = new Set(
-                    Array.from(groupedByOrder.get(order.orderId).values())
-                        .map(admin => admin.rxNormCode));
+                    medicationAdminsForOrder.map(admin => admin.rxNormCode));
                 if (rxNormCodeSet.size !== 1) {
                   throw Error(
-                      'Administrations for order ' + order.orderId +
+                      'Administrations for order ' + orderId +
                       ' are for multiple RxNorms: ' +
                       Array.from(rxNormCodeSet.values()));
                 }
 
-                const orderSet = new Set(
-                    Array.from(groupedByOrder.get(order.orderId).values())
-                        .map(admin => admin.medicationOrderId));
+                const orderSet = new Set(medicationAdminsForOrder.map(
+                    admin => admin.medicationOrderId));
                 if (rxNormCodeSet.size !== 1) {
                   throw Error(
-                      'Administrations for order ' + order.orderId +
+                      'Administrations for order ' + orderId +
                       ' report multiple order IDs: ' + Array.from(orderSet));
                 }
 
                 // Add the order to the map for the RxNorm code.
                 const rxCode = rxNormCodeSet.values().next().value;
+                const annotatedOrder = new AnnotatedMedicationOrder(
+                    order, medicationAdminsForOrder);
                 if (groupedByMed.has(rxCode)) {
                   groupedByMed.set(
-                      rxCode, groupedByMed.get(rxCode).concat(order));
+                      rxCode, groupedByMed.get(rxCode).concat(annotatedOrder));
                 } else {
-                  groupedByMed.set(rxCode, new Array(order));
+                  groupedByMed.set(rxCode, new Array(annotatedOrder));
                 }
               },
               rejection => {

@@ -38,9 +38,6 @@ export const MedicationOrderStatus = {
 export class MedicationOrder extends ResultClass {
   readonly rxNormCode: RxNormCode;
   readonly dosageRetrievalError = 'Could not retrieve dosage instructions.';
-  firstAdministration: MedicationAdministration;
-  lastAdmininistration: MedicationAdministration;
-  administrationsForOrder: MedicationAdministrationSet;
   readonly status: string;
   readonly orderId: string;
 
@@ -95,55 +92,82 @@ export class MedicationOrder extends ResultClass {
               `RxNorm label: ${this.rxNormCode.label}.`);
     }
   }
+}
+
+/**
+ * This object stores a FHIR MedicationOrder object along with additional
+ * information including MedicationAdministration information.
+ *
+ * During initialization, it calculates first/last medication administrations
+ * based on the list of medication administrations that the
+ * AnnotatedMedicationOrder is initialized with. It does NOT fetch all
+ * administrations for the entire order - since this is a very time consuming
+ * FHIR call.
+ */
+export class AnnotatedMedicationOrder extends ResultClass {
+  readonly order: MedicationOrder;
 
   /**
-   * Sets the MedicationAdministration info for this MedicationOrder.
-   * @param fhirService The FhirService used to find the
-   *     MedicationAdministrations corresponding to this MedicationOrder.
+   * MedicationAdministrationSet associated with the order. This is based
+   * on the MedicationAdministrations that this object is initialized with.
+   * It may not represent all medication administrations for the entire order.
+   */
+  medicationAdministrationSet: MedicationAdministrationSet;
+
+  /**
+   * The MedicationAdministration that occured first. This comes from the list
+   * of medication administrations that this object is initialized with. It
+   * may not be the first administration of the whole order.
+   */
+  firstAdministration: MedicationAdministration;
+
+
+  /**
+   * The MedicationAdministration that occured last. This comes from the list
+   * of medication administrations that this object is initialized with. It
+   * may not be the last administration of the whole order.
+   */
+  lastAdministration: MedicationAdministration;
+
+  constructor(
+      order: MedicationOrder,
+      medicationAdministrations: MedicationAdministration[]) {
+    super(order.label, order.requestId);
+    this.order = order;
+    this.setMedicationAdministrations(medicationAdministrations);
+  }
+
+  /**
+   * Sets the MedicationAdministration info for this AnnotatedMedicationOrder.
+   * @param medicationAdministrations MedicationAdministrations associated with
+   *     the order.
    * @throws Error if the label for the list of administrations does not match
    *     the label for this order.
-   * @returns This order, after all the promises are resolved.
    */
-  setMedicationAdministrations(fhirService: FhirService):
-      Promise<MedicationOrder> {
-    return fhirService
-        .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
-        .then(
-            medAdmins => {
-              if (!medAdmins) {
-                return this;
-              }
-              medAdmins = medAdmins.sort((a, b) => {
-                return a.timestamp.toMillis() - b.timestamp.toMillis();
-              });
-              this.firstAdministration = medAdmins[0];
-              this.lastAdmininistration = medAdmins[medAdmins.length - 1];
+  private setMedicationAdministrations(medicationAdministrations:
+                                           MedicationAdministration[]): void {
+    if (!medicationAdministrations) {
+      return;
+    }
+    const sortedMedAdmins = medicationAdministrations.sort((a, b) => {
+      return a.timestamp.toMillis() - b.timestamp.toMillis();
+    });
+    this.firstAdministration = sortedMedAdmins[0];
+    this.lastAdministration =
+        sortedMedAdmins[medicationAdministrations.length - 1];
 
-              const admins = [];
-              for (let i = 0; i < medAdmins.length; i++) {
-                const admin = medAdmins[i];
-                // We want the dose counts and day counts to start with 1 so we
-                // add 1 to the day count and the index for the dose.
-                const dayCount =
-                    admin.timestamp.diff(this.firstAdministration.timestamp)
-                        .as('day') + 1;
-                // if i = 0, this is the first dose so we set the previous
-                // dose to undefined. Otherwise, the previous dose is the
-                // medication administration at the previous index
-                const previousDose = i > 0 ? admins[i - 1] : undefined;
-                const annotated =
-                    new AnnotatedAdministration(admin, previousDose);
-                admins.push(annotated);
-              }
-              this.administrationsForOrder =
-                  new MedicationAdministrationSet(admins);
-              return this;
-            },
-            rejection => {
-              // Throw an error if the construction of the
-              // MedicationAdministration results in an error.
-              throw rejection;
-            });
+    const annotatedAdmins = [];
+    for (let i = 0; i < sortedMedAdmins.length; i++) {
+      const admin = sortedMedAdmins[i];
+      // if i = 0, this is the first dose so we set the previous
+      // dose to undefined. Otherwise, the previous dose is the
+      // medication administration at the previous index
+      const previousDose = i > 0 ? annotatedAdmins[i - 1] : undefined;
+      const annotated = new AnnotatedAdministration(admin, previousDose);
+      annotatedAdmins.push(annotated);
+    }
+    this.medicationAdministrationSet =
+        new MedicationAdministrationSet(annotatedAdmins);
   }
 }
 
@@ -151,7 +175,8 @@ export class MedicationOrder extends ResultClass {
  * A set of MedicationOrders that belong together as part of the same
  * series, representing all orders for the medicine in a given time period.
  */
-export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
+export class MedicationOrderSet extends
+    FhirResourceSet<AnnotatedMedicationOrder> {
   /*
    * The RxNormCode for this set of data. All data in this set
    * must have the same RxNormCode.
@@ -171,9 +196,9 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
    * @throws Error if the observations have different labels/RxNormCodes, or
    *     if there is not a label/RxNormCode.
    */
-  constructor(medicationOrderList: MedicationOrder[]) {
+  constructor(medicationOrderList: AnnotatedMedicationOrder[]) {
     // Sort the list by first administration.
-    medicationOrderList = medicationOrderList.sort(function(a, b) {
+    medicationOrderList = medicationOrderList.sort((a, b) => {
       return a.firstAdministration.timestamp.toMillis() -
           b.firstAdministration.timestamp.toMillis();
     });
@@ -181,9 +206,7 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
     // Set the RxNormCode and MedicationConceptGroup for this
     // MedicationOrderSet.
     if (medicationOrderList.length > 0) {
-      const requestIdsString = Array.from(this.requestIds).join(', ');
-
-      const firstRxNorm = medicationOrderList[0].rxNormCode;
+      const firstRxNorm = medicationOrderList[0].order.rxNormCode;
       if (!firstRxNorm) {
         throw new ResultError(
             this.requestIds,
@@ -191,7 +214,7 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
       }
 
       for (const rs of medicationOrderList) {
-        if (rs.rxNormCode !== firstRxNorm) {
+        if (rs.order.rxNormCode !== firstRxNorm) {
           throw new ResultError(
               this.requestIds,
               'The resource list in this set has mixed RxNorm codes.');
@@ -200,13 +223,13 @@ export class MedicationOrderSet extends FhirResourceSet<MedicationOrder> {
       this.rxNormCode = firstRxNorm;
       this.medicationConcept = this.rxNormCode.displayGrouping;
 
-      this.minDose = Math.min(
-          ...medicationOrderList.map(x => x.administrationsForOrder.minDose));
-      this.maxDose = Math.max(
-          ...medicationOrderList.map(x => x.administrationsForOrder.maxDose));
+      this.minDose = Math.min(...medicationOrderList.map(
+          x => x.medicationAdministrationSet.minDose));
+      this.maxDose = Math.max(...medicationOrderList.map(
+          x => x.medicationAdministrationSet.maxDose));
 
-      const units =
-          new Set(medicationOrderList.map(x => x.administrationsForOrder.unit));
+      const units = new Set(
+          medicationOrderList.map(x => x.medicationAdministrationSet.unit));
       if (units.size > 1) {
         throw new ResultError(
             this.requestIds,
