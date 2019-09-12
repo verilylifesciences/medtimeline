@@ -9,7 +9,7 @@ import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-da
 import {formatNumberWithPrecision} from 'src/app/number_utils';
 import {UI_CONSTANTS} from 'src/constants';
 
-import {AnnotatedMedicationOrder} from '../../fhir-data-classes/medication-order';
+import {MedicationOrder} from '../../fhir-data-classes/medication-order';
 import {Tooltip} from '../tooltips/tooltip';
 
 import {AnnotatedTooltip} from './annotated-tooltip';
@@ -18,19 +18,18 @@ import {AnnotatedTooltip} from './annotated-tooltip';
  * Makes a tooltip for a medication order that lists the order's first and last
  * doses in a table.
  */
-export class MedicationTooltip extends Tooltip<AnnotatedMedicationOrder> {
-  getTooltip(annotatedOrder: AnnotatedMedicationOrder, sanitizer: DomSanitizer):
+export class MedicationTooltip extends Tooltip<MedicationOrder> {
+  getTooltip(order: MedicationOrder, sanitizer: DomSanitizer):
       AnnotatedTooltip {
-    const medication = annotatedOrder.label;
+    const medication = order.label;
     const firstDose =
-        Tooltip.formatTimestamp(annotatedOrder.firstAdministration.timestamp);
+        Tooltip.formatTimestamp(order.firstAdministration.timestamp);
     const lastDose =
-        Tooltip.formatTimestamp(annotatedOrder.lastAdministration.timestamp);
-    const dosageInstruction = annotatedOrder.order.dosageInstruction;
+        Tooltip.formatTimestamp(order.lastAdmininistration.timestamp);
+    const dosageInstruction = order.dosageInstruction;
     const table = Tooltip.createNewTable();
     Tooltip.addHeader(
-        `${medication}: Order #${annotatedOrder.order.orderId}`, table,
-        sanitizer);
+        `${medication}: Order #${order.orderId}`, table, sanitizer);
     Tooltip.addRow(table, [UI_CONSTANTS.FIRST_DOSE, firstDose], sanitizer);
     Tooltip.addRow(table, [UI_CONSTANTS.LAST_DOSE, lastDose], sanitizer);
     Tooltip.addRow(

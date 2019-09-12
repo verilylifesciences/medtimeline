@@ -16,10 +16,10 @@ import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
-import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {GraphData} from '../graphdatatypes/graphdata';
 import {LineGraphData} from '../graphdatatypes/linegraphdata';
 import {MicrobioGraphData} from '../graphdatatypes/microbiographdata';
+import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {StepGraphData} from '../graphdatatypes/stepgraphdata';
 
 import {ChartType} from './graph/graph.component';
@@ -109,8 +109,7 @@ export class Axis {
         resourceCodeList.every(code => code instanceof BCHMicrobioCode);
     this.allDiagnosticReport =
         resourceCodeList.every(code => code instanceof DiagnosticReportCode);
-    if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio &&
-        !this.allDiagnosticReport) {
+    if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio && !this.allDiagnosticReport) {
       throw Error('All resource codes must be of the same type.');
     }
   }
@@ -193,8 +192,8 @@ export class Axis {
 
     if (this.allDiagnosticReport) {
       return this.getStepGraphDataForDiagnosticReport(
-          this.resourceGroup as DiagnosticReportCodeGroup, dateRange);
-    } else {
+        this.resourceGroup as DiagnosticReportCodeGroup, dateRange);
+      } else {
       // In this case it is all LOINC codes.
       // We use LineGraphData for both ChartType.Scatter and
       // ChartType.Line, for plotting LOINC Codes.
@@ -246,13 +245,12 @@ export class Axis {
       Promise<StepGraphData> {
     return bchCodes.getResourceSet(dateRange).then(microbioReports => {
       return MicrobioGraphData.fromMicrobioReports(
-          microbioReports, this.sanitizer);
+        microbioReports, this.sanitizer);
     });
   }
 
-  getStepGraphDataForDiagnosticReport(
-      diagCodes: DiagnosticReportCodeGroup,
-      dateRange: Interval): Promise<StepGraphData> {
+  getStepGraphDataForDiagnosticReport(diagCodes: DiagnosticReportCodeGroup, dateRange: Interval):
+      Promise<StepGraphData> {
     return diagCodes.getResourceSet(dateRange).then(diagReports => {
       return DiagnosticGraphData.fromDiagnosticReports(
           diagReports, this.sanitizer);
@@ -267,7 +265,13 @@ export class Axis {
       rxNorms: RxNormCodeGroup, dateRange: Interval): Promise<LineGraphData> {
     return rxNorms.getResourceSet(dateRange)
         .then(rxNs => {
-          return [].concat(...rxNs.map(rx => rx.orders.resourceList));
+          const medOrders: MedicationOrder[] =
+              [].concat(...rxNs.map(rx => rx.orders.resourceList));
+          return medOrders.map(
+              order => order.setMedicationAdministrations(this.fhirService));
+        })
+        .then(orders => {
+          return Promise.all(orders);
         })
         .then(orders => {
           return LineGraphData.fromMedicationOrderSet(

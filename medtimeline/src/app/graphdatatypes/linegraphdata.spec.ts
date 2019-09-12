@@ -12,7 +12,7 @@ import {labResult} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -234,13 +234,22 @@ describe('LineGraphData', () => {
        const medAdmin2Order2 = makeMedicationAdministration(
            DateTime.utc(1988, 3, 27).toString(), 110);
 
-       const annotatedOrder1 = new AnnotatedMedicationOrder(
-           makeMedicationOrder(), [medAdmin1, medAdmin2]);
-       const annotatedOrder2 = new AnnotatedMedicationOrder(
-           makeMedicationOrder(), [medAdmin1Order2, medAdmin2Order2]);
-       const medOrderSet =
-           new MedicationOrderSet([annotatedOrder1, annotatedOrder2]);
+       // Set administrations manually to avoid FHIR call.
+       order1.administrationsForOrder =
+           new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
+               // annotations not important for this test
+               x => new AnnotatedAdministration(x)));
+       order1.firstAdministration = medAdmin1;
+       order1.lastAdmininistration = medAdmin2;
 
+       order2.administrationsForOrder = new MedicationAdministrationSet(
+           [medAdmin1Order2, medAdmin2Order2].map(
+               // annotations not important for this test
+               x => new AnnotatedAdministration(x)));
+       order2.firstAdministration = medAdmin1Order2;
+       order2.lastAdmininistration = medAdmin2Order2;
+
+       const medOrderSet = new MedicationOrderSet([order1, order2]);
 
        const lgData = LineGraphData.fromMedicationOrderSet(
            medOrderSet,
@@ -260,16 +269,22 @@ describe('LineGraphData', () => {
      });
 
   it('fromMedicationOrderSet should handle tooltips', () => {
+    const order1 = makeMedicationOrder();
+
     const medAdmin1 =
         makeMedicationAdministration(MARCH_23_DATETIME.toString(), 95);
     const medAdmin2 =
         makeMedicationAdministration(MARCH_23_DATETIME.toString(), 100);
-    const annotatedOrder1 =
-        new AnnotatedMedicationOrder(makeMedicationOrder(), [medAdmin1]);
-    const annotatedOrder2 =
-        new AnnotatedMedicationOrder(makeMedicationOrder(), [medAdmin2]);
-    const medOrderSet =
-        new MedicationOrderSet([annotatedOrder1, annotatedOrder2]);
+
+    // Set administrations manually to avoid FHIR call.
+    order1.administrationsForOrder =
+        new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
+            // annotations not important for this test
+            x => new AnnotatedAdministration(x)));
+    order1.firstAdministration = medAdmin1;
+    order1.lastAdmininistration = medAdmin2;
+
+    const medOrderSet = new MedicationOrderSet([order1]);
 
     const lgData = LineGraphData.fromMedicationOrderSet(
         medOrderSet,
@@ -290,13 +305,22 @@ describe('LineGraphData', () => {
   });
 
   it('fromMedicationOrderSet should always have precision to be 0', () => {
+    const order1 = makeMedicationOrder();
+
     const medAdmin1 =
         makeMedicationAdministration(MARCH_23_DATETIME.toString(), 95);
     const medAdmin2 =
         makeMedicationAdministration(MARCH_23_DATETIME.toString(), 100);
-    const annotatedOrder1 = new AnnotatedMedicationOrder(
-        makeMedicationOrder(), [medAdmin1, medAdmin2]);
-    const medOrderSet = new MedicationOrderSet([annotatedOrder1]);
+
+    // Set administrations manually to avoid FHIR call.
+    order1.administrationsForOrder =
+        new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
+            // annotations not important for this test
+            x => new AnnotatedAdministration(x)));
+    order1.firstAdministration = medAdmin1;
+    order1.lastAdmininistration = medAdmin2;
+
+    const medOrderSet = new MedicationOrderSet([order1]);
 
     const lgData = LineGraphData.fromMedicationOrderSet(
         medOrderSet,

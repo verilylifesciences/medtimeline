@@ -238,7 +238,7 @@ export class LineGraphData extends GraphData {
     const tooltipMap = new Map<string, AnnotatedTooltip[]>();
     const precision = 0;
     for (const order of medicationOrderSet.resourceList) {
-      for (const admin of order.medicationAdministrationSet.resourceList) {
+      for (const admin of order.administrationsForOrder.resourceList) {
         const timestamp =
             admin.medAdministration.timestamp.toMillis().toString();
         // The key for this tooltip is the administration's timestamp.

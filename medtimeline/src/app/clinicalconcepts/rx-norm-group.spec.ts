@@ -105,7 +105,7 @@ class RxStubFhirService extends StubFhirService {
     // Only return a partial set for each drug so that we ensure all the calls
     // work to get all administrations for the orders.
     if (codes.includes(RxNormCode.fromCodeString('11124') as RxNormCode)) {
-      return Promise.resolve(orderAAdmins.concat(...orderBAdmins));
+      return Promise.resolve([orderAAdmins[0], orderBAdmins[0]]);
     }
   }
 
@@ -145,25 +145,25 @@ describe('RxNormGroup', () => {
          expect(vanc).toBeDefined();
          expect(vanc.orders.resourceList.length).toBe(2);
 
-         const vancOrderA = vanc.orders.resourceList.filter(
-             x => x.order.orderId === 'OrderA')[0];
+         const vancOrderA =
+             vanc.orders.resourceList.filter(x => x.orderId === 'OrderA')[0];
          expect(vancOrderA).toBeDefined();
-         const vancOrderB = vanc.orders.resourceList.filter(
-             x => x.order.orderId === 'OrderB')[0];
+         const vancOrderB =
+             vanc.orders.resourceList.filter(x => x.orderId === 'OrderB')[0];
          expect(vancOrderB).toBeDefined();
 
-         expect(vancOrderA.medicationAdministrationSet.resourceList.map(
+         expect(vancOrderA.administrationsForOrder.resourceList.map(
                     x => x.medAdministration))
              .toEqual(orderAAdmins);
 
-         expect(vancOrderB.medicationAdministrationSet.resourceList.map(
+         expect(vancOrderB.administrationsForOrder.resourceList.map(
                     x => x.medAdministration))
              .toEqual(orderBAdmins);
          done();
        });
      });
 
-  it('should cache orders', (done: DoneFn) => {
+  it('should only cache orders that are completed/stopped', (done: DoneFn) => {
     const rxNormGroup = new RxNormCodeGroup(
         new RxStubFhirService(), 'antibiotics',
         [RxNormCode.fromCodeString('11124')], new DisplayGrouping('lbl', 'red'),
@@ -171,11 +171,9 @@ describe('RxNormGroup', () => {
 
     rxNormGroup.getResourceSet(interval).then(rxNorms => {
       expect(rxNormGroup.medicationOrderCache.has('OrderA')).toBe(true);
-      expect(rxNormGroup.medicationOrderCache.has('OrderB')).toBe(true);
+      expect(rxNormGroup.medicationOrderCache.has('OrderB')).toBe(false);
       expect(rxNormGroup.medicationOrderCache.get('OrderA'))
           .toEqual(medicationOrderA);
-      expect(rxNormGroup.medicationOrderCache.get('OrderB'))
-          .toEqual(medicationOrderB);
       done();
     });
   });
@@ -201,18 +199,18 @@ describe('RxNormGroup', () => {
          expect(vanc).toBeDefined();
          expect(vanc.orders.resourceList.length).toBe(2);
 
-         const vancOrderA = vanc.orders.resourceList.filter(
-             x => x.order.orderId === 'OrderA')[0];
+         const vancOrderA =
+             vanc.orders.resourceList.filter(x => x.orderId === 'OrderA')[0];
          expect(vancOrderA).toBeDefined();
-         const vancOrderB = vanc.orders.resourceList.filter(
-             x => x.order.orderId === 'OrderB')[0];
+         const vancOrderB =
+             vanc.orders.resourceList.filter(x => x.orderId === 'OrderB')[0];
          expect(vancOrderB).toBeDefined();
 
-         expect(vancOrderA.medicationAdministrationSet.resourceList.map(
+         expect(vancOrderA.administrationsForOrder.resourceList.map(
                     x => x.medAdministration))
              .toEqual(orderAAdmins);
 
-         expect(vancOrderB.medicationAdministrationSet.resourceList.map(
+         expect(vancOrderB.administrationsForOrder.resourceList.map(
                     x => x.medAdministration))
              .toEqual(orderBAdmins);
          done();

@@ -7,7 +7,8 @@ import {Duration, Interval} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
 import {ResultClassWithTimestamp} from '../fhir-resource-set';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from './medication-order';
+
+import {MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
 
@@ -47,12 +48,12 @@ export class AnnotatedObservation extends ResultClassWithTimestamp {
     const annotations = new Array<[string, string]>();
     // Find the medication order set that coincides in time with this
     // administration (if any).
-    let containingMedicationOrder: AnnotatedMedicationOrder;
+    let containingMedicationOrder: MedicationOrder;
     for (const order of medicationOrderSet.resourceList) {
       if (Interval
               .fromDateTimes(
                   order.firstAdministration.timestamp,
-                  order.lastAdministration.timestamp)
+                  order.lastAdmininistration.timestamp)
               .contains(observation.timestamp)) {
         if (containingMedicationOrder) {
           throw Error('Two medication orders contain this monitoring point.');
@@ -65,10 +66,9 @@ export class AnnotatedObservation extends ResultClassWithTimestamp {
       // Find the spot in the array of administrations where the monitoring
       // would fall, timewise.
       const sortedAdmins =
-          containingMedicationOrder.medicationAdministrationSet.resourceList
-              .sort(
-                  (a, b) => a.medAdministration.timestamp.toMillis() -
-                      b.medAdministration.timestamp.toMillis());
+          containingMedicationOrder.administrationsForOrder.resourceList.sort(
+              (a, b) => a.medAdministration.timestamp.toMillis() -
+                  b.medAdministration.timestamp.toMillis());
 
       let idx = 0;
       while (idx < sortedAdmins.length &&

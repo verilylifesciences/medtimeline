@@ -7,7 +7,6 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministrationSet} from 'src/app/fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder} from 'src/app/fhir-data-classes/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/test_utils';
 import {UI_CONSTANTS} from 'src/constants';
 
@@ -15,12 +14,19 @@ import {MedicationAdministrationTooltip, MedicationTooltip} from './medication-t
 import {Tooltip} from './tooltip';
 
 describe('MedicationTooltip', () => {
-  const firstAdmin = makeMedicationAdministration(
-      DateTime.fromJSDate(new Date('1957-01-14')).toString());
-  const lastAdmin = makeMedicationAdministration(
-      DateTime.fromJSDate(new Date('1957-01-16')).toString());
-  const annotatedOrder = new AnnotatedMedicationOrder(
-      makeMedicationOrder(), [firstAdmin, lastAdmin]);
+  const order = makeMedicationOrder();
+
+  // set up administrations to avoid fhir call
+  order.administrationsForOrder = new MedicationAdministrationSet([
+    new AnnotatedAdministration(makeMedicationAdministration(
+        DateTime.fromJSDate(new Date('1957-01-14')).toString())),
+    new AnnotatedAdministration(makeMedicationAdministration(
+        DateTime.fromJSDate(new Date('1957-01-16')).toString()))
+  ]);
+  order.firstAdministration =
+      order.administrationsForOrder.resourceList[0].medAdministration;
+  order.lastAdmininistration =
+      order.administrationsForOrder.resourceList[1].medAdministration;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({}).compileComponents();
@@ -32,46 +38,50 @@ describe('MedicationTooltip', () => {
   });
 
   it('should generate tooltip text', () => {
-    const tooltip = new MedicationTooltip().getTooltip(
-        annotatedOrder, TestBed.get(DomSanitizer));
+    const tooltip =
+        new MedicationTooltip().getTooltip(order, TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
-            '<tbody><tr><th colspan="2">vancomycin: Order #' +
-            annotatedOrder.order.orderId + '</th></tr>' +
+            '<tbody><tr><th colspan="2">vancomycin: Order #' + order.orderId +
+            '</th></tr>' +
             '<tr>' +
             '<td class="name">' + UI_CONSTANTS.FIRST_DOSE + '</td>' +
             '<td class="value">' +
-            Tooltip.formatTimestamp(firstAdmin.timestamp) + '</td></tr>' +
+            Tooltip.formatTimestamp(order.firstAdministration.timestamp) +
+            '</td></tr>' +
             '<tr>' +
             '<td class="name">' + UI_CONSTANTS.LAST_DOSE + '</td>' +
             '<td class="value">' +
-            Tooltip.formatTimestamp(lastAdmin.timestamp) + '</td></tr>' +
+            Tooltip.formatTimestamp(order.lastAdmininistration.timestamp) +
+            '</td></tr>' +
             '<tr><td class="name">Dosage Instructions</td><td class="value">Could not retrieve dosage instructions.</td></tr>' +
             '</tbody></table>');
   });
 
   it('should show dosage instruction information', () => {
-    annotatedOrder.order.dosageInstruction = 'dosage';
-    const tooltip = new MedicationTooltip().getTooltip(
-        annotatedOrder, TestBed.get(DomSanitizer));
+    order.dosageInstruction = 'dosage';
+    const tooltip =
+        new MedicationTooltip().getTooltip(order, TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip">' +
-            '<tbody><tr><th colspan="2">vancomycin: Order #' +
-            annotatedOrder.order.orderId + '</th></tr>' +
+            '<tbody><tr><th colspan="2">vancomycin: Order #' + order.orderId +
+            '</th></tr>' +
             '<tr>' +
             '<td class="name">' + UI_CONSTANTS.FIRST_DOSE + '</td>' +
             '<td class="value">' +
-            Tooltip.formatTimestamp(firstAdmin.timestamp) + '</td></tr>' +
+            Tooltip.formatTimestamp(order.firstAdministration.timestamp) +
+            '</td></tr>' +
             '<tr>' +
             '<td class="name">' + UI_CONSTANTS.LAST_DOSE + '</td>' +
             '<td class="value">' +
-            Tooltip.formatTimestamp(lastAdmin.timestamp) + '</td></tr>' +
+            Tooltip.formatTimestamp(order.lastAdmininistration.timestamp) +
+            '</td></tr>' +
             '<tr><td class="name">' + UI_CONSTANTS.DOSAGE_INSTRUCTIONS +
             '</td><td class="value">dosage</td></tr>' +
             '</tbody></table>');

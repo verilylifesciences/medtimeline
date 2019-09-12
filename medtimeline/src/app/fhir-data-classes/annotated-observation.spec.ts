@@ -11,7 +11,7 @@ import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObs
 
 import {AnnotatedObservation} from './annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from './medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from './medication-order';
+import {MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
 
@@ -42,11 +42,19 @@ describe('AnnotatedObservation', () => {
            DateTime.fromISO('1992-11-01T00:00:00.00').toString());
        const lastAdmin = makeMedicationAdministration(
            DateTime.fromISO('1992-11-04T00:00:00.00').toString());
+       const firstAnnotatedAdmin = new AnnotatedAdministration(firstAdmin);
 
-       const annotatedMedOrder =
-           new AnnotatedMedicationOrder(medOrder, [firstAdmin, lastAdmin]);
+       // Make the administrations between November 1 and November 4.
+       // Manually set the administrations and first and last timestamps so
+       // that we don't have to do a FHIR call.
+       medOrder.administrationsForOrder = new MedicationAdministrationSet([
+         firstAnnotatedAdmin,
+         new AnnotatedAdministration(lastAdmin, firstAnnotatedAdmin)
+       ]);
+       medOrder.firstAdministration = firstAdmin;
+       medOrder.lastAdmininistration = lastAdmin;
 
-       const medOrderSet = new MedicationOrderSet([annotatedMedOrder]);
+       const medOrderSet = new MedicationOrderSet([medOrder]);
 
        const annotated =
            AnnotatedObservation.forMedicationMonitoring(obs, medOrderSet);
@@ -67,17 +75,31 @@ describe('AnnotatedObservation', () => {
        const thirdAdmin = makeMedicationAdministration(
            DateTime.fromISO('1992-11-09T00:00:00.00').toString());
 
-       const annotatedMedOrder = new AnnotatedMedicationOrder(
-           medOrder, [thirdAdmin, firstAdmin, secondAdmin]);
+       const firstAnnotatedAdmin = new AnnotatedAdministration(firstAdmin);
+       const secondAnnotatedAdmin =
+           new AnnotatedAdministration(firstAdmin, firstAnnotatedAdmin);
+       const thirdAnnotatedAdmin =
+           new AnnotatedAdministration(thirdAdmin, secondAnnotatedAdmin);
 
-       const medOrderSet = new MedicationOrderSet([annotatedMedOrder]);
+       // Make the administrations between November 1 and November 4.
+       // Manually set the administrations and first and last timestamps so
+       // that we don't have to do a FHIR call.
+       medOrder.administrationsForOrder = new MedicationAdministrationSet([
+         thirdAnnotatedAdmin,
+         firstAnnotatedAdmin,
+         secondAnnotatedAdmin,
+       ]);
+       medOrder.firstAdministration = firstAdmin;
+       medOrder.lastAdmininistration = thirdAdmin;
+
+       const medOrderSet = new MedicationOrderSet([medOrder]);
 
        const annotated =
            AnnotatedObservation.forMedicationMonitoring(obs, medOrderSet);
        expect(annotated.observation).toEqual(obs);
        expect(annotated.annotationValues.length).toEqual(2);
        expect(annotated.annotationValues[0]).toEqual([
-         UI_CONSTANTS.TIME_SINCE_PREVIOUS_DOSE, '48:00'
+         UI_CONSTANTS.TIME_SINCE_PREVIOUS_DOSE, '120:00'
        ]);
        expect(annotated.annotationValues[1]).toEqual([
          UI_CONSTANTS.TIME_BEFORE_NEXT_DOSE, '72:00'

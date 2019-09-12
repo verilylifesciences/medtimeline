@@ -8,17 +8,17 @@ import {Interval} from 'luxon';
 import {of} from 'rxjs';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
-import {LOINCCode, LOINCCodeGroup} from './clinicalconcepts/loinc-code';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {LOINCCode, LOINCCodeGroup} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from './clinicalconcepts/rx-norm-group';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
+import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
 import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
+import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation} from './fhir-data-classes/observation';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 
 @Injectable()
 export abstract class FhirService {
@@ -38,29 +38,31 @@ export abstract class FhirService {
    * @param dateRange The time interval observations should fall between.
    */
   microbioReportsPresentWithCodes(
-    codeGroup: BCHMicrobioCodeGroup, dateRange: Interval): Promise<boolean> {
-  // Just ask for one result to reduce the call time.
-  return this.getMicrobioReports(codeGroup, dateRange, 1)
-      .then(reports => reports.length > 0, rejection => {
-        // If any MicrobioReports for this code results in an error, do not
-        // show any MicrobioReports at all.
-        throw rejection;
-      });
-}
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval): Promise<boolean> {
+    // Just ask for one result to reduce the call time.
+    return this.getMicrobioReports(codeGroup, dateRange, 1)
+        .then(reports => reports.length > 0, rejection => {
+          // If any MicrobioReports for this code results in an error, do not
+          // show any MicrobioReports at all.
+          throw rejection;
+        });
+  }
 
   /**
-   * Returns whether there are any annotated diagnosticreports with this code in the given
-   * time range.
-   * @param code The resource code (for diagnostic reports) for which to get observations.
+   * Returns whether there are any annotated diagnosticreports with this code in
+   * the given time range.
+   * @param code The resource code (for diagnostic reports) for which to get
+   *     observations.
    * @param dateRange The time interval observations should fall between.
    */
   diagnosticReportsPresentWithCodes(
-      codeGroup: DiagnosticReportCodeGroup, dateRange: Interval): Promise<boolean> {
+      codeGroup: DiagnosticReportCodeGroup,
+      dateRange: Interval): Promise<boolean> {
     // Just ask for one result to reduce the call time.
     return this.getAnnotatedDiagnosticReports(codeGroup, dateRange, 1)
         .then(reports => reports.length > 0, rejection => {
-          // If any AnnotatedDiagnosticReports for this code results in an error, do not
-          // show any AnnotatedDiagnosticReports at all.
+          // If any AnnotatedDiagnosticReports for this code results in an
+          // error, do not show any AnnotatedDiagnosticReports at all.
           throw rejection;
         });
   }
@@ -141,13 +143,6 @@ export abstract class FhirService {
   abstract getMedicationOrderWithId(id: string): Promise<MedicationOrder>;
 
   /**
-   * Gets administrations for specified order id.
-   * @param id The id to pull the order from.
-   */
-  abstract getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
-      Promise<MedicationAdministration[]>;
-
-  /**
    * Gets the encounters for the patient for any encounter that falls in the
    * given date range.
    * @param dateRange Return all encounters that covered any time in this
@@ -172,8 +167,8 @@ export abstract class FhirService {
    *   date range.
    */
   abstract getMicrobioReports(
-    codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
-    limitCount?: number): Promise<MicrobioReport[]>;
+      codeGroup: BCHMicrobioCodeGroup, dateRange: Interval,
+      limitCount?: number): Promise<MicrobioReport[]>;
 
   /**
    * Gets the DiagnosticReports for the patient for any report that falls in
@@ -187,29 +182,27 @@ export abstract class FhirService {
       limitCount?: number): Promise<AnnotatedDiagnosticReport[]>;
 
   /**
-   * Helper function to getAnnotatedDiagnosticReports() that makes the http calls
-   * to get the corresponding html attachments. Creates a new AnnotatedDiagnosticReport
-   * that includes the html attachment.
+   * Helper function to getAnnotatedDiagnosticReports() that makes the http
+   * calls to get the corresponding html attachments. Creates a new
+   * AnnotatedDiagnosticReport that includes the html attachment.
    *
    * @param report DiagnosticReport that will be edited to include the
    * html attachment in string format
    */
-  addAttachment(report: DiagnosticReport):
-      Promise<AnnotatedDiagnosticReport> {
+  addAttachment(report: DiagnosticReport): Promise<AnnotatedDiagnosticReport> {
     if (report.presentedForm) {
       for (const presented of report.presentedForm) {
         // Currently Cerner only supports text/html files and not pdf
         if (presented.contentType === 'text/html') {
-          return this.getAttachment(presented.url)
-            .then(html => {
-              return new AnnotatedDiagnosticReport(report, html);
-            });
+          return this.getAttachment(presented.url).then(html => {
+            return new AnnotatedDiagnosticReport(report, html);
+          });
         }
       }
     }
-    // If there is no presentedForm section in the report or none of the presentedForm
-    // contentTypes are 'text/html', return the annotated diagnostic report without
-    // the attachment.
+    // If there is no presentedForm section in the report or none of the
+    // presentedForm contentTypes are 'text/html', return the annotated
+    // diagnostic report without the attachment.
     return Promise.resolve(new AnnotatedDiagnosticReport(report));
   }
 
