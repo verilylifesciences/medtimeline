@@ -10,6 +10,7 @@ import {DateTime, Interval} from 'luxon';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
+import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
@@ -174,6 +175,14 @@ export function makeMedicationOrder(): MedicationOrder {
 
 export function makeSampleDiscreteObservationJson(
     result: string, timestamp: DateTime, interpretation = 'N'): any {
+  // we use a fake LOINCCode for testing. We make sure it is created and if not,
+  // we create it.
+  const loincCodeString = '4090-7';
+  if (!LOINCCode.fromCodeString(loincCodeString)) {
+    const newLoincCode = new LOINCCode(
+        loincCodeString, new DisplayGrouping('Vanc pk'), 'Vanc pk', true,
+        [0, 50], true);
+  }
   return {
     code: {
       coding: [{system: 'http://loinc.org', code: '4090-7'}],

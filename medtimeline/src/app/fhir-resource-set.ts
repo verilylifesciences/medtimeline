@@ -27,6 +27,10 @@ export class ResultClassWithTimestamp extends TimestampedObject {
   }
 }
 
+export class RawResource {
+  constructor(public json: any, public requestId: string) {}
+}
+
 /**
  * A class that has label and requestId attributes.
  *

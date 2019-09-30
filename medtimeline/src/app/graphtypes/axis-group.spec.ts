@@ -8,7 +8,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
-import {labResult, vitalSign} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, labResult, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {FhirService} from '../fhir.service';
 import {StubFhirService} from '../test_utils';
@@ -26,6 +26,9 @@ describe('AxisGroup', () => {
       DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
   const getDataFromFhir = () => {};
 
+  const testLoincCode =
+      new LOINCCode('axisGroupTest', new DisplayGrouping('label'), 'label');
+
   beforeEach(async(() => {
     TestBed
         .configureTestingModule(
@@ -36,10 +39,7 @@ describe('AxisGroup', () => {
   it('should prefer constructor values for label and display group ' +
          ' over those provided in axes',
      () => {
-       const resourceCodeList = [
-         new LOINCCode('44123', labResult, 'label1', true),
-         new LOINCCode('44123', labResult, 'label1', true),
-       ];
+       const resourceCodeList = [testLoincCode];
 
        const axis1 = new Axis(
            fhirServiceStub, TestBed.get(DomSanitizer),
@@ -54,10 +54,7 @@ describe('AxisGroup', () => {
      });
 
   it('should set label from contained axes if not provided', () => {
-    const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'loincLabel', true),
-      new LOINCCode('44123', labResult, 'loincLabel', true),
-    ];
+    const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
         fhirServiceStub, TestBed.get(DomSanitizer),
@@ -72,10 +69,7 @@ describe('AxisGroup', () => {
   });
 
   it('should set display group from contained axes if not provided', () => {
-    const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'label1', true),
-      new LOINCCode('44123', labResult, 'label1', true),
-    ];
+    const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
         fhirServiceStub, TestBed.get(DomSanitizer),
@@ -90,10 +84,7 @@ describe('AxisGroup', () => {
 
 
   it('should throw error if no label provided and labels do not match', () => {
-    const resourceCodeList = [
-      new LOINCCode('44123', labResult, 'label1', true),
-      new LOINCCode('44123', labResult, 'label1', true),
-    ];
+    const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
         fhirServiceStub, TestBed.get(DomSanitizer),
@@ -119,13 +110,9 @@ describe('AxisGroup', () => {
   it('should throw error if no display group provided ' +
          'and display groups do not match.',
      () => {
-       const resourceCodeList1 = [
-         new LOINCCode('44123', labResult, 'label1', true),
-       ];
+       const resourceCodeList1 = [testLoincCode];
 
-       const resourceCodeList2 = [
-         new LOINCCode('44123', vitalSign, 'label1', true),
-       ];
+       const resourceCodeList2 = [testLoincCode];
 
        const axis1 = new Axis(
            fhirServiceStub, TestBed.get(DomSanitizer),

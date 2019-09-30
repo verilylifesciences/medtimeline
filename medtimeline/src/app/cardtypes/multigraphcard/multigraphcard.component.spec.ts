@@ -19,10 +19,10 @@ import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {FhirService} from 'src/app/fhir.service';
 import {Axis} from 'src/app/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
+import {DiagnosticGraphComponent} from 'src/app/graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ChartType} from 'src/app/graphtypes/graph/graph.component';
 import {LineGraphComponent} from 'src/app/graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from 'src/app/graphtypes/microbio-graph/microbio-graph.component';
-import {DiagnosticGraphComponent} from 'src/app/graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {ScatterplotComponent} from 'src/app/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphtypes/stepgraph/stepgraph.component';
 import {StubFhirService} from 'src/app/test_utils';
@@ -36,9 +36,8 @@ describe('MultiGraphCardComponent', () => {
   let component: MultiGraphCardComponent;
   let fixture: ComponentFixture<MultiGraphCardComponent>;
   const hemoglobin = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl',
-      [new LOINCCode('718-7', labResult, 'Hemoglobin', true)], labResult,
-      ChartType.LINE);
+      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('718-7')],
+      labResult, ChartType.LINE);
 
   beforeEach(async(() => {
     TestBed

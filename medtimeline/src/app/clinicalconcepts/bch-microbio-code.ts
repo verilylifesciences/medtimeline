@@ -10,7 +10,7 @@ import {AnnotatedMicrobioReport} from '../fhir-data-classes/annotated-microbio-r
 import {MicrobioReport} from '../fhir-data-classes/microbio-report';
 import {FhirService} from '../fhir.service';
 
-import {CachedResourceCodeGroup, ResourceCode} from './resource-code-group';
+import {AbstractResourceCodeGroup, ResourceCode} from './resource-code-group';
 
 /**
  * Holds BCHMicrobioCode codes. BCH provides a custom mapping for their
@@ -37,15 +37,14 @@ export class BCHMicrobioCode extends ResourceCode {
  * group.
  */
 export class BCHMicrobioCodeGroup extends
-    CachedResourceCodeGroup<MicrobioReport, AnnotatedMicrobioReport> {
+    AbstractResourceCodeGroup<MicrobioReport, AnnotatedMicrobioReport> {
   /**
    * Gets a list of MicrobioReports corresponding to this code group. Each
    * item in the list has the same specimen type as the label of this group, and
    * each report's list of results has a code that is in this group's list of
    * codes.
    */
-  getResourceFromFhir(dateRange: Interval):
-      Promise<AnnotatedMicrobioReport[]> {
+  getResourceFromFhir(dateRange: Interval): Promise<AnnotatedMicrobioReport[]> {
     return this.fhirService.getMicrobioReports(this, dateRange)
         .then(
             reports =>
@@ -64,7 +63,6 @@ export class BCHMicrobioCodeGroup extends
    * @override
    */
   dataAvailableInAppTimeScope(): Promise<boolean> {
-    return this.fhirService.microbioReportsPresentWithCodes(
-        this, APP_TIMESPAN);
+    return this.fhirService.microbioReportsPresentWithCodes(this, APP_TIMESPAN);
   }
 }

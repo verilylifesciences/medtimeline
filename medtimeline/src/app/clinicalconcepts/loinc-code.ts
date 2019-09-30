@@ -14,7 +14,7 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {DisplayGrouping} from './display-grouping';
 import {ResourceCode} from './resource-code-group';
-import {CachedResourceCodeGroup} from './resource-code-group';
+import {AbstractResourceCodeGroup} from './resource-code-group';
 
 /**
  * Holds LOINC codes.
@@ -33,7 +33,7 @@ export class LOINCCode extends ResourceCode {
  * group.
  */
 export class LOINCCodeGroup extends
-    CachedResourceCodeGroup<ObservationSet, AnnotatedObservation> {
+    AbstractResourceCodeGroup<ObservationSet, AnnotatedObservation> {
   constructor(
       /** FHIR service for retrieving data */
       readonly fhirService: FhirService,

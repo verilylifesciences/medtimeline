@@ -5,7 +5,7 @@
 
 import {Interval} from 'luxon';
 
-import {CachedResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
+import {AbstractResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-data-classes/medication-order';
 
@@ -17,7 +17,7 @@ import {RxNormCode} from './rx-norm';
  * group.
  */
 export class RxNormCodeGroup extends
-    CachedResourceCodeGroup<RxNormCode, MedicationAdministration> {
+    AbstractResourceCodeGroup<RxNormCode, MedicationAdministration> {
   medicationOrderCache = new Map<string, MedicationOrder>();
 
   /**

@@ -4,12 +4,13 @@
 // license that can be found in the LICENSE file.
 
 
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {ResultError} from '../result-error';
 import {DateTime} from 'luxon';
 
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
+import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {ResultClassWithTimestamp} from '../fhir-resource-set';
+import {ResultError} from '../result-error';
+
 import {Attachment} from './attachment';
 
 /**
@@ -69,10 +70,11 @@ const categoryToEnumMap = new Map<string, DiagnosticServiceSectionCodes>([
  * Cerner currently only supports radiology reports
  */
 export class DiagnosticReport extends ResultClassWithTimestamp {
-  /** Request ID of the request that obtained this report data.
+  /**
+   * Request ID of the request that obtained this report data.
    * Returned by Cerner; not a FHIR standard.
    * TODO: Issue #24
-  */
+   */
   readonly requestId: string;
 
   readonly id: string;
@@ -89,15 +91,16 @@ export class DiagnosticReport extends ResultClassWithTimestamp {
   /**
    * Not readonly to allow editing in fhir-service
    * Attachment representing html/pdf version of the report.
-  */
+   */
   presentedForm = new Array<Attachment>();
 
   /** Json returned from FHIR; source of truth */
   readonly json: any;
 
   constructor(json: any, requestId: string) {
-    super(DiagnosticReport.getLabel(json, requestId),
-          requestId, DateTime.fromISO(json.effectiveDateTime));
+    super(
+        DiagnosticReport.getLabel(json, requestId), requestId,
+        DiagnosticReport.getTimestamp(json));
 
     this.requestId = requestId;
     this.json = json;
@@ -108,8 +111,8 @@ export class DiagnosticReport extends ResultClassWithTimestamp {
 
     if (!json.status) {
       throw new ResultError(
-          new Set([this.requestId]),
-          'The report needs a status to be useful.', json);
+          new Set([this.requestId]), 'The report needs a status to be useful.',
+          json);
     }
     this.status = statusToEnumMap.get(json.status);
 
@@ -138,9 +141,12 @@ export class DiagnosticReport extends ResultClassWithTimestamp {
       label = json.code.text;
     } else {
       throw new ResultError(
-        new Set([requestId]),
-        'The report needs a code to be useful.', json);
+          new Set([requestId]), 'The report needs a code to be useful.', json);
     }
     return label;
+  }
+
+  static getTimestamp(json): DateTime {
+    return DateTime.fromISO(json.effectiveDateTime);
   }
 }

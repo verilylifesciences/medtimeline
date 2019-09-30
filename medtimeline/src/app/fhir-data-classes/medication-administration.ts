@@ -14,44 +14,6 @@ import {ResultError} from './../result-error';
 import {Dosage} from './dosage';
 import {ContainedMedication} from './medication';
 
-/**
- * This is a sparsely defined MedicationAdministration. It does not have any
- * validation done during object instantiation. It only holds raw data that
- * is returned from FHIR.
- *
- * It should only be used for storing raw data. It should not be surfaced to
- * the UI.
- */
-export class RawMedicationAdministration extends ResultClassWithTimestamp {
-  readonly MED_RESOURCE_TYPE = 'Medication';
-  readonly effectiveDateTime: DateTime;
-  readonly rxNormCode: RxNormCode;
-  readonly medicationOrderId: string;
-
-  constructor(private json: any, requestId: string) {
-    super(
-        json.medicationReference ? json.medicationReference.display :
-                                   json.medicationCodeableConcept ?
-                                   json.medicationCodeableConcept.text :
-                                   null,
-        requestId,
-        json.effectiveTimeDateTime ?
-            DateTime.fromISO(json.effectiveTimeDateTime).toUTC() :
-            json.effectiveTimePeriod ?
-            DateTime.fromISO(json.effectiveTimePeriod.start).toUTC() :
-            null);
-    this.json = json;
-    this.rxNormCode = ResultClass.extractMedicationEncoding(json);
-    this.medicationOrderId = json.prescription && json.prescription.reference ?
-        json.prescription.reference.replace(
-            FhirResourceType.MedicationOrder + '/', '') :
-        null;
-  }
-  convertToMedicationAdministration() {
-    return new MedicationAdministration(this.json, this.requestId);
-  }
-}
-
 
 /**
  * This object represents a FHIR MedicationAdministration. It does not contain
@@ -59,10 +21,14 @@ export class RawMedicationAdministration extends ResultClassWithTimestamp {
  * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
  * stores only the information we're interested in seeing.
  */
-export class MedicationAdministration extends RawMedicationAdministration {
+export class MedicationAdministration extends ResultClassWithTimestamp {
   readonly wasNotGiven: boolean;
   readonly dosage: Dosage;
   readonly containedMedications: ContainedMedication[] = [];
+  static readonly MED_RESOURCE_TYPE = 'Medication';
+  readonly effectiveDateTime: DateTime;
+  readonly rxNormCode: RxNormCode;
+  readonly medicationOrderId: string;
 
   /**
    * Makes an MedicationAdministration out of a JSON object that represents a
@@ -73,7 +39,17 @@ export class MedicationAdministration extends RawMedicationAdministration {
    *     medication administration's data.
    */
   constructor(json: any, requestId: string) {
-    super(json, requestId);
+    super(
+        json.medicationReference ? json.medicationReference.display :
+                                   json.medicationCodeableConcept ?
+                                   json.medicationCodeableConcept.text :
+                                   null,
+        requestId, MedicationAdministration.getTimestamp(json));
+    this.rxNormCode = ResultClass.extractMedicationEncoding(json);
+    this.medicationOrderId = json.prescription && json.prescription.reference ?
+        json.prescription.reference.replace(
+            FhirResourceType.MedicationOrder + '/', '') :
+        null;
 
     this.dosage = new Dosage(json);
     this.wasNotGiven = json.wasNotGiven;
@@ -90,8 +66,9 @@ export class MedicationAdministration extends RawMedicationAdministration {
       if (referenceId) {
         const index = json.contained.findIndex(
             el =>
-                (el.resourceType === this.MED_RESOURCE_TYPE && el.product &&
-                 el.id === referenceId.replace('#', '')));
+                (el.resourceType ===
+                     MedicationAdministration.MED_RESOURCE_TYPE &&
+                 el.product && el.id === referenceId.replace('#', '')));
         const listOfIngredients = json.contained[index];
         if (listOfIngredients && listOfIngredients.product.ingredient) {
           for (const el of listOfIngredients.product.ingredient) {
@@ -132,6 +109,13 @@ export class MedicationAdministration extends RawMedicationAdministration {
             json);
       }
     }
+  }
+  static getTimestamp(json): DateTime {
+    return json.effectiveTimeDateTime ?
+        DateTime.fromISO(json.effectiveTimeDateTime).toUTC() :
+        json.effectiveTimePeriod ?
+        DateTime.fromISO(json.effectiveTimePeriod.start).toUTC() :
+        null;
   }
 }
 

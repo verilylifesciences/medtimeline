@@ -6,11 +6,10 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {FhirService} from '../fhir.service';
 
-import {CachedResourceCodeGroup, ResourceCode, ResourceCodeGroup} from './resource-code-group';
+import {AbstractResourceCodeGroup, ResourceCode} from './resource-code-group';
 
 /**
  * Holds DiagnosticReport codes, which are technically LOINC codes. This is
@@ -18,7 +17,8 @@ import {CachedResourceCodeGroup, ResourceCode, ResourceCodeGroup} from './resour
  * are inherently different in the Fhir and Cerner implementations.
  */
 export class DiagnosticReportCode extends ResourceCode {
-  static readonly CODING_STRING = 'http://hl7.org/fhir/dstu2/valueset-report-codes.html';
+  static readonly CODING_STRING =
+      'http://hl7.org/fhir/dstu2/valueset-report-codes.html';
   // CODING_STRING could also equal http://loinc.org
 
   dataAvailableInAppTimeScope(fhirService: FhirService): Promise<boolean> {
@@ -31,12 +31,12 @@ export class DiagnosticReportCode extends ResourceCode {
 }
 
 /**
- * Represents one or more DiagnosticReport codes that should be displayed together.
- * In the case of multiple DiagnosticReport codes in a group, you should provide a
- * label for that group.
+ * Represents one or more DiagnosticReport codes that should be displayed
+ * together. In the case of multiple DiagnosticReport codes in a group, you
+ * should provide a label for that group.
  */
-export class DiagnosticReportCodeGroup extends
-    CachedResourceCodeGroup<AnnotatedDiagnosticReport, AnnotatedDiagnosticReport> {
+export class DiagnosticReportCodeGroup extends AbstractResourceCodeGroup<
+    AnnotatedDiagnosticReport, AnnotatedDiagnosticReport> {
   /**
    * Gets a list of AnnotatedDiagnosticReports corresponding to this code group.
    */

@@ -12,7 +12,6 @@ import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './clinicalconcept
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {MedicationAdministration, RawMedicationAdministration} from './fhir-data-classes/medication-administration';
 import {FhirHttpService} from './fhir-http.service';
 import {ChartType} from './graphtypes/graph/graph.component';
 import {makeSampleObservationJson} from './test_utils';
@@ -25,8 +24,7 @@ describe('FhirHttpService', () => {
     patient: {api: {search: () => {}, nextPage: () => {}}},
     tokenResponse: {access_token: 'access_token'}
   };
-  const code = new LOINCCode(
-      '44123', new DisplayGrouping('concept', 'red'), 'lbl1', true);
+  const code = LOINCCode.fromCodeString('718-7');
   const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
       service, 'radiology', [DiagnosticReportCode.fromCodeString('RADRPT')],
       new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
@@ -34,60 +32,13 @@ describe('FhirHttpService', () => {
       DateTime.fromISO('2018-08-20T00:00:00.00'),
       DateTime.fromISO('2018-08-28T00:00:00.00'));
 
-  const response = {
+  const observationsResponse = {
     headers: (requestId) => '12345',
     data: {
       link: [],
       entry: [
         {resource: makeSampleObservationJson(25, DateTime.utc(2018, 8, 24))},
         {resource: makeSampleObservationJson(25, DateTime.utc(2018, 8, 25))}
-      ]
-    }
-  };
-
-  const responseWithNextPage = {
-    headers: (requestId) => '6789',
-    data: {
-      link: [{relation: 'next'}],
-      entry: [
-        {resource: makeSampleObservationJson(25, DateTime.utc(2018, 8, 24))},
-        {resource: makeSampleObservationJson(25, DateTime.utc(2018, 8, 25))}
-      ]
-    }
-  };
-
-  const fullMedicationResponse = {
-    headers: (requestId) => '1234',
-    data: {
-      link: [],
-      entry: [
-        {
-          resource: {
-            medicationCodeableConcept: {
-              coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-              text: 'vancomycin'
-            },
-            effectiveTimeDateTime: '2018-08-21T00:00:00.00'
-          },
-        },
-        {
-          resource: {
-            medicationCodeableConcept: {
-              coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-              text: 'gentamicin'
-            },
-            effectiveTimeDateTime: '2018-08-22T00:00:00.00'
-          }
-        },
-        {
-          resource: {
-            medicationCodeableConcept: {
-              coding: [{system: RxNormCode.CODING_STRING, code: 'other'}],
-              text: 'other'
-            },
-            effectiveTimeDateTime: '2018-08-23T00:00:00.00'
-          }
-        }
       ]
     }
   };
@@ -143,70 +94,38 @@ describe('FhirHttpService', () => {
   });
 
 
-  it('should resolve getObservationsWithCode promise when API promise ' +
-         'resolves before getObservationsWithCode call',
-     (done: DoneFn) => {
-       const observationReadSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(response));
-       clientReadyCallback(smartApi);
-       service.getObservationsWithCode(code, dateRange).then(observation => {
-         expect(observationReadSpy.calls.count())
-             .toBe(1, 'smartApi.observation.search was called once');
-         expect(observation.length).toBe(2);
-         expect(observation[0].label).toEqual('Hemoglobin');
-         done();
-       });
-     });
+  it('should resolve getObservationsWithCode', (done: DoneFn) => {
+    const observationReadSpy =
+        spyOn(smartApi.patient.api, 'search')
+            .and.returnValue(Promise.resolve(observationsResponse));
+    clientReadyCallback(smartApi);
+    service.getObservationsWithCode(code, dateRange).then(observation => {
+      expect(observationReadSpy.calls.count())
+          .toBe(1, 'smartApi.observation.search was called once');
+      expect(observation.length).toBe(2);
+      expect(observation[0].label).toEqual('Hemoglobin');
+      done();
+    });
+  });
 
-  it('should resolve getObservationsWithCode promise when API promise ' +
-         'resolves after getObservationsWithCode call',
+  it('observationsPresentWithCode should resolve to True with only 1 fhir call if any observations are returned',
      (done: DoneFn) => {
-       const observationReadSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(response));
-       service.getObservationsWithCode(code, dateRange).then(observation => {
-         expect(observationReadSpy.calls.count()).toBe(1);
-         expect(observation.length).toBeGreaterThan(0);
-         expect(observation[0].label).toEqual('Hemoglobin');
-         done();
-       });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should resolve getObservationsWithCode multiple pages of calls to the API',
-     (done: DoneFn) => {
-       const searchdSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(responseWithNextPage));
-       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage')
-                               .and.returnValues(
-                                   Promise.resolve(responseWithNextPage),
-                                   Promise.resolve(response));
-       service.getObservationsWithCode(code, dateRange).then(observation => {
-         expect(searchdSpy.calls.count()).toBe(1);
-         expect(nextPageSpy.calls.count()).toBe(2);
-         expect(observation.length).toBe(6);
-         expect(observation[0].label).toEqual('Hemoglobin');
-         expect(observation[0].requestId).toEqual('6789');
-         done();
-       });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should bubble error to getObservationsWithCode when promise is rejected',
-     (done: DoneFn) => {
-       spyOn(smartApi.patient.api, 'search');
-       clientError('api failed');
-       service.getObservationsWithCode(code, dateRange).catch(err => {
-         expect(err).toBe('api failed');
-         expect(smartApi.patient.api.search).not.toHaveBeenCalled();
-         done();
-       });
-     });
-
-  it('observationsPresentWithCode should resolve to True if any observations are returned',
-     (done: DoneFn) => {
+       const responseWithNextPage = {
+         headers: (requestId) => '6789',
+         data: {
+           link: [{relation: 'next'}],
+           entry: [
+             {
+               resource:
+                   makeSampleObservationJson(25, DateTime.utc(2018, 8, 24))
+             },
+             {
+               resource:
+                   makeSampleObservationJson(25, DateTime.utc(2018, 8, 25))
+             }
+           ]
+         }
+       };
        spyOn(smartApi.patient.api, 'search')
            .and.returnValue(Promise.resolve(responseWithNextPage));
        clientReadyCallback(smartApi);
@@ -228,9 +147,51 @@ describe('FhirHttpService', () => {
        });
      });
 
+  it('should resolve getMedicationAdministrationsWithCode', (done: DoneFn) => {
+    const medicationResponse = {
+      headers: (requestId) => '6789',
+      data: {
+        link: [],
+        entry: [
+          {
+            resource: {
+              medicationCodeableConcept: {
+                coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+                text: 'vancomycin'
+              },
+              effectiveTimeDateTime: '2018-08-23T22:30:00.000Z'
+            }
+          },
+          {
+            resource: {
+              medicationCodeableConcept: {
+                coding: [{system: RxNormCode.CODING_STRING, code: '123'}],
+                text: 'fake'
+              },
+              effectiveTimeDateTime: '2018-08-22T22:31:02.000Z'
+            }
+          }
+        ]
+      }
+    };
+    const medicationReadSpy =
+        spyOn(smartApi.patient.api, 'search')
+            .and.returnValue(Promise.resolve(medicationResponse));
+    clientReadyCallback(smartApi);
+    service
+        .getMedicationAdministrationsWithCodes(
+            [(RxNormCode.fromCodeString('11124') as RxNormCode)], dateRange)
+        .then(meds => {
+          expect(medicationReadSpy).toHaveBeenCalledTimes(1);
+          expect(meds.length).toBe(1);
+          expect(meds[0].label).toEqual('vancomycin');
+          done();
+        });
+  });
+
   it('should resolve medicationsPresentWithCode to true with only one API call if first response has a medication with the given code.',
      (done: DoneFn) => {
-       const medicationReponse = {
+       const medicationResponse = {
          data: {
            entry: [{
              resource: {
@@ -244,7 +205,7 @@ describe('FhirHttpService', () => {
        };
        const searchSpy =
            spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(medicationReponse));
+               .and.returnValue(Promise.resolve(medicationResponse));
        const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
 
        service

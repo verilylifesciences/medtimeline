@@ -42,10 +42,7 @@ describe('Axis', () => {
 
   it('should throw error if resource code types do not match.', () => {
     const resourceCodeList = [
-      new LOINCCode(
-          '44123', new DisplayGrouping('concept', 'red'), 'label1', true),
-      new RxNormCode(
-          '308182', new DisplayGrouping('concept', 'red'), 'label2', true)
+      LOINCCode.fromCodeString('44123'), RxNormCode.fromCodeString('308182')
     ];
 
     const constructor = () => {

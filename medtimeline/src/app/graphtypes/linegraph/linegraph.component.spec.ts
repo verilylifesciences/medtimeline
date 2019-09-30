@@ -16,9 +16,9 @@ import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {makeSampleObservation, StubFhirService} from '../../test_utils';
 import {ChartType} from '../graph/graph.component';
+import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 
 import {LineGraphComponent} from './linegraph.component';
-import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 
 describe('LineGraphComponent', () => {
   // All the observations in this class will report a normal range of [0, 30].
@@ -32,8 +32,7 @@ describe('LineGraphComponent', () => {
 
   // Display bounds for this LOINC are set as [0, 40].
   const loincCodeGroup = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl',
-      [new LOINCCode('718-7', labResult, 'Hemoglobin', true, [0, 40])],
+      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('718-7')],
       labResult, ChartType.LINE);
 
   beforeEach(async(() => {
@@ -169,8 +168,7 @@ describe('LineGraphComponent', () => {
        ]);
 
        const loincCodeGroup2 = new LOINCCodeGroup(
-           new StubFhirService(), 'lbl',
-           [new LOINCCode('4090-7', labResult, 'Vanc Pk', true, [0, 50], true)],
+           new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('4090-7')],
            labResult, ChartType.LINE);
        component.data = LineGraphData.fromObservationSetList(
            'lbl', [obsSet1], loincCodeGroup2, TestBed.get(DomSanitizer), []);
@@ -193,8 +191,8 @@ describe('LineGraphComponent', () => {
         'lbl', [obsSet], loincCodeGroup, TestBed.get(DomSanitizer), []);
     component.generateChart();
     const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
-                component.data.tooltipMap.get(
-                    component.dateRange.start.valueOf().toString()));
+        component.data.tooltipMap.get(
+            component.dateRange.start.valueOf().toString()));
     expect(annotatedTT.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
@@ -204,34 +202,35 @@ describe('LineGraphComponent', () => {
             '\n' +
             '<b>Lower: </b>' + normalRange[0] + ' ' + component.data.unit +
             '</div></td></tr></tbody></table>');
-    });
-
-    it('should not generate normal bound tooltip when there is no normal range',
-    () => {
-      component.dateRange = Interval.fromDateTimes(
-          DateTime.utc(1995, 7, 19), DateTime.utc(1995, 7, 22));
-      const obsSet = new ObservationSet([
-          new AnnotatedObservation(makeSampleObservation(
-              100, DateTime.utc(1995, 7, 22),
-              undefined, // referenceRange
-              undefined, // interpretation
-              false,     // hasInterpretation
-              undefined,  // hasValueAndResult
-              false      // hasReferenceRange
-            )),
-          new AnnotatedObservation(makeSampleObservation(
-              1, DateTime.utc(1995, 7, 21),
-              undefined, // referenceRange
-              undefined, // interpretation
-              false,     // hasInterpretation
-              undefined,  // hasValueAndResult
-              false      // hasReferenceRange
-            )),
-          ]);
-      component.data = LineGraphData.fromObservationSetList(
-          'lbl', [obsSet], loincCodeGroup, TestBed.get(DomSanitizer), []);
-      component.generateChart();
-      expect(component.data.tooltipMap.get(component.dateRange.start.valueOf().toString()))
-          .toEqual(undefined);
   });
+
+  it('should not generate normal bound tooltip when there is no normal range',
+     () => {
+       component.dateRange = Interval.fromDateTimes(
+           DateTime.utc(1995, 7, 19), DateTime.utc(1995, 7, 22));
+       const obsSet = new ObservationSet([
+         new AnnotatedObservation(makeSampleObservation(
+             100, DateTime.utc(1995, 7, 22),
+             undefined,  // referenceRange
+             undefined,  // interpretation
+             false,      // hasInterpretation
+             undefined,  // hasValueAndResult
+             false       // hasReferenceRange
+             )),
+         new AnnotatedObservation(makeSampleObservation(
+             1, DateTime.utc(1995, 7, 21),
+             undefined,  // referenceRange
+             undefined,  // interpretation
+             false,      // hasInterpretation
+             undefined,  // hasValueAndResult
+             false       // hasReferenceRange
+             )),
+       ]);
+       component.data = LineGraphData.fromObservationSetList(
+           'lbl', [obsSet], loincCodeGroup, TestBed.get(DomSanitizer), []);
+       component.generateChart();
+       expect(component.data.tooltipMap.get(
+                  component.dateRange.start.valueOf().toString()))
+           .toEqual(undefined);
+     });
 });

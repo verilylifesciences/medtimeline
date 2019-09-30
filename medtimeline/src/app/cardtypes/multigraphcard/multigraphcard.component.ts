@@ -105,7 +105,8 @@ export class MultiGraphCardComponent implements OnChanges, OnInit {
 
   private addSeriesToLegendMap(series: LabeledSeries) {
     // We do not want to add the normalBound series to the legend
-    if (series.legendInfo.label === LineGraphComponent.NORMAL_BOUND_SERIES_NAME) {
+    if (series.legendInfo.label ===
+        LineGraphComponent.NORMAL_BOUND_SERIES_NAME) {
       return;
     }
     if (!this.legendToSeries.has(series.legendInfo)) {

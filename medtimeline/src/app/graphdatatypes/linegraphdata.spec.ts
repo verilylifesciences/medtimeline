@@ -8,7 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import * as Colors from 'src/app/theme/verily_colors';
 
-import {labResult} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, labResult} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
@@ -31,10 +31,16 @@ const MARCH_25_DATETIME = DateTime.utc(1988, 3, 25);
 
 describe('LineGraphData', () => {
   const normalRange: [number, number] = [1, 30];
+  // we use a fake LOINCCode for testing. We make sure it is created and if not,
+  // we create it.
+  const loincCodeString = 'linegraphtest';
+  if (!LOINCCode.fromCodeString(loincCodeString)) {
+    const newLoincCode = new LOINCCode(
+        loincCodeString, new DisplayGrouping('Vanc pk'), 'Vanc pk');
+  }
   const loincCodeGroup = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl',
-      [new LOINCCode('4090-7', labResult, 'Vanc Pk', true)], labResult,
-      ChartType.LINE);
+      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString(loincCodeString)],
+      labResult, ChartType.LINE);
 
   it('fromObservationSetList should have one LabeledSeries for' +
          'each ObservationSet passed in',

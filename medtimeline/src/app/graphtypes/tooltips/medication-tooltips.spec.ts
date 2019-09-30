@@ -103,7 +103,6 @@ describe('MedicationAdministrationTooltip', () => {
         [admin1], TestBed.get(DomSanitizer));
     expect(tooltip).toBeDefined();
     expect(tooltip.additionalAttachment).toBeUndefined();
-    console.log(tooltip.tooltipChart);
     expect(tooltip.tooltipChart)
         .toEqual(
             '<table class="c3-tooltip"><tbody>' +

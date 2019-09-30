@@ -9,9 +9,9 @@ import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {ResultError} from '../result-error';
 
+import {DiagnosticReportStatus} from './diagnostic-report';
 import {Observation} from './observation';
 import {Specimen} from './specimen';
-import {DiagnosticReportStatus} from './diagnostic-report';
 
 // TODO: Issue #31 (Update mapping for string enums)
 // https://stackoverflow.com/questions/44883072/reverse-mapping-for-string-enums
@@ -37,7 +37,8 @@ const statusToEnumMap = new Map<string, DiagnosticReportStatus>([
  * implementation of the FHIR standard won't allow microbiology retrieval.
  *
  * This currently does not extend DiagnosticReport. TODO: Issue #24- maintain
- * More clearly delineate what belongs in FHIR resources and what is added/derived
+ * More clearly delineate what belongs in FHIR resources and what is
+ * added/derived
  */
 export class MicrobioReport {
   readonly id: string;
@@ -63,8 +64,8 @@ export class MicrobioReport {
 
     if (!json.status) {
       throw new ResultError(
-          new Set([this.requestId]),
-          'The report needs a status to be useful.', json);
+          new Set([this.requestId]), 'The report needs a status to be useful.',
+          json);
     }
     this.status = statusToEnumMap.get(json.status);
 
@@ -103,7 +104,7 @@ export class MicrobioReport {
    * @param codeGroup The CodeGroup of tests we're looking for.
    */
   static parseAndFilterMicrobioData(json: any, codeGroup: BCHMicrobioCodeGroup):
-      Array<MicrobioReport> {
+      MicrobioReport[] {
     if (!json || !json.entry) {
       return [];
     }

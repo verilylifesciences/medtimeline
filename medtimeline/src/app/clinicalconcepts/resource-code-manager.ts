@@ -33,10 +33,6 @@ export const documentReferenceLoinc =
 const ovaAndParasiteExam = new BCHMicrobioCode(
     'OVAANDPARASITEEXAM', microbio, 'Ova and Parasite Exam', false);
 
-const salmonella = new BCHMicrobioCode(
-    'SALMONELLAANDSHIGELLACULTURE', microbio, 'Salmonella and Shigella Culture',
-    false);
-
 /**
  * ResourceCodeManager is the centralized class where other components can
  * look to find an exhaustive listing of all the resource code groups that the
@@ -120,7 +116,6 @@ export class ResourceCodeManager {
   private static readonly csfGroup = [
     new LOINCCode('10333-3', labResult, 'Appearance, CSF', false, [0, 100]),
     new LOINCCode('13517-8', labResult, 'Atypical Lymph, CSF', false, [0, 100]),
-    new LOINCCode('12278-8', labResult, 'Band, CSF', false, [0, 100]),
     new LOINCCode('30374-3', labResult, 'Basophil, CSF', false, [0, 100]),
     new LOINCCode('12208-5', labResult, 'Eosinophil, CSF', false, [0, 100]),
     new LOINCCode('2342-4', labResult, 'Glucose, CSF', false, [0, 100]),

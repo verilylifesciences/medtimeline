@@ -91,9 +91,7 @@ export class Observation extends ResultClass {
   constructor(private json: any, requestId: string) {
     super(Observation.getLabel(json), requestId);
 
-    this.timestamp = json.effectiveDateTime ?
-        DateTime.fromISO(json.effectiveDateTime).toUTC() :
-        json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
+    this.timestamp = Observation.getTimestamp(json);
     if (json.code) {
       if (json.code.coding) {
         if (json.code.coding[0].system === BCHMicrobioCode.CODING_STRING) {
@@ -234,5 +232,11 @@ export class Observation extends ResultClass {
       }
     }
     return label;
+  }
+
+  static getTimestamp(json: any): DateTime {
+    return json.effectiveDateTime ?
+        DateTime.fromISO(json.effectiveDateTime).toUTC() :
+        json.issued ? DateTime.fromISO(json.issued).toUTC() : null;
   }
 }
