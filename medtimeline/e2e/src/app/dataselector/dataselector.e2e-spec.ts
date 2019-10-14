@@ -7,17 +7,17 @@ import 'jasmine';
 
 import {browser} from 'protractor';
 
+import {LAB_RESULTS, MEDICATIONS, MICROBIO, RADIOLOGY, SUBMENU_DIAGNOSTIC, SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MEDICATION, SUBMENU_MICROBIO, SUBMENU_VITALS, VITAL_SIGNS} from '../constants';
 import {IndexPage} from '../index.po';
 
 import {DataSelectorPage} from './dataselector.po';
-
-import {SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MEDICATION, SUBMENU_MICROBIO, SUBMENU_VITALS, SUBMENU_DIAGNOSTIC} from '../constants';
 
 describe('Data Selector', () => {
   const index: IndexPage = new IndexPage();
   const dataSelector: DataSelectorPage = new DataSelectorPage();
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
   const subMenu = dataSelector.getSubMenu(1);
+
 
   beforeEach(async () => {
     await browser.get('/setup');
@@ -66,7 +66,7 @@ describe('Data Selector', () => {
 
   it('vital signs option menu should have correct options', async () => {
     await dataSelector.clickOnAddCard();
-
+    const vitalsSubmenuIndex = SUBMENU_LABELS.indexOf(VITAL_SIGNS);
     const addVitals = await dataSelector.getItems(subMenu).get(1);
 
     await index.waitForClickable(addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
@@ -82,8 +82,8 @@ describe('Data Selector', () => {
 
   it('lab results option menu should have correct options', async () => {
     await dataSelector.clickOnAddCard();
-
-    const addLabs = await dataSelector.getItems(subMenu).get(2);
+    const labsSubmenuIndex = SUBMENU_LABELS.indexOf(LAB_RESULTS);
+    const addLabs = await dataSelector.getItems(subMenu).get(labsSubmenuIndex);
 
     await index.waitForClickable(addLabs, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
@@ -96,10 +96,27 @@ describe('Data Selector', () => {
         .toEqual(new Set(SUBMENU_LABS));
   });
 
+  it('radiology option menu should have correct options', async () => {
+    await dataSelector.clickOnAddCard();
+    const radiologySubmenuIndex = SUBMENU_LABELS.indexOf(RADIOLOGY);
+    const addRad =
+        await dataSelector.getItems(subMenu).get(radiologySubmenuIndex);
+
+    await index.waitForClickable(addRad, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+
+    await addRad.click();
+
+    const radMenu = await dataSelector.getSubMenu(2);
+    const itemsText: any = await dataSelector.getItems(radMenu).getText();
+
+    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
+        .toEqual(new Set(SUBMENU_DIAGNOSTIC));
+  });
+
   it('vanc and gent option menu should have correct options', async () => {
     await dataSelector.clickOnAddCard();
-
-    const addMeds = await dataSelector.getItems(subMenu).get(3);
+    const medsSubmenuIndex = SUBMENU_LABELS.indexOf(MEDICATIONS);
+    const addMeds = await dataSelector.getItems(subMenu).get(medsSubmenuIndex);
 
     await index.waitForClickable(addMeds, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
@@ -115,8 +132,9 @@ describe('Data Selector', () => {
 
   it('microbio option menu should have correct options', async () => {
     await dataSelector.clickOnAddCard();
-
-    const addMB = await dataSelector.getItems(subMenu).get(4);
+    const microbioSubmenuIndex = SUBMENU_LABELS.indexOf(MICROBIO);
+    const addMB =
+        await dataSelector.getItems(subMenu).get(microbioSubmenuIndex);
 
     await index.waitForClickable(addMB, jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
@@ -127,21 +145,5 @@ describe('Data Selector', () => {
 
     expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
         .toEqual(new Set(SUBMENU_MICROBIO));
-  });
-
-  it('radiology option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-
-    const addRad = await dataSelector.getItems(subMenu).get(5);
-
-    await index.waitForClickable(addRad, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-    await addRad.click();
-
-    const radMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(radMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_DIAGNOSTIC));
   });
 });
