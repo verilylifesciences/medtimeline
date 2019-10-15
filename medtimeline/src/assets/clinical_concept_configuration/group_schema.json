@@ -1,0 +1,34 @@
+{
+    "$id": "group_schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Clinical Concept Display Group",
+    "type": "object",
+    "required": [
+        "groupName",
+        "graphType",
+        "displayGroupOnSameAxis"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "groupName": {
+            "type": "string",
+            "description": "The display name for this clinical concept group."
+        },
+        "graphType": {
+            "type": "string",
+            "enum": [
+                "SCATTER",
+                "LINE"
+            ],
+            "description": "The way the graph should be plotted for this display group."
+        },
+        "displayGroupOnSameAxis": {
+            "type": "boolean",
+            "description": "Whether the concepts in this group should be displayed on the same axis, or each on their individual axis in the same card."
+        },
+        "parentGroupName": {
+            "type": "string",
+            "description": "If this concept group represents one axis on a card with multiple axes, then this should be set to the parent group's name."
+        }
+    }
+}

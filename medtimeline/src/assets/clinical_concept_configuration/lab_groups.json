@@ -1,0 +1,27 @@
+[
+    {
+        "groupName": "Urinalysis",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Complete Blood Count",
+        "graphType": "LINE",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Complete Blood Count White Blood Cell",
+        "graphType": "LINE",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "CSF",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Other Fluid",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": true
+    }
+]
