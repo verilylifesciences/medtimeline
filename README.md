@@ -157,7 +157,15 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Running tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+WebDriver only supports Chrome 75 at this point, so if you get errors to that effect, please run:
+```
+cd node_modules/protractor
+npm i webdriver-manager@latest
+```
+replacing 'latest' with a different version, if appropriate. Then, you should be able to run `ng e2e`.
 
 ### Further help
 

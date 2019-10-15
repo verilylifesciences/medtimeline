@@ -11,6 +11,9 @@ export const environment = {
     'BMedTimeD_Obs_vitals',
     'BMedTimeD_Encounter',
   ],
+  conceptsFolder: 'clinical_concept_configuration',
+  labConceptsFile: 'lab_results.json',
+  labGroupFile: 'lab_groups.json',
   useDebugger: false,
   showRadiology: false,
 };

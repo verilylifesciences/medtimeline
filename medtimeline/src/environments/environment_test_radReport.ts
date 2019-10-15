@@ -6,10 +6,10 @@ export const environment = {
   production: false,
   useMockServer: true,
   mockDataFolder: 'demo_data/test_radReport',
-  mockDataFiles: [
-    'radReport_DiagReport',
-    'radReport_Encounter'
-  ],
+  mockDataFiles: ['radReport_DiagReport', 'radReport_Encounter'],
+  conceptsFolder: 'clinical_concept_configuration',
+  labConceptsFile: 'lab_results.json',
+  labGroupFile: 'lab_groups.json',
   useDebugger: false,
   showRadiology: true,
 };

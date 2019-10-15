@@ -10,4 +10,7 @@ export const environment = {
   mockDataFiles: [],
   useDebugger: false,
   showRadiology: false,
+  conceptsFolder: 'clinical_concept_configuration',
+  labConceptsFile: 'lab_results.json',
+  labGroupFile: 'lab_groups.json'
 };
