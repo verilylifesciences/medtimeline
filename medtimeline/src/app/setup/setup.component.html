@@ -14,9 +14,9 @@
   <div>
     <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>
     <mat-expansion-panel *ngIf="setupDataService.encountersError" class="encounters-error">
-        <mat-expansion-panel-header>
-          <mat-icon>error</mat-icon>Error loading patient encounters.
-        </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}
+      <mat-expansion-panel-header>
+        <mat-icon>error</mat-icon>Error loading patient encounters.
+      </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}
     </mat-expansion-panel>
     <mat-radio-group>
       <div *ngFor="let encounter of encounters">
@@ -65,19 +65,28 @@
       <input matInput placeholder="{{uiConstants.SEARCH_FOR_A_CONCEPT}}" [formControl]="conceptCtrl">
       <mat-icon matPrefix class="search-icon">search</mat-icon>
     </mat-form-field>
-    <div *ngFor="let entry of displayGroupingOptions | async">
-      <div [style.color]="entry[0].fill.hsl().string()" class="category">
-        <h3>{{entry[0].label}}</h3>
-      </div>
-      <div *ngFor="let element of entry[1].sort(sortResources)" class="conceptOptions">
-        <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
-          [disabled]="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">
-          {{element.label}} <span class="grayout"
-            *ngIf="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>
-          <span class="grayout"
-            *ngIf="codeGroupAvailable.get(element.label) === statusConsts.LOADING">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>
-        </mat-checkbox>
-      </div>
+    <div>
+      <!--rowHeight is 28px since that is what the line height is for the content. -->
+      <mat-grid-list cols="2" rowHeight="28px" gutterSize="0px">
+        <!--rowspan is set to the number of concepts in the grouping + 2 (the category header row and a blank row for spacing) -->
+        <mat-grid-tile class="category-group-tile" *ngFor="let entry of displayGroupingOptions | async"
+          [rowspan]="(2 + entry[1].length)">
+          <div>
+            <div [style.color]="entry[0].fill.hsl().string()" class="category">
+              <h3 class="category-label">{{entry[0].label}}</h3>
+            </div>
+            <div *ngFor="let element of entry[1].sort(sortResources)" class="conceptOptions">
+              <mat-checkbox [(ngModel)]="checkedConcepts[element.label]" [ngModelOptions]="{standalone: true}"
+                [disabled]="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">
+                {{element.label}} <span class="grayout"
+                  *ngIf="codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>
+                <span class="grayout"
+                  *ngIf="codeGroupAvailable.get(element.label) === statusConsts.LOADING">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>
+              </mat-checkbox>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
     <div *ngIf="(displayGroupingOptions | async).length === 0" class="noResults">
       {{uiConstants.NO_RESULTS}}

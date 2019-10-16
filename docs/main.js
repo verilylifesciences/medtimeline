@@ -465,15 +465,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
 /* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
 /* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.component.ts");
+/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -532,6 +534,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -543,24 +547,26 @@ var AppModule = /** @class */ (function () {
                 _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_19__["CardcontainerComponent"],
                 _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__["TextboxcardComponent"],
                 _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__["LineGraphComponent"],
-                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_37__["ScatterplotComponent"],
-                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_38__["StepGraphComponent"],
+                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_38__["ScatterplotComponent"],
+                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_39__["StepGraphComponent"],
                 _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_44__["TimelineControllerComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_45__["TimelineControllerComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__["CustomizableTimelineComponent"],
                 _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__["CustomizableGraphComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"],
                 _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__["MicrobioGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_45__["TimelineToolbarComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_37__["DiagnosticGraphComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_46__["TimelineToolbarComponent"],
                 _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorElementComponent"],
                 _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorMenuComponent"],
-                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
+                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__["HelpDialogComponent"],
                 _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__["CardComponent"],
                 _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"],
                 _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_42__["SetupComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_43__["SetupComponent"],
                 _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"],
-                _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__["IfuDialogComponent"],
+                _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__["IfuDialogComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__["DiagnosticGraphDialogComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -599,17 +605,18 @@ var AppModule = /** @class */ (function () {
                 // This sets up a provider for the smart on fhir client defined by
                 // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
                 // injected into the service that uses it to allow for easier testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_43__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_44__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
                     provide: _fhir_service__WEBPACK_IMPORTED_MODULE_33__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_41__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_42__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
                 },
                 { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"] },
-                { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] }
+                { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_39__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"], _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_40__["IfuDialogComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__["HelpDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"], _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__["IfuDialogComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__["DiagnosticGraphDialogComponent"]
             ]
         })
     ], AppModule);
@@ -1684,7 +1691,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\" class=\"card-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}\n        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\" class=\"card-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}\n        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n        <app-diagnostic-graph *ngSwitchCase=\"ChartType.DIAGNOSTIC\" [data]=\"axis.alreadyResolvedData\"\n        [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n        [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n      </app-diagnostic-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
 
 /***/ }),
 
@@ -1808,7 +1815,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCode", function() { return BCHMicrobioCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCodeGroup", function() { return BCHMicrobioCodeGroup; });
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
+/* harmony import */ var _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-data-classes/annotated-microbio-report */ "./src/app/fhir-data-classes/annotated-microbio-report.ts");
 /* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/clinicalconcepts/resource-code-group.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
@@ -1844,7 +1851,7 @@ var BCHMicrobioCode = /** @class */ (function (_super) {
         // This is not an elegant way of implementing this function but since it's
         // a non-standard API server we aren't going to put much effort into
         // developing it further at this point.
-        return fhirService.diagnosticReportsPresentWithCodes(new BCHMicrobioCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+        return fhirService.microbioReportsPresentWithCodes(new BCHMicrobioCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     BCHMicrobioCode.CODING_STRING = 'http://cerner.com/bch_mapping/';
     return BCHMicrobioCode;
@@ -1861,20 +1868,20 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Gets a list of DiagnosticReports corresponding to this code group. Each
+     * Gets a list of MicrobioReports corresponding to this code group. Each
      * item in the list has the same specimen type as the label of this group, and
      * each report's list of results has a code that is in this group's list of
      * codes.
      */
     BCHMicrobioCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
-        return this.fhirService.getDiagnosticReports(this, dateRange)
+        return this.fhirService.getMicrobioReports(this, dateRange)
             .then(function (reports) {
-            return reports.map(function (report) { return new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_1__["AnnotatedDiagnosticReport"](report); });
+            return reports.map(function (report) { return new _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_1__["AnnotatedMicrobioReport"](report); });
         });
     };
     BCHMicrobioCodeGroup.prototype.formatRawResults = function (rawResults) {
-        var diagnosticReports = rawResults.map(function (result) { return result.report; });
-        return Promise.resolve(diagnosticReports);
+        var microbioReports = rawResults.map(function (result) { return result.report; });
+        return Promise.resolve(microbioReports);
     };
     /**
      * Returns whether there is any data available for this ResourceCode within
@@ -1882,10 +1889,95 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
      * @override
      */
     BCHMicrobioCodeGroup.prototype.dataAvailableInAppTimeScope = function () {
-        return this.fhirService.diagnosticReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+        return this.fhirService.microbioReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     return BCHMicrobioCodeGroup;
 }(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["CachedResourceCodeGroup"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/clinicalconcepts/diagnostic-report-code.ts":
+/*!************************************************************!*\
+  !*** ./src/app/clinicalconcepts/diagnostic-report-code.ts ***!
+  \************************************************************/
+/*! exports provided: DiagnosticReportCode, DiagnosticReportCodeGroup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCode", function() { return DiagnosticReportCode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCodeGroup", function() { return DiagnosticReportCodeGroup; });
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/clinicalconcepts/resource-code-group.ts");
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+/**
+ * Holds DiagnosticReport codes, which are technically LOINC codes. This is
+ * not grouped with LOINC codes because Observations and DiagnosticReports
+ * are inherently different in the Fhir and Cerner implementations.
+ */
+var DiagnosticReportCode = /** @class */ (function (_super) {
+    __extends(DiagnosticReportCode, _super);
+    function DiagnosticReportCode() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    // CODING_STRING could also equal http://loinc.org
+    DiagnosticReportCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
+        // Currently utilizing code that is very similar to BCHMicrobioCode
+        return fhirService.diagnosticReportsPresentWithCodes(new DiagnosticReportCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+    };
+    DiagnosticReportCode.CODING_STRING = 'http://hl7.org/fhir/dstu2/valueset-report-codes.html';
+    return DiagnosticReportCode;
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
+
+/**
+ * Represents one or more DiagnosticReport codes that should be displayed together.
+ * In the case of multiple DiagnosticReport codes in a group, you should provide a
+ * label for that group.
+ */
+var DiagnosticReportCodeGroup = /** @class */ (function (_super) {
+    __extends(DiagnosticReportCodeGroup, _super);
+    function DiagnosticReportCodeGroup() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Gets a list of AnnotatedDiagnosticReports corresponding to this code group.
+     */
+    DiagnosticReportCodeGroup.prototype.getResourceFromFhir = function (dateRange) {
+        return this.fhirService.getAnnotatedDiagnosticReports(this, dateRange);
+    };
+    DiagnosticReportCodeGroup.prototype.formatRawResults = function (rawResults) {
+        return Promise.resolve(rawResults);
+    };
+    /**
+     * Returns whether there is any data available for this ResourceCode within
+     * the fixed timescope of this app.
+     * @override
+     */
+    DiagnosticReportCodeGroup.prototype.dataAvailableInAppTimeScope = function () {
+        return this.fhirService.diagnosticReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+    };
+    return DiagnosticReportCodeGroup;
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["CachedResourceCodeGroup"]));
 
 
 
@@ -1895,7 +1987,7 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
 /*!******************************************************!*\
   !*** ./src/app/clinicalconcepts/display-grouping.ts ***!
   \******************************************************/
-/*! exports provided: ALL_DISPLAY_GROUPS_MAP, DisplayGrouping, labResult, vitalSign, med, microbio, posPrelimMB, negPrelimMB, posFinalMB, negFinalMB, posOtherNB, negOtherMB */
+/*! exports provided: ALL_DISPLAY_GROUPS_MAP, DisplayGrouping, labResult, vitalSign, med, microbio, posPrelimMB, negPrelimMB, posFinalMB, negFinalMB, posOtherNB, negOtherMB, radiology */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1912,6 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "negFinalMB", function() { return negFinalMB; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "posOtherNB", function() { return posOtherNB; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "negOtherMB", function() { return negOtherMB; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "radiology", function() { return radiology; });
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! color */ "./node_modules/color/index.js");
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
@@ -1958,6 +2051,8 @@ var negFinalMB = new DisplayGrouping('Negative Final', _theme_verily_colors__WEB
 // encounter rarely.
 var posOtherNB = new DisplayGrouping('Check Result, Other', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["DEEP_GOLD"]);
 var negOtherMB = new DisplayGrouping('Negative, Other', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["DEEP_GOLD"]);
+// Radiology Report categories
+var radiology = new DisplayGrouping('Radiology', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["PINK_900"]);
 
 
 /***/ }),
@@ -2387,7 +2482,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var bloodPressureLoincs = [
-    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Blood Pressure', true),
+    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Blood pressure', true),
     new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Mean Arterial Pressure (Device)', true, [25, 200])
 ];
 
@@ -2414,10 +2509,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
 /* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 /* harmony import */ var _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
-/* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
-/* harmony import */ var _rx_norm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
+/* harmony import */ var _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
+/* harmony import */ var _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
+/* harmony import */ var _rx_norm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -2445,12 +2542,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
 // configuration sidebar.
 var documentReferenceLoinc = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('68608-9', undefined, 'Summary', true);
-var ovaAndParasiteExam = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('OVAANDPARASITEEXAM', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Ova and Parasite Exam', false);
-var salmonella = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Salmonella and Shigella Culture', false);
+var ovaAndParasiteExam = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('OVAANDPARASITEEXAM', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Ova and Parasite Exam', false);
+var salmonella = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Salmonella and Shigella Culture', false);
 /**
  * ResourceCodeManager is the centralized class where other components can
  * look to find an exhaustive listing of all the resource code groups that the
@@ -2474,9 +2573,9 @@ var ResourceCodeManager = /** @class */ (function () {
                 codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, loinc.label, new Array(loinc), conceptGroup, _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE), loinc.label)]));
             }
         }
-        var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
+        var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Add the blood pressure LOINCs.
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_10__["bloodPressureLoincs"], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_9__["bloodPressureLoincs"], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
                 return bpLocation.getResourceSet(dateRange).then(function (obsSet) {
                     return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forBloodPressure(observation, 
                     // We only pass in the first ObservationSet, since we
@@ -2486,31 +2585,31 @@ var ResourceCodeManager = /** @class */ (function () {
                 });
             }), 'Blood Pressure')]));
         var cbc = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbc.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count'));
         var cbcWBC = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Immature Granulocytes', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38518-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Immature Granulocytes', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Lymphocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('736-9', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Immature Granulocytes', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38518-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Immature Granulocytes', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Lymphocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('736-9', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Lymphocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbcWBC.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count White Blood Cell'));
-        var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_11__["RXNORM_CODES"];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
+        var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_12__["RXNORM_CODES"];
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
-        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_11__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
+        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_12__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
         // Drug monitoring should be a scatterplot, and the related concepts
         // should be displayed on the same axes.
         var vancMonitoring = [
             vancRxNorm,
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, function (observation, dateRange) {
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, function (observation, dateRange) {
                 return vancRxNorm.getResourceSet(dateRange).then(function (rxNorms) {
                     // We know that we're only pushing in one RxNorm
                     // so it's safe to grab the first (and only) one in
@@ -2521,18 +2620,22 @@ var ResourceCodeManager = /** @class */ (function () {
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](vancMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Vancomycin'));
         var gentMonitoring = [
-            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_12__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_11__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.gentMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER)
+            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_12__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
+            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.gentMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER)
         ];
         codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](gentMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Gentamicin'));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Urinalysis', ResourceCodeManager_1.urineGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Urinalysis')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'CSF')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Other Fluid', ResourceCodeManager_1.otherFluidGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Other Fluid')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Stool', ResourceCodeManager_1.stoolGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Stool')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Respiratory', ResourceCodeManager_1.respiratoryGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Respiratory')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Other', ResourceCodeManager_1.otherGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Other')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Blood', ResourceCodeManager_1.bloodGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Blood')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'CSF Microbiology', ResourceCodeManager_1.csfGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'CSF Microbiology')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Urinalysis', ResourceCodeManager_1.urineGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Urinalysis')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'CSF')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Other Fluid', ResourceCodeManager_1.otherFluidGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Other Fluid')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Stool', ResourceCodeManager_1.stoolGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Stool')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Respiratory', ResourceCodeManager_1.respiratoryGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Respiratory')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Other', ResourceCodeManager_1.otherGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Other')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Blood', ResourceCodeManager_1.bloodGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Blood')]));
+        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'CSF Microbiology', ResourceCodeManager_1.csfGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'CSF Microbiology')]));
+        // Add flag to environment to toggle radiology feature
+        if (_environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].showRadiology) {
+            codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCodeGroup"](this.fhirService, 'Radiology', ResourceCodeManager_1.radiologyGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].DIAGNOSTIC), 'Radiology')]));
+        }
         ResourceCodeManager_1.axisGroups = codeGroups;
         var mapping = new Map();
         for (var _d = 0, _e = this.getResourceCodeGroups(); _d < _e.length; _d++) {
@@ -2566,128 +2669,135 @@ var ResourceCodeManager = /** @class */ (function () {
     var ResourceCodeManager_1;
     ResourceCodeManager.labLoincs = [
         // Pull all the defaults to the top.
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1988-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'C-Reactive Protein', true, [0, 100], true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4537-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'ESR (Erythrocyte Sedimentation Rate)', true, [0, 200]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3094-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'BUN', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2160-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Creatinine', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1742-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'ALT', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1920-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'AST (Aspartate Aminotransferase)', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6768-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Alkaline Phosphatase', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1968-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Bilirubin, Direct', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1975-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Bilirubin, Total', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3084-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Uric acid', false)
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1988-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'C-Reactive Protein', true, [0, 100], true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4537-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'ESR (Erythrocyte Sedimentation Rate)', true, [0, 200]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3094-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'BUN', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2160-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Creatinine', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1742-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'ALT', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1920-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'AST (Aspartate Aminotransferase)', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6768-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Alkaline Phosphatase', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1968-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Direct', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1975-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Total', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3084-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Uric acid', false)
     ];
     ResourceCodeManager.vitalLoincs = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8310-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Temperature', true, [35, 41]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8867-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Heart Rate', true, [20, 300]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9279-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Respiratory Rate', true, [6, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('59408-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Oxygen Saturation (SpO2)', true, [5, 100], true)
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8310-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Temperature', true, [35, 41]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8867-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Heart Rate', true, [20, 300]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9279-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Respiratory Rate', true, [6, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('59408-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Oxygen Saturation (SpO2)', true, [5, 100], true)
     ];
     /**
      * Although these two measurements have independent LOINC codes they only ever
      * appear as sub-measurements of the larger entity for "blood pressure" in the
      * way that BCH data shows up.
      */
-    ResourceCodeManager.diastolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8462-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Diastolic Blood Pressure', true, [25, 150]);
-    ResourceCodeManager.systolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8480-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], 'Systolic Blood Pressure', true, [30, 250]);
+    ResourceCodeManager.diastolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8462-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Diastolic Blood Pressure', true, [25, 150]);
+    ResourceCodeManager.systolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8480-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Systolic Blood Pressure', true, [30, 250]);
     // "bloodPressureLoincs" is in file resource-code-manager-exports.ts because
     // of circular dependency issues.
     ResourceCodeManager.gentMonitoring = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31091-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Peak/Post Q24H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3663-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Peak/Post Q8H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31092-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Trough/Pre Q24H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3665-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Gentamicin, Trough/Pre Q8H')
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31091-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Peak/Post Q24H'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3663-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Peak/Post Q8H'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31092-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Trough/Pre Q24H'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3665-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Trough/Pre Q8H')
     ];
     ResourceCodeManager.vancMonitoring = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20578-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Vancomycin Level, Random', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4092-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Vancomycin Level, Trough/Pre', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20578-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Vancomycin Level, Random', true),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4092-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Vancomycin Level, Trough/Pre', true),
     ];
     ResourceCodeManager.urineGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5769-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Bacteria, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50551-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Bilirubin, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5794-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Blood, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('21033-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Budding Yeast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41865-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Hyphal Yeast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('25157-9', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Epithelial Cast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50558-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Nitrite, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('57735-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Protein, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('58449-0', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Red Blood Cell Clump, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13945-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Red Cells, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('11277-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Squamous Epithelial, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50563-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Urobilinogen, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5799-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'WBC Enzyme, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('33825-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'White Blood Cell Clump, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20408-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'White Cells, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5769-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bacteria, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50551-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5794-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Blood, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('21033-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Budding Yeast, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41865-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hyphal Yeast, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('25157-9', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Epithelial Cast, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50558-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Nitrite, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('57735-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Protein, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('58449-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Red Blood Cell Clump, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13945-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Red Cells, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('11277-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Squamous Epithelial, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50563-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Urobilinogen, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5799-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'WBC Enzyme, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('33825-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'White Blood Cell Clump, Urinalysis'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20408-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'White Cells, Urinalysis'),
     ];
     ResourceCodeManager.csfGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10333-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Appearance, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13517-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Atypical Lymph, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Band, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('30374-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Basophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12208-5', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2342-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Glucose, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10328-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Lymphocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10329-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Monocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Neutrophil/Band, CSF', false, [0, 100])
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10333-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Appearance, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13517-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Atypical Lymph, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Band, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('30374-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Basophil, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12208-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2342-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Glucose, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10328-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Lymphocyte, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10329-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Monocyte, CSF', false, [0, 100]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Neutrophil/Band, CSF', false, [0, 100])
     ];
     ResourceCodeManager.otherFluidGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9335-1', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Appearance, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31208-2', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count Source, Other Fluid', false, [0, 100000]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('47938-6', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cell Count, Other Source', false, [0, 100000]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38256-4', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Cells Counted, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6824-7', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Color, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12209-3', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], 'Eosinophil, Other Fluid')
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9335-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Appearance, Other Fluid'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31208-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cell Count Source, Other Fluid', false, [0, 100000]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('47938-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cell Count, Other Source', false, [0, 100000]),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38256-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cells Counted, Other Fluid'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6824-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Color, Other Fluid'),
+        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12209-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil, Other Fluid')
     ];
     ResourceCodeManager.stoolGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'C difficile EIA w/rflx to amplified DNA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CAMPYLOBACTERCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Campylobacter Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROHEMORRHAGICECOLITEST', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Enterohemorrhagic E coli Test', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Salmonella and Shigella Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('YERSINIACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Yersinia Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'C difficile EIA w/rflx to amplified DNA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CAMPYLOBACTERCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Campylobacter Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROHEMORRHAGICECOLITEST', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Enterohemorrhagic E coli Test', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Salmonella and Shigella Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('YERSINIACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Yersinia Culture', true),
     ];
     // Visible for testing.
     ResourceCodeManager.respiratoryGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRRESPQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Adenovirus PCR, Resp, QuaL', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('INFLUENZAABRSVPCRWASUBTYPEQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Influenza A/B, RSV PCR w/A Subtype, QuaL', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('RESPIRATORYCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Respiratory Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALDFARESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Viral DFA Respiratory', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA1DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Parainfluenza 1 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA123DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Parainfluenza 1, 2, 3 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA2DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Parainfluenza 2 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA3DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Parainfluenza 3 DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRRESPQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Adenovirus PCR, Resp, QuaL', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('INFLUENZAABRSVPCRWASUBTYPEQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Influenza A/B, RSV PCR w/A Subtype, QuaL', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('RESPIRATORYCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Respiratory Culture and Gram Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALDFARESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Viral DFA Respiratory', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA1DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 1 DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA123DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 1, 2, 3 DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA2DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 2 DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA3DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 3 DFA', true),
     ];
     // Visible for testing.
     ResourceCodeManager.otherGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('AFBCULTUREANDSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'AFB Culture and Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ANAEROBICCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Anaerobic Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ASPERGILLUSGALACTOMANNANEIA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Aspergillus galactomannan EIA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CMVSHELLVIALCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'CMV Shell Vial Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CATHETERTIPTUBINGFOREIGNBODYCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Catheter Tip/Tubing/Foreign Body Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FLUIDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Fluid Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FUNGUSCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Fungus Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('KOHFUNGALSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'KOH Fungal Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('TISSUECULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Tissue Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VZVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'VZV DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALCULTURENONRESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Viral Culture, Non Respiratory', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('WOUNDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Wound Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HSVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'HSV DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HERPESSIMPLEXVIRUS12PCRQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Herpes Simplex Virus 1/2 PCR, QuaL', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('AFBCULTUREANDSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'AFB Culture and Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ANAEROBICCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Anaerobic Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ASPERGILLUSGALACTOMANNANEIA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Aspergillus galactomannan EIA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CMVSHELLVIALCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'CMV Shell Vial Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CATHETERTIPTUBINGFOREIGNBODYCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Catheter Tip/Tubing/Foreign Body Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FLUIDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Fluid Culture and Gram Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FUNGUSCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Fungus Culture', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('KOHFUNGALSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'KOH Fungal Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('TISSUECULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Tissue Culture and Gram Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VZVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'VZV DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALCULTURENONRESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Viral Culture, Non Respiratory', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('WOUNDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Wound Culture and Gram Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HSVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'HSV DFA', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HERPESSIMPLEXVIRUS12PCRQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Herpes Simplex Virus 1/2 PCR, QuaL', true),
     ];
     ResourceCodeManager.bloodGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Adenovirus PCR, QuaNT', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREROUTINEAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Blood Culture Routine, Aerobic', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREAEROBICANDANAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Blood Culture, Aerobic and Anaerobic', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREFUNGUS', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Blood Culture, Fungus', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CYTOMEGALOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Cytomegalovirus PCR, QuaNT', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('EPSTEINBARRVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Epstein-Barr Virus PCR, QuaNT', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Adenovirus PCR, QuaNT', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREROUTINEAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture Routine, Aerobic', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREAEROBICANDANAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture, Aerobic and Anaerobic', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREFUNGUS', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture, Fungus', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CYTOMEGALOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Cytomegalovirus PCR, QuaNT', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('EPSTEINBARRVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Epstein-Barr Virus PCR, QuaNT', true),
     ];
     ResourceCodeManager.csfGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CSFCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'CSF Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROVIRUSPCRCSFQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_9__["microbio"], 'Enterovirus PCR, CSF, QuaL', true)
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CSFCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'CSF Culture and Gram Stain', true),
+        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROVIRUSPCRCSFQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Enterovirus PCR, CSF, QuaL', true)
+    ];
+    // TODO- Issue #30: Add more codes to DiagnosticReportCode as we get more data
+    // The values 'RADRPT' and 'CT Report' are not actually in the official FHIR
+    // documentation, but are seen in the Cerner sandbox. 
+    ResourceCodeManager.radiologyGroup = [
+        new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCode"]('RADRPT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], 'Radiology Report', true),
+        new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCode"]('CT Report', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], 'CT Report', true)
     ];
     ResourceCodeManager.typeToPairs = [
-        [_display_grouping__WEBPACK_IMPORTED_MODULE_9__["vitalSign"], ResourceCodeManager_1.vitalLoincs],
-        [_display_grouping__WEBPACK_IMPORTED_MODULE_9__["labResult"], ResourceCodeManager_1.labLoincs],
+        [_display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], ResourceCodeManager_1.vitalLoincs],
+        [_display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], ResourceCodeManager_1.labLoincs],
     ];
     ResourceCodeManager = ResourceCodeManager_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -3597,16 +3707,75 @@ var DeleteDialogComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts":
-/*!*****************************************************************!*\
-  !*** ./src/app/fhir-data-classes/annotated-diagnotic-report.ts ***!
-  \*****************************************************************/
+/***/ "./src/app/fhir-data-classes/annotated-diagnostic-report.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/fhir-data-classes/annotated-diagnostic-report.ts ***!
+  \******************************************************************/
 /*! exports provided: AnnotatedDiagnosticReport */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedDiagnosticReport", function() { return AnnotatedDiagnosticReport; });
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _narrative__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./narrative */ "./src/app/fhir-data-classes/narrative.ts");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+/**
+ * A diagnostic report with Narrative text extended.
+ * Necessary because Narrative is not officially part of the
+ * DSTU2 standard of FHIR, but it is an attribute on the
+ * DomainResource model that DiagnosticReport is built on top of
+ */
+var AnnotatedDiagnosticReport = /** @class */ (function (_super) {
+    __extends(AnnotatedDiagnosticReport, _super);
+    function AnnotatedDiagnosticReport(report, attachmentHtml) {
+        var _this = _super.call(this, report.timestamp) || this;
+        // Grabbing information from the html text in json only if
+        // it exists
+        if (report.json.text) {
+            _this.text = new _narrative__WEBPACK_IMPORTED_MODULE_1__["Narrative"](report.json.text);
+        }
+        if (attachmentHtml) {
+            _this.attachmentHtml = attachmentHtml;
+        }
+        _this.report = report;
+        return _this;
+    }
+    return AnnotatedDiagnosticReport;
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["TimestampedObject"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/fhir-data-classes/annotated-microbio-report.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/fhir-data-classes/annotated-microbio-report.ts ***!
+  \****************************************************************/
+/*! exports provided: AnnotatedMicrobioReport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedMicrobioReport", function() { return AnnotatedMicrobioReport; });
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 // Copyright 2019 Verily Life Sciences Inc.
 //
@@ -3627,15 +3796,18 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 /**
- * A diagnostic report with the timestamp for a specific culture type extended.
+ * A microbio report with the timestamp for a specific culture type extended.
+ * Necessary because Cerner's implementation of the microbio data
+ * does not include the timestamp with the report, but rather with
+ * the object.
  */
-var AnnotatedDiagnosticReport = /** @class */ (function (_super) {
-    __extends(AnnotatedDiagnosticReport, _super);
-    function AnnotatedDiagnosticReport(report) {
+var AnnotatedMicrobioReport = /** @class */ (function (_super) {
+    __extends(AnnotatedMicrobioReport, _super);
+    function AnnotatedMicrobioReport(report) {
         var _this = this;
         // Get the timestamp from the collection time of the specimen.
-        var specimen = report.specimen;
         var timestamp;
+        var specimen = report.specimen;
         if (specimen) {
             timestamp = specimen.collectedDateTime ?
                 specimen.collectedDateTime :
@@ -3646,7 +3818,7 @@ var AnnotatedDiagnosticReport = /** @class */ (function (_super) {
         _this.report = report;
         return _this;
     }
-    return AnnotatedDiagnosticReport;
+    return AnnotatedMicrobioReport;
 }(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["TimestampedObject"]));
 
 
@@ -3798,25 +3970,73 @@ var AnnotatedObservation = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/fhir-data-classes/attachment.ts":
+/*!*************************************************!*\
+  !*** ./src/app/fhir-data-classes/attachment.ts ***!
+  \*************************************************/
+/*! exports provided: Attachment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Attachment", function() { return Attachment; });
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+/**
+ * FHIR type from the DSTU2 version of the standard. Used for containing
+ * or referencing attachments (additional data content defined in other formats).
+ * Fhir Documentation: https://www.hl7.org/fhir/datatypes.html#Attachment
+ */
+var Attachment = /** @class */ (function () {
+    function Attachment(jsonPresentedForm) {
+        this.contentType = jsonPresentedForm.contentType;
+        this.url = jsonPresentedForm.url;
+    }
+    return Attachment;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/fhir-data-classes/diagnostic-report.ts":
 /*!********************************************************!*\
   !*** ./src/app/fhir-data-classes/diagnostic-report.ts ***!
   \********************************************************/
-/*! exports provided: DiagnosticReportStatus, DiagnosticReport */
+/*! exports provided: DiagnosticReportStatus, DiagnosticServiceSectionCodes, DiagnosticReport */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportStatus", function() { return DiagnosticReportStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticServiceSectionCodes", function() { return DiagnosticServiceSectionCodes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReport", function() { return DiagnosticReport; });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.ts");
-/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
-/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
-// Copyright 2018 Verily Life Sciences Inc.
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _attachment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attachment */ "./src/app/fhir-data-classes/attachment.ts");
+// Copyright 2019 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
 
 
 
@@ -3852,99 +4072,80 @@ var statusToEnumMap = new Map([
     ['unknown', DiagnosticReportStatus.Unknown],
 ]);
 /**
+ * FHIR element for DiagnosticServiceSectionCodes, from the DSTU2 version
+ * of the standard. Used to represent the department/diagnostic service
+ * that created the request. The section codes that we are currently
+ * using are not in the FHIR documentation, but are in the examples
+ * given in the Cerner sandbox environment.
+ * TODO: Add more codes when we get more data. (Issue #30)
+ * http://hl7.org/fhir/DSTU2/valueset-diagnostic-service-sections.html
+ */
+var DiagnosticServiceSectionCodes;
+(function (DiagnosticServiceSectionCodes) {
+    DiagnosticServiceSectionCodes["RadiologyReport"] = "RAD";
+    DiagnosticServiceSectionCodes["CTReport"] = "CT";
+})(DiagnosticServiceSectionCodes || (DiagnosticServiceSectionCodes = {}));
+var categoryToEnumMap = new Map([
+    ['RADRPT', DiagnosticServiceSectionCodes.RadiologyReport],
+    ['CT Report', DiagnosticServiceSectionCodes.CTReport],
+]);
+/**
  * FHIR resource for DiagnosticReport, from the DSTU2 version of the standard.
  * https://www.hl7.org/fhir/DSTU2/diagnosticreport.html
  *
- * The parsing for this class is heavily influenced by the custom API BCH
- * built to return DiagnosticReports for microbiology data. In particular, we
- * only parse out specimens and results from the "contained" portion of the
- * resource instead of supporting retrieval by reference since the Cerner
- * implementation of the FHIR standard won't allow microbiology retrieval.
+ * Cerner currently only supports radiology reports
  */
-var DiagnosticReport = /** @class */ (function () {
+var DiagnosticReport = /** @class */ (function (_super) {
+    __extends(DiagnosticReport, _super);
     function DiagnosticReport(json, requestId) {
-        /** Results in the form of observations */
-        this.results = new Array();
-        this.requestId = requestId;
+        var _this = _super.call(this, DiagnosticReport.getLabel(json, requestId), requestId, luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].fromISO(json.effectiveDateTime)) || this;
+        /**
+         * Not readonly to allow editing in fhir-service
+         * Attachment representing html/pdf version of the report.
+        */
+        _this.presentedForm = new Array();
+        _this.requestId = requestId;
+        _this.json = json;
         if (json.id) {
-            this.id = json.id;
+            _this.id = json.id;
         }
-        // Contained resources may be either specimens or observations.
-        var contained = json.contained;
-        var specimens = [];
-        for (var _i = 0, contained_1 = contained; _i < contained_1.length; _i++) {
-            var rsc = contained_1[_i];
-            if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Specimen) {
-                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_3__["Specimen"](rsc, this.requestId));
-            }
-            else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
-                try {
-                    this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
-                }
-                catch (err) {
-                    // silently ignore observations within diagnostic reports that have
-                    // errors. Errors may occur because an observation may not have a
-                    // LOINC code we recognize or may have an inconsistent label.
-                    // Please see Observation constructor for all error cases.
-                    console.log(err);
-                }
-            }
-            // Silently ignore all other contained resource types.
-        }
-        if (specimens.length > 1) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report cannot have multiple specimens.');
-        }
-        this.specimen = specimens[0];
         if (!json.status) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report needs a status to be useful.' + json);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_0__["ResultError"](new Set([_this.requestId]), 'The report needs a status to be useful.', json);
         }
-        this.status = statusToEnumMap.get(json.status);
+        _this.status = statusToEnumMap.get(json.status);
+        if (json.category) {
+            _this.category = categoryToEnumMap.get(json.category.text);
+        }
+        if (json.presentedForm) {
+            for (var _i = 0, _a = json.presentedForm; _i < _a.length; _i++) {
+                var presented = _a[_i];
+                _this.presentedForm.push(new _attachment__WEBPACK_IMPORTED_MODULE_4__["Attachment"](presented));
+            }
+        }
+        if (json.code) {
+            _this.code = _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportCode"].fromCodeString(json.code.text);
+        }
+        return _this;
     }
     /**
-     * The custom microbiology API provided does not allow for calling for
-     * a specific microbio code, so this function parses the entire anticipated
-     * JSON repsonse and filters by code.
+     * Helper function to extract the label to satisfy the requirement
+     * for labels in the ResultClassWithTimestamp.
+     * Label currently just text of the code, which is 'RADRPT' in the
+     * Cerner examples.
      * @param json The JSON retrieved from the server.
-     * @param codeGroup The CodeGroup of tests we're looking for.
      */
-    DiagnosticReport.parseAndFilterMicrobioData = function (json, codeGroup) {
-        if (!json || !json.entry) {
-            return [];
+    DiagnosticReport.getLabel = function (json, requestId) {
+        var label;
+        if (json.code) {
+            label = json.code.text;
         }
-        // We cannot get the request ID from the Microbiology response. Therefore
-        // we hardcode the request ID to just be a constant string.
-        var requestId = 'Microbiology Request';
-        var diagnosticReports = json.entry.map(function (result) { return new DiagnosticReport(result.resource, requestId); });
-        var mapToUpdate = new Map();
-        // Get all unique codes for all DiagnosticReport results.
-        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
-            var report = diagnosticReports_1[_i];
-            var codes = report.results.map(function (r) { return r.codes; })
-                .reduce(function (prev, curr) {
-                return prev.concat(curr);
-            }, []);
-            var uniqueCodes = Array.from(new Set(codes));
-            for (var _a = 0, uniqueCodes_1 = uniqueCodes; _a < uniqueCodes_1.length; _a++) {
-                var code = uniqueCodes_1[_a];
-                var existing = mapToUpdate.get(code);
-                if (!existing) {
-                    existing = [];
-                }
-                existing.push(report);
-                mapToUpdate.set(code, existing);
-            }
+        else {
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_0__["ResultError"](new Set([requestId]), 'The report needs a code to be useful.', json);
         }
-        var reports = new Array();
-        for (var _b = 0, _c = codeGroup.resourceCodes; _b < _c.length; _b++) {
-            var code = _c[_b];
-            if (mapToUpdate.has(code)) {
-                reports = reports.concat(mapToUpdate.get(code));
-            }
-        }
-        return reports;
+        return label;
     };
     return DiagnosticReport;
-}());
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__["ResultClassWithTimestamp"]));
 
 
 
@@ -4556,11 +4757,182 @@ var ContainedMedication = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/fhir-data-classes/microbio-report.ts":
+/*!******************************************************!*\
+  !*** ./src/app/fhir-data-classes/microbio-report.ts ***!
+  \******************************************************/
+/*! exports provided: MicrobioReport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioReport", function() { return MicrobioReport; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
+/* harmony import */ var _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+
+
+
+
+// TODO: Issue #31 (Update mapping for string enums)
+// https://stackoverflow.com/questions/44883072/reverse-mapping-for-string-enums
+var statusToEnumMap = new Map([
+    ['registered', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Registered],
+    ['partial', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Partial],
+    ['preliminary', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Preliminary],
+    ['final', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Final],
+    ['amended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Amended],
+    ['corrected', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Corrected],
+    ['appended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Appended],
+    ['cancelled', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Cancelled],
+    ['entered-in-error', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].EnteredInError],
+    ['unknown', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Unknown],
+]);
+/**
+ * Resource for MicrobioReport.
+ * The parsing for this class is heavily influenced by the custom API BCH
+ * built to return DiagnosticReports for microbiology data. In particular, we
+ * only parse out specimens and results from the "contained" portion of the
+ * resource instead of supporting retrieval by reference since the Cerner
+ * implementation of the FHIR standard won't allow microbiology retrieval.
+ *
+ * This currently does not extend DiagnosticReport. TODO: Issue #24- maintain
+ * More clearly delineate what belongs in FHIR resources and what is added/derived
+ */
+var MicrobioReport = /** @class */ (function () {
+    function MicrobioReport(json, requestId) {
+        /** Results in the form of observations */
+        this.results = new Array();
+        this.requestId = requestId;
+        if (json.id) {
+            this.id = json.id;
+        }
+        if (!json.status) {
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report needs a status to be useful.', json);
+        }
+        this.status = statusToEnumMap.get(json.status);
+        // Contained resources may be either specimens or observations.
+        var contained = json.contained;
+        var specimens = [];
+        for (var _i = 0, contained_1 = contained; _i < contained_1.length; _i++) {
+            var rsc = contained_1[_i];
+            if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Specimen) {
+                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_3__["Specimen"](rsc, this.requestId));
+            }
+            else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
+                try {
+                    this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
+                }
+                catch (err) {
+                    // silently ignore observations within diagnostic reports that have
+                    // errors. Errors may occur because an observation may not have a
+                    // LOINC code we recognize or may have an inconsistent label.
+                    // Please see Observation constructor for all error cases.
+                    console.log(err);
+                }
+            }
+            // Silently ignore all other contained resource types.
+        }
+        if (specimens.length > 1) {
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_1__["ResultError"](new Set([this.requestId]), 'The report cannot have multiple specimens.');
+        }
+        this.specimen = specimens[0];
+    }
+    /**
+     * The custom microbiology API provided does not allow for calling for
+     * a specific microbio code, so this function parses the entire anticipated
+     * JSON repsonse and filters by code.
+     * @param json The JSON retrieved from the server.
+     * @param codeGroup The CodeGroup of tests we're looking for.
+     */
+    MicrobioReport.parseAndFilterMicrobioData = function (json, codeGroup) {
+        if (!json || !json.entry) {
+            return [];
+        }
+        // We cannot get the request ID from the Microbiology response. Therefore
+        // we hardcode the request ID to just be a constant string.
+        var requestId = 'Microbiology Request';
+        var diagnosticReports = json.entry.map(function (result) { return new MicrobioReport(result.resource, requestId); });
+        var mapToUpdate = new Map();
+        // Get all unique codes for all DiagnosticReport results.
+        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
+            var report = diagnosticReports_1[_i];
+            var codes = report.results.map(function (r) { return r.codes; })
+                .reduce(function (prev, curr) {
+                return prev.concat(curr);
+            }, []);
+            var uniqueCodes = Array.from(new Set(codes));
+            for (var _a = 0, uniqueCodes_1 = uniqueCodes; _a < uniqueCodes_1.length; _a++) {
+                var code = uniqueCodes_1[_a];
+                var existing = mapToUpdate.get(code);
+                if (!existing) {
+                    existing = [];
+                }
+                existing.push(report);
+                mapToUpdate.set(code, existing);
+            }
+        }
+        var reports = new Array();
+        for (var _b = 0, _c = codeGroup.resourceCodes; _b < _c.length; _b++) {
+            var code = _c[_b];
+            if (mapToUpdate.has(code)) {
+                reports = reports.concat(mapToUpdate.get(code));
+            }
+        }
+        return reports;
+    };
+    return MicrobioReport;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/fhir-data-classes/narrative.ts":
+/*!************************************************!*\
+  !*** ./src/app/fhir-data-classes/narrative.ts ***!
+  \************************************************/
+/*! exports provided: Narrative */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Narrative", function() { return Narrative; });
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+/**
+ * Fhir documentation: https://www.hl7.org/fhir/narrative.html
+ * Exists as an attribute of DomainResource
+ * (https://www.hl7.org/fhir/DSTU2/domainresource.html)
+ */
+var Narrative = /** @class */ (function () {
+    function Narrative(jsonText) {
+        if (jsonText) {
+            this.div = jsonText.div;
+            this.status = jsonText.status;
+        }
+    }
+    return Narrative;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts":
 /*!**************************************************************************!*\
   !*** ./src/app/fhir-data-classes/observation-interpretation-valueset.ts ***!
   \**************************************************************************/
-/*! exports provided: OBSERVATION_INTERPRETATION_VALUESET_URL, CHECK_RESULT_CODE, NEGFLORA_CODE, NEG_CODE, NORMAL, ObservationInterpretation */
+/*! exports provided: OBSERVATION_INTERPRETATION_VALUESET_URL, CHECK_RESULT_CODE, NEGFLORA_CODE, NEG_CODE, NORMAL, PARTIAL, ObservationInterpretation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4570,6 +4942,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NEGFLORA_CODE", function() { return NEGFLORA_CODE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NEG_CODE", function() { return NEG_CODE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NORMAL", function() { return NORMAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PARTIAL", function() { return PARTIAL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObservationInterpretation", function() { return ObservationInterpretation; });
 // Copyright 2018 Verily Life Sciences Inc.
 //
@@ -4585,6 +4958,7 @@ var CHECK_RESULT_CODE = 'CHECKRESULT';
 var NEGFLORA_CODE = 'NEGORFLORA';
 var NEG_CODE = 'NEG';
 var NORMAL = 'N';
+var PARTIAL = 'Partial';
 /**
  * Represents the possible interpretations for observations. Each interpretation
  * has a code (usually 1-3 characters) plus a text description for display.
@@ -5045,7 +5419,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
 /* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
 /* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
 /* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
 /* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
@@ -5055,6 +5429,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
 /* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5101,8 +5476,10 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var GREATER_OR_EQUAL = 'ge';
 var LESS_OR_EQUAL = 'le';
+var LESS_THAN = 'lt';
 var FhirHttpService = /** @class */ (function (_super) {
     __extends(FhirHttpService, _super);
     function FhirHttpService(debugService, smartOnFhirClient, sanitizer, http) {
@@ -5560,14 +5937,13 @@ var FhirHttpService = /** @class */ (function (_super) {
         });
     };
     /**
-     * Gets the DiagnosticReports for the patient for any report that falls in
+     * Gets the MicrobioReports for the patient for any report that falls in
      * the given date range.
-     * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-     * @param dateRange Return all DiagnosticReports that covered any time in
-     *     this
+     * @param codeGroup The CodeGroup to retrieve MicrobioReports for.
+     * @param dateRange Return all MicrobioReports that covered any time in this
      *   date range.
      */
-    FhirHttpService.prototype.getDiagnosticReports = function (codeGroup, dateRange) {
+    FhirHttpService.prototype.getMicrobioReports = function (codeGroup, dateRange) {
         var _this = this;
         if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
             console.warn('No microbiology parameters available in the configuration.');
@@ -5595,11 +5971,64 @@ var FhirHttpService = /** @class */ (function (_super) {
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
                 .then(function (res) {
-                return _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReport"].parseAndFilterMicrobioData(res, codeGroup);
+                return _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_8__["MicrobioReport"].parseAndFilterMicrobioData(res, codeGroup);
             });
         }, function (rejection) {
             _this.debugService.logError(rejection);
             throw rejection;
+        });
+    };
+    /**
+     * Returns AnnotateDiagnosticReport from a specified date range with a specific
+     * DiagnosticReportCodeGroup code.
+     *
+     * @param code The DiagnosticReportCodeGroup for which to get observations.
+     * @param dateRange The time interval observations should fall between.
+     */
+    FhirHttpService.prototype.getAnnotatedDiagnosticReports = function (code, dateRange) {
+        var _this = this;
+        var queryParams = {
+            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport,
+            query: {
+                date: {
+                    $and: [
+                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
+                        // We are adding one millisecond to the end date because the specs for DiagnosticReport
+                        // requires it to be greater or equal and strictly less than.
+                        LESS_THAN + dateRange.end.plus({ millisecond: 1 }).toISODate()
+                    ]
+                },
+            }
+        };
+        return this.smartApiPromise.then(function (smartApi) {
+            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__["DiagnosticReport"](json, requestId); })
+                .then(function (results) {
+                var annotatedReportsArr = results.filter(function (result) { return result.status !== _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__["DiagnosticReportStatus"].EnteredInError; })
+                    .map(function (report) { return _this.addAttachment(report); });
+                return Promise.all(annotatedReportsArr);
+            }, function (rejection) {
+                _this.debugService.logError(rejection);
+                throw rejection;
+            });
+        });
+    };
+    /**
+     * Helper function that makes the HTTP call to get the html attachment.
+     * The responseType will always be text, and not the default json.
+     * If any error exists, it will catch the http error and return the message
+     * @param url Fhir link to location of data
+     */
+    FhirHttpService.prototype.getAttachment = function (url) {
+        var _this = this;
+        return this.smartApiPromise.then(function (smartApi) {
+            var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+                'Accept': 'text/html',
+                'Authorization': 'Bearer ' + smartApi.tokenResponse.access_token
+            });
+            return _this.http.get(url, { headers: httpHeaders,
+                responseType: 'text' }).toPromise()
+                .then(function (res) { return res; })
+                .catch(function (err) { return err.message; });
         });
     };
     FhirHttpService = __decorate([
@@ -5681,7 +6110,8 @@ var FhirLaunchComponent = /** @class */ (function () {
             'launch', 'patient/Observation.read', 'patient/Patient.read',
             'patient/MedicationOrder.read', 'patient/MedicationAdministration.read',
             'patient/DocumentReference.read', 'patient/DocumentReference.write',
-            'patient/Encounter.read'
+            'patient/Encounter.read', 'patient/DiagnosticReport.read',
+            'patient/Binary.read'
         ].join(' ');
         this.parameters = new Array();
     }
@@ -5897,6 +6327,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fhir-data-classes/annotated-diagnostic-report */ "./src/app/fhir-data-classes/annotated-diagnostic-report.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5910,21 +6341,37 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var FhirService = /** @class */ (function () {
     function FhirService() {
     }
     /**
-     * Returns whether there are any observations with this code in the given
+     * Returns whether there are any microbio Reports with this code in the given
      * time range.
      * @param code The BCHMicrobio code for which to get observations.
      * @param dateRange The time interval observations should fall between.
      */
+    FhirService.prototype.microbioReportsPresentWithCodes = function (codeGroup, dateRange) {
+        // Just ask for one result to reduce the call time.
+        return this.getMicrobioReports(codeGroup, dateRange, 1)
+            .then(function (reports) { return reports.length > 0; }, function (rejection) {
+            // If any MicrobioReports for this code results in an error, do not
+            // show any MicrobioReports at all.
+            throw rejection;
+        });
+    };
+    /**
+     * Returns whether there are any annotated diagnosticreports with this code in the given
+     * time range.
+     * @param code The resource code (for diagnostic reports) for which to get observations.
+     * @param dateRange The time interval observations should fall between.
+     */
     FhirService.prototype.diagnosticReportsPresentWithCodes = function (codeGroup, dateRange) {
         // Just ask for one result to reduce the call time.
-        return this.getDiagnosticReports(codeGroup, dateRange, 1)
+        return this.getAnnotatedDiagnosticReports(codeGroup, dateRange, 1)
             .then(function (reports) { return reports.length > 0; }, function (rejection) {
-            // If any DiagnosticReports for this code results in an error, do not
-            // show any DiagnosticReports at all.
+            // If any AnnotatedDiagnosticReports for this code results in an error, do not
+            // show any AnnotatedDiagnosticReports at all.
             throw rejection;
         });
     };
@@ -5958,6 +6405,32 @@ var FhirService = /** @class */ (function () {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])([]).toPromise();
         }
         return this.getMedicationAdministrationsWithCodes(group.resourceCodes, dateRange);
+    };
+    /**
+     * Helper function to getAnnotatedDiagnosticReports() that makes the http calls
+     * to get the corresponding html attachments. Creates a new AnnotatedDiagnosticReport
+     * that includes the html attachment.
+     *
+     * @param report DiagnosticReport that will be edited to include the
+     * html attachment in string format
+     */
+    FhirService.prototype.addAttachment = function (report) {
+        if (report.presentedForm) {
+            for (var _i = 0, _a = report.presentedForm; _i < _a.length; _i++) {
+                var presented = _a[_i];
+                // Currently Cerner only supports text/html files and not pdf
+                if (presented.contentType === 'text/html') {
+                    return this.getAttachment(presented.url)
+                        .then(function (html) {
+                        return new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__["AnnotatedDiagnosticReport"](report, html);
+                    });
+                }
+            }
+        }
+        // If there is no presentedForm section in the report or none of the presentedForm
+        // contentTypes are 'text/html', return the annotated diagnostic report without
+        // the attachment.
+        return Promise.resolve(new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__["AnnotatedDiagnosticReport"](report));
     };
     FhirService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -6061,6 +6534,93 @@ var CustomizableData = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/graphdatatypes/diagnosticgraphdata.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/graphdatatypes/diagnosticgraphdata.ts ***!
+  \*******************************************************/
+/*! exports provided: DiagnosticGraphData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticGraphData", function() { return DiagnosticGraphData; });
+/* harmony import */ var _graphtypes_tooltips_diagnostic_tooltips__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphtypes/tooltips/diagnostic-tooltips */ "./src/app/graphtypes/tooltips/diagnostic-tooltips.ts");
+/* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _stepgraphdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+/**
+ * DiagnosticGraphData holds configurations for a diagnosticReport graph. The format
+ * of a diagnostic graph is simliar to a step graph in that each y-axis
+ * position represents a report category, and points plotted along
+ * that position represent results for that test.
+ */
+var DiagnosticGraphData = /** @class */ (function (_super) {
+    __extends(DiagnosticGraphData, _super);
+    function DiagnosticGraphData(endpointSeries, tooltipMap) {
+        return _super.call(this, endpointSeries, tooltipMap, undefined) || this;
+    }
+    /**
+     * Converts a list of DiagnosticReports to a StepGraphData object
+     * @param diagnosticReports A list of DiagnosticReports to display.
+     * @returns a new DiagnosticGraphData for this set.
+     */
+    DiagnosticGraphData.fromDiagnosticReports = function (annotatedDiagnosticReports, sanitizer) {
+        var points = [];
+        // The key of the map is the DateTime timestamp while the values
+        // of the map is an array contains AnnotatedTooltip (the innerhtml
+        // of the tooltip chart, optional html of the attachment, and optional id).
+        var tooltipMap = new Map();
+        // Iterate through diagnosticReports to generate tooltips and
+        // values for the DiagnosticGraphData
+        for (var _i = 0, annotatedDiagnosticReports_1 = annotatedDiagnosticReports; _i < annotatedDiagnosticReports_1.length; _i++) {
+            var annotatedReport = annotatedDiagnosticReports_1[_i];
+            // Adding a new DiagnosticTooltip to the tooltipMap.
+            // If there is already a tooltip at the timestamp, we do not
+            // overwrite the existing tooltip but rather add to it.
+            if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
+                var existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
+                var newTT = new _graphtypes_tooltips_diagnostic_tooltips__WEBPACK_IMPORTED_MODULE_0__["DiagnosticTooltip"](false).getTooltip(annotatedReport, sanitizer);
+                existingTT.push(newTT);
+            }
+            else {
+                // If there is no existing tooltip, we create a new tooltip.
+                tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), [new _graphtypes_tooltips_diagnostic_tooltips__WEBPACK_IMPORTED_MODULE_0__["DiagnosticTooltip"]().getTooltip(annotatedReport, sanitizer)]);
+            }
+            // Pushing the LabeledSeries generated from the Diagnostic
+            // Report to generate a new DiagnosticGraphData
+            for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_1__["LabeledSeries"].fromDiagnosticReport(annotatedReport, annotatedReport.timestamp); _a < _b.length; _a++) {
+                var series = _b[_a];
+                points.push(series);
+            }
+        }
+        return new DiagnosticGraphData(points, tooltipMap);
+    };
+    return DiagnosticGraphData;
+}(_stepgraphdata__WEBPACK_IMPORTED_MODULE_2__["StepGraphData"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/graphdatatypes/graphdata.ts":
 /*!*********************************************!*\
   !*** ./src/app/graphdatatypes/graphdata.ts ***!
@@ -6102,6 +6662,10 @@ var GraphData = /** @class */ (function () {
      * function, it should yield the key into tooltipMap that will let you
      * look up the appropriate tooltip for that data point. If tooltipKeyFn
      * is unset, then we fall back to the default lookup, which is by x-value.
+     *
+     * The value of the map is an AnnotatedTooltip[] that contains additional
+     * values that need more processing before it can be displayed, an optional id,
+     * and a string representing the innerhtml that we want to display as the tooltip
      */
     tooltipMap, 
     /**
@@ -6436,12 +7000,12 @@ var LabeledSeries = /** @class */ (function () {
         return new LabeledSeries('', [[date, yValue]]);
     };
     /**
-     * Generates LabeledSeries from the given DiagnosticReport.
-     * @param report The DiagnosticReport to chart.
+     * Generates LabeledSeries from the given MicrobioReport.
+     * @param report The MicrobioReport to chart.
      * @param date the DateTime corresponding to the Observations in the
-     *     DiagnosticReport.
+     *     MicrobioReport.
      */
-    LabeledSeries.fromDiagnosticReport = function (report, date) {
+    LabeledSeries.fromMicrobioReport = function (report, date) {
         var series = [];
         var interpretationMap = new Map();
         // Sort results by interpretation, and make a LabeledSeries for each.
@@ -6473,8 +7037,8 @@ var LabeledSeries = /** @class */ (function () {
         return series;
     };
     /**
-     * Returns the correct legend info for a diagnostic report.
-     * @param status The DiagnosticReport's status.
+     * Returns the correct legend info for a microbio report.
+     * @param status The MicrobioReport's status.
      * @param isPositive Whether the report appears to be positive.
      * @returns The correct legend info for the report.
      */
@@ -6497,6 +7061,22 @@ var LabeledSeries = /** @class */ (function () {
             }
             return _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_0__["negOtherMB"];
         }
+    };
+    /**
+     * Generates LabeledSeries from the given DiagnosticReport.
+     * @param report The DiagnosticReport to chart.
+     * @param date the DateTime corresponding to the Observations in the
+     *     DiagnosticReport.
+     */
+    LabeledSeries.fromDiagnosticReport = function (annotatedReport, date) {
+        var report = annotatedReport.report;
+        var seriesLabel = report.id + '-' + (annotatedReport.report ? annotatedReport.report.category : 'unnamedReport');
+        var coordinates = [];
+        // We are setting the coordinates to the category of the document (RADRPT, CT Report, etc.)
+        coordinates = [[report.timestamp, report.category]];
+        var series = [new LabeledSeries(seriesLabel, coordinates, undefined, // unit
+            _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_0__["radiology"])];
+        return series;
     };
     LabeledSeries.getYPositionForMed = function (medAdmin, categoricalYPosition) {
         return categoricalYPosition !== undefined && categoricalYPosition !== null ?
@@ -6552,6 +7132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
 /* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
 /* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
+/* harmony import */ var _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphtypes/tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6571,6 +7152,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 // tslint:disable-next-line:max-line-length
+
 
 
 
@@ -6676,17 +7258,21 @@ var LineGraphData = /** @class */ (function (_super) {
                     // Blood pressure is read into the ObservationSet differently,
                     // causing an edge case in the presentation of the values in the
                     // tooltips. We only want to display 'Blood pressure' once
-                    if (obs.observation.codes[0].codeString === _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].codeString
-                        && tooltipMap.get(timestamp).includes(_clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].label)) {
-                        continue;
+                    if (obs.observation.codes[0].codeString === _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].codeString) {
+                        // We are combining the array into one AnnotatedTooltip in order to check
+                        // to see if "Blood pressure" has already been added to any of the previous
+                        // tooltips
+                        var annotatedTT = _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_6__["AnnotatedTooltip"].combineAnnotatedTooltipArr(tooltipMap.get(timestamp));
+                        if (annotatedTT.tooltipChart.includes(_clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].label)) {
+                            continue;
+                        }
                     }
-                    tooltipMap.set(timestamp, tooltipMap.get(timestamp) +
-                        new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](false, series.legendInfo.fill)
-                            .getTooltip(obs, sanitizer, isAbnormal));
+                    tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](false, series.legendInfo.fill)
+                        .getTooltip(obs, sanitizer, isAbnormal));
                 }
                 else {
-                    tooltipMap.set(timestamp, new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](true, series.legendInfo.fill)
-                        .getTooltip(obs, sanitizer, isAbnormal));
+                    tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](true, series.legendInfo.fill)
+                            .getTooltip(obs, sanitizer, isAbnormal)]);
                 }
             }
         }
@@ -6723,14 +7309,13 @@ var LineGraphData = /** @class */ (function (_super) {
                     // timestamp so we stack the administrations on top of one
                     // another in that case.
                     if (tooltipMap.get(timestamp) && !alreadyMarked.has(timestamp)) {
-                        tooltipMap.set(timestamp, tooltipMap.get(timestamp) +
-                            new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](false, series.legendInfo.fill)
-                                .getTooltip(params, sanitizer));
+                        tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](false, series.legendInfo.fill)
+                            .getTooltip(params, sanitizer));
                         alreadyMarked.add(timestamp);
                     }
                     else if (!tooltipMap.get(timestamp)) {
-                        tooltipMap.set(timestamp, new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](true, series.legendInfo.fill)
-                            .getTooltip(params, sanitizer));
+                        tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](true, series.legendInfo.fill)
+                                .getTooltip(params, sanitizer)]);
                     }
                 }
             }
@@ -6764,12 +7349,12 @@ var LineGraphData = /** @class */ (function (_super) {
                 // There may be multiple data points associated with the timestamp
                 // so we stack the administrations on top of one another in that
                 // case.
-                var tooltipText = new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__["MedicationAdministrationTooltip"]().getTooltip([admin], sanitizer);
+                var newTT = new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__["MedicationAdministrationTooltip"]().getTooltip([admin], sanitizer);
                 if (tooltipMap.get(timestamp)) {
-                    tooltipMap.set(timestamp, tooltipMap.get(timestamp) + tooltipText);
+                    tooltipMap.get(timestamp).push(newTT);
                 }
                 else {
-                    tooltipMap.set(timestamp, tooltipText);
+                    tooltipMap.set(timestamp, [newTT]);
                 }
             }
         }
@@ -6804,25 +7389,23 @@ var LineGraphData = /** @class */ (function (_super) {
                     true : false;
                 var tsString = obs.observation.timestamp.toMillis().toString();
                 // Only add the timestamp to the tooltip for the first entry.
-                var tooltipText = void 0;
+                var newTT = void 0;
                 if (obs.observation.value) {
-                    tooltipText =
-                        new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
-                            .getTooltip(obs, sanitizer, isAbnormal);
+                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
+                        .getTooltip(obs, sanitizer, isAbnormal);
                 }
                 else {
-                    tooltipText =
-                        new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["DiscreteObservationTooltip"](!tooltipMap.has(tsString))
-                            .getTooltip([obs.observation], sanitizer);
+                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["DiscreteObservationTooltip"](!tooltipMap.has(tsString))
+                        .getTooltip([obs.observation], sanitizer);
                 }
                 // The key for this tooltip is the observation's timestamp.
                 // There may be multiple data points associated with the timestamp
                 // so we stack the tooltips on top of one another in that case.
                 if (tooltipMap.has(tsString)) {
-                    tooltipMap.set(tsString, tooltipMap.get(tsString) + tooltipText);
+                    tooltipMap.get(tsString).push(newTT);
                 }
                 else {
-                    tooltipMap.set(tsString, tooltipText);
+                    tooltipMap.set(tsString, [newTT]);
                 }
             }
         }
@@ -6847,7 +7430,7 @@ var LineGraphData = /** @class */ (function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioGraphData", function() { return MicrobioGraphData; });
-/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
+/* harmony import */ var _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/annotated-microbio-report */ "./src/app/fhir-data-classes/annotated-microbio-report.ts");
 /* harmony import */ var _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/microbio-tooltips */ "./src/app/graphtypes/tooltips/microbio-tooltips.ts");
 /* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
 /* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
@@ -6886,33 +7469,32 @@ var MicrobioGraphData = /** @class */ (function (_super) {
         return _super.call(this, endpointSeries, tooltipMap, undefined) || this;
     }
     /**
-     * Converts a list of DiagnosticReports to a StepGraphData object.
-     * All DiagnosticReports in the list should belong to the same culture type.
-     * @param diagnosticReports A list of DiagnosticReports to display.
+     * Converts a list of MicrobioReports to a StepGraphData object.
+     * All MicrobioReports in the list should belong to the same culture type.
+     * @param microbioReports A list of MicrobioReports to display.
      * @returns a new StepGraphData for this set.
      */
-    MicrobioGraphData.fromDiagnosticReports = function (diagnosticReports, sanitizer) {
+    MicrobioGraphData.fromMicrobioReports = function (microbioReports, sanitizer) {
         var points = [];
         var tooltipMap = new Map();
-        for (var _i = 0, diagnosticReports_1 = diagnosticReports; _i < diagnosticReports_1.length; _i++) {
-            var report = diagnosticReports_1[_i];
+        for (var _i = 0, microbioReports_1 = microbioReports; _i < microbioReports_1.length; _i++) {
+            var report = microbioReports_1[_i];
             // Get the timestamp from the collection time of the specimen.
             var specimen = report.specimen;
             if (specimen) {
-                var annotatedReport = new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedDiagnosticReport"](report);
-                for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromDiagnosticReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
+                var annotatedReport = new _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_0__["AnnotatedMicrobioReport"](report);
+                for (var _a = 0, _b = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromMicrobioReport(report, annotatedReport.timestamp); _a < _b.length; _a++) {
                     var series = _b[_a];
                     points.push(series);
                     var isAbnormal = series.label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["CHECK_RESULT_CODE"]);
                     var color = series.legendInfo.fill;
                     // For this tooltip, the keys are timestamps.
                     if (tooltipMap.has(annotatedReport.timestamp.toMillis().toString())) {
-                        var existingTT = tooltipMap.get(annotatedReport.timestamp.toMillis().toString());
-                        tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), existingTT +
-                            new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](false, color).getTooltip(annotatedReport, sanitizer, isAbnormal));
+                        tooltipMap.get(annotatedReport.timestamp.toMillis().toString())
+                            .push(new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](false, color).getTooltip(annotatedReport, sanitizer, isAbnormal));
                     }
                     else {
-                        tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](true, color).getTooltip(annotatedReport, sanitizer, isAbnormal));
+                        tooltipMap.set(annotatedReport.timestamp.toMillis().toString(), [new _graphtypes_tooltips_microbio_tooltips__WEBPACK_IMPORTED_MODULE_1__["MicrobioTooltip"](true, color).getTooltip(annotatedReport, sanitizer, isAbnormal)]);
                     }
                 }
             }
@@ -7012,9 +7594,9 @@ var StepGraphData = /** @class */ (function (_super) {
                 // the medication tooltip that shows the first and last doses for the
                 // medication.
                 tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
-                    medOrder.firstAdministration.timestamp, new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer));
+                    medOrder.firstAdministration.timestamp, [new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer)]);
                 tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
-                    medOrder.lastAdmininistration.timestamp, new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer));
+                    medOrder.lastAdmininistration.timestamp, [new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer)]);
             }
         }
         // Do not display the units for Medication administration values on the card
@@ -7156,17 +7738,21 @@ var AxisGroup = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Axis", function() { return Axis; });
 /* harmony import */ var _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../clinicalconcepts/bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
-/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphdatatypes/microbiographdata */ "./src/app/graphdatatypes/microbiographdata.ts");
-/* harmony import */ var _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphdatatypes/stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
+/* harmony import */ var _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphdatatypes/microbiographdata */ "./src/app/graphdatatypes/microbiographdata.ts");
+/* harmony import */ var _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphdatatypes/diagnosticgraphdata */ "./src/app/graphdatatypes/diagnosticgraphdata.ts");
+/* harmony import */ var _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graphdatatypes/stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+
+
 
 
 
@@ -7217,11 +7803,13 @@ var Axis = /** @class */ (function () {
         this.label = label;
         var resourceCodeList = this.resourceGroup.resourceCodes;
         // Check that all elements of the resourceCodeList are of the same type.
-        this.allLoinc = resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]; });
-        this.allRx = resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_2__["RxNormCode"]; });
+        this.allLoinc = resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]; });
+        this.allRx = resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_3__["RxNormCode"]; });
         this.allBCHMicrobio =
             resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_0__["BCHMicrobioCode"]; });
-        if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio) {
+        this.allDiagnosticReport =
+            resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__["DiagnosticReportCode"]; });
+        if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio && !this.allDiagnosticReport) {
             throw Error('All resource codes must be of the same type.');
         }
     }
@@ -7248,7 +7836,7 @@ var Axis = /** @class */ (function () {
             else {
                 _this.errorMessage = JSON.stringify(rejection, null, 4);
             }
-            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].emptyData();
+            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].emptyData();
         });
     };
     /**
@@ -7282,7 +7870,7 @@ var Axis = /** @class */ (function () {
         }, function (reject) { return _this.encounters = []; });
         if (this.allRx) {
             // Prescriptions can be plotted as a step chart or as a line chart.
-            if (this.chartType === _graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP) {
+            if (this.chartType === _graph_graph_component__WEBPACK_IMPORTED_MODULE_9__["ChartType"].STEP) {
                 return this.getStepGraphDataForMedicationSummary(this.resourceGroup, dateRange);
             }
             else {
@@ -7292,6 +7880,9 @@ var Axis = /** @class */ (function () {
         if (this.allBCHMicrobio) {
             // Microbiology always shows up as a step chart.
             return this.getStepGraphDataForMB(this.resourceGroup, dateRange);
+        }
+        if (this.allDiagnosticReport) {
+            return this.getStepGraphDataForDiagnosticReport(this.resourceGroup, dateRange);
         }
         else {
             // In this case it is all LOINC codes.
@@ -7310,11 +7901,11 @@ var Axis = /** @class */ (function () {
                     if (obsSetList.some(function (obsSet) { return obsSet.anyQualitative; }) ||
                         allUnits.size > 1) {
                         _this.showTicks = false;
-                        return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].fromObservationSetListDiscrete(_this.displayConcept.label, obsSetList, _this.sanitizer, _this.encounters);
+                        return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromObservationSetListDiscrete(_this.displayConcept.label, obsSetList, _this.sanitizer, _this.encounters);
                     }
-                    return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].fromObservationSetList(_this.displayConcept.label, obsSetList, _this.resourceGroup, _this.sanitizer, _this.encounters);
+                    return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromObservationSetList(_this.displayConcept.label, obsSetList, _this.resourceGroup, _this.sanitizer, _this.encounters);
                 }
-                return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].emptyData();
+                return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].emptyData();
             });
         }
     };
@@ -7330,13 +7921,19 @@ var Axis = /** @class */ (function () {
     Axis.prototype.getStepGraphDataForMedicationSummary = function (rxNorms, dateRange) {
         var _this = this;
         return rxNorms.getResourceSet(dateRange).then(function (medOrderSets) {
-            return _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_6__["StepGraphData"].fromMedicationOrderSetList(medOrderSets.map(function (x) { return x.orders; }), dateRange, _this.sanitizer);
+            return _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_8__["StepGraphData"].fromMedicationOrderSetList(medOrderSets.map(function (x) { return x.orders; }), dateRange, _this.sanitizer);
         });
     };
     Axis.prototype.getStepGraphDataForMB = function (bchCodes, dateRange) {
         var _this = this;
-        return bchCodes.getResourceSet(dateRange).then(function (diagReports) {
-            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_5__["MicrobioGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
+        return bchCodes.getResourceSet(dateRange).then(function (microbioReports) {
+            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_6__["MicrobioGraphData"].fromMicrobioReports(microbioReports, _this.sanitizer);
+        });
+    };
+    Axis.prototype.getStepGraphDataForDiagnosticReport = function (diagCodes, dateRange) {
+        var _this = this;
+        return diagCodes.getResourceSet(dateRange).then(function (diagReports) {
+            return _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_7__["DiagnosticGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
         });
     };
     /**
@@ -7354,7 +7951,7 @@ var Axis = /** @class */ (function () {
             return Promise.all(orders);
         })
             .then(function (orders) {
-            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_4__["LineGraphData"].fromMedicationOrderSet(new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_3__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
+            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromMedicationOrderSet(new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_4__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
         });
     };
     /**
@@ -7877,6 +8474,227 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/graphtypes/diagnostic-graph/diagnostic-graph.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: DiagnosticGraphComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticGraphComponent", function() { return DiagnosticGraphComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+var DiagnosticGraphComponent = /** @class */ (function (_super) {
+    __extends(DiagnosticGraphComponent, _super);
+    function DiagnosticGraphComponent(sanitizer, diagnosticGraphDialog, uiConstants) {
+        var _this = _super.call(this, sanitizer, uiConstants) || this;
+        _this.uiConstants = uiConstants;
+        _this.clickableTooltip = true;
+        _this.diagnosticGraphDialog = diagnosticGraphDialog;
+        return _this;
+    }
+    DiagnosticGraphComponent_1 = DiagnosticGraphComponent;
+    /**
+     * Called to open the diagnosticGraph Dialog.
+     * @param htmlAttachment string that reflects the html to be presented on the dialog
+     */
+    DiagnosticGraphComponent.prototype.openDiagnosticGraphDialog = function (htmlAttachment) {
+        var sanitizedHTMLAttachment = this.sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, htmlAttachment);
+        var dialogRef = this.diagnosticGraphDialog.open(_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_5__["DiagnosticGraphDialogComponent"], {
+            data: {
+                htmlAttachment: sanitizedHTMLAttachment
+            }
+        });
+    };
+    /**
+     * This is public because we want to be able to test it.
+     *
+     * Creates the binding between the buttons in the tooltip and the function
+     * that we wish to call through onClick. We need to overwrite the super class
+     * with specific information relevant to the Diagnostic Graph.
+     *
+     * We need to bind the onClick here as opposed to when the button was originally
+     * created due to scoping and binding issues with the tooltip- the button was
+     * not previously created.
+     *
+     * @param tooltipArray AnnotatedTooltip[] containing the attachment we wish
+     *                     to display in the matDialog.
+     */
+    DiagnosticGraphComponent.prototype.addAdditionalElementTooltip = function (tooltipArray) {
+        for (var _i = 0, tooltipArray_1 = tooltipArray; _i < tooltipArray_1.length; _i++) {
+            var annotatedTT = tooltipArray_1[_i];
+            var uniqueID = annotatedTT.id;
+            if (uniqueID === undefined) {
+                throw Error('AnnotatedTooltip has undefined id');
+            }
+            // Extracts the button in the tooltip.
+            var button = document.getElementById(uniqueID);
+            if (button === null) {
+                throw Error("The AnnotatedTooltip does not correspond to " +
+                    ("any buttons on the tooltip. ID: " + uniqueID));
+            }
+            var htmlAttachment = annotatedTT.additionalAttachment;
+            button.onclick = this.openDiagnosticGraphDialog.bind(this, htmlAttachment[0]);
+        }
+    };
+    /***************************
+     * Legend interactions
+     * Because of the unique nature of the series in the DiagnosticGraph, we do not
+     * allow legend interactions for diagnostic graphs. This prevents errors
+     * that occur when the user hovers over a legend element that might correspond
+     * to many series on the chart.
+     */
+    /**
+     * @override
+     */
+    DiagnosticGraphComponent.prototype.resetChart = function () { };
+    /**
+     * @override
+     */
+    DiagnosticGraphComponent.prototype.focusOnSeries = function (labeledSeries) { };
+    var DiagnosticGraphComponent_1;
+    DiagnosticGraphComponent = DiagnosticGraphComponent_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-diagnostic-graph',
+            template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
+            providers: [{
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"],
+                    useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return DiagnosticGraphComponent_1; })
+                }],
+            styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
+        }),
+        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"], Object])
+    ], DiagnosticGraphComponent);
+    return DiagnosticGraphComponent;
+}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_4__["StepGraphComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.html":
+/*!************************************************************************************!*\
+  !*** ./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.html ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"float: right;\" mat-dialog-actions>\n  <!-- mat-dialog-close isn't thoroughly supported by IE-->\n  <button mat-icon-button (click)=\"onExit()\">\n    <mat-icon color=\"primary\">close</mat-icon>\n  </button>\n</div>\n<h1>Diagnostic Report Attachment</h1>\n<div style=\"overflow-y:auto; height: 400px;\">\n  <div *ngIf=\"data\" mat-dialog-content [innerHtml] = \"data.htmlAttachment\"></div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts":
+/*!**********************************************************************************!*\
+  !*** ./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts ***!
+  \**********************************************************************************/
+/*! exports provided: DiagnosticGraphDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticGraphDialogComponent", function() { return DiagnosticGraphDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+var DiagnosticGraphDialogComponent = /** @class */ (function () {
+    /**
+     * @param data Information to be displayed on the diagnosticGraph Dialog
+     * @param dialogRef Reference to the dialog; used to open and close
+     */
+    function DiagnosticGraphDialogComponent(data, dialogRef) {
+        this.data = data;
+        this.dialogRef = dialogRef;
+        // data.htmlAttachment has already been sanitized
+        if (data) {
+            this.htmlAttachment = data.htmlAttachment;
+        }
+    }
+    /**
+     * When the close icon is pressed, the dialog closes
+    */
+    DiagnosticGraphDialogComponent.prototype.onExit = function () {
+        this.dialogRef.close();
+    };
+    DiagnosticGraphDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-diagnostic-graph-dialog',
+            template: __webpack_require__(/*! ./diagnostic-graph.dialog.component.html */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.html")
+        })
+        /**
+         * Dialog pop-up to display html attachment from the tooltip.
+        */
+        ,
+        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [Object, _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+    ], DiagnosticGraphDialogComponent);
+    return DiagnosticGraphDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/graphtypes/graph.css":
 /*!**************************************!*\
   !*** ./src/app/graphtypes/graph.css ***!
@@ -7884,7 +8702,7 @@ var CustomizableGraphComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep canvas {\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  cursor: pointer;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n::ng-deep .c3-tooltip {\n  font-size: 13px;\n  border-collapse: collapse;\n  border-spacing: 0;\n  background-color: #fff;\n  empty-cells: show;\n  box-shadow: 7px 7px 12px -9px #777777;\n  opacity: 0.9;\n}\n::ng-deep table {\n  background: #fff;\n  border: solid 1px #ddd;\n}\n::ng-deep .c3-tooltip tr {\n  border: 1px solid #CCC;\n}\n::ng-deep .c3-tooltip > tbody > tr > th {\n  width: 100%;\n  word-wrap: break-word;\n  background-color: #aaa;\n  font-size: 14px;\n  padding: 2px 5px;\n  text-align: left;\n  color: #FFF;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n  font-size: 13px;\n  padding: 3px 6px;\n  background-color: #fff;\n  border-left: 1px dotted #999;\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ3JhcGh0eXBlcy9ncmFwaC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxVQUFVO0VBQ1Ysa0JBQWtCO0VBQ2xCLG9CQUFvQjtFQUNwQiw0Q0FBNEM7RUFDNUMsYUFBYTtBQUNmO0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsV0FBVztFQUNYLFlBQVk7RUFDWixrQkFBa0I7QUFDcEI7QUFFQTs7OEJBRThCO0FBRTlCO0VBQ0UsZUFBZTtFQUNmLHlCQUF5QjtFQUN6QixpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLGlCQUFpQjtFQUdqQixxQ0FBcUM7RUFDckMsWUFBWTtBQUNkO0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxzQkFBc0I7QUFDeEI7QUFFQTtFQUNFLFdBQVc7RUFDWCxxQkFBcUI7RUFDckIsc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLFdBQVc7QUFDYjtBQUVBO0VBQ0UsWUFBWTtFQUNaLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsc0JBQXNCO0VBQ3RCLDRCQUE0QjtBQUM5QjtBQUVBO0VBQ0Usd0JBQXdCLEVBQUUsb0JBQW9CO0VBQzlDLDJCQUEyQixFQUFFLG9CQUFvQjtBQUNuRCIsImZpbGUiOiJzcmMvYXBwL2dyYXBodHlwZXMvZ3JhcGguY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOjpuZy1kZWVwIGNhbnZhcyB7XG4gIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuOjpuZy1kZWVwIC5jaGFydGpzLXRvb2x0aXAge1xuICBvcGFjaXR5OiAxO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAvKiBTaG93IHRoZSB0b29sdGlwIGFib3ZlIGV2ZXJ5dGhpbmcgZWxzZS4gKi9cbiAgei1pbmRleDogMTAwMDtcbn1cblxuOjpuZy1kZWVwIC5jaGFydGpzLXRvb2x0aXAta2V5IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB3aWR0aDogMTBweDtcbiAgaGVpZ2h0OiAxMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5cbi8qIEFsbCB0aGUgYmVsb3cgc3R5bGVzIGFwcGx5IHRvIGVsZW1lbnRzIHdpdGhpbiB0aGUgZ3JhcGhzLiBCZWNhdXNlIHRoZXNlXG5hcmUgbmVzdGVkIGluc2lkZSB0aGUgY29tcG9uZW50cyBhbmQgd2l0aGluIEMzIGRpdnMsIHdlIGhhdmUgdG8gcHJlZml4IHRoZVxuc3R5bGUgbmFtZXMgd2l0aCA6Om5nLWRlZXAuICAqL1xuXG46Om5nLWRlZXAgLmMzLXRvb2x0aXAge1xuICBmb250LXNpemU6IDEzcHg7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIGJvcmRlci1zcGFjaW5nOiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBlbXB0eS1jZWxsczogc2hvdztcbiAgLXdlYmtpdC1ib3gtc2hhZG93OiA3cHggN3B4IDEycHggLTlweCAjNzc3Nzc3O1xuICAtbW96LWJveC1zaGFkb3c6IDdweCA3cHggMTJweCAtOXB4ICM3Nzc3Nzc7XG4gIGJveC1zaGFkb3c6IDdweCA3cHggMTJweCAtOXB4ICM3Nzc3Nzc7XG4gIG9wYWNpdHk6IDAuOTtcbn1cblxuOjpuZy1kZWVwIHRhYmxlIHtcbiAgYmFja2dyb3VuZDogI2ZmZjtcbiAgYm9yZGVyOiBzb2xpZCAxcHggI2RkZDtcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwIHRyIHtcbiAgYm9yZGVyOiAxcHggc29saWQgI0NDQztcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwID4gdGJvZHkgPiB0ciA+IHRoIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHdvcmQtd3JhcDogYnJlYWstd29yZDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FhYTtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBwYWRkaW5nOiAycHggNXB4O1xuICB0ZXh0LWFsaWduOiBsZWZ0O1xuICBjb2xvcjogI0ZGRjtcbn1cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwIHRkIHtcbiAgd2lkdGg6IDEyNXB4O1xuICBmb250LXNpemU6IDEzcHg7XG4gIHBhZGRpbmc6IDNweCA2cHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gIGJvcmRlci1sZWZ0OiAxcHggZG90dGVkICM5OTk7XG59XG5cbjo6bmctZGVlcCAub3JkZXItcmVnaW9uIHtcbiAgZmlsbDogcmdiKDE3OSwgMTU3LCAyMTkpOyAvKiBTZWNvbmRhcnkgY29sb3IgKi9cbiAgc3Ryb2tlOiAgcmdiKDE3OSwgMTU3LCAyMTkpOyAvKiBTZWNvbmRhcnkgY29sb3IgKi9cbn1cbiJdfQ== */"
+module.exports = "::ng-deep canvas {\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  cursor: pointer;\n}\n::ng-deep .chartjs-tooltip {\n  opacity: 1;\n  position: absolute;\n  /* Disables interactions with the tooltip. Used here to remove\n  odd behavior where the tooltip does not immediately show up\n  despite hovering over the point */\n  pointer-events: none;\n  /* Show the tooltip above everything else. */\n  z-index: 1000;\n}\n::ng-deep .chartjs-tooltip-key {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin-right: 10px;\n}\n/* All the below styles apply to elements within the graphs. Because these\nare nested inside the components and within C3 divs, we have to prefix the\nstyle names with ::ng-deep.  */\n::ng-deep .c3-tooltip {\n  font-size: 13px;\n  border-collapse: collapse;\n  border-spacing: 0;\n  background-color: #fff;\n  empty-cells: show;\n  box-shadow: 7px 7px 12px -9px #777777;\n  opacity: 0.9;\n}\n::ng-deep table {\n  background: #fff;\n  border: solid 1px #ddd;\n}\n::ng-deep .c3-tooltip tr {\n  border: 1px solid #CCC;\n}\n::ng-deep .c3-tooltip > tbody > tr > th {\n  width: 100%;\n  word-wrap: break-word;\n  background-color: #aaa;\n  font-size: 14px;\n  padding: 2px 5px;\n  text-align: left;\n  color: #FFF;\n}\n::ng-deep .c3-tooltip td {\n  width: 125px;\n  font-size: 13px;\n  padding: 3px 6px;\n  background-color: #fff;\n  border-left: 1px dotted #999;\n}\n::ng-deep .order-region {\n  fill: rgb(179, 157, 219); /* Secondary color */\n  stroke:  rgb(179, 157, 219); /* Secondary color */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ3JhcGh0eXBlcy9ncmFwaC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxVQUFVO0VBQ1Ysa0JBQWtCO0VBQ2xCOzttQ0FFaUM7RUFDakMsb0JBQW9CO0VBQ3BCLDRDQUE0QztFQUM1QyxhQUFhO0FBQ2Y7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjtBQUVBOzs4QkFFOEI7QUFFOUI7RUFDRSxlQUFlO0VBQ2YseUJBQXlCO0VBQ3pCLGlCQUFpQjtFQUNqQixzQkFBc0I7RUFDdEIsaUJBQWlCO0VBR2pCLHFDQUFxQztFQUNyQyxZQUFZO0FBQ2Q7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixzQkFBc0I7QUFDeEI7QUFFQTtFQUNFLHNCQUFzQjtBQUN4QjtBQUVBO0VBQ0UsV0FBVztFQUNYLHFCQUFxQjtFQUNyQixzQkFBc0I7RUFDdEIsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsV0FBVztBQUNiO0FBRUE7RUFDRSxZQUFZO0VBQ1osZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixzQkFBc0I7RUFDdEIsNEJBQTRCO0FBQzlCO0FBRUE7RUFDRSx3QkFBd0IsRUFBRSxvQkFBb0I7RUFDOUMsMkJBQTJCLEVBQUUsb0JBQW9CO0FBQ25EIiwiZmlsZSI6InNyYy9hcHAvZ3JhcGh0eXBlcy9ncmFwaC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6Om5nLWRlZXAgY2FudmFzIHtcbiAgLW1vei11c2VyLXNlbGVjdDogbm9uZTtcbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcbiAgLW1zLXVzZXItc2VsZWN0OiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG46Om5nLWRlZXAgLmNoYXJ0anMtdG9vbHRpcCB7XG4gIG9wYWNpdHk6IDE7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgLyogRGlzYWJsZXMgaW50ZXJhY3Rpb25zIHdpdGggdGhlIHRvb2x0aXAuIFVzZWQgaGVyZSB0byByZW1vdmVcbiAgb2RkIGJlaGF2aW9yIHdoZXJlIHRoZSB0b29sdGlwIGRvZXMgbm90IGltbWVkaWF0ZWx5IHNob3cgdXBcbiAgZGVzcGl0ZSBob3ZlcmluZyBvdmVyIHRoZSBwb2ludCAqL1xuICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgLyogU2hvdyB0aGUgdG9vbHRpcCBhYm92ZSBldmVyeXRoaW5nIGVsc2UuICovXG4gIHotaW5kZXg6IDEwMDA7XG59XG5cbjo6bmctZGVlcCAuY2hhcnRqcy10b29sdGlwLWtleSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgd2lkdGg6IDEwcHg7XG4gIGhlaWdodDogMTBweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuXG4vKiBBbGwgdGhlIGJlbG93IHN0eWxlcyBhcHBseSB0byBlbGVtZW50cyB3aXRoaW4gdGhlIGdyYXBocy4gQmVjYXVzZSB0aGVzZVxuYXJlIG5lc3RlZCBpbnNpZGUgdGhlIGNvbXBvbmVudHMgYW5kIHdpdGhpbiBDMyBkaXZzLCB3ZSBoYXZlIHRvIHByZWZpeCB0aGVcbnN0eWxlIG5hbWVzIHdpdGggOjpuZy1kZWVwLiAgKi9cblxuOjpuZy1kZWVwIC5jMy10b29sdGlwIHtcbiAgZm9udC1zaXplOiAxM3B4O1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICBib3JkZXItc3BhY2luZzogMDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgZW1wdHktY2VsbHM6IHNob3c7XG4gIC13ZWJraXQtYm94LXNoYWRvdzogN3B4IDdweCAxMnB4IC05cHggIzc3Nzc3NztcbiAgLW1vei1ib3gtc2hhZG93OiA3cHggN3B4IDEycHggLTlweCAjNzc3Nzc3O1xuICBib3gtc2hhZG93OiA3cHggN3B4IDEycHggLTlweCAjNzc3Nzc3O1xuICBvcGFjaXR5OiAwLjk7XG59XG5cbjo6bmctZGVlcCB0YWJsZSB7XG4gIGJhY2tncm91bmQ6ICNmZmY7XG4gIGJvcmRlcjogc29saWQgMXB4ICNkZGQ7XG59XG5cbjo6bmctZGVlcCAuYzMtdG9vbHRpcCB0ciB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNDQ0M7XG59XG5cbjo6bmctZGVlcCAuYzMtdG9vbHRpcCA+IHRib2R5ID4gdHIgPiB0aCB7XG4gIHdpZHRoOiAxMDAlO1xuICB3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7XG4gIGJhY2tncm91bmQtY29sb3I6ICNhYWE7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgcGFkZGluZzogMnB4IDVweDtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbiAgY29sb3I6ICNGRkY7XG59XG5cbjo6bmctZGVlcCAuYzMtdG9vbHRpcCB0ZCB7XG4gIHdpZHRoOiAxMjVweDtcbiAgZm9udC1zaXplOiAxM3B4O1xuICBwYWRkaW5nOiAzcHggNnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBib3JkZXItbGVmdDogMXB4IGRvdHRlZCAjOTk5O1xufVxuXG46Om5nLWRlZXAgLm9yZGVyLXJlZ2lvbiB7XG4gIGZpbGw6IHJnYigxNzksIDE1NywgMjE5KTsgLyogU2Vjb25kYXJ5IGNvbG9yICovXG4gIHN0cm9rZTogIHJnYigxNzksIDE1NywgMjE5KTsgLyogU2Vjb25kYXJ5IGNvbG9yICovXG59XG4iXX0= */"
 
 /***/ }),
 
@@ -7925,6 +8743,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7952,12 +8771,14 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var ChartType;
 (function (ChartType) {
     ChartType[ChartType["SCATTER"] = 0] = "SCATTER";
     ChartType[ChartType["LINE"] = 1] = "LINE";
     ChartType[ChartType["STEP"] = 2] = "STEP";
     ChartType[ChartType["MICROBIO"] = 3] = "MICROBIO";
+    ChartType[ChartType["DIAGNOSTIC"] = 4] = "DIAGNOSTIC";
 })(ChartType || (ChartType = {}));
 /**
  * Displays a graph. T is the data type the graph is equipped to display.
@@ -8011,14 +8832,33 @@ var GraphComponent = /** @class */ (function () {
                     // into.
                     var canvas = document.getElementById(_this.chartDivId);
                     var tooltipEl = _this.findOrCreateTooltipElement(canvas, 'chartjs-tooltip' + _this.chartDivId);
-                    // Hide the element if there is no tooltip-- this function gets
-                    // called back whether you're hovering over an element or not.
-                    if (tooltipContext.opacity === 0) {
-                        tooltipEl.style.opacity = '0';
-                        return;
+                    if (_this.clickableTooltip) {
+                        // We have this as a separate case rather than allowing all
+                        // tooltips to be interactable to ensure that the tooltip
+                        // functionality remains normal for the other graphs
+                        // Allows the tooltip to be clickable.
+                        tooltipEl.style.pointerEvents = 'auto';
+                        // When the mouse is no longer on the tooltip, the tooltip is
+                        // hidden.
+                        tooltipEl.addEventListener('mouseleave', function () {
+                            tooltipEl.style.opacity = '0';
+                        });
+                    }
+                    else {
+                        // Hide the element if there is no tooltip-- this function gets
+                        // called back whether you're hovering over an element or not.
+                        if (tooltipContext.opacity === 0) {
+                            tooltipEl.style.opacity = '0';
+                            return;
+                        }
                     }
                     if (tooltipContext.body) {
-                        tooltipEl.innerHTML = _this.getTooltipInnerHtml(tooltipContext);
+                        var tooltipArray = _this.getTooltipValue(tooltipContext);
+                        var tooltipValue = _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_11__["AnnotatedTooltip"].combineAnnotatedTooltipArr(tooltipArray);
+                        tooltipEl.innerHTML = tooltipValue.tooltipChart;
+                        if (tooltipValue.additionalAttachment) {
+                            _this.addAdditionalElementTooltip(tooltipArray);
+                        }
                     }
                     // Display the tooltip lined up with the data point.
                     var positionY = canvas.offsetTop;
@@ -8043,6 +8883,11 @@ var GraphComponent = /** @class */ (function () {
          * to this string to tell chart.js which chart type to use.
          */
         this.chartTypeString = 'line';
+        /**
+         * Boolean representing if the tooltip needs to be interactable, allowing
+         * for clicks into the tooltip links
+         */
+        this.clickableTooltip = false;
         // Generate a unique ID for this chart.
         var chartId = Object(uuid__WEBPACK_IMPORTED_MODULE_9__["v4"])();
         // Replace the dashes in the UUID to meet HTML requirements.
@@ -8257,11 +9102,20 @@ var GraphComponent = /** @class */ (function () {
         return tooltipEl;
     };
     /**
-     * Gets the tooltip text for the given context.
+      * Adds any additional elements from AnnotatedTooltip that are not
+      * in the normal tooltip. Currently logic in the children class, but
+      * when we need more overarching logic, we can populate this function.
+      *
+      * @param tooltipArray AnnotatedTooltip[] containing the attachment we wish
+      *                     to display in the matDialog.
+      */
+    GraphComponent.prototype.addAdditionalElementTooltip = function (tooltipArray) { };
+    /**
+     * Gets the tooltip for the given context.
      * @param tooltipContext The tooltip context passed into the tooltip
      *     callback
      */
-    GraphComponent.prototype.getTooltipInnerHtml = function (tooltipContext) {
+    GraphComponent.prototype.getTooltipValue = function (tooltipContext) {
         // We squish together all points at the same timestamp preemptively
         // in our tooltip creation so that we just find the index of the
         // tooltip based on the first point's x-value.
@@ -8276,16 +9130,15 @@ var GraphComponent = /** @class */ (function () {
             timestampKey;
         // If something bad happens and we don't have a tooltip for the
         // key, return a generic tooltip with the value.
-        var tooltipText;
+        var newTT;
         if (!this.data.tooltipMap || !this.data.tooltipMap.has(keyToUse)) {
-            tooltipText =
-                new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_10__["StandardTooltip"]([], undefined, this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"] ? this.data.unit : '')
-                    .getTooltip(undefined, this.sanitizer);
+            newTT = [new _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_10__["StandardTooltip"]([], undefined, this.data instanceof src_app_graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"] ? this.data.unit : '')
+                    .getTooltip(undefined, this.sanitizer)];
         }
         else {
-            tooltipText = this.data.tooltipMap.get(keyToUse);
+            newTT = this.data.tooltipMap.get(keyToUse);
         }
-        return tooltipText;
+        return newTT;
     };
     /*************************
      * Helper functions for other chart options
@@ -8448,6 +9301,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8477,6 +9331,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -8691,13 +9546,13 @@ var LineGraphComponent = /** @class */ (function (_super) {
                 '<b>Upper: </b>' + yNormalBounds[1] + ' ' + this.data.unit + '\n' +
                 '<b>Lower: </b>' + yNormalBounds[0] + ' ' + this.data.unit +
                 '</div></td></tr></tbody></table>';
+            var newTT = new _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_7__["AnnotatedTooltip"](tooltipText);
             var mapKey = this.dateRange.start.valueOf().toString();
             if (this.data.tooltipMap.has(mapKey)) {
-                var value = this.data.tooltipMap.get(mapKey);
-                this.data.tooltipMap.set(mapKey, value + tooltipText);
+                this.data.tooltipMap.get(mapKey).push(newTT);
             }
             else {
-                this.data.tooltipMap.set(mapKey, tooltipText);
+                this.data.tooltipMap.set(mapKey, [newTT]);
             }
         }
         this.chartData.push({ data: coordinatesChartPoint,
@@ -8803,8 +9658,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/theme/verily_colors */ "./src/app/theme/verily_colors.ts");
+/* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -8840,6 +9696,7 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var MicrobioGraphComponent = /** @class */ (function (_super) {
     __extends(MicrobioGraphComponent, _super);
     function MicrobioGraphComponent(sanitizer, uiConstants) {
@@ -8848,22 +9705,16 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
         return _this;
     }
     MicrobioGraphComponent_1 = MicrobioGraphComponent;
-    MicrobioGraphComponent.prototype.prepareForChartConfiguration = function () {
-        _super.prototype.prepareForChartConfiguration.call(this);
-        // Make the points a little bigger for microbio series since there is info
-        // encoded in their point styling.
-        for (var _i = 0, _a = this.chartData; _i < _a.length; _i++) {
-            var series = _a[_i];
-            series.pointRadius = 5;
-            series.pointBorderWidth = 2;
-        }
-    };
     MicrobioGraphComponent.prototype.adjustGeneratedChartConfiguration = function () {
         // Color points that fall outside of their respective normal ranges.
         for (var i = 0; i < this.data.series.length; i++) {
-            var isPositive = this.data.series[i].label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["CHECK_RESULT_CODE"]);
             var chartjsSeries = this.chartData[i];
+            var labeledSeries = this.data.series[i];
+            var isPositive = labeledSeries.label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["CHECK_RESULT_CODE"]);
+            var isPartial = labeledSeries.label.includes(src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["PARTIAL"]);
             var pointStyle = new Array();
+            var pointBackgroundColors = new Array();
+            var pointBorderColors = new Array();
             for (var _i = 0, _a = chartjsSeries.data; _i < _a.length; _i++) {
                 var pt = _a[_i];
                 // pt could also be a number here, so we constrain it to when it's a
@@ -8871,13 +9722,25 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
                 // test to see if pt is an instanceof ChartPoint so checking for the
                 // y-attribute is a workaround.
                 pt = pt;
+                // Making positive points be triangular rather than circular
                 if (isPositive) {
                     pointStyle.push('triangle');
                 }
                 else {
                     pointStyle.push('circle');
                 }
+                // Making partial points have an outline rather than filled in
+                if (isPartial) {
+                    pointBackgroundColors.push(src_app_theme_verily_colors__WEBPACK_IMPORTED_MODULE_4__["WHITE"].rgb().string());
+                    pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+                }
+                else {
+                    pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
+                    pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+                }
                 chartjsSeries.pointStyle = pointStyle;
+                chartjsSeries.pointBackgroundColor = pointBackgroundColors;
+                chartjsSeries.pointBorderColor = pointBorderColors;
             }
         }
     };
@@ -8902,7 +9765,7 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
             selector: 'app-microbio-graph',
             template: __webpack_require__(/*! ../graph/graph.component.html */ "./src/app/graphtypes/graph/graph.component.html"),
             providers: [{
-                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_4__["GraphComponent"],
+                    provide: _graph_graph_component__WEBPACK_IMPORTED_MODULE_5__["GraphComponent"],
                     useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return MicrobioGraphComponent_1; })
                 }],
             styles: [__webpack_require__(/*! ../graph.css */ "./src/app/graphtypes/graph.css")]
@@ -8911,7 +9774,7 @@ var MicrobioGraphComponent = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"], Object])
     ], MicrobioGraphComponent);
     return MicrobioGraphComponent;
-}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_5__["StepGraphComponent"]));
+}(_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_6__["StepGraphComponent"]));
 
 
 
@@ -9110,6 +9973,165 @@ var StepGraphComponent = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/graphtypes/tooltips/annotated-tooltip.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/graphtypes/tooltips/annotated-tooltip.ts ***!
+  \**********************************************************/
+/*! exports provided: AnnotatedTooltip */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedTooltip", function() { return AnnotatedTooltip; });
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LIC
+/**
+ * Class containing information to display on the tooltips
+ */
+var AnnotatedTooltip = /** @class */ (function () {
+    function AnnotatedTooltip(tooltipChart, additionalAttachment, id) {
+        this.tooltipChart = tooltipChart;
+        if (additionalAttachment) {
+            this.additionalAttachment = additionalAttachment;
+        }
+        if (id) {
+            this.id = id;
+        }
+    }
+    /**
+     * Combines the AnnotatedTooltip[] into a single AnnotatedTooltip by
+     * concatenating the tooltipChart strings into a single string, and
+     * combining the multiple additionalAttachment arrays into a single array.
+     * This combined AnnotatedTooltip will not have a uniqueID, as the id is
+     * only reserved for interfacing with the "Attachment" buttons.
+     * @param tooltipArray AnnotatedTooltip[] that needs to be converted into a single
+     * AnnotatedTooltip
+     */
+    AnnotatedTooltip.combineAnnotatedTooltipArr = function (tooltipArray) {
+        var _a;
+        var attachmentArrays = tooltipArray.map(function (tt) { return tt.additionalAttachment; });
+        // Flattens the array of arrays into one array
+        var flattenedArray = (_a = []).concat.apply(_a, attachmentArrays);
+        var tooltipChart = '';
+        for (var _i = 0, tooltipArray_1 = tooltipArray; _i < tooltipArray_1.length; _i++) {
+            var annotatedTT = tooltipArray_1[_i];
+            tooltipChart += annotatedTT.tooltipChart;
+        }
+        return new AnnotatedTooltip(tooltipChart, flattenedArray);
+    };
+    return AnnotatedTooltip;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/graphtypes/tooltips/diagnostic-tooltips.ts":
+/*!************************************************************!*\
+  !*** ./src/app/graphtypes/tooltips/diagnostic-tooltips.ts ***!
+  \************************************************************/
+/*! exports provided: DiagnosticTooltip */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticTooltip", function() { return DiagnosticTooltip; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+/*
+ * This class makes a tooltip for a DiagnosticReport that applies to all points
+ * charted from the same report. It lists the time of the report and the html
+ * text attached with the report.
+ */
+var DiagnosticTooltip = /** @class */ (function (_super) {
+    __extends(DiagnosticTooltip, _super);
+    function DiagnosticTooltip(addTimestampRow) {
+        if (addTimestampRow === void 0) { addTimestampRow = true; }
+        var _this = _super.call(this) || this;
+        _this.addTimestampRow = addTimestampRow;
+        return _this;
+    }
+    DiagnosticTooltip.prototype.getTooltip = function (annotatedReport, sanitizer) {
+        var timestamp = annotatedReport.timestamp;
+        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        if (this.addTimestampRow) {
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
+        }
+        if (annotatedReport.text) {
+            var htmlText = annotatedReport.text.div;
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader(src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS"].SUMMARY, table, sanitizer);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [htmlText], sanitizer);
+        }
+        else {
+            // If there is no additional text (Narrative) that is added, the tooltip
+            // will display some other default information.
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS"].CATEGORY, annotatedReport.report.category], sanitizer);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS"].STATUS, annotatedReport.report.status], sanitizer);
+        }
+        // The AnnotatedTooltip will have the same ID as the button that it corresponds with
+        var uniqueID = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
+        // Replace the dashes in the UUID to meet HTML requirements.
+        var re = /\-/gi;
+        var buttonID = 'button' + uniqueID.replace(re, '');
+        // Attach button to the tooltip to display attachments
+        this.addAttachmentButton(buttonID, src_constants__WEBPACK_IMPORTED_MODULE_3__["UI_CONSTANTS"].REPORT_ATTACHMENT, table, sanitizer);
+        var tooltipChart = table.outerHTML;
+        var additionalAttachment = [annotatedReport.attachmentHtml];
+        return new _tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__["AnnotatedTooltip"](tooltipChart, additionalAttachment, buttonID);
+    };
+    /**
+     * Adds a button that spans the whole row in the tooltip table.
+     * @param buttonID UniqueID that helps identify the button
+     * @param buttonLabel String reflecting content inside the button
+     * @param table HTMLTableElement on the tooltip that needs to be edited
+     * @param sanitizer A DOM sanitizer
+     */
+    DiagnosticTooltip.prototype.addAttachmentButton = function (buttonID, buttonLabel, table, sanitizer) {
+        var row = table.insertRow();
+        var cell1 = row.insertCell();
+        var button = document.createElement('button');
+        // Styles the button
+        button.setAttribute('class', 'mat-menu-item');
+        // Sets unique button ID (matches the AnnotatedTooltip ID)
+        button.setAttribute('id', buttonID);
+        button.innerHTML = sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, buttonLabel);
+        cell1.appendChild(button);
+    };
+    return DiagnosticTooltip;
+}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/graphtypes/tooltips/medication-tooltips.ts":
 /*!************************************************************!*\
   !*** ./src/app/graphtypes/tooltips/medication-tooltips.ts ***!
@@ -9123,6 +10145,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationTooltip", function() { return MedicationAdministrationTooltip; });
 /* harmony import */ var src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/number_utils */ "./src/app/number_utils.ts");
 /* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9140,6 +10163,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 /**
@@ -9161,7 +10185,8 @@ var MedicationTooltip = /** @class */ (function (_super) {
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['First Dose', firstDose], sanitizer);
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Last Dose', lastDose], sanitizer);
         _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Dosage Instructions', dosageInstruction], sanitizer);
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__["AnnotatedTooltip"](tooltipChart);
     };
     return MedicationTooltip;
 }(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
@@ -9200,7 +10225,8 @@ var MedicationAdministrationTooltip = /** @class */ (function (_super) {
                 ], sanitizer);
             }
         }
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__["AnnotatedTooltip"](tooltipChart);
     };
     MedicationAdministrationTooltip.prototype.formatDosage = function (administration) {
         return Object(src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__["formatNumberWithPrecision"])(administration.dosage.quantity) + ' ' +
@@ -9224,7 +10250,9 @@ var MedicationAdministrationTooltip = /** @class */ (function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioTooltip", function() { return MicrobioTooltip; });
 /* harmony import */ var src_app_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9244,8 +10272,10 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 
+
+
 /*
- * This class makes a tooltip for a DiagnosticReport that applies to all points
+ * This class makes a tooltip for BCH Microbio DiagnosticReport that applies to all points
  * charted from the same report. It lists the time of the report, the report
  * status, as well as all results contained in the report.
  */
@@ -9264,21 +10294,22 @@ var MicrobioTooltip = /** @class */ (function (_super) {
         var results = annotatedReport.report.results;
         var timestamp = annotatedReport.timestamp;
         var specimen = annotatedReport.report.specimen.type;
-        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        var table = _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
         if (this.addTimestampRow) {
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
         }
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader('Result set', table, sanitizer);
+        _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addHeader(src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].RESULT, table, sanitizer);
         for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
             var result = results_1[_i];
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [result.display, result.interpretation.display], sanitizer, this.color, isAbnormal);
+            _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [result.display, result.interpretation.display], sanitizer, this.color, isAbnormal);
         }
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Status', status], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Specimen', specimen], sanitizer);
-        return table.outerHTML;
+        _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].STATUS, status], sanitizer);
+        _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].SPECIMEN, specimen], sanitizer);
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     return MicrobioTooltip;
-}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 
 
@@ -9300,6 +10331,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var src_app_fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
 /* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9317,6 +10349,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 
@@ -9356,7 +10389,8 @@ var DiscreteObservationTooltip = /** @class */ (function (_super) {
             _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [obs.label, obsValue], sanitizer, undefined, // color
             isAbnormal);
         }
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     return DiscreteObservationTooltip;
 }(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
@@ -9378,8 +10412,8 @@ var GenericAnnotatedObservationTooltip = /** @class */ (function (_super) {
      * @param observation The AnnotatedObservation used to generate the tooltip
      * @param sanitizer A DOM sanitizer
      * @param isAbnormal A boolean used to change the color of the text if abnormal
-     * @returns If the observation has annotations, a HTML table with the
-     *     annotation values. If there are no annotations, will return undefined.
+     * @returns If the observation has annotations, a AnnotatedTooltip.
+     *    If there are no annotations, will return undefined.
      */
     GenericAnnotatedObservationTooltip.prototype.getTooltip = function (observation, sanitizer, isAbnormal) {
         if (isAbnormal === void 0) { isAbnormal = false; }
@@ -9395,7 +10429,8 @@ var GenericAnnotatedObservationTooltip = /** @class */ (function (_super) {
             var annotation = _a[_i];
             _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, annotation, sanitizer);
         }
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     /**
      * Helper function that returns a string that reflects the observation
@@ -9439,8 +10474,8 @@ var GenericAbnormalTooltip = /** @class */ (function (_super) {
      *     should contain a timestamp field, a value field, a label field, and a
      *     unit field.
      * @param sanitizer A DOM sanitizer
-     * @returns If the observation has annotations, a HTML table with the
-     *     annotation values. If there are no annotations, will return undefined.
+     * @returns If the observation has annotations, an AnnotatedTooltip.
+     *  If there are no annotations, will return undefined.
      */
     GenericAbnormalTooltip.prototype.getTooltip = function (params, sanitizer) {
         var table = _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
@@ -9450,7 +10485,8 @@ var GenericAbnormalTooltip = /** @class */ (function (_super) {
             _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addTimeHeader(timestamp, table, sanitizer);
         }
         _tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addHeader('Caution: abnormal value', table, sanitizer);
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     return GenericAbnormalTooltip;
 }(_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
@@ -9474,6 +10510,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9491,6 +10528,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 
@@ -9640,7 +10678,8 @@ var StandardTooltip = /** @class */ (function (_super) {
             var pt = _a[_i];
             Tooltip.addRow(table, [pt.name, pt.value + ' ' + this.unit], sanitizer, this.color(pt));
         }
-        return table.outerHTML;
+        var tooltipChart = table.outerHTML;
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     return StandardTooltip;
 }(Tooltip));
@@ -9808,13 +10847,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/annotated-diagnotic-report */ "./src/app/fhir-data-classes/annotated-diagnotic-report.ts");
+/* harmony import */ var _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/annotated-microbio-report */ "./src/app/fhir-data-classes/annotated-microbio-report.ts");
 /* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
 /* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
 /* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -9854,6 +10894,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MockFhirService = /** @class */ (function (_super) {
     __extends(MockFhirService, _super);
     function MockFhirService(http) {
@@ -9865,6 +10906,7 @@ var MockFhirService = /** @class */ (function (_super) {
         _this.medicationAdministrationMapByCode = new Map();
         _this.medicationAdministrationMapByOrderId = new Map();
         _this.medicationOrderMap = new Map();
+        _this.diagnosticReportMap = new Map();
         _this.encounters = new Array();
         _this.allDataPromise = _this.mapAllData();
         return _this;
@@ -9906,7 +10948,7 @@ var MockFhirService = /** @class */ (function (_super) {
                         var mockRequestId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
                         var resourceType = json.resource.resourceType;
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation) {
-                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
+                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
                         }
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration) {
                             _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
@@ -9918,6 +10960,10 @@ var MockFhirService = /** @class */ (function (_super) {
                         if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter) {
                             var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__["Encounter"](json.resource, mockRequestId);
                             _this.encounters.push(encounter);
+                        }
+                        // Not used for microbio data, but only for diagnosticReport data
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport) {
+                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__["DiagnosticReport"](d, mockRequestId); }, function (report) { return [report.code]; });
                         }
                     };
                     for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
@@ -9947,7 +10993,7 @@ var MockFhirService = /** @class */ (function (_super) {
         return map.has(code) ?
             map.get(code)
                 .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_11__["ObservationStatus"].EnteredInError; }) :
+                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; }) :
             [];
     };
     MockFhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
@@ -10019,29 +11065,72 @@ var MockFhirService = /** @class */ (function (_super) {
         return Promise.resolve(true);
     };
     /**
-     * Gets the DiagnosticReports for the patient for any report that falls in
+     * Gets the MicrobioReports for the patient for any report that falls in
      * the given date range, whose contained Observations are in the codeGroup
      * provided.
-     * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
-     * @param dateRange Return all DiagnosticReports that covered any time in
+     * @param codeGroup The CodeGroup to retrieve MicrobioReports for.
+     * @param dateRange Return all MicrobioReports that covered any time in
      *     this date range.
      */
-    MockFhirService.prototype.getDiagnosticReports = function (codeGroup, dateRange, limitCount) {
+    MockFhirService.prototype.getMicrobioReports = function (codeGroup, dateRange, limitCount) {
         var _this = this;
         return this.allDataPromise.then(function (x) {
-            return Promise
-                .resolve(_fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__["DiagnosticReport"].parseAndFilterMicrobioData(_this.microbioJson, codeGroup))
-                .then(function (reports) {
-                return reports.filter(function (report) { return dateRange.contains(new _fhir_data_classes_annotated_diagnotic_report__WEBPACK_IMPORTED_MODULE_6__["AnnotatedDiagnosticReport"](report).timestamp); });
+            var microbioReports = _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_11__["MicrobioReport"]
+                .parseAndFilterMicrobioData(_this.microbioJson, codeGroup)
+                .filter(function (report) { return dateRange.contains(new _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_6__["AnnotatedMicrobioReport"](report).timestamp); });
+            return microbioReports.slice(0, limitCount ? limitCount : undefined);
+        });
+    };
+    /**
+     * Gets the AnnotatedDiagnosticReports for the patient for any report that
+     * falls in the given date range, whose contained Observations are in the
+     * codeGroup provided. Gets the html attachments linked in the json files as
+     * well.
+     *
+     * We are returning AnnotatedDiagnosticReport rather than DiagnosticReport
+     * because we need to access the html attachments.
+     * @param codeGroup The CodeGroup to retrieve DiagnosticReports for.
+     * @param dateRange Return all AnnotatedDiagnosticReports that covered any
+     *     time in this date range.
+     */
+    MockFhirService.prototype.getAnnotatedDiagnosticReports = function (codeGroup, dateRange, limitCount) {
+        var _this = this;
+        return this.allDataPromise.then(function (x) {
+            var annotatedReportsArr = new Array();
+            for (var _i = 0, _a = codeGroup.resourceCodes; _i < _a.length; _i++) {
+                var code = _a[_i];
+                if (_this.diagnosticReportMap.has(code)) {
+                    var reports = _this.diagnosticReportMap.get(code);
+                    for (var _b = 0, reports_1 = reports; _b < reports_1.length; _b++) {
+                        var report = reports_1[_b];
+                        annotatedReportsArr.push(_this.addAttachment(report));
+                    }
+                }
+            }
+            return Promise.all(annotatedReportsArr).then(function (annotatedReports) {
+                annotatedReports = annotatedReports.filter(function (report) { return dateRange.contains(report.timestamp); });
+                return annotatedReports.slice(0, limitCount ? limitCount : undefined);
             });
         });
+    };
+    /**
+     * Helper function that makes the HTTP call to get the html attachment.
+     * The responseType will always be text, and not the default json.
+     * If any error exists, it will catch the http error and return the message
+     * @param url Fhir link to location of data
+     */
+    MockFhirService.prototype.getAttachment = function (url) {
+        return this.http.get(url, { responseType: 'text' })
+            .toPromise()
+            .then(function (res) { return res; })
+            .catch((function (err) { return err.message; }));
     };
     MockFhirService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
     ], MockFhirService);
     return MockFhirService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_12__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
 
 
 
@@ -10991,7 +12080,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.5.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.6.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
@@ -11057,6 +12146,13 @@ var UI_CONSTANTS = {
     SAVED_TO_POWERCHART: 'Screenshot saved to PowerChart.',
     ERROR_SAVED_TO_POWERCHART: 'Error saving to PowerChart.',
     DISMISS: 'Dismiss',
+    // Tooltip headings
+    SUMMARY: 'Summary',
+    RESULT: 'Result set',
+    CATEGORY: 'Category',
+    STATUS: 'Status',
+    SPECIMEN: 'Specimen',
+    REPORT_ATTACHMENT: 'Report Attachment',
 };
 
 
@@ -11082,6 +12178,7 @@ var environment = {
     useMockServer: true,
     mockDataFolder: 'demo_data/test_bmedtimeB',
     mockDataFiles: [
+        'BMedTimeB_DiagReport',
         'BMedTimeB_Encounter',
         'BMedTimeB_Obs_labs',
         'BMedTimeB_Obs_vitals',
@@ -11090,6 +12187,7 @@ var environment = {
         'BMedTimeB_Med_Orders',
     ],
     useDebugger: false,
+    showRadiology: true,
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
