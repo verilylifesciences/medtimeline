@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
-import {bloodPressureLoincs} from '../clinicalconcepts/resource-code-manager-exports';
+import {bloodPressureLoincs} from '../conceptmappings/resource-code-manager-exports';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';

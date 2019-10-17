@@ -159,18 +159,7 @@ describe('FhirHttpService', () => {
                 coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
                 text: 'vancomycin'
               },
-              effectiveTimeDateTime: '2018-08-23T22:30:00.000Z',
-              status: 'completed'
-            }
-          },
-          {
-            resource: {
-              medicationCodeableConcept: {
-                coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-                text: 'vancomycin'
-              },
-              effectiveTimeDateTime: '2018-08-23T22:00:00.000Z',
-              status: 'entered-in-error'
+              effectiveTimeDateTime: '2018-08-23T22:30:00.000Z'
             }
           },
           {
@@ -179,8 +168,7 @@ describe('FhirHttpService', () => {
                 coding: [{system: RxNormCode.CODING_STRING, code: '123'}],
                 text: 'fake'
               },
-              effectiveTimeDateTime: '2018-08-22T22:31:02.000Z',
-              status: 'completed'
+              effectiveTimeDateTime: '2018-08-22T22:31:02.000Z'
             }
           }
         ]

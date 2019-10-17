@@ -33,7 +33,7 @@ import {CustomizableTimelineDialogComponent} from './cardtypes/customizable-time
 import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
-import {ResourceCodeManager} from './clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from './confirm-save/confirm-save.component';
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from './data-selector-menu/data-selector-menu.component';

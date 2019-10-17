@@ -11,7 +11,7 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {makeMedicationAdministration} from '../test_utils';
 
 import {Dosage} from './dosage';
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from './medication-administration';
+import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
 const medicationCoding = {
   coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
@@ -85,15 +85,6 @@ describe('MedicationAdministration', () => {
         REQUEST_ID);
     expect(medicationAdministration.label).toBeDefined();
     expect(medicationAdministration.label).toEqual('vancomycin');
-  });
-
-  it('should get status from json', () => {
-    const medicationAdministration = new MedicationAdministration(
-        {medicationCodeableConcept: medicationCoding, status: 'in-progress'},
-        REQUEST_ID);
-    expect(medicationAdministration.status).toBeDefined();
-    expect(medicationAdministration.status)
-        .toEqual(MedicationAdministrationStatus.IN_PROGRESS);
   });
 
   it('should get label from medicationCodeableConcept if medicationReference is absent',

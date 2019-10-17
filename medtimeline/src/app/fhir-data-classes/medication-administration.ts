@@ -16,27 +16,6 @@ import {ContainedMedication} from './medication';
 
 
 /**
- * FHIR element for MedicationAdministrationStatus, from the DSTU2 version of
- * the standard. http://hl7.org/fhir/DSTU2/valueset-medication-admin-status.html
- */
-export enum MedicationAdministrationStatus {
-  IN_PROGRESS = 'In Progress',
-  ON_HOLD = 'On Hold',
-  COMPLETED = 'Completed',
-  ENTERED_IN_ERROR = 'Entered in Error',
-  STOPPED = 'Stopped'
-}
-
-const statusToEnumMap = new Map<string, MedicationAdministrationStatus>([
-  ['in-progress', MedicationAdministrationStatus.IN_PROGRESS],
-  ['on-hold', MedicationAdministrationStatus.ON_HOLD],
-  ['completed', MedicationAdministrationStatus.COMPLETED],
-  ['entered-in-error', MedicationAdministrationStatus.ENTERED_IN_ERROR],
-  ['stopped', MedicationAdministrationStatus.STOPPED],
-]);
-
-
-/**
  * This object represents a FHIR MedicationAdministration. It does not contain
  * all the information in a standard MedicationAdministration (see
  * https://www.hl7.org/fhir/DSTU2/medicationadministration.html) but instead
@@ -50,7 +29,6 @@ export class MedicationAdministration extends ResultClassWithTimestamp {
   readonly effectiveDateTime: DateTime;
   readonly rxNormCode: RxNormCode;
   readonly medicationOrderId: string;
-  readonly status: MedicationAdministrationStatus;
 
   /**
    * Makes an MedicationAdministration out of a JSON object that represents a
@@ -75,7 +53,6 @@ export class MedicationAdministration extends ResultClassWithTimestamp {
 
     this.dosage = new Dosage(json);
     this.wasNotGiven = json.wasNotGiven;
-    this.status = statusToEnumMap.get(json.status);
 
     if (json.contained && json.contained.length > 0) {
       // We first find the element that lists the "ingredients" of this

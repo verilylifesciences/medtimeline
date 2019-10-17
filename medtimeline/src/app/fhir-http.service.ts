@@ -14,14 +14,14 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
-import {documentReferenceLoinc} from './clinicalconcepts/resource-code-manager';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
+import {documentReferenceLoinc} from './conceptmappings/resource-code-manager';
 import {DebuggerService} from './debugger.service';
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticReportStatus} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration, MedicationAdministrationStatus} from './fhir-data-classes/medication-administration';
+import {MedicationAdministration} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
@@ -115,10 +115,8 @@ export class FhirHttpService extends FhirService {
       codes: RxNormCode[], dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
     return this.medicationCache.getResource(dateRange).then(
-        (results: MedicationAdministration[]) => results.filter(
-            result => codes.includes(result.rxNormCode) &&
-                result.status !==
-                    MedicationAdministrationStatus.ENTERED_IN_ERROR));
+        (results: MedicationAdministration[]) =>
+            results.filter(result => codes.includes(result.rxNormCode)));
   }
 
   /**

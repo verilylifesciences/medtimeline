@@ -6,11 +6,11 @@
 import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {microbio} from '../clinicalconcepts/display-grouping';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
-import {MicrobioReport} from './microbio-report';
 import {DiagnosticReportStatus} from './diagnostic-report';
+import {MicrobioReport} from './microbio-report';
 import {Observation} from './observation';
 import {Specimen} from './specimen';
 

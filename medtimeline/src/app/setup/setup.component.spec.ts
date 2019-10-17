@@ -12,7 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir.service';
 import {StubFhirService} from '../test_utils';

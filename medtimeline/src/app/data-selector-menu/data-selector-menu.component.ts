@@ -11,7 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AxisGroup} from '../graphtypes/axis-group';
 
 /**
