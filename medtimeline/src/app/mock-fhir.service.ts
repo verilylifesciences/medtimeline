@@ -206,6 +206,16 @@ export class MockFhirService extends FhirService {
   }
 
   /**
+   * Gets administrations for specified order id.
+   * @param id The id to pull the order from.
+   */
+  getMedicationAdministrationsWithOrder(id: string, code: RxNormCode):
+      Promise<MedicationAdministration[]> {
+    return this.allDataPromise.then(
+        x => this.medicationAdministrationMapByOrderId.get(id));
+  }
+
+  /**
    * Gets the encounters for the patient for any encounter that falls in the
    * given date range.
    * @param dateRange Return all encounters that covered any time in this

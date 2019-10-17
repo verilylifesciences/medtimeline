@@ -228,162 +228,269 @@ describe('FhirHttpService', () => {
        });
      });
 
-  it('should resolve medicationsPresentWithCode to true with only one API call if first response has a medication with the given code.',
+  it('getAllRawMedicationAdministrations should fetch all medicationAdministrations if never been refreshed.',
      (done: DoneFn) => {
-       const medicationReponse = {
-         data: {
-           entry: [{
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(fullMedicationResponse));
+       clientReadyCallback(smartApi);
+       service.getAllRawMedicationAdministrations().then(response => {
+         const responseKeys = Array.from(response.keys());
+         expect(responseKeys.length).toEqual(2);
+         expect(response.get(RxNormCode.fromCodeString('11124') as RxNormCode))
+             .toEqual([new RawMedicationAdministration(
+                 fullMedicationResponse.data.entry[0].resource, '1234')]);
+         expect(
+             response.get(RxNormCode.fromCodeString('1596450') as RxNormCode))
+             .toEqual([new RawMedicationAdministration(
+                 fullMedicationResponse.data.entry[1].resource, '1234')]);
+         expect(service.lastMedicationRefreshTime).toBeDefined();
+         expect(service.medicationRefreshInProgress).toBeUndefined();
+         done();
+       });
+     });
+
+  it('getAllRawMedicationAdministrations should not fetch medication administrations twice if called in succession.',
+     (done: DoneFn) => {
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(fullMedicationResponse));
+       clientReadyCallback(smartApi);
+       const results = [
+         service.getAllRawMedicationAdministrations(),
+         service.getAllRawMedicationAdministrations()
+       ];
+       Promise.all(results).then(responses => {
+         expect(responses[0]).toEqual(responses[1]);
+         const responseKeys = Array.from(responses[0].keys());
+         expect(responseKeys.length).toEqual(2);
+         expect(searchSpy).toHaveBeenCalledTimes(1);
+         expect(service.lastMedicationRefreshTime).toBeDefined();
+         expect(service.medicationRefreshInProgress).toBeUndefined();
+         done();
+       });
+     });
+
+  it('getAllRawMedicationAdministrations only get incremental refresh if lastMedicationRefresh is defined.',
+     (done: DoneFn) => {
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(fullMedicationResponse));
+
+       // set last refresh date to 10 minutes ago.
+       service.lastMedicationRefreshTime = DateTime.utc().minus({minutes: 10});
+       service.medicationAdministrationsByCode = new Map([[
+         RxNormCode.fromCodeString('11124') as RxNormCode,
+         [new RawMedicationAdministration(
+             fullMedicationResponse.data.entry[0].resource, '7890')]
+       ]]);
+
+       clientReadyCallback(smartApi);
+       service.getAllRawMedicationAdministrations().then(response => {
+         expect(Array.from(response.keys()).length).toEqual(2);
+
+         // should have been updated with additional results.
+         expect(response.get(RxNormCode.fromCodeString('11124') as RxNormCode))
+             .toEqual([
+               new RawMedicationAdministration(
+                   fullMedicationResponse.data.entry[0].resource, '7890'),
+               new RawMedicationAdministration(
+                   fullMedicationResponse.data.entry[0].resource, '1234')
+             ]);
+         expect(
+             response.get(RxNormCode.fromCodeString('1596450') as RxNormCode))
+             .toEqual([new RawMedicationAdministration(
+                 fullMedicationResponse.data.entry[1].resource, '1234')]);
+         done();
+         expect(searchSpy).toHaveBeenCalledTimes(1);
+         done();
+       });
+     });
+
+  it('getAllRawMedicationAdministrations should bubble up errors.',
+     (done: DoneFn) => {
+       const searchSpy = spyOn(smartApi.patient.api, 'search')
+                             .and.returnValue(Promise.reject(Error('error')));
+       // set last refresh date to 10 minutes ago.
+       service.lastMedicationRefreshTime = DateTime.utc().minus({minutes: 10});
+       service.medicationAdministrationsByCode = new Map([[
+         RxNormCode.fromCodeString('11124') as RxNormCode,
+         [new RawMedicationAdministration(
+             fullMedicationResponse.data.entry[0].resource, '7890')]
+       ]]);
+       clientReadyCallback(smartApi);
+       service.getAllRawMedicationAdministrations().catch(error => {
+         service.medicationRefreshInProgress = undefined;
+         done();
+       });
+     });
+
+  it('getMedicationAdministrationsWithCodes should fetch all medications if full fetch has never happened.',
+     (done: DoneFn) => {
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(fullMedicationResponse));
+       const rxCode1 = RxNormCode.fromCodeString('11124') as RxNormCode;
+       clientReadyCallback(smartApi);
+       service.getMedicationAdministrationsWithCodes([rxCode1], dateRange)
+           .then(results => {
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             expect(service.lastMedicationRefreshTime).toBeDefined();
+             expect(service.medicationAdministrationsByCode).toBeDefined();
+             expect(service.medicationRefreshInProgress).toBeUndefined();
+             expect(results).toEqual([new MedicationAdministration(
+                 fullMedicationResponse.data.entry[0].resource, '1234')]);
+             done();
+           });
+     });
+
+
+  it('getMedicationAdministrationsWithCodes should use cache if date range before last refresh date',
+     (done: DoneFn) => {
+       const searchSpy = spyOn(smartApi.patient.api, 'search');
+       // set last refresh date right now.
+       service.lastMedicationRefreshTime = DateTime.utc();
+       const rxCode1 = RxNormCode.fromCodeString('11124') as RxNormCode;
+       const rxCode2 = RxNormCode.fromCodeString('1596450') as RxNormCode;
+       const medAdminOutOfDateRangeData = {
+         medicationCodeableConcept: {
+           coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+           text: 'vancomycin'
+         },
+         effectiveTimeDateTime: '2019-08-21T00:00:00.00'
+       };
+       const medicationAdminsCode1 = [
+         new RawMedicationAdministration(
+             fullMedicationResponse.data.entry[0].resource, '7890'),
+         new RawMedicationAdministration(medAdminOutOfDateRangeData, '7890')
+       ];
+       const medicationAdminsCode2 = [new RawMedicationAdministration(
+           fullMedicationResponse.data.entry[1].resource, '7890')];
+
+       service.medicationAdministrationsByCode = new Map([
+         [rxCode1, medicationAdminsCode1], [rxCode2, medicationAdminsCode2]
+       ]);
+
+       clientReadyCallback(smartApi);
+       service
+           .getMedicationAdministrationsWithCodes([rxCode1, rxCode2], dateRange)
+           .then(results => {
+             expect(searchSpy).not.toHaveBeenCalled();
+             expect(results).toEqual([
+               medicationAdminsCode1[0].convertToMedicationAdministration(),
+               medicationAdminsCode2[0].convertToMedicationAdministration()
+             ]);
+             done();
+           });
+     });
+
+  it('getMedicationAdministrationsWithCodes should do an incremental fetch for data if full refresh has happened but it was last refreshed before the date range.',
+     (done: DoneFn) => {
+       const searchSpy =
+           spyOn(smartApi.patient.api, 'search')
+               .and.returnValue(Promise.resolve(fullMedicationResponse));
+
+       const previousRefreshDate = DateTime.fromISO('2018-08-20T01:00:00.00');
+       service.lastMedicationRefreshTime = previousRefreshDate;
+       const rxCode1 = RxNormCode.fromCodeString('11124') as RxNormCode;
+       const medAdminAlreadyInCache = [new RawMedicationAdministration(
+           {
+             medicationCodeableConcept: {
+               coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+               text: 'vancomycin'
+             },
+             effectiveTimeDateTime: '2018-08-20T01:00:00.00'
+           },
+           '7890')];
+
+       service.medicationAdministrationsByCode =
+           new Map([[rxCode1, medAdminAlreadyInCache]]);
+
+       clientReadyCallback(smartApi);
+       service.getMedicationAdministrationsWithCodes([rxCode1], dateRange)
+           .then(results => {
+             expect(searchSpy).toHaveBeenCalledTimes(1);
+             const expectedAdmins = [
+               medAdminAlreadyInCache[0].convertToMedicationAdministration(),
+               new MedicationAdministration(
+                   fullMedicationResponse.data.entry[0].resource, '1234')
+             ];
+             expect(results).toEqual(expectedAdmins);
+             expect(service.lastMedicationRefreshTime)
+                 .not.toEqual(previousRefreshDate);
+             expect(service.medicationAdministrationsByCode.get(rxCode1))
+                 .toEqual([
+                   medAdminAlreadyInCache[0],
+                   new RawMedicationAdministration(
+                       fullMedicationResponse.data.entry[0].resource, '1234')
+                 ]);
+             expect(service.medicationRefreshInProgress).toBeUndefined();
+             done();
+           });
+     });
+
+  it('getMedicationAdministrationsWithCodes should not fail if invalid medication is not within dateRange.',
+     (done: DoneFn) => {
+       const resultsWithInvalidMedication = [].concat(
+           fullMedicationResponse.data.entry, [{
              resource: {
                medicationCodeableConcept: {
                  coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-                 text: 'vancomycin'
-               }
-             }
-           }]
-         }
+               },
+               effectiveTimeDateTime: '2019-08-21T00:00:00.00'
+             },
+           }]);
+       const response = {
+         headers: (requestId) => '1234',
+         data: {link: [], entry: resultsWithInvalidMedication}
        };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(medicationReponse));
-       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
 
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(true);
+       const searchSpy = spyOn(smartApi.patient.api, 'search')
+                             .and.returnValue(Promise.resolve(response));
+
+       const rxCode1 = RxNormCode.fromCodeString('11124') as RxNormCode;
+       clientReadyCallback(smartApi);
+       service.getMedicationAdministrationsWithCodes([rxCode1], dateRange)
+           .then(results => {
              expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).not.toHaveBeenCalled();
+             expect(service.lastMedicationRefreshTime).toBeDefined();
+             expect(service.medicationAdministrationsByCode).toBeDefined();
+             expect(service.medicationRefreshInProgress).toBeUndefined();
+             expect(results).toEqual([new MedicationAdministration(
+                 fullMedicationResponse.data.entry[0].resource, '1234')]);
              done();
            });
-       clientReadyCallback(smartApi);
      });
 
-  it('should resolve medicationsPresentWithCode to false if first response has no medication with the given code and there is no next page.',
+  it('getMedicationAdministrationsWithCodes should fail if invalid medication is within dateRange.',
      (done: DoneFn) => {
-       const medicationReponse = {
-         data: {
-           link: [],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
-               }
-             }
-           }]
-         }
-       };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(medicationReponse));
-       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
-
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(false);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).not.toHaveBeenCalled();
-             done();
-           });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should resolve medicationsPresentWithCode to true if second page has medication with given code.',
-     (done: DoneFn) => {
-       const firstMedicationReponse = {
-         data: {
-           link: [{relation: 'next'}],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
-               }
-             }
-           }]
-         }
-       };
-
-       const secondMedicationReponse = {
-         data: {
-           entry: [{
+       const resultsWithInvalidMedication = [].concat(
+           fullMedicationResponse.data.entry, [{
              resource: {
                medicationCodeableConcept: {
                  coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-                 text: 'vancomycin'
-               }
-             }
-           }]
-         }
+               },
+               effectiveTimeDateTime: '2018-08-21T00:00:00.00'
+             },
+           }]);
+       const response = {
+         headers: (requestId) => '1234',
+         data: {link: [], entry: resultsWithInvalidMedication}
        };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(firstMedicationReponse));
-       const nextPageSpy =
-           spyOn(smartApi.patient.api, 'nextPage')
-               .and.returnValue(Promise.resolve(secondMedicationReponse));
 
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(true);
+       const searchSpy = spyOn(smartApi.patient.api, 'search')
+                             .and.returnValue(Promise.resolve(response));
+
+       const rxCode1 = RxNormCode.fromCodeString('11124') as RxNormCode;
+       clientReadyCallback(smartApi);
+       service.getMedicationAdministrationsWithCodes([rxCode1], dateRange)
+           .catch(error => {
              expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).toHaveBeenCalledTimes(1);
+             expect(service.lastMedicationRefreshTime).toBeDefined();
+             expect(service.medicationAdministrationsByCode).toBeDefined();
+             expect(service.medicationRefreshInProgress).toBeUndefined();
              done();
            });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should resolve medicationsPresentWithCode to false if no medication with code on multiple pages.',
-     (done: DoneFn) => {
-       const firstMedicationReponse = {
-         data: {
-           link: [{relation: 'next'}],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
-               }
-             }
-           }]
-         }
-       };
-
-       const secondMedicationReponse = {
-         data: {
-           link: [],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
-               }
-             }
-           }]
-         }
-       };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(firstMedicationReponse));
-       const nextPageSpy =
-           spyOn(smartApi.patient.api, 'nextPage')
-               .and.returnValue(Promise.resolve(secondMedicationReponse));
-
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(false);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).toHaveBeenCalledTimes(1);
-             done();
-           });
-       clientReadyCallback(smartApi);
      });
 
   it('getAnnotatedDiagnosticReport should return AnnotatedDiagnosticReport ' +
