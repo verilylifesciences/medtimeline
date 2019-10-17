@@ -14,7 +14,7 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
-import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 
 import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
@@ -51,7 +51,8 @@ describe('LabeledSeries', () => {
       DateTime.fromISO('2018-09-11T00:00:00.00'),
       DateTime.fromISO('2018-09-18T00:00:00.00'));
 
-  const order = makeMedicationOrder();
+  const annotatedOrder = new AnnotatedMedicationOrder(
+      makeMedicationOrder(), medicationAdministrations);
 
   it('fromObservationSet should pass through coordinates', () => {
     const obsSet = new ObservationSet([
@@ -260,53 +261,36 @@ describe('LabeledSeries', () => {
        expect(lblSeries.coordinates).toEqual([]);
      });
 
-  it('fromMedicationOrder should pass through coordinates', (done: DoneFn) => {
-    Promise.resolve(order.setMedicationAdministrations(fhirServiceStub))
-        .then(result => {
-          const lblSeries = LabeledSeries.fromMedicationOrder(
-              order, dateRange, 'categorical');
-          expect(lblSeries[0].coordinates).toEqual([
-            [firstAdministration.toUTC(), 'categorical'],
-            [lastAdministration.toUTC(), 'categorical']
-          ]);
-        });
-    done();
+  it('fromMedicationOrder should pass through coordinates', () => {
+    const lblSeries = LabeledSeries.fromMedicationOrder(
+        annotatedOrder, dateRange, 'categorical');
+    expect(lblSeries[0].coordinates).toEqual([
+      [firstAdministration.toUTC(), 'categorical'],
+      [lastAdministration.toUTC(), 'categorical']
+    ]);
   });
 
-  it('fromMedicationOrder should correctly make a series for endpoints',
-     (done: DoneFn) => {
-       Promise.resolve(order.setMedicationAdministrations(fhirServiceStub))
-           .then(result => {
-             const lblSeries = LabeledSeries.fromMedicationOrder(
-                 order, dateRange, 'categorical');
-             const endpoints = lblSeries[1];
-             expect(endpoints.coordinates).toEqual([
-               [firstAdministration.toUTC(), 'categorical'],
-               [lastAdministration.toUTC(), 'categorical']
-             ]);
-           });
-       done();
-     });
+  it('fromMedicationOrder should correctly make a series for endpoints', () => {
+    const lblSeries = LabeledSeries.fromMedicationOrder(
+        annotatedOrder, dateRange, 'categorical');
+    const endpoints = lblSeries[1];
+    expect(endpoints.coordinates).toEqual([
+      [firstAdministration.toUTC(), 'categorical'],
+      [lastAdministration.toUTC(), 'categorical']
+    ]);
+  });
 
   it('fromMedicationOrder should use dosage y value when ' +
          'fixed y value not provided',
-     (done: DoneFn) => {
-       Promise.resolve(order.setMedicationAdministrations(fhirServiceStub))
-           .then(result => {
-             const lblSeries =
-                 LabeledSeries.fromMedicationOrder(order, dateRange);
-             expect(lblSeries[0].coordinates).toEqual([
-               [firstAdministration.toUTC(), 525],
-               [lastAdministration.toUTC(), 750]
-             ]);
-           });
-       done();
+     () => {
+       const lblSeries =
+           LabeledSeries.fromMedicationOrder(annotatedOrder, dateRange);
+       expect(lblSeries[0].coordinates).toEqual([
+         [firstAdministration.toUTC(), 525], [lastAdministration.toUTC(), 750]
+       ]);
      });
 
   it('fromMedicationOrderSet should combine orders to one series', () => {
-    const order1 = makeMedicationOrder();
-    const order2 = makeMedicationOrder();
-
     const medAdmin1 =
         makeMedicationAdministration(DateTime.utc(1965, 3, 22).toString(), 92);
     const medAdmin2 =
@@ -317,20 +301,12 @@ describe('LabeledSeries', () => {
     const medAdmin2Order2 =
         makeMedicationAdministration(DateTime.utc(1965, 3, 26).toString(), 17);
 
-    // Set administrations manually to avoid FHIR call.
-    order1.administrationsForOrder = new MedicationAdministrationSet(
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
-    order1.firstAdministration = medAdmin1;
-    order1.lastAdmininistration = medAdmin2;
-
-    order2.administrationsForOrder =
-        new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    order2.firstAdministration = medAdmin1Order2;
-    order2.lastAdmininistration = medAdmin2Order2;
-
-    const medOrderSet = new MedicationOrderSet([order1, order2]);
+    const annotatedOrder1 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1, medAdmin2]);
+    const annotatedOrder2 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1Order2, medAdmin2Order2]);
+    const medOrderSet =
+        new MedicationOrderSet([annotatedOrder1, annotatedOrder2]);
 
     const lg = LabeledSeries.fromMedicationOrderSet(
         medOrderSet,
@@ -350,9 +326,6 @@ describe('LabeledSeries', () => {
   });
 
   it('fromMedicationOrderSet should add encounter endpoints to series', () => {
-    const order1 = makeMedicationOrder();
-    const order2 = makeMedicationOrder();
-
     const medAdmin1 =
         makeMedicationAdministration(DateTime.utc(2018, 9, 11).toString(), 92);
     const medAdmin2 =
@@ -363,20 +336,12 @@ describe('LabeledSeries', () => {
     const medAdmin2Order2 =
         makeMedicationAdministration(DateTime.utc(2018, 9, 14).toString(), 17);
 
-    // Set administrations manually to avoid FHIR call.
-    order1.administrationsForOrder = new MedicationAdministrationSet(
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
-    order1.firstAdministration = medAdmin1;
-    order1.lastAdmininistration = medAdmin2;
-
-    order2.administrationsForOrder =
-        new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    order2.firstAdministration = medAdmin1Order2;
-    order2.lastAdmininistration = medAdmin2Order2;
-
-    const medOrderSet = new MedicationOrderSet([order1, order2]);
+    const annotatedOrder1 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1, medAdmin2]);
+    const annotatedOrder2 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1Order2, medAdmin2Order2]);
+    const medOrderSet =
+        new MedicationOrderSet([annotatedOrder1, annotatedOrder2]);
 
     const lg = LabeledSeries.fromMedicationOrderSet(
         medOrderSet, dateRange, [encounter]);

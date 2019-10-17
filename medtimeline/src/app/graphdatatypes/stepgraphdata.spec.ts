@@ -13,14 +13,13 @@ import {DateTime, Interval} from 'luxon';
 import {of} from 'rxjs';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 
 import {StepGraphData} from './stepgraphdata';
 
 describe('StepGraphData', () => {
-  let fhirServiceStub: any;
   const dateRangeStart = '2018-09-09T00:00:00.00';
   const dateRangeEnd = '2018-09-18T00:00:00.00';
   const dateRange = Interval.fromDateTimes(
@@ -32,60 +31,36 @@ describe('StepGraphData', () => {
     makeMedicationAdministration(admin2Time)
   ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule(
-        {providers: [{provide: FhirService, useValue: fhirServiceStub}]});
-    fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
-        return of(medicationAdministrations).toPromise();
-      }
-    };
-  }));
-
   it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
          ' the data as the end point series',
-     (done: DoneFn) => {
-       const earliestMedicationOrder = makeMedicationOrder();
-       earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
-       Promise
-           .resolve(earliestMedicationOrder.setMedicationAdministrations(
-               fhirServiceStub))
-           .then(result => {
-             const medOrderSet =
-                 new MedicationOrderSet([earliestMedicationOrder]);
+     () => {
+       const earliestMedicationOrder = new AnnotatedMedicationOrder(
+           makeMedicationOrder(), medicationAdministrations);
+       const medOrderSet = new MedicationOrderSet([earliestMedicationOrder]);
 
-             const data = StepGraphData.fromMedicationOrderSetList(
-                 [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-             const endpointSeries = data.series;
-             // The adminSeries holds both the adminSeries and the
-             // endpointSeries; it's redundantly stored due to the constraints
-             // of inheritance from graphData and all the stuff that's needed
-             // to make things like custom legends work.
-             expect(endpointSeries.length).toEqual(1);
-             // for the administration series
-             expect(endpointSeries[0].coordinates.map(c => c[0])).toEqual([
-               DateTime.fromISO(admin1Time).toUTC(),
-               DateTime.fromISO(admin2Time).toUTC()
-             ]);
-             done();
-           });
+       const data = StepGraphData.fromMedicationOrderSetList(
+           [medOrderSet], dateRange, TestBed.get(DomSanitizer));
+       const endpointSeries = data.series;
+       // The adminSeries holds both the adminSeries and the
+       // endpointSeries; it's redundantly stored due to the constraints
+       // of inheritance from graphData and all the stuff that's needed
+       // to make things like custom legends work.
+       expect(endpointSeries.length).toEqual(1);
+       // for the administration series
+       expect(endpointSeries[0].coordinates.map(c => c[0])).toEqual([
+         DateTime.fromISO(admin1Time).toUTC(),
+         DateTime.fromISO(admin2Time).toUTC()
+       ]);
      });
 
   it('StepGraphData.fromMedicationOrderSetList should not include units',
      () => {
-       const earliestMedicationOrder = makeMedicationOrder();
-       earliestMedicationOrder.setMedicationAdministrations(fhirServiceStub);
-       Promise
-           .resolve(earliestMedicationOrder.setMedicationAdministrations(
-               fhirServiceStub))
-           .then(result => {
-             const medOrderSet =
-                 new MedicationOrderSet([earliestMedicationOrder]);
-             const data = StepGraphData.fromMedicationOrderSetList(
-                 [medOrderSet], dateRange, TestBed.get(DomSanitizer));
-
-             data.series.forEach(series => expect(series.unit).toBeUndefined());
-           });
+       const earliestMedicationOrder = new AnnotatedMedicationOrder(
+           makeMedicationOrder(), medicationAdministrations);
+       const medOrderSet = new MedicationOrderSet([earliestMedicationOrder]);
+       const data = StepGraphData.fromMedicationOrderSetList(
+           [medOrderSet], dateRange, TestBed.get(DomSanitizer));
+       data.series.forEach(series => expect(series.unit).toBeUndefined());
      });
 });
 

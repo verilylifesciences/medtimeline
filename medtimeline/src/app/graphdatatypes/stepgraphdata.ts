@@ -7,11 +7,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 
 import {GraphData} from './graphdata';
 import {LabeledSeries} from './labeled-series';
-import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 
 /**
  * StepGraphData holds configurations for a step graph. A step graph displays
@@ -47,9 +47,9 @@ export class StepGraphData extends GraphData {
 
     medicationOrderListGroup = medicationOrderListGroup.sort((a, b) => {
       return a.resourceList[a.resourceList.length - 1]
-                 .lastAdmininistration.timestamp.toMillis() -
+                 .lastAdministration.timestamp.toMillis() -
           b.resourceList[b.resourceList.length - 1]
-              .lastAdmininistration.timestamp.toMillis();
+              .lastAdministration.timestamp.toMillis();
     });
 
     const tooltipMap = new Map<string, AnnotatedTooltip[]>();
@@ -58,7 +58,7 @@ export class StepGraphData extends GraphData {
       // for the same medicine.
       for (const medOrder of medOrderSet.resourceList) {
         const labeledSeries = LabeledSeries.fromMedicationOrder(
-            medOrder, dateRange, medOrder.administrationsForOrder.label);
+            medOrder, dateRange, medOrder.medicationAdministrationSet.label);
         const administrationSeries = labeledSeries[0];
         const endpointSeries = labeledSeries[1];
         data.push(administrationSeries);
@@ -73,7 +73,7 @@ export class StepGraphData extends GraphData {
             [new MedicationTooltip().getTooltip(medOrder, sanitizer)]);
         tooltipMap.set(
             medOrderSet.rxNormCode.label.toLowerCase() +
-                medOrder.lastAdmininistration.timestamp,
+                medOrder.lastAdministration.timestamp,
             [new MedicationTooltip().getTooltip(medOrder, sanitizer)]);
       }
     }

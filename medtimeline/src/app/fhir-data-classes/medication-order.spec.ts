@@ -15,8 +15,8 @@ import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
-import {MedicationOrder, MedicationOrderSet} from './medication-order';
+import {MedicationAdministration} from './medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from './medication-order';
 
 const REQUEST_ID = '1234';
 
@@ -154,48 +154,53 @@ describe('MedicationOrder', () => {
        expect(medicationOrder.label).toBeDefined();
        expect(medicationOrder.label).toEqual('vancomycin');
      });
+});
+
+describe('AnnotatedMedicationOrder', () => {
+  const earliestAdministration =
+      makeMedicationAdministration('2012-08-04T11:00:00.000Z');
+  const middleAdministration =
+      makeMedicationAdministration('2012-08-09T11:00:00.000Z');
+  const latestAdministration =
+      makeMedicationAdministration('2012-08-18T11:00:00.000Z');
+  const medicationAdministrations =
+      [latestAdministration, earliestAdministration, middleAdministration];
+
+  const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
+  const annotatedMedicationOrder =
+      new AnnotatedMedicationOrder(medicationOrder, medicationAdministrations);
 
   it('should get the first and last MedicationAdministration from list of MedicationAdministrations',
      () => {
-       const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
-       Promise
-           .resolve(
-               medicationOrder.setMedicationAdministrations(fhirServiceStub))
-           .then(help => {
-             expect(medicationOrder.firstAdministration)
-                 .toEqual(earliestAdministration);
-             expect(medicationOrder.lastAdmininistration)
-                 .toEqual(latestAdministration);
-           });
+       expect(annotatedMedicationOrder.firstAdministration)
+           .toEqual(earliestAdministration);
+       expect(annotatedMedicationOrder.lastAdministration)
+           .toEqual(latestAdministration);
      });
 
   it('should annotate medication administrations', () => {
-    const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
-    Promise
-        .resolve(medicationOrder.setMedicationAdministrations(fhirServiceStub))
-        .then(help => {
-          const annotated =
-              medicationOrder.administrationsForOrder.resourceList;
-          expect(annotated.length).toEqual(3);
+    const annotatedMedicationList =
+        annotatedMedicationOrder.medicationAdministrationSet.resourceList;
+    expect(annotatedMedicationList.length).toEqual(3);
 
-          expect(annotated[0].medAdministration)
-              .toEqual(earliestAdministration);
-          expect(annotated[0].previousDose).toBeUndefined();
+    expect(annotatedMedicationList[0].medAdministration)
+        .toEqual(earliestAdministration);
+    expect(annotatedMedicationList[0].previousDose).toBeUndefined();
 
-          expect(annotated[1].medAdministration).toEqual(middleAdministration);
-          expect(annotated[1].previousDose).toEqual(annotated[0]);
+    expect(annotatedMedicationList[1].medAdministration)
+        .toEqual(middleAdministration);
+    expect(annotatedMedicationList[1].previousDose)
+        .toEqual(annotatedMedicationList[0]);
 
-          expect(annotated[2].medAdministration).toEqual(latestAdministration);
-          expect(annotated[2].previousDose).toEqual(annotated[1]);
-        });
+    expect(annotatedMedicationList[2].medAdministration)
+        .toEqual(latestAdministration);
+    expect(annotatedMedicationList[2].previousDose)
+        .toEqual(annotatedMedicationList[1]);
   });
 });
 
 describe('MedicationOrderSet', () => {
   it('should get high and low doses', () => {
-    const order = makeMedicationOrder();
-    const order2 = makeMedicationOrder();
-
     const medAdmin1 =
         makeMedicationAdministration(DateTime.utc(1965, 3, 22).toString(), 92);
     const medAdmin2 =
@@ -206,20 +211,13 @@ describe('MedicationOrderSet', () => {
     const medAdmin2Order2 =
         makeMedicationAdministration(DateTime.utc(1965, 3, 26).toString(), 17);
 
-    // Set administrations manually to avoid FHIR call.
-    order.administrationsForOrder = new MedicationAdministrationSet(
-        // annotations not important for this test
-        [medAdmin1, medAdmin2].map(x => new AnnotatedAdministration(x)));
-    order.firstAdministration = medAdmin1;
-    order.lastAdmininistration = medAdmin2;
+    const annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1, medAdmin2]);
+    const annotatedOrder2 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1Order2, medAdmin2Order2]);
 
-    order2.administrationsForOrder =
-        new MedicationAdministrationSet([medAdmin1Order2, medAdmin2Order2].map(
-            x => new AnnotatedAdministration(x)));
-    order2.firstAdministration = medAdmin1Order2;
-    order2.lastAdmininistration = medAdmin2Order2;
-
-    const medOrderSet = new MedicationOrderSet([order, order2]);
+    const medOrderSet =
+        new MedicationOrderSet([annotatedOrder, annotatedOrder2]);
     expect(medOrderSet.minDose).toEqual(17);
     expect(medOrderSet.maxDose).toEqual(92);
   });
@@ -229,17 +227,9 @@ describe('MedicationOrderSet', () => {
         makeMedicationAdministration(DateTime.utc(1965, 3, 22).toString(), 92);
     const medAdmin2 =
         makeMedicationAdministration(DateTime.utc(1965, 3, 23).toString(), 19);
-
-    // Set administrations manually to avoid FHIR call.
-    const order = makeMedicationOrder();
-    order.administrationsForOrder =
-        new MedicationAdministrationSet([medAdmin1, medAdmin2].map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    order.firstAdministration = medAdmin1;
-    order.lastAdmininistration = medAdmin2;
-
-    const medOrderSet = new MedicationOrderSet([order]);
+    const annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [medAdmin1, medAdmin2]);
+    const medOrderSet = new MedicationOrderSet([annotatedOrder]);
     expect(medOrderSet.unit).toBe('mg');
   });
 
@@ -260,24 +250,12 @@ describe('MedicationOrderSet', () => {
         },
         REQUEST_ID)];
 
-    const order = makeMedicationOrder();
-    order.administrationsForOrder =
-        new MedicationAdministrationSet(medicationAdministrations.map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    order.firstAdministration = medicationAdministrations[0];
-    order.lastAdmininistration = medicationAdministrations[0];
-
-    const order2 = makeMedicationOrder();
-    order2.administrationsForOrder =
-        new MedicationAdministrationSet(medicationAdministrations2.map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    order2.firstAdministration = medicationAdministrations2[0];
-    order2.lastAdmininistration = medicationAdministrations2[0];
-
+    const annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), medicationAdministrations);
+    const annotatedOrder2 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), medicationAdministrations2);
     expect(() => {
-      const x = new MedicationOrderSet([order, order2]);
+      const x = new MedicationOrderSet([annotatedOrder, annotatedOrder2]);
     }).toThrowError(new RegExp(`Request IDs: ${REQUEST_ID}`));
   });
 
@@ -301,19 +279,13 @@ describe('MedicationOrderSet', () => {
         },
         REQUEST_ID)];
 
-    const order = makeMedicationOrder();
-    order.administrationsForOrder =
-        new MedicationAdministrationSet(medicationAdministrations.map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
-    const order2 = makeMedicationOrder();
-    order2.administrationsForOrder =
-        new MedicationAdministrationSet(medicationAdministrations2.map(
-            // annotations not important for this test
-            x => new AnnotatedAdministration(x)));
+    const annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), medicationAdministrations);
+    const annotatedOrder2 = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), medicationAdministrations2);
 
     expect(() => {
-      const x = new MedicationOrderSet([order, order2]);
+      const x = new MedicationOrderSet([annotatedOrder, annotatedOrder2]);
     }).toThrowError();
   });
 });
