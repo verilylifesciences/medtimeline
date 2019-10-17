@@ -3,24 +3,27 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {By, DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {DisplayGrouping, labResult, vitalSign} from '../clinicalconcepts/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir.service';
+import {Axis} from '../graphtypes/axis';
+import {AxisGroup} from '../graphtypes/axis-group';
+import {ChartType} from '../graphtypes/graph/graph.component';
 import {StubFhirService} from '../test_utils';
 
 import {SetupComponent} from './setup.component';
 
-const resourceCodeManagerStub =
-    new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
 describe('SetupComponent', () => {
   let component: SetupComponent;
   let fixture: ComponentFixture<SetupComponent>;
@@ -36,7 +39,11 @@ describe('SetupComponent', () => {
             MatExpansionModule, MatGridListModule
           ],
           providers: [
-            {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
+            {
+              provide: ResourceCodeManager,
+              useValue:
+                  new ResourceCodeManager(new StubFhirService(), undefined)
+            },
             {provide: ActivatedRoute, useValue: {}},
             {provide: Router, useValue: {}},
             {provide: FhirService, useValue: new StubFhirService()},
@@ -56,30 +63,43 @@ describe('SetupComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should filter concepts based on input', fakeAsync(() => {
+  it('should filter concepts based on input', ((done: DoneFn) => {
+       const fhirStub = new StubFhirService();
+       const displayGroups = new Array<[DisplayGrouping, AxisGroup[]]>();
+       const axis1 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Bilirubin, Direct',
+               [LOINCCode.fromCodeString('1968-7')], labResult,
+               ChartType.LINE));
+       const axis2 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Bilirubin, Total',
+               [LOINCCode.fromCodeString('1975-2')], labResult,
+               ChartType.LINE));
+       const axis3 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Some vital sign',
+               [LOINCCode.fromCodeString('8310-5')], vitalSign,
+               ChartType.LINE));
+       const axisG1 = new AxisGroup([axis1], 'Bilirubin, Direct', labResult);
+       const axisG2 = new AxisGroup([axis2], 'Bilirubin, Total', labResult);
+       const axisG3 = new AxisGroup([axis3], 'Some vital sign', labResult);
+
+       displayGroups.push([labResult, [axisG1, axisG2]]);
+       displayGroups.push([vitalSign, [axisG3]]);
+
        const userInput = 'Bi';
-       const filtered = component.filter(userInput);
+
+       const filtered = component.filter(userInput, displayGroups);
        expect(filtered.length).toEqual(1);
        const element = filtered[0];
        expect(element[0].label).toEqual('Lab Results');
        expect(element[1].length).toEqual(2);
        expect(element[1][0].label).toEqual('Bilirubin, Direct');
        expect(element[1][1].label).toEqual('Bilirubin, Total');
+       done();
      }));
-
-  it('should have radio buttons for each time option', () => {
-    const buttons = fixture.debugElement.queryAll(By.css('mat-radio-button'));
-    const buttonText = [];
-    buttons.forEach((button) => {
-      buttonText.push(button.nativeElement.textContent.trim());
-    });
-    const timeOptions = [
-      UI_CONSTANTS.LAST_MONTH, UI_CONSTANTS.LAST_ONE_DAY,
-      UI_CONSTANTS.LAST_SEVEN_DAYS, UI_CONSTANTS.LAST_THREE_DAYS,
-      UI_CONSTANTS.LAST_THREE_MONTHS
-    ];
-    for (let i = 0; i < timeOptions.length; i++) {
-      expect(buttonText).toContain(timeOptions[i]);
-    }
-  });
 });

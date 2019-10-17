@@ -37,8 +37,8 @@ enum LoadStatus {
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.css']
 })
-export class SetupComponent implements OnInit, OnDestroy {
-  readonly allConcepts = new Array<AxisGroup>();
+export class SetupComponent implements OnDestroy {
+  readonly allConcepts: Promise<AxisGroup[]>;
   readonly checkedConcepts = new Map<string, boolean>();
   readonly chosenConcepts = new Array<AxisGroup>();
   readonly useDebugger = environment.useDebugger;
@@ -67,7 +67,7 @@ export class SetupComponent implements OnInit, OnDestroy {
    * An array of DisplayGroupings and AxisGroup that belong to that
    * grouping.
    */
-  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
+  displayGroupings: Promise<Array<[DisplayGrouping, AxisGroup[]]>>;
 
   /**
    * Holds whether there's any data available for each resource code group.
@@ -92,6 +92,9 @@ export class SetupComponent implements OnInit, OnDestroy {
   readonly lastThreeMonths =
       Interval.fromDateTimes(this.today.minus({months: 3}), this.today);
 
+  /** The time options that are always available. */
+  staticTimeOptions: Array<[Interval, string]>;
+
   sortResources = (function(a, b) {
     return a.label.localeCompare(b.label);
   });
@@ -110,35 +113,71 @@ export class SetupComponent implements OnInit, OnDestroy {
       private router: Router, private setupDataService: SetupDataService,
       private fhirService: FhirService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    // Set up jut a couple things so we don't have to hold on to them as
-    // unnecessary class variables.
-    const displayGroups = resourceCodeManager.getDisplayGroupMapping();
-    /* Load in the concepts to display, flattening them all into a
-     * single-depth array. */
-    this.allConcepts = Array.from(displayGroups.values())
-                           .reduce((acc, val) => acc.concat(val), []);
-
-    this.displayGroupings = Array.from(displayGroups.entries());
+    this.allConcepts =
+        resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
+          /* Load in the concepts to display, flattening them all into a
+           * single-depth array. */
+          return Array.from(displayGroups.values())
+              .reduce((acc, val) => acc.concat(val), []);
+        });
+    this.displayGroupings =
+        resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
+          return Array.from(displayGroups.entries());
+        });
+    this.staticTimeOptions = [
+      [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
+      [this.lastMonth, uiConstants.LAST_MONTH as string],
+      [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS],
+      [this.lastThreeDays, uiConstants.LAST_THREE_DAYS],
+      [this.lastOneDay, uiConstants.LAST_ONE_DAY]
+    ];
+    this.setupInterface();
   }
 
-  ngOnInit() {
-    // Watch for changes to the user input on the autocomplete panel.
-    this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(
-        startWith(''),  // The autocomplete input starts with nothing typed in.
-        map(concept => concept ? this.filter(concept) :
-                                 this.displayGroupings.slice()));
-
-    for (const concept of this.allConcepts) {
-      this.checkedConcepts[concept.label] = false;
-      const showByDefault =
-          concept.axes.some(axis => axis.resourceGroup.showByDefault);
-      if (showByDefault) {
-        this.checkedConcepts[concept.label] = true;
-      }
-    }
-
+  setupInterface() {
     // Retrieve the patient encounters. When they load in asynchronously,
     // the radio buttons for encounter selection will show up.
+    this.getEncounters();
+    this.displayGroupings.then((displayGroupings) => {
+      // Check off concepts that are on by default.
+      displayGroupings.forEach((row) => {
+        // row[1] is an AxisGroup[] corresponding to the display grouping in
+        // row[0].
+        const axisGroupArray = row[1];
+        axisGroupArray.forEach((concept) => {
+          this.checkedConcepts[concept.label] =
+              concept.axes.some(axis => axis.resourceGroup.showByDefault);
+
+          this.codeGroupAvailable.set(concept.label, LoadStatus.LOADING);
+          concept.dataAvailableInAppTimeScope().then(available => {
+            if (!available) {
+              this.checkedConcepts[concept.label] = false;
+            }
+            this.codeGroupAvailable.set(
+                concept.label,
+                available ? LoadStatus.DATA_AVAILABLE :
+                            LoadStatus.DATA_UNAVAILABLE);
+          });
+        });
+      });
+
+      // Watch for changes to the user input on the autocomplete panel.
+      this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(
+          startWith(
+              ''),  // The autocomplete input starts with nothing typed in.
+          map(concept => concept ? this.filter(concept, displayGroupings) :
+                                   displayGroupings.slice()));
+
+      // Check to see which clinical concepts have any data, and
+      // enable/disable on that basis.
+      displayGroupings.forEach(
+          grouping => {
+
+          });
+    });
+  }
+
+  private getEncounters() {
     this.setupDataService.encountersError = null;
     this.fhirService.getEncountersForPatient(APP_TIMESPAN)
         .then(
@@ -160,23 +199,6 @@ export class SetupComponent implements OnInit, OnDestroy {
                     new ResultError(new Set<string>(), '', rejection);
               }
             });
-
-    // Check to see which clinical concepts have any data, and enable/disable
-    // on that basis.
-    this.displayGroupings.forEach(grouping => {
-      const resourceCodes = grouping[1];
-      resourceCodes.forEach(rsc => {
-        this.codeGroupAvailable.set(rsc.label, LoadStatus.LOADING);
-        rsc.dataAvailableInAppTimeScope().then(available => {
-          if (!available) {
-            this.checkedConcepts[rsc.label] = false;
-            this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_UNAVAILABLE);
-          } else {
-            this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_AVAILABLE);
-          }
-        });
-      });
-    });
   }
 
   /**
@@ -184,45 +206,53 @@ export class SetupComponent implements OnInit, OnDestroy {
    * charts selected.
    */
   onContinue() {
-    for (const concept of this.allConcepts) {
-      if (this.checkedConcepts[concept.label]) {
-        this.chosenConcepts.push(concept);
+    this.allConcepts.then((allConcepts) => {
+      for (const concept of allConcepts) {
+        if (this.checkedConcepts[concept.label]) {
+          this.chosenConcepts.push(concept);
+        }
       }
-    }
-    this.router.navigate(['/main'], {skipLocationChange: true});
+      this.router.navigate(['/main'], {skipLocationChange: true});
+    });
   }
 
   /**
    * The user wishes to select all concepts.
    */
   selectAll() {
-    for (const concept of this.allConcepts) {
-      if (this.codeGroupAvailable.has(concept.label) &&
-          this.codeGroupAvailable.get(concept.label) !==
-              LoadStatus.DATA_UNAVAILABLE) {
-        this.checkedConcepts[concept.label] = true;
+    this.allConcepts.then((allConcepts) => {
+      for (const concept of allConcepts) {
+        if (this.codeGroupAvailable.has(concept.label) &&
+            this.codeGroupAvailable.get(concept.label) !==
+                LoadStatus.DATA_UNAVAILABLE) {
+          this.checkedConcepts[concept.label] = true;
+        }
       }
-    }
+    });
   }
 
   /**
    * The user wishes to clear all select concepts.
    */
   clearAll() {
-    for (const concept of this.allConcepts) {
-      this.checkedConcepts[concept.label] = false;
-    }
+    this.allConcepts.then((allConcepts) => {
+      for (const concept of allConcepts) {
+        this.checkedConcepts[concept.label] = false;
+      }
+    });
   }
 
   /**
    * Filter the concepts shown on the autocomplete menu.
    */
-  filter(concept): any[] {
-    return this.displayGroupings
-        .filter(
-            entry => entry[1].some(
-                codes => codes.label.toLowerCase().indexOf(
-                             concept.toLowerCase()) === 0))
+  filter(concept, displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>):
+      any[] {
+    return displayGroupings
+        .filter(entry => {
+          return entry[1].some(
+              axis => axis.label.toLowerCase().indexOf(
+                          concept.toLowerCase()) === 0);
+        })
         .map(function(entry) {
           const displayGrouping: DisplayGrouping = entry[0];
           const resourceCodesFiltered = entry[1].filter(

@@ -22,46 +22,53 @@ import {AxisGroup} from '../graphtypes/axis-group';
   templateUrl: './data-selector-menu.component.html',
   styleUrls: ['./data-selector-menu.component.css']
 })
-export class DataSelectorMenuComponent implements OnInit {
-  // The trigger for the main menu displayed.
+export class DataSelectorMenuComponent {
+  /** The trigger for the main menu displayed. */
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
-  // The trigger for the autocomplete panel displayed.
+  /** The trigger for the autocomplete panel displayed. */
   @ViewChild(MatAutocompleteTrigger)
   autocompleteTrigger: MatAutocompleteTrigger;
 
-  // An array of DisplayGroupings and AxisGroup that belong to that
-  // grouping.
-  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
+  /**
+   * An array of DisplayGroupings and AxisGroup that belong to that
+   * grouping.
+   */
+  displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
 
-  // An event that is emitted when the user requests to add a new card.
+  /** An event that is emitted when the user requests to add a new card. */
   @Output() addCard = new EventEmitter<string>();
-  // An event that is emitted when the user requests to add a textbox.
+  /** An event that is emitted when the user requests to add a textbox. */
   @Output() addTextbox = new EventEmitter<null>();
-  // An event that is emitted when the user requests to add a custom timeline.
+  /**
+   * An event that is emitted when the user requests to add a custom timeline.
+   */
   @Output() addCustomTimeline = new EventEmitter<null>();
 
-  // All AxisGroup that correspond to cards displayed on the page.
-  readonly allConcepts: AxisGroup[];
+  /** All AxisGroup that correspond to cards displayed on the page. */
+  allConcepts: AxisGroup[];
 
-  // The FormControl used to monitor changes in the user input of the
-  // autocomplete field.
+  /**
+   * The FormControl used to monitor changes in the user input of the
+   * autocomplete field.
+   */
   readonly conceptCtrl = new FormControl();
   filteredConcepts: Observable<AxisGroup[]>;
-  constructor(
-      private resourceCodeManager: ResourceCodeManager,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    const displayGroups = resourceCodeManager.getDisplayGroupMapping();
-    const temp = Array.from(displayGroups.values());
-    this.allConcepts = [].concat.apply([], temp);
-    this.displayGroupings = Array.from(displayGroups.entries());
-  }
 
-  ngOnInit() {
-    // Watch for changes to the user input on the autocomplete panel.
-    this.filteredConcepts = this.conceptCtrl.valueChanges.pipe(
-        startWith(''),  // The autocomplete input starts with nothing typed in.
-        map(concept =>
-                concept ? this.filter(concept) : this.allConcepts.slice()));
+  constructor(
+      resourceCodeManager: ResourceCodeManager,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
+    resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
+      const temp = Array.from(displayGroups.values());
+      this.allConcepts = [].concat.apply([], temp);
+      this.displayGroupings = Array.from(displayGroups.entries());
+
+      // Watch for changes to the user input on the autocomplete panel.
+      this.filteredConcepts = this.conceptCtrl.valueChanges.pipe(
+          startWith(
+              ''),  // The autocomplete input starts with nothing typed in.
+          map(concept => concept ? this.filter(concept, this.allConcepts) :
+                                   this.allConcepts.slice()));
+    });
   }
 
   // Listens for an event indicating that the user has selected to add the
@@ -90,8 +97,8 @@ export class DataSelectorMenuComponent implements OnInit {
   }
 
   // Filter the concepts shown on the autocomplete menu.
-  filter(concept): AxisGroup[] {
-    return this.allConcepts.filter(
+  filter(concept, allConcepts): AxisGroup[] {
+    return allConcepts.filter(
         option =>
             option.label.toLowerCase().indexOf(concept.toLowerCase()) === 0);
   }

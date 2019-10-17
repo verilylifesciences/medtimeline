@@ -52,7 +52,7 @@ export class CardcontainerComponent {
       Array<{[key: string]: AxisGroup | string | CustomizableData}> = [];
 
   // The original concepts to duplicate, if necessary.
-  readonly originalConcepts: AxisGroup[];
+  originalConcepts: Promise<AxisGroup[]>;
 
   // Hold an instance of this enum so that the HTML template can access it.
   readonly chartType = ChartType;
@@ -93,13 +93,15 @@ export class CardcontainerComponent {
       private saveDialog: MatDialog,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any,
   ) {
-    const displayGroups = resourceCodeManager.getDisplayGroupMapping();
-    /* Load in the concepts to display, flattening them all into a
-     * single-depth array. */
-    this.originalConcepts = Array.from(displayGroups.values())
-                                .reduce((acc, val) => acc.concat(val), []);
     this.setUpCards();
     this.setUpDrag(dragulaService);
+    this.originalConcepts =
+        resourceCodeManager.getDisplayGroupMapping().then((mapping) => {
+          /* Load in the concepts to display, flattening them all into a
+           * single-depth array. */
+          return Array.from(mapping.values())
+              .reduce((acc, val) => acc.concat(val), []);
+        });
   }
 
   private setUpCards() {
@@ -276,14 +278,15 @@ export class CardcontainerComponent {
    */
 
   addConceptCard(label: string, id?: string) {
-    const graphCardValue =
-        this.originalConcepts.find(obj => (obj.label === label));
-    // Insert the card at the top of the page
-    // Insert after the closest card rather than before the card.
-    const index =
-        id ? (this.displayedConcepts.map(x => x.id).indexOf(id) + 1) : 0;
-    this.displayedConcepts.splice(
-        index, 0, {id: uuid(), concept: graphCardValue});
+    this.originalConcepts.then((concepts) => {
+      const graphCardValue = concepts.find(obj => (obj.label === label));
+      // Insert the card at the top of the page
+      // Insert after the closest card rather than before the card.
+      const index =
+          id ? (this.displayedConcepts.map(x => x.id).indexOf(id) + 1) : 0;
+      this.displayedConcepts.splice(
+          index, 0, {id: uuid(), concept: graphCardValue});
+    });
   }
 
   /**

@@ -6,11 +6,11 @@
 import {DateTime} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
+import {LOINCCode} from '../clinicalconcepts/loinc-code';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
-import {AnnotatedAdministration, MedicationAdministrationSet} from './medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';

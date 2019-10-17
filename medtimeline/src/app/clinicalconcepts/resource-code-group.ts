@@ -38,11 +38,13 @@ export abstract class ResourceCode {
       /* Whether or not to force the axis bounds, even if a smaller range
          containing all the data can be calculated. */
       readonly forceDisplayBounds = false) {
-    if (ResourceCode.CODE_STRING_TO_CODE[codeString]) {
+    const matchingCode = ResourceCode.CODE_STRING_TO_CODE[codeString];
+    if (matchingCode && matchingCode.label !== label) {
       throw Error(
-          'A Resource Code has already been created with this code string.');
+          'A Resource Code has already been created with this code string but a different label: ' +
+          codeString);
     }
-    ResourceCode.CODE_STRING_TO_CODE[codeString] = this;
+    ResourceCode.CODE_STRING_TO_CODE[codeString] = matchingCode || this;
   }
 
   /**

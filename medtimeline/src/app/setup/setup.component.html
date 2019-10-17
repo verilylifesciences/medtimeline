@@ -24,29 +24,9 @@
           {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}
         </mat-radio-button>
       </div>
-      <div>
-        <mat-radio-button [value]="lastThreeMonths">
-          {{uiConstants.LAST_THREE_MONTHS}}
-        </mat-radio-button>
-      </div>
-      <div>
-        <mat-radio-button [value]="lastMonth">
-          {{uiConstants.LAST_MONTH}}
-        </mat-radio-button>
-      </div>
-      <div>
-        <mat-radio-button [value]="lastSevenDays" [checked]="true">
-          {{uiConstants.LAST_SEVEN_DAYS}}
-        </mat-radio-button>
-      </div>
-      <div>
-        <mat-radio-button [value]="lastThreeDays">
-          {{uiConstants.LAST_THREE_DAYS}}
-        </mat-radio-button>
-      </div>
-      <div>
-        <mat-radio-button [value]="lastOneDay">
-          {{uiConstants.LAST_ONE_DAY}}
+      <div *ngFor="let item of staticTimeOptions">
+        <mat-radio-button [value]="item[0]">
+          {{item[1]}}
         </mat-radio-button>
       </div>
     </mat-radio-group>
@@ -70,7 +50,7 @@
       <mat-grid-list cols="2" rowHeight="28px" gutterSize="0px">
         <!--rowspan is set to the number of concepts in the grouping + 2 (the category header row and a blank row for spacing) -->
         <mat-grid-tile class="category-group-tile" *ngFor="let entry of displayGroupingOptions | async"
-          [rowspan]="(2 + entry[1].length)">
+          [rowspan]="(2 +entry[1].length)">
           <div>
             <div [style.color]="entry[0].fill.hsl().string()" class="category">
               <h3 class="category-label">{{entry[0].label}}</h3>
@@ -88,7 +68,7 @@
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-    <div *ngIf="(displayGroupingOptions | async).length === 0" class="noResults">
+    <div *ngIf="displayGroupingOptions && (displayGroupingOptions | async).length === 0" class="noResults">
       {{uiConstants.NO_RESULTS}}
     </div>
   </form>

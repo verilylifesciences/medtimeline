@@ -7,7 +7,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
 import {MatAutocompleteModule, MatDialog, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
@@ -21,8 +20,6 @@ import {TimelineToolbarComponent} from './timeline-toolbar.component';
 describe('TimelineToolbarComponent', () => {
   let component: TimelineToolbarComponent;
   let fixture: ComponentFixture<TimelineToolbarComponent>;
-  const resourceCodeManagerStub =
-      new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
 
   beforeEach(async(() => {
     TestBed
@@ -36,7 +33,11 @@ describe('TimelineToolbarComponent', () => {
             ReactiveFormsModule, BrowserAnimationsModule
           ],
           providers: [
-            {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
+            {
+              provide: ResourceCodeManager,
+              useValue:
+                  new ResourceCodeManager(new StubFhirService(), undefined)
+            },
             {provide: MatDialogRef, useValue: {}},
             {provide: MatDialog, useValue: {}},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}

@@ -20,7 +20,7 @@ import {IfuDialogComponent} from '../ifu-dialog/ifu-dialog.component';
   styleUrls: ['../cardcontainer/cardcontainer.component.css']
 })
 export class TimelineToolbarComponent {
-  readonly displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
+  displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;
   readonly showMockDataMessage = environment.useMockServer;
 
   @Output() saveSnapshot = new EventEmitter<null>();
@@ -30,8 +30,9 @@ export class TimelineToolbarComponent {
       resourceCodeManager: ResourceCodeManager, private helpDialog: MatDialog,
       private ifuDialog: MatDialog,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    const displayGroups = resourceCodeManager.getDisplayGroupMapping();
-    this.displayGroupings = Array.from(displayGroups.entries());
+    resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
+      this.displayGroupings = Array.from(displayGroups.entries());
+    });
   }
 
   // Emits an event indicating to CardContainer to save a snapshot of the page.

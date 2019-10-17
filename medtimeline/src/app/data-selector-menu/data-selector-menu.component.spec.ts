@@ -11,8 +11,13 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {labResult, vitalSign} from '../clinicalconcepts/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
+import {Axis} from '../graphtypes/axis';
+import {AxisGroup} from '../graphtypes/axis-group';
+import {ChartType} from '../graphtypes/graph/graph.component';
 import {StubFhirService} from '../test_utils';
 
 import {DataSelectorMenuComponent} from './data-selector-menu.component';
@@ -20,8 +25,6 @@ import {DataSelectorMenuComponent} from './data-selector-menu.component';
 describe('DataSelectorMenuComponent', () => {
   let component: DataSelectorMenuComponent;
   let fixture: ComponentFixture<DataSelectorMenuComponent>;
-  const resourceCodeManagerStub =
-      new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
 
   beforeEach(async(() => {
     TestBed
@@ -41,7 +44,11 @@ describe('DataSelectorMenuComponent', () => {
             BrowserAnimationsModule,
           ],
           providers: [
-            {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
+            {
+              provide: ResourceCodeManager,
+              useValue:
+                  new ResourceCodeManager(new StubFhirService(), undefined)
+            },
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
@@ -59,11 +66,35 @@ describe('DataSelectorMenuComponent', () => {
   });
 
   it('should filter concepts based on input', fakeAsync(() => {
-       const userInput = 'Com';
-       expect(component.filter(userInput).length).toEqual(2);
-       expect(new Set(component.filter(userInput).map(x => x.label)))
-           .toEqual(new Set([
-             'Complete Blood Count', 'Complete Blood Count White Blood Cell'
-           ]));
+       const fhirStub = new StubFhirService();
+       const axis1 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Bilirubin, Direct',
+               [LOINCCode.fromCodeString('1968-7')], labResult,
+               ChartType.LINE));
+       const axis2 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Bilirubin, Total',
+               [LOINCCode.fromCodeString('1975-2')], labResult,
+               ChartType.LINE));
+       const axis3 = new Axis(
+           fhirStub, TestBed.get(DomSanitizer),
+           new LOINCCodeGroup(
+               fhirStub, 'Some vital sign',
+               [LOINCCode.fromCodeString('8310-5')], vitalSign,
+               ChartType.LINE));
+       const axisG1 = new AxisGroup([axis1], 'Bilirubin, Direct', labResult);
+       const axisG2 = new AxisGroup([axis2], 'Bilirubin, Total', labResult);
+       const axisG3 = new AxisGroup([axis3], 'Some vital sign', labResult);
+
+       const userInput = 'Bil';
+
+       const filtered = component.filter(userInput, [axisG1, axisG2, axisG3]);
+       expect(filtered.length).toEqual(2);
+       expect(new Set(filtered.map(x => x.label))).toEqual(new Set([
+         'Bilirubin, Direct', 'Bilirubin, Total'
+       ]));
      }));
 });
