@@ -21,7 +21,7 @@ import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticReportStatus} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration} from './fhir-data-classes/medication-administration';
+import {MedicationAdministration, MedicationAdministrationStatus} from './fhir-data-classes/medication-administration';
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
@@ -115,8 +115,10 @@ export class FhirHttpService extends FhirService {
       codes: RxNormCode[], dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
     return this.medicationCache.getResource(dateRange).then(
-        (results: MedicationAdministration[]) =>
-            results.filter(result => codes.includes(result.rxNormCode)));
+        (results: MedicationAdministration[]) => results.filter(
+            result => codes.includes(result.rxNormCode) &&
+                result.status !==
+                    MedicationAdministrationStatus.ENTERED_IN_ERROR));
   }
 
   /**
