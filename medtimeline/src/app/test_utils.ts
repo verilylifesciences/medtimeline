@@ -6,6 +6,7 @@
 /**
  * Testing utilities used across multiple files.
  */
+import {Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 
 import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
@@ -13,6 +14,8 @@ import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-co
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
@@ -30,7 +33,14 @@ export const medicationCodingConcept = {
   text: 'vancomycin'
 };
 
+@Injectable()
 export class StubFhirService extends FhirService {
+  constructor(
+      resourceCodeManager: ResourceCodeManager,
+      resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeManager, resourceCodeCreator);
+  }
+
   getObservationsWithCode(code: LOINCCode, dateRange: Interval):
       Promise<Observation[]> {
     return Promise.resolve([]);
@@ -205,10 +215,6 @@ export function makeSampleDiscreteObservation(
   return new Observation(
       makeSampleDiscreteObservationJson(result, timestamp, interpretation),
       requestId);
-}
-
-export function getEmptyFhirService() {
-  return new StubFhirService();
 }
 
 export function makeEncounter(start: DateTime, end: DateTime) {

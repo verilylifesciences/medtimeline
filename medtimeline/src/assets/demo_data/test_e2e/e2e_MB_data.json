@@ -567,28 +567,6 @@
             "collection": {
               "collectedDateTime": "2019-02-14T17:34:43-05:00"
             }
-          },
-          {
-            "resourceType": "Observation",
-            "id": "2",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://cerner.com/bch_mapping/",
-                  "code": "NOCARDIACULTUREANDSTAIN",
-                  "display": "Nocardia Culture and Stain"
-                }
-              ]
-            },
-            "interpretation": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
-                  "code": "NEGORFLORA",
-                  "display": "Neg or Flora"
-                }
-              ]
-            }
           }
         ],
         "status": "partial",
@@ -633,28 +611,6 @@
             },
             "collection": {
               "collectedDateTime": "2019-02-14T17:34:43-05:00"
-            }
-          },
-          {
-            "resourceType": "Observation",
-            "id": "2",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://cerner.com/bch_mapping/",
-                  "code": "PNEUMOCYSTISCARINIIJIROVECIISTAIN",
-                  "display": "Pneumocystis carinii/jirovecii Stain"
-                }
-              ]
-            },
-            "interpretation": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
-                  "code": "NEGORFLORA",
-                  "display": "Neg or Flora"
-                }
-              ]
             }
           }
         ],

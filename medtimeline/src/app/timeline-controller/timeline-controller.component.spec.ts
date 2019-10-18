@@ -118,7 +118,7 @@ describe('TimelineControllerComponent without encounters', () => {
           ],
           declarations: [TimelineControllerComponent],
           providers: [
-            {provide: FhirService, useValue: new StubFhirService()},
+            {provide: FhirService, useClass: StubFhirService},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })

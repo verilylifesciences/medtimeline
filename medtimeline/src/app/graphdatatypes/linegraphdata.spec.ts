@@ -3,18 +3,22 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {TestBed} from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import * as Colors from 'src/app/theme/verily_colors';
 
 import {DisplayGrouping, labResult} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
+import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
@@ -38,9 +42,24 @@ describe('LineGraphData', () => {
     const newLoincCode = new LOINCCode(
         loincCodeString, new DisplayGrouping('Vanc pk'), 'Vanc pk');
   }
-  const loincCodeGroup = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString(loincCodeString)],
-      labResult, ChartType.LINE);
+  let loincCodeGroup;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        {provide: FhirService, useClass: StubFhirService}
+      ]
+    });
+  }));
+
+  beforeEach(() => {
+    loincCodeGroup = new LOINCCodeGroup(
+        TestBed.get(FhirService), 'lbl',
+        [LOINCCode.fromCodeString(loincCodeString)], labResult, ChartType.LINE);
+  });
 
   it('fromObservationSetList should have one LabeledSeries for' +
          'each ObservationSet passed in',

@@ -72,9 +72,12 @@ describe('FhirCache', () => {
   let fhirCache: StubFhirCache;
   let clientReadyCallback: (any) => void;
   let clientError: (any) => void;
+
   const smartApi = {
-    patient: {api: {search: () => {}, nextPage: () => {}}},
-    tokenResponse: {access_token: 'access_token'}
+    patient: {
+      api: {search: () => Promise.resolve(), nextPage: () => Promise.resolve()}
+    },
+    tokenResponse: {access_token: 'access_token_cache'}
   };
 
   beforeEach(() => {

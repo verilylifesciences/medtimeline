@@ -3,8 +3,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
 import {MedicationOrder} from '../fhir-data-classes/medication-order';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -130,11 +134,25 @@ class RxStubFhirService extends StubFhirService {
 }
 
 describe('RxNormGroup', () => {
+  beforeEach(async(() => {
+    TestBed
+        .configureTestingModule({
+          imports: [HttpClientModule],
+          providers: [
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+          ]
+        })
+        .compileComponents();
+  }));
+
   it('should do all the calls to get all the orders and admins',
      (done: DoneFn) => {
        const rxNormGroup = new RxNormCodeGroup(
-           new RxStubFhirService(), 'antibiotics',
-           [RxNormCode.fromCodeString('11124')],
+           new RxStubFhirService(
+               TestBed.get(ResourceCodeManager),
+               TestBed.get(ResourceCodeCreator)),
+           'antibiotics', [RxNormCode.fromCodeString('11124')],
            new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
        rxNormGroup.getResourceSet(interval).then(rxNorms => {
@@ -165,9 +183,10 @@ describe('RxNormGroup', () => {
 
   it('should cache orders', (done: DoneFn) => {
     const rxNormGroup = new RxNormCodeGroup(
-        new RxStubFhirService(), 'antibiotics',
-        [RxNormCode.fromCodeString('11124')], new DisplayGrouping('lbl', 'red'),
-        ChartType.LINE);
+        new RxStubFhirService(
+            TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator)),
+        'antibiotics', [RxNormCode.fromCodeString('11124')],
+        new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
     rxNormGroup.getResourceSet(interval).then(rxNorms => {
       expect(rxNormGroup.medicationOrderCache.has('OrderA')).toBe(true);
@@ -182,7 +201,8 @@ describe('RxNormGroup', () => {
 
   it('should not call getMedicationOrderWithId for orders that have been cached.',
      (done: DoneFn) => {
-       const fhirService = new RxStubFhirService();
+       const fhirService = new RxStubFhirService(
+           TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator));
        const rxNormGroup = new RxNormCodeGroup(
            fhirService, 'antibiotics', [RxNormCode.fromCodeString('11124')],
            new DisplayGrouping('lbl', 'red'), ChartType.LINE);

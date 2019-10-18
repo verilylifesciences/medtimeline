@@ -34,6 +34,11 @@
             "showByDefault": true
         },
         {
+            "codeString": "1920-8",
+            "displayName": "AST (Aspartate Aminotransferase)",
+            "showByDefault": true
+        },
+        {
             "codeString": "6768-6",
             "displayName": "Alkaline Phosphatase",
             "showByDefault": true
@@ -139,15 +144,6 @@
         {
             "codeString": "13517-8",
             "displayName": "Atypical Lymph, CSF",
-            "displayBounds": {
-                "lower": 0,
-                "upper": 100
-            },
-            "groupName": "CSF"
-        },
-        {
-            "codeString": "12278-8",
-            "displayName": "Band, CSF",
             "displayBounds": {
                 "lower": 0,
                 "upper": 100
@@ -289,6 +285,7 @@
                 "lower": 0,
                 "upper": 100
             },
+            "showByDefault": true,
             "groupName": "Complete Blood Count White Blood Cell"
         },
         {

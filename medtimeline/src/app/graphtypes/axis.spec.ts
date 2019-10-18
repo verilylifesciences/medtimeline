@@ -20,7 +20,7 @@ import {ChartType} from './graph/graph.component';
 
 
 describe('Axis', () => {
-  let fhirServiceStub: any = new StubFhirService();
+  let fhirServiceStub: any;
 
   beforeEach(async(() => {
     TestBed

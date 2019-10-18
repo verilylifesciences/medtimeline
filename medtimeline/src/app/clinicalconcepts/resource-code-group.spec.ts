@@ -61,7 +61,7 @@ describe('ResourceCodeGroup', () => {
   it('should correctly determine whether it should be shown if any ResourceCode is marked as default.',
      () => {
        // These ResourceCodes have mixed showByDefault fields.
-       const resourceCodes = ResourceCodeManager.labLoincs;
+       const resourceCodes = ResourceCodeManager.vitalLoincs;
        const resourceCodeGroup = new ResourceCodeGroup(
            null, 'label', resourceCodes, labResult, ChartType.LINE);
        expect(resourceCodeGroup.showByDefault).toBeTruthy();

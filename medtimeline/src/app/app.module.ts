@@ -5,7 +5,7 @@
 
 import 'fhirclient';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -33,6 +33,7 @@ import {CustomizableTimelineDialogComponent} from './cardtypes/customizable-time
 import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from './confirm-save/confirm-save.component';
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
@@ -129,6 +130,7 @@ import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.comp
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },
     {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+    {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
     {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
   ],
   bootstrap: [AppComponent],

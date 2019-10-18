@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatRadioModule, MatToolbarModule} from '@angular/material';
@@ -14,6 +15,7 @@ import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {DisplayGrouping, labResult, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir.service';
@@ -36,17 +38,14 @@ describe('SetupComponent', () => {
             MatToolbarModule, MatCheckboxModule, MatFormFieldModule,
             ReactiveFormsModule, FormsModule, MatInputModule,
             BrowserAnimationsModule, MatIconModule, MatRadioModule,
-            MatExpansionModule, MatGridListModule
+            MatExpansionModule, MatGridListModule, HttpClientModule
           ],
           providers: [
-            {
-              provide: ResourceCodeManager,
-              useValue:
-                  new ResourceCodeManager(new StubFhirService(), undefined)
-            },
             {provide: ActivatedRoute, useValue: {}},
             {provide: Router, useValue: {}},
-            {provide: FhirService, useValue: new StubFhirService()},
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
@@ -64,7 +63,7 @@ describe('SetupComponent', () => {
   });
 
   it('should filter concepts based on input', ((done: DoneFn) => {
-       const fhirStub = new StubFhirService();
+       const fhirStub = TestBed.get(FhirService);
        const displayGroups = new Array<[DisplayGrouping, AxisGroup[]]>();
        const axis1 = new Axis(
            fhirStub, TestBed.get(DomSanitizer),

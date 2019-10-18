@@ -16,6 +16,8 @@ import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-co
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {AnnotatedMicrobioReport} from './fhir-data-classes/annotated-microbio-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
@@ -43,6 +45,13 @@ export class MockFhirService extends FhirService {
   private readonly encounters = new Array<Encounter>();
   private readonly allDataPromise: Promise<void[]>;
   private microbioJson: JSON;
+
+  constructor(
+      private http: HttpClient, resourceCodeManager: ResourceCodeManager,
+      resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeManager, resourceCodeCreator);
+    this.allDataPromise = this.mapAllData();
+  }
 
   private constructResourceMap<K, V>(
       json: any, mapToUpdate: Map<K, V[]>, constructorFn: (any) => V,
@@ -126,11 +135,6 @@ export class MockFhirService extends FhirService {
         }
       });
     }));
-  }
-
-  constructor(private http: HttpClient) {
-    super();
-    this.allDataPromise = this.mapAllData();
   }
 
   /**

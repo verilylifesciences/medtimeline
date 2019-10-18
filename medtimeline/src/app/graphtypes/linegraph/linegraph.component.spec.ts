@@ -3,13 +3,17 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
+import {FhirService} from 'src/app/fhir.service';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
@@ -31,16 +35,19 @@ describe('LineGraphComponent', () => {
       DateTime.utc(1995, 7, 21), DateTime.utc(1995, 7, 22));
 
   // Display bounds for this LOINC are set as [0, 40].
-  const loincCodeGroup = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('718-7')],
-      labResult, ChartType.LINE);
+  let loincCodeGroup;
 
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
           declarations: [LineGraphComponent],
-          imports: [ChartsModule],
-          providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
+          imports: [ChartsModule, HttpClientModule],
+          providers: [
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+          ]
         })
         .compileComponents();
   }));
@@ -49,6 +56,9 @@ describe('LineGraphComponent', () => {
     fixture = TestBed.createComponent(LineGraphComponent);
     component = fixture.componentInstance;
     component.dateRange = testDateRange;
+    loincCodeGroup = new LOINCCodeGroup(
+        TestBed.get(FhirService), 'lbl', [LOINCCode.fromCodeString('718-7')],
+        labResult, ChartType.LINE);
   });
 
   it('should create', () => {
@@ -168,8 +178,8 @@ describe('LineGraphComponent', () => {
        ]);
 
        const loincCodeGroup2 = new LOINCCodeGroup(
-           new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('4090-7')],
-           labResult, ChartType.LINE);
+           TestBed.get(FhirService), 'lbl',
+           [LOINCCode.fromCodeString('4090-7')], labResult, ChartType.LINE);
        component.data = LineGraphData.fromObservationSetList(
            'lbl', [obsSet1], loincCodeGroup2, TestBed.get(DomSanitizer), []);
 

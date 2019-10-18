@@ -4,12 +4,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime, Interval} from 'luxon';
 
 import {DisplayGrouping, labResult, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {FhirService} from '../fhir.service';
 import {StubFhirService} from '../test_utils';
 
@@ -19,20 +21,19 @@ import {ChartType} from './graph/graph.component';
 
 
 describe('AxisGroup', () => {
-  const fhirServiceStub = new StubFhirService();
-  const dateRangeStart = '2018-09-09T00:00:00.00';
-  const dateRangeEnd = '2018-09-18T00:00:00.00';
-  const dateRange = Interval.fromDateTimes(
-      DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
-  const getDataFromFhir = () => {};
-
   const testLoincCode =
       new LOINCCode('axisGroupTest', new DisplayGrouping('label'), 'label');
 
   beforeEach(async(() => {
     TestBed
-        .configureTestingModule(
-            {providers: [{provide: FhirService, useValue: {}}]})
+        .configureTestingModule({
+          imports: [HttpClientModule],
+          providers: [
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+          ]
+        })
         .compileComponents();
   }));
 
@@ -42,9 +43,9 @@ describe('AxisGroup', () => {
        const resourceCodeList = [testLoincCode];
 
        const axis1 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           TestBed.get(FhirService), TestBed.get(DomSanitizer),
            new LOINCCodeGroup(
-               fhirServiceStub, 'lbl', resourceCodeList, labResult,
+               TestBed.get(FhirService), 'lbl', resourceCodeList, labResult,
                ChartType.LINE));
 
        const axis = new AxisGroup([axis1], 'constructor label', vitalSign);
@@ -57,10 +58,10 @@ describe('AxisGroup', () => {
     const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
+        TestBed.get(FhirService), TestBed.get(DomSanitizer),
         new LOINCCodeGroup(
-            fhirServiceStub, 'loincCodeLabel', resourceCodeList, labResult,
-            ChartType.LINE),
+            TestBed.get(FhirService), 'loincCodeLabel', resourceCodeList,
+            labResult, ChartType.LINE),
         'axisLbl');
 
     const axis = new AxisGroup([axis1]);
@@ -72,9 +73,9 @@ describe('AxisGroup', () => {
     const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
+        TestBed.get(FhirService), TestBed.get(DomSanitizer),
         new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
+            TestBed.get(FhirService), 'lbl', resourceCodeList, labResult,
             ChartType.LINE));
 
     const axis = new AxisGroup([axis1], 'label');
@@ -87,16 +88,16 @@ describe('AxisGroup', () => {
     const resourceCodeList = [testLoincCode];
 
     const axis1 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
+        TestBed.get(FhirService), TestBed.get(DomSanitizer),
         new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
+            TestBed.get(FhirService), 'lbl', resourceCodeList, labResult,
             ChartType.LINE),
         'Label A');
 
     const axis2 = new Axis(
-        fhirServiceStub, TestBed.get(DomSanitizer),
+        TestBed.get(FhirService), TestBed.get(DomSanitizer),
         new LOINCCodeGroup(
-            fhirServiceStub, 'lbl', resourceCodeList, labResult,
+            TestBed.get(FhirService), 'lbl', resourceCodeList, labResult,
             ChartType.LINE),
         'Label B');
 
@@ -115,16 +116,16 @@ describe('AxisGroup', () => {
        const resourceCodeList2 = [testLoincCode];
 
        const axis1 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           TestBed.get(FhirService), TestBed.get(DomSanitizer),
            new LOINCCodeGroup(
-               fhirServiceStub, 'lbl', resourceCodeList1, labResult,
+               TestBed.get(FhirService), 'lbl', resourceCodeList1, labResult,
                ChartType.LINE),
            'Label A');
 
        const axis2 = new Axis(
-           fhirServiceStub, TestBed.get(DomSanitizer),
+           TestBed.get(FhirService), TestBed.get(DomSanitizer),
            new LOINCCodeGroup(
-               fhirServiceStub, 'lbl', resourceCodeList2, vitalSign,
+               TestBed.get(FhirService), 'lbl', resourceCodeList2, vitalSign,
                ChartType.LINE),
            'Label A');
 

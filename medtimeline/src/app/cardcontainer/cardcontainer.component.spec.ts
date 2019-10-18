@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatExpansionModule, MatNativeDateModule, MatRadioModule, MatTooltipModule} from '@angular/material';
@@ -33,6 +34,7 @@ import {CardComponent} from '../cardtypes/card/card.component';
 import {CustomizableTimelineComponent} from '../cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from '../cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from '../cardtypes/textboxcard/textboxcard.component';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
@@ -55,7 +57,7 @@ import {TimelineToolbarComponent} from '../timeline-toolbar/timeline-toolbar.com
 import {CardcontainerComponent} from './cardcontainer.component';
 
 const resourceCodeManagerStub =
-    new ResourceCodeManager(new StubFhirService(), TestBed.get(DomSanitizer));
+    new ResourceCodeManager(TestBed.get(DomSanitizer));
 
 describe('CardcontainerComponent', () => {
   let component: CardcontainerComponent;
@@ -95,7 +97,8 @@ describe('CardcontainerComponent', () => {
             MatRadioModule,
             MatTooltipModule,
             ChartsModule,
-            MatExpansionModule
+            MatExpansionModule,
+            HttpClientModule
           ],
           declarations: [
             CardcontainerComponent, TextboxcardComponent,
@@ -108,8 +111,9 @@ describe('CardcontainerComponent', () => {
             DeleteDialogComponent
           ],
           providers: [
-            {provide: FhirService, useValue: new StubFhirService()},
-            {provide: ResourceCodeManager, useValue: resourceCodeManagerStub},
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}}, {
               provide: SetupDataService,

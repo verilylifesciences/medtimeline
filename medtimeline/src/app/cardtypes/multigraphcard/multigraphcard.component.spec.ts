@@ -3,10 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {SimpleChange} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatExpansionModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -16,6 +17,8 @@ import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {FhirService} from 'src/app/fhir.service';
 import {Axis} from 'src/app/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
@@ -35,9 +38,7 @@ import {MultiGraphCardComponent} from './multigraphcard.component';
 describe('MultiGraphCardComponent', () => {
   let component: MultiGraphCardComponent;
   let fixture: ComponentFixture<MultiGraphCardComponent>;
-  const hemoglobin = new LOINCCodeGroup(
-      new StubFhirService(), 'lbl', [LOINCCode.fromCodeString('718-7')],
-      labResult, ChartType.LINE);
+  let hemoglobin;
 
   beforeEach(async(() => {
     TestBed
@@ -45,19 +46,17 @@ describe('MultiGraphCardComponent', () => {
           imports: [
             BrowserAnimationsModule, MatCardModule, MatIconModule,
             MatProgressSpinnerModule, ChartsModule, MatTooltipModule,
-            MatExpansionModule
+            MatExpansionModule, HttpClientModule
           ],
           declarations: [
-            MultiGraphCardComponent,
-            LineGraphComponent,
-            StepGraphComponent,
-            ScatterplotComponent,
-            MicrobioGraphComponent,
-            DiagnosticGraphComponent,
-            CardComponent,
+            MultiGraphCardComponent, LineGraphComponent, StepGraphComponent,
+            ScatterplotComponent, MicrobioGraphComponent,
+            DiagnosticGraphComponent, CardComponent
           ],
           providers: [
-            {provide: FhirService, useValue: new StubFhirService()},
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ],
         })
@@ -70,8 +69,11 @@ describe('MultiGraphCardComponent', () => {
     component = fixture.componentInstance;
     component.dateRange =
         Interval.fromDateTimes(DateTime.utc(), DateTime.utc().plus({days: 2}));
+    hemoglobin = new LOINCCodeGroup(
+        TestBed.get(FhirService), 'lbl', [LOINCCode.fromCodeString('718-7')],
+        labResult, ChartType.LINE);
     component.axisGroup = new AxisGroup([new Axis(
-        new StubFhirService(), TestBed.get(DomSanitizer), hemoglobin,
+        TestBed.get(FhirService), TestBed.get(DomSanitizer), hemoglobin,
         'Hemoglobin')]);
     component.id = 'id';
     fixture.detectChanges();

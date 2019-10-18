@@ -9,7 +9,9 @@ import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
+import {FhirService} from '../fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
 import {IfuDialogComponent} from '../ifu-dialog/ifu-dialog.component';
@@ -27,12 +29,14 @@ export class TimelineToolbarComponent {
   @Output() addTextbox = new EventEmitter<null>();
 
   constructor(
-      resourceCodeManager: ResourceCodeManager, private helpDialog: MatDialog,
-      private ifuDialog: MatDialog,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
-      this.displayGroupings = Array.from(displayGroups.entries());
-    });
+      fhirService: FhirService, resourceCodeManager: ResourceCodeManager,
+      private helpDialog: MatDialog, private ifuDialog: MatDialog,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any,
+      resourceCodeCreator: ResourceCodeCreator) {
+    resourceCodeManager.getDisplayGroupMapping(fhirService, resourceCodeCreator)
+        .then((displayGroups) => {
+          this.displayGroupings = Array.from(displayGroups.entries());
+        });
   }
 
   // Emits an event indicating to CardContainer to save a snapshot of the page.

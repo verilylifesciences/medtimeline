@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
@@ -13,8 +14,10 @@ import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {labResult, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
+import {FhirService} from '../fhir.service';
 import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -32,24 +35,17 @@ describe('DataSelectorMenuComponent', () => {
           declarations:
               [DataSelectorMenuComponent, DataSelectorElementComponent],
           imports: [
-            MatMenuModule,
-            MatTooltipModule,
-            MatIconModule,
-            MatListModule,
-            MatAutocompleteModule,
-            MatFormFieldModule,
-            FormsModule,
-            ReactiveFormsModule,
-            MatInputModule,
-            BrowserAnimationsModule,
+            MatMenuModule, MatTooltipModule, MatIconModule, MatListModule,
+            MatAutocompleteModule, MatFormFieldModule, FormsModule,
+            ReactiveFormsModule, MatInputModule, BrowserAnimationsModule,
+            HttpClientModule
           ],
           providers: [
-            {
-              provide: ResourceCodeManager,
-              useValue:
-                  new ResourceCodeManager(new StubFhirService(), undefined)
-            },
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+
           ]
         })
         .compileComponents();
@@ -66,7 +62,7 @@ describe('DataSelectorMenuComponent', () => {
   });
 
   it('should filter concepts based on input', fakeAsync(() => {
-       const fhirStub = new StubFhirService();
+       const fhirStub = TestBed.get(FhirService);
        const axis1 = new Axis(
            fhirStub, TestBed.get(DomSanitizer),
            new LOINCCodeGroup(

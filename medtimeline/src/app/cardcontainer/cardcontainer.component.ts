@@ -13,6 +13,7 @@ import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
@@ -86,6 +87,7 @@ export class CardcontainerComponent {
   constructor(
       dragulaService: DragulaService,
       private fhirService: FhirService,
+      resourceCodeCreator: ResourceCodeCreator,
       resourceCodeManager: ResourceCodeManager,
       private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
@@ -96,12 +98,14 @@ export class CardcontainerComponent {
     this.setUpCards();
     this.setUpDrag(dragulaService);
     this.originalConcepts =
-        resourceCodeManager.getDisplayGroupMapping().then((mapping) => {
-          /* Load in the concepts to display, flattening them all into a
-           * single-depth array. */
-          return Array.from(mapping.values())
-              .reduce((acc, val) => acc.concat(val), []);
-        });
+        resourceCodeManager
+            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then((mapping) => {
+              /* Load in the concepts to display, flattening them all into a
+               * single-depth array. */
+              return Array.from(mapping.values())
+                  .reduce((acc, val) => acc.concat(val), []);
+            });
   }
 
   private setUpCards() {

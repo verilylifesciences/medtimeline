@@ -12,6 +12,8 @@ import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-co
 import {LOINCCode, LOINCCodeGroup} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from './clinicalconcepts/rx-norm-group';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
@@ -22,6 +24,14 @@ import {Observation} from './fhir-data-classes/observation';
 
 @Injectable()
 export abstract class FhirService {
+  constructor(
+      resourceCodeManager: ResourceCodeManager,
+      resourceCodeCreator: ResourceCodeCreator) {
+    // Before anything else happens in the FHIR class, we need to make sure the
+    // resource codes get loaded in.
+    resourceCodeManager.getDisplayGroupMapping(this, resourceCodeCreator);
+  }
+
   /**
    * Returns whether there are any observations with this code in the given
    * time range.

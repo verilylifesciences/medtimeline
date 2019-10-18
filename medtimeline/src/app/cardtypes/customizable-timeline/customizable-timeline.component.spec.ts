@@ -3,11 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule, MatDialog, MatIconModule, MatTooltipModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {FhirService} from 'src/app/fhir.service';
 import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
@@ -26,16 +29,20 @@ describe('CustomizableTimelineComponent', () => {
   beforeEach(async(() => {
     TestBed
         .configureTestingModule({
-          imports:
-              [MatCardModule, MatIconModule, ChartsModule, MatTooltipModule],
+          imports: [
+            MatCardModule, MatIconModule, ChartsModule, MatTooltipModule,
+            HttpClientModule
+          ],
           declarations: [
             CustomizableTimelineComponent, CustomizableGraphComponent,
             CardComponent
           ],
           providers: [
             {provide: MatDialog, useValue: null},
-            {provide: FhirService, useValue: new StubFhirService()},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+            {provide: FhirService, useClass: StubFhirService},
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
           ]
         })
         .compileComponents();

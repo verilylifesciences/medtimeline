@@ -14,7 +14,8 @@ import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {documentReferenceLoinc} from './conceptmappings/resource-code-manager';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
+import {documentReferenceLoinc, ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {DebuggerService} from './debugger.service';
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
@@ -51,8 +52,11 @@ export class FhirHttpService extends FhirService {
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,
-      private sanitizer: DomSanitizer, private http: HttpClient) {
-    super();
+      private sanitizer: DomSanitizer, private http: HttpClient,
+      resourceCodeManager: ResourceCodeManager,
+      resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeManager, resourceCodeCreator);
+
     // Create a promise which resolves to the smart API when the smart API is
     // ready. This allows clients of this service to call service methods
     // which depend on the API, regardless of whether the API is ready or not.
@@ -75,13 +79,16 @@ export class FhirHttpService extends FhirService {
   getObservationsWithCode(code: LOINCCode, dateRange: Interval):
       Promise<Observation[]> {
     let cacheForCode = this.observationCache.get(code);
+
     if (!cacheForCode) {
       cacheForCode = new ObservationCache(this.smartApiPromise, code);
       this.observationCache.set(code, cacheForCode);
     }
     return cacheForCode.getResource(dateRange).then(
-        (results: Observation[]) => results.filter(
-            result => result.status !== ObservationStatus.EnteredInError));
+        (results: Observation[]) => {
+          return results.filter(
+              result => result.status !== ObservationStatus.EnteredInError);
+        });
   }
 
   /**
@@ -279,7 +286,7 @@ export class FhirHttpService extends FhirService {
   getMicrobioReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<MicrobioReport[]> {
     if (!FhirConfig.microbiology) {
-      console.warn(
+      console.debug(
           'No microbiology parameters available in the configuration.');
       return Promise.resolve([]);
     }

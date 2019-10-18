@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {DateTime, Interval} from 'luxon';
+import {Interval} from 'luxon';
 
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {bloodPressureLoincs} from '../conceptmappings/resource-code-manager-exports';

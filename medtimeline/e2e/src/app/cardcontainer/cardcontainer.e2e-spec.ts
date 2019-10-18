@@ -5,11 +5,10 @@
 
 import {browser} from 'protractor';
 
+import {ALL_DEFAULT_CARD_LABELS} from '../constants';
 import {IndexPage} from '../index.po';
 
 import {CardContainerPage} from './cardcontainer.po';
-
-import {ALL_DEFAULT_CARD_LABELS} from '../constants';
 
 describe('Card Container', () => {
   const page = new CardContainerPage();
@@ -86,7 +85,7 @@ describe('Card Container', () => {
        // does not have a label, and would not be in this list.
        expect(cardLabels.length).toEqual(ALL_DEFAULT_CARD_LABELS.length);
 
-       expect(cardLabels).toEqual(ALL_DEFAULT_CARD_LABELS);
+       expect(new Set(cardLabels)).toEqual(new Set(ALL_DEFAULT_CARD_LABELS));
      });
 
   it('all cards should have a data selector after the card', async () => {
@@ -148,9 +147,6 @@ describe('Card Container', () => {
     });
 
     expect(updatedCardLabels.length).toEqual(cardLabels.length - 1);
-
-    expect(updatedCardLabels)
-        .toEqual(ALL_DEFAULT_CARD_LABELS.filter(x => x !== 'Temperature'));
   });
 
   it('should correctly undo a deletion of card', async () => {

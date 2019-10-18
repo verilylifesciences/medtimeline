@@ -14,6 +14,7 @@ import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
@@ -112,21 +113,26 @@ export class SetupComponent implements OnDestroy {
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
       private router: Router, private setupDataService: SetupDataService,
       private fhirService: FhirService,
+      resourceCodeCreator: ResourceCodeCreator,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     this.allConcepts =
-        resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
-          /* Load in the concepts to display, flattening them all into a
-           * single-depth array. */
-          return Array.from(displayGroups.values())
-              .reduce((acc, val) => acc.concat(val), []);
-        });
+        resourceCodeManager
+            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then((displayGroups) => {
+              /* Load in the concepts to display, flattening them
+               * all into a single-depth array. */
+              return Array.from(displayGroups.values())
+                  .reduce((acc, val) => acc.concat(val), []);
+            });
     this.displayGroupings =
-        resourceCodeManager.getDisplayGroupMapping().then((displayGroups) => {
-          return Array.from(displayGroups.entries());
-        });
+        resourceCodeManager
+            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then((displayGroups) => {
+              return Array.from(displayGroups.entries());
+            });
     this.staticTimeOptions = [
       [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
-      [this.lastMonth, uiConstants.LAST_MONTH as string],
+      [this.lastMonth, uiConstants.LAST_MONTH],
       [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS],
       [this.lastThreeDays, uiConstants.LAST_THREE_DAYS],
       [this.lastOneDay, uiConstants.LAST_ONE_DAY]

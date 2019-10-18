@@ -71,9 +71,6 @@ export class AxisGroup {
       }
       this.displayGroup = axes[0].resourceGroup.displayGrouping;
     }
-
-    // Go ahead and make the calls to get whether the data is available.
-    Promise.resolve(this.dataAvailableInAppTimeScope());
   }
 
   /**

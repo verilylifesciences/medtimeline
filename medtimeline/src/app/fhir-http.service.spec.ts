@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
@@ -12,9 +12,12 @@ import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './clinicalconcept
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {FhirHttpService} from './fhir-http.service';
+import {FhirService} from './fhir.service';
 import {ChartType} from './graphtypes/graph/graph.component';
-import {makeSampleObservationJson} from './test_utils';
+import {makeSampleObservationJson, StubFhirService} from './test_utils';
 
 describe('FhirHttpService', () => {
   let service: FhirHttpService;
@@ -24,7 +27,7 @@ describe('FhirHttpService', () => {
     patient: {api: {search: () => {}, nextPage: () => {}}},
     tokenResponse: {access_token: 'access_token'}
   };
-  const code = LOINCCode.fromCodeString('718-7');
+  let code;
   const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
       service, 'radiology', [DiagnosticReportCode.fromCodeString('RADRPT')],
       new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
@@ -78,8 +81,22 @@ describe('FhirHttpService', () => {
     }
   };
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        {provide: FhirService, useClass: StubFhirService}
+      ]
+    });
+    (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+        .loadConfigurationFromFiles.then(() => {
+          code = LOINCCode.fromCodeString('718-7');
+        });
+  }));
+
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [HttpClientModule]});
     const smartOnFhirClient = {
       oauth2: {
         ready: (smart, err) => {
@@ -90,7 +107,8 @@ describe('FhirHttpService', () => {
     };
     service = new FhirHttpService(
         null, smartOnFhirClient, TestBed.get(DomSanitizer),
-        TestBed.get(HttpClient));
+        TestBed.get(HttpClient), TestBed.get(ResourceCodeManager),
+        TestBed.get(ResourceCodeCreator));
   });
 
 
@@ -493,8 +511,8 @@ describe('FhirHttpService', () => {
        clientReadyCallback(smartApi);
        service.getAnnotatedDiagnosticReports(diagnosticCodeGroup, dateRange)
            .then(annotatedReports => {
-             // One of the input has 'entered-in-error' status and an annotated
-             // diagnostic report should not be created.
+             // One of the input has 'entered-in-error' status and an
+             // annotated diagnostic report should not be created.
              expect(annotatedReports.length).toBe(1);
              expect(diagnosticReadSpy.calls.count()).toBe(1);
              expect(annotatedReports[0].report.id).toEqual('id123');
@@ -504,8 +522,8 @@ describe('FhirHttpService', () => {
 
   it('getAttachment should correctly catch error if there is a faulty url',
      (done: DoneFn) => {
-       // We are calling the original getAttachment function to check the error
-       // message in the html calls
+       // We are calling the original getAttachment function to check the
+       // error message in the html calls
        const serviceSpy = spyOn(service, 'getAttachment').and.callThrough();
        const diagnosticReadSpy =
            spyOn(smartApi.patient.api, 'search')
@@ -520,7 +538,7 @@ describe('FhirHttpService', () => {
              for (const annotatedR of annotatedReports) {
                expect(annotatedR.attachmentHtml)
                    .toEqual(
-                       'Http failure response for http://localhost:9876/url: 404 Not Found');
+                       'Http failure response for http://localhost:9877/url: 404 Not Found');
              }
              expect(serviceSpy).toHaveBeenCalled();
              done();

@@ -3,10 +3,15 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
 
@@ -21,10 +26,23 @@ import {ObservationSet} from './observation-set';
 // license that can be found in the LICENSE file.
 
 const REQUEST_ID = '1234';
+let obs: Observation;
 
 describe('AnnotatedObservation', () => {
-  const obs =
-      makeSampleObservation(10, DateTime.fromISO('1992-11-06T00:00:00.00'));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator}
+      ]
+    });
+  }));
+
+  beforeEach(() => {
+    const rcc = new ResourceCodeCreator(TestBed.get(HttpClient));
+    obs = makeSampleObservation(10, DateTime.fromISO('1992-11-06T00:00:00.00'));
+  });
 
   it('withBlankAnnotations should have no annotations', () => {
     const annotated = new AnnotatedObservation(obs);
