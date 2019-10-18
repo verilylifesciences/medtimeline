@@ -13,7 +13,7 @@ import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
+import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {ConfirmSaveComponent} from '../confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir.service';

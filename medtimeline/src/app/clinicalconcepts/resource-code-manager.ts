@@ -8,13 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {environment} from '../../environments/environment';
-import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {RXNORM_CODES, RxNormCode} from '../clinicalconcepts/rx-norm';
-import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
@@ -22,7 +16,13 @@ import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
+import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './bch-microbio-code';
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
+import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from './display-grouping';
+import {LOINCCode} from './loinc-code';
 import {bloodPressureLoincs} from './resource-code-manager-exports';
+import {RXNORM_CODES, RxNormCode} from './rx-norm';
+import {RxNormCodeGroup} from './rx-norm-group';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the

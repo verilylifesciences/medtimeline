@@ -5,7 +5,6 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
@@ -15,6 +14,7 @@ import {StubFhirService} from '../test_utils';
 import {labResult} from './display-grouping';
 import {LOINCCode} from './loinc-code';
 import {AbstractResourceCodeGroup, ResourceCode, ResourceCodeGroup} from './resource-code-group';
+import {ResourceCodeManager} from './resource-code-manager';
 
 const interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-04T11:00:00.000Z').toUTC(),

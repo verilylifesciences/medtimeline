@@ -14,7 +14,7 @@ import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
+import {ResourceCodeManager} from '../clinicalconcepts/resource-code-manager';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
