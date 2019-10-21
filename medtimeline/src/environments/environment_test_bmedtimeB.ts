@@ -19,7 +19,6 @@ export const environment = {
   labConceptsFile: 'lab_results.json',
   labGroupFile: 'lab_groups.json',
   useDebugger: false,
-  showRadiology: true,
 };
 
 /*

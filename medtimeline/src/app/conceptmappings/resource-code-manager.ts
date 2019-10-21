@@ -327,16 +327,12 @@ export class ResourceCodeManager {
                   codeGroup.label)),
           'Complete Blood Count White Blood Cell'));
 
-      // Add flag to environment to toggle radiology feature
-      if (environment.showRadiology) {
-        codeGroups.push(new AxisGroup([new Axis(
-            this.fhirService, this.sanitizer,
-            new DiagnosticReportCodeGroup(
-                this.fhirService, 'Radiology',
-                ResourceCodeManager.radiologyGroup, radiology,
-                ChartType.DIAGNOSTIC),
-            'Radiology')]));
-      }
+      codeGroups.push(new AxisGroup([new Axis(
+          this.fhirService, this.sanitizer,
+          new DiagnosticReportCodeGroup(
+              this.fhirService, 'Radiology', ResourceCodeManager.radiologyGroup,
+              radiology, ChartType.DIAGNOSTIC),
+          'Radiology')]));
 
       const medsSummaryGroup = RXNORM_CODES;
       codeGroups.push(new AxisGroup([new Axis(
