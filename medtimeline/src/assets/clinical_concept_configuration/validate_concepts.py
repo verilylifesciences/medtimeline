@@ -1,5 +1,10 @@
 # Lint as: python3
 """
+Copyright 2019 Verily Life Sciences Inc.
+
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+
 Validates whether the clinical concepts defined in the listed JSON files
 meet the schema for clinical concepts, and whether the hierarchies defined
 in them are sane.

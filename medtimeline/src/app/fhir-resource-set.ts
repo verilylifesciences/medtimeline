@@ -6,7 +6,7 @@
 
 import {DateTime} from 'luxon';
 
-import {RXNORM_CODES, RxNormCode} from './clinicalconcepts/rx-norm';
+import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResultError} from './result-error';
 
 // Copyright 2018 Verily Life Sciences Inc.
@@ -63,17 +63,9 @@ export class ResultClass {
                          RxNormCode.fromCodeString(coding.code))
                  // Filter out any codes that are not RxNorm codes.
                  .filter((code) => !!code))[0];
-      } else if (json.medicationCodeableConcept.text) {
-        // MedicationAdministrations do not come out of the BCH system with a
-        // RxNorm code on at this point, so if we don't get a RxNorm code,
-        // as a stopgap we reverse lookup based on the string name.
-        const rxNormString = json.medicationCodeableConcept.text;
-        const codesWithName = RXNORM_CODES.filter(
-            x => x.label.toLowerCase() === rxNormString.toLowerCase());
-        rxNormCode = codesWithName.length === 1 ? codesWithName[0] : undefined;
       }
+      return rxNormCode;
     }
-    return rxNormCode;
   }
 }
 

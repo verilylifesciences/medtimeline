@@ -313,10 +313,5 @@
         "groupName": "Voriconazole",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Vancomycin & Gentamicin Summary",
-        "graphType": "STEP",
-        "displayGroupOnSameAxis": true
     }
 ]

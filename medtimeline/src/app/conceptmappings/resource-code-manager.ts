@@ -9,11 +9,10 @@ import {Interval} from 'luxon';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {RXNORM_CODES, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
@@ -156,59 +155,61 @@ export class ResourceCodeManager {
       mapping: Map<DisplayGrouping, AxisGroup[]>,
       fhirService: FhirService): Map<DisplayGrouping, AxisGroup[]> {
     const codeGroups = new Array<AxisGroup>();
-    const medsSummaryGroup = RXNORM_CODES;
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new RxNormCodeGroup(
-            fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup,
-            med, ChartType.STEP),
-        'Vancomycin & Gentamicin Summary')]));
 
-    // Drug monitoring should be a scatterplot, and the related concepts
-    // should be displayed on the same axes.
-    const vancRxNorm = new RxNormCodeGroup(
-        fhirService, 'Administrations', [RxNormCode.fromCodeString('11124')],
-        med, ChartType.SCATTER);
+    // TODO(laurendukes): Re-implement summary cards & monitoring for meds.
+    // const medsSummaryGroup = RXNORM_CODES;
+    // codeGroups.push(new AxisGroup([new Axis(
+    //     fhirService, this.sanitizer,
+    //     new RxNormCodeGroup(
+    //         fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup,
+    //         med, ChartType.STEP),
+    //     'Vancomycin & Gentamicin Summary')]));
 
-    // Drug monitoring should be a scatterplot, and the related concepts
-    // should be displayed on the same axes.
-    const vancMonitoring = [
-      vancRxNorm,
-      new LOINCCodeGroup(
-          fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring, med,
-          ChartType.SCATTER,
-          (observation: Observation, dateRange: Interval):
-              Promise<AnnotatedObservation> => {
-                return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
-                  // We know that we're only pushing in one RxNorm
-                  // so it's safe to grab the first (and only) one in
-                  // the list.
-                  return AnnotatedObservation.forMedicationMonitoring(
-                      observation, rxNorms[0].orders);
-                });
-              })
-    ];
+    // // Drug monitoring should be a scatterplot, and the related concepts
+    // // should be displayed on the same axes.
+    // const vancRxNorm = new RxNormCodeGroup(
+    //     fhirService, 'Administrations', [RxNormCode.fromCodeString('11124')],
+    //     med, ChartType.SCATTER);
 
-    codeGroups.push(new AxisGroup(
-        vancMonitoring.map(
-            codeGroup => new Axis(
-                fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Vancomycin'));
+    // // Drug monitoring should be a scatterplot, and the related concepts
+    // // should be displayed on the same axes.
+    // const vancMonitoring = [
+    //   vancRxNorm,
+    //   new LOINCCodeGroup(
+    //       fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring, med,
+    //       ChartType.SCATTER,
+    //       (observation: Observation, dateRange: Interval):
+    //           Promise<AnnotatedObservation> => {
+    //             return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
+    //               // We know that we're only pushing in one RxNorm
+    //               // so it's safe to grab the first (and only) one in
+    //               // the list.
+    //               return AnnotatedObservation.forMedicationMonitoring(
+    //                   observation, rxNorms[0].orders);
+    //             });
+    //           })
+    // ];
 
-    const gentMonitoring = [
-      new RxNormCodeGroup(
-          fhirService, 'Administrations',
-          [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
-      new LOINCCodeGroup(
-          fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring, med,
-          ChartType.SCATTER)
-    ];
+    // codeGroups.push(new AxisGroup(
+    //     vancMonitoring.map(
+    //         codeGroup => new Axis(
+    //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
+    //     'Vancomycin'));
 
-    codeGroups.push(new AxisGroup(
-        gentMonitoring.map(
-            codeGroup => new Axis(
-                fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-        'Gentamicin'));
+    // const gentMonitoring = [
+    //   new RxNormCodeGroup(
+    //       fhirService, 'Administrations',
+    //       [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
+    //   new LOINCCodeGroup(
+    //       fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring, med,
+    //       ChartType.SCATTER)
+    // ];
+
+    // codeGroups.push(new AxisGroup(
+    //     gentMonitoring.map(
+    //         codeGroup => new Axis(
+    //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
+    //     'Gentamicin'));
 
     codeGroups.push(new AxisGroup([new Axis(
         fhirService, this.sanitizer,
@@ -301,7 +302,7 @@ export class ResourceCodeManager {
         group = new LOINCCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
       }
-      axes.push(new Axis(fhirService, this.sanitizer, group));
+      axes.push(new Axis(fhirService, this.sanitizer, group, group.label));
     });
     return new AxisGroup(axes, groupName);
   }

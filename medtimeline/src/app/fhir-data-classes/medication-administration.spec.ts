@@ -3,11 +3,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {} from 'jasmine';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
+
 import {DateTime} from 'luxon';
 
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {makeMedicationAdministration} from '../test_utils';
 
 import {Dosage} from './dosage';
@@ -21,6 +24,17 @@ const medicationCoding = {
 const REQUEST_ID = '1234';
 
 describe('MedicationAdministration', () => {
+  describe('RxNormGroup', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientModule],
+      });
+
+      const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+      Promise.all(rcm.loadConfigurationFromFiles.values());
+    }));
+  });
+
   it('should get rxNorm code from json', () => {
     const medicationAdministration = new MedicationAdministration(
         {
@@ -33,14 +47,6 @@ describe('MedicationAdministration', () => {
           }
         },
         REQUEST_ID);
-    expect(medicationAdministration.rxNormCode).toBeDefined();
-    expect(medicationAdministration.rxNormCode as ResourceCode)
-        .toBe(RxNormCode.fromCodeString('11124'));
-  });
-
-  it('if RxNorm code not provided, should lookup using string', () => {
-    const medicationAdministration = new MedicationAdministration(
-        {medicationCodeableConcept: {text: 'vancomycin'}}, REQUEST_ID);
     expect(medicationAdministration.rxNormCode).toBeDefined();
     expect(medicationAdministration.rxNormCode as ResourceCode)
         .toBe(RxNormCode.fromCodeString('11124'));
@@ -194,6 +200,13 @@ describe('MedicationAdministration', () => {
 });
 
 describe('MedicationAdministrationSet', () => {
+  describe('RxNormGroup', () => {
+    beforeEach(async(() => {
+      const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+      Promise.all(rcm.loadConfigurationFromFiles.values());
+    }));
+  });
+
   it('should throw error with mismatched units', () => {
     const medicationAdministrations = [
       new MedicationAdministration(
@@ -229,10 +242,11 @@ describe('MedicationAdministrationSet', () => {
           REQUEST_ID),
       new MedicationAdministration(
           {
-            // artificially matching label to test RxNorm mismatch in isolation
+            // artificially matching label to test RxNorm mismatch in
+            // isolation
             medicationReference: {display: 'Vancomycin'},
             medicationCodeableConcept:
-                {coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}]},
+                {coding: [{system: RxNormCode.CODING_STRING, code: '310466'}]},
             dosage: {quantity: {unit: 'unit'}}
           },
           REQUEST_ID)
@@ -287,9 +301,11 @@ describe('MedicationAdministrationSet', () => {
   it('should pass through units and rxNorm', () => {
     const medicationAdministrations = [new MedicationAdministration(
         {
-          medicationReference: {display: 'Gentamicin'},
+          medicationReference: {
+            display: 'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
+          },
           medicationCodeableConcept:
-              {coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}]},
+              {coding: [{system: RxNormCode.CODING_STRING, code: '310466'}]},
           dosage: {quantity: {unit: 'unit'}}
         },
         REQUEST_ID)];
@@ -300,6 +316,6 @@ describe('MedicationAdministrationSet', () => {
             x => new AnnotatedAdministration(x)));
 
     expect(obsSet.unit).toEqual('unit');
-    expect(obsSet.rxNormCode.codeString).toEqual('1596450');
+    expect(obsSet.rxNormCode.codeString).toEqual('310466');
   });
 });

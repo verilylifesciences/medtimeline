@@ -263,8 +263,9 @@ describe('FhirHttpService', () => {
            entry: [{
              resource: {
                medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
+                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
+                 text:
+                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
                }
              }
            }]
@@ -295,8 +296,9 @@ describe('FhirHttpService', () => {
            entry: [{
              resource: {
                medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
+                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
+                 text:
+                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
                }
              }
            }]
@@ -342,8 +344,9 @@ describe('FhirHttpService', () => {
            entry: [{
              resource: {
                medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
+                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
+                 text:
+                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
                }
              }
            }]
@@ -356,8 +359,9 @@ describe('FhirHttpService', () => {
            entry: [{
              resource: {
                medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '1596450'}],
-                 text: 'gentamicin'
+                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
+                 text:
+                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
                }
              }
            }]

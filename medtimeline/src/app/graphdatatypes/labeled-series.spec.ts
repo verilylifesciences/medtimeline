@@ -7,13 +7,14 @@
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
 
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
-import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 
 import {Observation} from './../fhir-data-classes/observation';
@@ -27,32 +28,43 @@ import {LabeledSeries} from './labeled-series';
 describe('LabeledSeries', () => {
   const firstAdministration = DateTime.fromISO('2018-09-12T11:00:00.000Z');
   const lastAdministration = DateTime.fromISO('2018-09-14T11:00:00.000Z');
-  const medicationAdministrations = [
-    makeMedicationAdministration(firstAdministration.toISO(), 525),
-    makeMedicationAdministration(lastAdministration.toISO(), 750)
-  ];
+  let medicationAdministrations;
   const beginningOfEncounter = DateTime.utc(2018, 9, 10);
   const endOfEncounter = DateTime.utc(2018, 9, 15);
   const encounter = makeEncounter(beginningOfEncounter, endOfEncounter);
-  const fhirServiceStub: any = {
-    getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
-      return Promise.resolve(medicationAdministrations);
-    }
-  };
-
-  beforeEach(async(() => {
-    TestBed
-        .configureTestingModule(
-            {providers: [{provide: FhirService, useValue: fhirServiceStub}]})
-        .compileComponents();
-  }));
-
+  let annotatedOrder;
   const dateRange = Interval.fromDateTimes(
       DateTime.fromISO('2018-09-11T00:00:00.00'),
       DateTime.fromISO('2018-09-18T00:00:00.00'));
+  let fhirServiceStub;
 
-  const annotatedOrder = new AnnotatedMedicationOrder(
-      makeMedicationOrder(), medicationAdministrations);
+
+
+  beforeEach(async(() => {
+    TestBed
+        .configureTestingModule({
+          imports: [HttpClientModule],
+          providers: [{provide: FhirService, useValue: fhirServiceStub}]
+        })
+        .compileComponents();
+
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+
+    annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), medicationAdministrations);
+
+    medicationAdministrations = [
+      makeMedicationAdministration(firstAdministration.toISO(), 525),
+      makeMedicationAdministration(lastAdministration.toISO(), 750)
+    ];
+
+    fhirServiceStub = {
+      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
+        return Promise.resolve(medicationAdministrations);
+      }
+    };
+  }));
 
   it('fromObservationSet should pass through coordinates', () => {
     const obsSet = new ObservationSet([

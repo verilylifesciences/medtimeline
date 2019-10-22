@@ -7,14 +7,13 @@
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
 
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
-import {of} from 'rxjs';
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
-import {FhirService} from '../fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 
 import {StepGraphData} from './stepgraphdata';
@@ -26,10 +25,21 @@ describe('StepGraphData', () => {
       DateTime.fromISO(dateRangeStart), DateTime.fromISO(dateRangeEnd));
   const admin1Time = '2018-09-10T11:00:00.000Z';
   const admin2Time = '2018-09-12T11:00:00.000Z';
-  const medicationAdministrations = [
-    makeMedicationAdministration(admin1Time),
-    makeMedicationAdministration(admin2Time)
-  ];
+  let medicationAdministrations;
+
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({imports: [HttpClientModule]})
+        .compileComponents();
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+
+    medicationAdministrations = [
+      makeMedicationAdministration(admin1Time),
+      makeMedicationAdministration(admin2Time)
+    ];
+  }));
+
 
   it('StepGraphData.fromMedicationOrderSetList should correctly calculate' +
          ' the data as the end point series',

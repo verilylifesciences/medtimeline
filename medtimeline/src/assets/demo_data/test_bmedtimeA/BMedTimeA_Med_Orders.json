@@ -38,7 +38,13 @@
         },
         "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "vancomycin",
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
         },
         "dosageInstruction": [
           {
@@ -119,7 +125,13 @@
         },
         "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "vancomycin",
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
         },
         "dosageInstruction": [
           {
@@ -198,7 +210,13 @@
         },
         "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "vancomycin",
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
         },
         "dosageInstruction": [
           {

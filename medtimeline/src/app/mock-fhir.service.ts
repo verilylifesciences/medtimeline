@@ -176,16 +176,20 @@ export class MockFhirService extends FhirService {
   getMedicationAdministrationsWithCodes(
       codes: RxNormCode[],
       dateRange: Interval): Promise<MedicationAdministration[]> {
-    return this.allDataPromise.then(x => {
-      const allMedAdmins = new Array<MedicationAdministration>();
-      this.medicationAdministrationMapByCode.forEach((medAdmins, code) => {
-        if (codes.includes(code)) {
-          allMedAdmins.push(...medAdmins.filter(
-              medAdmin => dateRange.contains(medAdmin.timestamp)));
-        }
-      });
-      return Promise.resolve(allMedAdmins);
-    });
+    return this.allDataPromise.then(
+        x => {
+          const allMedAdmins = new Array<MedicationAdministration>();
+          this.medicationAdministrationMapByCode.forEach((medAdmins, code) => {
+            if (codes.includes(code)) {
+              allMedAdmins.push(...medAdmins.filter(
+                  medAdmin => dateRange.contains(medAdmin.timestamp)));
+            }
+          });
+          return Promise.resolve(allMedAdmins);
+        },
+        rejection => {
+          throw rejection;
+        });
   }
 
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):

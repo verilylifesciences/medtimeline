@@ -7,10 +7,12 @@
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
 
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-classes/medication-order';
@@ -27,20 +29,25 @@ describe('StepGraphComponent', () => {
       DateTime.fromISO('2018-09-11T00:00:00.00'),
       DateTime.fromISO('2018-09-18T00:00:00.00'));
 
-  const medicationAdministrations = [
-    makeMedicationAdministration('2018-09-10T11:00:00.000Z'),
-    makeMedicationAdministration('2018-09-12T11:00:00.000Z')
-  ];
+  let medicationAdministrations;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed
         .configureTestingModule({
           declarations: [StepGraphComponent],
-          imports: [ChartsModule],
+          imports: [ChartsModule, HttpClientModule],
           providers: [{provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}]
         })
         .compileComponents();
-  });
+
+
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+    medicationAdministrations = [
+      makeMedicationAdministration('2018-09-10T11:00:00.000Z'),
+      makeMedicationAdministration('2018-09-12T11:00:00.000Z')
+    ];
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StepGraphComponent);

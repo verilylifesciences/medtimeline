@@ -1,3 +1,7 @@
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
@@ -72,7 +76,8 @@ export class ResourceCodeCreator {
     [
       radiology,
       [environment.radiologyGroupFile, environment.radiologyConceptsFile]
-    ]
+    ],
+    [med, [environment.medicationGroupFile, environment.medicationConceptsFile]]
   ]);
 
   /**

@@ -6,13 +6,13 @@
 // Disable this check because it's for IE 11 compatibility and we're not worried
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
-import {async} from '@angular/core/testing';
-import {Interval} from 'luxon';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
-import {of} from 'rxjs';
 
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
 
 import {MedicationAdministration} from './medication-administration';
@@ -31,27 +31,14 @@ const vancMedConcept = {
 };
 
 describe('MedicationOrder', () => {
-  let fhirServiceStub: any;
-  const dateRange = Interval.fromDateTimes(
-      DateTime.fromISO('2018-09-03T00:00:00.00'),
-      DateTime.fromISO('2018-09-30T00:00:00.00'));
-
-  const earliestAdministration =
-      makeMedicationAdministration('2012-08-04T11:00:00.000Z');
-  const middleAdministration =
-      makeMedicationAdministration('2012-08-09T11:00:00.000Z');
-  const latestAdministration =
-      makeMedicationAdministration('2012-08-18T11:00:00.000Z');
-  const medicationAdministrations =
-      [latestAdministration, earliestAdministration, middleAdministration];
-
   beforeEach(async(() => {
-    fhirServiceStub = {
-      getMedicationAdministrationsWithOrder(id: string, code: RxNormCode) {
-        return of(medicationAdministrations).toPromise();
-      }
-    };
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+    });
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
   }));
+
   it('should get rxNorm code from json', () => {
     const medicationOrder = new MedicationOrder(
         {
@@ -82,14 +69,6 @@ describe('MedicationOrder', () => {
         REQUEST_ID);
     expect(medicationOrder.label).toBeDefined();
     expect(medicationOrder.label).toEqual('vancomycin');
-  });
-
-  it('should get rxnorm code from label if it\'s not encoded', () => {
-    const medicationOrder = new MedicationOrder(
-        {medicationCodeableConcept: {text: 'Vancomycin'}}, REQUEST_ID);
-    expect(medicationOrder.rxNormCode).toBeDefined();
-    expect(medicationOrder.rxNormCode as ResourceCode)
-        .toBe(RxNormCode.fromCodeString('11124'));
   });
 
   it('should get dosage instruction from json', () => {
@@ -157,18 +136,36 @@ describe('MedicationOrder', () => {
 });
 
 describe('AnnotatedMedicationOrder', () => {
-  const earliestAdministration =
-      makeMedicationAdministration('2012-08-04T11:00:00.000Z');
-  const middleAdministration =
-      makeMedicationAdministration('2012-08-09T11:00:00.000Z');
-  const latestAdministration =
-      makeMedicationAdministration('2012-08-18T11:00:00.000Z');
-  const medicationAdministrations =
-      [latestAdministration, earliestAdministration, middleAdministration];
+  let earliestAdministration;
+  let middleAdministration;
+  let latestAdministration;
+  let medicationAdministrations;
 
-  const medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
-  const annotatedMedicationOrder =
-      new AnnotatedMedicationOrder(medicationOrder, medicationAdministrations);
+  let medicationOrder;
+  let annotatedMedicationOrder;
+
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({imports: [HttpClientModule]})
+        .compileComponents();
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+
+
+    earliestAdministration =
+        makeMedicationAdministration('2012-08-04T11:00:00.000Z');
+    middleAdministration =
+        makeMedicationAdministration('2012-08-09T11:00:00.000Z');
+    latestAdministration =
+        makeMedicationAdministration('2012-08-18T11:00:00.000Z');
+    medicationAdministrations =
+        [latestAdministration, earliestAdministration, middleAdministration];
+
+    medicationOrder = new MedicationOrder(vancMedConcept, REQUEST_ID);
+    annotatedMedicationOrder = new AnnotatedMedicationOrder(
+        medicationOrder, medicationAdministrations);
+  }));
+
 
   it('should get the first and last MedicationAdministration from list of MedicationAdministrations',
      () => {
@@ -272,9 +269,9 @@ describe('MedicationOrderSet', () => {
           medicationCodeableConcept: {
             coding: [
               {system: 'not RxNorm', code: '2744-1'},
-              {system: RxNormCode.CODING_STRING, code: '1596450'},
+              {system: RxNormCode.CODING_STRING, code: '310466'},
             ],
-            text: 'Gentamicin'
+            text: 'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
           }
         },
         REQUEST_ID)];

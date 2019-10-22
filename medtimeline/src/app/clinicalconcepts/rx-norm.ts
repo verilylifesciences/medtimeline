@@ -32,9 +32,3 @@ export class RxNormCode extends ResourceCode {
     return fhirService.medicationsPresentWithCode(this, APP_TIMESPAN);
   }
 }
-
-export const RXNORM_CODES = [
-  // Parenteral antibiotics
-  new RxNormCode('11124', ANTIBIOTIC, 'Vancomycin', true),
-  new RxNormCode('1596450', ANTIBIOTIC, 'Gentamicin')
-];

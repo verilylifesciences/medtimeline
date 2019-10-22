@@ -24,83 +24,12 @@ const interval = Interval.fromDateTimes(
 
 const REQUEST_ID = '1234';
 
-const orderAAdmins = [
-  new MedicationAdministration(
-      {
-        effectiveTimeDateTime: '2012-08-04T11:00:00.000Z',
-        medicationReference: {display: 'vancomycin'},
-        dosage: {
-          quantity: {value: 50, unit: 'mg'},
-          route: {text: 'oral'},
-          text: '50 mg tablet daily'
-        },
-        medicationCodeableConcept: {
-          coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-          text: 'vancomycin'
-        },
-        prescription: {reference: 'OrderA'}
-      },
-      REQUEST_ID),
-  new MedicationAdministration(
-      {
-        effectiveTimeDateTime: '2012-08-05T11:00:00.000Z',
-        medicationReference: {display: 'vancomycin'},
-        dosage: {
-          quantity: {value: 50, unit: 'mg'},
-          route: {text: 'oral'},
-          text: '50 mg tablet daily'
-        },
-        medicationCodeableConcept: {
-          coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-          text: 'vancomycin'
-        },
-        prescription: {reference: 'OrderA'}
-      },
-      REQUEST_ID),
-];
+let orderAAdmins;
+let orderBAdmins;
+let medicationOrderA;
+let medicationOrderB;
 
-const orderBAdmins = [new MedicationAdministration(
-    {
-      effectiveTimeDateTime: '2012-08-06T11:00:00.000Z',
-      medicationReference: {display: 'vancomycin'},
-      dosage: {
-        quantity: {value: 10, unit: 'mg'},
-        route: {text: 'oral'},
-        text: '10 mg tablet daily'
-      },
-      medicationCodeableConcept: {
-        coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-        text: 'vancomycin'
-      },
-      prescription: {reference: 'OrderB'}
-    },
-    REQUEST_ID)];
-
-const medicationOrderA = new MedicationOrder(
-    {
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ],
-        text: 'Vancomycin'
-      },
-      id: 'OrderA',
-      status: 'completed'
-    },
-    REQUEST_ID);
-
-const medicationOrderB = new MedicationOrder(
-    {
-      medicationCodeableConcept: {
-        coding: [
-          {system: RxNormCode.CODING_STRING, code: '11124'},
-        ],
-        text: 'Vancomycin'
-      },
-      id: 'OrderB',
-      status: 'active'
-    },
-    REQUEST_ID);
+let rxStubFhirService;
 
 class RxStubFhirService extends StubFhirService {
   getMedicationAdministrationsWithCodes(
@@ -144,15 +73,99 @@ describe('RxNormGroup', () => {
           ]
         })
         .compileComponents();
+
+
+
+    rxStubFhirService = new RxStubFhirService(
+        TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator));
+
+
+    // We wait until the clinical concepts are resolved to create all the
+    // resources needed for the test.
+    orderAAdmins = [
+      new MedicationAdministration(
+          {
+            effectiveTimeDateTime: '2012-08-04T11:00:00.000Z',
+            medicationReference: {display: 'vancomycin'},
+            dosage: {
+              quantity: {value: 50, unit: 'mg'},
+              route: {text: 'oral'},
+              text: '50 mg tablet daily'
+            },
+            medicationCodeableConcept: {
+              coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+              text: 'vancomycin'
+            },
+            prescription: {reference: 'OrderA'}
+          },
+          REQUEST_ID),
+      new MedicationAdministration(
+          {
+            effectiveTimeDateTime: '2012-08-05T11:00:00.000Z',
+            medicationReference: {display: 'vancomycin'},
+            dosage: {
+              quantity: {value: 50, unit: 'mg'},
+              route: {text: 'oral'},
+              text: '50 mg tablet daily'
+            },
+            medicationCodeableConcept: {
+              coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+              text: 'vancomycin'
+            },
+            prescription: {reference: 'OrderA'}
+          },
+          REQUEST_ID),
+    ];
+
+    orderBAdmins = [new MedicationAdministration(
+        {
+          effectiveTimeDateTime: '2012-08-06T11:00:00.000Z',
+          medicationReference: {display: 'vancomycin'},
+          dosage: {
+            quantity: {value: 10, unit: 'mg'},
+            route: {text: 'oral'},
+            text: '10 mg tablet daily'
+          },
+          medicationCodeableConcept: {
+            coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
+            text: 'vancomycin'
+          },
+          prescription: {reference: 'OrderB'}
+        },
+        REQUEST_ID)];
+
+    medicationOrderA = new MedicationOrder(
+        {
+          medicationCodeableConcept: {
+            coding: [
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ],
+            text: 'Vancomycin'
+          },
+          id: 'OrderA',
+          status: 'completed'
+        },
+        REQUEST_ID);
+
+    medicationOrderB = new MedicationOrder(
+        {
+          medicationCodeableConcept: {
+            coding: [
+              {system: RxNormCode.CODING_STRING, code: '11124'},
+            ],
+            text: 'Vancomycin'
+          },
+          id: 'OrderB',
+          status: 'active'
+        },
+        REQUEST_ID);
   }));
 
   it('should do all the calls to get all the orders and admins',
      (done: DoneFn) => {
        const rxNormGroup = new RxNormCodeGroup(
-           new RxStubFhirService(
-               TestBed.get(ResourceCodeManager),
-               TestBed.get(ResourceCodeCreator)),
-           'antibiotics', [RxNormCode.fromCodeString('11124')],
+           rxStubFhirService, 'antibiotics',
+           [RxNormCode.fromCodeString('11124')],
            new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
        rxNormGroup.getResourceSet(interval).then(rxNorms => {
@@ -183,9 +196,7 @@ describe('RxNormGroup', () => {
 
   it('should cache orders', (done: DoneFn) => {
     const rxNormGroup = new RxNormCodeGroup(
-        new RxStubFhirService(
-            TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator)),
-        'antibiotics', [RxNormCode.fromCodeString('11124')],
+        rxStubFhirService, 'antibiotics', [RxNormCode.fromCodeString('11124')],
         new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
     rxNormGroup.getResourceSet(interval).then(rxNorms => {
@@ -201,18 +212,18 @@ describe('RxNormGroup', () => {
 
   it('should not call getMedicationOrderWithId for orders that have been cached.',
      (done: DoneFn) => {
-       const fhirService = new RxStubFhirService(
-           TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator));
        const rxNormGroup = new RxNormCodeGroup(
-           fhirService, 'antibiotics', [RxNormCode.fromCodeString('11124')],
+           rxStubFhirService, 'antibiotics',
+           [RxNormCode.fromCodeString('11124')],
            new DisplayGrouping('lbl', 'red'), ChartType.LINE);
 
        rxNormGroup.medicationOrderCache.set('OrderA', medicationOrderA);
-       spyOn(fhirService, 'getMedicationOrderWithId').and.callThrough();
+       spyOn(rxStubFhirService, 'getMedicationOrderWithId').and.callThrough();
 
        rxNormGroup.getResourceSet(interval).then(rxNorms => {
-         expect(fhirService.getMedicationOrderWithId).toHaveBeenCalledTimes(1);
-         expect(fhirService.getMedicationOrderWithId)
+         expect(rxStubFhirService.getMedicationOrderWithId)
+             .toHaveBeenCalledTimes(1);
+         expect(rxStubFhirService.getMedicationOrderWithId)
              .toHaveBeenCalledWith('OrderB');
          // check that even with medication Orders coming from the cache,
          // the final results are correct.

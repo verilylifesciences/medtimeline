@@ -21,6 +21,8 @@ export const environment = {
   labGroupFile: 'lab_groups.json',
   radiologyConceptsFile: 'radiology_results.json',
   radiologyGroupFile: 'radiology_groups.json',
+  medicationConceptsFile: 'medications.json',
+  medicationGroupFile: 'medication_groups.json',
   useDebugger: false,
 };
 

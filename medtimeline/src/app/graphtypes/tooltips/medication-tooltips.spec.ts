@@ -3,9 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {AnnotatedAdministration, MedicationAdministrationSet} from 'src/app/fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder} from 'src/app/fhir-data-classes/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/test_utils';
@@ -15,15 +17,22 @@ import {MedicationAdministrationTooltip, MedicationTooltip} from './medication-t
 import {Tooltip} from './tooltip';
 
 describe('MedicationTooltip', () => {
-  const firstAdmin = makeMedicationAdministration(
-      DateTime.fromJSDate(new Date('1957-01-14')).toString());
-  const lastAdmin = makeMedicationAdministration(
-      DateTime.fromJSDate(new Date('1957-01-16')).toString());
-  const annotatedOrder = new AnnotatedMedicationOrder(
-      makeMedicationOrder(), [firstAdmin, lastAdmin]);
+  let firstAdmin;
+  let lastAdmin;
+  let annotatedOrder;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({}).compileComponents();
+    TestBed.configureTestingModule({imports: [HttpClientModule]})
+        .compileComponents();
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+
+    firstAdmin = makeMedicationAdministration(
+        DateTime.fromJSDate(new Date('1957-01-14')).toString());
+    lastAdmin = makeMedicationAdministration(
+        DateTime.fromJSDate(new Date('1957-01-16')).toString());
+    annotatedOrder = new AnnotatedMedicationOrder(
+        makeMedicationOrder(), [firstAdmin, lastAdmin]);
   }));
 
   it('should create', () => {
@@ -80,16 +89,23 @@ describe('MedicationTooltip', () => {
 
 
 describe('MedicationAdministrationTooltip', () => {
-  const admin1 = new AnnotatedAdministration(makeMedicationAdministration(
-      DateTime.fromJSDate(new Date('1957-01-14')).toString()));
-
-  const admin2 = new AnnotatedAdministration(
-      makeMedicationAdministration(
-          DateTime.fromJSDate(new Date('1957-01-15')).toString()),
-      admin1);
+  let admin1;
+  let admin2;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({}).compileComponents();
+    TestBed.configureTestingModule({imports: [HttpClientModule]})
+        .compileComponents();
+
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    Promise.all(rcm.loadConfigurationFromFiles.values());
+
+    admin1 = new AnnotatedAdministration(makeMedicationAdministration(
+        DateTime.fromJSDate(new Date('1957-01-14')).toString()));
+
+    admin2 = new AnnotatedAdministration(
+        makeMedicationAdministration(
+            DateTime.fromJSDate(new Date('1957-01-15')).toString()),
+        admin1);
   }));
 
   it('should create', () => {
