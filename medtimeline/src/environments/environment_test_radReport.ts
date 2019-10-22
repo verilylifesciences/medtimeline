@@ -8,6 +8,8 @@ export const environment = {
   mockDataFolder: 'demo_data/test_radReport',
   mockDataFiles: ['radReport_DiagReport', 'radReport_Encounter'],
   conceptsFolder: 'clinical_concept_configuration',
+  vitalGroupFile: 'vital_sign_groups.json',
+  vitalConceptsFile: 'vital_signs.json',
   labConceptsFile: 'lab_results.json',
   labGroupFile: 'lab_groups.json',
   useDebugger: false,

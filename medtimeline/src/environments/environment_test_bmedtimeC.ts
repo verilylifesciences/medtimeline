@@ -14,6 +14,8 @@ export const environment = {
     'BMedTimeC_Med_Orders',
   ],
   conceptsFolder: 'clinical_concept_configuration',
+  vitalGroupFile: 'vital_sign_groups.json',
+  vitalConceptsFile: 'vital_signs.json',
   labConceptsFile: 'lab_results.json',
   labGroupFile: 'lab_groups.json',
   useDebugger: false,
