@@ -60,77 +60,107 @@
         {
             "codeString": "5769-5",
             "displayName": "Bacteria, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "50551-1",
             "displayName": "Bilirubin, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "5794-3",
             "displayName": "Blood, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "21033-6",
             "displayName": "Budding Yeast, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "41865-7",
             "displayName": "Hyphal Yeast, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "25157-9",
             "displayName": "Epithelial Cast, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "50558-6",
             "displayName": "Nitrite, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "57735-3",
             "displayName": "Protein, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "58449-0",
             "displayName": "Red Blood Cell Clump, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "13945-1",
             "displayName": "Red Cells, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "11277-1",
             "displayName": "Squamous Epithelial, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "50563-6",
             "displayName": "Urobilinogen, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "5799-2",
             "displayName": "WBC Enzyme, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "33825-1",
             "displayName": "White Blood Cell Clump, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "20408-1",
             "displayName": "White Cells, Urinalysis",
-            "groupName": "Urinalysis"
+            "groupNames": [
+                "Urinalysis"
+            ]
         },
         {
             "codeString": "10333-3",
@@ -139,7 +169,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "13517-8",
@@ -148,7 +180,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "30374-3",
@@ -157,7 +191,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "12208-5",
@@ -166,7 +202,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "2342-4",
@@ -175,7 +213,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "10328-3",
@@ -184,7 +224,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "10329-1",
@@ -193,7 +235,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "12278-8",
@@ -202,12 +246,16 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "CSF"
+            "groupNames": [
+                "CSF"
+            ]
         },
         {
             "codeString": "9335-1",
             "displayName": "Appearance, Other Fluid",
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "31208-2",
@@ -216,7 +264,9 @@
                 "lower": 0,
                 "upper": 100000
             },
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "47938-6",
@@ -225,22 +275,30 @@
                 "lower": 0,
                 "upper": 100000
             },
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "38256-4",
             "displayName": "Cells Counted, Other Fluid",
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "6824-7",
             "displayName": "Color, Other Fluid",
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "12209-3",
             "displayName": "Eosinophil, Other Fluid",
-            "groupName": "Other Fluid"
+            "groupNames": [
+                "Other Fluid"
+            ]
         },
         {
             "codeString": "26464-8",
@@ -249,7 +307,9 @@
                 "lower": 0,
                 "upper": 150
             },
-            "groupName": "Complete Blood Count"
+            "groupNames": [
+                "Complete Blood Count"
+            ]
         },
         {
             "codeString": "718-7",
@@ -258,7 +318,9 @@
                 "lower": 0.5,
                 "upper": 30
             },
-            "groupName": "Complete Blood Count"
+            "groupNames": [
+                "Complete Blood Count"
+            ]
         },
         {
             "codeString": "4544-3",
@@ -267,7 +329,9 @@
                 "lower": 10,
                 "upper": 70
             },
-            "groupName": "Complete Blood Count"
+            "groupNames": [
+                "Complete Blood Count"
+            ]
         },
         {
             "codeString": "777-3",
@@ -276,7 +340,9 @@
                 "lower": 2,
                 "upper": 900
             },
-            "groupName": "Complete Blood Count"
+            "groupNames": [
+                "Complete Blood Count"
+            ]
         },
         {
             "codeString": "35332-6",
@@ -286,7 +352,9 @@
                 "upper": 100
             },
             "showByDefault": true,
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         },
         {
             "codeString": "38518-7",
@@ -295,7 +363,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         },
         {
             "codeString": "736-9",
@@ -304,7 +374,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         },
         {
             "codeString": "5905-5",
@@ -313,7 +385,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         },
         {
             "codeString": "713-8",
@@ -322,7 +396,9 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         },
         {
             "codeString": "706-2",
@@ -331,6 +407,8 @@
                 "lower": 0,
                 "upper": 100
             },
-            "groupName": "Complete Blood Count White Blood Cell"
+            "groupNames": [
+                "Complete Blood Count White Blood Cell"
+            ]
         }
     ]

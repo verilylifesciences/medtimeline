@@ -10,10 +10,13 @@ from jsonschema import validate
 from typing import List
 
 CLINICAL_CONCEPT_SCHEMA_FILE = 'clinical_concept_schema.json'
-CLINICAL_CONCEPT_FILES = ['lab_results.json']
+CLINICAL_CONCEPT_FILES = ['lab_results.json',
+                          'vital_signs.json', 'medications.json']
 GROUPS_SCHEMA_FILE = 'group_schema.json'
-GROUPS_FILES = ['lab_groups.json']
+GROUPS_FILES = ['lab_groups.json',
+                'vital_sign_groups.json', 'medication_groups.json']
 GROUP_NAME_KEY = 'groupName'
+GROUP_NAMES_KEY = 'groupNames'
 PARENT_GROUP_NAME_KEY = 'parentGroupName'
 
 
@@ -94,11 +97,12 @@ def validate_clinical_concepts(
             data = json.load(data_file)
             for item in data:
                 validate(instance=item, schema=schema)
-                if GROUP_NAME_KEY in item:
-                    group = item[GROUP_NAME_KEY]
-                    if group not in group_names:
-                        print("ERROR: {} not represented in {}.".format(
-                            group, GROUPS_SCHEMA_FILE))
+                if GROUP_NAMES_KEY in item:
+                    groups = item[GROUP_NAMES_KEY]
+                    for group in groups:
+                        if group not in group_names:
+                            print("ERROR: {} not represented in {}.".format(
+                                group, GROUPS_SCHEMA_FILE))
 
 
 def main():

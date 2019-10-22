@@ -58,13 +58,17 @@
     "codeString": "41904-4",
     "displayName": "Blood Pressure Location",
     "showByDefault": true,
-    "groupName": "Blood Pressure Details"
+    "groupNames": [
+      "Blood Pressure Details"
+    ]
   },
   {
     "codeString": "55284-4",
     "displayName": "Blood Pressure",
     "showByDefault": true,
-    "groupName": "Blood Pressure"
+    "groupNames": [
+      "Blood Pressure"
+    ]
   },
   {
     "codeString": "8478-0",
@@ -74,6 +78,8 @@
       "lower": 25,
       "upper": 200
     },
-    "groupName": "Blood Pressure"
+    "groupNames": [
+      "Blood Pressure"
+    ]
   }
 ]

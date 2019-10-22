@@ -42,9 +42,12 @@
             "type": "boolean",
             "description": "Whether the display bounds should be forced even if the data is outside of them. No effect if displayBounds are unset. False if this is unset."
         },
-        "groupName": {
-            "type": "string",
-            "description": "If set, this clinical concept will appear grouped with the same groupName. If unset, it will appear independently."
+        "groupNames": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "If set, this clinical concept will appear grouped with the same groupName(s). If unset, it will appear independently."
         }
     }
 }

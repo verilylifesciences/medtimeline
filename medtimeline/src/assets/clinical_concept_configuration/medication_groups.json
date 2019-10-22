@@ -1,0 +1,322 @@
+[
+    {
+        "groupName": "Acyclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Amoxicillin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Amphotericin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ampicillin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Azithromycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Aztreonam",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Carbaminde peroxide",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefazolin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefdinir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefepime",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefixime",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefotaxime",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefoxitin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ceftaroline",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ceftazidime",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ceftriaxone",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cefuroxime",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cephalexin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Cilastatin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ciprofloxacin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Clavulanate",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Clindamycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Dexamethasone",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Doxycycline",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Erythromycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ethambutol",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Fluconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Flucytosine",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Foscarnet",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Fosfomycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ganciclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Gentamicin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Hydrocortisone",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Imipenem",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Isoniazid",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Levofloxacin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Linezolid",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Liposomal",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Meropenem",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Metronidazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Micafungin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Moxifloxacin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Nitrofurantoin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Neomycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Oseltamivir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Penicillin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Piperacillin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Benzoyl peroxide",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Benzoyl peroxide",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Benzoyl peroxide",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Polymyxin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Posaconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Pyrazinamide",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Rifampin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Sulbactam",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Sulfamethoxazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Tazobactam",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Trimethoprim",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Tobramycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Valacyclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Valganciclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Vancomycin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Voriconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Vancomycin & Gentamicin Summary",
+        "graphType": "STEP",
+        "displayGroupOnSameAxis": true
+    }
+]

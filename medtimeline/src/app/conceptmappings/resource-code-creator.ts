@@ -85,13 +85,18 @@ export class ResourceCodeCreator {
                 undefined,
             concept.forceDisplayBounds ? concept.forceDisplayBounds : false);
         let concepts = new Array<LOINCCode>();
-        const mapKey =
-            concept.groupName ? concept.groupName : concept.displayName;
-        if (groupToConcept.has(mapKey)) {
-          concepts = groupToConcept.get(mapKey);
+
+        if (!concept.groupNames) {
+          concept.groupNames = [concept.displayName];
         }
-        concepts.push(loinc);
-        groupToConcept.set(mapKey, concepts);
+
+        for (let groupName of concept.groupNames) {
+          if (groupToConcept.has(groupName)) {
+            concepts = groupToConcept.get(groupName);
+          }
+          concepts.push(loinc);
+          groupToConcept.set(groupName, concepts);
+        }
       }
       return groupToConcept;
     });
