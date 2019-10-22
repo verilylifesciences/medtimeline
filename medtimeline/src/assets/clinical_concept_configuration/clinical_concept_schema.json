@@ -42,12 +42,13 @@
             "type": "boolean",
             "description": "Whether the display bounds should be forced even if the data is outside of them. No effect if displayBounds are unset. False if this is unset."
         },
-        "groupNames": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "description": "If set, this clinical concept will appear grouped with the same groupName(s). If unset, it will appear independently."
+        "groupName": {
+            "type": "string",
+            "description": "If set, this clinical concept will appear grouped with the same groupName. If unset, it will appear independently."
+        },
+        "innerComponentOnly": {
+          "type": "boolean",
+          "description": "If set, the ResourceCode for this component will be created, but it will not be displayed unless it is an inner component of another Resource."
         },
         "_comments": {
           "type": "string",

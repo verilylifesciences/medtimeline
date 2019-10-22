@@ -5,13 +5,11 @@
 
 import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {display} from 'html2canvas/dist/types/css/property-descriptors/display';
 import {Interval} from 'luxon';
 
-import {environment} from '../../environments/environment';
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
+import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
+import {DisplayGrouping, labResult, med, microbio, radiology} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
@@ -24,8 +22,7 @@ import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
-import {ConceptConfiguration, ResourceCodeCreator} from './resource-code-creator';
-import {bloodPressureLoincs} from './resource-code-manager-exports';
+import {ResourceCodeCreator} from './resource-code-creator';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
@@ -43,28 +40,6 @@ const ovaAndParasiteExam = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
-  /* Visible for testing */
-  static readonly vitalLoincs = [
-    new LOINCCode('8310-5', vitalSign, 'Temperature', true, [35, 41]),
-    new LOINCCode('8867-4', vitalSign, 'Heart Rate', true, [20, 300]),
-    new LOINCCode('9279-1', vitalSign, 'Respiratory Rate', true, [6, 100]),
-    new LOINCCode(
-        '59408-5', vitalSign, 'Oxygen Saturation (SpO2)', true, [5, 100], true)
-  ];
-
-  /**
-   * Although these two measurements have independent LOINC codes they only ever
-   * appear as sub-measurements of the larger entity for "blood pressure" in the
-   * way that BCH data shows up.
-   */
-  private static readonly diastolicBP = new LOINCCode(
-      '8462-4', vitalSign, 'Diastolic Blood Pressure', true, [25, 150]);
-  private static readonly systolicBP = new LOINCCode(
-      '8480-6', vitalSign, 'Systolic Blood Pressure', true, [30, 250]);
-
-  // "bloodPressureLoincs" is in file resource-code-manager-exports.ts because
-  // of circular dependency issues.
-
   private static readonly gentMonitoring = [
     new LOINCCode('31091-2', labResult, 'Gentamicin, Peak/Post Q24H'),
     new LOINCCode('3663-2', labResult, 'Gentamicin, Peak/Post Q8H'),
@@ -175,53 +150,12 @@ export class ResourceCodeManager {
         'ENTEROVIRUSPCRCSFQUAL', microbio, 'Enterovirus PCR, CSF, QuaL', true)
   ];
 
-  private static typeToPairs: Array<[DisplayGrouping, LOINCCode[]]> =
-      [[vitalSign, ResourceCodeManager.vitalLoincs]];
-
-  private static bpLoinc =
-      new LOINCCode('41904-4', vitalSign, 'Blood Pressure Location', true);
-
   constructor(private sanitizer: DomSanitizer) {}
 
   private addStaticGroups(
       mapping: Map<DisplayGrouping, AxisGroup[]>,
       fhirService: FhirService): Map<DisplayGrouping, AxisGroup[]> {
     const codeGroups = new Array<AxisGroup>();
-    // All the labs and vitals are linecharts and displayed on
-    // independent axes.
-    for (const [conceptGroup, codePairs] of ResourceCodeManager.typeToPairs) {
-      for (const loinc of codePairs) {
-        codeGroups.push(new AxisGroup([new Axis(
-            fhirService, this.sanitizer,
-            new LOINCCodeGroup(
-                fhirService, loinc.label, new Array(loinc), conceptGroup,
-                ChartType.LINE),
-            loinc.label)]));
-      }
-    }
-
-    const bpLocation = new LOINCCodeGroup(
-        fhirService, 'Blood Pressure Details', [ResourceCodeManager.bpLoinc],
-        vitalSign, ChartType.SCATTER);
-    // Add the blood pressure LOINCs.
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new LOINCCodeGroup(
-            fhirService, 'Blood Pressure', bloodPressureLoincs, vitalSign,
-            ChartType.LINE,
-            (observation: Observation, dateRange: Interval):
-                Promise<AnnotatedObservation> => {
-                  return bpLocation.getResourceSet(dateRange).then(obsSet => {
-                    return AnnotatedObservation.forBloodPressure(
-                        observation,
-                        // We only pass in the first ObservationSet,
-                        // since we know there is only one code whose
-                        // observations we care about.
-                        obsSet[0]);
-                  });
-                }),
-        'Blood Pressure')]));
-
     const medsSummaryGroup = RXNORM_CODES;
     codeGroups.push(new AxisGroup([new Axis(
         fhirService, this.sanitizer,

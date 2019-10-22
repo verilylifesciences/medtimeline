@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology} from '../clinicalconcepts/display-grouping';
+import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
@@ -61,6 +61,7 @@ export class ResourceCodeCreator {
    * These files should be located within the directory of the assetPath.
    */
   private readonly fileMap = new Map([
+    [vitalSign, [environment.vitalGroupFile, environment.vitalConceptsFile]],
     [
       labResult,
       [
@@ -157,6 +158,15 @@ export class ResourceCodeCreator {
     return this.http.get(filePath).toPromise<any>().then(clinicalConcepts => {
       for (const concept of clinicalConcepts) {
         const code = this.createResourceCode(displayGrouping, concept);
+        // Concepts with innerComponentOnly=true are "components" of other
+        // concepts. (See
+        // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
+        // for more information.) In order for us to display these inner
+        // components, the Resource Code needs to be created, but we do not
+        // explicitly add them to a Resource Group.
+        if (concept.innerComponentOnly) {
+          continue;
+        }
         let concepts = [];
         if (!concept.groupNames) {
           concept.groupNames = [concept.displayName];

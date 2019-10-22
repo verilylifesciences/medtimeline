@@ -7,7 +7,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
-import {bloodPressureLoincs} from '../conceptmappings/resource-code-manager-exports';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {NORMAL} from '../fhir-data-classes/observation-interpretation-valueset';
@@ -147,18 +146,21 @@ export class LineGraphData extends GraphData {
           // Blood pressure is read into the ObservationSet differently,
           // causing an edge case in the presentation of the values in the
           // tooltips. We only want to display 'Blood pressure' once
-          if (obs.observation.codes[0].codeString ===
-              bloodPressureLoincs[0].codeString) {
-            // We are combining the array into one AnnotatedTooltip in order to
-            // check to see if "Blood pressure" has already been added to any of
-            // the previous tooltips
-            const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
-                tooltipMap.get(timestamp));
-            if (annotatedTT.tooltipChart.includes(
-                    bloodPressureLoincs[0].label)) {
-              continue;
-            }
-          }
+          // TODO: Re-enable this.
+          // if (obs.observation.codes[0].codeString ===
+          //     bloodPressureLoincs[0].codeString) {
+          //   // We are combining the array into one AnnotatedTooltip in order
+          //   to
+          //   // check to see if "Blood pressure" has already been added to any
+          //   of
+          //   // the previous tooltips
+          //   const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+          //       tooltipMap.get(timestamp));
+          //   if (annotatedTT.tooltipChart.includes(
+          //           bloodPressureLoincs[0].label)) {
+          //     continue;
+          //   }
+          // }
           tooltipMap.get(timestamp).push(
               new GenericAnnotatedObservationTooltip(
                   false, series.legendInfo.fill)

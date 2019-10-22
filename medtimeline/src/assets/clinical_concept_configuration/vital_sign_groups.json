@@ -1,12 +1,7 @@
 [
   {
-    "groupName": "Blood Pressure Details",
-    "graphType": "SCATTER",
-    "displayGroupOnSameAxis": false
-  },
-  {
     "groupName": "Blood Pressure",
     "graphType": "LINE",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   }
 ]
