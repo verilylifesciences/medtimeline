@@ -28,9 +28,8 @@ describe('FhirHttpService', () => {
     tokenResponse: {access_token: 'access_token'}
   };
   let code;
-  const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
-      service, 'radiology', [DiagnosticReportCode.fromCodeString('RADRPT')],
-      new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
+  let diagnosticCodeGroup;
+
   const dateRange: Interval = Interval.fromDateTimes(
       DateTime.fromISO('2018-08-20T00:00:00.00'),
       DateTime.fromISO('2018-08-28T00:00:00.00'));
@@ -90,9 +89,15 @@ describe('FhirHttpService', () => {
         {provide: FhirService, useClass: StubFhirService}
       ]
     });
-    (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
-        .loadConfigurationFromFiles.then(() => {
+    Promise
+        .all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+                 .loadConfigurationFromFiles.values())
+        .then(() => {
           code = LOINCCode.fromCodeString('718-7');
+          diagnosticCodeGroup = new DiagnosticReportCodeGroup(
+              service, 'radiology',
+              [DiagnosticReportCode.fromCodeString('RADRPT')],
+              new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
         });
   }));
 
@@ -538,7 +543,7 @@ describe('FhirHttpService', () => {
              for (const annotatedR of annotatedReports) {
                expect(annotatedR.attachmentHtml)
                    .toEqual(
-                       'Http failure response for http://localhost:9877/url: 404 Not Found');
+                       'Http failure response for http://localhost:9876/url: 404 Not Found');
              }
              expect(serviceSpy).toHaveBeenCalled();
              done();

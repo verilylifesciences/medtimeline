@@ -4,13 +4,15 @@
 // license that can be found in the LICENSE file.
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
+import {environment} from 'src/environments/environment_test_bmedtimeB';
 
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {MockFhirService} from '../mock-fhir.service';
 import {makeDiagnosticReports, StubFhirService} from '../test_utils';
@@ -22,6 +24,8 @@ const interval = Interval.fromDateTimes(
     DateTime.fromISO('2019-02-10T11:00:00.000Z').toUTC(),
     DateTime.fromISO('2019-02-15T11:00:00.000Z').toUTC());
 const REQUEST_ID = '1234';
+let diagnosticCodeGroup;
+let stubFhir;
 
 class DiagnosticReportStubFhirService extends StubFhirService {
   diagnosticReports: DiagnosticReport[];
@@ -31,11 +35,11 @@ class DiagnosticReportStubFhirService extends StubFhirService {
   }
 
   getAnnotatedDiagnosticReports(
-      codes: DiagnosticReportCodeGroup,
+      codeGroup: DiagnosticReportCodeGroup,
       dateRange: Interval): Promise<AnnotatedDiagnosticReport[]> {
     const annotatedReportsArr = new Array<Promise<AnnotatedDiagnosticReport>>();
     // Only check the code for radiologyReports
-    if (codes.resourceCodes.includes(
+    if (codeGroup.resourceCodes.includes(
             DiagnosticReportCode.fromCodeString('RADRPT'))) {
       for (const report of this.diagnosticReports) {
         annotatedReportsArr.push(this.addAttachment(report));
@@ -47,33 +51,38 @@ class DiagnosticReportStubFhirService extends StubFhirService {
 }
 
 describe('DiagnosticReportCode', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
         {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator}
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        {provide: FhirService, useClass: DiagnosticReportStubFhirService}
       ]
     });
-  });
+    Promise
+        .all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+                 .loadConfigurationFromFiles.values())
+        .then(() => {
+          stubFhir = TestBed.get(FhirService);
+          diagnosticCodeGroup = new DiagnosticReportCodeGroup(
+              stubFhir, 'radiology',
+              [DiagnosticReportCode.fromCodeString('RADRPT')],
+              new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
+        });
+  }));
 
-  it('should correctly create AnnotatedDiagnosticReport and call getAttachment()' +
-         ' in the mockFhirService',
+  it('should correctly create AnnotatedDiagnosticReport and call getAttachment()',
      (done: DoneFn) => {
-       const stubFhir = new DiagnosticReportStubFhirService();
        stubFhir.diagnosticReports = makeDiagnosticReports();
-       const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
-           stubFhir, 'radiology',
-           [DiagnosticReportCode.fromCodeString('RADRPT')],
-           new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
-
        const spy = spyOn(stubFhir, 'getAttachment').and.callThrough();
        diagnosticCodeGroup.getResourceFromFhir(interval).then(
-           annotatedReports => {
+           (annotatedReports: AnnotatedDiagnosticReport[]) => {
              expect(annotatedReports.length).toBe(2);
              for (let i = 0; i < annotatedReports.length; i++) {
                expect(annotatedReports[i].report)
                    .toEqual(stubFhir.diagnosticReports[i]);
+               expect(annotatedReports[i].attachmentHtml).toBeDefined();
                expect(spy).toHaveBeenCalled();
              }
              done();
@@ -83,7 +92,6 @@ describe('DiagnosticReportCode', () => {
   it('should correctly create AnnotatedDiagnosticReport with undefined attachmentHtml' +
          ' if the presentedForm contentType does not equal text/html',
      (done: DoneFn) => {
-       const stubFhir = new DiagnosticReportStubFhirService();
        stubFhir.diagnosticReports = [new DiagnosticReport(
            {
              code: {text: 'RADRPT'},
@@ -97,11 +105,6 @@ describe('DiagnosticReportCode', () => {
              status: 'unknown',
            },
            REQUEST_ID)];
-       const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
-           stubFhir, 'radiology',
-           [DiagnosticReportCode.fromCodeString('RADRPT')],
-           new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
-
        const spy = spyOn(stubFhir, 'getAttachment').and.callThrough();
        diagnosticCodeGroup.getResourceFromFhir(interval).then(
            annotatedReports => {
@@ -119,21 +122,15 @@ describe('DiagnosticReportCode', () => {
   it('should correctly create AnnotatedDiagnosticReport with undefined attachmentHtml' +
          ' if the presentedForm does not exist',
      (done: DoneFn) => {
-       const stubFhir = new DiagnosticReportStubFhirService();
        stubFhir.diagnosticReports = [new DiagnosticReport(
            {
              code: {text: 'RADRPT'},
              status: 'unknown',
            },
            REQUEST_ID)];
-       const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
-           stubFhir, 'radiology',
-           [DiagnosticReportCode.fromCodeString('RADRPT')],
-           new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
-
        const spy = spyOn(stubFhir, 'getAttachment').and.callThrough();
        diagnosticCodeGroup.getResourceFromFhir(interval).then(
-           annotatedReports => {
+           (annotatedReports: AnnotatedDiagnosticReport[]) => {
              expect(annotatedReports.length).toBe(1);
              for (let i = 0; i < annotatedReports.length; i++) {
                expect(annotatedReports[i].report)
@@ -148,7 +145,6 @@ describe('DiagnosticReportCode', () => {
   it('should correctly return error message if the presentedForm does not ' +
          'contain a correct url',
      (done: DoneFn) => {
-       const stubFhir = new DiagnosticReportStubFhirService();
        stubFhir.diagnosticReports = [new DiagnosticReport(
            {
              code: {text: 'RADRPT'},
@@ -158,23 +154,20 @@ describe('DiagnosticReportCode', () => {
              status: 'unknown',
            },
            REQUEST_ID)];
-       const diagnosticCodeGroup = new DiagnosticReportCodeGroup(
-           stubFhir, 'radiology',
-           [DiagnosticReportCode.fromCodeString('RADRPT')],
-           new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
-
-       const spy = spyOn(stubFhir, 'getAttachment').and.callThrough();
-       diagnosticCodeGroup.getResourceFromFhir(interval).then(annotatedReports => {
-         expect(annotatedReports.length).toBe(1);
-         for (let i = 0; i < annotatedReports.length; i++) {
-           expect(annotatedReports[i].report)
-               .toEqual(stubFhir.diagnosticReports[i]);
-           expect(annotatedReports[i].attachmentHtml)
-               .toEqual(
-                   'Http failure response for http://localhost:9877/wrong_url: 404 Not Found');
-           expect(spy).toHaveBeenCalled();
-         }
-         done();
-       });
+       const failureMessage = '404 Not Found.';
+       const spy = spyOn(stubFhir, 'getAttachment')
+                       .and.returnValue(Promise.resolve(failureMessage));
+       diagnosticCodeGroup.getResourceFromFhir(interval).then(
+           annotatedReports => {
+             expect(annotatedReports.length).toBe(1);
+             for (let i = 0; i < annotatedReports.length; i++) {
+               expect(annotatedReports[i].report)
+                   .toEqual(stubFhir.diagnosticReports[i]);
+               expect(annotatedReports[i].attachmentHtml)
+                   .toEqual(failureMessage);
+               expect(spy).toHaveBeenCalled();
+             }
+             done();
+           });
      });
 });

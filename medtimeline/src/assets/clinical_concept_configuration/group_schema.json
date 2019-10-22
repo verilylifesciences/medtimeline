@@ -18,7 +18,8 @@
             "type": "string",
             "enum": [
                 "SCATTER",
-                "LINE"
+                "LINE",
+                "DIAGNOSTIC"
             ],
             "description": "The way the graph should be plotted for this display group."
         },

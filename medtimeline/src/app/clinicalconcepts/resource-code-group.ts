@@ -3,12 +3,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DateTime, Interval} from 'luxon';
+import {Interval} from 'luxon';
 
 import {TimestampedObject} from '../fhir-resource-set';
 import {FhirService} from '../fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
-
 import {DisplayGrouping} from './display-grouping';
 
 /**

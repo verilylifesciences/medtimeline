@@ -93,7 +93,7 @@ export class StubFhirService extends FhirService {
   }
 
   getAttachment(url: string): Promise<string> {
-    return Promise.resolve('');
+    return Promise.resolve('attached');
   }
 }
 

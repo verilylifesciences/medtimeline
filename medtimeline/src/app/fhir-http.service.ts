@@ -56,7 +56,6 @@ export class FhirHttpService extends FhirService {
       resourceCodeManager: ResourceCodeManager,
       resourceCodeCreator: ResourceCodeCreator) {
     super(resourceCodeManager, resourceCodeCreator);
-
     // Create a promise which resolves to the smart API when the smart API is
     // ready. This allows clients of this service to call service methods
     // which depend on the API, regardless of whether the API is ready or not.

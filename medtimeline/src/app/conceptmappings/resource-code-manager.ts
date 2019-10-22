@@ -5,6 +5,7 @@
 
 import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {display} from 'html2canvas/dist/types/css/property-descriptors/display';
 import {Interval} from 'luxon';
 
 import {environment} from '../../environments/environment';
@@ -13,6 +14,7 @@ import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcep
 import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RXNORM_CODES, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
@@ -173,14 +175,6 @@ export class ResourceCodeManager {
         'ENTEROVIRUSPCRCSFQUAL', microbio, 'Enterovirus PCR, CSF, QuaL', true)
   ];
 
-  // TODO- Issue #30: Add more codes to DiagnosticReportCode as we get more data
-  // The values 'RADRPT' and 'CT Report' are not actually in the official FHIR
-  // documentation, but are seen in the Cerner sandbox.
-  private static radiologyGroup = [
-    new DiagnosticReportCode('RADRPT', radiology, 'Radiology Report', true),
-    new DiagnosticReportCode('CT Report', radiology, 'CT Report', true)
-  ];
-
   private static typeToPairs: Array<[DisplayGrouping, LOINCCode[]]> =
       [[vitalSign, ResourceCodeManager.vitalLoincs]];
 
@@ -227,13 +221,6 @@ export class ResourceCodeManager {
                   });
                 }),
         'Blood Pressure')]));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new DiagnosticReportCodeGroup(
-            fhirService, 'Radiology', ResourceCodeManager.radiologyGroup,
-            radiology, ChartType.DIAGNOSTIC),
-        'Radiology')]));
 
     const medsSummaryGroup = RXNORM_CODES;
     codeGroups.push(new AxisGroup([new Axis(
@@ -334,6 +321,57 @@ export class ResourceCodeManager {
     return mapping;
   }
 
+  /**
+   * Creates an AxisGroup for a group of concepts.
+   * Determines ResourceCodeGroup type from the displayGrouping passed in.
+   *
+   * @param displayGrouping DisplayGroup to create ResourceCodeGroups with
+   * @param fhirService FhirService to create ResourceCodeGroups with
+   * @param chartType ChartType to create ResourceCodeGroups with
+   * @param sameAxis Whether all the concepts should be shown on the same axis
+   *     or not.
+   * @param groupName The label for the AxisGroup
+   * @param conceptList List of concepts to be included in the AxisGroup.
+   */
+  private createAxisGroup<R extends ResourceCode>(
+      displayGrouping: DisplayGrouping, fhirService: FhirService,
+      chartType: ChartType, sameAxis: boolean, groupName: string,
+      conceptList: R[]): AxisGroup {
+    const axisGroups = new Map<string, R[]>();
+    // if all concepts should be shown on the same axis, we only have one axis
+    // that contains all concepts from the concept list.
+    if (sameAxis) {
+      axisGroups.set(groupName, conceptList);
+
+      // otherwise we need an axis for each concept with the label being the
+      // concept's label.
+    } else {
+      conceptList.forEach(concept => {
+        axisGroups.set(concept.label, [concept]);
+      });
+    }
+
+    const axes = [];
+    axisGroups.forEach((concepts, label) => {
+      let group;
+      if (displayGrouping === radiology) {
+        group = new DiagnosticReportCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
+      } else if (displayGrouping === microbio) {
+        group = new BCHMicrobioCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
+      } else if (displayGrouping === med) {
+        group = new RxNormCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
+      } else {
+        group = new LOINCCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
+      }
+      axes.push(new Axis(fhirService, this.sanitizer, group));
+    });
+    return new AxisGroup(axes, groupName);
+  }
+
 
   /**
    * Returns the ResourceCodeGroups to be displayed. If the maps have already
@@ -341,43 +379,40 @@ export class ResourceCodeManager {
    * If not, constructs the maps and saves them into the static class
    * variable, then returns.
    */
-  private getResourceCodeGroups(
+  private getResourceCodeGroups<R extends ResourceCode>(
       fhirService: FhirService,
       resourceCodeCreator: ResourceCodeCreator): Promise<AxisGroup[]> {
-    return resourceCodeCreator.loadConfigurationFromFiles.then(
-        (configuration: ConceptConfiguration) => {
-          const codeGroups = new Array<AxisGroup>();
-          configuration.getDisplayGroupNameToCodeList().forEach(
-              (conceptList: LOINCCode[], groupName: string) => {
-                const groups = configuration.getGroupNameToChartInfo();
-                let chartType = ChartType.LINE;
-                let sameAxis = false;
-                if (groups.has(groupName)) {
-                  const displayGroup = groups.get(groupName);
-                  chartType = displayGroup[0];
-                  sameAxis = displayGroup[1];
-                }
-                const axes = [];
-                if (sameAxis) {
-                  axes.push(new Axis(
-                      fhirService, this.sanitizer,
-                      new LOINCCodeGroup(
-                          fhirService, groupName, conceptList, labResult,
-                          chartType)));
-                } else {
-                  conceptList.forEach((concept) => {
-                    axes.push(new Axis(
-                        fhirService, this.sanitizer,
-                        new LOINCCodeGroup(
-                            fhirService, concept.label, [concept], labResult,
-                            chartType),
-                        concept.label));
-                  });
-                }
-                codeGroups.push(new AxisGroup(axes, groupName));
-              });
-          return codeGroups;
+    const axisGroupPromises = new Array<Promise<AxisGroup[]>>();
+    resourceCodeCreator.loadConfigurationFromFiles.forEach(
+        (configurationPromise, displayGrouping) => {
+          axisGroupPromises.push(configurationPromise.then((configuration) => {
+            const codeGroups = new Array<AxisGroup>();
+            configuration.getDisplayGroupNameToCodeList().forEach(
+                (conceptList: R[], groupName: string) => {
+                  const groupsChartInfo =
+                      configuration.getGroupNameToChartInfo();
+                  let chartType = ChartType.LINE;
+                  let sameAxis = false;
+                  if (groupsChartInfo.has(groupName)) {
+                    const chartInfo = groupsChartInfo.get(groupName);
+                    chartType = chartInfo[0];
+                    sameAxis = chartInfo[1];
+                  }
+                  codeGroups.push(this.createAxisGroup(
+                      displayGrouping, fhirService, chartType, sameAxis,
+                      groupName, conceptList));
+                });
+            return codeGroups;
+          }));
         });
+    return Promise.all(axisGroupPromises).then(axisGroupLists => {
+      // flatten into a single list of AxisGroups
+      const allAxisGroups = new Array<AxisGroup>();
+      axisGroupLists.forEach(axisGroups => {
+        allAxisGroups.push(...axisGroups);
+      });
+      return allAxisGroups;
+    });
   }
 
   /**

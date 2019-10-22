@@ -48,6 +48,10 @@
                 "type": "string"
             },
             "description": "If set, this clinical concept will appear grouped with the same groupName(s). If unset, it will appear independently."
+        },
+        "_comments": {
+          "type": "string",
+          "description": "Optional comments about the clinical concept"
         }
     }
 }

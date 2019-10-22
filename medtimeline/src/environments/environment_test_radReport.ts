@@ -12,6 +12,8 @@ export const environment = {
   vitalConceptsFile: 'vital_signs.json',
   labConceptsFile: 'lab_results.json',
   labGroupFile: 'lab_groups.json',
+  radiologyConceptsFile: 'radiology_results.json',
+  radiologyGroupFile: 'radiology_groups.json',
   useDebugger: false,
 };
 
