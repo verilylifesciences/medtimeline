@@ -33,7 +33,9 @@ export class DisplayGrouping {
 
 export const labResult = new DisplayGrouping('Lab Results', Colors.LIME);
 export const vitalSign = new DisplayGrouping('Vital Signs', Colors.ORANGE);
-export const med = new DisplayGrouping('Medications', Colors.TURQUOISE);
+export const antibiotics = new DisplayGrouping('Antibiotics', Colors.TURQUOISE);
+export const antivirals = new DisplayGrouping('Antivirals', Colors.GOLD);
+export const antifungals = new DisplayGrouping('Antifungals', Colors.GREEN);
 export const microbio = new DisplayGrouping('Microbiology', Colors.CYAN);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.

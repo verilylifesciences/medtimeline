@@ -1,10 +1,5 @@
 [
     {
-        "groupName": "Acyclovir",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Amoxicillin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
@@ -110,11 +105,6 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Dexamethasone",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Doxycycline",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
@@ -130,37 +120,7 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Fluconazole",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Flucytosine",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Foscarnet",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Fosfomycin",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Ganciclovir",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Gentamicin",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Hydrocortisone",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
     },
@@ -185,22 +145,12 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Liposomal",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Meropenem",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
     },
     {
         "groupName": "Metronidazole",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Micafungin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
     },
@@ -220,11 +170,6 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Oseltamivir",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Penicillin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
@@ -235,27 +180,7 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Benzoyl peroxide",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Benzoyl peroxide",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Benzoyl peroxide",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Polymyxin",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Posaconazole",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
     },
@@ -295,22 +220,7 @@
         "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Valacyclovir",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Valganciclovir",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
         "groupName": "Vancomycin",
-        "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false
-    },
-    {
-        "groupName": "Voriconazole",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
     }

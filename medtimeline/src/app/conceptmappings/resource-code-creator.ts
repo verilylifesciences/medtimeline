@@ -8,7 +8,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
+import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
@@ -77,7 +77,20 @@ export class ResourceCodeCreator {
       radiology,
       [environment.radiologyGroupFile, environment.radiologyConceptsFile]
     ],
-    [med, [environment.medicationGroupFile, environment.medicationConceptsFile]]
+    [
+      antibiotics,
+      [environment.antibioticGroupFile, environment.antibioticConceptsFile]
+    ],
+    [
+      antivirals,
+      [environment.antiviralGroupFile, environment.antiviralConceptsFile]
+    ],
+    [
+      antifungals,
+      [environment.antifungalGroupFile, environment.antifungalConceptsFile]
+    ],
+
+
   ]);
 
   /**
@@ -139,7 +152,8 @@ export class ResourceCodeCreator {
       return new BCHMicrobioCode(
           concept.codeString, displayGrouping, concept.displayName,
           showByDefault, displayBounds, forceDisplayBounds);
-    } else if (displayGrouping === med) {
+    } else if ([antibiotics, antifungals, antivirals].includes(
+                   displayGrouping)) {
       return new RxNormCode(
           concept.codeString, displayGrouping, concept.displayName,
           showByDefault, displayBounds, forceDisplayBounds);

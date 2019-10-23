@@ -9,7 +9,7 @@ import {Interval} from 'luxon';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping, labResult, med, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
+import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
@@ -295,7 +295,8 @@ export class ResourceCodeManager {
       } else if (displayGrouping === microbio) {
         group = new BCHMicrobioCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
-      } else if (displayGrouping === med) {
+      } else if ([antibiotics, antifungals, antivirals].includes(
+                     displayGrouping)) {
         group = new RxNormCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
       } else {

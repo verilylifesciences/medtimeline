@@ -2,6 +2,7 @@
 //
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
+import {environment_file_locations} from './environment_file_locations';
 
 export const environment = {
   production: true,
@@ -9,13 +10,5 @@ export const environment = {
   mockDataFolder: '',
   mockDataFiles: [],
   useDebugger: false,
-  conceptsFolder: 'clinical_concept_configuration',
-  vitalGroupFile: 'vital_sign_groups.json',
-  vitalConceptsFile: 'vital_signs.json',
-  labConceptsFile: 'lab_results.json',
-  labGroupFile: 'lab_groups.json',
-  radiologyConceptsFile: 'radiology_results.json',
-  radiologyGroupFile: 'radiology_groups.json',
-  medicationConceptsFile: 'medications.json',
-  medicationGroupFile: 'medication_groups.json',
+  ...environment_file_locations,
 };

@@ -9,6 +9,7 @@
 // `angular.json`.
 
 // This file is used in the e2e tests.
+import {environment_file_locations} from './environment_file_locations';
 
 export const environment = {
   production: false,
@@ -23,15 +24,7 @@ export const environment = {
     'e2e_Med_Admins',
     'e2e_Med_Orders',
   ],
-  conceptsFolder: 'clinical_concept_configuration',
-  vitalGroupFile: 'vital_sign_groups.json',
-  vitalConceptsFile: 'vital_signs.json',
-  labConceptsFile: 'lab_results.json',
-  labGroupFile: 'lab_groups.json',
-  radiologyConceptsFile: 'radiology_results.json',
-  radiologyGroupFile: 'radiology_groups.json',
-  medicationConceptsFile: 'medications.json',
-  medicationGroupFile: 'medication_groups.json',
+  ...environment_file_locations,
   useDebugger: false,
 };
 

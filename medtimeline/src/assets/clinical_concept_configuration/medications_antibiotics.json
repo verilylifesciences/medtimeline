@@ -1,20 +1,6 @@
 [
     {
         "groupNames": [
-            "Acyclovir"
-        ],
-        "displayName": "Acyclovir 0.05 MG/MG Topical Ointment",
-        "codeString": "197312"
-    },
-    {
-        "groupNames": [
-            "Acyclovir"
-        ],
-        "displayName": "Acyclovir 50 MG/ML Injection",
-        "codeString": "1734933"
-    },
-    {
-        "groupNames": [
             "Amoxicillin"
         ],
         "displayName": "Amoxicillin 50 MG/ML Oral Suspension",
@@ -281,46 +267,10 @@
     },
     {
         "groupNames": [
-            "Dexamethasone"
-        ],
-        "displayName": "1 ML Dexamethasone phosphate 4 MG/ML Prefilled Syringe",
-        "codeString": "1812095"
-    },
-    {
-        "groupNames": [
-            "Dexamethasone",
             "Ciprofloxacin"
         ],
         "displayName": "Ciprofloxacin 3 MG/ML / Dexamethasone 1 MG/ML Otic Suspension",
         "codeString": "403908"
-    },
-    {
-        "groupNames": [
-            "Dexamethasone"
-        ],
-        "displayName": "Dexamethasone",
-        "codeString": "3264"
-    },
-    {
-        "groupNames": [
-            "Dexamethasone"
-        ],
-        "displayName": "Dexamethasone 1 MG/ML Oral Solution",
-        "codeString": "309684"
-    },
-    {
-        "groupNames": [
-            "Dexamethasone"
-        ],
-        "displayName": "Dexamethasone 10 MG/ML Injectable Solution",
-        "codeString": "309696"
-    },
-    {
-        "groupNames": [
-            "Dexamethasone"
-        ],
-        "displayName": "Dexamethasone phosphate 4 MG/ML Injectable Solution",
-        "codeString": "1116927"
     },
     {
         "groupNames": [
@@ -366,27 +316,6 @@
     },
     {
         "groupNames": [
-            "Fluconazole"
-        ],
-        "displayName": "100 ML Fluconazole 2 MG/ML Injection",
-        "codeString": "1721315"
-    },
-    {
-        "groupNames": [
-            "Fluconazole"
-        ],
-        "displayName": "Fluconazole",
-        "codeString": "4450"
-    },
-    {
-        "groupNames": [
-            "Fluconazole"
-        ],
-        "displayName": "Fluconazole 40 MG/ML Oral Suspension",
-        "codeString": "310353"
-    },
-    {
-        "groupNames": [
             "Flucytosine"
         ],
         "displayName": "Flucytosine 250 MG Oral Capsule",
@@ -394,31 +323,10 @@
     },
     {
         "groupNames": [
-            "Foscarnet"
-        ],
-        "displayName": "Foscarnet",
-        "codeString": "33562"
-    },
-    {
-        "groupNames": [
-            "Foscarnet"
-        ],
-        "displayName": "foscarnet sodium 24 MG/ML Injection",
-        "codeString": "1734380"
-    },
-    {
-        "groupNames": [
             "Fosfomycin"
         ],
         "displayName": "Fosfomycin 33.3 MG/ML Oral Suspension",
         "codeString": "808917"
-    },
-    {
-        "groupNames": [
-            "Ganciclovir"
-        ],
-        "displayName": "Ganciclovir 50 MG/ML Injectable Solution",
-        "codeString": "310442"
     },
     {
         "groupNames": [
@@ -450,7 +358,6 @@
     },
     {
         "groupNames": [
-            "Hydrocortisone",
             "Ciprofloxacin"
         ],
         "displayName": "Ciprofloxacin 2 MG/ML / Hydrocortisone 10 MG/ML Otic Suspension",
@@ -501,13 +408,6 @@
     },
     {
         "groupNames": [
-            "Liposomal"
-        ],
-        "displayName": "amphotericin B liposomal 4 MG/ML Injectable Solution",
-        "codeString": "967385"
-    },
-    {
-        "groupNames": [
             "Meropenem"
         ],
         "displayName": "meropenem 1000 MG Injection",
@@ -533,13 +433,6 @@
         ],
         "displayName": "Metronidazole 500 MG Oral Tablet",
         "codeString": "311681"
-    },
-    {
-        "groupNames": [
-            "Micafungin"
-        ],
-        "displayName": "MICAFUNGIN SODIUM 10 MG/ML Injectable Solution",
-        "codeString": "861379"
     },
     {
         "groupNames": [
@@ -571,13 +464,6 @@
     },
     {
         "groupNames": [
-            "Oseltamivir"
-        ],
-        "displayName": "Oseltamivir 75 MG Oral Capsule",
-        "codeString": "312122"
-    },
-    {
-        "groupNames": [
             "Penicillin"
         ],
         "displayName": "Penicillin G",
@@ -606,20 +492,6 @@
         ],
         "displayName": "Neomycin 40 MG/ML / Polymyxin B 200000 UNT/ML Irrigation Solution [Neosporin G. U. Irrigant]",
         "codeString": "211680"
-    },
-    {
-        "groupNames": [
-            "Posaconazole"
-        ],
-        "displayName": "posaconazole 100 MG Enteric Coated Tablet",
-        "codeString": "1482908"
-    },
-    {
-        "groupNames": [
-            "Posaconazole"
-        ],
-        "displayName": "posaconazole 18 MG/ML Injectable Solution",
-        "codeString": "1492043"
     },
     {
         "groupNames": [
@@ -735,20 +607,6 @@
     },
     {
         "groupNames": [
-            "Valacyclovir"
-        ],
-        "displayName": "valacyclovir 500 MG Oral Tablet",
-        "codeString": "313565"
-    },
-    {
-        "groupNames": [
-            "Valganciclovir"
-        ],
-        "displayName": "valganciclovir 450 MG Oral Tablet",
-        "codeString": "313566"
-    },
-    {
-        "groupNames": [
             "Vancomycin"
         ],
         "displayName": "200 ML Vancomycin 5 MG/ML Injection",
@@ -767,19 +625,5 @@
         ],
         "displayName": "Vancomycin 100 MG/ML Injectable Solution",
         "codeString": "239209"
-    },
-    {
-        "groupNames": [
-            "Voriconazole"
-        ],
-        "displayName": "voriconazole 200 MG Oral Tablet",
-        "codeString": "349434"
-    },
-    {
-        "groupNames": [
-            "Voriconazole"
-        ],
-        "displayName": "voriconazole 50 MG Oral Tablet",
-        "codeString": "349435"
     }
 ]

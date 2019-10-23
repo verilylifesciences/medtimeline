@@ -1,6 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import {environment_file_locations} from './environment_file_locations';
 
 export const environment = {
   production: false,
@@ -8,15 +9,7 @@ export const environment = {
   mockDataFolder: '',
   mockDataFiles: [],
   useDebugger: false,
-  conceptsFolder: 'clinical_concept_configuration',
-  vitalGroupFile: 'vital_sign_groups.json',
-  vitalConceptsFile: 'vital_signs.json',
-  labConceptsFile: 'lab_results.json',
-  labGroupFile: 'lab_groups.json',
-  radiologyConceptsFile: 'radiology_results.json',
-  radiologyGroupFile: 'radiology_groups.json',
-  medicationConceptsFile: 'medications.json',
-  medicationGroupFile: 'medication_groups.json',
+  ...environment_file_locations,
 };
 
 /*
