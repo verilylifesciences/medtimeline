@@ -50,10 +50,15 @@ export class LOINCCodeGroup extends
        * AnnotatedObservation so that the graph can show the appropriate
        * tooltip.
        */
-      readonly makeAnnotated?:
-          (observation: Observation,
-           dateRange: Interval) => Promise<AnnotatedObservation>) {
+      private makeAnnotated?: (observation: Observation, dateRange: Interval) =>
+          Promise<AnnotatedObservation>) {
     super(fhirService, label, resourceCodes, displayGrouping, chartType);
+  }
+
+  setMakeAnnotated(
+      makeAnnotatedFunction: (observation: Observation, dateRange: Interval) =>
+          Promise<AnnotatedObservation>) {
+    this.makeAnnotated = makeAnnotatedFunction;
   }
 
   /**

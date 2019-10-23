@@ -220,6 +220,8 @@ export class ResourceCodeCreator {
           chartType = ChartType.MICROBIO;
         } else if (group.graphType === 'DIAGNOSTIC') {
           chartType = ChartType.DIAGNOSTIC;
+        } else if (group.graphType === 'NONE') {
+          chartType = undefined;
         }
         displayGroupConfigurations.set(
             group.groupName, [chartType, group.displayGroupOnSameAxis]);

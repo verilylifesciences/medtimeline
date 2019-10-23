@@ -75,5 +75,13 @@
     "groupNames": [
       "Blood Pressure"
     ]
+  },
+  {
+    "codeString": "41904-4",
+    "displayName": "Blood Pressure Location",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood Pressure Details"
+    ]
   }
 ]

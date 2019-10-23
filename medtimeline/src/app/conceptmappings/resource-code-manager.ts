@@ -5,22 +5,20 @@
 
 import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Interval} from 'luxon';
 
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
 import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology} from '../clinicalconcepts/display-grouping';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {ResourceCode, ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
-import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
-import {Observation} from '../fhir-data-classes/observation';
 import {FhirService} from '../fhir.service';
 import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
+import {ANNOTATION_CONFIGURATION} from './annotation-mapping';
 import {ResourceCodeCreator} from './resource-code-creator';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
@@ -39,6 +37,12 @@ const ovaAndParasiteExam = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
+  /**
+   * A Promise that when resolved returns a Map from DisplayGrouping to
+   * the list of AxisGroups that belong to that display group.
+   */
+  private displayGroupMapping: Promise<Map<DisplayGrouping, AxisGroup[]>>;
+
   private static stoolGroupMB = [
     new BCHMicrobioCode(
         'CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', microbio,
@@ -256,10 +260,10 @@ export class ResourceCodeManager {
    * @param groupName The label for the AxisGroup
    * @param conceptList List of concepts to be included in the AxisGroup.
    */
-  private createAxisGroup<R extends ResourceCode>(
+  private createResourceGroups<R extends ResourceCode>(
       displayGrouping: DisplayGrouping, fhirService: FhirService,
       chartType: ChartType, sameAxis: boolean, groupName: string,
-      conceptList: R[]): AxisGroup {
+      conceptList: R[]): ResourceCodeGroup[] {
     const axisGroups = new Map<string, R[]>();
     // if all concepts should be shown on the same axis, we only have one axis
     // that contains all concepts from the concept list.
@@ -274,7 +278,7 @@ export class ResourceCodeManager {
       });
     }
 
-    const axes = [];
+    const resourceGroups = new Array<ResourceCodeGroup>();
     axisGroups.forEach((concepts, label) => {
       let group;
       if (displayGrouping === radiology) {
@@ -291,52 +295,112 @@ export class ResourceCodeManager {
         group = new LOINCCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
       }
-      axes.push(new Axis(fhirService, this.sanitizer, group, group.label));
+      resourceGroups.push(group);
     });
-    return new AxisGroup(axes, groupName);
+    return resourceGroups;
   }
 
+  /**
+   * Creates all AxisGroups.
+   * @param resourceGroupMap Mapping from Axis Group label to the list of
+   *     ResourceCodeGroups that should be included in the axis group.
+   * @param fhirService FhirService to create Axes with.
+   * @returns List of AxisGroups
+   */
+  private createAxisGroups(
+      resourceGroupMap: Map<string, ResourceCodeGroup[]>,
+      fhirService: FhirService): AxisGroup[] {
+    const axisGroups = new Array<AxisGroup>();
+    resourceGroupMap.forEach((resourceGroupList, groupName) => {
+      // some resources are creating only for the purpose of annotations. These
+      // have an undefined chartType. We filter these resource groups out
+      // because they should not be included in AxisGroups.
+      const axes =
+          resourceGroupList
+              .filter(resourceGroup => resourceGroup.chartType !== undefined)
+              .map(
+                  resourceGroup => new Axis(
+                      fhirService, this.sanitizer, resourceGroup,
+                      resourceGroup.label));
+      if (axes.length > 0) {
+        axisGroups.push(new AxisGroup(axes, groupName));
+      }
+    });
+    return axisGroups;
+  }
 
   /**
-   * Returns the ResourceCodeGroups to be displayed. If the maps have already
-   * been constructed, returns the static variable holding the information.
-   * If not, constructs the maps and saves them into the static class
-   * variable, then returns.
+   * Creates a mapping of group names to a list of ResourceCodeGroups.
+   * Creates all ResourceCodes and ResourceCodeGroups according to the
+   * ResourceCodeCreator.
+   *
+   * @param fhirService the FhirService instance to create ResourceCodeGroups
+   *     with.
+   * @param resourceCodeCreator: ResourceCodeCreator instance
+   * @returns Promise that when resolves gives a mapping from group name to
+   * the list of ResourceCodeGroups in that group.
    */
   private getResourceCodeGroups<R extends ResourceCode>(
-      fhirService: FhirService,
-      resourceCodeCreator: ResourceCodeCreator): Promise<AxisGroup[]> {
-    const axisGroupPromises = new Array<Promise<AxisGroup[]>>();
+      fhirService: FhirService, resourceCodeCreator: ResourceCodeCreator):
+      Promise<Map<string, ResourceCodeGroup[]>> {
+    const resourceGroupPromises =
+        new Array<Promise<Map<string, ResourceCodeGroup[]>>>();
     resourceCodeCreator.loadConfigurationFromFiles.forEach(
         (configurationPromise, displayGrouping) => {
-          axisGroupPromises.push(configurationPromise.then((configuration) => {
-            const codeGroups = new Array<AxisGroup>();
-            configuration.getDisplayGroupNameToCodeList().forEach(
-                (conceptList: R[], groupName: string) => {
-                  const groupsChartInfo =
-                      configuration.getGroupNameToChartInfo();
-                  let chartType = ChartType.LINE;
-                  let sameAxis = false;
-                  if (groupsChartInfo.has(groupName)) {
-                    const chartInfo = groupsChartInfo.get(groupName);
-                    chartType = chartInfo[0];
-                    sameAxis = chartInfo[1];
-                  }
-                  codeGroups.push(this.createAxisGroup(
-                      displayGrouping, fhirService, chartType, sameAxis,
-                      groupName, conceptList));
-                });
-            return codeGroups;
-          }));
+          resourceGroupPromises.push(
+              configurationPromise.then((configuration) => {
+                const groupNameToResourceGroups =
+                    new Map<string, ResourceCodeGroup[]>();
+                const groupsChartInfo = configuration.getGroupNameToChartInfo();
+                configuration.getDisplayGroupNameToCodeList().forEach(
+                    (conceptList: R[], groupName: string) => {
+                      const chartInfo = groupsChartInfo.get(groupName);
+                      const chartType =
+                          chartInfo ? chartInfo[0] : ChartType.LINE;
+                      const sameAxis = chartInfo ? chartInfo[1] : false;
+                      const resourceGroups = this.createResourceGroups(
+                          displayGrouping, fhirService, chartType, sameAxis,
+                          groupName, conceptList);
+                      groupNameToResourceGroups.set(groupName, resourceGroups);
+                    });
+                return groupNameToResourceGroups;
+              }));
         });
-    return Promise.all(axisGroupPromises).then(axisGroupLists => {
-      // flatten into a single list of AxisGroups
-      const allAxisGroups = new Array<AxisGroup>();
-      axisGroupLists.forEach(axisGroups => {
-        allAxisGroups.push(...axisGroups);
-      });
-      return allAxisGroups;
-    });
+    return Promise.all(resourceGroupPromises)
+        .then((results: Array<Map<string, ResourceCodeGroup[]>>) => {
+          // flatten into a single mapping
+          const allResourceGroups = new Map<string, ResourceCodeGroup[]>();
+          for (const map of results) {
+            map.forEach((resourceGroupList, groupName) => {
+              allResourceGroups.set(groupName, resourceGroupList);
+            });
+          }
+          return allResourceGroups;
+        });
+  }
+
+  /**
+   * Annotates ResourceCodeGroups that require additional information.
+   * All ResourceCodeGroups need to be created before this method is called,
+   * otherwise the group to annotate or the reference group may not be
+   * created yet.
+   *
+   * @param: List of all ResourceCodeGroups that were created.
+   */
+  annotateResourceGroups(resourceGroups: ResourceCodeGroup[]) {
+    const allResourceGroups = new Map<string, ResourceCodeGroup>();
+    for (const resourceGroup of resourceGroups) {
+      allResourceGroups.set(resourceGroup.label, resourceGroup);
+    }
+    for (const annotation of ANNOTATION_CONFIGURATION) {
+      const group = allResourceGroups.get(annotation.groupName);
+      const refGroup = allResourceGroups.get(annotation.refGroup);
+      if (!group || !refGroup) {
+        continue;
+      }
+      (group as LOINCCodeGroup)
+          .setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup));
+    }
   }
 
   /**
@@ -346,21 +410,30 @@ export class ResourceCodeManager {
   getDisplayGroupMapping(
       fhirService: FhirService, resourceCodeCreator: ResourceCodeCreator):
       Promise<Map<DisplayGrouping, AxisGroup[]>> {
-    return this.getResourceCodeGroups(fhirService, resourceCodeCreator)
-        .then((axisGroups) => {
-          let mapping = new Map<DisplayGrouping, AxisGroup[]>();
-          for (const group of axisGroups) {
-            if (mapping.has(group.displayGroup)) {
-              mapping.get(group.displayGroup).push(group);
-            } else {
-              mapping.set(group.displayGroup, [group]);
-            }
-          }
-          // A shim to make the two paradigms work together-- add in
-          // statically declared groups after we're done resolving.
-          mapping = this.addStaticGroups(mapping, fhirService);
-
-          return mapping;
-        });
+    if (!this.displayGroupMapping) {
+      this.displayGroupMapping =
+          this.getResourceCodeGroups(fhirService, resourceCodeCreator)
+              .then((resourceGroupMap) => {
+                // flatten all resource group lists.
+                const allResourceGroups =
+                    [].concat.apply([], Array.from(resourceGroupMap.values()));
+                this.annotateResourceGroups(allResourceGroups);
+                const axisGroups =
+                    this.createAxisGroups(resourceGroupMap, fhirService);
+                let mapping = new Map<DisplayGrouping, AxisGroup[]>();
+                for (const group of axisGroups) {
+                  if (mapping.has(group.displayGroup)) {
+                    mapping.get(group.displayGroup).push(group);
+                  } else {
+                    mapping.set(group.displayGroup, [group]);
+                  }
+                }
+                // A shim to make the two paradigms work together-- add in
+                // statically declared groups after we're done resolving.
+                mapping = this.addStaticGroups(mapping, fhirService);
+                return mapping;
+              });
+    }
+    return this.displayGroupMapping;
   }
 }
