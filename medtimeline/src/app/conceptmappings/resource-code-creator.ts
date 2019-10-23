@@ -52,9 +52,7 @@ export class ConceptConfiguration {
  */
 @Injectable()
 export class ResourceCodeCreator {
-  constructor(private http: HttpClient) {
-    this.createConceptConfiguration();
-  }
+  constructor(private http: HttpClient) {}
 
   private static assetPath = './assets/' + environment.conceptsFolder;
 
@@ -95,37 +93,32 @@ export class ResourceCodeCreator {
    * Mapping from DisplayGrouping to a Promise that resolves to the
    * ConceptConfiguration object for that DisplayGrouping.
    */
-  loadConfigurationFromFiles:
-      Map<DisplayGrouping, Promise<ConceptConfiguration>>;
+  loadConfigurationFromFiles =
+      new Map<DisplayGrouping, Promise<ConceptConfiguration>>(
+          Array.from(this.fileMap).map((entry) => {
+            const displayGrouping: DisplayGrouping = entry[0];
+            const files: string[] = entry[1];
 
-  /**
-   * Load in both the display groups and the clinical conepts, and return
-   * a ConceptConfiguration that represents them.
-   */
-  private createConceptConfiguration():
-      Map<DisplayGrouping, Promise<ConceptConfiguration>> {
-    if (!this.loadConfigurationFromFiles) {
-      const configurationsMap =
-          new Map<DisplayGrouping, Promise<ConceptConfiguration>>();
-      this.fileMap.forEach((files, displayGrouping) => {
-        configurationsMap.set(
-            displayGrouping,
-            Promise
-                .all([
-                  this.loadDisplayGroupsFromFile(
-                      ResourceCodeCreator.assetPath + '/' + files[0]),
-                  this.createConceptsFromFile(
-                      ResourceCodeCreator.assetPath + '/' + files[1],
-                      displayGrouping)
-                ])
-                .then((results) => {
-                  return new ConceptConfiguration(results[0], results[1]);
-                }));
-      });
-      this.loadConfigurationFromFiles = configurationsMap;
-    }
-    return this.loadConfigurationFromFiles;
-  }
+            // These statements could be collapsed but without the type
+            // hinting the compiler had a hard time figuring out what to
+            // do, and it was less readable.
+            let res: [DisplayGrouping, Promise<ConceptConfiguration>];
+            res = [
+              displayGrouping,
+              Promise
+                  .all([
+                    this.loadDisplayGroupsFromFile(
+                        ResourceCodeCreator.assetPath + '/' + files[0]),
+                    this.createConceptsFromFile(
+                        ResourceCodeCreator.assetPath + '/' + files[1],
+                        displayGrouping)
+                  ])
+                  .then((results) => {
+                    return new ConceptConfiguration(results[0], results[1]);
+                  })
+            ];
+            return res;
+          }));
 
   /**
    * Creates a ResourceCode. The type of ResourceCode is determined by the
