@@ -146,21 +146,16 @@ export class LineGraphData extends GraphData {
           // Blood pressure is read into the ObservationSet differently,
           // causing an edge case in the presentation of the values in the
           // tooltips. We only want to display 'Blood pressure' once
-          // TODO: Re-enable this.
-          // if (obs.observation.codes[0].codeString ===
-          //     bloodPressureLoincs[0].codeString) {
-          //   // We are combining the array into one AnnotatedTooltip in order
-          //   to
-          //   // check to see if "Blood pressure" has already been added to any
-          //   of
-          //   // the previous tooltips
-          //   const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
-          //       tooltipMap.get(timestamp));
-          //   if (annotatedTT.tooltipChart.includes(
-          //           bloodPressureLoincs[0].label)) {
-          //     continue;
-          //   }
-          // }
+          if (obs.observation.codes[0].label === 'Blood pressure') {
+            // We are combining the array into one AnnotatedTooltip in
+            // order to check to see if "Blood pressure" has already been added
+            // to any of the previous tooltips
+            const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+                tooltipMap.get(timestamp));
+            if (annotatedTT.tooltipChart.includes('Blood pressure')) {
+              continue;
+            }
+          }
           tooltipMap.get(timestamp).push(
               new GenericAnnotatedObservationTooltip(
                   false, series.legendInfo.fill)
