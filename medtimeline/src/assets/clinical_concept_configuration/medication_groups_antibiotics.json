@@ -125,6 +125,11 @@
         "displayGroupOnSameAxis": false
     },
     {
+        "groupName": "Gentamicin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
         "groupName": "Imipenem",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false

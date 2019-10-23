@@ -39,18 +39,6 @@ const ovaAndParasiteExam = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
-  private static readonly gentMonitoring = [
-    new LOINCCode('31091-2', labResult, 'Gentamicin, Peak/Post Q24H'),
-    new LOINCCode('3663-2', labResult, 'Gentamicin, Peak/Post Q8H'),
-    new LOINCCode('31092-0', labResult, 'Gentamicin, Trough/Pre Q24H'),
-    new LOINCCode('3665-7', labResult, 'Gentamicin, Trough/Pre Q8H')
-  ];
-
-  private static readonly vancMonitoring = [
-    new LOINCCode('20578-1', labResult, 'Vancomycin Level, Random', true),
-    new LOINCCode('4092-3', labResult, 'Vancomycin Level, Trough/Pre', true),
-  ];
-
   private static stoolGroupMB = [
     new BCHMicrobioCode(
         'CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', microbio,

@@ -146,8 +146,10 @@ export class Axis {
    * Returns whether there is data available for this axis within the
    * application's time scope.
    */
-  dataAvailableInAppTimeScope(): Promise<boolean> {
-    return this.resourceGroup.dataAvailableInAppTimeScope();
+  axisDataAvailable = false;
+  axisDataAvailableInAppTimeScope(): Promise<boolean> {
+    return this.resourceGroup.dataAvailableInAppTimeScope().then(
+        res => this.axisDataAvailable = res);
   }
 
   /**

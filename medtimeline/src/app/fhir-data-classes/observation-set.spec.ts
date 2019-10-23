@@ -3,9 +3,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import {HttpClientModule} from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 
 import {AnnotatedObservation} from './annotated-observation';
 import {Observation} from './observation';
@@ -20,6 +24,18 @@ describe('ObservationSet', () => {
       text: 'Temperature'
     }
   };
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+      ]
+    });
+    Promise.all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+                    .loadConfigurationFromFiles.values());
+  }));
 
   it('should throw error with non-matching labels', () => {
     const observations = [

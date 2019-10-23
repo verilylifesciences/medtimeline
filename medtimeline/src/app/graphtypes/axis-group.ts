@@ -82,7 +82,7 @@ export class AxisGroup {
       return Promise.resolve(this.dataAvailable);
     }
     return Promise
-        .all(this.axes.map(axis => axis.dataAvailableInAppTimeScope()))
+        .all(this.axes.map(axis => axis.axisDataAvailableInAppTimeScope()))
         .then(rsc => {
           this.dataAvailable = rsc.some(r => r === true);
           return this.dataAvailable;

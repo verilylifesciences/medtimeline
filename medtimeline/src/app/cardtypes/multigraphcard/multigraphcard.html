@@ -18,7 +18,8 @@
           <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}
         </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}
       </mat-expansion-panel>
-      <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage" [ngSwitch]="axis.chartType">
+      <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage && axis.axisDataAvailable"
+        [ngSwitch]="axis.chartType">
         <app-linegraph *ngSwitchCase="ChartType.LINE" [data]="axis.alreadyResolvedData" [dateRange]="this.dateRange"
           [eventlines]="this.eventlines" [xRegions]="this.xRegions"
           [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''" [showTicks]="axis.showTicks"></app-linegraph>
@@ -34,9 +35,9 @@
           [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
         </app-microbio-graph>
         <app-diagnostic-graph *ngSwitchCase="ChartType.DIAGNOSTIC" [data]="axis.alreadyResolvedData"
-        [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
-        [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
-      </app-diagnostic-graph>
+          [dateRange]="this.dateRange" [eventlines]="this.eventlines" [xRegions]="this.xRegions"
+          [axisLabel]="axisGroup.axes.length > 1 ? axis.label : ''">
+        </app-diagnostic-graph>
       </ng-container>
     </div>
   </div>

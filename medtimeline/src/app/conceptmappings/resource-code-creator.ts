@@ -88,9 +88,7 @@ export class ResourceCodeCreator {
     [
       antifungals,
       [environment.antifungalGroupFile, environment.antifungalConceptsFile]
-    ],
-
-
+    ]
   ]);
 
   /**

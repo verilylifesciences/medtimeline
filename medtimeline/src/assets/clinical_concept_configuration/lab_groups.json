@@ -23,5 +23,15 @@
         "groupName": "Other Fluid",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Vancomycin monitoring",
+        "graphType": "LINE",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Gentamicin monitoring",
+        "graphType": "LINE",
+        "displayGroupOnSameAxis": true
     }
 ]

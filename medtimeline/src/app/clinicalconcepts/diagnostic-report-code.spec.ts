@@ -35,8 +35,8 @@ class DiagnosticReportStubFhirService extends StubFhirService {
   }
 
   getAnnotatedDiagnosticReports(
-      codeGroup: DiagnosticReportCodeGroup,
-      dateRange: Interval): Promise<AnnotatedDiagnosticReport[]> {
+      codeGroup: DiagnosticReportCodeGroup, dateRange: Interval,
+      limitCount?: number): Promise<AnnotatedDiagnosticReport[]> {
     const annotatedReportsArr = new Array<Promise<AnnotatedDiagnosticReport>>();
     // Only check the code for radiologyReports
     if (codeGroup.resourceCodes.includes(
