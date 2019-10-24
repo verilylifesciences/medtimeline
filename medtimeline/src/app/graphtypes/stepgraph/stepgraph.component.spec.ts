@@ -42,7 +42,7 @@ describe('StepGraphComponent', () => {
 
 
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
     medicationAdministrations = [
       makeMedicationAdministration('2018-09-10T11:00:00.000Z'),
       makeMedicationAdministration('2018-09-12T11:00:00.000Z')

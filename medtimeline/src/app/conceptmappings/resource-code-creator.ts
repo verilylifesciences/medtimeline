@@ -16,33 +16,13 @@ import {ChartType} from '../graphtypes/graph/graph.component';
 
 
 /**
- * Holds basic configuration information for clinical concepts. Eventually
- * in ResourceCodeManager these primitive structures get transformed into
- * more sophisticated structures like Axis and AxisGroup, but this structure
- * holds the information as it was read in from the configuration files.
+ * Holds basic configuration information for clinical concept groups.
  */
-export class ConceptConfiguration {
+export class GroupConfiguration {
   constructor(
-      private groupNameToChartInfo: Map<string, [ChartType, boolean]>,
-      private displayGroupNameToCodeList: Map<string, LOINCCode[]>) {}
-
-  /**
-   * Returns a map where keys are the name of a group of concepts
-   * that should be displayed together, and the value is a tuple of
-   * [the type of the chart, whether the chart should be displayed by default].
-   */
-  getGroupNameToChartInfo(): Map<string, [ChartType, boolean]> {
-    return this.groupNameToChartInfo;
-  }
-
-  /**
-   * Returns a map where keys are the name of a group of concepts to be
-   * displayed together, and the values are a list of LOINC codes belonging
-   * to that display group.
-   */
-  getDisplayGroupNameToCodeList(): Map<string, LOINCCode[]> {
-    return this.displayGroupNameToCodeList;
-  }
+      readonly groupName: string, readonly chartType: ChartType,
+      readonly showOnSameAxis: boolean,
+      readonly displayGrouping: DisplayGrouping) {}
 }
 
 /**
@@ -55,6 +35,15 @@ export class ResourceCodeCreator {
   constructor(private http: HttpClient) {}
 
   private static assetPath = './assets/' + environment.conceptsFolder;
+
+  private static stringToChartType = {
+    'SCATTER': ChartType.SCATTER,
+    'STEP': ChartType.STEP,
+    'MICROBIO': ChartType.MICROBIO,
+    'DIAGNOSTIC': ChartType.DIAGNOSTIC,
+    'LINE': ChartType.LINE
+  };
+
 
   /**
    * Map from DisplayGrouping to a tuple of file names that describe the groups
@@ -88,35 +77,64 @@ export class ResourceCodeCreator {
   ]);
 
   /**
-   * Mapping from DisplayGrouping to a Promise that resolves to the
-   * ConceptConfiguration object for that DisplayGrouping.
+   * Loads in configuration for all the display groupings, including the
+   * grouping name, the chart type for the grouping, whether it's displayed
+   * by default
    */
-  loadConfigurationFromFiles =
-      new Map<DisplayGrouping, Promise<ConceptConfiguration>>(
-          Array.from(this.fileMap).map((entry) => {
-            const displayGrouping: DisplayGrouping = entry[0];
-            const files: string[] = entry[1];
+  private loadAllGroups: Promise<Map<string, GroupConfiguration>> =
+      Promise
+          .all(Array.from(this.fileMap).map((entry) => {
+            const displayGroup = entry[0];
+            const groupFile = entry[1][0];
+            return this.loadDisplayGroupsFromFile(
+                ResourceCodeCreator.assetPath + '/' + groupFile, displayGroup);
+          }))
+          // Return one flattened map for all the display groups regardless of
+          // their file source.
+          .then(
+              (allMaps) =>
+                  new Map(allMaps.map((m) => Array.from(m))
+                              .reduce((acc, val) => [...acc, ...val])));
 
-            // These statements could be collapsed but without the type
-            // hinting the compiler had a hard time figuring out what to
-            // do, and it was less readable.
-            let res: [DisplayGrouping, Promise<ConceptConfiguration>];
-            res = [
-              displayGrouping,
-              Promise
-                  .all([
-                    this.loadDisplayGroupsFromFile(
-                        ResourceCodeCreator.assetPath + '/' + files[0]),
-                    this.createConceptsFromFile(
-                        ResourceCodeCreator.assetPath + '/' + files[1],
-                        displayGrouping)
-                  ])
-                  .then((results) => {
-                    return new ConceptConfiguration(results[0], results[1]);
-                  })
-            ];
-            return res;
-          }));
+  loadAllConcepts: Promise<Map<GroupConfiguration, ResourceCode[]>> =
+      this.loadAllGroups.then((groupMap: Map<string, GroupConfiguration>) => {
+        return Promise
+            .all(Array.from(this.fileMap).map((entry) => {
+              const displayGroup: DisplayGrouping = entry[0];
+              const conceptsFile: string = entry[1][1];
+              return this.createConceptsFromFile(
+                  ResourceCodeCreator.assetPath + '/' + conceptsFile,
+                  displayGroup);
+            }))
+            .then((conceptsFromFile: Array<Map<string, ResourceCode[]>>) => {
+              // Reduce into one flattened map.
+              const allConceptsMap =
+                  new Map(conceptsFromFile.map((m) => Array.from(m))
+                              .reduce((acc, val) => [...acc, ...val]));
+              // Match up the display groupings to their corresponding
+              // group configurations.
+              const groupConfigurationToResourceCodes =
+                  new Map<GroupConfiguration, ResourceCode[]>();
+              allConceptsMap.forEach(
+                  (concepts: ResourceCode[], groupName: string) => {
+                    let groupConfiguration = groupMap.get(groupName);
+                    // If there's no group configured for a clinical concept
+                    // list, and the configuration was validated before running,
+                    // we know that there is only one clinical concept in this
+                    // group and that the group should be configured according
+                    // to its attributes.
+                    if (!groupConfiguration) {
+                      groupConfiguration = new GroupConfiguration(
+                          groupName, ChartType.LINE, true,
+                          concepts[0].displayGrouping);
+                    }
+
+                    groupConfigurationToResourceCodes.set(
+                        groupConfiguration, concepts);
+                  });
+              return groupConfigurationToResourceCodes;
+            });
+      });
 
   /**
    * Creates a ResourceCode. The type of ResourceCode is determined by the
@@ -176,6 +194,8 @@ export class ResourceCodeCreator {
           continue;
         }
         let concepts = [];
+        // If the concept has no higher level grouping, then use its display
+        // name as the proxy for its grouping.
         if (!concept.groupNames) {
           concept.groupNames = [concept.displayName];
         }
@@ -196,28 +216,17 @@ export class ResourceCodeCreator {
    * Reads in a JSON file for display group configurations and maps
    * display group names to simple chart configuration attributes.
    */
-  private loadDisplayGroupsFromFile(filePath: string):
-      Promise<Map<string, [ChartType, boolean]>> {
+  private loadDisplayGroupsFromFile(
+      filePath: string, displayGrouping: DisplayGrouping):
+      Promise<Map<string, GroupConfiguration>> {
     return this.http.get(filePath).toPromise<any>().then(groups => {
-      const displayGroupConfigurations =
-          new Map<string, [ChartType, boolean]>();
-      groups.forEach(group => {
-        let chartType = ChartType.LINE;
-        if (group.graphType === 'SCATTER') {
-          chartType = ChartType.SCATTER;
-        } else if (group.graphType === 'STEP') {
-          chartType = ChartType.STEP;
-        } else if (group.graphType === 'MICROBIO') {
-          chartType = ChartType.MICROBIO;
-        } else if (group.graphType === 'DIAGNOSTIC') {
-          chartType = ChartType.DIAGNOSTIC;
-        } else if (group.graphType === 'NONE') {
-          chartType = undefined;
-        }
-        displayGroupConfigurations.set(
-            group.groupName, [chartType, group.displayGroupOnSameAxis]);
-      });
-      return displayGroupConfigurations;
+      return groups.map(
+          group =>
+              [group.groupName,
+               new GroupConfiguration(
+                   group.groupName,
+                   ResourceCodeCreator.stringToChartType[group.graphType],
+                   group.displayGroupOnSameAxis, displayGrouping)]);
     });
   }
 }

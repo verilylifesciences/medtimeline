@@ -31,7 +31,7 @@ class DiagnosticReportStubFhirService extends StubFhirService {
   diagnosticReports: DiagnosticReport[];
 
   constructor() {
-    super(TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator));
+    super(TestBed.get(ResourceCodeCreator));
   }
 
   getAnnotatedDiagnosticReports(
@@ -55,15 +55,12 @@ describe('DiagnosticReportCode', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
         {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
         {provide: FhirService, useClass: DiagnosticReportStubFhirService}
       ]
     });
-    Promise
-        .all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
-                 .loadConfigurationFromFiles.values())
-        .then(() => {
+    (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+        .loadAllConcepts.then(() => {
           stubFhir = TestBed.get(FhirService);
           diagnosticCodeGroup = new DiagnosticReportCodeGroup(
               stubFhir, 'radiology',

@@ -19,16 +19,13 @@ import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {ANNOTATION_CONFIGURATION} from './annotation-mapping';
-import {ResourceCodeCreator} from './resource-code-creator';
+import {GroupConfiguration, ResourceCodeCreator} from './resource-code-creator';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
 // configuration sidebar.
 export const documentReferenceLoinc =
     new LOINCCode('68608-9', undefined, 'Summary', true);
-
-const ovaAndParasiteExam = new BCHMicrobioCode(
-    'OVAANDPARASITEEXAM', microbio, 'Ova and Parasite Exam', false);
 
 /**
  * ResourceCodeManager is the centralized class where other components can
@@ -37,85 +34,13 @@ const ovaAndParasiteExam = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
-  constructor(private sanitizer: DomSanitizer) {}
-  /**
-   * A Promise that when resolved returns a Map from DisplayGrouping to
-   * the list of AxisGroups that belong to that display group.
-   */
-  private displayGroupMapping: Promise<Map<DisplayGrouping, AxisGroup[]>>;
+  /** Keep the same group mapping across instances. */
+  private static displayGroupMapping:
+      Promise<Map<DisplayGrouping, AxisGroup[]>>;
 
-  // private addStaticGroups(
-  //     mapping: Map<DisplayGrouping, AxisGroup[]>,
-  //     fhirService: FhirService): Map<DisplayGrouping, AxisGroup[]> {
-  //   const codeGroups = new Array<AxisGroup>();
-
-  // TODO(laurendukes): Re-implement summary cards & monitoring for meds.
-  // const medsSummaryGroup = RXNORM_CODES;
-  // codeGroups.push(new AxisGroup([new Axis(
-  //     fhirService, this.sanitizer,
-  //     new RxNormCodeGroup(
-  //         fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup,
-  //         med, ChartType.STEP),
-  //     'Vancomycin & Gentamicin Summary')]));
-
-  // // Drug monitoring should be a scatterplot, and the related concepts
-  // // should be displayed on the same axes.
-  // const vancRxNorm = new RxNormCodeGroup(
-  //     fhirService, 'Administrations', [RxNormCode.fromCodeString('11124')],
-  //     med, ChartType.SCATTER);
-
-  // // Drug monitoring should be a scatterplot, and the related concepts
-  // // should be displayed on the same axes.
-  // const vancMonitoring = [
-  //   vancRxNorm,
-  //   new LOINCCodeGroup(
-  //       fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring, med,
-  //       ChartType.SCATTER,
-  //       (observation: Observation, dateRange: Interval):
-  //           Promise<AnnotatedObservation> => {
-  //             return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
-  //               // We know that we're only pushing in one RxNorm
-  //               // so it's safe to grab the first (and only) one in
-  //               // the list.
-  //               return AnnotatedObservation.forMedicationMonitoring(
-  //                   observation, rxNorms[0].orders);
-  //             });
-  //           })
-  // ];
-
-  // codeGroups.push(new AxisGroup(
-  //     vancMonitoring.map(
-  //         codeGroup => new Axis(
-  //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-  //     'Vancomycin'));
-
-  // const gentMonitoring = [
-  //   new RxNormCodeGroup(
-  //       fhirService, 'Administrations',
-  //       [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
-  //   new LOINCCodeGroup(
-  //       fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring, med,
-  //       ChartType.SCATTER)
-  // ];
-
-  // codeGroups.push(new AxisGroup(
-  //     gentMonitoring.map(
-  //         codeGroup => new Axis(
-  //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-  //     'Gentamicin'));
-
-  // for (const group of codeGroups) {
-  //   if (mapping.has(group.displayGroup)) {
-  //     mapping.get(group.displayGroup).push(group);
-  //   } else {
-  //     mapping.set(group.displayGroup, [group]);
-  //   }
-  // }
-  // return mapping;
-
+  constructor(private sanitizer: DomSanitizer) {};
 
   /**
-   * Creates an AxisGroup for a group of concepts.
    * Determines ResourceCodeGroup type from the displayGrouping passed in.
    *
    * @param displayGrouping DisplayGroup to create ResourceCodeGroups with
@@ -209,39 +134,18 @@ export class ResourceCodeManager {
   private getResourceCodeGroups<R extends ResourceCode>(
       fhirService: FhirService, resourceCodeCreator: ResourceCodeCreator):
       Promise<Map<string, ResourceCodeGroup[]>> {
-    const resourceGroupPromises =
-        new Array<Promise<Map<string, ResourceCodeGroup[]>>>();
-    resourceCodeCreator.loadConfigurationFromFiles.forEach(
-        (configurationPromise, displayGrouping) => {
-          resourceGroupPromises.push(
-              configurationPromise.then((configuration) => {
-                const groupNameToResourceGroups =
-                    new Map<string, ResourceCodeGroup[]>();
-                const groupsChartInfo = configuration.getGroupNameToChartInfo();
-                configuration.getDisplayGroupNameToCodeList().forEach(
-                    (conceptList: R[], groupName: string) => {
-                      const chartInfo = groupsChartInfo.get(groupName);
-                      const chartType =
-                          chartInfo ? chartInfo[0] : ChartType.LINE;
-                      const sameAxis = chartInfo ? chartInfo[1] : false;
-                      const resourceGroups = this.createResourceGroups(
-                          displayGrouping, fhirService, chartType, sameAxis,
-                          groupName, conceptList);
-                      groupNameToResourceGroups.set(groupName, resourceGroups);
-                    });
-                return groupNameToResourceGroups;
-              }));
-        });
-    return Promise.all(resourceGroupPromises)
-        .then((results: Array<Map<string, ResourceCodeGroup[]>>) => {
-          // flatten into a single mapping
-          const allResourceGroups = new Map<string, ResourceCodeGroup[]>();
-          for (const map of results) {
-            map.forEach((resourceGroupList, groupName) => {
-              allResourceGroups.set(groupName, resourceGroupList);
-            });
-          }
-          return allResourceGroups;
+    return resourceCodeCreator.loadAllConcepts.then(
+        (groupConfigurationToResourceCodes) => {
+          const groupNameToResourceGroups =
+              new Map<string, ResourceCodeGroup[]>();
+          groupConfigurationToResourceCodes.forEach(
+              (codeList: R[], config: GroupConfiguration) => {
+                const resourceGroups = this.createResourceGroups(
+                    config.displayGrouping, fhirService, config.chartType,
+                    config.showOnSameAxis, config.groupName, codeList);
+                groupNameToResourceGroups.set(config.groupName, resourceGroups);
+              });
+          return groupNameToResourceGroups;
         });
   }
 
@@ -250,22 +154,23 @@ export class ResourceCodeManager {
    * All ResourceCodeGroups need to be created before this method is called,
    * otherwise the group to annotate or the reference group may not be
    * created yet.
-   *
    * @param: List of all ResourceCodeGroups that were created.
    */
-  annotateResourceGroups(resourceGroups: ResourceCodeGroup[]) {
-    const allResourceGroups = new Map<string, ResourceCodeGroup>();
-    for (const resourceGroup of resourceGroups) {
-      allResourceGroups.set(resourceGroup.label, resourceGroup);
-    }
+  annotateResourceGroups(resourceGroups: Map<string, ResourceCodeGroup[]>) {
     for (const annotation of ANNOTATION_CONFIGURATION) {
-      const group = allResourceGroups.get(annotation.groupName);
-      const refGroup = allResourceGroups.get(annotation.refGroup);
-      if (!group || !refGroup) {
+      const groups = resourceGroups.get(annotation.groupName);
+      const refGroup = resourceGroups.get(annotation.refGroup);
+      // Right now we only support tooltips that several primary code groups to
+      // another reference group. Some tooltips, for example, medication
+      // monitoring, need multiple reference groups for annotation. We will
+      // support this in a later release.
+      if ((!groups || !refGroup) || (refGroup.length > 1)) {
         continue;
       }
-      (group as LOINCCodeGroup)
-          .setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup));
+      for (const group of groups) {
+        (group as LOINCCodeGroup)
+            .setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup[0]));
+      }
     }
   }
 
@@ -276,16 +181,14 @@ export class ResourceCodeManager {
   getDisplayGroupMapping(
       fhirService: FhirService, resourceCodeCreator: ResourceCodeCreator):
       Promise<Map<DisplayGrouping, AxisGroup[]>> {
-    if (!this.displayGroupMapping) {
-      this.displayGroupMapping =
+    if (!ResourceCodeManager.displayGroupMapping) {
+      ResourceCodeManager.displayGroupMapping =
           this.getResourceCodeGroups(fhirService, resourceCodeCreator)
               .then((resourceGroupMap) => {
-                // flatten all resource group lists.
-                const allResourceGroups =
-                    [].concat.apply([], Array.from(resourceGroupMap.values()));
-                this.annotateResourceGroups(allResourceGroups);
+                this.annotateResourceGroups(resourceGroupMap);
                 const axisGroups =
                     this.createAxisGroups(resourceGroupMap, fhirService);
+
                 const mapping = new Map<DisplayGrouping, AxisGroup[]>();
                 for (const group of axisGroups) {
                   if (mapping.has(group.displayGroup)) {
@@ -297,6 +200,6 @@ export class ResourceCodeManager {
                 return mapping;
               });
     }
-    return this.displayGroupMapping;
+    return Promise.resolve(ResourceCodeManager.displayGroupMapping);
   }
 }

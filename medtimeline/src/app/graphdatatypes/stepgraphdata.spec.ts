@@ -32,7 +32,7 @@ describe('StepGraphData', () => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
 
     medicationAdministrations = [
       makeMedicationAdministration(admin1Time),

@@ -22,31 +22,22 @@ GROUPS_FILES = ['lab_groups.json',
                 'vital_sign_groups.json', 'medication_groups.json']
 GROUP_NAME_KEY = 'groupName'
 GROUP_NAMES_KEY = 'groupNames'
-PARENT_GROUP_NAME_KEY = 'parentGroupName'
 
 
 def validate_groups(groups_schema_file: str,
                     groups_files: List[str]) -> (List[str], List[str]):
     """
-    Validate the groups files.
-
-    First validates the groups file against the schema and prints out
-    any errors. Then, checks the hierarchy of groups to ensure:
-
-    1) Every group referenced as a parent group exists
-    2) The hierarchy only goes one level deep
+    Validates the groups file against the schema and prints out
+    any errors.
 
     Args:
         groups_schema_file: The file name of the schema for the group structure
         groups_files: A list of files that contain groups
 
     Returns:
-        A tuple where the first member is a list of group names and the second
-        member is a list of parent group names
+        A list of group names.
     """
     groups = []
-    parent_groups = []
-    groups_with_parents = []
     with open(groups_schema_file) as group_schema:
         schema = json.load(group_schema)
 
@@ -56,25 +47,8 @@ def validate_groups(groups_schema_file: str,
         for item in data:
             validate(instance=item, schema=schema)
             groups.append(item[GROUP_NAME_KEY])
-            if PARENT_GROUP_NAME_KEY in item:
-                parent_groups.append(item[PARENT_GROUP_NAME_KEY])
-                groups_with_parents.append(item[GROUP_NAME_KEY])
 
-    # Make sure that all parent groups are valid groups.
-    for group in parent_groups:
-        if group not in groups:
-            print("ERROR: Parent group {} undefined.".format(group))
-
-    # Make sure the hierarchy is single-leveled and non-circular.
-    parent_group_set = set(parent_groups)
-    groups_with_parents_set = set(groups_with_parents)
-
-    overlap = parent_group_set.intersection(groups_with_parents_set)
-    if overlap:
-        print("ERROR: Groups [{}] listed as both parents and children.".
-              format(', '.join(overlap)))
-
-    return groups, parent_groups
+    return groups
 
 
 def validate_clinical_concepts(
@@ -93,8 +67,7 @@ def validate_clinical_concepts(
         group_names: Names of defined groups.
     """
     # Validate the concepts schema and check to make sure they don't reference
-    # any undefined groups (or any parent groups--the hierarchy
-    # is single-leveled.)
+    # any undefined groups
     with open(clinical_concept_schema_file) as schema_file:
         schema = json.load(schema_file)
     for file in clinical_concept_files:
@@ -112,10 +85,10 @@ def validate_clinical_concepts(
 
 def main():
     # Validate the group schema and make a list of valid groups.
-    (groups, parent_groups) = validate_groups(GROUPS_SCHEMA_FILE, GROUPS_FILES)
+    groups = validate_groups(GROUPS_SCHEMA_FILE, GROUPS_FILES)
 
     validate_clinical_concepts(CLINICAL_CONCEPT_SCHEMA_FILE,
-                               CLINICAL_CONCEPT_FILES, groups + parent_groups)
+                               CLINICAL_CONCEPT_FILES, groups)
 
 
 if __name__ == '__main__':

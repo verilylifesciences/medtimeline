@@ -14,7 +14,7 @@ import {ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {Encounter} from '../fhir-data-classes/encounter';
-import {MedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {FhirService} from '../fhir.service';
 import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {GraphData} from '../graphdatatypes/graphdata';
@@ -146,10 +146,12 @@ export class Axis {
    * Returns whether there is data available for this axis within the
    * application's time scope.
    */
-  axisDataAvailable = false;
+  axisDataAvailable = true;
   axisDataAvailableInAppTimeScope(): Promise<boolean> {
-    return this.resourceGroup.dataAvailableInAppTimeScope().then(
-        res => this.axisDataAvailable = res);
+    return this.resourceGroup.dataAvailableInAppTimeScope().then(res => {
+      this.axisDataAvailable = res;
+      return this.axisDataAvailable;
+    });
   }
 
   /**
@@ -291,6 +293,6 @@ export class Axis {
    * Returns whether there's resolved data for this axis.
    */
   dataResolved(): boolean {
-    return this.alreadyResolvedData ? true : false;
+    return this.alreadyResolvedData && this.axisDataAvailable ? true : false;
   }
 }

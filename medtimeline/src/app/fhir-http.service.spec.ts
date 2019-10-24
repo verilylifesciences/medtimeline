@@ -13,7 +13,7 @@ import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
+;
 import {FhirHttpService} from './fhir-http.service';
 import {FhirService} from './fhir.service';
 import {ChartType} from './graphtypes/graph/graph.component';
@@ -84,15 +84,12 @@ describe('FhirHttpService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
         {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
         {provide: FhirService, useClass: StubFhirService}
       ]
     });
-    Promise
-        .all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
-                 .loadConfigurationFromFiles.values())
-        .then(() => {
+    (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+        .loadAllConcepts.then(() => {
           code = LOINCCode.fromCodeString('718-7');
           diagnosticCodeGroup = new DiagnosticReportCodeGroup(
               service, 'radiology',
@@ -100,6 +97,7 @@ describe('FhirHttpService', () => {
               new DisplayGrouping('lbl', 'red'), ChartType.DIAGNOSTIC);
         });
   }));
+
 
   beforeEach(() => {
     const smartOnFhirClient = {
@@ -111,8 +109,7 @@ describe('FhirHttpService', () => {
       }
     };
     service = new FhirHttpService(
-        null, smartOnFhirClient, TestBed.get(DomSanitizer),
-        TestBed.get(HttpClient), TestBed.get(ResourceCodeManager),
+        null, smartOnFhirClient, TestBed.get(HttpClient),
         TestBed.get(ResourceCodeCreator));
   });
 

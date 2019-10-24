@@ -68,7 +68,6 @@ describe('RxNormGroup', () => {
         .configureTestingModule({
           imports: [HttpClientModule],
           providers: [
-            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
             {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
           ]
         })
@@ -76,8 +75,7 @@ describe('RxNormGroup', () => {
 
 
 
-    rxStubFhirService = new RxStubFhirService(
-        TestBed.get(ResourceCodeManager), TestBed.get(ResourceCodeCreator));
+    rxStubFhirService = new RxStubFhirService(TestBed.get(ResourceCodeCreator));
 
 
     // We wait until the clinical concepts are resolved to create all the

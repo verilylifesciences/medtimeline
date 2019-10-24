@@ -8,7 +8,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
-import {AnnotatedAdministration, MedicationAdministrationSet} from 'src/app/fhir-data-classes/medication-administration';
+import {AnnotatedAdministration} from 'src/app/fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder} from 'src/app/fhir-data-classes/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/test_utils';
 import {UI_CONSTANTS} from 'src/constants';
@@ -25,7 +25,7 @@ describe('MedicationTooltip', () => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
 
     firstAdmin = makeMedicationAdministration(
         DateTime.fromJSDate(new Date('1957-01-14')).toString());
@@ -97,7 +97,7 @@ describe('MedicationAdministrationTooltip', () => {
         .compileComponents();
 
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
 
     admin1 = new AnnotatedAdministration(makeMedicationAdministration(
         DateTime.fromJSDate(new Date('1957-01-14')).toString()));

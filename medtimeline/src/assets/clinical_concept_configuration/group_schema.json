@@ -28,10 +28,6 @@
         "displayGroupOnSameAxis": {
             "type": "boolean",
             "description": "Whether the concepts in this group should be displayed on the same axis, or each on their individual axis in the same card."
-        },
-        "parentGroupName": {
-            "type": "string",
-            "description": "If this concept group represents one axis on a card with multiple axes, then this should be set to the parent group's name."
         }
     }
 }

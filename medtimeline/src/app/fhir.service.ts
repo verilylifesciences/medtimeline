@@ -24,13 +24,9 @@ import {Observation} from './fhir-data-classes/observation';
 
 @Injectable()
 export abstract class FhirService {
-  constructor(
-      resourceCodeManager: ResourceCodeManager,
-      resourceCodeCreator: ResourceCodeCreator) {
-    // Before anything else happens in the FHIR class, we need to make sure the
-    // resource codes get loaded in.
-    resourceCodeManager.getDisplayGroupMapping(this, resourceCodeCreator);
-  }
+  protected loadAllCodes = this.resourceCodeCreator.loadAllConcepts;
+
+  constructor(private resourceCodeCreator: ResourceCodeCreator) {}
 
   /**
    * Returns whether there are any observations with this code in the given

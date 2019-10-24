@@ -24,6 +24,14 @@
     ]
   },
   {
+    "codeString": "OVAANDPARASITEEXAM",
+    "displayName": "Ova and Parasite Exam",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
     "codeString": "SALMONELLAANDSHIGELLACULTURE",
     "displayName": "Salmonella and Shigella Culture",
     "showByDefault": true,

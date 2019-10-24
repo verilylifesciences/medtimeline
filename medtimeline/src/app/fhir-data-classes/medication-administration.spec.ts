@@ -31,7 +31,7 @@ describe('MedicationAdministration', () => {
       });
 
       const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-      Promise.all(rcm.loadConfigurationFromFiles.values());
+      Promise.resolve(rcm.loadAllConcepts);
     }));
   });
 
@@ -203,7 +203,7 @@ describe('MedicationAdministrationSet', () => {
   describe('RxNormGroup', () => {
     beforeEach(async(() => {
       const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-      Promise.all(rcm.loadConfigurationFromFiles.values());
+      Promise.resolve(rcm.loadAllConcepts);
     }));
   });
 

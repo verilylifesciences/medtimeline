@@ -36,7 +36,7 @@ describe('MedicationOrder', () => {
       imports: [HttpClientModule],
     });
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
   }));
 
   it('should get rxNorm code from json', () => {
@@ -149,7 +149,7 @@ describe('AnnotatedMedicationOrder', () => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
 
 
     earliestAdministration =

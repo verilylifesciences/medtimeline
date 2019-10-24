@@ -9,7 +9,6 @@ import {DateTime} from 'luxon';
 
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 
 import {AnnotatedObservation} from './annotated-observation';
 import {Observation} from './observation';
@@ -29,12 +28,11 @@ describe('ObservationSet', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
         {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
       ]
     });
-    Promise.all((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
-                    .loadConfigurationFromFiles.values());
+    Promise.resolve((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
+                        .loadAllConcepts);
   }));
 
   it('should throw error with non-matching labels', () => {

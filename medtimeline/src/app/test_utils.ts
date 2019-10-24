@@ -15,7 +15,6 @@ import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
 import {Encounter} from './fhir-data-classes/encounter';
@@ -35,10 +34,8 @@ export const medicationCodingConcept = {
 
 @Injectable()
 export class StubFhirService extends FhirService {
-  constructor(
-      resourceCodeManager: ResourceCodeManager,
-      resourceCodeCreator: ResourceCodeCreator) {
-    super(resourceCodeManager, resourceCodeCreator);
+  constructor(resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeCreator);
   }
 
   getObservationsWithCode(code: LOINCCode, dateRange: Interval):

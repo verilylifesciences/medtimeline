@@ -330,28 +330,32 @@
     },
     {
         "groupNames": [
-            "Gentamicin"
+            "Gentamicin",
+            "Gentamicin (with monitoring)"
         ],
         "displayName": "Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment",
         "codeString": "310466"
     },
     {
         "groupNames": [
-            "Gentamicin"
+            "Gentamicin",
+            "Gentamicin (with monitoring)"
         ],
         "displayName": "Gentamicin Sulfate (USP) 1 MG/ML Topical Cream",
         "codeString": "197735"
     },
     {
         "groupNames": [
-            "Gentamicin"
+            "Gentamicin",
+            "Gentamicin (with monitoring)"
         ],
         "displayName": "Gentamicin Sulfate (USP) 3 MG/ML Ophthalmic Solution",
         "codeString": "310467"
     },
     {
         "groupNames": [
-            "Gentamicin"
+            "Gentamicin",
+            "Gentamicin (with monitoring)"
         ],
         "displayName": "Gentamicin Sulfate (USP) 40 MG/ML Injectable Solution",
         "codeString": "313996"
@@ -607,21 +611,24 @@
     },
     {
         "groupNames": [
-            "Vancomycin"
+            "Vancomycin",
+            "Vancomycin (with monitoring)"
         ],
         "displayName": "200 ML Vancomycin 5 MG/ML Injection",
         "codeString": "1807508"
     },
     {
         "groupNames": [
-            "Vancomycin"
+            "Vancomycin",
+            "Vancomycin (with monitoring)"
         ],
         "displayName": "Vancomycin",
         "codeString": "11124"
     },
     {
         "groupNames": [
-            "Vancomycin"
+            "Vancomycin",
+            "Vancomycin (with monitoring)"
         ],
         "displayName": "Vancomycin 100 MG/ML Injectable Solution",
         "codeString": "239209"

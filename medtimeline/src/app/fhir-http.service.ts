@@ -15,7 +15,7 @@ import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-co
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {documentReferenceLoinc, ResourceCodeManager} from './conceptmappings/resource-code-manager';
+import {documentReferenceLoinc} from './conceptmappings/resource-code-manager';
 import {DebuggerService} from './debugger.service';
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
 import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
@@ -52,10 +52,8 @@ export class FhirHttpService extends FhirService {
   constructor(
       private debugService: DebuggerService,
       @Inject(SMART_ON_FHIR_CLIENT) smartOnFhirClient: any,
-      private sanitizer: DomSanitizer, private http: HttpClient,
-      resourceCodeManager: ResourceCodeManager,
-      resourceCodeCreator: ResourceCodeCreator) {
-    super(resourceCodeManager, resourceCodeCreator);
+      private http: HttpClient, resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeCreator);
     // Create a promise which resolves to the smart API when the smart API is
     // ready. This allows clients of this service to call service methods
     // which depend on the API, regardless of whether the API is ready or not.
@@ -83,11 +81,13 @@ export class FhirHttpService extends FhirService {
       cacheForCode = new ObservationCache(this.smartApiPromise, code);
       this.observationCache.set(code, cacheForCode);
     }
-    return cacheForCode.getResource(dateRange).then(
-        (results: Observation[]) => {
-          return results.filter(
-              result => result.status !== ObservationStatus.EnteredInError);
-        });
+    return this.loadAllCodes.then(() => {
+      return cacheForCode.getResource(dateRange).then(
+          (results: Observation[]) => {
+            return results.filter(
+                result => result.status !== ObservationStatus.EnteredInError);
+          });
+    });
   }
 
   /**
@@ -104,9 +104,11 @@ export class FhirHttpService extends FhirService {
       Promise<boolean> {
     const queryParams = new ObservationCache(this.smartApiPromise, code)
                             .getQueryParams(dateRange);
-    return this.smartApiPromise.then(
-        smartApi => smartApi.patient.api.search(queryParams)
-                        .then(response => !!response.data.entry));
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(
+            ([smartApi, codes]) =>
+                smartApi.patient.api.search(queryParams)
+                    .then(response => !!response.data.entry));
   }
 
   /**
@@ -170,12 +172,13 @@ export class FhirHttpService extends FhirService {
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
     const queryParams = this.medicationCache.getQueryParams(dateRange);
-    return this.smartApiPromise.then(smartApi => {
-      return smartApi.patient.api.search(queryParams)
-          .then(
-              response => this.checkMedicationsPresentNextPage(
-                  smartApi, response, code));
-    });
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(
+            ([smartApi, codes]) =>
+                smartApi.patient.api.search(queryParams)
+                    .then(
+                        response => this.checkMedicationsPresentNextPage(
+                            smartApi, response, code)));
   }
 
   /**
@@ -183,22 +186,23 @@ export class FhirHttpService extends FhirService {
    * @param id The id to pull the order from.
    */
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
-    return this.smartApiPromise.then(
-        smartApi =>
-            smartApi.patient.api
-                .read({type: FhirResourceType.MedicationOrder, 'id': id})
-                .then(
-                    (result: any) => {
-                      const requestId = result.headers('x-request-id');
-                      return new MedicationOrder(result.data, requestId);
-                    },
-                    // Do not return any MedicationOrders for
-                    // this code if one of the MedicationOrder
-                    // constructions throws an error.
-                    rejection => {
-                      this.debugService.logError(rejection);
-                      throw rejection;
-                    }));
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(
+            ([smartApi, codes]) =>
+                smartApi.patient.api
+                    .read({type: FhirResourceType.MedicationOrder, 'id': id})
+                    .then(
+                        (result: any) => {
+                          const requestId = result.headers('x-request-id');
+                          return new MedicationOrder(result.data, requestId);
+                        },
+                        // Do not return any MedicationOrders for
+                        // this code if one of the MedicationOrder
+                        // constructions throws an error.
+                        rejection => {
+                          this.debugService.logError(rejection);
+                          throw rejection;
+                        }));
   }
 
   /**
@@ -234,7 +238,10 @@ export class FhirHttpService extends FhirService {
    * @param date The date the note was written on.
    */
   saveStaticNote(image: HTMLCanvasElement, date: string): Promise<boolean> {
-    return this.smartApiPromise.then(smartApi => {
+    return Promise.all([this.smartApiPromise, this.loadAllCodes]).then(([
+                                                                         smartApi,
+                                                                         codes
+                                                                       ]) => {
       const postBody = {
         resourceType: FhirResourceType.DocumentReference,
         subject: {
@@ -289,44 +296,45 @@ export class FhirHttpService extends FhirService {
           'No microbiology parameters available in the configuration.');
       return Promise.resolve([]);
     }
-    return this.smartApiPromise.then(
-        smartApi => {
-          // YYYY-MM-DD format for dates
-          let callParams = new HttpParams();
-          callParams = callParams.append('patient', smartApi.patient.id);
-          callParams = callParams.append('category', 'microbiology'),
-          callParams = callParams.append(
-              'item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
-          callParams = callParams.append(
-              'item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
-          callParams = callParams.append('_format', 'json');
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(
+            ([smartApi, codes]) => {
+              // YYYY-MM-DD format for dates
+              let callParams = new HttpParams();
+              callParams = callParams.append('patient', smartApi.patient.id);
+              callParams = callParams.append('category', 'microbiology'),
+              callParams = callParams.append(
+                  'item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
+              callParams = callParams.append(
+                  'item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
+              callParams = callParams.append('_format', 'json');
 
-          const authString = btoa(
-              FhirConfig.microbiology.username + ':' +
-              FhirConfig.microbiology.password);
-          const httpHeaders = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Basic ' + authString,
-          });
-
-          return this.http
-              .get(
-                  [
-                    FhirConfig.microbiology.url,
-                    FhirResourceType.DiagnosticReport
-                  ].join('/'),
-                  {headers: httpHeaders, params: callParams})
-              .toPromise()
-              .then((res: any) => {
-                return MicrobioReport.parseAndFilterMicrobioData(
-                    res, codeGroup);
+              const authString = btoa(
+                  FhirConfig.microbiology.username + ':' +
+                  FhirConfig.microbiology.password);
+              const httpHeaders = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Basic ' + authString,
               });
-        },
-        rejection => {
-          this.debugService.logError(rejection);
-          throw rejection;
-        });
+
+              return this.http
+                  .get(
+                      [
+                        FhirConfig.microbiology.url,
+                        FhirResourceType.DiagnosticReport
+                      ].join('/'),
+                      {headers: httpHeaders, params: callParams})
+                  .toPromise()
+                  .then((res: any) => {
+                    return MicrobioReport.parseAndFilterMicrobioData(
+                        res, codeGroup);
+                  });
+            },
+            rejection => {
+              this.debugService.logError(rejection);
+              throw rejection;
+            });
   }
 
   /**
@@ -360,15 +368,17 @@ export class FhirHttpService extends FhirService {
    * @param url Fhir link to location of data
    */
   getAttachment(url: string): Promise<string> {
-    return this.smartApiPromise.then(smartApi => {
-      const httpHeaders = new HttpHeaders({
-        'Accept': 'text/html',
-        'Authorization': 'Bearer ' + smartApi.tokenResponse.access_token
-      });
-      return this.http.get(url, {headers: httpHeaders, responseType: 'text'})
-          .toPromise()
-          .then((res: any) => res)
-          .catch(err => err.message);
-    });
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(([smartApi, codes]) => {
+          const httpHeaders = new HttpHeaders({
+            'Accept': 'text/html',
+            'Authorization': 'Bearer ' + smartApi.tokenResponse.access_token
+          });
+          return this.http
+              .get(url, {headers: httpHeaders, responseType: 'text'})
+              .toPromise()
+              .then((res: any) => res)
+              .catch(err => err.message);
+        });
   }
 }

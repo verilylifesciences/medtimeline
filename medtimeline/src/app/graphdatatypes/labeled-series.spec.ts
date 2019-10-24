@@ -49,7 +49,7 @@ describe('LabeledSeries', () => {
         .compileComponents();
 
     const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
-    Promise.all(rcm.loadConfigurationFromFiles.values());
+    Promise.resolve(rcm.loadAllConcepts);
 
     annotatedOrder = new AnnotatedMedicationOrder(
         makeMedicationOrder(), medicationAdministrations);
