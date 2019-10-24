@@ -2,26 +2,26 @@
   {
     "groupName": "Stool",
     "graphType": "MICROBIO",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   },
   {
     "groupName": "Respiratory",
     "graphType": "MICROBIO",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   },
   {
     "groupName": "Other",
     "graphType": "MICROBIO",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   },
   {
     "groupName": "Blood",
     "graphType": "MICROBIO",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   },
   {
     "groupName": "CSF Microbiology",
     "graphType": "MICROBIO",
-    "displayGroupOnSameAxis": false
+    "displayGroupOnSameAxis": true
   }
 ]
