@@ -64,13 +64,7 @@ export class ResourceCodeCreator {
    */
   private readonly fileMap = new Map([
     [vitalSign, [environment.vitalGroupFile, environment.vitalConceptsFile]],
-    [
-      labResult,
-      [
-        environment.labGroupFile,
-        environment.labConceptsFile,
-      ]
-    ],
+    [labResult, [environment.labGroupFile, environment.labConceptsFile]],
     [
       radiology,
       [environment.radiologyGroupFile, environment.radiologyConceptsFile]
@@ -86,6 +80,10 @@ export class ResourceCodeCreator {
     [
       antifungals,
       [environment.antifungalGroupFile, environment.antifungalConceptsFile]
+    ],
+    [
+      microbio,
+      [environment.microbioGroupFile, environment.microbioConceptsFile]
     ]
   ]);
 

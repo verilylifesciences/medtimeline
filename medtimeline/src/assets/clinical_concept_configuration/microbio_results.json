@@ -1,0 +1,282 @@
+[
+  {
+    "codeString": "CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA",
+    "displayName": "C difficile EIA w/rflx to amplified DNA",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
+    "codeString": "CAMPYLOBACTERCULTURE",
+    "displayName": "Campylobacter Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
+    "codeString": "ENTEROHEMORRHAGICECOLITEST",
+    "displayName": "Enterohemorrhagic E coli Test",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
+    "codeString": "SALMONELLAANDSHIGELLACULTURE",
+    "displayName": "Salmonella and Shigella Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
+    "codeString": "YERSINIACULTURE",
+    "displayName": "Yersinia Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Stool"
+    ]
+  },
+  {
+    "codeString": "ADENOVIRUSPCRRESPQUAL",
+    "displayName": "Adenovirus PCR, Resp, QuaL",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "INFLUENZAABRSVPCRWASUBTYPEQUAL",
+    "displayName": "Influenza A/B, RSV PCR w/A Subtype, QuaL",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "RESPIRATORYCULTUREANDGRAMSTAIN",
+    "displayName": "Respiratory Culture and Gram Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "VIRALDFARESPIRATORY",
+    "displayName": "Viral DFA Respiratory",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "PARAINFLUENZA1DFA",
+    "displayName": "Parainfluenza 1 DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "PARAINFLUENZA123DFA",
+    "displayName": "Parainfluenza 1, 2, 3 DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "PARAINFLUENZA2DFA",
+    "displayName": "Parainfluenza 2 DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "PARAINFLUENZA3DFA",
+    "displayName": "Parainfluenza 3 DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Respiratory"
+    ]
+  },
+  {
+    "codeString": "AFBCULTUREANDSTAIN",
+    "displayName": "AFB Culture and Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "ANAEROBICCULTURE",
+    "displayName": "Anaerobic Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "ASPERGILLUSGALACTOMANNANEIA",
+    "displayName": "Aspergillus galactomannan EIA",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "CMVSHELLVIALCULTURE",
+    "displayName": "CMV Shell Vial Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "CATHETERTIPTUBINGFOREIGNBODYCULTURE",
+    "displayName": "Catheter Tip/Tubing/Foreign Body Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "FLUIDCULTUREANDGRAMSTAIN",
+    "displayName": "Fluid Culture and Gram Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "FUNGUSCULTURE",
+    "displayName": "Fungus Culture",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "KOHFUNGALSTAIN",
+    "displayName": "KOH Fungal Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "TISSUECULTUREANDGRAMSTAIN",
+    "displayName": "Tissue Culture and Gram Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "VZVDFA",
+    "displayName": "VZV DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "VIRALCULTURENONRESPIRATORY",
+    "displayName": "Viral Culture, Non Respiratory",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "WOUNDCULTUREANDGRAMSTAIN",
+    "displayName": "Wound Culture and Gram Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "HSVDFA",
+    "displayName": "HSV DFA",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "HERPESSIMPLEXVIRUS12PCRQUAL",
+    "displayName": "Herpes Simplex Virus 1/2 PCR, QuaL",
+    "showByDefault": true,
+    "groupNames": [
+      "Other"
+    ]
+  },
+  {
+    "codeString": "ADENOVIRUSPCRQUANT",
+    "displayName": "Adenovirus PCR, QuaNT",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "BLOODCULTUREROUTINEAEROBIC",
+    "displayName": "Blood Culture Routine, Aerobic",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "BLOODCULTUREAEROBICANDANAEROBIC",
+    "displayName": "Blood Culture, Aerobic and Anaerobic",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "BLOODCULTUREFUNGUS",
+    "displayName": "Blood Culture, Fungus",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "CYTOMEGALOVIRUSPCRQUANT",
+    "displayName": "Cytomegalovirus PCR, QuaNT",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "EPSTEINBARRVIRUSPCRQUANT",
+    "displayName": "Epstein-Barr Virus PCR, QuaNT",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood"
+    ]
+  },
+  {
+    "codeString": "CSFCULTUREANDGRAMSTAIN",
+    "displayName": "CSF Culture and Gram Stain",
+    "showByDefault": true,
+    "groupNames": [
+      "CSF Microbiology"
+    ]
+  },
+  {
+    "codeString": "ENTEROVIRUSPCRCSFQUAL",
+    "displayName": "Enterovirus PCR, CSF, QuaL",
+    "showByDefault": true,
+    "groupNames": [
+      "CSF Microbiology"
+    ]
+  }
+]

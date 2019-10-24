@@ -37,216 +37,82 @@ const ovaAndParasiteExam = new BCHMicrobioCode(
  */
 @Injectable()
 export class ResourceCodeManager {
+  constructor(private sanitizer: DomSanitizer) {}
   /**
    * A Promise that when resolved returns a Map from DisplayGrouping to
    * the list of AxisGroups that belong to that display group.
    */
   private displayGroupMapping: Promise<Map<DisplayGrouping, AxisGroup[]>>;
 
-  private static stoolGroupMB = [
-    new BCHMicrobioCode(
-        'CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', microbio,
-        'C difficile EIA w/rflx to amplified DNA', true),
-    new BCHMicrobioCode(
-        'CAMPYLOBACTERCULTURE', microbio, 'Campylobacter Culture', true),
-    new BCHMicrobioCode(
-        'ENTEROHEMORRHAGICECOLITEST', microbio, 'Enterohemorrhagic E coli Test',
-        true),
-    new BCHMicrobioCode(
-        'SALMONELLAANDSHIGELLACULTURE', microbio,
-        'Salmonella and Shigella Culture', true),
-    new BCHMicrobioCode('YERSINIACULTURE', microbio, 'Yersinia Culture', true),
-  ];
+  // private addStaticGroups(
+  //     mapping: Map<DisplayGrouping, AxisGroup[]>,
+  //     fhirService: FhirService): Map<DisplayGrouping, AxisGroup[]> {
+  //   const codeGroups = new Array<AxisGroup>();
 
-  // Visible for testing.
-  static respiratoryGroupMB = [
-    new BCHMicrobioCode(
-        'ADENOVIRUSPCRRESPQUAL', microbio, 'Adenovirus PCR, Resp, QuaL', true),
-    new BCHMicrobioCode(
-        'INFLUENZAABRSVPCRWASUBTYPEQUAL', microbio,
-        'Influenza A/B, RSV PCR w/A Subtype, QuaL', true),
-    new BCHMicrobioCode(
-        'RESPIRATORYCULTUREANDGRAMSTAIN', microbio,
-        'Respiratory Culture and Gram Stain', true),
-    new BCHMicrobioCode(
-        'VIRALDFARESPIRATORY', microbio, 'Viral DFA Respiratory', true),
-    new BCHMicrobioCode(
-        'PARAINFLUENZA1DFA', microbio, 'Parainfluenza 1 DFA', true),
-    new BCHMicrobioCode(
-        'PARAINFLUENZA123DFA', microbio, 'Parainfluenza 1, 2, 3 DFA', true),
-    new BCHMicrobioCode(
-        'PARAINFLUENZA2DFA', microbio, 'Parainfluenza 2 DFA', true),
-    new BCHMicrobioCode(
-        'PARAINFLUENZA3DFA', microbio, 'Parainfluenza 3 DFA', true),
-  ];
+  // TODO(laurendukes): Re-implement summary cards & monitoring for meds.
+  // const medsSummaryGroup = RXNORM_CODES;
+  // codeGroups.push(new AxisGroup([new Axis(
+  //     fhirService, this.sanitizer,
+  //     new RxNormCodeGroup(
+  //         fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup,
+  //         med, ChartType.STEP),
+  //     'Vancomycin & Gentamicin Summary')]));
 
-  // Visible for testing.
-  static otherGroupMB = [
-    new BCHMicrobioCode(
-        'AFBCULTUREANDSTAIN', microbio, 'AFB Culture and Stain', true),
-    new BCHMicrobioCode(
-        'ANAEROBICCULTURE', microbio, 'Anaerobic Culture', true),
-    new BCHMicrobioCode(
-        'ASPERGILLUSGALACTOMANNANEIA', microbio,
-        'Aspergillus galactomannan EIA', true),
-    new BCHMicrobioCode(
-        'CMVSHELLVIALCULTURE', microbio, 'CMV Shell Vial Culture', true),
-    new BCHMicrobioCode(
-        'CATHETERTIPTUBINGFOREIGNBODYCULTURE', microbio,
-        'Catheter Tip/Tubing/Foreign Body Culture', true),
-    new BCHMicrobioCode(
-        'FLUIDCULTUREANDGRAMSTAIN', microbio, 'Fluid Culture and Gram Stain',
-        true),
-    new BCHMicrobioCode('FUNGUSCULTURE', microbio, 'Fungus Culture', true),
-    new BCHMicrobioCode('KOHFUNGALSTAIN', microbio, 'KOH Fungal Stain', true),
-    new BCHMicrobioCode(
-        'TISSUECULTUREANDGRAMSTAIN', microbio, 'Tissue Culture and Gram Stain',
-        true),
-    new BCHMicrobioCode('VZVDFA', microbio, 'VZV DFA', true),
-    new BCHMicrobioCode(
-        'VIRALCULTURENONRESPIRATORY', microbio,
-        'Viral Culture, Non Respiratory', true),
-    new BCHMicrobioCode(
-        'WOUNDCULTUREANDGRAMSTAIN', microbio, 'Wound Culture and Gram Stain',
-        true),
-    new BCHMicrobioCode('HSVDFA', microbio, 'HSV DFA', true),
-    new BCHMicrobioCode(
-        'HERPESSIMPLEXVIRUS12PCRQUAL', microbio,
-        'Herpes Simplex Virus 1/2 PCR, QuaL', true),
-  ];
+  // // Drug monitoring should be a scatterplot, and the related concepts
+  // // should be displayed on the same axes.
+  // const vancRxNorm = new RxNormCodeGroup(
+  //     fhirService, 'Administrations', [RxNormCode.fromCodeString('11124')],
+  //     med, ChartType.SCATTER);
 
-  private static bloodGroupMB = [
-    new BCHMicrobioCode(
-        'ADENOVIRUSPCRQUANT', microbio, 'Adenovirus PCR, QuaNT', true),
-    new BCHMicrobioCode(
-        'BLOODCULTUREROUTINEAEROBIC', microbio,
-        'Blood Culture Routine, Aerobic', true),
-    new BCHMicrobioCode(
-        'BLOODCULTUREAEROBICANDANAEROBIC', microbio,
-        'Blood Culture, Aerobic and Anaerobic', true),
-    new BCHMicrobioCode(
-        'BLOODCULTUREFUNGUS', microbio, 'Blood Culture, Fungus', true),
-    new BCHMicrobioCode(
-        'CYTOMEGALOVIRUSPCRQUANT', microbio, 'Cytomegalovirus PCR, QuaNT',
-        true),
-    new BCHMicrobioCode(
-        'EPSTEINBARRVIRUSPCRQUANT', microbio, 'Epstein-Barr Virus PCR, QuaNT',
-        true),
-  ];
+  // // Drug monitoring should be a scatterplot, and the related concepts
+  // // should be displayed on the same axes.
+  // const vancMonitoring = [
+  //   vancRxNorm,
+  //   new LOINCCodeGroup(
+  //       fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring, med,
+  //       ChartType.SCATTER,
+  //       (observation: Observation, dateRange: Interval):
+  //           Promise<AnnotatedObservation> => {
+  //             return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
+  //               // We know that we're only pushing in one RxNorm
+  //               // so it's safe to grab the first (and only) one in
+  //               // the list.
+  //               return AnnotatedObservation.forMedicationMonitoring(
+  //                   observation, rxNorms[0].orders);
+  //             });
+  //           })
+  // ];
 
-  private static csfGroupMB = [
-    new BCHMicrobioCode(
-        'CSFCULTUREANDGRAMSTAIN', microbio, 'CSF Culture and Gram Stain', true),
-    new BCHMicrobioCode(
-        'ENTEROVIRUSPCRCSFQUAL', microbio, 'Enterovirus PCR, CSF, QuaL', true)
-  ];
+  // codeGroups.push(new AxisGroup(
+  //     vancMonitoring.map(
+  //         codeGroup => new Axis(
+  //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
+  //     'Vancomycin'));
 
-  constructor(private sanitizer: DomSanitizer) {}
+  // const gentMonitoring = [
+  //   new RxNormCodeGroup(
+  //       fhirService, 'Administrations',
+  //       [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
+  //   new LOINCCodeGroup(
+  //       fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring, med,
+  //       ChartType.SCATTER)
+  // ];
 
-  private addStaticGroups(
-      mapping: Map<DisplayGrouping, AxisGroup[]>,
-      fhirService: FhirService): Map<DisplayGrouping, AxisGroup[]> {
-    const codeGroups = new Array<AxisGroup>();
+  // codeGroups.push(new AxisGroup(
+  //     gentMonitoring.map(
+  //         codeGroup => new Axis(
+  //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
+  //     'Gentamicin'));
 
-    // TODO(laurendukes): Re-implement summary cards & monitoring for meds.
-    // const medsSummaryGroup = RXNORM_CODES;
-    // codeGroups.push(new AxisGroup([new Axis(
-    //     fhirService, this.sanitizer,
-    //     new RxNormCodeGroup(
-    //         fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup,
-    //         med, ChartType.STEP),
-    //     'Vancomycin & Gentamicin Summary')]));
+  // for (const group of codeGroups) {
+  //   if (mapping.has(group.displayGroup)) {
+  //     mapping.get(group.displayGroup).push(group);
+  //   } else {
+  //     mapping.set(group.displayGroup, [group]);
+  //   }
+  // }
+  // return mapping;
 
-    // // Drug monitoring should be a scatterplot, and the related concepts
-    // // should be displayed on the same axes.
-    // const vancRxNorm = new RxNormCodeGroup(
-    //     fhirService, 'Administrations', [RxNormCode.fromCodeString('11124')],
-    //     med, ChartType.SCATTER);
-
-    // // Drug monitoring should be a scatterplot, and the related concepts
-    // // should be displayed on the same axes.
-    // const vancMonitoring = [
-    //   vancRxNorm,
-    //   new LOINCCodeGroup(
-    //       fhirService, 'Monitoring', ResourceCodeManager.vancMonitoring, med,
-    //       ChartType.SCATTER,
-    //       (observation: Observation, dateRange: Interval):
-    //           Promise<AnnotatedObservation> => {
-    //             return vancRxNorm.getResourceSet(dateRange).then(rxNorms => {
-    //               // We know that we're only pushing in one RxNorm
-    //               // so it's safe to grab the first (and only) one in
-    //               // the list.
-    //               return AnnotatedObservation.forMedicationMonitoring(
-    //                   observation, rxNorms[0].orders);
-    //             });
-    //           })
-    // ];
-
-    // codeGroups.push(new AxisGroup(
-    //     vancMonitoring.map(
-    //         codeGroup => new Axis(
-    //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-    //     'Vancomycin'));
-
-    // const gentMonitoring = [
-    //   new RxNormCodeGroup(
-    //       fhirService, 'Administrations',
-    //       [RxNormCode.fromCodeString('1596450')], med, ChartType.SCATTER),
-    //   new LOINCCodeGroup(
-    //       fhirService, 'Monitoring', ResourceCodeManager.gentMonitoring, med,
-    //       ChartType.SCATTER)
-    // ];
-
-    // codeGroups.push(new AxisGroup(
-    //     gentMonitoring.map(
-    //         codeGroup => new Axis(
-    //             fhirService, this.sanitizer, codeGroup, codeGroup.label)),
-    //     'Gentamicin'));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            fhirService, 'Stool', ResourceCodeManager.stoolGroupMB, microbio,
-            ChartType.MICROBIO),
-        'Stool')]));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            fhirService, 'Respiratory', ResourceCodeManager.respiratoryGroupMB,
-            microbio, ChartType.MICROBIO),
-        'Respiratory')]));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            fhirService, 'Other', ResourceCodeManager.otherGroupMB, microbio,
-            ChartType.MICROBIO),
-        'Other')]));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            fhirService, 'Blood', ResourceCodeManager.bloodGroupMB, microbio,
-            ChartType.MICROBIO),
-        'Blood')]));
-
-    codeGroups.push(new AxisGroup([new Axis(
-        fhirService, this.sanitizer,
-        new BCHMicrobioCodeGroup(
-            fhirService, 'CSF Microbiology', ResourceCodeManager.csfGroupMB,
-            microbio, ChartType.MICROBIO),
-        'CSF Microbiology')]));
-
-    for (const group of codeGroups) {
-      if (mapping.has(group.displayGroup)) {
-        mapping.get(group.displayGroup).push(group);
-      } else {
-        mapping.set(group.displayGroup, [group]);
-      }
-    }
-    return mapping;
-  }
 
   /**
    * Creates an AxisGroup for a group of concepts.
@@ -420,7 +286,7 @@ export class ResourceCodeManager {
                 this.annotateResourceGroups(allResourceGroups);
                 const axisGroups =
                     this.createAxisGroups(resourceGroupMap, fhirService);
-                let mapping = new Map<DisplayGrouping, AxisGroup[]>();
+                const mapping = new Map<DisplayGrouping, AxisGroup[]>();
                 for (const group of axisGroups) {
                   if (mapping.has(group.displayGroup)) {
                     mapping.get(group.displayGroup).push(group);
@@ -428,9 +294,6 @@ export class ResourceCodeManager {
                     mapping.set(group.displayGroup, [group]);
                   }
                 }
-                // A shim to make the two paradigms work together-- add in
-                // statically declared groups after we're done resolving.
-                mapping = this.addStaticGroups(mapping, fhirService);
                 return mapping;
               });
     }

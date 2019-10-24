@@ -3,10 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {microbio} from '../clinicalconcepts/display-grouping';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ChartType} from '../graphtypes/graph/graph.component';
 
 import {DiagnosticReportStatus} from './diagnostic-report';
@@ -45,8 +44,8 @@ const SAMPLE_MICROBIO_JSON = {
             'code': {
               'coding': [{
                 'system': 'http://cerner.com/bch_mapping/',
-                'code': 'WOUNDCULTUREANDGRAMSTAIN',
-                'display': 'Wound Culture and Gram Stain'
+                'code': 'microbio-report-test-other-1',
+                'display': 'microbio-report-test-other-1'
               }]
             },
             'interpretation': {
@@ -91,8 +90,8 @@ const SAMPLE_MICROBIO_JSON = {
             'code': {
               'coding': [{
                 'system': 'http://cerner.com/bch_mapping/',
-                'code': 'FLUIDCULTUREANDGRAMSTAIN',
-                'display': 'Fluid Culture and Gram Stain'
+                'code': 'microbio-report-test-other-2',
+                'display': 'microbio-report-test-other-2'
               }]
             },
             'interpretation': {
@@ -134,8 +133,8 @@ const SAMPLE_MICROBIO_JSON = {
             'code': {
               'coding': [{
                 'system': 'http://cerner.com/bch_mapping/',
-                'code': 'BLOODCULTUREAEROBICANDANAEROBIC',
-                'display': 'Blood Culture, Aerobic and Anaerobic'
+                'code': 'microbio-report-test-blood-1',
+                'display': 'microbio-report-test-blood-1'
               }]
             },
             'interpretation': {
@@ -190,6 +189,19 @@ const observation1 = {
   },
   valueQuantity: {value: 103}
 };
+
+const otherCodes = [
+  new BCHMicrobioCode(
+      'microbio-report-test-other-1', microbio, 'microbio-report-test-other-1'),
+  new BCHMicrobioCode(
+      'microbio-report-test-other-2', microbio, 'microbio-report-test-other-2'),
+];
+
+const respiratoryCodes = [new BCHMicrobioCode(
+    'microbio-report-test-resp-1', microbio, 'microbio-report-test-resp-1')];
+
+const bloodCodes = [new BCHMicrobioCode(
+    'microbio-report-test-blood-1', microbio, 'microbio-report-test-blood-1')]
 
 describe('MicrobioReport', () => {
   const drString = {
@@ -252,8 +264,8 @@ describe('MicrobioReport', () => {
     let results = MicrobioReport.parseAndFilterMicrobioData(
         SAMPLE_MICROBIO_JSON,
         new BCHMicrobioCodeGroup(
-            this.fhirService, 'Other', ResourceCodeManager.otherGroupMB,
-            microbio, ChartType.DIAGNOSTIC));
+            this.fhirService, 'Other', otherCodes, microbio,
+            ChartType.MICROBIO));
 
     // There are 2 "other" samples in the returned results.
     expect(results.length).toBe(2);
@@ -261,9 +273,8 @@ describe('MicrobioReport', () => {
     results = MicrobioReport.parseAndFilterMicrobioData(
         SAMPLE_MICROBIO_JSON,
         new BCHMicrobioCodeGroup(
-            this.fhirService, 'Respiratory',
-            ResourceCodeManager.respiratoryGroupMB, microbio,
-            ChartType.DIAGNOSTIC));
+            this.fhirService, 'Respiratory', respiratoryCodes, microbio,
+            ChartType.MICROBIO));
 
     // There are no respiratory samples in the data.
     expect(results.length).toBe(0);

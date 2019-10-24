@@ -24,6 +24,8 @@ export const environment_file_locations = {
   antiviralGroupFile: 'medication_groups_antivirals.json',
   antifungalConceptsFile: 'medications_antifungals.json',
   antifungalGroupFile: 'medication_groups_antifungals.json',
+  microbioGroupFile: 'microbio_groups.json',
+  microbioConceptsFile: 'microbio_results.json'
 };
 
 /*
