@@ -99,7 +99,6 @@ export class AnnotatedObservation extends ResultClassWithTimestamp {
         UI_CONSTANTS.TIME_BEFORE_NEXT_DOSE, timeBeforeNext.toFormat('h:mm')
       ]);
     }
-
     return new AnnotatedObservation(observation, annotations);
   }
 

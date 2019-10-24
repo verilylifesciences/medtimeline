@@ -1,6 +1,7 @@
 import {Interval} from 'luxon';
 
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
+import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 
@@ -26,6 +27,26 @@ function getBloodPressureAnnotationFunction(
 }
 
 /**
+ * Returns the function to annotate a Medication Monitoring Resource group with
+ * Medication Administration information.
+ *
+ * @param The RxNormCode for the Medication Resource group
+ */
+function getMedicationMonitoringAnnotationFunction(
+    rxNormGroup: RxNormCodeGroup) {
+  return (observation: Observation,
+          dateRange: Interval): Promise<AnnotatedObservation> => {
+    return rxNormGroup.getResourceSet(dateRange).then(rxNorms => {
+      // We know that we're only pushing in one RxNorm
+      // so it's safe to grab the first (and only) one in
+      // the list.
+      return AnnotatedObservation.forMedicationMonitoring(
+          observation, rxNorms[0].orders);
+    });
+  };
+}
+
+/**
  * List of Configurations for Resource Groups that should have a makeAnnotated
  * function set.
  *
@@ -33,16 +54,24 @@ function getBloodPressureAnnotationFunction(
  * properties:
  *  - groupName: should be the name of the ResourceCodeGroup that should have
  * its makeAnnotated attribute set.
- *  - makeAnnotatedFunction: a function that takes a reference ResourceCodeGroup
- * and returns a function that should be assigned to the makeAnnotated
- * attribute.
- *  - refGroup: the name of the ResourceCodeGroup that needs to be referenced in
- * order to create the makeAnnotated attribute function.
+ *  - makeAnnotatedFunction: a function that takes a reference
+ * ResourceCodeGroup and returns a function that should be assigned to the
+ * makeAnnotated attribute.
+ *  - refGroup: the name of the ResourceCodeGroup that needs to be referenced
+ * in order to create the makeAnnotated attribute function.
  *
  */
-export const ANNOTATION_CONFIGURATION = [{
-  'groupName': 'Blood Pressure',
-  'makeAnnotatedFunction': (refGroup) =>
-      getBloodPressureAnnotationFunction(refGroup),
-  'refGroup': 'Blood Pressure Details'
-}];
+export const ANNOTATION_CONFIGURATION = [
+  {
+    'groupName': 'Blood Pressure',
+    'makeAnnotatedFunction': (refGroup) =>
+        getBloodPressureAnnotationFunction(refGroup),
+    'refGroup': 'Blood Pressure Details'
+  },
+  {
+    'groupName': 'Vancomycin monitoring',
+    'makeAnnotatedFunction': (refGroup) =>
+        getMedicationMonitoringAnnotationFunction(refGroup),
+    'refGroup': 'Vancomycin'
+  }
+];
