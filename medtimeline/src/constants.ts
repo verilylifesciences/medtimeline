@@ -137,7 +137,7 @@ export const UI_CONSTANTS = {
   FIRST_DOSE: 'First dose within this timeframe',
   LAST_DOSE: 'Last dose within this timeframe',
   THIS_DOSE: 'This dose',
-  PREVIOUS_DOSE: 'Previous dose within this timeframe',
-  NO_PREVIOUS_DOSE: 'No previous dose within this timeframe',
+  PREVIOUS_DOSE: 'Previous dose within this timeframe (for this order)',
+  NO_PREVIOUS_DOSE: 'No previous dose within this timeframe (for this order).',
   DOSAGE_INSTRUCTIONS: 'Dosage Instructions'
 };
