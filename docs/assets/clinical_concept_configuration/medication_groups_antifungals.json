@@ -1,0 +1,32 @@
+[
+    {
+        "groupName": "Fluconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Flucytosine",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Liposomal",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Micafungin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Posaconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Voriconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    }
+]

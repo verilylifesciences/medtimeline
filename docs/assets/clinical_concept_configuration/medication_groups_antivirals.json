@@ -1,0 +1,32 @@
+[
+    {
+        "groupName": "Acyclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Foscarnet",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Ganciclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Oseltamivir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Valacyclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Valganciclovir",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    }
+]

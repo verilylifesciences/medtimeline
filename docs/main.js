@@ -453,29 +453,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
 /* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
 /* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
-/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
-/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
-/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
-/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
-/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.component.ts");
-/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
-/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
-/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./data-selector-element/data-selector-element.component */ "./src/app/data-selector-element/data-selector-element.component.ts");
+/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
+/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_http_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./fhir-http.service */ "./src/app/fhir-http.service.ts");
+/* harmony import */ var _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./fhir-launch/fhir-launch.component */ "./src/app/fhir-launch/fhir-launch.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphtypes/customizable-graph/customizable-graph.component.ts");
+/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.component.ts");
+/* harmony import */ var _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./graphtypes/diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
+/* harmony import */ var _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./graphtypes/linegraph/linegraph.component */ "./src/app/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphtypes/microbio-graph/microbio-graph.component.ts");
+/* harmony import */ var _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./graphtypes/scatterplot/scatterplot.component */ "./src/app/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./graphtypes/stepgraph/stepgraph.component */ "./src/app/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
+/* harmony import */ var _mock_fhir_service__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./mock-fhir.service */ "./src/app/mock-fhir.service.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./timeline-controller/timeline-controller.component */ "./src/app/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./timeline-toolbar/timeline-toolbar.component */ "./src/app/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -536,6 +537,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -543,35 +545,36 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"],
-                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_32__["FhirLaunchComponent"],
+                _fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_33__["FhirLaunchComponent"],
                 _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_19__["CardcontainerComponent"],
                 _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__["TextboxcardComponent"],
-                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_35__["LineGraphComponent"],
-                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_38__["ScatterplotComponent"],
-                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_39__["StepGraphComponent"],
+                _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_38__["LineGraphComponent"],
+                _graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_40__["ScatterplotComponent"],
+                _graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_41__["StepGraphComponent"],
                 _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__["MultiGraphCardComponent"],
-                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_45__["TimelineControllerComponent"],
+                _timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_47__["TimelineControllerComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__["CustomizableTimelineComponent"],
-                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_34__["CustomizableGraphComponent"],
+                _graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_35__["CustomizableGraphComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"],
-                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_36__["MicrobioGraphComponent"],
-                _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_37__["DiagnosticGraphComponent"],
-                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_46__["TimelineToolbarComponent"],
-                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorElementComponent"],
-                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorMenuComponent"],
-                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__["HelpDialogComponent"],
+                _graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_39__["MicrobioGraphComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_36__["DiagnosticGraphComponent"],
+                _timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_48__["TimelineToolbarComponent"],
+                _data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorElementComponent"],
+                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_29__["DataSelectorMenuComponent"],
+                _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_42__["HelpDialogComponent"],
                 _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__["CardComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"],
-                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_43__["SetupComponent"],
-                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"],
-                _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__["IfuDialogComponent"],
-                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__["DiagnosticGraphDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__["DeleteDialogComponent"],
+                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_30__["DebuggerComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_45__["SetupComponent"],
+                _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_27__["ConfirmSaveComponent"],
+                _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_43__["IfuDialogComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_37__["DiagnosticGraphDialogComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbModule"],
                 _angular_material_card__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatGridListModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDividerModule"],
@@ -599,24 +602,26 @@ var AppModule = /** @class */ (function () {
                 ng2_charts__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"],
                 ng2_dragula__WEBPACK_IMPORTED_MODULE_13__["DragulaModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatExpansionModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatExpansionModule"],
             ],
             providers: [
                 // This sets up a provider for the smart on fhir client defined by
                 // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
                 // injected into the service that uses it to allow for easier testing.
-                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_44__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
-                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_33__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_42__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_31__["FhirHttpService"]
+                { provide: _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_46__["SMART_ON_FHIR_CLIENT"], useValue: FHIR },
+                {
+                    provide: _fhir_service__WEBPACK_IMPORTED_MODULE_34__["FhirService"],
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _mock_fhir_service__WEBPACK_IMPORTED_MODULE_44__["MockFhirService"] : _fhir_http_service__WEBPACK_IMPORTED_MODULE_32__["FhirHttpService"]
                 },
-                { provide: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"], useClass: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeManager"] },
+                { provide: _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_26__["ResourceCodeManager"], useClass: _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_26__["ResourceCodeManager"] },
+                { provide: _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeCreator"], useClass: _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeCreator"] },
                 { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_40__["HelpDialogComponent"],
-                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_30__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_26__["ConfirmSaveComponent"], _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_41__["IfuDialogComponent"],
-                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_47__["DiagnosticGraphDialogComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_42__["HelpDialogComponent"],
+                _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__["DeleteDialogComponent"], _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_27__["ConfirmSaveComponent"], _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_43__["IfuDialogComponent"],
+                _graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_37__["DiagnosticGraphDialogComponent"]
             ]
         })
     ], AppModule);
@@ -634,7 +639,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  padding: 15px;\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0VBQ3hDLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7RUFDbkMsYUFBYTtFQUNiLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLDRCQUFzQjtFQUF0Qiw2QkFBc0I7VUFBdEIsc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxnREFBZ0Q7RUFDaEQsMkJBQTJCLEVBQUUsZUFBZTtFQUM1Qyx5QkFBeUIsRUFBRSxXQUFXO0tBQ25DLHNCQUFzQixFQUFFLFlBQVk7TUFDbkMscUJBQXFCLEVBQUUsMkJBQTJCO1VBQzlDLGlCQUFpQixFQUFFLHFCQUFxQjtBQUNsRDs7QUFFQTtFQUNFLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQjtFQUNwQixZQUFZO0VBQ1osNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0IsRUFDTSxhQUFhO0FBQzNDOztBQUVBO0VBQ0UsbUJBQVk7VUFBWixZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtBQUNqQzs7QUFFQTtFQUNFLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7R0FDRyxnQ0FBZ0M7RUFDakMsNEZBQThEO0VBQTlELDhEQUE4RDtFQUM5RCxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxnRUFBZ0U7RUFDaEUscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsb0JBQW9CLEdBQUcsYUFBYTtBQUN0Qzs7QUFFQTtFQUNFLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CO0VBRW5CLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7RUFDRSw4QkFBbUI7RUFBbkIsNkJBQW1CO1VBQW5CLG1CQUFtQjtFQUVuQixvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0FBQ3JDIiwiZmlsZSI6InNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZENvbnRhaW5lciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMyMDIwMjA7IC8qIEdSRVlfOTAwICovXG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xuICBwYWRkaW5nOiAxNXB4O1xuICB3aWR0aDogMTAwJTtcbiAgbWluLWhlaWdodDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgLyogRGlzYWJsZSBzZWxlY3RpbmcvaGlnaGxpZ2h0aW5nIG9uIHRoZSBwYWdlLiAqL1xuICAtd2Via2l0LXRvdWNoLWNhbGxvdXQ6IG5vbmU7IC8qIGlPUyBTYWZhcmkgKi9cbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTsgLyogU2FmYXJpICovXG4gICAgIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7IC8qIEZpcmVmb3ggKi9cbiAgICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTsgLyogSW50ZXJuZXQgRXhwbG9yZXIvRWRnZSAqL1xuICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lOyAvKiBDaHJvbWUgYW5kIE9wZXJhICovXG59XG5cbi5kcmFnZ2FibGUge1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbiAgaGVpZ2h0OiAxMDAlO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbn1cblxuLmZsZXhTcGFjZXIge1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbjo6bmctZGVlcCAubWF0LXRvb2xiYXIsIC5tYXQtdG9vbGJhciBoMSwgLm1hdC10b29sYmFyIGgyLCAubWF0LXRvb2xiYXIgaDMsIC5tYXQtdG9vbGJhciBoNCwgLm1hdC10b29sYmFyIGg1LCAubWF0LXRvb2xiYXIgaDYsIC5tYXQtdG9vbGJhci1yb3csIC5tYXQtdG9vbGJhci1zaW5nbGUtcm93IHtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG59XG5cbi5tYXQtdG9vbGJhciB7XG4gICAvKiBEZWVwIFB1cnBsZSA4MDAgdG8gUGluayA5MDAgKi9cbiAgYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNDUyN0EwICwgIzg3MEQ0RSk7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIC5ndS11bnNlbGVjdGFibGUgYXBwLWRhdGEtc2VsZWN0b3ItbWVudSB7XG4gIC8qIEhpZGUgdGhlIGRhdGEgc2VsZWN0b3IgbWVudXMgd2hpbGUgYSBjYXJkIGlzIGJlaW5nIGRyYWdnZWQuICovXG4gIG9wYWNpdHk6IDAgIWltcG9ydGFudDtcbn1cblxuLm1ha2VHdXR0ZXJzIHtcbiAgcGFkZGluZy1yaWdodDogNTBweDtcbiAgcGFkZGluZy1sZWZ0OiA1MHB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICB3aGl0ZS1zcGFjZTogdW5zZXQgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIC50aW1lbGluZVRvb2xiYXJNYWluIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDE1cHg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAgLyogRm9yIElFMTAgKi9cbn1cblxuOjpuZy1kZWVwIGFwcC1jYXJkIHtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xufVxuXG46Om5nLWRlZXAgYXBwLWRhdGEtc2VsZWN0b3ItbWVudSB7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogcm93O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbn1cbiJdfQ== */"
+module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  padding: 15px;\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0VBQ3hDLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLGFBQWE7RUFDYixXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixzQkFBc0IsRUFDTSxhQUFhO0VBQ3pDLGdEQUFnRDtFQUNoRCwyQkFBMkIsRUFBRSxlQUFlO0VBQzVDLHlCQUF5QixFQUFFLFdBQVc7S0FDbkMsc0JBQXNCLEVBQUUsWUFBWTtNQUNuQyxxQkFBcUIsRUFBRSwyQkFBMkI7VUFDOUMsaUJBQWlCLEVBQUUscUJBQXFCO0FBQ2xEOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG9CQUFvQjtFQUNwQixZQUFZO0VBQ1osc0JBQXNCLEVBQ00sYUFBYTtBQUMzQzs7QUFFQTtFQUNFLFlBQVk7RUFDWixnQkFBZ0IsRUFBRSxhQUFhO0FBQ2pDOztBQUVBO0VBQ0Usb0JBQW9CLEVBQUUsYUFBYTtBQUNyQzs7QUFFQTtHQUNHLGdDQUFnQztFQUNqQyw4REFBOEQ7RUFDOUQsWUFBWTtBQUNkOztBQUVBO0VBQ0UsZ0VBQWdFO0VBQ2hFLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLG9CQUFvQixHQUFHLGFBQWE7QUFDdEM7O0FBRUE7RUFDRSxtQkFBbUI7RUFFbkIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7RUFDRSxtQkFBbUI7RUFFbkIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckMiLCJmaWxlIjoic3JjL2FwcC9jYXJkY29udGFpbmVyL2NhcmRjb250YWluZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkQ29udGFpbmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIwMjAyMDsgLyogR1JFWV85MDAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIHBhZGRpbmc6IDE1cHg7XG4gIHdpZHRoOiAxMDAlO1xuICBtaW4taGVpZ2h0OiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICAvKiBEaXNhYmxlIHNlbGVjdGluZy9oaWdobGlnaHRpbmcgb24gdGhlIHBhZ2UuICovXG4gIC13ZWJraXQtdG91Y2gtY2FsbG91dDogbm9uZTsgLyogaU9TIFNhZmFyaSAqL1xuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOyAvKiBTYWZhcmkgKi9cbiAgICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTsgLyogRmlyZWZveCAqL1xuICAgICAgLW1zLXVzZXItc2VsZWN0OiBub25lOyAvKiBJbnRlcm5ldCBFeHBsb3Jlci9FZGdlICovXG4gICAgICAgICAgdXNlci1zZWxlY3Q6IG5vbmU7IC8qIENocm9tZSBhbmQgT3BlcmEgKi9cbn1cblxuLmRyYWdnYWJsZSB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBoZWlnaHQ6IDEwMCU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uZmxleFNwYWNlciB7XG4gIGZsZXg6IDEgMSAwJTtcbiAgLW1zLWZsZXg6IDEgMSAwJTsgLyogRm9yIElFMTAgKi9cbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbGJhciwgLm1hdC10b29sYmFyIGgxLCAubWF0LXRvb2xiYXIgaDIsIC5tYXQtdG9vbGJhciBoMywgLm1hdC10b29sYmFyIGg0LCAubWF0LXRvb2xiYXIgaDUsIC5tYXQtdG9vbGJhciBoNiwgLm1hdC10b29sYmFyLXJvdywgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbn1cblxuLm1hdC10b29sYmFyIHtcbiAgIC8qIERlZXAgUHVycGxlIDgwMCB0byBQaW5rIDkwMCAqL1xuICBiYWNrZ3JvdW5kLWltYWdlOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICM0NTI3QTAgLCAjODcwRDRFKTtcbiAgY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgLmd1LXVuc2VsZWN0YWJsZSBhcHAtZGF0YS1zZWxlY3Rvci1tZW51IHtcbiAgLyogSGlkZSB0aGUgZGF0YSBzZWxlY3RvciBtZW51cyB3aGlsZSBhIGNhcmQgaXMgYmVpbmcgZHJhZ2dlZC4gKi9cbiAgb3BhY2l0eTogMCAhaW1wb3J0YW50O1xufVxuXG4ubWFrZUd1dHRlcnMge1xuICBwYWRkaW5nLXJpZ2h0OiA1MHB4O1xuICBwYWRkaW5nLWxlZnQ6IDUwcHg7XG59XG5cbjo6bmctZGVlcCAubWF0LXRvb2xiYXItc2luZ2xlLXJvdyB7XG4gIHdoaXRlLXNwYWNlOiB1bnNldCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLnRpbWVsaW5lVG9vbGJhck1haW4ge1xuICBmbG9hdDogcmlnaHQ7XG4gIG1hcmdpbi1yaWdodDogMTVweDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7ICAvKiBGb3IgSUUxMCAqL1xufVxuXG46Om5nLWRlZXAgYXBwLWNhcmQge1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdztcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG59XG5cbjo6bmctZGVlcCBhcHAtZGF0YS1zZWxlY3Rvci1tZW51IHtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xufVxuIl19 */"
 
 /***/ }),
 
@@ -671,12 +676,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../confirm-save/confirm-save.component */ "./src/app/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../delete-dialog/delete-dialog.component */ "./src/app/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -708,8 +714,9 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var CardcontainerComponent = /** @class */ (function () {
-    function CardcontainerComponent(dragulaService, fhirService, resourceCodeManager, snackBar, deleteDialog, setupDataService, saveDialog, uiConstants) {
+    function CardcontainerComponent(dragulaService, fhirService, resourceCodeCreator, resourceCodeManager, snackBar, deleteDialog, setupDataService, saveDialog, uiConstants) {
         this.fhirService = fhirService;
         this.snackBar = snackBar;
         this.deleteDialog = deleteDialog;
@@ -733,7 +740,7 @@ var CardcontainerComponent = /** @class */ (function () {
         // clicking the trashcan icon.
         this.displayedConcepts = [];
         // Hold an instance of this enum so that the HTML template can access it.
-        this.chartType = _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_13__["ChartType"];
+        this.chartType = _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_14__["ChartType"];
         /**
          * By default make the date range displayed the past seven days.
          */
@@ -744,13 +751,17 @@ var CardcontainerComponent = /** @class */ (function () {
         // A map of custom timeline id to the event lines corresponding to that
         // timeline.
         this.eventsForCustomTimelines = new Map();
-        var displayGroups = resourceCodeManager.getDisplayGroupMapping();
-        /* Load in the concepts to display, flattening them all into a
-         * single-depth array. */
-        this.originalConcepts = Array.from(displayGroups.values())
-            .reduce(function (acc, val) { return acc.concat(val); }, []);
         this.setUpCards();
         this.setUpDrag(dragulaService);
+        this.originalConcepts =
+            resourceCodeManager
+                .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+                .then(function (mapping) {
+                /* Load in the concepts to display, flattening them all into a
+                 * single-depth array. */
+                return Array.from(mapping.values())
+                    .reduce(function (acc, val) { return acc.concat(val); }, []);
+            });
     }
     CardcontainerComponent.prototype.setUpCards = function () {
         // Add a textbox at the top of the card list.
@@ -826,7 +837,7 @@ var CardcontainerComponent = /** @class */ (function () {
     CardcontainerComponent.prototype.snapshot = function () {
         var _this = this;
         html2canvas__WEBPACK_IMPORTED_MODULE_2___default()(document.body).then(function (canvas) {
-            _this.saveDialogRef = _this.saveDialog.open(_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_10__["ConfirmSaveComponent"], { data: canvas, height: '80%' });
+            _this.saveDialogRef = _this.saveDialog.open(_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_11__["ConfirmSaveComponent"], { data: canvas, height: '80%' });
             _this.saveDialogRef.afterClosed().subscribe(function (result) {
                 // Only save the snapshot to the EHR if the user confirmed the save.
                 if (result) {
@@ -856,7 +867,7 @@ var CardcontainerComponent = /** @class */ (function () {
         var index = this.displayedConcepts.map(function (x) { return x.id; }).indexOf($event.id);
         var concept = this.displayedConcepts[index];
         concept.value = $event.value;
-        this.deleteDialogRef = this.deleteDialog.open(_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__["DeleteDialogComponent"]);
+        this.deleteDialogRef = this.deleteDialog.open(_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_12__["DeleteDialogComponent"]);
         this.deleteDialogRef.afterClosed().subscribe(function (result) {
             // The user wishes to delete the card.
             if (result) {
@@ -902,11 +913,14 @@ var CardcontainerComponent = /** @class */ (function () {
      * @param id The id of the card below which to add the new concept.
      */
     CardcontainerComponent.prototype.addConceptCard = function (label, id) {
-        var graphCardValue = this.originalConcepts.find(function (obj) { return (obj.label === label); });
-        // Insert the card at the top of the page
-        // Insert after the closest card rather than before the card.
-        var index = id ? (this.displayedConcepts.map(function (x) { return x.id; }).indexOf(id) + 1) : 0;
-        this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_7__["v4"])(), concept: graphCardValue });
+        var _this = this;
+        this.originalConcepts.then(function (concepts) {
+            var graphCardValue = concepts.find(function (obj) { return (obj.label === label); });
+            // Insert the card at the top of the page
+            // Insert after the closest card rather than before the card.
+            var index = id ? (_this.displayedConcepts.map(function (x) { return x.id; }).indexOf(id) + 1) : 0;
+            _this.displayedConcepts.splice(index, 0, { id: Object(uuid__WEBPACK_IMPORTED_MODULE_7__["v4"])(), concept: graphCardValue });
+        });
     };
     /**
      * Listens for an event indicating that the user has edited the points on a
@@ -941,16 +955,17 @@ var CardcontainerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cardcontainer',
             template: __webpack_require__(/*! ./cardcontainer.component.html */ "./src/app/cardcontainer/cardcontainer.component.html"),
-            entryComponents: [_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__["DeleteDialogComponent"]],
+            entryComponents: [_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_12__["DeleteDialogComponent"]],
             styles: [__webpack_require__(/*! ./cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
         }),
-        __param(7, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
+        __param(8, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
         __metadata("design:paramtypes", [ng2_dragula__WEBPACK_IMPORTED_MODULE_4__["DragulaService"],
-            _fhir_service__WEBPACK_IMPORTED_MODULE_12__["FhirService"],
-            _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__["ResourceCodeManager"],
+            _fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"],
+            _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_9__["ResourceCodeCreator"],
+            _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_10__["ResourceCodeManager"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
-            _setup_data_service__WEBPACK_IMPORTED_MODULE_14__["SetupDataService"],
+            _setup_data_service__WEBPACK_IMPORTED_MODULE_15__["SetupDataService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
     ], CardcontainerComponent);
     return CardcontainerComponent;
@@ -967,7 +982,7 @@ var CardcontainerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-card {\n  cursor: -webkit-grab;\n  cursor: grab;\n  margin-top:0px;\n  margin-bottom:0px;\n  margin-left: 35px; /* Leave space for the \"add card\" button. */\n  padding-top: 0px;\n  padding-bottom: 0px;\n  padding-right: 20px;\n  padding-left: 0px;\n  -webkit-transition: box-shadow .1s;\n  transition: box-shadow .1s;\n  background-color: rgb(248, 248, 248);\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n  width: 100%;\n  max-width: 100%;\n}\n\n::ng-deep .inEditMode .mat-card {\n  background-color: rgb(226, 226, 226) !important;\n}\n\n.mat-card:hover {\n  background-color: rgb(240, 240, 240);\n  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);\n}\n\n.colorbar {\n  margin-right: 6px;\n  min-width: 24px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 0%;\n  -ms-flex: 0 0 0%; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center; /* Align content: center conversion for IE10 */\n  -webkit-box-pack: center;\n          justify-content: center;\n  -ms-flex-pack: center;  /* Justify content: center conversion for IE10 */\n  align-self: stretch;\n  -ms-flex-item-align: stretch;  /* Align self: stretch conversion for IE10 */\n}\n\n.mat-icon {\n  color: rgb(34, 44, 66);\n  cursor: pointer;\n  opacity: .3;\n  -webkit-transition: opacity .3s;\n  transition: opacity .3s;\n}\n\n.removeCardButton {\n  opacity: 0;\n}\n\n.mat-card:hover .mat-icon {\n  opacity: .8;\n}\n\n.mat-card:hover .dragCardIcon.mat-icon {\n  opacity: .4;\n}\n\n.dragCardIcon {\n  opacity: 0;\n  margin-bottom: 15px;\n}\n\n.labelColumn {\n  padding: 3px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.label {\n  width: 100%;\n  word-wrap: break-word;\n  -webkit-box-flex: 1;\n          flex: 1 1 auto;\n  -ms-flex: 1 1 auto; /* For IE10 */\n  font-family: 'Montserrat', sans-serif;\n}\n\n::ng-deep .mat-input-element:disabled{\n  color: rgb(0,0,0, .7) !important;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2NhcmQvY2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQVk7RUFBWixZQUFZO0VBQ1osY0FBYztFQUNkLGlCQUFpQjtFQUNqQixpQkFBaUIsRUFBRSwyQ0FBMkM7RUFDOUQsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsaUJBQWlCO0VBQ2pCLGtDQUEwQjtFQUExQiwwQkFBMEI7RUFDMUIsb0NBQW9DO0VBQ3BDLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CLEVBQ00sYUFBYTtFQUN0QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7RUFDL0IsV0FBVztFQUNYLGVBQWU7QUFDakI7O0FBRUE7RUFDRSwrQ0FBK0M7QUFDakQ7O0FBRUE7RUFDRSxvQ0FBb0M7RUFDcEMsOERBQThEO0FBQ2hFOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZiwyQkFBMkI7RUFDM0IsOEJBQThCO0VBQzlCLDRCQUFzQjtFQUF0Qiw2QkFBc0I7VUFBdEIsc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7RUFDL0IscUJBQXFCO0VBQ3JCLDBCQUEwQixFQUFFLDhDQUE4QztFQUMxRSx3QkFBdUI7VUFBdkIsdUJBQXVCO0VBQ3ZCLHFCQUFxQixHQUFHLGdEQUFnRDtFQUN4RSxtQkFBbUI7RUFDbkIsNEJBQTRCLEdBQUcsNENBQTRDO0FBQzdFOztBQUVBO0VBQ0Usc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixXQUFXO0VBQ1gsK0JBQXVCO0VBQXZCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFVBQVU7RUFDVixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0IsRUFDTSxhQUFhO0VBQ3pDLG9CQUFhO0VBQWIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7RUFDbkMsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtBQUNuQzs7QUFFQTtFQUNFLFdBQVc7RUFDWCxxQkFBcUI7RUFDckIsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtFQUNqQyxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxnQ0FBZ0M7QUFDbEMiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY2FyZC9jYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LWNhcmQge1xuICBjdXJzb3I6IGdyYWI7XG4gIG1hcmdpbi10b3A6MHB4O1xuICBtYXJnaW4tYm90dG9tOjBweDtcbiAgbWFyZ2luLWxlZnQ6IDM1cHg7IC8qIExlYXZlIHNwYWNlIGZvciB0aGUgXCJhZGQgY2FyZFwiIGJ1dHRvbi4gKi9cbiAgcGFkZGluZy10b3A6IDBweDtcbiAgcGFkZGluZy1ib3R0b206IDBweDtcbiAgcGFkZGluZy1yaWdodDogMjBweDtcbiAgcGFkZGluZy1sZWZ0OiAwcHg7XG4gIHRyYW5zaXRpb246IGJveC1zaGFkb3cgLjFzO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQ4LCAyNDgsIDI0OCk7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogcm93OyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG46Om5nLWRlZXAgLmluRWRpdE1vZGUgLm1hdC1jYXJkIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyNiwgMjI2LCAyMjYpICFpbXBvcnRhbnQ7XG59XG5cbi5tYXQtY2FyZDpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyNDAsIDI0MCwgMjQwKTtcbiAgYm94LXNoYWRvdzogMCAwIDhweCByZ2JhKDAsMCwwLC4xOCksMCA4cHggMTZweCByZ2JhKDAsMCwwLC4zNik7XG59XG5cbi5jb2xvcmJhciB7XG4gIG1hcmdpbi1yaWdodDogNnB4O1xuICBtaW4td2lkdGg6IDI0cHg7XG4gIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogNHB4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIGZsZXg6IDAgMCAwJTtcbiAgLW1zLWZsZXg6IDAgMCAwJTsgLyogRm9yIElFMTAgKi9cbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAtbXMtZmxleC1saW5lLXBhY2s6IGNlbnRlcjsgLyogQWxpZ24gY29udGVudDogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIC1tcy1mbGV4LXBhY2s6IGNlbnRlcjsgIC8qIEp1c3RpZnkgY29udGVudDogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgYWxpZ24tc2VsZjogc3RyZXRjaDtcbiAgLW1zLWZsZXgtaXRlbS1hbGlnbjogc3RyZXRjaDsgIC8qIEFsaWduIHNlbGY6IHN0cmV0Y2ggY29udmVyc2lvbiBmb3IgSUUxMCAqL1xufVxuXG4ubWF0LWljb24ge1xuICBjb2xvcjogcmdiKDM0LCA0NCwgNjYpO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIG9wYWNpdHk6IC4zO1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IC4zcztcbn1cblxuLnJlbW92ZUNhcmRCdXR0b24ge1xuICBvcGFjaXR5OiAwO1xufVxuXG4ubWF0LWNhcmQ6aG92ZXIgLm1hdC1pY29uIHtcbiAgb3BhY2l0eTogLjg7XG59XG5cbi5tYXQtY2FyZDpob3ZlciAuZHJhZ0NhcmRJY29uLm1hdC1pY29uIHtcbiAgb3BhY2l0eTogLjQ7XG59XG5cbi5kcmFnQ2FyZEljb24ge1xuICBvcGFjaXR5OiAwO1xuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xufVxuXG4ubGFiZWxDb2x1bW4ge1xuICBwYWRkaW5nOiAzcHg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMCAwIGF1dG87XG4gIC1tcy1mbGV4OiAwIDAgYXV0bzsgLyogRm9yIElFMTAgKi9cbn1cblxuLmxhYmVsIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHdvcmQtd3JhcDogYnJlYWstd29yZDtcbiAgZmxleDogMSAxIGF1dG87XG4gIC1tcy1mbGV4OiAxIDEgYXV0bzsgLyogRm9yIElFMTAgKi9cbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn1cblxuOjpuZy1kZWVwIC5tYXQtaW5wdXQtZWxlbWVudDpkaXNhYmxlZHtcbiAgY29sb3I6IHJnYigwLDAsMCwgLjcpICFpbXBvcnRhbnQ7XG59XG4iXX0= */"
+module.exports = ".mat-card {\n  cursor: -webkit-grab;\n  cursor: grab;\n  margin-top:0px;\n  margin-bottom:0px;\n  margin-left: 35px; /* Leave space for the \"add card\" button. */\n  padding-top: 0px;\n  padding-bottom: 0px;\n  padding-right: 20px;\n  padding-left: 0px;\n  transition: box-shadow .1s;\n  background-color: rgb(248, 248, 248);\n  flex-direction: row; /* For IE10 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n  width: 100%;\n  max-width: 100%;\n}\n\n::ng-deep .inEditMode .mat-card {\n  background-color: rgb(226, 226, 226) !important;\n}\n\n.mat-card:hover {\n  background-color: rgb(240, 240, 240);\n  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);\n}\n\n.colorbar {\n  margin-right: 6px;\n  min-width: 24px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n  flex-direction: column; /* For IE10 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex: 0 0 0%;\n  -ms-flex: 0 0 0%; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center; /* Align content: center conversion for IE10 */\n  justify-content: center;\n  -ms-flex-pack: center;  /* Justify content: center conversion for IE10 */\n  align-self: stretch;\n  -ms-flex-item-align: stretch;  /* Align self: stretch conversion for IE10 */\n}\n\n.mat-icon {\n  color: rgb(34, 44, 66);\n  cursor: pointer;\n  opacity: .3;\n  transition: opacity .3s;\n}\n\n.removeCardButton {\n  opacity: 0;\n}\n\n.mat-card:hover .mat-icon {\n  opacity: .8;\n}\n\n.mat-card:hover .dragCardIcon.mat-icon {\n  opacity: .4;\n}\n\n.dragCardIcon {\n  opacity: 0;\n  margin-bottom: 15px;\n}\n\n.labelColumn {\n  padding: 3px;\n  flex-direction: column; /* For IE10 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.label {\n  width: 100%;\n  word-wrap: break-word;\n  flex: 1 1 auto;\n  -ms-flex: 1 1 auto; /* For IE10 */\n  font-family: 'Montserrat', sans-serif;\n}\n\n::ng-deep .mat-input-element:disabled{\n  color: rgb(0,0,0, .7) !important;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2NhcmQvY2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQVk7RUFBWixZQUFZO0VBQ1osY0FBYztFQUNkLGlCQUFpQjtFQUNqQixpQkFBaUIsRUFBRSwyQ0FBMkM7RUFDOUQsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsaUJBQWlCO0VBQ2pCLDBCQUEwQjtFQUMxQixvQ0FBb0M7RUFDcEMsbUJBQW1CLEVBQ00sYUFBYTtFQUN0QyxhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtFQUNuQyxZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtFQUMvQixXQUFXO0VBQ1gsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLCtDQUErQztBQUNqRDs7QUFFQTtFQUNFLG9DQUFvQztFQUNwQyw4REFBOEQ7QUFDaEU7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsZUFBZTtFQUNmLDJCQUEyQjtFQUMzQiw4QkFBOEI7RUFDOUIsc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtFQUNuQyxZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtFQUMvQixxQkFBcUI7RUFDckIsMEJBQTBCLEVBQUUsOENBQThDO0VBQzFFLHVCQUF1QjtFQUN2QixxQkFBcUIsR0FBRyxnREFBZ0Q7RUFDeEUsbUJBQW1CO0VBQ25CLDRCQUE0QixHQUFHLDRDQUE0QztBQUM3RTs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QixlQUFlO0VBQ2YsV0FBVztFQUNYLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFVBQVU7RUFDVixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osc0JBQXNCLEVBQ00sYUFBYTtFQUN6QyxhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtFQUNuQyxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtBQUNuQzs7QUFFQTtFQUNFLFdBQVc7RUFDWCxxQkFBcUI7RUFDckIsY0FBYztFQUNkLGtCQUFrQixFQUFFLGFBQWE7RUFDakMscUNBQXFDO0FBQ3ZDOztBQUVBO0VBQ0UsZ0NBQWdDO0FBQ2xDIiwiZmlsZSI6InNyYy9hcHAvY2FyZHR5cGVzL2NhcmQvY2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1jYXJkIHtcbiAgY3Vyc29yOiBncmFiO1xuICBtYXJnaW4tdG9wOjBweDtcbiAgbWFyZ2luLWJvdHRvbTowcHg7XG4gIG1hcmdpbi1sZWZ0OiAzNXB4OyAvKiBMZWF2ZSBzcGFjZSBmb3IgdGhlIFwiYWRkIGNhcmRcIiBidXR0b24uICovXG4gIHBhZGRpbmctdG9wOiAwcHg7XG4gIHBhZGRpbmctYm90dG9tOiAwcHg7XG4gIHBhZGRpbmctcmlnaHQ6IDIwcHg7XG4gIHBhZGRpbmctbGVmdDogMHB4O1xuICB0cmFuc2l0aW9uOiBib3gtc2hhZG93IC4xcztcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI0OCwgMjQ4LCAyNDgpO1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdzsgLyogRm9yIElFMTAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIGZsZXg6IDEgMSAwJTtcbiAgLW1zLWZsZXg6IDEgMSAwJTsgLyogRm9yIElFMTAgKi9cbiAgd2lkdGg6IDEwMCU7XG4gIG1heC13aWR0aDogMTAwJTtcbn1cblxuOjpuZy1kZWVwIC5pbkVkaXRNb2RlIC5tYXQtY2FyZCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyMjYsIDIyNiwgMjI2KSAhaW1wb3J0YW50O1xufVxuXG4ubWF0LWNhcmQ6aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQwLCAyNDAsIDI0MCk7XG4gIGJveC1zaGFkb3c6IDAgMCA4cHggcmdiYSgwLDAsMCwuMTgpLDAgOHB4IDE2cHggcmdiYSgwLDAsMCwuMzYpO1xufVxuXG4uY29sb3JiYXIge1xuICBtYXJnaW4tcmlnaHQ6IDZweDtcbiAgbWluLXdpZHRoOiAyNHB4O1xuICBib3JkZXItdG9wLWxlZnQtcmFkaXVzOiA0cHg7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDRweDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IC8qIEZvciBJRTEwICovXG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xuICBmbGV4OiAwIDAgMCU7XG4gIC1tcy1mbGV4OiAwIDAgMCU7IC8qIEZvciBJRTEwICovXG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgLW1zLWZsZXgtbGluZS1wYWNrOiBjZW50ZXI7IC8qIEFsaWduIGNvbnRlbnQ6IGNlbnRlciBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAtbXMtZmxleC1wYWNrOiBjZW50ZXI7ICAvKiBKdXN0aWZ5IGNvbnRlbnQ6IGNlbnRlciBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGFsaWduLXNlbGY6IHN0cmV0Y2g7XG4gIC1tcy1mbGV4LWl0ZW0tYWxpZ246IHN0cmV0Y2g7ICAvKiBBbGlnbiBzZWxmOiBzdHJldGNoIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbn1cblxuLm1hdC1pY29uIHtcbiAgY29sb3I6IHJnYigzNCwgNDQsIDY2KTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBvcGFjaXR5OiAuMztcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAuM3M7XG59XG5cbi5yZW1vdmVDYXJkQnV0dG9uIHtcbiAgb3BhY2l0eTogMDtcbn1cblxuLm1hdC1jYXJkOmhvdmVyIC5tYXQtaWNvbiB7XG4gIG9wYWNpdHk6IC44O1xufVxuXG4ubWF0LWNhcmQ6aG92ZXIgLmRyYWdDYXJkSWNvbi5tYXQtaWNvbiB7XG4gIG9wYWNpdHk6IC40O1xufVxuXG4uZHJhZ0NhcmRJY29uIHtcbiAgb3BhY2l0eTogMDtcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcbn1cblxuLmxhYmVsQ29sdW1uIHtcbiAgcGFkZGluZzogM3B4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIGZsZXg6IDAgMCBhdXRvO1xuICAtbXMtZmxleDogMCAwIGF1dG87IC8qIEZvciBJRTEwICovXG59XG5cbi5sYWJlbCB7XG4gIHdpZHRoOiAxMDAlO1xuICB3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7XG4gIGZsZXg6IDEgMSBhdXRvO1xuICAtbXMtZmxleDogMSAxIGF1dG87IC8qIEZvciBJRTEwICovXG4gIGZvbnQtZmFtaWx5OiAnTW9udHNlcnJhdCcsIHNhbnMtc2VyaWY7XG59XG5cbjo6bmctZGVlcCAubWF0LWlucHV0LWVsZW1lbnQ6ZGlzYWJsZWR7XG4gIGNvbG9yOiByZ2IoMCwwLDAsIC43KSAhaW1wb3J0YW50O1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1113,7 +1128,7 @@ var CardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ngb-timepicker {\n  font-size: 1rem;\n}\n\n::ng-deep fieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n::ng-deep .ngb-tp {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n::ng-deep .ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  justify-content: space-around;\n}\n\n::ng-deep .ngb-tp-input-container {\n  width: 4em;\n}\n\n::ng-deep .ngb-tp-spacer {\n  width: 50px !important;\n  text-align: center;\n}\n\n::ng-deep .btn-link {\n  font-weight: 400;\n  color: #5E35B1;\n  background-color: transparent;\n  border-width: 1px;\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n::ng-deep .form-control {\n  display: block;\n  width: 100%;\n  padding: .375rem .75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: .25rem;\n}\n\n::ng-deep .ngb-tp-input {\n  text-align: center;\n  width: inherit;\n}\n\n::ng-deep .sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0,0,0,0);\n  white-space: nowrap;\n  -webkit-clip-path: inset(50%);\n  clip-path: inset(50%);\n  border: none;\n}\n\n::ng-deep .mat-error {\n  font-size: 12px;\n}\n\n.mockPlaceholder {\n  font-size: 12px;\n  color: grey;\n  margin-top: 18px;\n}\n\n::ng-deep .dateInput {\n  width: 100px !important;\n}\n\n::ng-deep ngb-datepicker {\n  z-index: 4;\n  background-color:white;\n}\n\n::ng-deep .date {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n::ng-deep .time {\n  display: inline-block;\n  margin-left:30px;\n  vertical-align: middle;\n}\n\n::ng-deep .date .mockPlaceholder {\n  margin-bottom: 20px;\n}\n\n::ng-deep .date .dateInput {\n  margin-bottom: 20px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 400px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUtZGlhbG9nL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtFQUNWLFNBQVM7RUFDVCxTQUFTO0FBQ1g7O0FBRUE7RUFFRSxvQkFBYTtFQUFiLGFBQWE7RUFFYix5QkFBbUI7VUFBbkIsbUJBQW1CO0FBQ3JCOztBQUNBO0VBRUUsb0JBQWE7RUFBYixhQUFhO0VBRWIsNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0I7RUFFdEIseUJBQW1CO1VBQW5CLG1CQUFtQjtFQUVuQiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxVQUFVO0FBQ1o7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCw2QkFBNkI7RUFDN0IsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsV0FBVztFQUNYLHVCQUF1QjtFQUN2QixlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCxzQkFBc0I7RUFDdEIsNEJBQTRCO0VBQzVCLHlCQUF5QjtFQUN6QixxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsV0FBVztFQUNYLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsbUJBQW1CO0VBQ25CLG1CQUFtQjtFQUNuQiw2QkFBNkI7RUFDN0IscUJBQXFCO0VBQ3JCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsV0FBVztFQUNYLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFVBQVU7RUFDVixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGdCQUFnQjtFQUNoQixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSw0QkFBNEI7QUFDOUIiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY3VzdG9taXphYmxlLXRpbWVsaW5lL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cvY3VzdG9taXphYmxlLXRpbWVsaW5lLWRpYWxvZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmdiLXRpbWVwaWNrZXIge1xuICBmb250LXNpemU6IDFyZW07XG59XG5cbjo6bmctZGVlcCBmaWVsZHNldCB7XG4gIG1pbi13aWR0aDogMDtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwO1xuICBib3JkZXI6IDA7XG59XG5cbjo6bmctZGVlcCAubmdiLXRwIHtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG46Om5nLWRlZXAgLm5nYi10cC1ob3VyLCAubmdiLXRwLW1lcmlkaWFuLCAubmdiLXRwLW1pbnV0ZSwgLm5nYi10cC1zZWNvbmQge1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbiAgZGlzcGxheTogZmxleDtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC1tcy1mbGV4LXBhY2s6IGRpc3RyaWJ1dGU7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cC1pbnB1dC1jb250YWluZXIge1xuICB3aWR0aDogNGVtO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cC1zcGFjZXIge1xuICB3aWR0aDogNTBweCAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbjo6bmctZGVlcCAuYnRuLWxpbmsge1xuICBmb250LXdlaWdodDogNDAwO1xuICBjb2xvcjogIzVFMzVCMTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci13aWR0aDogMXB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbn1cblxuOjpuZy1kZWVwIC5mb3JtLWNvbnRyb2wge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IC4zNzVyZW0gLjc1cmVtO1xuICBmb250LXNpemU6IDFyZW07XG4gIGxpbmUtaGVpZ2h0OiAxLjU7XG4gIGNvbG9yOiAjNDk1MDU3O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBiYWNrZ3JvdW5kLWNsaXA6IHBhZGRpbmctYm94O1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2VkNGRhO1xuICBib3JkZXItcmFkaXVzOiAuMjVyZW07XG59XG5cbjo6bmctZGVlcCAubmdiLXRwLWlucHV0IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB3aWR0aDogaW5oZXJpdDtcbn1cblxuOjpuZy1kZWVwIC5zci1vbmx5IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMXB4O1xuICBoZWlnaHQ6IDFweDtcbiAgcGFkZGluZzogMDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgY2xpcDogcmVjdCgwLDAsMCwwKTtcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgLXdlYmtpdC1jbGlwLXBhdGg6IGluc2V0KDUwJSk7XG4gIGNsaXAtcGF0aDogaW5zZXQoNTAlKTtcbiAgYm9yZGVyOiBub25lO1xufVxuXG46Om5nLWRlZXAgLm1hdC1lcnJvciB7XG4gIGZvbnQtc2l6ZTogMTJweDtcbn1cblxuLm1vY2tQbGFjZWhvbGRlciB7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgY29sb3I6IGdyZXk7XG4gIG1hcmdpbi10b3A6IDE4cHg7XG59XG5cbjo6bmctZGVlcCAuZGF0ZUlucHV0IHtcbiAgd2lkdGg6IDEwMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBuZ2ItZGF0ZXBpY2tlciB7XG4gIHotaW5kZXg6IDQ7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG59XG5cbjo6bmctZGVlcCAuZGF0ZSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIC50aW1lIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBtYXJnaW4tbGVmdDozMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG46Om5nLWRlZXAgLmRhdGUgLm1vY2tQbGFjZWhvbGRlciB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbjo6bmctZGVlcCAuZGF0ZSAuZGF0ZUlucHV0IHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtZGlhbG9nLWNvbnRhaW5lciB7XG4gIG1heC1oZWlnaHQ6IDQwMHB4ICFpbXBvcnRhbnQ7XG59Il19 */"
+module.exports = "ngb-timepicker {\n  font-size: 1rem;\n}\n\n::ng-deep fieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n::ng-deep .ngb-tp {\n  display: flex;\n  align-items: center;\n}\n\n::ng-deep .ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-around;\n}\n\n::ng-deep .ngb-tp-input-container {\n  width: 4em;\n}\n\n::ng-deep .ngb-tp-spacer {\n  width: 50px !important;\n  text-align: center;\n}\n\n::ng-deep .btn-link {\n  font-weight: 400;\n  color: #5E35B1;\n  background-color: transparent;\n  border-width: 1px;\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n::ng-deep .form-control {\n  display: block;\n  width: 100%;\n  padding: .375rem .75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: .25rem;\n}\n\n::ng-deep .ngb-tp-input {\n  text-align: center;\n  width: inherit;\n}\n\n::ng-deep .sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0,0,0,0);\n  white-space: nowrap;\n  -webkit-clip-path: inset(50%);\n  clip-path: inset(50%);\n  border: none;\n}\n\n::ng-deep .mat-error {\n  font-size: 12px;\n}\n\n.mockPlaceholder {\n  font-size: 12px;\n  color: grey;\n  margin-top: 18px;\n}\n\n::ng-deep .dateInput {\n  width: 100px !important;\n}\n\n::ng-deep ngb-datepicker {\n  z-index: 4;\n  background-color:white;\n}\n\n::ng-deep .date {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n::ng-deep .time {\n  display: inline-block;\n  margin-left:30px;\n  vertical-align: middle;\n}\n\n::ng-deep .date .mockPlaceholder {\n  margin-bottom: 20px;\n}\n\n::ng-deep .date .dateInput {\n  margin-bottom: 20px;\n}\n\n::ng-deep .mat-dialog-container {\n  max-height: 400px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUtZGlhbG9nL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtFQUNWLFNBQVM7RUFDVCxTQUFTO0FBQ1g7O0FBRUE7RUFFRSxhQUFhO0VBRWIsbUJBQW1CO0FBQ3JCOztBQUNBO0VBRUUsYUFBYTtFQUViLHNCQUFzQjtFQUV0QixtQkFBbUI7RUFFbkIsNkJBQTZCO0FBQy9COztBQUVBO0VBQ0UsVUFBVTtBQUNaOztBQUVBO0VBQ0Usc0JBQXNCO0VBQ3RCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsNkJBQTZCO0VBQzdCLGlCQUFpQjtFQUNqQixlQUFlO0VBQ2Ysa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsY0FBYztFQUNkLFdBQVc7RUFDWCx1QkFBdUI7RUFDdkIsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2Qsc0JBQXNCO0VBQ3RCLDRCQUE0QjtFQUM1Qix5QkFBeUI7RUFDekIscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFdBQVc7RUFDWCxVQUFVO0VBQ1YsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsNkJBQTZCO0VBQzdCLHFCQUFxQjtFQUNyQixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLFdBQVc7RUFDWCxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSx1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSxVQUFVO0VBQ1Ysc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQixnQkFBZ0I7RUFDaEIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsNEJBQTRCO0FBQzlCIiwiZmlsZSI6InNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUtZGlhbG9nL2N1c3RvbWl6YWJsZS10aW1lbGluZS1kaWFsb2cuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5nYi10aW1lcGlja2VyIHtcbiAgZm9udC1zaXplOiAxcmVtO1xufVxuXG46Om5nLWRlZXAgZmllbGRzZXQge1xuICBtaW4td2lkdGg6IDA7XG4gIHBhZGRpbmc6IDA7XG4gIG1hcmdpbjogMDtcbiAgYm9yZGVyOiAwO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cCB7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBkaXNwbGF5OiBmbGV4O1xuICAtbXMtZmxleC1hbGlnbjogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuOjpuZy1kZWVwIC5uZ2ItdHAtaG91ciwgLm5nYi10cC1tZXJpZGlhbiwgLm5nYi10cC1taW51dGUsIC5uZ2ItdHAtc2Vjb25kIHtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1hbGlnbjogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAtbXMtZmxleC1wYWNrOiBkaXN0cmlidXRlO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbn1cblxuOjpuZy1kZWVwIC5uZ2ItdHAtaW5wdXQtY29udGFpbmVyIHtcbiAgd2lkdGg6IDRlbTtcbn1cblxuOjpuZy1kZWVwIC5uZ2ItdHAtc3BhY2VyIHtcbiAgd2lkdGg6IDUwcHggIWltcG9ydGFudDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG46Om5nLWRlZXAgLmJ0bi1saW5rIHtcbiAgZm9udC13ZWlnaHQ6IDQwMDtcbiAgY29sb3I6ICM1RTM1QjE7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xuICBib3JkZXItd2lkdGg6IDFweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG59XG5cbjo6bmctZGVlcCAuZm9ybS1jb250cm9sIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAuMzc1cmVtIC43NXJlbTtcbiAgZm9udC1zaXplOiAxcmVtO1xuICBsaW5lLWhlaWdodDogMS41O1xuICBjb2xvcjogIzQ5NTA1NztcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgYmFja2dyb3VuZC1jbGlwOiBwYWRkaW5nLWJveDtcbiAgYm9yZGVyOiAxcHggc29saWQgI2NlZDRkYTtcbiAgYm9yZGVyLXJhZGl1czogLjI1cmVtO1xufVxuXG46Om5nLWRlZXAgLm5nYi10cC1pbnB1dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgd2lkdGg6IGluaGVyaXQ7XG59XG5cbjo6bmctZGVlcCAuc3Itb25seSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDFweDtcbiAgaGVpZ2h0OiAxcHg7XG4gIHBhZGRpbmc6IDA7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGNsaXA6IHJlY3QoMCwwLDAsMCk7XG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIC13ZWJraXQtY2xpcC1wYXRoOiBpbnNldCg1MCUpO1xuICBjbGlwLXBhdGg6IGluc2V0KDUwJSk7XG4gIGJvcmRlcjogbm9uZTtcbn1cblxuOjpuZy1kZWVwIC5tYXQtZXJyb3Ige1xuICBmb250LXNpemU6IDEycHg7XG59XG5cbi5tb2NrUGxhY2Vob2xkZXIge1xuICBmb250LXNpemU6IDEycHg7XG4gIGNvbG9yOiBncmV5O1xuICBtYXJnaW4tdG9wOiAxOHB4O1xufVxuXG46Om5nLWRlZXAgLmRhdGVJbnB1dCB7XG4gIHdpZHRoOiAxMDBweCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgbmdiLWRhdGVwaWNrZXIge1xuICB6LWluZGV4OiA0O1xuICBiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO1xufVxuXG46Om5nLWRlZXAgLmRhdGUge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG5cbjo6bmctZGVlcCAudGltZSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgbWFyZ2luLWxlZnQ6MzBweDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIC5kYXRlIC5tb2NrUGxhY2Vob2xkZXIge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuXG46Om5nLWRlZXAgLmRhdGUgLmRhdGVJbnB1dCB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbjo6bmctZGVlcCAubWF0LWRpYWxvZy1jb250YWluZXIge1xuICBtYXgtaGVpZ2h0OiA0MDBweCAhaW1wb3J0YW50O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -1284,7 +1299,7 @@ var CustomizableTimelineDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 200px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n  -webkit-box-flex: 1;\n          flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQSwwRUFBMEU7O0FBQzFFO0VBQ0UsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLFlBQVk7QUFDZDs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixpQkFBaUI7RUFDakIsd0JBQXdCO0VBQ3hCLGlCQUFpQjtBQUNuQjs7QUFHQTtFQUNFLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixxQkFBcUI7RUFDckIsc0JBQXNCO0VBQ3RCLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsZUFBZTtFQUNmLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLHlCQUF5QjtFQUN6QixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4Qjs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsNEJBQXNCO0VBQXRCLDZCQUFzQjtVQUF0QixzQkFBc0I7RUFFdEIsb0JBQWE7RUFBYixhQUFhO0VBQ2Isb0JBQW9CO0VBQ3BCLG1CQUFjO1VBQWQsY0FBYztFQUNkLGtCQUFrQixFQUFFLGFBQWE7QUFDbkMiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY3VzdG9taXphYmxlLXRpbWVsaW5lL2N1c3RvbWl6YWJsZS10aW1lbGluZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOjpuZy1kZWVwIFtjbGFzcyo9XCJ0aW1lbGluZVwiXSAuYzMteGdyaWQtZm9jdXMge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBkZWZhdWx0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAuaW5FZGl0TW9kZSAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBwb2ludGVyICFpbXBvcnRhbnQ7XG59XG5cbi8qIE9ubHkgZGlzcGxheSBpY29ucyBvbiBmbGFncyBpbiB0aGUgQ3VzdG9taXphYmxlR3JhcGggaWYgaW4gZWRpdCBtb2RlLiAqL1xuOjpuZy1kZWVwIGFwcC1jdXN0b21pemFibGUtZ3JhcGguaW5FZGl0TW9kZSAuc2hvd0ljb24ge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBbY2xhc3MqPVwidG9vbHRpcC1jdXN0b21cIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBmb250LXNpemU6IDExcHg7XG4gIGJvcmRlci1zdHlsZTogc29saWQ7XG4gIHBhZGRpbmc6IDNweDtcbiAgYm9yZGVyLXdpZHRoOiAxcHg7XG4gIGJvcmRlci1jb2xvcjogZ3JleTtcbiAgYm9yZGVyLXJhZGl1czogM3B4O1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMjAwcHg7XG4gIG1heC1oZWlnaHQ6IDEwMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtd2hvbGVcIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMHB4O1xuICBtYXgtaGVpZ2h0OiAxMDBweDtcbiAgYm9yZGVyLWxlZnQtc3R5bGU6IHNvbGlkO1xuICBib3JkZXItd2lkdGg6IDFweDtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtdGl0bGUtY3VzdG9tXCJdIHtcbiAgbWFyZ2luOiAwcHg7XG4gIGZvbnQtc2l6ZTogc21hbGw7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWF4LXdpZHRoOiAxMjBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xuICBtaW4td2lkdGg6IDEyMHB4O1xuICBvdmVyZmxvdzogYXV0bztcbiAgbWFyZ2luLXRvcDogNXB4O1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xufVxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtZGV0YWlscy1jdXN0b21cIl0ge1xuICBkaXNwbGF5OiBub25lO1xuICBvdmVyZmxvdzogYXV0bztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xufVxuXG46Om5nLWRlZXAgW2lkKj1cImV4cGFuZFwiXSB7XG4gIHZpc2liaWxpdHk6IGhpZGRlbjtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIFtpZCo9XCJkZWxldGVcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG46Om5nLWRlZXAgW2lkKj1cImVkaXRcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuLmNvbnRlbnRzLWJsb2NrIHtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBmbGV4OiAxIDEgMTAwJTtcbiAgLW1zLWZsZXg6IDEgMSAxMDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuIl19 */"
+module.exports = "::ng-deep [class*=\"timeline\"] .c3-xgrid-focus {\n  visibility: visible !important;\n}\n\n::ng-deep .timeline .c3 {\n  cursor: default !important;\n}\n\n::ng-deep .inEditMode .timeline .c3 {\n  cursor: pointer !important;\n}\n\n/* Only display icons on flags in the CustomizableGraph if in edit mode. */\n\n::ng-deep app-customizable-graph.inEditMode .showIcon {\n  visibility: visible !important;\n}\n\n::ng-deep [class*=\"tooltip-custom\"] {\n  position: absolute;\n  display: block;\n  font-size: 11px;\n  border-style: solid;\n  padding: 3px;\n  border-width: 1px;\n  border-color: grey;\n  border-radius: 3px;\n  min-height: 25px;\n  width: 200px;\n  max-height: 100px;\n  background-color: white;\n  overflow: auto;\n  color: white;\n}\n\n::ng-deep [class*=\"tooltip-whole\"] {\n  position: absolute;\n  display: block;\n  min-height: 25px;\n  width: 0px;\n  max-height: 100px;\n  border-left-style: solid;\n  border-width: 1px;\n}\n\n::ng-deep [class*=\"tooltip-title-custom\"] {\n  margin: 0px;\n  font-size: small;\n  text-align: center;\n  max-width: 120px;\n  display: inline-block;\n  vertical-align: bottom;\n  min-width: 120px;\n  overflow: auto;\n  margin-top: 5px;\n  overflow-wrap: break-word;\n}\n\n::ng-deep [class*=\"tooltip-details-custom\"] {\n  display: none;\n  overflow: auto;\n  text-align: center;\n  overflow-wrap: break-word;\n  max-width: 120px;\n}\n\n::ng-deep [id*=\"expand\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"delete\"] {\n  visibility: hidden;\n  vertical-align: middle;\n}\n\n::ng-deep [id*=\"edit\"] {\n  visibility: hidden;\n  margin-top: 8px;\n}\n\n.contents-block {\n  flex-direction: column;\n  display: flex;\n  display: -ms-flexbox;\n  flex: 1 1 100%;\n  -ms-flex: 1 1 100%; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2N1c3RvbWl6YWJsZS10aW1lbGluZS9jdXN0b21pemFibGUtdGltZWxpbmUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQSwwRUFBMEU7O0FBQzFFO0VBQ0UsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLFlBQVk7QUFDZDs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixpQkFBaUI7RUFDakIsd0JBQXdCO0VBQ3hCLGlCQUFpQjtBQUNuQjs7QUFHQTtFQUNFLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixxQkFBcUI7RUFDckIsc0JBQXNCO0VBQ3RCLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsZUFBZTtFQUNmLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLHlCQUF5QjtFQUN6QixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4Qjs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0Usc0JBQXNCO0VBRXRCLGFBQWE7RUFDYixvQkFBb0I7RUFDcEIsY0FBYztFQUNkLGtCQUFrQixFQUFFLGFBQWE7QUFDbkMiLCJmaWxlIjoic3JjL2FwcC9jYXJkdHlwZXMvY3VzdG9taXphYmxlLXRpbWVsaW5lL2N1c3RvbWl6YWJsZS10aW1lbGluZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOjpuZy1kZWVwIFtjbGFzcyo9XCJ0aW1lbGluZVwiXSAuYzMteGdyaWQtZm9jdXMge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBkZWZhdWx0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAuaW5FZGl0TW9kZSAudGltZWxpbmUgLmMzIHtcbiAgY3Vyc29yOiBwb2ludGVyICFpbXBvcnRhbnQ7XG59XG5cbi8qIE9ubHkgZGlzcGxheSBpY29ucyBvbiBmbGFncyBpbiB0aGUgQ3VzdG9taXphYmxlR3JhcGggaWYgaW4gZWRpdCBtb2RlLiAqL1xuOjpuZy1kZWVwIGFwcC1jdXN0b21pemFibGUtZ3JhcGguaW5FZGl0TW9kZSAuc2hvd0ljb24ge1xuICB2aXNpYmlsaXR5OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBbY2xhc3MqPVwidG9vbHRpcC1jdXN0b21cIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBmb250LXNpemU6IDExcHg7XG4gIGJvcmRlci1zdHlsZTogc29saWQ7XG4gIHBhZGRpbmc6IDNweDtcbiAgYm9yZGVyLXdpZHRoOiAxcHg7XG4gIGJvcmRlci1jb2xvcjogZ3JleTtcbiAgYm9yZGVyLXJhZGl1czogM3B4O1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMjAwcHg7XG4gIG1heC1oZWlnaHQ6IDEwMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtd2hvbGVcIl0ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtaW4taGVpZ2h0OiAyNXB4O1xuICB3aWR0aDogMHB4O1xuICBtYXgtaGVpZ2h0OiAxMDBweDtcbiAgYm9yZGVyLWxlZnQtc3R5bGU6IHNvbGlkO1xuICBib3JkZXItd2lkdGg6IDFweDtcbn1cblxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtdGl0bGUtY3VzdG9tXCJdIHtcbiAgbWFyZ2luOiAwcHg7XG4gIGZvbnQtc2l6ZTogc21hbGw7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWF4LXdpZHRoOiAxMjBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xuICBtaW4td2lkdGg6IDEyMHB4O1xuICBvdmVyZmxvdzogYXV0bztcbiAgbWFyZ2luLXRvcDogNXB4O1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xufVxuXG46Om5nLWRlZXAgW2NsYXNzKj1cInRvb2x0aXAtZGV0YWlscy1jdXN0b21cIl0ge1xuICBkaXNwbGF5OiBub25lO1xuICBvdmVyZmxvdzogYXV0bztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBvdmVyZmxvdy13cmFwOiBicmVhay13b3JkO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xufVxuXG46Om5nLWRlZXAgW2lkKj1cImV4cGFuZFwiXSB7XG4gIHZpc2liaWxpdHk6IGhpZGRlbjtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuOjpuZy1kZWVwIFtpZCo9XCJkZWxldGVcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG46Om5nLWRlZXAgW2lkKj1cImVkaXRcIl0ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuLmNvbnRlbnRzLWJsb2NrIHtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBmbGV4OiAxIDEgMTAwJTtcbiAgLW1zLWZsZXg6IDEgMSAxMDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1420,7 +1435,7 @@ var CustomizableTimelineComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".legend {\n  cursor: pointer;\n}\n\n/* This is the color swatch for the legends.*/\n\n.legend span {\n  border-style: solid !important;\n  height: 7px;\n  margin: 3px;\n  vertical-align: center;\n  width: 7px;\n}\n\n/* This is a specific style for MultiGraphCard. */\n\n.contents-block {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column; /* For IE10 */\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.axis {\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.mat-body {\n  font-family: 'Work Sans', sans-serif;\n  font-size: 14px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2xlZ2VuZHN0eWxlcy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBLDZDQUE2Qzs7QUFDN0M7RUFDRSw4QkFBOEI7RUFDOUIsV0FBVztFQUNYLFdBQVc7RUFDWCxzQkFBc0I7RUFDdEIsVUFBVTtBQUNaOztBQUVBLGlEQUFpRDs7QUFDakQ7RUFDRSw0QkFBc0I7RUFBdEIsNkJBQXNCO1VBQXRCLHNCQUFzQixFQUNNLGFBQWE7RUFDekMsb0JBQWE7RUFBYixhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtFQUNuQyxtQkFBWTtVQUFaLFlBQVk7RUFDWixnQkFBZ0IsRUFBRSxhQUFhO0FBQ2pDOztBQUVBO0VBQ0UsbUJBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUUsYUFBYTtBQUNuQzs7QUFFQTtFQUNFLG9DQUFvQztFQUNwQyxlQUFlO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvY2FyZHR5cGVzL2xlZ2VuZHN0eWxlcy5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubGVnZW5kIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4vKiBUaGlzIGlzIHRoZSBjb2xvciBzd2F0Y2ggZm9yIHRoZSBsZWdlbmRzLiovXG4ubGVnZW5kIHNwYW4ge1xuICBib3JkZXItc3R5bGU6IHNvbGlkICFpbXBvcnRhbnQ7XG4gIGhlaWdodDogN3B4O1xuICBtYXJnaW46IDNweDtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgd2lkdGg6IDdweDtcbn1cblxuLyogVGhpcyBpcyBhIHNwZWNpZmljIHN0eWxlIGZvciBNdWx0aUdyYXBoQ2FyZC4gKi9cbi5jb250ZW50cy1ibG9jayB7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uYXhpcyB7XG4gIGZsZXg6IDAgMCBhdXRvO1xuICAtbXMtZmxleDogMCAwIGF1dG87IC8qIEZvciBJRTEwICovXG59XG5cbi5tYXQtYm9keSB7XG4gIGZvbnQtZmFtaWx5OiAnV29yayBTYW5zJywgc2Fucy1zZXJpZjtcbiAgZm9udC1zaXplOiAxNHB4O1xufSJdfQ== */"
+module.exports = ".legend {\n  cursor: pointer;\n}\n\n/* This is the color swatch for the legends.*/\n\n.legend span {\n  border-style: solid !important;\n  height: 7px;\n  margin: 3px;\n  vertical-align: center;\n  width: 7px;\n}\n\n/* This is a specific style for MultiGraphCard. */\n\n.contents-block {\n  flex-direction: column; /* For IE10 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.axis {\n  flex: 0 0 auto;\n  -ms-flex: 0 0 auto; /* For IE10 */\n}\n\n.mat-body {\n  font-family: 'Work Sans', sans-serif;\n  font-size: 14px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZHR5cGVzL2xlZ2VuZHN0eWxlcy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBLDZDQUE2Qzs7QUFDN0M7RUFDRSw4QkFBOEI7RUFDOUIsV0FBVztFQUNYLFdBQVc7RUFDWCxzQkFBc0I7RUFDdEIsVUFBVTtBQUNaOztBQUVBLGlEQUFpRDs7QUFDakQ7RUFDRSxzQkFBc0IsRUFDTSxhQUFhO0VBQ3pDLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLFlBQVk7RUFDWixnQkFBZ0IsRUFBRSxhQUFhO0FBQ2pDOztBQUVBO0VBQ0UsY0FBYztFQUNkLGtCQUFrQixFQUFFLGFBQWE7QUFDbkM7O0FBRUE7RUFDRSxvQ0FBb0M7RUFDcEMsZUFBZTtBQUNqQiIsImZpbGUiOiJzcmMvYXBwL2NhcmR0eXBlcy9sZWdlbmRzdHlsZXMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxlZ2VuZCB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLyogVGhpcyBpcyB0aGUgY29sb3Igc3dhdGNoIGZvciB0aGUgbGVnZW5kcy4qL1xuLmxlZ2VuZCBzcGFuIHtcbiAgYm9yZGVyLXN0eWxlOiBzb2xpZCAhaW1wb3J0YW50O1xuICBoZWlnaHQ6IDdweDtcbiAgbWFyZ2luOiAzcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBjZW50ZXI7XG4gIHdpZHRoOiA3cHg7XG59XG5cbi8qIFRoaXMgaXMgYSBzcGVjaWZpYyBzdHlsZSBmb3IgTXVsdGlHcmFwaENhcmQuICovXG4uY29udGVudHMtYmxvY2sge1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAtbXMtZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgLyogRm9yIElFMTAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIGZsZXg6IDEgMSAwJTtcbiAgLW1zLWZsZXg6IDEgMSAwJTsgLyogRm9yIElFMTAgKi9cbn1cblxuLmF4aXMge1xuICBmbGV4OiAwIDAgYXV0bztcbiAgLW1zLWZsZXg6IDAgMCBhdXRvOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4ubWF0LWJvZHkge1xuICBmb250LWZhbWlseTogJ1dvcmsgU2FucycsIHNhbnMtc2VyaWY7XG4gIGZvbnQtc2l6ZTogMTRweDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1518,7 +1533,8 @@ var MultiGraphCardComponent = /** @class */ (function () {
     };
     MultiGraphCardComponent.prototype.addSeriesToLegendMap = function (series) {
         // We do not want to add the normalBound series to the legend
-        if (series.legendInfo.label === _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_5__["LineGraphComponent"].NORMAL_BOUND_SERIES_NAME) {
+        if (series.legendInfo.label ===
+            _graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_5__["LineGraphComponent"].NORMAL_BOUND_SERIES_NAME) {
             return;
         }
         if (!this.legendToSeries.has(series.legendInfo)) {
@@ -1691,7 +1707,7 @@ var MultiGraphCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\" class=\"card-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}\n        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage\" [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n        <app-diagnostic-graph *ngSwitchCase=\"ChartType.DIAGNOSTIC\" [data]=\"axis.alreadyResolvedData\"\n        [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n        [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n      </app-diagnostic-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>\n"
+module.exports = "<app-card [id]=\"id\" [color]=\"this.color.hsl().string()\" [label]=\"label + unitsLabel\" (removeEvent)=\"remove()\">\n  <ng-container *ngIf=\"legendToSeries.size > 1\" class=\"legends-block\">\n    <ng-container *ngFor=\"let series of legendToSeries | keyvalue\">\n      <div fxLayout=\"row\" class=\"legend\" *ngIf=\"hasData(series.value)\" (mouseover)=\"focusOnSeries(series.value)\"\n        (mouseout)=\"resetChart()\">\n        <span [style.background-color]=\"series.key.fill.hsl().string()\"\n          [style.border]=\"series.key.outline.hsl().string()\">\n        </span>\n        <div fxFlex class=\"mat-body\">{{series.key.label}}</div>\n      </div>\n    </ng-container>\n  </ng-container>\n  <div fxFlex *ngIf=\"axisGroup\" fxLayout=\"column\" class=\"contents-block\">\n    <div fxFlex *ngFor=\"let axis of axisGroup.axes\" fxShrink=\"0\" fxGrow=\"0\">\n      <mat-spinner *ngIf=\"!axis.alreadyResolvedData && !axis.errorMessage\" [diameter]=\"30\"></mat-spinner>\n      <mat-expansion-panel *ngIf=\"axis.errorMessage\" class=\"card-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}\n        </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}\n      </mat-expansion-panel>\n      <ng-container *ngIf=\"axis.dataResolved() && !axis.errorMessage && axis.axisDataAvailable\"\n        [ngSwitch]=\"axis.chartType\">\n        <app-linegraph *ngSwitchCase=\"ChartType.LINE\" [data]=\"axis.alreadyResolvedData\" [dateRange]=\"this.dateRange\"\n          [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-linegraph>\n        <app-scatterplot *ngSwitchCase=\"ChartType.SCATTER\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\" [showTicks]=\"axis.showTicks\"></app-scatterplot>\n        <app-stepgraph class=\"stepgraph\" *ngSwitchCase=\"ChartType.STEP\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-stepgraph>\n        <app-microbio-graph *ngSwitchCase=\"ChartType.MICROBIO\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-microbio-graph>\n        <app-diagnostic-graph *ngSwitchCase=\"ChartType.DIAGNOSTIC\" [data]=\"axis.alreadyResolvedData\"\n          [dateRange]=\"this.dateRange\" [eventlines]=\"this.eventlines\" [xRegions]=\"this.xRegions\"\n          [axisLabel]=\"axisGroup.axes.length > 1 ? axis.label : ''\">\n        </app-diagnostic-graph>\n      </ng-container>\n    </div>\n  </div>\n</app-card>"
 
 /***/ }),
 
@@ -1892,7 +1908,7 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
         return this.fhirService.microbioReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     return BCHMicrobioCodeGroup;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["CachedResourceCodeGroup"]));
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["AbstractResourceCodeGroup"]));
 
 
 
@@ -1950,9 +1966,9 @@ var DiagnosticReportCode = /** @class */ (function (_super) {
 }(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
 
 /**
- * Represents one or more DiagnosticReport codes that should be displayed together.
- * In the case of multiple DiagnosticReport codes in a group, you should provide a
- * label for that group.
+ * Represents one or more DiagnosticReport codes that should be displayed
+ * together. In the case of multiple DiagnosticReport codes in a group, you
+ * should provide a label for that group.
  */
 var DiagnosticReportCodeGroup = /** @class */ (function (_super) {
     __extends(DiagnosticReportCodeGroup, _super);
@@ -1977,7 +1993,7 @@ var DiagnosticReportCodeGroup = /** @class */ (function (_super) {
         return this.fhirService.diagnosticReportsPresentWithCodes(this, src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
     };
     return DiagnosticReportCodeGroup;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["CachedResourceCodeGroup"]));
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["AbstractResourceCodeGroup"]));
 
 
 
@@ -1987,7 +2003,7 @@ var DiagnosticReportCodeGroup = /** @class */ (function (_super) {
 /*!******************************************************!*\
   !*** ./src/app/clinicalconcepts/display-grouping.ts ***!
   \******************************************************/
-/*! exports provided: ALL_DISPLAY_GROUPS_MAP, DisplayGrouping, labResult, vitalSign, med, microbio, posPrelimMB, negPrelimMB, posFinalMB, negFinalMB, posOtherNB, negOtherMB, radiology */
+/*! exports provided: ALL_DISPLAY_GROUPS_MAP, DisplayGrouping, labResult, vitalSign, antibiotics, antivirals, antifungals, microbio, posPrelimMB, negPrelimMB, posFinalMB, negFinalMB, posOtherNB, negOtherMB, radiology */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1996,7 +2012,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayGrouping", function() { return DisplayGrouping; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "labResult", function() { return labResult; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vitalSign", function() { return vitalSign; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "med", function() { return med; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "antibiotics", function() { return antibiotics; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "antivirals", function() { return antivirals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "antifungals", function() { return antifungals; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "microbio", function() { return microbio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "posPrelimMB", function() { return posPrelimMB; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "negPrelimMB", function() { return negPrelimMB; });
@@ -2039,7 +2057,9 @@ var DisplayGrouping = /** @class */ (function () {
 
 var labResult = new DisplayGrouping('Lab Results', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["LIME"]);
 var vitalSign = new DisplayGrouping('Vital Signs', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["ORANGE"]);
-var med = new DisplayGrouping('Vancomycin and Gentamicin', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["TURQUOISE"]);
+var antibiotics = new DisplayGrouping('Antibiotics', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["TURQUOISE"]);
+var antivirals = new DisplayGrouping('Antivirals', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["GOLD"]);
+var antifungals = new DisplayGrouping('Antifungals', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["GREEN"]);
 var microbio = new DisplayGrouping('Microbiology', _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["CYAN"]);
 // We declare more DisplayGroupings related to Microbiology results that are
 // used to classify points on the Microbiology chart.
@@ -2142,6 +2162,9 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
         _this.makeAnnotated = makeAnnotated;
         return _this;
     }
+    LOINCCodeGroup.prototype.setMakeAnnotated = function (makeAnnotatedFunction) {
+        this.makeAnnotated = makeAnnotatedFunction;
+    };
     /**
      * Gets one ObservationSet for each LOINCCode in the rawResults, and returns
      * a list of those ObservationSets.
@@ -2234,7 +2257,7 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
         });
     };
     return LOINCCodeGroup;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_3__["CachedResourceCodeGroup"]));
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_3__["AbstractResourceCodeGroup"]));
 
 
 
@@ -2244,16 +2267,14 @@ var LOINCCodeGroup = /** @class */ (function (_super) {
 /*!*********************************************************!*\
   !*** ./src/app/clinicalconcepts/resource-code-group.ts ***!
   \*********************************************************/
-/*! exports provided: ResourceCode, ResourceCodeGroup, CachedResourceCodeGroup */
+/*! exports provided: ResourceCode, ResourceCodeGroup, AbstractResourceCodeGroup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCode", function() { return ResourceCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeGroup", function() { return ResourceCodeGroup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CachedResourceCodeGroup", function() { return CachedResourceCodeGroup; });
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractResourceCodeGroup", function() { return AbstractResourceCodeGroup; });
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -2271,7 +2292,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-
 /**
  * A code specifying the medication or observation type as well as the specific
  * medication or observation.
@@ -2291,7 +2311,12 @@ var ResourceCode = /** @class */ (function () {
         this.showByDefault = showByDefault;
         this.displayBounds = displayBounds;
         this.forceDisplayBounds = forceDisplayBounds;
-        ResourceCode.CODE_STRING_TO_CODE[codeString] = this;
+        var matchingCode = ResourceCode.CODE_STRING_TO_CODE[codeString];
+        if (matchingCode && matchingCode.label !== label) {
+            throw Error('A Resource Code has already been created with this code string but a different label: ' +
+                codeString);
+        }
+        ResourceCode.CODE_STRING_TO_CODE[codeString] = matchingCode || this;
     }
     ResourceCode.fromCodeString = function (code) {
         return ResourceCode.CODE_STRING_TO_CODE[code];
@@ -2351,460 +2376,24 @@ var ResourceCodeGroup = /** @class */ (function () {
     return ResourceCodeGroup;
 }());
 
-/**
- * CachedResourceCodeGroups cache their retrieved data in a dictionary keyed
- * by time interval.
- * @param T The type of data to be cached.
- */
-var CachedResourceCodeGroup = /** @class */ (function (_super) {
-    __extends(CachedResourceCodeGroup, _super);
-    function CachedResourceCodeGroup() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.dataCache = new Map();
-        return _this;
+var AbstractResourceCodeGroup = /** @class */ (function (_super) {
+    __extends(AbstractResourceCodeGroup, _super);
+    function AbstractResourceCodeGroup() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
      * Looks in the cache to see if data for this time interval exists. If not,
      * calls the implementing class's getResourceFromFhir function and caches
      * its data, then returns the data for the given time interval.
      */
-    CachedResourceCodeGroup.prototype.getResourceSet = function (dateRange) {
+    AbstractResourceCodeGroup.prototype.getResourceSet = function (dateRange) {
         var _this = this;
-        var originalDataCacheCopy = new Map(this.dataCache);
-        // today's results will never be in the cache since we always want to get
-        // updated results for today.
-        var today = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().toISODate();
-        var todaysResults = new Array();
-        // get the days during the dateRange Inteval that we do not have in the
-        // cache already.
-        var daysToFetchFromFhir = new Array();
-        // splits dateRange into an array of intervals - each 1 day long.
-        var daysInRange = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"]
-            .fromDateTimes(dateRange.start.startOf('day'), dateRange.end.endOf('day'))
-            .splitBy({ days: 1 });
-        // for each day in the range, check if it is in the cache already.
-        // If not, add the day to the daysToFetchFromFhir and add an empty array
-        // to the cache. We add an empty array so that if we don't get any results
-        // back for a particular day, we know there is no data and we don't need to
-        // request that day again.
-        for (var _i = 0, daysInRange_1 = daysInRange; _i < daysInRange_1.length; _i++) {
-            var dayRange = daysInRange_1[_i];
-            var cacheKey = dayRange.start.toISODate();
-            if (!this.dataCache.has(cacheKey)) {
-                daysToFetchFromFhir.push(dayRange);
-                // We do not want to cache today's results since their may be
-                // additional results next time this data is fetched
-                // from FHIR
-                if (cacheKey !== today) {
-                    this.dataCache.set(cacheKey, new Array());
-                }
-            }
-        }
-        // This will give a list of the minimal covering set of intervals that
-        // are not cached.
-        var dateRangesToFetchFromFhir = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].merge(daysToFetchFromFhir);
-        var fetchPromises = [];
-        try {
-            fetchPromises = dateRangesToFetchFromFhir.map(function (dateRangeToFetch) {
-                return _this.getResourceFromFhir(dateRangeToFetch)
-                    .then(function (response) {
-                    for (var _i = 0, response_1 = response; _i < response_1.length; _i++) {
-                        var result = response_1[_i];
-                        var resultDate = result.timestamp.toISODate();
-                        // we keep today's results separate so that we
-                        // don't cache them.
-                        if (resultDate === today) {
-                            todaysResults.push(result);
-                        }
-                        else {
-                            _this.dataCache.get(resultDate).push(result);
-                        }
-                    }
-                }, function (rejection) {
-                    // reset back to cache if any call to FHIR results in
-                    // an error.
-                    _this.dataCache = originalDataCacheCopy;
-                    throw rejection;
-                });
-            });
-        }
-        catch (err) {
-            // reset back to original cache if there were any issues adding to the
-            // cache (such as a result not having a timestamp) - we do not want to
-            // cache partial data.
-            this.dataCache = originalDataCacheCopy;
-            throw err;
-        }
-        return Promise.all(fetchPromises)
-            .then(function (responseList) {
-            return _this.getResourceFromCache(dateRange).then(function (rawResults) { return _this.formatRawResults([].concat(rawResults, todaysResults)); });
-        }, function (rejection) {
-            _this.dataCache = originalDataCacheCopy;
-            throw rejection;
+        return this.getResourceFromFhir(dateRange).then(function (rawResults) {
+            return _this.formatRawResults(rawResults);
         });
     };
-    /**
-     * Gets data from the cache for the given date range.
-     * @param dateRange date range to get data for
-     */
-    CachedResourceCodeGroup.prototype.getResourceFromCache = function (dateRange) {
-        var _this = this;
-        // split the dateRange by day intervals and get data from the Cache.
-        var allRawResults = new Array();
-        dateRange.splitBy({ days: 1 }).forEach(function (dayRange) {
-            allRawResults.push.apply(allRawResults, _this.dataCache.get(dayRange.start.toISODate()));
-        });
-        return Promise.resolve(allRawResults);
-    };
-    return CachedResourceCodeGroup;
+    return AbstractResourceCodeGroup;
 }(ResourceCodeGroup));
-
-
-
-/***/ }),
-
-/***/ "./src/app/clinicalconcepts/resource-code-manager-exports.ts":
-/*!*******************************************************************!*\
-  !*** ./src/app/clinicalconcepts/resource-code-manager-exports.ts ***!
-  \*******************************************************************/
-/*! exports provided: bloodPressureLoincs */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bloodPressureLoincs", function() { return bloodPressureLoincs; });
-/* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var _loinc_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-// Copyright 2018 Verily Life Sciences Inc.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-
-var bloodPressureLoincs = [
-    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('55284-4', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Blood pressure', true),
-    new _loinc_code__WEBPACK_IMPORTED_MODULE_1__["LOINCCode"]('8478-0', _display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], 'Mean Arterial Pressure (Device)', true, [25, 200])
-];
-
-
-/***/ }),
-
-/***/ "./src/app/clinicalconcepts/resource-code-manager.ts":
-/*!***********************************************************!*\
-  !*** ./src/app/clinicalconcepts/resource-code-manager.ts ***!
-  \***********************************************************/
-/*! exports provided: documentReferenceLoinc, ResourceCodeManager */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "documentReferenceLoinc", function() { return documentReferenceLoinc; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeManager", function() { return ResourceCodeManager; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../fhir-data-classes/annotated-observation */ "./src/app/fhir-data-classes/annotated-observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphtypes/axis */ "./src/app/graphtypes/axis.ts");
-/* harmony import */ var _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
-/* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
-/* harmony import */ var _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
-/* harmony import */ var _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
-/* harmony import */ var _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
-/* harmony import */ var _display_grouping__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
-/* harmony import */ var _rx_norm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
-/* harmony import */ var _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-// Copyright 2018 Verily Life Sciences Inc.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// We declare a new LOINCCode referencing a DocumentReference, but do not
-// include it in the groupings below because it is not graphed/displayed in the
-// configuration sidebar.
-var documentReferenceLoinc = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('68608-9', undefined, 'Summary', true);
-var ovaAndParasiteExam = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('OVAANDPARASITEEXAM', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Ova and Parasite Exam', false);
-var salmonella = new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Salmonella and Shigella Culture', false);
-/**
- * ResourceCodeManager is the centralized class where other components can
- * look to find an exhaustive listing of all the resource code groups that the
- * application may display.
- */
-var ResourceCodeManager = /** @class */ (function () {
-    function ResourceCodeManager(fhirService, sanitizer) {
-        var _this = this;
-        this.fhirService = fhirService;
-        this.sanitizer = sanitizer;
-        if (ResourceCodeManager_1.axisGroups) {
-            return;
-        }
-        var codeGroups = new Array();
-        // All the labs and vitals are linecharts and displayed on
-        // independent axes.
-        for (var _i = 0, _a = ResourceCodeManager_1.typeToPairs; _i < _a.length; _i++) {
-            var _b = _a[_i], conceptGroup = _b[0], codePairs = _b[1];
-            for (var _c = 0, codePairs_1 = codePairs; _c < codePairs_1.length; _c++) {
-                var loinc = codePairs_1[_c];
-                codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, loinc.label, new Array(loinc), conceptGroup, _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE), loinc.label)]));
-            }
-        }
-        var bpLocation = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure Details', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41904-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Blood Pressure Location', true)], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
-        // Add the blood pressure LOINCs.
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Blood Pressure', _resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_9__["bloodPressureLoincs"], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE, function (observation, dateRange) {
-                return bpLocation.getResourceSet(dateRange).then(function (obsSet) {
-                    return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forBloodPressure(observation, 
-                    // We only pass in the first ObservationSet, since we
-                    // know there is only one code whose observations we
-                    // care about.
-                    obsSet[0]);
-                });
-            }), 'Blood Pressure')]));
-        var cbc = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'WBC', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('26464-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'WBC', false, [0, 150])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hemoglobin', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('718-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hemoglobin', false, [0.5, 30])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Hematocrit', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4544-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hematocrit', false, [10, 70])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Platelet', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('777-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Platelet', false, [2, 900])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-        ];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbc.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count'));
-        var cbcWBC = [
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Neutrophil/Band', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('35332-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Neutrophil/Band', true, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Immature Granulocytes', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38518-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Immature Granulocytes', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Lymphocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('736-9', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Lymphocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monocyte', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5905-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Monocyte', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Eosinophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('713-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Basophil', [new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('706-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Basophil', false, [0, 100])], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].LINE),
-        ];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](cbcWBC.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Complete Blood Count White Blood Cell'));
-        var medsSummaryGroup = _rx_norm__WEBPACK_IMPORTED_MODULE_12__["RXNORM_CODES"];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Vancomycin & Gentamicin Summary', medsSummaryGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].STEP), 'Vancomycin & Gentamicin Summary')]));
-        // Drug monitoring should be a scatterplot, and the related concepts
-        // should be displayed on the same axes.
-        var vancRxNorm = new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_12__["RxNormCode"].fromCodeString('11124')], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER);
-        // Drug monitoring should be a scatterplot, and the related concepts
-        // should be displayed on the same axes.
-        var vancMonitoring = [
-            vancRxNorm,
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.vancMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER, function (observation, dateRange) {
-                return vancRxNorm.getResourceSet(dateRange).then(function (rxNorms) {
-                    // We know that we're only pushing in one RxNorm
-                    // so it's safe to grab the first (and only) one in
-                    // the list.
-                    return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_3__["AnnotatedObservation"].forMedicationMonitoring(observation, rxNorms[0].orders);
-                });
-            })
-        ];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](vancMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Vancomycin'));
-        var gentMonitoring = [
-            new _rx_norm_group__WEBPACK_IMPORTED_MODULE_13__["RxNormCodeGroup"](this.fhirService, 'Administrations', [_rx_norm__WEBPACK_IMPORTED_MODULE_12__["RxNormCode"].fromCodeString('1596450')], _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER),
-            new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Monitoring', ResourceCodeManager_1.gentMonitoring, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["med"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER)
-        ];
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"](gentMonitoring.map(function (codeGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](_this.fhirService, _this.sanitizer, codeGroup, codeGroup.label); }), 'Gentamicin'));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Urinalysis', ResourceCodeManager_1.urineGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Urinalysis')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'CSF', ResourceCodeManager_1.csfGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'CSF')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCodeGroup"](this.fhirService, 'Other Fluid', ResourceCodeManager_1.otherFluidGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].SCATTER), 'Other Fluid')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Stool', ResourceCodeManager_1.stoolGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Stool')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Respiratory', ResourceCodeManager_1.respiratoryGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Respiratory')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Other', ResourceCodeManager_1.otherGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Other')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'Blood', ResourceCodeManager_1.bloodGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'Blood')]));
-        codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCodeGroup"](this.fhirService, 'CSF Microbiology', ResourceCodeManager_1.csfGroupMB, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].MICROBIO), 'CSF Microbiology')]));
-        // Add flag to environment to toggle radiology feature
-        if (_environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].showRadiology) {
-            codeGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_6__["AxisGroup"]([new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_5__["Axis"](this.fhirService, this.sanitizer, new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCodeGroup"](this.fhirService, 'Radiology', ResourceCodeManager_1.radiologyGroup, _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_7__["ChartType"].DIAGNOSTIC), 'Radiology')]));
-        }
-        ResourceCodeManager_1.axisGroups = codeGroups;
-        var mapping = new Map();
-        for (var _d = 0, _e = this.getResourceCodeGroups(); _d < _e.length; _d++) {
-            var group = _e[_d];
-            if (mapping.has(group.displayGroup)) {
-                mapping.get(group.displayGroup).push(group);
-            }
-            else {
-                mapping.set(group.displayGroup, [group]);
-            }
-        }
-        ResourceCodeManager_1.displayGroupMapping = mapping;
-    }
-    ResourceCodeManager_1 = ResourceCodeManager;
-    /**
-     * Returns the ResourceCodeGroups to be displayed. If the maps have already
-     * been constructed, returns the static variable holding the information.
-     * If not, constructs the maps and saves them into the static class variable,
-     * then returns.
-     */
-    ResourceCodeManager.prototype.getResourceCodeGroups = function () {
-        return ResourceCodeManager_1.axisGroups;
-    };
-    /**
-     * Returns a map where the key is a clinical concept group and the value is
-     * a list of LOINC code groups belonging to the clinical concept group.
-     */
-    ResourceCodeManager.prototype.getDisplayGroupMapping = function () {
-        return ResourceCodeManager_1.displayGroupMapping;
-    };
-    var ResourceCodeManager_1;
-    ResourceCodeManager.labLoincs = [
-        // Pull all the defaults to the top.
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1988-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'C-Reactive Protein', true, [0, 100], true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4537-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'ESR (Erythrocyte Sedimentation Rate)', true, [0, 200]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3094-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'BUN', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2160-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Creatinine', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1742-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'ALT', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1920-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'AST (Aspartate Aminotransferase)', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6768-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Alkaline Phosphatase', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1968-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Direct', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('1975-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Total', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3084-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Uric acid', false)
-    ];
-    ResourceCodeManager.vitalLoincs = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8310-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Temperature', true, [35, 41]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8867-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Heart Rate', true, [20, 300]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9279-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Respiratory Rate', true, [6, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('59408-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Oxygen Saturation (SpO2)', true, [5, 100], true)
-    ];
-    /**
-     * Although these two measurements have independent LOINC codes they only ever
-     * appear as sub-measurements of the larger entity for "blood pressure" in the
-     * way that BCH data shows up.
-     */
-    ResourceCodeManager.diastolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8462-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Diastolic Blood Pressure', true, [25, 150]);
-    ResourceCodeManager.systolicBP = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('8480-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], 'Systolic Blood Pressure', true, [30, 250]);
-    // "bloodPressureLoincs" is in file resource-code-manager-exports.ts because
-    // of circular dependency issues.
-    ResourceCodeManager.gentMonitoring = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31091-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Peak/Post Q24H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3663-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Peak/Post Q8H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31092-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Trough/Pre Q24H'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('3665-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Gentamicin, Trough/Pre Q8H')
-    ];
-    ResourceCodeManager.vancMonitoring = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20578-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Vancomycin Level, Random', true),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('4092-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Vancomycin Level, Trough/Pre', true),
-    ];
-    ResourceCodeManager.urineGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5769-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bacteria, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50551-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Bilirubin, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5794-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Blood, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('21033-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Budding Yeast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('41865-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Hyphal Yeast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('25157-9', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Epithelial Cast, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50558-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Nitrite, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('57735-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Protein, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('58449-0', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Red Blood Cell Clump, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13945-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Red Cells, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('11277-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Squamous Epithelial, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('50563-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Urobilinogen, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('5799-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'WBC Enzyme, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('33825-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'White Blood Cell Clump, Urinalysis'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('20408-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'White Cells, Urinalysis'),
-    ];
-    ResourceCodeManager.csfGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10333-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Appearance, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('13517-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Atypical Lymph, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Band, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('30374-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Basophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12208-5', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('2342-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Glucose, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10328-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Lymphocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('10329-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Monocyte, CSF', false, [0, 100]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12278-8', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Neutrophil/Band, CSF', false, [0, 100])
-    ];
-    ResourceCodeManager.otherFluidGroup = [
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('9335-1', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Appearance, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('31208-2', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cell Count Source, Other Fluid', false, [0, 100000]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('47938-6', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cell Count, Other Source', false, [0, 100000]),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('38256-4', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Cells Counted, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('6824-7', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Color, Other Fluid'),
-        new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]('12209-3', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], 'Eosinophil, Other Fluid')
-    ];
-    ResourceCodeManager.stoolGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CDIFFICILEEIAWRFLXTOAMPLIFIEDDNA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'C difficile EIA w/rflx to amplified DNA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CAMPYLOBACTERCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Campylobacter Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROHEMORRHAGICECOLITEST', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Enterohemorrhagic E coli Test', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('SALMONELLAANDSHIGELLACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Salmonella and Shigella Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('YERSINIACULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Yersinia Culture', true),
-    ];
-    // Visible for testing.
-    ResourceCodeManager.respiratoryGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRRESPQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Adenovirus PCR, Resp, QuaL', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('INFLUENZAABRSVPCRWASUBTYPEQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Influenza A/B, RSV PCR w/A Subtype, QuaL', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('RESPIRATORYCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Respiratory Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALDFARESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Viral DFA Respiratory', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA1DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 1 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA123DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 1, 2, 3 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA2DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 2 DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('PARAINFLUENZA3DFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Parainfluenza 3 DFA', true),
-    ];
-    // Visible for testing.
-    ResourceCodeManager.otherGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('AFBCULTUREANDSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'AFB Culture and Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ANAEROBICCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Anaerobic Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ASPERGILLUSGALACTOMANNANEIA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Aspergillus galactomannan EIA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CMVSHELLVIALCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'CMV Shell Vial Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CATHETERTIPTUBINGFOREIGNBODYCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Catheter Tip/Tubing/Foreign Body Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FLUIDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Fluid Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('FUNGUSCULTURE', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Fungus Culture', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('KOHFUNGALSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'KOH Fungal Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('TISSUECULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Tissue Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VZVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'VZV DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('VIRALCULTURENONRESPIRATORY', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Viral Culture, Non Respiratory', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('WOUNDCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Wound Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HSVDFA', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'HSV DFA', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('HERPESSIMPLEXVIRUS12PCRQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Herpes Simplex Virus 1/2 PCR, QuaL', true),
-    ];
-    ResourceCodeManager.bloodGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ADENOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Adenovirus PCR, QuaNT', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREROUTINEAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture Routine, Aerobic', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREAEROBICANDANAEROBIC', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture, Aerobic and Anaerobic', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('BLOODCULTUREFUNGUS', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Blood Culture, Fungus', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CYTOMEGALOVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Cytomegalovirus PCR, QuaNT', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('EPSTEINBARRVIRUSPCRQUANT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Epstein-Barr Virus PCR, QuaNT', true),
-    ];
-    ResourceCodeManager.csfGroupMB = [
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('CSFCULTUREANDGRAMSTAIN', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'CSF Culture and Gram Stain', true),
-        new _bch_microbio_code__WEBPACK_IMPORTED_MODULE_8__["BCHMicrobioCode"]('ENTEROVIRUSPCRCSFQUAL', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["microbio"], 'Enterovirus PCR, CSF, QuaL', true)
-    ];
-    // TODO- Issue #30: Add more codes to DiagnosticReportCode as we get more data
-    // The values 'RADRPT' and 'CT Report' are not actually in the official FHIR
-    // documentation, but are seen in the Cerner sandbox. 
-    ResourceCodeManager.radiologyGroup = [
-        new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCode"]('RADRPT', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], 'Radiology Report', true),
-        new _diagnostic_report_code__WEBPACK_IMPORTED_MODULE_10__["DiagnosticReportCode"]('CT Report', _display_grouping__WEBPACK_IMPORTED_MODULE_11__["radiology"], 'CT Report', true)
-    ];
-    ResourceCodeManager.typeToPairs = [
-        [_display_grouping__WEBPACK_IMPORTED_MODULE_11__["vitalSign"], ResourceCodeManager_1.vitalLoincs],
-        [_display_grouping__WEBPACK_IMPORTED_MODULE_11__["labResult"], ResourceCodeManager_1.labLoincs],
-    ];
-    ResourceCodeManager = ResourceCodeManager_1 = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_fhir_service__WEBPACK_IMPORTED_MODULE_4__["FhirService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
-    ], ResourceCodeManager);
-    return ResourceCodeManager;
-}());
 
 
 
@@ -2942,31 +2531,16 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
      */
     RxNormCodeGroup.prototype.getMedicationOrdersAndMapToMed = function (groupedByOrder) {
         var _this = this;
-        var groupedByMed = new Map();
         var allPromises = Array.from(groupedByOrder.keys()).map(function (orderId) {
             if (_this.medicationOrderCache.has(orderId)) {
                 return Promise.resolve(_this.medicationOrderCache.get(orderId));
             }
             else {
                 return _this.fhirService.getMedicationOrderWithId(orderId).then(function (order) {
-                    // We only have the MedicationAdministrations from within the
-                    // specified time window, so we have to search again for all the
-                    // MedicationAdministrations present for this order and assign
-                    // them to the order.
-                    // We assume that an administration will always have a
-                    // corresponding order.
-                    return order.setMedicationAdministrations(_this.fhirService)
-                        .then(function (order) {
-                        // if this order will not have any additional data added,
-                        // we add it to the medication order cache.
-                        if (order.status === _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_1__["MedicationOrderStatus"].COMPLETED ||
-                            order.status === _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_1__["MedicationOrderStatus"].STOPPED) {
-                            _this.medicationOrderCache.set(orderId, order);
-                        }
-                        return order;
-                    });
+                    _this.medicationOrderCache.set(orderId, order);
+                    return order;
                 }, function (rejection) {
-                    // If there are any errors constructing MedicationOrders for
+                    // If there are any errors getting a MedicationOrder for
                     // this RxNormCode[], throw the error.
                     throw rejection;
                 });
@@ -2974,31 +2548,33 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
         });
         // Resolve all the promises and set the corresponding orders for each
         // RxNorm.
+        var groupedByMed = new Map();
         return Promise.all(allPromises)
             .then(function (orders) {
             orders.map(function (order) {
+                var orderId = order.orderId;
+                var medicationAdminsForOrder = Array.from(groupedByOrder.get(orderId).values());
                 // Verify all the administrations have the same RxNormCode and
                 // same Order ID.
-                var rxNormCodeSet = new Set(Array.from(groupedByOrder.get(order.orderId).values())
-                    .map(function (admin) { return admin.rxNormCode; }));
+                var rxNormCodeSet = new Set(medicationAdminsForOrder.map(function (admin) { return admin.rxNormCode; }));
                 if (rxNormCodeSet.size !== 1) {
-                    throw Error('Administrations for order ' + order.orderId +
+                    throw Error('Administrations for order ' + orderId +
                         ' are for multiple RxNorms: ' +
                         Array.from(rxNormCodeSet.values()));
                 }
-                var orderSet = new Set(Array.from(groupedByOrder.get(order.orderId).values())
-                    .map(function (admin) { return admin.medicationOrderId; }));
+                var orderSet = new Set(medicationAdminsForOrder.map(function (admin) { return admin.medicationOrderId; }));
                 if (rxNormCodeSet.size !== 1) {
-                    throw Error('Administrations for order ' + order.orderId +
+                    throw Error('Administrations for order ' + orderId +
                         ' report multiple order IDs: ' + Array.from(orderSet));
                 }
                 // Add the order to the map for the RxNorm code.
                 var rxCode = rxNormCodeSet.values().next().value;
+                var annotatedOrder = new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_1__["AnnotatedMedicationOrder"](order, medicationAdminsForOrder);
                 if (groupedByMed.has(rxCode)) {
-                    groupedByMed.set(rxCode, groupedByMed.get(rxCode).concat(order));
+                    groupedByMed.set(rxCode, groupedByMed.get(rxCode).concat(annotatedOrder));
                 }
                 else {
-                    groupedByMed.set(rxCode, new Array(order));
+                    groupedByMed.set(rxCode, new Array(annotatedOrder));
                 }
             }, function (rejection) {
                 // If there are any errors constructing MedicationOrders for
@@ -3020,7 +2596,7 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
         });
     };
     return RxNormCodeGroup;
-}(_clinicalconcepts_resource_code_group__WEBPACK_IMPORTED_MODULE_0__["CachedResourceCodeGroup"]));
+}(_clinicalconcepts_resource_code_group__WEBPACK_IMPORTED_MODULE_0__["AbstractResourceCodeGroup"]));
 
 
 
@@ -3030,7 +2606,7 @@ var RxNormCodeGroup = /** @class */ (function (_super) {
 /*!*********************************************!*\
   !*** ./src/app/clinicalconcepts/rx-norm.ts ***!
   \*********************************************/
-/*! exports provided: MedicationConceptGroup, ANTIBIOTIC, MEDICATION_GROUPS, RxNormCode, RXNORM_CODES */
+/*! exports provided: MedicationConceptGroup, ANTIBIOTIC, MEDICATION_GROUPS, RxNormCode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3039,7 +2615,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANTIBIOTIC", function() { return ANTIBIOTIC; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MEDICATION_GROUPS", function() { return MEDICATION_GROUPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RxNormCode", function() { return RxNormCode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RXNORM_CODES", function() { return RXNORM_CODES; });
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _clinicalconcepts_resource_code_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-group */ "./src/app/clinicalconcepts/resource-code-group.ts");
 /* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
@@ -3090,11 +2665,539 @@ var RxNormCode = /** @class */ (function (_super) {
     return RxNormCode;
 }(_clinicalconcepts_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
 
-var RXNORM_CODES = [
-    // Parenteral antibiotics
-    new RxNormCode('11124', ANTIBIOTIC, 'Vancomycin', true),
-    new RxNormCode('1596450', ANTIBIOTIC, 'Gentamicin')
+
+
+/***/ }),
+
+/***/ "./src/app/conceptmappings/annotation-mapping.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/conceptmappings/annotation-mapping.ts ***!
+  \*******************************************************/
+/*! exports provided: ANNOTATION_CONFIGURATION */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANNOTATION_CONFIGURATION", function() { return ANNOTATION_CONFIGURATION; });
+/* harmony import */ var _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/annotated-observation */ "./src/app/fhir-data-classes/annotated-observation.ts");
+
+/**
+ * Returns the function to annotate a Blood Pressure Resource group with
+ * a Blood Pressure Location.
+ *
+ * @param The LOINCCodeGroup for the 'Blood Pressure Details' group
+ */
+function getBloodPressureAnnotationFunction(bpDetailsResourceGroup) {
+    return function (observation, dateRange) {
+        return bpDetailsResourceGroup.getResourceSet(dateRange).then(function (obsSet) {
+            return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_0__["AnnotatedObservation"].forBloodPressure(observation, 
+            // We only pass in the first ObservationSet, since we
+            // know there is only one code whose observations we
+            // care about.
+            obsSet[0]);
+        });
+    };
+}
+/**
+ * Returns the function to annotate a Medication Monitoring Resource group with
+ * Medication Administration information.
+ *
+ * @param The RxNormCode for the Medication Resource group
+ */
+function getMedicationMonitoringAnnotationFunction(rxNormGroup) {
+    return function (observation, dateRange) {
+        return rxNormGroup.getResourceSet(dateRange).then(function (rxNorms) {
+            // We know that we're only pushing in one RxNorm
+            // so it's safe to grab the first (and only) one in
+            // the list.
+            return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_0__["AnnotatedObservation"].forMedicationMonitoring(observation, rxNorms[0].orders);
+        });
+    };
+}
+/**
+ * List of Configurations for Resource Groups that should have a makeAnnotated
+ * function set.
+ *
+ * Each element in the list should be a JSON object with the following
+ * properties:
+ *  - groupName: should be the name of the ResourceCodeGroup that should have
+ * its makeAnnotated attribute set.
+ *  - makeAnnotatedFunction: a function that takes a reference
+ * ResourceCodeGroup and returns a function that should be assigned to the
+ * makeAnnotated attribute.
+ *  - refGroup: the name of the ResourceCodeGroup that needs to be referenced
+ * in order to create the makeAnnotated attribute function.
+ *
+ */
+var ANNOTATION_CONFIGURATION = [
+    {
+        'groupName': 'Blood Pressure',
+        'makeAnnotatedFunction': function (refGroup) {
+            return getBloodPressureAnnotationFunction(refGroup);
+        },
+        'refGroup': 'Blood Pressure Details'
+    },
+    {
+        'groupName': 'Vancomycin monitoring',
+        'makeAnnotatedFunction': function (refGroup) {
+            return getMedicationMonitoringAnnotationFunction(refGroup);
+        },
+        'refGroup': 'Vancomycin'
+    }
 ];
+
+
+/***/ }),
+
+/***/ "./src/app/conceptmappings/resource-code-creator.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/conceptmappings/resource-code-creator.ts ***!
+  \**********************************************************/
+/*! exports provided: GroupConfiguration, ResourceCodeCreator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupConfiguration", function() { return GroupConfiguration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeCreator", function() { return ResourceCodeCreator; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
+/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
+/* harmony import */ var _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graphtypes/graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+
+
+
+
+
+
+
+
+/**
+ * Holds basic configuration information for clinical concept groups.
+ */
+var GroupConfiguration = /** @class */ (function () {
+    function GroupConfiguration(groupName, chartType, showOnSameAxis, displayGrouping) {
+        this.groupName = groupName;
+        this.chartType = chartType;
+        this.showOnSameAxis = showOnSameAxis;
+        this.displayGrouping = displayGrouping;
+    }
+    return GroupConfiguration;
+}());
+
+/**
+ * Responsible for reading in the configuration files defined in this
+ * environment and parsing them into clinical concepts and their
+ * corresponding groups.
+ */
+var ResourceCodeCreator = /** @class */ (function () {
+    function ResourceCodeCreator(http) {
+        var _this = this;
+        this.http = http;
+        /**
+         * Map from DisplayGrouping to a tuple of file names that describe the groups
+         * and concepts that belong to that grouping.
+         * First file is the Group json file. Second file is the Concept json file.
+         * These files should be located within the directory of the assetPath.
+         */
+        this.fileMap = new Map([
+            [_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["vitalSign"], [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].vitalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].vitalConceptsFile]],
+            [_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["labResult"], [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].labGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].labConceptsFile]],
+            [
+                _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["radiology"],
+                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].radiologyGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].radiologyConceptsFile]
+            ],
+            [
+                _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antibiotics"],
+                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antibioticGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antibioticConceptsFile]
+            ],
+            [
+                _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antivirals"],
+                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antiviralGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antiviralConceptsFile]
+            ],
+            [
+                _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antifungals"],
+                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antifungalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antifungalConceptsFile]
+            ],
+            [
+                _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["microbio"],
+                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].microbioGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].microbioConceptsFile]
+            ]
+        ]);
+        /**
+         * Loads in configuration for all the display groupings, including the
+         * grouping name, the chart type for the grouping, whether it's displayed
+         * by default
+         */
+        this.loadAllGroups = Promise
+            .all(Array.from(this.fileMap).map(function (entry) {
+            var displayGroup = entry[0];
+            var groupFile = entry[1][0];
+            return _this.loadDisplayGroupsFromFile(ResourceCodeCreator_1.assetPath + '/' + groupFile, displayGroup);
+        }))
+            // Return one flattened map for all the display groups regardless of
+            // their file source.
+            .then(function (allMaps) {
+            return new Map(allMaps.map(function (m) { return Array.from(m); })
+                .reduce(function (acc, val) { return acc.concat(val); }));
+        });
+        this.loadAllConcepts = this.loadAllGroups.then(function (groupMap) {
+            return Promise
+                .all(Array.from(_this.fileMap).map(function (entry) {
+                var displayGroup = entry[0];
+                var conceptsFile = entry[1][1];
+                return _this.createConceptsFromFile(ResourceCodeCreator_1.assetPath + '/' + conceptsFile, displayGroup);
+            }))
+                .then(function (conceptsFromFile) {
+                // Reduce into one flattened map.
+                var allConceptsMap = new Map(conceptsFromFile.map(function (m) { return Array.from(m); })
+                    .reduce(function (acc, val) { return acc.concat(val); }));
+                // Match up the display groupings to their corresponding
+                // group configurations.
+                var groupConfigurationToResourceCodes = new Map();
+                allConceptsMap.forEach(function (concepts, groupName) {
+                    var groupConfiguration = groupMap.get(groupName);
+                    // If there's no group configured for a clinical concept
+                    // list, and the configuration was validated before running,
+                    // we know that there is only one clinical concept in this
+                    // group and that the group should be configured according
+                    // to its attributes.
+                    if (!groupConfiguration) {
+                        groupConfiguration = new GroupConfiguration(groupName, _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].LINE, true, concepts[0].displayGrouping);
+                    }
+                    groupConfigurationToResourceCodes.set(groupConfiguration, concepts);
+                });
+                return groupConfigurationToResourceCodes;
+            });
+        });
+    }
+    ResourceCodeCreator_1 = ResourceCodeCreator;
+    /**
+     * Creates a ResourceCode. The type of ResourceCode is determined by the
+     * passed in displayGrouping.
+     *
+     * @param displayGrouping DisplayGrouping for the ResourceCode
+     * @param concept
+     */
+    ResourceCodeCreator.prototype.createResourceCode = function (displayGrouping, concept) {
+        var showByDefault = concept.showByDefault ? concept.showByDefault : false;
+        var displayBounds = concept.displayBounds ?
+            [concept.displayBounds.lower, concept.displayBounds.upper] :
+            undefined;
+        var forceDisplayBounds = concept.forceDisplayBounds ? concept.forceDisplayBounds : false;
+        if (displayGrouping === _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["radiology"]) {
+            return new _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportCode"](concept.codeString, displayGrouping, concept.displayName, showByDefault, displayBounds, forceDisplayBounds);
+        }
+        else if (displayGrouping === _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["microbio"]) {
+            return new _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_3__["BCHMicrobioCode"](concept.codeString, displayGrouping, concept.displayName, showByDefault, displayBounds, forceDisplayBounds);
+        }
+        else if ([_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antibiotics"], _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antifungals"], _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_5__["antivirals"]].includes(displayGrouping)) {
+            return new _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_7__["RxNormCode"](concept.codeString, displayGrouping, concept.displayName, showByDefault, displayBounds, forceDisplayBounds);
+        }
+        else {
+            return new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_6__["LOINCCode"](concept.codeString, displayGrouping, concept.displayName, showByDefault, displayBounds, forceDisplayBounds);
+        }
+    };
+    /**
+     * Reads in a JSON file and creates clinical concepts for each listed
+     * configuration. Returns a map of listed display groupings to their
+     * corresponding clinical concepts.
+     */
+    ResourceCodeCreator.prototype.createConceptsFromFile = function (filePath, displayGrouping) {
+        var _this = this;
+        var groupToConcept = new Map();
+        return this.http.get(filePath).toPromise().then(function (clinicalConcepts) {
+            for (var _i = 0, clinicalConcepts_1 = clinicalConcepts; _i < clinicalConcepts_1.length; _i++) {
+                var concept = clinicalConcepts_1[_i];
+                var code = _this.createResourceCode(displayGrouping, concept);
+                // Concepts with innerComponentOnly=true are "components" of other
+                // concepts. (See
+                // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
+                // for more information.) In order for us to display these inner
+                // components, the Resource Code needs to be created, but we do not
+                // explicitly add them to a Resource Group.
+                if (concept.innerComponentOnly) {
+                    continue;
+                }
+                var concepts = [];
+                // If the concept has no higher level grouping, then use its display
+                // name as the proxy for its grouping.
+                if (!concept.groupNames) {
+                    concept.groupNames = [concept.displayName];
+                }
+                for (var _a = 0, _b = concept.groupNames; _a < _b.length; _a++) {
+                    var groupName = _b[_a];
+                    if (groupToConcept.has(groupName)) {
+                        concepts = groupToConcept.get(groupName);
+                    }
+                    concepts.push(code);
+                    groupToConcept.set(groupName, concepts);
+                }
+            }
+            return groupToConcept;
+        });
+    };
+    /**
+     * Reads in a JSON file for display group configurations and maps
+     * display group names to simple chart configuration attributes.
+     */
+    ResourceCodeCreator.prototype.loadDisplayGroupsFromFile = function (filePath, displayGrouping) {
+        return this.http.get(filePath).toPromise().then(function (groups) {
+            return groups.map(function (group) {
+                return [group.groupName,
+                    new GroupConfiguration(group.groupName, ResourceCodeCreator_1.stringToChartType[group.graphType], group.displayGroupOnSameAxis, displayGrouping)];
+            });
+        });
+    };
+    var ResourceCodeCreator_1;
+    ResourceCodeCreator.assetPath = './assets/' + _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].conceptsFolder;
+    ResourceCodeCreator.stringToChartType = {
+        'SCATTER': _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].SCATTER,
+        'STEP': _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].STEP,
+        'MICROBIO': _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].MICROBIO,
+        'DIAGNOSTIC': _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].DIAGNOSTIC,
+        'LINE': _graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_8__["ChartType"].LINE
+    };
+    ResourceCodeCreator = ResourceCodeCreator_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+    ], ResourceCodeCreator);
+    return ResourceCodeCreator;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/conceptmappings/resource-code-manager.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/conceptmappings/resource-code-manager.ts ***!
+  \**********************************************************/
+/*! exports provided: documentReferenceLoinc, ResourceCodeManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "documentReferenceLoinc", function() { return documentReferenceLoinc; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeManager", function() { return ResourceCodeManager; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/bch-microbio-code */ "./src/app/clinicalconcepts/bch-microbio-code.ts");
+/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/display-grouping */ "./src/app/clinicalconcepts/display-grouping.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _clinicalconcepts_rx_norm_group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm-group */ "./src/app/clinicalconcepts/rx-norm-group.ts");
+/* harmony import */ var _graphtypes_axis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphtypes/axis */ "./src/app/graphtypes/axis.ts");
+/* harmony import */ var _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graphtypes/axis-group */ "./src/app/graphtypes/axis-group.ts");
+/* harmony import */ var _annotation_mapping__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./annotation-mapping */ "./src/app/conceptmappings/annotation-mapping.ts");
+// Copyright 2018 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+// We declare a new LOINCCode referencing a DocumentReference, but do not
+// include it in the groupings below because it is not graphed/displayed in the
+// configuration sidebar.
+var documentReferenceLoinc = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"]('68608-9', undefined, 'Summary', true);
+/**
+ * ResourceCodeManager is the centralized class where other components can
+ * look to find an exhaustive listing of all the resource code groups that the
+ * application may display.
+ */
+var ResourceCodeManager = /** @class */ (function () {
+    function ResourceCodeManager(sanitizer) {
+        this.sanitizer = sanitizer;
+    }
+    ResourceCodeManager_1 = ResourceCodeManager;
+    ;
+    /**
+     * Determines ResourceCodeGroup type from the displayGrouping passed in.
+     *
+     * @param displayGrouping DisplayGroup to create ResourceCodeGroups with
+     * @param fhirService FhirService to create ResourceCodeGroups with
+     * @param chartType ChartType to create ResourceCodeGroups with
+     * @param sameAxis Whether all the concepts should be shown on the same axis
+     *     or not.
+     * @param groupName The label for the AxisGroup
+     * @param conceptList List of concepts to be included in the AxisGroup.
+     */
+    ResourceCodeManager.prototype.createResourceGroups = function (displayGrouping, fhirService, chartType, sameAxis, groupName, conceptList) {
+        var axisGroups = new Map();
+        // if all concepts should be shown on the same axis, we only have one axis
+        // that contains all concepts from the concept list.
+        if (sameAxis) {
+            axisGroups.set(groupName, conceptList);
+            // otherwise we need an axis for each concept with the label being the
+            // concept's label.
+        }
+        else {
+            conceptList.forEach(function (concept) {
+                axisGroups.set(concept.label, [concept]);
+            });
+        }
+        var resourceGroups = new Array();
+        axisGroups.forEach(function (concepts, label) {
+            var group;
+            if (displayGrouping === _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__["radiology"]) {
+                group = new _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_3__["DiagnosticReportCodeGroup"](fhirService, label, concepts, displayGrouping, chartType);
+            }
+            else if (displayGrouping === _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__["microbio"]) {
+                group = new _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_2__["BCHMicrobioCodeGroup"](fhirService, label, concepts, displayGrouping, chartType);
+            }
+            else if ([_clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__["antibiotics"], _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__["antifungals"], _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_4__["antivirals"]].includes(displayGrouping)) {
+                group = new _clinicalconcepts_rx_norm_group__WEBPACK_IMPORTED_MODULE_6__["RxNormCodeGroup"](fhirService, label, concepts, displayGrouping, chartType);
+            }
+            else {
+                group = new _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCodeGroup"](fhirService, label, concepts, displayGrouping, chartType);
+            }
+            resourceGroups.push(group);
+        });
+        return resourceGroups;
+    };
+    /**
+     * Creates all AxisGroups.
+     * @param resourceGroupMap Mapping from Axis Group label to the list of
+     *     ResourceCodeGroups that should be included in the axis group.
+     * @param fhirService FhirService to create Axes with.
+     * @returns List of AxisGroups
+     */
+    ResourceCodeManager.prototype.createAxisGroups = function (resourceGroupMap, fhirService) {
+        var _this = this;
+        var axisGroups = new Array();
+        resourceGroupMap.forEach(function (resourceGroupList, groupName) {
+            // some resources are creating only for the purpose of annotations. These
+            // have an undefined chartType. We filter these resource groups out
+            // because they should not be included in AxisGroups.
+            var axes = resourceGroupList
+                .filter(function (resourceGroup) { return resourceGroup.chartType !== undefined; })
+                .map(function (resourceGroup) { return new _graphtypes_axis__WEBPACK_IMPORTED_MODULE_7__["Axis"](fhirService, _this.sanitizer, resourceGroup, resourceGroup.label); });
+            if (axes.length > 0) {
+                axisGroups.push(new _graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_8__["AxisGroup"](axes, groupName));
+            }
+        });
+        return axisGroups;
+    };
+    /**
+     * Creates a mapping of group names to a list of ResourceCodeGroups.
+     * Creates all ResourceCodes and ResourceCodeGroups according to the
+     * ResourceCodeCreator.
+     *
+     * @param fhirService the FhirService instance to create ResourceCodeGroups
+     *     with.
+     * @param resourceCodeCreator: ResourceCodeCreator instance
+     * @returns Promise that when resolves gives a mapping from group name to
+     * the list of ResourceCodeGroups in that group.
+     */
+    ResourceCodeManager.prototype.getResourceCodeGroups = function (fhirService, resourceCodeCreator) {
+        var _this = this;
+        return resourceCodeCreator.loadAllConcepts.then(function (groupConfigurationToResourceCodes) {
+            var groupNameToResourceGroups = new Map();
+            groupConfigurationToResourceCodes.forEach(function (codeList, config) {
+                var resourceGroups = _this.createResourceGroups(config.displayGrouping, fhirService, config.chartType, config.showOnSameAxis, config.groupName, codeList);
+                groupNameToResourceGroups.set(config.groupName, resourceGroups);
+            });
+            return groupNameToResourceGroups;
+        });
+    };
+    /**
+     * Annotates ResourceCodeGroups that require additional information.
+     * All ResourceCodeGroups need to be created before this method is called,
+     * otherwise the group to annotate or the reference group may not be
+     * created yet.
+     * @param: List of all ResourceCodeGroups that were created.
+     */
+    ResourceCodeManager.prototype.annotateResourceGroups = function (resourceGroups) {
+        for (var _i = 0, ANNOTATION_CONFIGURATION_1 = _annotation_mapping__WEBPACK_IMPORTED_MODULE_9__["ANNOTATION_CONFIGURATION"]; _i < ANNOTATION_CONFIGURATION_1.length; _i++) {
+            var annotation = ANNOTATION_CONFIGURATION_1[_i];
+            var groups = resourceGroups.get(annotation.groupName);
+            var refGroup = resourceGroups.get(annotation.refGroup);
+            // Right now we only support tooltips that several primary code groups to
+            // another reference group. Some tooltips, for example, medication
+            // monitoring, need multiple reference groups for annotation. We will
+            // support this in a later release.
+            if ((!groups || !refGroup) || (refGroup.length > 1)) {
+                continue;
+            }
+            for (var _a = 0, groups_1 = groups; _a < groups_1.length; _a++) {
+                var group = groups_1[_a];
+                group
+                    .setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup[0]));
+            }
+        }
+    };
+    /**
+     * Returns a map where the key is a clinical concept group and the value is
+     * a list of axis groups belonging to the clinical concept group.
+     */
+    ResourceCodeManager.prototype.getDisplayGroupMapping = function (fhirService, resourceCodeCreator) {
+        var _this = this;
+        if (!ResourceCodeManager_1.displayGroupMapping) {
+            ResourceCodeManager_1.displayGroupMapping =
+                this.getResourceCodeGroups(fhirService, resourceCodeCreator)
+                    .then(function (resourceGroupMap) {
+                    _this.annotateResourceGroups(resourceGroupMap);
+                    var axisGroups = _this.createAxisGroups(resourceGroupMap, fhirService);
+                    var mapping = new Map();
+                    for (var _i = 0, axisGroups_1 = axisGroups; _i < axisGroups_1.length; _i++) {
+                        var group = axisGroups_1[_i];
+                        if (mapping.has(group.displayGroup)) {
+                            mapping.get(group.displayGroup).push(group);
+                        }
+                        else {
+                            mapping.set(group.displayGroup, [group]);
+                        }
+                    }
+                    return mapping;
+                });
+        }
+        return Promise.resolve(ResourceCodeManager_1.displayGroupMapping);
+    };
+    var ResourceCodeManager_1;
+    ResourceCodeManager = ResourceCodeManager_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
+    ], ResourceCodeManager);
+    return ResourceCodeManager;
+}());
+
 
 
 /***/ }),
@@ -3106,7 +3209,7 @@ var RXNORM_CODES = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".previewSave {\n  background-color:#202020; /* GREY_900 */\n  display: -webkit-box;\n  display: flex;\n  padding: 15px;\n  width: 90%;\n  overflow: auto;\n  max-height: 80%;\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n::ng-deep .previewSave > * {\n  pointer-events: none !important;\n}\n\n.mat-dialog-actions {\n  float: right;\n}\n\nh1 {\n  font-family: 'Montserrat', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybS1zYXZlL2NvbmZpcm0tc2F2ZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usd0JBQXdCLEVBQUUsYUFBYTtFQUN2QyxvQkFBYTtFQUFiLGFBQWE7RUFDYixhQUFhO0VBQ2IsVUFBVTtFQUNWLGNBQWM7RUFDZCxlQUFlO0VBQ2YsZ0RBQWdEO0VBQ2hELDJCQUEyQixFQUFFLGVBQWU7RUFDNUMseUJBQXlCLEVBQUUsV0FBVztLQUNuQyxzQkFBc0IsRUFBRSxZQUFZO01BQ25DLHFCQUFxQixFQUFFLDJCQUEyQjtVQUM5QyxpQkFBaUIsRUFBRSxxQkFBcUI7QUFDbEQ7O0FBRUE7RUFDRSwrQkFBK0I7QUFDakM7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkMiLCJmaWxlIjoic3JjL2FwcC9jb25maXJtLXNhdmUvY29uZmlybS1zYXZlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJldmlld1NhdmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiMyMDIwMjA7IC8qIEdSRVlfOTAwICovXG4gIGRpc3BsYXk6IGZsZXg7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIHdpZHRoOiA5MCU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBtYXgtaGVpZ2h0OiA4MCU7XG4gIC8qIERpc2FibGUgc2VsZWN0aW5nL2hpZ2hsaWdodGluZyBvbiB0aGUgcGFnZS4gKi9cbiAgLXdlYmtpdC10b3VjaC1jYWxsb3V0OiBub25lOyAvKiBpT1MgU2FmYXJpICovXG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIFNhZmFyaSAqL1xuICAgICAtbW96LXVzZXItc2VsZWN0OiBub25lOyAvKiBGaXJlZm94ICovXG4gICAgICAtbXMtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIEludGVybmV0IEV4cGxvcmVyL0VkZ2UgKi9cbiAgICAgICAgICB1c2VyLXNlbGVjdDogbm9uZTsgLyogQ2hyb21lIGFuZCBPcGVyYSAqL1xufVxuXG46Om5nLWRlZXAgLnByZXZpZXdTYXZlID4gKiB7XG4gIHBvaW50ZXItZXZlbnRzOiBub25lICFpbXBvcnRhbnQ7XG59XG5cbi5tYXQtZGlhbG9nLWFjdGlvbnMge1xuICBmbG9hdDogcmlnaHQ7XG59XG5cbmgxIHtcbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn0iXX0= */"
+module.exports = ".previewSave {\n  background-color:#202020; /* GREY_900 */\n  display: flex;\n  padding: 15px;\n  width: 90%;\n  overflow: auto;\n  max-height: 80%;\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n::ng-deep .previewSave > * {\n  pointer-events: none !important;\n}\n\n.mat-dialog-actions {\n  float: right;\n}\n\nh1 {\n  font-family: 'Montserrat', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybS1zYXZlL2NvbmZpcm0tc2F2ZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usd0JBQXdCLEVBQUUsYUFBYTtFQUN2QyxhQUFhO0VBQ2IsYUFBYTtFQUNiLFVBQVU7RUFDVixjQUFjO0VBQ2QsZUFBZTtFQUNmLGdEQUFnRDtFQUNoRCwyQkFBMkIsRUFBRSxlQUFlO0VBQzVDLHlCQUF5QixFQUFFLFdBQVc7S0FDbkMsc0JBQXNCLEVBQUUsWUFBWTtNQUNuQyxxQkFBcUIsRUFBRSwyQkFBMkI7VUFDOUMsaUJBQWlCLEVBQUUscUJBQXFCO0FBQ2xEOztBQUVBO0VBQ0UsK0JBQStCO0FBQ2pDOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UscUNBQXFDO0FBQ3ZDIiwiZmlsZSI6InNyYy9hcHAvY29uZmlybS1zYXZlL2NvbmZpcm0tc2F2ZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXZpZXdTYXZlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjojMjAyMDIwOyAvKiBHUkVZXzkwMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBwYWRkaW5nOiAxNXB4O1xuICB3aWR0aDogOTAlO1xuICBvdmVyZmxvdzogYXV0bztcbiAgbWF4LWhlaWdodDogODAlO1xuICAvKiBEaXNhYmxlIHNlbGVjdGluZy9oaWdobGlnaHRpbmcgb24gdGhlIHBhZ2UuICovXG4gIC13ZWJraXQtdG91Y2gtY2FsbG91dDogbm9uZTsgLyogaU9TIFNhZmFyaSAqL1xuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOyAvKiBTYWZhcmkgKi9cbiAgICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTsgLyogRmlyZWZveCAqL1xuICAgICAgLW1zLXVzZXItc2VsZWN0OiBub25lOyAvKiBJbnRlcm5ldCBFeHBsb3Jlci9FZGdlICovXG4gICAgICAgICAgdXNlci1zZWxlY3Q6IG5vbmU7IC8qIENocm9tZSBhbmQgT3BlcmEgKi9cbn1cblxuOjpuZy1kZWVwIC5wcmV2aWV3U2F2ZSA+ICoge1xuICBwb2ludGVyLWV2ZW50czogbm9uZSAhaW1wb3J0YW50O1xufVxuXG4ubWF0LWRpYWxvZy1hY3Rpb25zIHtcbiAgZmxvYXQ6IHJpZ2h0O1xufVxuXG5oMSB7XG4gIGZvbnQtZmFtaWx5OiAnTW9udHNlcnJhdCcsIHNhbnMtc2VyaWY7XG59Il19 */"
 
 /***/ }),
 
@@ -3294,7 +3397,7 @@ var DataSelectorElementComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-14px;\n  margin-top:-14px;\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  -webkit-box-pack: start;\n          justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  -webkit-box-align: center;\n          align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1tZW51L2RhdGEtc2VsZWN0b3ItbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixhQUFhO0VBQ2IsZ0NBQXdCO0VBQXhCLHdCQUF3QjtFQUN4Qjs0Q0FDMEM7RUFDMUMsbUJBQW1CO0VBQ25CLGdCQUFnQjtFQUNoQixvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLDhCQUFtQjtFQUFuQiw2QkFBbUI7VUFBbkIsbUJBQW1CLEVBQ00sYUFBYTtFQUN0QyxxQkFBcUI7RUFDckIsMEJBQTBCLEdBQUcsOENBQThDO0VBQzNFLHVCQUEyQjtVQUEzQiwyQkFBMkI7RUFDM0Isb0JBQW9CLEdBQUcsK0NBQStDO0VBQ3RFLHlCQUFtQjtVQUFuQixtQkFBbUI7RUFDbkIsc0JBQXNCLEdBQUcsNENBQTRDO0VBQ3JFLG1CQUFZO1VBQVosWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsc0RBQXNEO0VBQ3RELDhCQUE4QjtFQUM5QixxQkFBcUI7RUFDckIsbUJBQVk7VUFBWixZQUFZO0VBQ1osZ0JBQWdCLEVBQUUsYUFBYTtBQUNqQzs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFFQTtFQUNFLDRCQUE0QjtFQUM1Qiw2QkFBNkI7RUFDN0IsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0Usd0JBQXdCO0VBQ3hCLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxnQkFBZ0IsRUFBRSw4REFBOEQ7QUFDbEY7O0FBRUE7RUFDRSxzQ0FBOEI7RUFBOUIsbUNBQThCO0VBQTlCLDhCQUE4QjtFQUM5Qiw0QkFBNEI7RUFDNUIsdUJBQXVCO0FBQ3pCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLG9DQUFvQztBQUN0QyIsImZpbGUiOiJzcmMvYXBwL2RhdGEtc2VsZWN0b3ItbWVudS9kYXRhLXNlbGVjdG9yLW1lbnUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hZGRDYXJkSW5saW5lIHtcbiAgY29sb3I6IHJnYigyNDgsIDI0OCwgMjQ4KTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBvcGFjaXR5OiAwLjE1O1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuM3M7XG4gIC8qIE5lZWRlZCBzbyB0aGF0IHRoZXJlJ3Mgbm90IGVub3VnaCBzcGFjZSBiZXR3ZWVuIHRoZSBjYXJkcyB0byBob2xkIHRoZSBpY29uLFxuICBqdXN0IGVub3VnaCB0byBob2xkIHRoZSBsaW5lIHBsYWNlaG9sZGVyLiovXG4gIG1hcmdpbi1ib3R0b206LTE0cHg7XG4gIG1hcmdpbi10b3A6LTE0cHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdzsgLyogRm9yIElFMTAgKi9cbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAtbXMtZmxleC1saW5lLXBhY2s6IGNlbnRlcjsgIC8qIEFsaWduIGNvbnRlbnQ6IGNlbnRlciBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgLW1zLWZsZXgtcGFjazogc3RhcnQ7ICAvKiBKdXN0aWZ5IGNvbnRlbnQ6IHN0YXJ0IGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgLW1zLWZsZXgtYWxpZ246IGNlbnRlcjsgIC8qIEFsaWduIGl0ZW1zOiBjZW50ZXIgY29udmVyc2lvbiBmb3IgSUUxMCAqL1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbnNwYW4ge1xuICBib3JkZXI6IDJweCBkYXNoZWQgcmdiKDI0OCwgMjQ4LCAyNDgpO1xuICAvKiBPbmx5IG91dGxpbmUgdGhlIGJvdHRvbSBpbnN0ZWFkIG9mIGFsbCBmb3VyIHNpZGVzLiovXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdHRlZDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBmbGV4OiAxIDEgMCU7XG4gIC1tcy1mbGV4OiAxIDEgMCU7IC8qIEZvciBJRTEwICovXG59XG5cbi5hZGRDYXJkSW5saW5lOmhvdmVyIHtcbiAgb3BhY2l0eTogMTtcbn1cblxuLmNvbmNlcHRTZWxlY3RvciB7XG4gIHBhZGRpbmctbGVmdDogMHB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmctcmlnaHQ6IDBweCAhaW1wb3J0YW50O1xuICBtaW4td2lkdGg6IDIwMHB4O1xufVxuXG4ubWFpbkNvbmNlcHRTZWxlY3RvciB7XG4gIGJvcmRlci1sZWZ0LXN0eWxlOiBzb2xpZDtcbiAgYm9yZGVyLWxlZnQtd2lkdGg6IDVweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtbWVudS1pdGVtICB7XG4gIGxpbmUtaGVpZ2h0OiAyMHB4ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAubWF0LWxpc3QtaXRlbS1jb250ZW50IHtcbiAgbWFyZ2luLXRvcDogOHB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC1hdXRvY29tcGxldGUtcGFuZWwgLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XG4gIG1hcmdpbi10b3A6IC04cHg7IC8qIFN0eWxpbmcgZm9yIGF1dG9jb21wbGV0ZSBtZW51IGl0ZW1zIG5lZWRzIHRvIGJlIGRpZmZlcmVudC4qL1xufVxuXG46Om5nLWRlZXAgLm1hdC1vcHRpb24ge1xuICBoZWlnaHQ6IGZpdC1jb250ZW50ICFpbXBvcnRhbnQ7XG4gIG92ZXJmbG93OiB2aXNpYmxlICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmc6IDBweCAhaW1wb3J0YW50O1xufVxuXG4uY29uY2VwdEZvcm0ge1xuICBtYXJnaW4tbGVmdDogMTBweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuXG46Om5nLWRlZXAgLmF1dG9NZW51Lm1hdC1tZW51LXBhbmVsIHtcbiAgbWluLXdpZHRoOiAzMDBweDtcbn1cblxuLmNvbmNlcHRGb3JtRmllbGQge1xuICB3aWR0aDogMTAwJTtcbn1cblxuYnV0dG9uIHtcbiAgZm9udC1mYW1pbHk6ICdXb3JrIFNhbnMnLCBzYW5zLXNlcmlmO1xufSJdfQ== */"
+module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-14px;\n  margin-top:-14px;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1tZW51L2RhdGEtc2VsZWN0b3ItbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixhQUFhO0VBQ2Isd0JBQXdCO0VBQ3hCOzRDQUMwQztFQUMxQyxtQkFBbUI7RUFDbkIsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFtQixFQUNNLGFBQWE7RUFDdEMscUJBQXFCO0VBQ3JCLDBCQUEwQixHQUFHLDhDQUE4QztFQUMzRSwyQkFBMkI7RUFDM0Isb0JBQW9CLEdBQUcsK0NBQStDO0VBQ3RFLG1CQUFtQjtFQUNuQixzQkFBc0IsR0FBRyw0Q0FBNEM7RUFDckUsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsc0RBQXNEO0VBQ3RELDhCQUE4QjtFQUM5QixxQkFBcUI7RUFDckIsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxVQUFVO0FBQ1o7O0FBRUE7RUFDRSw0QkFBNEI7RUFDNUIsNkJBQTZCO0VBQzdCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHdCQUF3QjtFQUN4QixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSw0QkFBNEI7QUFDOUI7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCLEVBQUUsOERBQThEO0FBQ2xGOztBQUVBO0VBQ0Usc0NBQThCO0VBQTlCLG1DQUE4QjtFQUE5Qiw4QkFBOEI7RUFDOUIsNEJBQTRCO0VBQzVCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxvQ0FBb0M7QUFDdEMiLCJmaWxlIjoic3JjL2FwcC9kYXRhLXNlbGVjdG9yLW1lbnUvZGF0YS1zZWxlY3Rvci1tZW51LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYWRkQ2FyZElubGluZSB7XG4gIGNvbG9yOiByZ2IoMjQ4LCAyNDgsIDI0OCk7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgb3BhY2l0eTogMC4xNTtcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjNzO1xuICAvKiBOZWVkZWQgc28gdGhhdCB0aGVyZSdzIG5vdCBlbm91Z2ggc3BhY2UgYmV0d2VlbiB0aGUgY2FyZHMgdG8gaG9sZCB0aGUgaWNvbixcbiAganVzdCBlbm91Z2ggdG8gaG9sZCB0aGUgbGluZSBwbGFjZWhvbGRlci4qL1xuICBtYXJnaW4tYm90dG9tOi0xNHB4O1xuICBtYXJnaW4tdG9wOi0xNHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7IC8qIEZvciBJRTEwICovXG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgLW1zLWZsZXgtbGluZS1wYWNrOiBjZW50ZXI7ICAvKiBBbGlnbiBjb250ZW50OiBjZW50ZXIgY29udmVyc2lvbiBmb3IgSUUxMCAqL1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gIC1tcy1mbGV4LXBhY2s6IHN0YXJ0OyAgLyogSnVzdGlmeSBjb250ZW50OiBzdGFydCBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7ICAvKiBBbGlnbiBpdGVtczogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG5zcGFuIHtcbiAgYm9yZGVyOiAycHggZGFzaGVkIHJnYigyNDgsIDI0OCwgMjQ4KTtcbiAgLyogT25seSBvdXRsaW5lIHRoZSBib3R0b20gaW5zdGVhZCBvZiBhbGwgZm91ciBzaWRlcy4qL1xuICBib3JkZXItc3R5bGU6IG5vbmUgbm9uZSBkb3R0ZWQ7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uYWRkQ2FyZElubGluZTpob3ZlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5jb25jZXB0U2VsZWN0b3Ige1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICBwYWRkaW5nLXJpZ2h0OiAwcHggIWltcG9ydGFudDtcbiAgbWluLXdpZHRoOiAyMDBweDtcbn1cblxuLm1haW5Db25jZXB0U2VsZWN0b3Ige1xuICBib3JkZXItbGVmdC1zdHlsZTogc29saWQ7XG4gIGJvcmRlci1sZWZ0LXdpZHRoOiA1cHg7XG59XG5cbjo6bmctZGVlcCAubWF0LW1lbnUtaXRlbSAge1xuICBsaW5lLWhlaWdodDogMjBweCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtYXV0b2NvbXBsZXRlLXBhbmVsIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQge1xuICBtYXJnaW4tdG9wOiAtOHB4OyAvKiBTdHlsaW5nIGZvciBhdXRvY29tcGxldGUgbWVudSBpdGVtcyBuZWVkcyB0byBiZSBkaWZmZXJlbnQuKi9cbn1cblxuOjpuZy1kZWVwIC5tYXQtb3B0aW9uIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudCAhaW1wb3J0YW50O1xuICBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50O1xuICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDtcbn1cblxuLmNvbmNlcHRGb3JtIHtcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuOjpuZy1kZWVwIC5hdXRvTWVudS5tYXQtbWVudS1wYW5lbCB7XG4gIG1pbi13aWR0aDogMzAwcHg7XG59XG5cbi5jb25jZXB0Rm9ybUZpZWxkIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmJ1dHRvbiB7XG4gIGZvbnQtZmFtaWx5OiAnV29yayBTYW5zJywgc2Fucy1zZXJpZjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -3324,7 +3427,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3347,35 +3452,39 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 /**
  * Shows a button with expanding menus for selecting data elements to display.
  */
 var DataSelectorMenuComponent = /** @class */ (function () {
-    function DataSelectorMenuComponent(resourceCodeManager, uiConstants) {
-        this.resourceCodeManager = resourceCodeManager;
-        this.uiConstants = uiConstants;
-        // An event that is emitted when the user requests to add a new card.
-        this.addCard = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        // An event that is emitted when the user requests to add a textbox.
-        this.addTextbox = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        // An event that is emitted when the user requests to add a custom timeline.
-        this.addCustomTimeline = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        // The FormControl used to monitor changes in the user input of the
-        // autocomplete field.
-        this.conceptCtrl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
-        var displayGroups = resourceCodeManager.getDisplayGroupMapping();
-        var temp = Array.from(displayGroups.values());
-        this.allConcepts = [].concat.apply([], temp);
-        this.displayGroupings = Array.from(displayGroups.entries());
-    }
-    DataSelectorMenuComponent.prototype.ngOnInit = function () {
+    function DataSelectorMenuComponent(resourceCodeManager, fhirService, resourceCodeCreator, uiConstants) {
         var _this = this;
-        // Watch for changes to the user input on the autocomplete panel.
-        this.filteredConcepts = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), // The autocomplete input starts with nothing typed in.
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (concept) {
-            return concept ? _this.filter(concept) : _this.allConcepts.slice();
-        }));
-    };
+        this.uiConstants = uiConstants;
+        /** An event that is emitted when the user requests to add a new card. */
+        this.addCard = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        /** An event that is emitted when the user requests to add a textbox. */
+        this.addTextbox = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        /**
+         * An event that is emitted when the user requests to add a custom timeline.
+         */
+        this.addCustomTimeline = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        /**
+         * The FormControl used to monitor changes in the user input of the
+         * autocomplete field.
+         */
+        this.conceptCtrl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
+        resourceCodeManager.getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then(function (displayGroups) {
+            var temp = Array.from(displayGroups.values());
+            _this.allConcepts = [].concat.apply([], temp);
+            _this.displayGroupings = Array.from(displayGroups.entries());
+            // Watch for changes to the user input on the autocomplete panel.
+            _this.filteredConcepts = _this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), // The autocomplete input starts with nothing typed in.
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (concept) { return concept ? _this.filter(concept, _this.allConcepts) :
+                _this.allConcepts.slice(); }));
+        });
+    }
     // Listens for an event indicating that the user has selected to add the
     // concept card from the top toolbar. The label for the card is sent as an
     // event to CardContainer.
@@ -3394,8 +3503,8 @@ var DataSelectorMenuComponent = /** @class */ (function () {
         Object(src_constants__WEBPACK_IMPORTED_MODULE_4__["recordGoogleAnalyticsEvent"])('addCustomTimeline', 'addCard', new Date().toDateString());
     };
     // Filter the concepts shown on the autocomplete menu.
-    DataSelectorMenuComponent.prototype.filter = function (concept) {
-        return this.allConcepts.filter(function (option) {
+    DataSelectorMenuComponent.prototype.filter = function (concept, allConcepts) {
+        return allConcepts.filter(function (option) {
             return option.label.toLowerCase().indexOf(concept.toLowerCase()) === 0;
         });
     };
@@ -3436,8 +3545,9 @@ var DataSelectorMenuComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./data-selector-menu.component.html */ "./src/app/data-selector-menu/data-selector-menu.component.html"),
             styles: [__webpack_require__(/*! ./data-selector-menu.component.css */ "./src/app/data-selector-menu/data-selector-menu.component.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeManager"], Object])
+        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_4__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["ResourceCodeManager"], _fhir_service__WEBPACK_IMPORTED_MODULE_7__["FhirService"],
+            _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeCreator"], Object])
     ], DataSelectorMenuComponent);
     return DataSelectorMenuComponent;
 }());
@@ -3707,6 +3817,395 @@ var DeleteDialogComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/fhir-cache.ts":
+/*!*******************************!*\
+  !*** ./src/app/fhir-cache.ts ***!
+  \*******************************/
+/*! exports provided: FhirCache, MedicationCache, DiagnosticReportCache, ObservationCache, EncounterCache */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirCache", function() { return FhirCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationCache", function() { return MedicationCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCache", function() { return DiagnosticReportCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObservationCache", function() { return ObservationCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EncounterCache", function() { return EncounterCache; });
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+
+
+
+var GREATER_OR_EQUAL = 'ge';
+var LESS_OR_EQUAL = 'le';
+var LESS_THAN = 'lt';
+/**
+ * Gets the next page of search results from the smart API. This function
+ * assumes that the same smartApi was used to call the original search.
+ *
+ * @param smartApi The resolved smartOnFhirClient
+ * @param response The response from the previous page of search results
+ * @param results The list of all formatted results processed in previous page
+ *     responses
+ */
+function getNextSearchResultsPage(smartApi, response, results) {
+    var requestId = response.headers('x-request-id');
+    var responseData = response.data.entry || [];
+    results = results.concat(responseData.map(function (result) { return new _fhir_resource_set__WEBPACK_IMPORTED_MODULE_7__["RawResource"](result.resource, requestId); }));
+    // if there are anymore pages, get the next set of results.
+    if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
+        return smartApi.patient.api.nextPage({ bundle: response.data })
+            .then(function (nextResponse) {
+            return getNextSearchResultsPage(smartApi, nextResponse, results);
+        }, function (rejection) {
+            throw rejection;
+        });
+    }
+    return Promise.resolve(results);
+}
+/**
+ * Gets all pages of search results for the given query params. Formats
+ * the results into RawResource objects.
+ *
+ * @param smartApi The resolved smartOnFhirClient
+ * @param queryParams the params to pass to the search function
+ */
+function fetchAllFromFhir(smartApi, queryParams) {
+    var results = [];
+    return smartApi.patient.api.search(queryParams)
+        .then(function (response) {
+        return getNextSearchResultsPage(smartApi, response, results)
+            .then(function (results) {
+            return results.filter(function (result) { return !!result; });
+        });
+    }, function (rejection) {
+        throw rejection;
+    });
+}
+/**
+ * Abstract Class for Fetching and Caching FHIR Resources.
+ */
+var FhirCache = /** @class */ (function () {
+    function FhirCache(smartApiPromise) {
+        this.smartApiPromise = smartApiPromise;
+        /**
+         * Cache of Raw Resources.
+         * A mapping from the timestamp as a date string to a list of RawResources
+         * that have that timestamp.
+         * We store the date string so that we can test whether the map has a
+         * date easily because Datetime equality is not straightforward.
+         * We store RawResources instead of the actual resources
+         * (MedicationAdministration, Observation, etc) because we want
+         * to cache all results, even if one of the resources does not pass the
+         * validation done during construction. This way, we do not need to fetch
+         * the invalid resource again for the same date range.
+         */
+        this.cache = new Map();
+    }
+    /**
+     * Splits an Interval date range by day.
+     *
+     * @param dateRange: the Interval to split into days
+     * @returns an array of intervals (each 1 day long) corresponding to the days
+     *    in the given date range.
+     */
+    FhirCache.prototype.splitDateRangeByDay = function (dateRange) {
+        return luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"]
+            .fromDateTimes(dateRange.start.startOf('day'), dateRange.end.endOf('day'))
+            .splitBy({ days: 1 });
+    };
+    /**
+     * Fetches the resources from FHIR for the given date range and updates
+     * the cache with these results.
+     *
+     * The results are stored as RawResources
+     * so that a validation error during object creation does not prevent the
+     * cache from being updated.
+     *
+     * @param smartApi: the resolved Smart on FHIR API Client instance
+     * @param dateRange: the date range to fetch from FHIR
+     */
+    FhirCache.prototype.fetchResourceAndAddToCache = function (smartApi, dateRange) {
+        var _this = this;
+        var queryParams = this.getQueryParams(dateRange);
+        // fetches the results from FHIR and groups them by timestamp.
+        var fetchAllPromise = fetchAllFromFhir(smartApi, queryParams).then(function (results) {
+            var resultMap = new Map();
+            for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
+                var result = results_1[_i];
+                var resultDate = _this.getTimestampFromRawResource(result).toISODate();
+                if (!resultMap.has(resultDate)) {
+                    resultMap.set(resultDate, new Array());
+                }
+                resultMap.get(resultDate).push(result);
+            }
+            return resultMap;
+        });
+        // after the data fetch resolves, updates the cache for each day that was
+        // fetched with the results that were found. If no results were found for
+        // a given day, we set to an empty list.
+        return Promise.resolve(fetchAllPromise).then(function (resultMap) {
+            var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
+            for (var _i = 0, _a = _this.splitDateRangeByDay(dateRange); _i < _a.length; _i++) {
+                var day = _a[_i];
+                var dayAsString = day.start.toISODate();
+                if (dayAsString === currentTime.toISODate()) {
+                    _this.todaysResults = resultMap.get(dayAsString) || [];
+                    _this.timeOfLastRefreshOfTodaysResults = currentTime;
+                }
+                else {
+                    _this.cache.set(dayAsString, resultMap.get(dayAsString) || []);
+                }
+            }
+        });
+    };
+    /** Gets the RawResources from the Cache for each day in the date range. */
+    FhirCache.prototype.getResourceFromCache = function (dateRange) {
+        var results = new Array();
+        for (var _i = 0, _a = this.splitDateRangeByDay(dateRange); _i < _a.length; _i++) {
+            var day = _a[_i];
+            var dayString = day.start.toISODate();
+            if (dayString === luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc().toISODate()) {
+                results.push.apply(results, this.todaysResults);
+            }
+            else {
+                results.push.apply(results, this.cache.get(dayString));
+            }
+        }
+        return results;
+    };
+    /**
+     * Gets the resources for the given date range.
+     *
+     * If any days within the date range are not in the cache already, we fetch
+     * the results for that range and add them to the cache.
+     *
+     * Then we return all instances of the Resource that are within the given
+     * date range.
+     *
+     * @param dateRange: the Interval to fetch data within.
+     * @returns an array of Resource objects that extend ResultClassWithTimestamp
+     */
+    FhirCache.prototype.getResource = function (dateRange) {
+        var _this = this;
+        return this.smartApiPromise.then(function (smartApi) {
+            // splits the date range by day and checks if the cache contains that day.
+            // Merges days not in the cache into a list of intervals that cover those
+            // days.
+            var rangesToFetch = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].merge(_this.splitDateRangeByDay(dateRange).filter(function (day) {
+                var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
+                if (day.start.toISODate() === currentTime.toISODate()) {
+                    // we filter out today if we have refreshed today's results
+                    // within the last minute.
+                    return !(_this.timeOfLastRefreshOfTodaysResults &&
+                        currentTime
+                            .diff(_this.timeOfLastRefreshOfTodaysResults, 'minutes')
+                            .minutes < 1);
+                    // sometimes due to timezone handling we end up with a date that
+                    // is after today. We do not need to fetch that date.
+                }
+                else if (day.start.toMillis() > currentTime.toMillis()) {
+                    return false;
+                }
+                return !_this.cache.has(day.start.toISODate());
+            }));
+            // for each date interval, fetch the resource from FHIR and add the data
+            // to the cache.
+            var fetchPromises = rangesToFetch.map(function (range) {
+                return _this.fetchResourceAndAddToCache(smartApi, range);
+            });
+            // after all date ranges have been fetched from FHIR and added to the
+            // cache. Get all data from the cache for the full date range.
+            return Promise.all(fetchPromises)
+                .then(function (_) {
+                return _this.getResourceFromCache(dateRange)
+                    .map(function (result) { return _this.createFunction(result); })
+                    .filter(function (result) { return !!result; });
+            }, function (rejection) {
+                throw rejection;
+            });
+        });
+    };
+    return FhirCache;
+}());
+
+/** Cache for MedicationAdministrations */
+var MedicationCache = /** @class */ (function (_super) {
+    __extends(MedicationCache, _super);
+    function MedicationCache() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Creates a MedicationAdministration from a RawResource.
+     * Note: will return undefined if the Medication Encoding extracted from the
+     * RawResource is undefined.
+     */
+    MedicationCache.prototype.createFunction = function (result) {
+        // In the MedicationAdministration constructor we throw an Error if the
+        // rxNormCode is undefined. It will be undefined if we do not have a mapping
+        // for that rxNormCode. Because we are querying for all
+        // MedicationAdministrations (not just a particular code), we need to filter
+        // those results out before we try to create the MedicationAdministration
+        // object.
+        if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_7__["ResultClass"].extractMedicationEncoding(result.json)) {
+            return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_5__["MedicationAdministration"](result.json, result.requestId);
+        }
+    };
+    MedicationCache.prototype.getQueryParams = function (dateRange) {
+        return {
+            type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationAdministration,
+            query: {
+                effectivetime: {
+                    $and: [
+                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
+                        LESS_OR_EQUAL + dateRange.end.toISODate()
+                    ]
+                }
+            }
+        };
+    };
+    MedicationCache.prototype.getTimestampFromRawResource = function (result) {
+        return _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_5__["MedicationAdministration"].getTimestamp(result.json);
+    };
+    return MedicationCache;
+}(FhirCache));
+
+/** Cache for DiagnosticReports */
+var DiagnosticReportCache = /** @class */ (function (_super) {
+    __extends(DiagnosticReportCache, _super);
+    function DiagnosticReportCache() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DiagnosticReportCache.prototype.createFunction = function (result) {
+        return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__["DiagnosticReport"](result.json, result.requestId);
+    };
+    DiagnosticReportCache.prototype.getQueryParams = function (dateRange) {
+        return {
+            type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].DiagnosticReport,
+            query: {
+                date: {
+                    $and: [
+                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
+                        // We are adding one millisecond to the end date because we want
+                        // less or equal to the date range, but the spec only allows
+                        // strictly less than param.
+                        LESS_THAN + dateRange.end.plus({ millisecond: 1 }).toISODate()
+                    ]
+                }
+            }
+        };
+    };
+    DiagnosticReportCache.prototype.getTimestampFromRawResource = function (result) {
+        return _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_6__["Observation"].getTimestamp(result.json);
+    };
+    return DiagnosticReportCache;
+}(FhirCache));
+
+/** Cache for Observations */
+var ObservationCache = /** @class */ (function (_super) {
+    __extends(ObservationCache, _super);
+    function ObservationCache(smartApiPromise, code) {
+        var _this = _super.call(this, smartApiPromise) || this;
+        _this.code = code;
+        return _this;
+    }
+    ObservationCache.prototype.createFunction = function (result) {
+        return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_6__["Observation"](result.json, result.requestId);
+    };
+    ObservationCache.prototype.getQueryParams = function (dateRange) {
+        return {
+            type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].Observation,
+            query: {
+                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"].CODING_STRING + '|' + this.code.codeString,
+                date: {
+                    $and: [
+                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
+                        LESS_OR_EQUAL + dateRange.end.toISODate()
+                    ]
+                }
+            }
+        };
+    };
+    ObservationCache.prototype.getTimestampFromRawResource = function (result) {
+        return _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_6__["Observation"].getTimestamp(result.json);
+    };
+    return ObservationCache;
+}(FhirCache));
+
+/** Cache for Encounters. */
+var EncounterCache = /** @class */ (function () {
+    function EncounterCache(smartApiPromise) {
+        this.smartApiPromise = smartApiPromise;
+    }
+    /**
+     * Gets all Encounters.
+     * Note: Encounters cannot be searched by date, so this will return all
+     * encounters.
+     */
+    EncounterCache.prototype.getResource = function () {
+        var _this = this;
+        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
+        var cachePromise;
+        // if the last fetch of Encounters from FHIR was within 1 minute, we don't
+        // need to fetch them again. Since we may call this method multiple times
+        // when loading the page, we want to ensure we aren't making unecessary
+        // calls.
+        if (this.lastFhirFetchTime &&
+            currentTime.diff(this.lastFhirFetchTime, 'minutes').minutes < 1) {
+            cachePromise = Promise.resolve(this.cache);
+        }
+        else {
+            this.lastFhirFetchTime = currentTime;
+            cachePromise = this.smartApiPromise.then(function (smartApi) {
+                var queryParams = {
+                    type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].Encounter,
+                };
+                return fetchAllFromFhir(smartApi, queryParams).then(function (results) {
+                    _this.cache = results;
+                    _this.lastFhirFetchTime = currentTime;
+                    return results;
+                });
+            });
+        }
+        return Promise.resolve(cachePromise)
+            .then(function (results) {
+            return results.map(function (result) { return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_4__["Encounter"](result.json, result.requestId); });
+        }, function (rejection) {
+            throw rejection;
+        });
+    };
+    return EncounterCache;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/fhir-data-classes/annotated-diagnostic-report.ts":
 /*!******************************************************************!*\
   !*** ./src/app/fhir-data-classes/annotated-diagnostic-report.ts ***!
@@ -3837,7 +4336,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedObservation", function() { return AnnotatedObservation; });
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -3855,6 +4355,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 /**
@@ -3888,8 +4389,6 @@ var AnnotatedObservation = /** @class */ (function (_super) {
     AnnotatedObservation.forMedicationMonitoring = function (observation, medicationOrderSet) {
         // Look in the medication order set's administrations and find the ones
         // closest in time to this observation.
-        var doseCountBefore;
-        var doseCountAfter;
         var timeSinceLast;
         var timeBeforeNext;
         var annotations = new Array();
@@ -3899,7 +4398,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         for (var _i = 0, _a = medicationOrderSet.resourceList; _i < _a.length; _i++) {
             var order = _a[_i];
             if (luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"]
-                .fromDateTimes(order.firstAdministration.timestamp, order.lastAdmininistration.timestamp)
+                .fromDateTimes(order.firstAdministration.timestamp, order.lastAdministration.timestamp)
                 .contains(observation.timestamp)) {
                 if (containingMedicationOrder) {
                     throw Error('Two medication orders contain this monitoring point.');
@@ -3910,7 +4409,8 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         if (containingMedicationOrder) {
             // Find the spot in the array of administrations where the monitoring
             // would fall, timewise.
-            var sortedAdmins = containingMedicationOrder.administrationsForOrder.resourceList.sort(function (a, b) { return a.medAdministration.timestamp.toMillis() -
+            var sortedAdmins = containingMedicationOrder.medicationAdministrationSet.resourceList
+                .sort(function (a, b) { return a.medAdministration.timestamp.toMillis() -
                 b.medAdministration.timestamp.toMillis(); });
             var idx = 0;
             while (idx < sortedAdmins.length &&
@@ -3925,17 +4425,15 @@ var AnnotatedObservation = /** @class */ (function (_super) {
             // the doses and the monitoring point.
             var doseBeforeObs = sortedAdmins[idx - 1];
             var doseAfterObs = sortedAdmins[idx];
-            doseCountBefore = doseBeforeObs.doseInOrder;
             timeSinceLast =
                 observation.timestamp.diff(doseBeforeObs.medAdministration.timestamp);
-            doseCountAfter = doseAfterObs.doseInOrder;
             timeBeforeNext =
                 doseAfterObs.medAdministration.timestamp.diff(observation.timestamp);
             annotations.push([
-                'Time since dose #' + doseCountBefore, timeSinceLast.toFormat('h:mm')
+                src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].TIME_SINCE_PREVIOUS_DOSE, timeSinceLast.toFormat('h:mm')
             ]);
             annotations.push([
-                'Time before dose #' + doseCountAfter, timeBeforeNext.toFormat('h:mm')
+                src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].TIME_BEFORE_NEXT_DOSE, timeBeforeNext.toFormat('h:mm')
             ]);
         }
         return new AnnotatedObservation(observation, annotations);
@@ -3964,7 +4462,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         return new AnnotatedObservation(observation, annotations);
     };
     return AnnotatedObservation;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClassWithTimestamp"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
 
 
 
@@ -4013,11 +4511,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportStatus", function() { return DiagnosticReportStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticServiceSectionCodes", function() { return DiagnosticServiceSectionCodes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReport", function() { return DiagnosticReport; });
-/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../clinicalconcepts/diagnostic-report-code */ "./src/app/clinicalconcepts/diagnostic-report-code.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
 /* harmony import */ var _attachment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attachment */ "./src/app/fhir-data-classes/attachment.ts");
 // Copyright 2019 Verily Life Sciences Inc.
 //
@@ -4098,11 +4596,11 @@ var categoryToEnumMap = new Map([
 var DiagnosticReport = /** @class */ (function (_super) {
     __extends(DiagnosticReport, _super);
     function DiagnosticReport(json, requestId) {
-        var _this = _super.call(this, DiagnosticReport.getLabel(json, requestId), requestId, luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].fromISO(json.effectiveDateTime)) || this;
+        var _this = _super.call(this, DiagnosticReport.getLabel(json, requestId), requestId, DiagnosticReport.getTimestamp(json)) || this;
         /**
          * Not readonly to allow editing in fhir-service
          * Attachment representing html/pdf version of the report.
-        */
+         */
         _this.presentedForm = new Array();
         _this.requestId = requestId;
         _this.json = json;
@@ -4110,7 +4608,7 @@ var DiagnosticReport = /** @class */ (function (_super) {
             _this.id = json.id;
         }
         if (!json.status) {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_0__["ResultError"](new Set([_this.requestId]), 'The report needs a status to be useful.', json);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_3__["ResultError"](new Set([_this.requestId]), 'The report needs a status to be useful.', json);
         }
         _this.status = statusToEnumMap.get(json.status);
         if (json.category) {
@@ -4123,7 +4621,7 @@ var DiagnosticReport = /** @class */ (function (_super) {
             }
         }
         if (json.code) {
-            _this.code = _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportCode"].fromCodeString(json.code.text);
+            _this.code = _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__["DiagnosticReportCode"].fromCodeString(json.code.text);
         }
         return _this;
     }
@@ -4140,12 +4638,15 @@ var DiagnosticReport = /** @class */ (function (_super) {
             label = json.code.text;
         }
         else {
-            throw new _result_error__WEBPACK_IMPORTED_MODULE_0__["ResultError"](new Set([requestId]), 'The report needs a code to be useful.', json);
+            throw new _result_error__WEBPACK_IMPORTED_MODULE_3__["ResultError"](new Set([requestId]), 'The report needs a code to be useful.', json);
         }
         return label;
     };
+    DiagnosticReport.getTimestamp = function (json) {
+        return luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveDateTime);
+    };
     return DiagnosticReport;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__["ResultClassWithTimestamp"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
 
 
 
@@ -4257,12 +4758,12 @@ var Encounter = /** @class */ (function () {
 /*!****************************************************************!*\
   !*** ./src/app/fhir-data-classes/medication-administration.ts ***!
   \****************************************************************/
-/*! exports provided: RawMedicationAdministration, MedicationAdministration, MedicationAdministrationSet, AnnotatedAdministration */
+/*! exports provided: MedicationAdministrationStatus, MedicationAdministration, MedicationAdministrationSet, AnnotatedAdministration */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RawMedicationAdministration", function() { return RawMedicationAdministration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationStatus", function() { return MedicationAdministrationStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministration", function() { return MedicationAdministration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationSet", function() { return MedicationAdministrationSet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedAdministration", function() { return AnnotatedAdministration; });
@@ -4299,39 +4800,24 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 /**
- * This is a sparsely defined MedicationAdministration. It does not have any
- * validation done during object instantiation. It only holds raw data that
- * is returned from FHIR.
- *
- * It should only be used for storing raw data. It should not be surfaced to
- * the UI.
+ * FHIR element for MedicationAdministrationStatus, from the DSTU2 version of
+ * the standard. http://hl7.org/fhir/DSTU2/valueset-medication-admin-status.html
  */
-var RawMedicationAdministration = /** @class */ (function (_super) {
-    __extends(RawMedicationAdministration, _super);
-    function RawMedicationAdministration(json, requestId) {
-        var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
-            json.medicationCodeableConcept ?
-                json.medicationCodeableConcept.text :
-                null, requestId, json.effectiveTimeDateTime ?
-            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
-            json.effectiveTimePeriod ?
-                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
-                null) || this;
-        _this.json = json;
-        _this.MED_RESOURCE_TYPE = 'Medication';
-        _this.json = json;
-        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
-        _this.medicationOrderId = json.prescription && json.prescription.reference ?
-            json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
-            null;
-        return _this;
-    }
-    RawMedicationAdministration.prototype.convertToMedicationAdministration = function () {
-        return new MedicationAdministration(this.json, this.requestId);
-    };
-    return RawMedicationAdministration;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
-
+var MedicationAdministrationStatus;
+(function (MedicationAdministrationStatus) {
+    MedicationAdministrationStatus["IN_PROGRESS"] = "In Progress";
+    MedicationAdministrationStatus["ON_HOLD"] = "On Hold";
+    MedicationAdministrationStatus["COMPLETED"] = "Completed";
+    MedicationAdministrationStatus["ENTERED_IN_ERROR"] = "Entered in Error";
+    MedicationAdministrationStatus["STOPPED"] = "Stopped";
+})(MedicationAdministrationStatus || (MedicationAdministrationStatus = {}));
+var statusToEnumMap = new Map([
+    ['in-progress', MedicationAdministrationStatus.IN_PROGRESS],
+    ['on-hold', MedicationAdministrationStatus.ON_HOLD],
+    ['completed', MedicationAdministrationStatus.COMPLETED],
+    ['entered-in-error', MedicationAdministrationStatus.ENTERED_IN_ERROR],
+    ['stopped', MedicationAdministrationStatus.STOPPED],
+]);
 /**
  * This object represents a FHIR MedicationAdministration. It does not contain
  * all the information in a standard MedicationAdministration (see
@@ -4349,10 +4835,18 @@ var MedicationAdministration = /** @class */ (function (_super) {
      *     medication administration's data.
      */
     function MedicationAdministration(json, requestId) {
-        var _this = _super.call(this, json, requestId) || this;
+        var _this = _super.call(this, json.medicationReference ? json.medicationReference.display :
+            json.medicationCodeableConcept ?
+                json.medicationCodeableConcept.text :
+                null, requestId, MedicationAdministration.getTimestamp(json)) || this;
         _this.containedMedications = [];
+        _this.rxNormCode = _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClass"].extractMedicationEncoding(json);
+        _this.medicationOrderId = json.prescription && json.prescription.reference ?
+            json.prescription.reference.replace(src_constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].MedicationOrder + '/', '') :
+            null;
         _this.dosage = new _dosage__WEBPACK_IMPORTED_MODULE_5__["Dosage"](json);
         _this.wasNotGiven = json.wasNotGiven;
+        _this.status = statusToEnumMap.get(json.status);
         if (json.contained && json.contained.length > 0) {
             // We first find the element that lists the "ingredients" of this
             // MedicationAdministration with each corresponding dosage and reference
@@ -4362,8 +4856,9 @@ var MedicationAdministration = /** @class */ (function (_super) {
             var ingredientReferences = new Map();
             if (referenceId_1) {
                 var index = json.contained.findIndex(function (el) {
-                    return (el.resourceType === _this.MED_RESOURCE_TYPE && el.product &&
-                        el.id === referenceId_1.replace('#', ''));
+                    return (el.resourceType ===
+                        MedicationAdministration.MED_RESOURCE_TYPE &&
+                        el.product && el.id === referenceId_1.replace('#', ''));
                 });
                 var listOfIngredients = json.contained[index];
                 if (listOfIngredients && listOfIngredients.product.ingredient) {
@@ -4403,8 +4898,16 @@ var MedicationAdministration = /** @class */ (function (_super) {
         }
         return _this;
     }
+    MedicationAdministration.getTimestamp = function (json) {
+        return json.effectiveTimeDateTime ?
+            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimeDateTime).toUTC() :
+            json.effectiveTimePeriod ?
+                luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveTimePeriod.start).toUTC() :
+                null;
+    };
+    MedicationAdministration.MED_RESOURCE_TYPE = 'Medication';
     return MedicationAdministration;
-}(RawMedicationAdministration));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
 
 /**
  * A set of MedicalAdministrations that belong together as part of the same
@@ -4422,7 +4925,6 @@ var MedicationAdministrationSet = /** @class */ (function (_super) {
      */
     function MedicationAdministrationSet(medicationAdministrationList) {
         var _this = _super.call(this, medicationAdministrationList) || this;
-        var requestIdsString = Array.from(_this.requestIds).join(', ');
         var rxNorms = medicationAdministrationList.map(function (x) { return x.medAdministration.rxNormCode; });
         if (new Set(rxNorms).size > 1) {
             throw new _result_error__WEBPACK_IMPORTED_MODULE_4__["ResultError"](_this.requestIds, "Different RxNorms for administrations: " + rxNorms + ".");
@@ -4446,11 +4948,9 @@ var MedicationAdministrationSet = /** @class */ (function (_super) {
  */
 var AnnotatedAdministration = /** @class */ (function (_super) {
     __extends(AnnotatedAdministration, _super);
-    function AnnotatedAdministration(medAdmin, doseInOrder, doseDay, prevDose) {
+    function AnnotatedAdministration(medAdmin, prevDose) {
         var _this = _super.call(this, medAdmin.label, medAdmin.requestId) || this;
         _this.medAdministration = medAdmin;
-        _this.doseInOrder = doseInOrder;
-        _this.doseDay = doseDay;
         _this.previousDose = prevDose;
         return _this;
     }
@@ -4465,13 +4965,14 @@ var AnnotatedAdministration = /** @class */ (function (_super) {
 /*!*******************************************************!*\
   !*** ./src/app/fhir-data-classes/medication-order.ts ***!
   \*******************************************************/
-/*! exports provided: MedicationOrderStatus, MedicationOrder, MedicationOrderSet */
+/*! exports provided: MedicationOrderStatus, MedicationOrder, AnnotatedMedicationOrder, MedicationOrderSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderStatus", function() { return MedicationOrderStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrder", function() { return MedicationOrder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedMedicationOrder", function() { return AnnotatedMedicationOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationOrderSet", function() { return MedicationOrderSet; });
 /* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 /* harmony import */ var _unit_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../unit_utils */ "./src/app/unit_utils.ts");
@@ -4561,47 +5062,58 @@ var MedicationOrder = /** @class */ (function (_super) {
         }
         return _this;
     }
+    return MedicationOrder;
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["ResultClass"]));
+
+/**
+ * This object stores a FHIR MedicationOrder object along with additional
+ * information including MedicationAdministration information.
+ *
+ * During initialization, it calculates first/last medication administrations
+ * based on the list of medication administrations that the
+ * AnnotatedMedicationOrder is initialized with. It does NOT fetch all
+ * administrations for the entire order - since this is a very time consuming
+ * FHIR call.
+ */
+var AnnotatedMedicationOrder = /** @class */ (function (_super) {
+    __extends(AnnotatedMedicationOrder, _super);
+    function AnnotatedMedicationOrder(order, medicationAdministrations) {
+        var _this = _super.call(this, order.label, order.requestId) || this;
+        _this.order = order;
+        _this.setMedicationAdministrations(medicationAdministrations);
+        return _this;
+    }
     /**
-     * Sets the MedicationAdministration info for this MedicationOrder.
-     * @param fhirService The FhirService used to find the
-     *     MedicationAdministrations corresponding to this MedicationOrder.
+     * Sets the MedicationAdministration info for this AnnotatedMedicationOrder.
+     * @param medicationAdministrations MedicationAdministrations associated with
+     *     the order.
      * @throws Error if the label for the list of administrations does not match
      *     the label for this order.
-     * @returns This order, after all the promises are resolved.
      */
-    MedicationOrder.prototype.setMedicationAdministrations = function (fhirService) {
-        var _this = this;
-        return fhirService
-            .getMedicationAdministrationsWithOrder(this.orderId, this.rxNormCode)
-            .then(function (medAdmins) {
-            if (!medAdmins) {
-                return _this;
-            }
-            medAdmins = medAdmins.sort(function (a, b) {
-                return a.timestamp.toMillis() - b.timestamp.toMillis();
-            });
-            _this.firstAdministration = medAdmins[0];
-            _this.lastAdmininistration = medAdmins[medAdmins.length - 1];
-            var admins = [];
-            for (var i = 0; i < medAdmins.length; i++) {
-                var admin = medAdmins[i];
-                // We want the dose counts and day counts to start with 1 so we
-                // add 1 to the day count and the index for the dose.
-                var dayCount = admin.timestamp.diff(_this.firstAdministration.timestamp)
-                    .as('day') + 1;
-                var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["AnnotatedAdministration"](admin, i + 1 /* dose in order starts at 1 */, dayCount, i > 0 ? admins[i - 1] : undefined);
-                admins.push(annotated);
-            }
-            _this.administrationsForOrder =
-                new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["MedicationAdministrationSet"](admins);
-            return _this;
-        }, function (rejection) {
-            // Throw an error if the construction of the
-            // MedicationAdministration results in an error.
-            throw rejection;
+    AnnotatedMedicationOrder.prototype.setMedicationAdministrations = function (medicationAdministrations) {
+        if (!medicationAdministrations) {
+            return;
+        }
+        var sortedMedAdmins = medicationAdministrations.sort(function (a, b) {
+            return a.timestamp.toMillis() - b.timestamp.toMillis();
         });
+        this.firstAdministration = sortedMedAdmins[0];
+        this.lastAdministration =
+            sortedMedAdmins[medicationAdministrations.length - 1];
+        var annotatedAdmins = [];
+        for (var i = 0; i < sortedMedAdmins.length; i++) {
+            var admin = sortedMedAdmins[i];
+            // if i = 0, this is the first dose so we set the previous
+            // dose to undefined. Otherwise, the previous dose is the
+            // medication administration at the previous index
+            var previousDose = i > 0 ? annotatedAdmins[i - 1] : undefined;
+            var annotated = new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["AnnotatedAdministration"](admin, previousDose);
+            annotatedAdmins.push(annotated);
+        }
+        this.medicationAdministrationSet =
+            new _medication_administration__WEBPACK_IMPORTED_MODULE_3__["MedicationAdministrationSet"](annotatedAdmins);
     };
-    return MedicationOrder;
+    return AnnotatedMedicationOrder;
 }(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_0__["ResultClass"]));
 
 /**
@@ -4629,22 +5141,21 @@ var MedicationOrderSet = /** @class */ (function (_super) {
         // Set the RxNormCode and MedicationConceptGroup for this
         // MedicationOrderSet.
         if (medicationOrderList.length > 0) {
-            var requestIdsString = Array.from(_this.requestIds).join(', ');
-            var firstRxNorm = medicationOrderList[0].rxNormCode;
+            var firstRxNorm = medicationOrderList[0].order.rxNormCode;
             if (!firstRxNorm) {
                 throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, 'The first resource does not have an RxNorm code.');
             }
             for (var _i = 0, medicationOrderList_1 = medicationOrderList; _i < medicationOrderList_1.length; _i++) {
                 var rs = medicationOrderList_1[_i];
-                if (rs.rxNormCode !== firstRxNorm) {
+                if (rs.order.rxNormCode !== firstRxNorm) {
                     throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, 'The resource list in this set has mixed RxNorm codes.');
                 }
             }
             _this.rxNormCode = firstRxNorm;
             _this.medicationConcept = _this.rxNormCode.displayGrouping;
-            _this.minDose = Math.min.apply(Math, medicationOrderList.map(function (x) { return x.administrationsForOrder.minDose; }));
-            _this.maxDose = Math.max.apply(Math, medicationOrderList.map(function (x) { return x.administrationsForOrder.maxDose; }));
-            var units = new Set(medicationOrderList.map(function (x) { return x.administrationsForOrder.unit; }));
+            _this.minDose = Math.min.apply(Math, medicationOrderList.map(function (x) { return x.medicationAdministrationSet.minDose; }));
+            _this.maxDose = Math.max.apply(Math, medicationOrderList.map(function (x) { return x.medicationAdministrationSet.maxDose; }));
+            var units = new Set(medicationOrderList.map(function (x) { return x.medicationAdministrationSet.unit; }));
             if (units.size > 1) {
                 throw new _result_error__WEBPACK_IMPORTED_MODULE_2__["ResultError"](_this.requestIds, "Different units in the order set: " + Array.from(units.values()));
             }
@@ -4769,9 +5280,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MicrobioReport", function() { return MicrobioReport; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.ts");
 /* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
-/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
-/* harmony import */ var _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _observation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _specimen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./specimen */ "./src/app/fhir-data-classes/specimen.ts");
 // Copyright 2019 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4784,16 +5295,16 @@ __webpack_require__.r(__webpack_exports__);
 // TODO: Issue #31 (Update mapping for string enums)
 // https://stackoverflow.com/questions/44883072/reverse-mapping-for-string-enums
 var statusToEnumMap = new Map([
-    ['registered', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Registered],
-    ['partial', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Partial],
-    ['preliminary', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Preliminary],
-    ['final', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Final],
-    ['amended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Amended],
-    ['corrected', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Corrected],
-    ['appended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Appended],
-    ['cancelled', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Cancelled],
-    ['entered-in-error', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].EnteredInError],
-    ['unknown', _diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["DiagnosticReportStatus"].Unknown],
+    ['registered', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Registered],
+    ['partial', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Partial],
+    ['preliminary', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Preliminary],
+    ['final', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Final],
+    ['amended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Amended],
+    ['corrected', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Corrected],
+    ['appended', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Appended],
+    ['cancelled', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Cancelled],
+    ['entered-in-error', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].EnteredInError],
+    ['unknown', _diagnostic_report__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportStatus"].Unknown],
 ]);
 /**
  * Resource for MicrobioReport.
@@ -4804,7 +5315,8 @@ var statusToEnumMap = new Map([
  * implementation of the FHIR standard won't allow microbiology retrieval.
  *
  * This currently does not extend DiagnosticReport. TODO: Issue #24- maintain
- * More clearly delineate what belongs in FHIR resources and what is added/derived
+ * More clearly delineate what belongs in FHIR resources and what is
+ * added/derived
  */
 var MicrobioReport = /** @class */ (function () {
     function MicrobioReport(json, requestId) {
@@ -4824,11 +5336,11 @@ var MicrobioReport = /** @class */ (function () {
         for (var _i = 0, contained_1 = contained; _i < contained_1.length; _i++) {
             var rsc = contained_1[_i];
             if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Specimen) {
-                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_3__["Specimen"](rsc, this.requestId));
+                specimens.push(new _specimen__WEBPACK_IMPORTED_MODULE_4__["Specimen"](rsc, this.requestId));
             }
             else if (rsc.resourceType === _constants__WEBPACK_IMPORTED_MODULE_0__["FhirResourceType"].Observation) {
                 try {
-                    this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_2__["Observation"](rsc, this.requestId));
+                    this.results.push(new _observation__WEBPACK_IMPORTED_MODULE_3__["Observation"](rsc, this.requestId));
                 }
                 catch (err) {
                     // silently ignore observations within diagnostic reports that have
@@ -5209,9 +5721,7 @@ var Observation = /** @class */ (function (_super) {
         _this.json = json;
         _this.codes = [];
         _this.innerComponents = [];
-        _this.timestamp = json.effectiveDateTime ?
-            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveDateTime).toUTC() :
-            json.issued ? luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.issued).toUTC() : null;
+        _this.timestamp = Observation.getTimestamp(json);
         if (json.code) {
             if (json.code.coding) {
                 if (json.code.coding[0].system === _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__["BCHMicrobioCode"].CODING_STRING) {
@@ -5331,6 +5841,11 @@ var Observation = /** @class */ (function (_super) {
         }
         return label;
     };
+    Observation.getTimestamp = function (json) {
+        return json.effectiveDateTime ?
+            luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.effectiveDateTime).toUTC() :
+            json.issued ? luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].fromISO(json.issued).toUTC() : null;
+    };
     return Observation;
 }(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_3__["ResultClass"]));
 
@@ -5412,24 +5927,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirHttpService", function() { return FhirHttpService; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
-/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/constants.ts");
+/* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
 /* harmony import */ var _debugger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./debugger.service */ "./src/app/debugger.service.ts");
-/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_cache__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-cache */ "./src/app/fhir-cache.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
 /* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5477,100 +5992,38 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-var GREATER_OR_EQUAL = 'ge';
-var LESS_OR_EQUAL = 'le';
-var LESS_THAN = 'lt';
 var FhirHttpService = /** @class */ (function (_super) {
     __extends(FhirHttpService, _super);
-    function FhirHttpService(debugService, smartOnFhirClient, sanitizer, http) {
-        var _this = _super.call(this) || this;
+    function FhirHttpService(debugService, smartOnFhirClient, http, resourceCodeCreator) {
+        var _this = _super.call(this, resourceCodeCreator) || this;
         _this.debugService = debugService;
-        _this.sanitizer = sanitizer;
         _this.http = http;
         // Create a promise which resolves to the smart API when the smart API is
         // ready. This allows clients of this service to call service methods
         // which depend on the API, regardless of whether the API is ready or not.
         _this.smartApiPromise = new Promise(function (resolve, reject) { return smartOnFhirClient.oauth2.ready(function (smart) { return resolve(smart); }, function (err) { return reject(err); }); });
+        _this.medicationCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["MedicationCache"](_this.smartApiPromise);
+        _this.diagnosticReportCache =
+            new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReportCache"](_this.smartApiPromise);
+        _this.observationCache = new Map();
+        _this.encounterCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["EncounterCache"](_this.smartApiPromise);
         return _this;
     }
-    /**
-     * Gets the next page of search results from the smart API. This function
-     * assumes that the same smartApi was used to call the original search.
-     *
-     * @param smartApi The resolved smartOnFhirClient
-     * @param response The response from the previous page of search results
-     * @param results The list of all formatted results processed in previous page
-     *     responses
-     * @param createFunction A function to create a result object from the
-     *     response
-     */
-    FhirHttpService.prototype.getNextSearchResultsPage = function (smartApi, response, results, createFunction) {
-        var _this = this;
-        var requestId = response.headers('x-request-id');
-        var responseData = response.data.entry || [];
-        results = results.concat(responseData.map(function (result) { return createFunction(result.resource, requestId); }));
-        // if there are anymore pages, get the next set of results.
-        if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
-            return smartApi.patient.api.nextPage({ bundle: response.data })
-                .then(function (nextResponse) {
-                return _this.getNextSearchResultsPage(smartApi, nextResponse, results, createFunction);
-            });
-        }
-        return Promise.resolve(results);
-    };
-    /**
-     * Gets all pages of search results for the given query params. Formats
-     * the results using the given createFunction.
-     *
-     * @param smartApi The resolved smartOnFhirClient
-     * @param queryParams the params to pass to the search function
-     * @param createFunction A function to create result objects from
-     *  the response data.
-     */
-    FhirHttpService.prototype.fetchAll = function (smartApi, queryParams, createFunction) {
-        var _this = this;
-        var results = [];
-        return smartApi.patient.api.search(queryParams)
-            .then(function (response) {
-            return _this
-                .getNextSearchResultsPage(smartApi, response, results, createFunction)
-                .then(function (results) {
-                return results.filter(function (result) { return !!result; });
-            });
-        }, function (rejection) {
-            _this.debugService.logError(rejection);
-            throw rejection;
-        });
-    };
-    FhirHttpService.prototype.getObservationsSearchParams = function (code, dateRange) {
-        // Cerner says that asking for a limited count of resources can slow down
-        // queries, so we don't restrict a count limit here.
-        // https://groups.google.com/d/msg/cerner-fhir-developers/LMTgGypmLDg/7f6hDoe2BgAJ
-        return {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Observation,
-            query: {
-                code: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"].CODING_STRING + '|' + code.codeString,
-                date: {
-                    $and: [
-                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
-                        LESS_OR_EQUAL + dateRange.end.toISODate()
-                    ]
-                },
-            }
-        };
-    };
     /**
      * Gets observations from a specified date range with a specific LOINC code.
      * @param code The LOINC code for which to get observations.
      * @param dateRange The time interval observations should fall between.
      */
     FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange) {
-        var _this = this;
-        var queryParams = this.getObservationsSearchParams(code, dateRange);
-        return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](json, requestId); })
-                .then(function (results) { return results.filter(function (result) { return result.status !==
-                _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; }); });
+        var cacheForCode = this.observationCache.get(code);
+        if (!cacheForCode) {
+            cacheForCode = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](this.smartApiPromise, code);
+            this.observationCache.set(code, cacheForCode);
+        }
+        return this.loadAllCodes.then(function () {
+            return cacheForCode.getResource(dateRange).then(function (results) {
+                return results.filter(function (result) { return result.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__["ObservationStatus"].EnteredInError; });
+            });
         });
     };
     /**
@@ -5584,247 +6037,75 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param dateRange the time interval the observations should fall between
      */
     FhirHttpService.prototype.observationsPresentWithCode = function (code, dateRange) {
-        var queryParams = this.getObservationsSearchParams(code, dateRange);
-        return this.smartApiPromise.then(function (smartApi) { return smartApi.patient.api.search(queryParams)
-            .then(function (response) { return !!response.data.entry; }); });
-    };
-    /**
-     * Formats query parameters for searching for Medication Administrations.
-     * @param dateRange Date range to search within
-     */
-    FhirHttpService.prototype.getMedicationAdministrationSearchParams = function (dateRange) {
-        return {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
-            query: {
-                effectivetime: {
-                    $and: [
-                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
-                        LESS_OR_EQUAL + dateRange.end.toISODate()
-                    ]
-                }
-            }
-        };
-    };
-    /**
-     * Creates a RawMedicationAdministration object from the passed in json
-     * and requestId if the json contains a mapped RxNormCode.
-     *
-     * @param json data used to create RawMedicationAdministration
-     * @param requestId the FHIR request ID that obtained the json data.
-     */
-    FhirHttpService.prototype.createRawMedicationAdministration = function (json, requestId) {
-        if (_fhir_resource_set__WEBPACK_IMPORTED_MODULE_13__["ResultClass"].extractMedicationEncoding(json)) {
-            return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["RawMedicationAdministration"](json, requestId);
-        }
-    };
-    /**
-     * Fetches all FHIR MedicationAdministrations using the given query params.
-     * Returns the created RawMedicationAdministrations grouped by RxNormCode.
-     *
-     * @param queryParams the search params to pass to the FHIR search request.
-     */
-    FhirHttpService.prototype.fetchRawMedicationAdministrations = function (queryParams) {
-        var _this = this;
-        return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, _this.createRawMedicationAdministration)
-                .then(function (rawMedAdmins) {
-                // group RawMedicationAdministrations by RxNormCode
-                var medAdminsByCode = new Map();
-                for (var _i = 0, rawMedAdmins_1 = rawMedAdmins; _i < rawMedAdmins_1.length; _i++) {
-                    var rawMedAdmin = rawMedAdmins_1[_i];
-                    var medAdminCode = rawMedAdmin.rxNormCode;
-                    if (!medAdminsByCode.has(medAdminCode)) {
-                        medAdminsByCode.set(medAdminCode, new Array());
-                    }
-                    medAdminsByCode.get(medAdminCode).push(rawMedAdmin);
-                }
-                return medAdminsByCode;
-            });
+        var queryParams = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](this.smartApiPromise, code)
+            .getQueryParams(dateRange);
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
+            return smartApi.patient.api.search(queryParams)
+                .then(function (response) { return !!response.data.entry; });
         });
     };
     /**
-     * Fetches all FHIR MedicationAdministrations for the patient.
-     *
-     * Updates medicationAdministrationsByCode with the results and sets the
-     * lastMedicationRefreshTime with the current time.
-     *
-     * @returns all RawMedicationAdministration objects for the patient grouped
-     *   by RxNormCode.
+     * Gets medication data from a specified date range with a specific Rx code
+     * @param code The RxNormCode codes for which to get observations.
+     * @param dateRange The time interval observations should fall between.
+     * @param limitCount If provided, the maximum number of observations to
+     *     query for.
      */
-    FhirHttpService.prototype.loadAllRawMedicationAdministrations = function () {
-        var _this = this;
-        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
-        var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationAdministration,
-        };
-        return this.fetchRawMedicationAdministrations(queryParams)
-            .then(function (medAdminsByCode) {
-            _this.medicationAdministrationsByCode = medAdminsByCode;
-            _this.lastMedicationRefreshTime = currentTime;
-            return medAdminsByCode;
-        });
+    FhirHttpService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange, limitCount) {
+        return this.medicationCache.getResource(dateRange).then(function (results) { return results.filter(function (result) { return codes.includes(result.rxNormCode) &&
+            result.status !==
+                _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministrationStatus"].ENTERED_IN_ERROR; }); });
     };
     /**
-     * Fetches FHIR MedicationAdministrations that have been created since the
-     * lastMedicationRefreshTime.
+     * Determines whether a medication with the given RxNormCode exists.
      *
-     * Updates medicationAdministrationsByCode with the results and sets the
-     * lastMedicationRefreshTime with the current time.
+     * Checks a single response page and only calls the next page if no
+     * medications with the given code exist. Cerner's implementation of FHIR
+     * does not support searching by RxNormCode, so we need to get all of the
+     * medications and filter the response.
      *
-     * @returns all RawMedicationAdministration objects for the patient grouped
-     *   by RxNormCode.
+     * @param smartApi The resolved smartOnFhirClient which called the original
+     *     "search"
+     * @param response The response of the previous page
+     * @param code The RxNormCode to search for
      */
-    FhirHttpService.prototype.incrementalRawMedicationAdministrationRefresh = function () {
+    FhirHttpService.prototype.checkMedicationsPresentNextPage = function (smartApi, response, code) {
         var _this = this;
-        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
-        var dateRange = luxon__WEBPACK_IMPORTED_MODULE_3__["Interval"].fromDateTimes(this.lastMedicationRefreshTime, currentTime);
-        var queryParams = this.getMedicationAdministrationSearchParams(dateRange);
-        return this.fetchRawMedicationAdministrations(queryParams)
-            .then(function (medAdminsByCode) {
-            // Add the returned medication administrations to the
-            // medicationAdministrationsByCode mapping.
-            medAdminsByCode.forEach(function (medAdmins, code) {
-                var _a;
-                if (!_this.medicationAdministrationsByCode.has(code)) {
-                    _this.medicationAdministrationsByCode.set(code, new Array());
-                }
-                (_a = _this.medicationAdministrationsByCode.get(code)).push.apply(_a, medAdmins);
-            });
-            _this.lastMedicationRefreshTime = currentTime;
-            return _this.medicationAdministrationsByCode;
+        var results = response.data.entry || [];
+        var resultsWithCode = results.filter(function (result) {
+            return code === _fhir_resource_set__WEBPACK_IMPORTED_MODULE_14__["ResultClass"].extractMedicationEncoding(result.resource);
         });
-    };
-    /**
-     * Gets all RawMedicationAdministrations for a patient grouped by RxNormCode.
-     *
-     * If any FHIR fetches are needed to refresh the medication administrations,
-     * medicationRefreshInProgress is set to the fetch promise. As soon as the
-     * promise is resolved, medicationRefreshInProgress is set back to undefined.
-     * If there is another FHIR fetch in progress for medications, this function
-     * will wait until that one is done, and then resolve those results.
-     *
-     * Because we cannot search for MedicationAdministrations by medication code
-     * or order ID, we need to get all of the MedicationAdministrations from FHIR
-     * and then filter them down. If we have already fetched all
-     * MedicationAdministrations, this function will take advantage of the cached
-     * data. If not, it will call to FHIR for all MedicationAdministrations and
-     * cache them in medicationAdministrationsByCode. If all
-     * MedicationAdministrations need to be fetched, then this will be a slow
-     * call.
-     *
-     * @returns RawMedicationAdministrations for a patient grouped by RxNormCode.
-     */
-    FhirHttpService.prototype.getAllRawMedicationAdministrations = function () {
-        var _this = this;
-        var currentTime = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc();
-        // if there is already a medication refresh in progress, just use the
-        // results of that refresh when it resolves. The original creation of
-        // medicationRefreshInProgress promise will set the property back to
-        // undefined, so we do not need to do so here.
-        if (this.medicationRefreshInProgress) {
-            return Promise.resolve(this.medicationRefreshInProgress);
-        }
-        // If medication administrations were last loaded within a minute, we do not
-        // need to refresh again. This may happen if this method gets called
-        // multiple times within a single request. An example of this is on
-        // application setup, when we load all of the medications for the patient.
-        // This does not require a FHIR call.
-        // It should return immediately since data has already been cached.
-        if (this.lastMedicationRefreshTime &&
-            currentTime.diff(this.lastMedicationRefreshTime, 'minutes').minutes <
-                1) {
-            return Promise.resolve(this.medicationAdministrationsByCode);
-        }
-        // if there has been a previous refresh, then we only need to fetch
-        // MedicationAdministrations that are new since the last refresh. This
-        // is the case when you are looking to refresh today's medications.
-        // Medications from previous days will not change, so they do not need to be
-        // refreshed. The time of the previous refresh is stored in
-        // this.lastMedicationRefreshTime
-        if (this.lastMedicationRefreshTime) {
-            this.medicationRefreshInProgress =
-                this.incrementalRawMedicationAdministrationRefresh();
-            // otherwise we need to do a full load of all the medications. This should
-            // only happen once for a patient.
+        if (resultsWithCode.length > 0) {
+            return Promise.resolve(true);
         }
         else {
-            this.medicationRefreshInProgress =
-                this.loadAllRawMedicationAdministrations();
-        }
-        // as soon as the refresh is done, we need to set the
-        // medicationRefreshInProgress back to undefined so that if we request
-        // another refresh of medications, we make a new FHIR call to get the most
-        // recent data.
-        return Promise.resolve(this.medicationRefreshInProgress)
-            .then(function (results) {
-            _this.medicationRefreshInProgress = undefined;
-            return results;
-        }, function (rejection) {
-            _this.medicationRefreshInProgress = undefined;
-            throw rejection;
-        });
-    };
-    /**
-     * Gets MedicationAdministrations from a specified date range with specific
-     * RxNormCodes.
-     *
-     * If the last medication refresh happened after the date range needed,
-     * we will just format RawMedicationAdministrations to
-     * MedicationAdministrations for that date range.
-     *
-     * Otherwise, we will refresh medicationAdministrationsByCode and then
-     * do the formatting.
-     *
-     * @param codes The RxNormCodes for which to get MedicationAdministrations.
-     * @param dateRange The time interval MedicationAdministrations should fall
-     *     between.
-     */
-    FhirHttpService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange) {
-        var medAdministrationPromise;
-        if (this.lastMedicationRefreshTime &&
-            dateRange.start < this.lastMedicationRefreshTime &&
-            dateRange.end < this.lastMedicationRefreshTime) {
-            // if the date range is completely before the last medication refresh,
-            // we do not need to get any additional medication data.
-            medAdministrationPromise =
-                Promise.resolve(this.medicationAdministrationsByCode);
-            // otherwise, we need to refresh the medication administrations.
-        }
-        else {
-            medAdministrationPromise = this.getAllRawMedicationAdministrations();
-        }
-        return Promise.resolve(medAdministrationPromise)
-            .then(function (rawMedAdminsByCode) {
-            // return all the MedicationAdmins with the codes that are within
-            // the given date range.
-            var medAdmins = new Array();
-            for (var _i = 0, codes_1 = codes; _i < codes_1.length; _i++) {
-                var code = codes_1[_i];
-                var rawMedAdminsForCode = rawMedAdminsByCode.get(code) || [];
-                medAdmins.push.apply(medAdmins, rawMedAdminsForCode
-                    .filter(function (rawMedAdmin) {
-                    return (dateRange.contains(rawMedAdmin.timestamp));
-                })
-                    .map(function (rawMedAdmin) {
-                    return rawMedAdmin.convertToMedicationAdministration();
-                }));
+            if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
+                return smartApi.patient.api.nextPage({ bundle: response.data })
+                    .then(function (nextResponse) {
+                    return _this.checkMedicationsPresentNextPage(smartApi, nextResponse, code);
+                });
             }
-            return medAdmins;
-        });
+            else {
+                return Promise.resolve(false);
+            }
+        }
     };
     /**
      * Determines whether their is a medication present with the given code
-     * during the given date range.
-     *
-     * This will refresh all medications for the patient.
-     *
+     * during the given date range
      * @param code The RxNormCode to get medications for
      * @param dateRange The date range to get medications for
      */
     FhirHttpService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        return this.getMedicationAdministrationsWithCodes([code], dateRange)
-            .then(function (medAdmins) {
-            return medAdmins.length > 0;
+        var _this = this;
+        var queryParams = this.medicationCache.getQueryParams(dateRange);
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
+            return smartApi.patient.api.search(queryParams)
+                .then(function (response) { return _this.checkMedicationsPresentNextPage(smartApi, response, code); });
         });
     };
     /**
@@ -5833,9 +6114,11 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getMedicationOrderWithId = function (id) {
         var _this = this;
-        return this.smartApiPromise.then(function (smartApi) {
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
             return smartApi.patient.api
-                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].MedicationOrder, 'id': id })
+                .read({ type: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder, 'id': id })
                 .then(function (result) {
                 var requestId = result.headers('x-request-id');
                 return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](result.data, requestId);
@@ -5850,45 +6133,27 @@ var FhirHttpService = /** @class */ (function (_super) {
         });
     };
     /**
-     * Gets administrations for specified order id.
-     * @param id The id to pull the order from.
-     */
-    FhirHttpService.prototype.getMedicationAdministrationsWithOrder = function (id, code) {
-        return this.getAllRawMedicationAdministrations().then(function (adminsByCode) {
-            return (adminsByCode.get(code) || [])
-                .filter(function (rawMedAdmin) { return rawMedAdmin.medicationOrderId === id; })
-                .map(function (rawMedAdmin) { return rawMedAdmin.convertToMedicationAdministration(); });
-        });
-    };
-    /**
      * Gets the encounters for the patient for any encounter that falls in the
      * given date range.
      * @param dateRange Return all encounters that covered any time in this
      *   date range.
      */
     FhirHttpService.prototype.getEncountersForPatient = function (dateRange) {
-        var _this = this;
-        var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Encounter,
-        };
         if (!dateRange) {
-            dateRange = _constants__WEBPACK_IMPORTED_MODULE_4__["APP_TIMESPAN"];
+            dateRange = _constants__WEBPACK_IMPORTED_MODULE_3__["APP_TIMESPAN"];
         }
         // The Cerner implementation of the Encounter search does not offer any
         // filtering by date at this point, so we grab all the encounters
         // then filter them down to those which intersect with the date range
-        // we query, and those that have a start date no earlier than a year prior
-        // to now.
-        return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](json, requestId); })
-                .then(function (results) {
-                return results
-                    .filter(function (result) {
-                    return dateRange.intersection(result.period) !==
-                        null;
-                })
-                    .filter(function (result) { return result.period.start >=
-                    _constants__WEBPACK_IMPORTED_MODULE_4__["EARLIEST_ENCOUNTER_START_DATE"]; });
+        // we query, and those that have a start date no earlier than a year
+        // prior to now.
+        return this.encounterCache.getResource().then(function (results) {
+            return results
+                .filter(function (result) {
+                return dateRange.intersection(result.period) !== null;
+            })
+                .filter(function (result) {
+                return result.period.start >= _constants__WEBPACK_IMPORTED_MODULE_3__["EARLIEST_ENCOUNTER_START_DATE"];
             });
         });
     };
@@ -5899,19 +6164,20 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param date The date the note was written on.
      */
     FhirHttpService.prototype.saveStaticNote = function (image, date) {
-        return this.smartApiPromise.then(function (smartApi) {
+        return Promise.all([this.smartApiPromise, this.loadAllCodes]).then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
             var postBody = {
-                resourceType: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DocumentReference,
+                resourceType: _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DocumentReference,
                 subject: {
-                    reference: [_constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
+                    reference: [_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Patient, smartApi.patient.id].join('/')
                 },
                 type: {
                     coding: [{
-                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_5__["LOINCCode"].CODING_STRING,
-                            code: _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["documentReferenceLoinc"].codeString,
+                            system: _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_4__["LOINCCode"].CODING_STRING,
+                            code: _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_6__["documentReferenceLoinc"].codeString,
                         }],
                 },
-                indexed: luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].utc().toISO(),
+                indexed: luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().toISO(),
                 status: 'current',
                 // https://fhir.cerner.com/millennium/dstu2/infrastructure/document-reference/#body-fields
                 content: [{
@@ -5923,7 +6189,7 @@ var FhirHttpService = /** @class */ (function (_super) {
                 context: {
                     encounter: {
                         reference: [
-                            _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
+                            _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter, smartApi.tokenResponse.encounter
                         ].join('/')
                     }
                 }
@@ -5945,11 +6211,13 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getMicrobioReports = function (codeGroup, dateRange) {
         var _this = this;
-        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
-            console.warn('No microbiology parameters available in the configuration.');
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"]) {
+            console.debug('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
-        return this.smartApiPromise.then(function (smartApi) {
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
             // YYYY-MM-DD format for dates
             var callParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]();
             callParams = callParams.append('patient', smartApi.patient.id);
@@ -5957,8 +6225,8 @@ var FhirHttpService = /** @class */ (function (_super) {
                 callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('_format', 'json');
-            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].username + ':' +
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].password);
+            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].username + ':' +
+                _fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].password);
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -5966,12 +6234,12 @@ var FhirHttpService = /** @class */ (function (_super) {
             });
             return _this.http
                 .get([
-                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].url,
-                _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport
+                _fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].url,
+                _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
                 .then(function (res) {
-                return _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_8__["MicrobioReport"].parseAndFilterMicrobioData(res, codeGroup);
+                return _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_12__["MicrobioReport"].parseAndFilterMicrobioData(res, codeGroup);
             });
         }, function (rejection) {
             _this.debugService.logError(rejection);
@@ -5979,37 +6247,23 @@ var FhirHttpService = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns AnnotateDiagnosticReport from a specified date range with a specific
-     * DiagnosticReportCodeGroup code.
+     * Returns AnnotateDiagnosticReport from a specified date range with a
+     * specific DiagnosticReportCodeGroup code.
      *
      * @param code The DiagnosticReportCodeGroup for which to get observations.
      * @param dateRange The time interval observations should fall between.
      */
-    FhirHttpService.prototype.getAnnotatedDiagnosticReports = function (code, dateRange) {
+    FhirHttpService.prototype.getAnnotatedDiagnosticReports = function (codeGroup, dateRange) {
         var _this = this;
-        var queryParams = {
-            type: _constants__WEBPACK_IMPORTED_MODULE_4__["FhirResourceType"].DiagnosticReport,
-            query: {
-                date: {
-                    $and: [
-                        GREATER_OR_EQUAL + dateRange.start.toISODate(),
-                        // We are adding one millisecond to the end date because the specs for DiagnosticReport
-                        // requires it to be greater or equal and strictly less than.
-                        LESS_THAN + dateRange.end.plus({ millisecond: 1 }).toISODate()
-                    ]
-                },
-            }
-        };
-        return this.smartApiPromise.then(function (smartApi) {
-            return _this.fetchAll(smartApi, queryParams, function (json, requestId) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__["DiagnosticReport"](json, requestId); })
-                .then(function (results) {
-                var annotatedReportsArr = results.filter(function (result) { return result.status !== _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_17__["DiagnosticReportStatus"].EnteredInError; })
-                    .map(function (report) { return _this.addAttachment(report); });
-                return Promise.all(annotatedReportsArr);
-            }, function (rejection) {
-                _this.debugService.logError(rejection);
-                throw rejection;
-            });
+        var codes = codeGroup.resourceCodes;
+        return this.diagnosticReportCache.getResource(dateRange).then(function (results) {
+            var annotatedReportsArr = results
+                .filter(function (result) {
+                return codes.includes(result.code) &&
+                    result.status !== _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_9__["DiagnosticReportStatus"].EnteredInError;
+            })
+                .map(function (report) { return _this.addAttachment(report); });
+            return Promise.all(annotatedReportsArr);
         });
     };
     /**
@@ -6020,24 +6274,27 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getAttachment = function (url) {
         var _this = this;
-        return this.smartApiPromise.then(function (smartApi) {
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], codes = _a[1];
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Accept': 'text/html',
                 'Authorization': 'Bearer ' + smartApi.tokenResponse.access_token
             });
-            return _this.http.get(url, { headers: httpHeaders,
-                responseType: 'text' }).toPromise()
+            return _this.http
+                .get(url, { headers: httpHeaders, responseType: 'text' })
+                .toPromise()
                 .then(function (res) { return res; })
                 .catch(function (err) { return err.message; });
         });
     };
     FhirHttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__["SMART_ON_FHIR_CLIENT"])),
-        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_17__["SMART_ON_FHIR_CLIENT"])),
+        __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeCreator"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_15__["FhirService"]));
 
 
 
@@ -6177,13 +6434,14 @@ var FhirLaunchComponent = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/fhir-resource-set.ts ***!
   \**************************************/
-/*! exports provided: TimestampedObject, ResultClassWithTimestamp, ResultClass, FhirResourceSet */
+/*! exports provided: TimestampedObject, ResultClassWithTimestamp, RawResource, ResultClass, FhirResourceSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TimestampedObject", function() { return TimestampedObject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultClassWithTimestamp", function() { return ResultClassWithTimestamp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RawResource", function() { return RawResource; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultClass", function() { return ResultClass; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FhirResourceSet", function() { return FhirResourceSet; });
 /* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
@@ -6230,6 +6488,14 @@ var ResultClassWithTimestamp = /** @class */ (function (_super) {
     return ResultClassWithTimestamp;
 }(TimestampedObject));
 
+var RawResource = /** @class */ (function () {
+    function RawResource(json, requestId) {
+        this.json = json;
+        this.requestId = requestId;
+    }
+    return RawResource;
+}());
+
 /**
  * A class that has label and requestId attributes.
  *
@@ -6264,16 +6530,8 @@ var ResultClass = /** @class */ (function () {
                         // Filter out any codes that are not RxNorm codes.
                         .filter(function (code) { return !!code; }))[0];
             }
-            else if (json.medicationCodeableConcept.text) {
-                // MedicationAdministrations do not come out of the BCH system with a
-                // RxNorm code on at this point, so if we don't get a RxNorm code,
-                // as a stopgap we reverse lookup based on the string name.
-                var rxNormString_1 = json.medicationCodeableConcept.text;
-                var codesWithName = _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_0__["RXNORM_CODES"].filter(function (x) { return x.label.toLowerCase() === rxNormString_1.toLowerCase(); });
-                rxNormCode = codesWithName.length === 1 ? codesWithName[0] : undefined;
-            }
+            return rxNormCode;
         }
-        return rxNormCode;
     };
     return ResultClass;
 }());
@@ -6327,7 +6585,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
-/* harmony import */ var _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fhir-data-classes/annotated-diagnostic-report */ "./src/app/fhir-data-classes/annotated-diagnostic-report.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fhir-data-classes/annotated-diagnostic-report */ "./src/app/fhir-data-classes/annotated-diagnostic-report.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -6338,12 +6597,18 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 
 
 
 var FhirService = /** @class */ (function () {
-    function FhirService() {
+    function FhirService(resourceCodeCreator) {
+        this.resourceCodeCreator = resourceCodeCreator;
+        this.loadAllCodes = this.resourceCodeCreator.loadAllConcepts;
     }
     /**
      * Returns whether there are any microbio Reports with this code in the given
@@ -6361,17 +6626,18 @@ var FhirService = /** @class */ (function () {
         });
     };
     /**
-     * Returns whether there are any annotated diagnosticreports with this code in the given
-     * time range.
-     * @param code The resource code (for diagnostic reports) for which to get observations.
+     * Returns whether there are any annotated diagnosticreports with this code in
+     * the given time range.
+     * @param code The resource code (for diagnostic reports) for which to get
+     *     observations.
      * @param dateRange The time interval observations should fall between.
      */
     FhirService.prototype.diagnosticReportsPresentWithCodes = function (codeGroup, dateRange) {
         // Just ask for one result to reduce the call time.
         return this.getAnnotatedDiagnosticReports(codeGroup, dateRange, 1)
             .then(function (reports) { return reports.length > 0; }, function (rejection) {
-            // If any AnnotatedDiagnosticReports for this code results in an error, do not
-            // show any AnnotatedDiagnosticReports at all.
+            // If any AnnotatedDiagnosticReports for this code results in an
+            // error, do not show any AnnotatedDiagnosticReports at all.
             throw rejection;
         });
     };
@@ -6407,9 +6673,9 @@ var FhirService = /** @class */ (function () {
         return this.getMedicationAdministrationsWithCodes(group.resourceCodes, dateRange);
     };
     /**
-     * Helper function to getAnnotatedDiagnosticReports() that makes the http calls
-     * to get the corresponding html attachments. Creates a new AnnotatedDiagnosticReport
-     * that includes the html attachment.
+     * Helper function to getAnnotatedDiagnosticReports() that makes the http
+     * calls to get the corresponding html attachments. Creates a new
+     * AnnotatedDiagnosticReport that includes the html attachment.
      *
      * @param report DiagnosticReport that will be edited to include the
      * html attachment in string format
@@ -6420,20 +6686,20 @@ var FhirService = /** @class */ (function () {
                 var presented = _a[_i];
                 // Currently Cerner only supports text/html files and not pdf
                 if (presented.contentType === 'text/html') {
-                    return this.getAttachment(presented.url)
-                        .then(function (html) {
-                        return new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__["AnnotatedDiagnosticReport"](report, html);
+                    return this.getAttachment(presented.url).then(function (html) {
+                        return new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["AnnotatedDiagnosticReport"](report, html);
                     });
                 }
             }
         }
-        // If there is no presentedForm section in the report or none of the presentedForm
-        // contentTypes are 'text/html', return the annotated diagnostic report without
-        // the attachment.
-        return Promise.resolve(new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_3__["AnnotatedDiagnosticReport"](report));
+        // If there is no presentedForm section in the report or none of the
+        // presentedForm contentTypes are 'text/html', return the annotated
+        // diagnostic report without the attachment.
+        return Promise.resolve(new _fhir_data_classes_annotated_diagnostic_report__WEBPACK_IMPORTED_MODULE_4__["AnnotatedDiagnosticReport"](report));
     };
     FhirService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_3__["ResourceCodeCreator"]])
     ], FhirService);
     return FhirService;
 }());
@@ -6924,18 +7190,18 @@ var LabeledSeries = /** @class */ (function () {
      * order, there are two LabeledSeries -- one for the corresponding
      * MedicationAdministrations, and one for the endpoints displayed for the
      * order.
-     * @param order The MedicationOrder to chart.
+     * @param annotatedOrder The AnnotatedMedicationOrder to chart.
      * @param dateRange The date range displayed on the chart.
      * @param categoricalYPosition If set, we use this categorical y-position
      *    for all the datapoints in both returned series. If unset, we use the
      *    dosage quantity for each administration as the numerical y-value.
      */
-    LabeledSeries.fromMedicationOrder = function (order, dateRange, categoricalYPosition) {
+    LabeledSeries.fromMedicationOrder = function (annotatedOrder, dateRange, categoricalYPosition) {
         var coordinates = new Array();
         var endpointCoordinates = new Array();
-        var medAdminsForOrder = order.administrationsForOrder;
-        var label = order.label + order.orderId;
-        var legend = order.rxNormCode.displayGrouping;
+        var medAdminsForOrder = annotatedOrder.medicationAdministrationSet;
+        var label = annotatedOrder.label + annotatedOrder.order.orderId;
+        var legend = annotatedOrder.order.rxNormCode.displayGrouping;
         if (medAdminsForOrder) {
             for (var _i = 0, _a = medAdminsForOrder.resourceList; _i < _a.length; _i++) {
                 var annotatedAdmin = _a[_i];
@@ -6952,30 +7218,30 @@ var LabeledSeries = /** @class */ (function () {
             // Administration of the order is during or after the beginning of the
             // time range of the chart, and if the time of the last Administration
             // of the order is before the end of the chart's time range.
-            var firstAdministrationIsAfterStartTime = order.firstAdministration.timestamp.toMillis() >=
+            var firstAdministrationIsAfterStartTime = annotatedOrder.firstAdministration.timestamp.toMillis() >=
                 dateRange.start.toMillis();
-            var lastAdministrationIsBeforeEndTime = order.lastAdmininistration.timestamp.toMillis() <=
+            var lastAdministrationIsBeforeEndTime = annotatedOrder.lastAdministration.timestamp.toMillis() <=
                 dateRange.end.toMillis();
             if (firstAdministrationIsAfterStartTime) {
                 endpointCoordinates.push([
-                    order.firstAdministration.timestamp,
-                    this.getYPositionForMed(order.firstAdministration, categoricalYPosition)
+                    annotatedOrder.firstAdministration.timestamp,
+                    this.getYPositionForMed(annotatedOrder.firstAdministration, categoricalYPosition)
                 ]);
             }
             else if (categoricalYPosition &&
-                (order.lastAdmininistration.timestamp.toMillis() >
+                (annotatedOrder.lastAdministration.timestamp.toMillis() >
                     dateRange.start.toMillis())) {
                 // Only add a point for continuity if we have a fixed y position.
                 coordinates.push([dateRange.start, categoricalYPosition]);
             }
             if (lastAdministrationIsBeforeEndTime) {
                 endpointCoordinates.push([
-                    order.lastAdmininistration.timestamp,
-                    this.getYPositionForMed(order.lastAdmininistration, categoricalYPosition)
+                    annotatedOrder.lastAdministration.timestamp,
+                    this.getYPositionForMed(annotatedOrder.lastAdministration, categoricalYPosition)
                 ]);
             }
             else if (categoricalYPosition &&
-                order.firstAdministration.timestamp.toMillis() <
+                annotatedOrder.firstAdministration.timestamp.toMillis() <
                     dateRange.end.toMillis()) {
                 // Only add a point for continuity if we have a fixed y position.
                 coordinates.push([dateRange.end, categoricalYPosition]);
@@ -6987,7 +7253,7 @@ var LabeledSeries = /** @class */ (function () {
             // LabeledSeries, as we only show normal ranges for Observations with
             // a normal range given in the data.
             undefined, // normalRanges
-            order.rxNormCode.displayGrouping),
+            annotatedOrder.order.rxNormCode.displayGrouping),
             new LabeledSeries('endpoint' + label, endpointCoordinates, medAdminsForOrder.unit, legend)
         ];
     };
@@ -7070,9 +7336,12 @@ var LabeledSeries = /** @class */ (function () {
      */
     LabeledSeries.fromDiagnosticReport = function (annotatedReport, date) {
         var report = annotatedReport.report;
-        var seriesLabel = report.id + '-' + (annotatedReport.report ? annotatedReport.report.category : 'unnamedReport');
+        var seriesLabel = report.id + '-' +
+            (annotatedReport.report ? annotatedReport.report.category :
+                'unnamedReport');
         var coordinates = [];
-        // We are setting the coordinates to the category of the document (RADRPT, CT Report, etc.)
+        // We are setting the coordinates to the category of the document (RADRPT,
+        // CT Report, etc.)
         coordinates = [[report.timestamp, report.category]];
         var series = [new LabeledSeries(seriesLabel, coordinates, undefined, // unit
             _clinicalconcepts_display_grouping__WEBPACK_IMPORTED_MODULE_0__["radiology"])];
@@ -7126,13 +7395,12 @@ var LabeledSeries = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineGraphData", function() { return LineGraphData; });
-/* harmony import */ var _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphtypes/tooltips/medication-tooltips */ "./src/app/graphtypes/tooltips/medication-tooltips.ts");
-/* harmony import */ var _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/observation-tooltips */ "./src/app/graphtypes/tooltips/observation-tooltips.ts");
-/* harmony import */ var _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager-exports */ "./src/app/clinicalconcepts/resource-code-manager-exports.ts");
+/* harmony import */ var _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fhir-data-classes/observation-interpretation-valueset */ "./src/app/fhir-data-classes/observation-interpretation-valueset.ts");
+/* harmony import */ var _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphtypes/tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
+/* harmony import */ var _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../graphtypes/tooltips/medication-tooltips */ "./src/app/graphtypes/tooltips/medication-tooltips.ts");
+/* harmony import */ var _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graphtypes/tooltips/observation-tooltips */ "./src/app/graphtypes/tooltips/observation-tooltips.ts");
 /* harmony import */ var _graphdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graphdata */ "./src/app/graphdatatypes/graphdata.ts");
 /* harmony import */ var _labeled_series__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./labeled-series */ "./src/app/graphdatatypes/labeled-series.ts");
-/* harmony import */ var _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphtypes/tooltips/annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -7151,10 +7419,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
     };
 })();
 
+
+
 // tslint:disable-next-line:max-line-length
-
-
-
 
 
 
@@ -7258,20 +7525,20 @@ var LineGraphData = /** @class */ (function (_super) {
                     // Blood pressure is read into the ObservationSet differently,
                     // causing an edge case in the presentation of the values in the
                     // tooltips. We only want to display 'Blood pressure' once
-                    if (obs.observation.codes[0].codeString === _clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].codeString) {
-                        // We are combining the array into one AnnotatedTooltip in order to check
-                        // to see if "Blood pressure" has already been added to any of the previous
-                        // tooltips
-                        var annotatedTT = _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_6__["AnnotatedTooltip"].combineAnnotatedTooltipArr(tooltipMap.get(timestamp));
-                        if (annotatedTT.tooltipChart.includes(_clinicalconcepts_resource_code_manager_exports__WEBPACK_IMPORTED_MODULE_3__["bloodPressureLoincs"][0].label)) {
+                    if (obs.observation.codes[0].label === 'Blood pressure') {
+                        // We are combining the array into one AnnotatedTooltip in
+                        // order to check to see if "Blood pressure" has already been added
+                        // to any of the previous tooltips
+                        var annotatedTT = _graphtypes_tooltips_annotated_tooltip__WEBPACK_IMPORTED_MODULE_1__["AnnotatedTooltip"].combineAnnotatedTooltipArr(tooltipMap.get(timestamp));
+                        if (annotatedTT.tooltipChart.includes('Blood pressure')) {
                             continue;
                         }
                     }
-                    tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](false, series.legendInfo.fill)
+                    tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["GenericAnnotatedObservationTooltip"](false, series.legendInfo.fill)
                         .getTooltip(obs, sanitizer, isAbnormal));
                 }
                 else {
-                    tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](true, series.legendInfo.fill)
+                    tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["GenericAnnotatedObservationTooltip"](true, series.legendInfo.fill)
                             .getTooltip(obs, sanitizer, isAbnormal)]);
                 }
             }
@@ -7309,12 +7576,12 @@ var LineGraphData = /** @class */ (function (_super) {
                     // timestamp so we stack the administrations on top of one
                     // another in that case.
                     if (tooltipMap.get(timestamp) && !alreadyMarked.has(timestamp)) {
-                        tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](false, series.legendInfo.fill)
+                        tooltipMap.get(timestamp).push(new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["GenericAbnormalTooltip"](false, series.legendInfo.fill)
                             .getTooltip(params, sanitizer));
                         alreadyMarked.add(timestamp);
                     }
                     else if (!tooltipMap.get(timestamp)) {
-                        tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAbnormalTooltip"](true, series.legendInfo.fill)
+                        tooltipMap.set(timestamp, [new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["GenericAbnormalTooltip"](true, series.legendInfo.fill)
                                 .getTooltip(params, sanitizer)]);
                     }
                 }
@@ -7334,22 +7601,17 @@ var LineGraphData = /** @class */ (function (_super) {
      */
     LineGraphData.fromMedicationOrderSet = function (medicationOrderSet, dateRange, sanitizer, encounters) {
         var tooltipMap = new Map();
-        var regions = new Array();
         var precision = 0;
         for (var _i = 0, _a = medicationOrderSet.resourceList; _i < _a.length; _i++) {
             var order = _a[_i];
-            regions.push([
-                order.firstAdministration.timestamp,
-                order.lastAdmininistration.timestamp
-            ]);
-            for (var _b = 0, _c = order.administrationsForOrder.resourceList; _b < _c.length; _b++) {
+            for (var _b = 0, _c = order.medicationAdministrationSet.resourceList; _b < _c.length; _b++) {
                 var admin = _c[_b];
                 var timestamp = admin.medAdministration.timestamp.toMillis().toString();
                 // The key for this tooltip is the administration's timestamp.
                 // There may be multiple data points associated with the timestamp
                 // so we stack the administrations on top of one another in that
                 // case.
-                var newTT = new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_0__["MedicationAdministrationTooltip"]().getTooltip([admin], sanitizer);
+                var newTT = new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_2__["MedicationAdministrationTooltip"]().getTooltip([admin], sanitizer);
                 if (tooltipMap.get(timestamp)) {
                     tooltipMap.get(timestamp).push(newTT);
                 }
@@ -7358,7 +7620,7 @@ var LineGraphData = /** @class */ (function (_super) {
                 }
             }
         }
-        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, regions, precision);
+        return new LineGraphData(medicationOrderSet.label, [_labeled_series__WEBPACK_IMPORTED_MODULE_5__["LabeledSeries"].fromMedicationOrderSet(medicationOrderSet, dateRange, encounters)], [medicationOrderSet.minDose, medicationOrderSet.maxDose], medicationOrderSet.unit, tooltipMap, undefined, undefined, precision);
     };
     /**
      * Converts a list of ObservationSets with discrete y-values (results) to
@@ -7385,17 +7647,18 @@ var LineGraphData = /** @class */ (function (_super) {
             for (var _a = 0, _b = observationSet.resourceList; _a < _b.length; _a++) {
                 var obs = _b[_a];
                 var isAbnormal = (obs.observation.interpretation &&
-                    obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_2__["NORMAL"]) ?
-                    true : false;
+                    obs.observation.interpretation.code !== _fhir_data_classes_observation_interpretation_valueset__WEBPACK_IMPORTED_MODULE_0__["NORMAL"]) ?
+                    true :
+                    false;
                 var tsString = obs.observation.timestamp.toMillis().toString();
                 // Only add the timestamp to the tooltip for the first entry.
                 var newTT = void 0;
                 if (obs.observation.value) {
-                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
+                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["GenericAnnotatedObservationTooltip"](!tooltipMap.has(tsString), lblSeries.legendInfo.fill)
                         .getTooltip(obs, sanitizer, isAbnormal);
                 }
                 else {
-                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_1__["DiscreteObservationTooltip"](!tooltipMap.has(tsString))
+                    newTT = new _graphtypes_tooltips_observation_tooltips__WEBPACK_IMPORTED_MODULE_3__["DiscreteObservationTooltip"](!tooltipMap.has(tsString))
                         .getTooltip([obs.observation], sanitizer);
                 }
                 // The key for this tooltip is the observation's timestamp.
@@ -7574,9 +7837,9 @@ var StepGraphData = /** @class */ (function (_super) {
         var endpoints = [];
         medicationOrderListGroup = medicationOrderListGroup.sort(function (a, b) {
             return a.resourceList[a.resourceList.length - 1]
-                .lastAdmininistration.timestamp.toMillis() -
+                .lastAdministration.timestamp.toMillis() -
                 b.resourceList[b.resourceList.length - 1]
-                    .lastAdmininistration.timestamp.toMillis();
+                    .lastAdministration.timestamp.toMillis();
         });
         var tooltipMap = new Map();
         for (var _i = 0, medicationOrderListGroup_1 = medicationOrderListGroup; _i < medicationOrderListGroup_1.length; _i++) {
@@ -7585,7 +7848,7 @@ var StepGraphData = /** @class */ (function (_super) {
             // for the same medicine.
             for (var _a = 0, _b = medOrderSet.resourceList; _a < _b.length; _a++) {
                 var medOrder = _b[_a];
-                var labeledSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromMedicationOrder(medOrder, dateRange, medOrder.administrationsForOrder.label);
+                var labeledSeries = _labeled_series__WEBPACK_IMPORTED_MODULE_3__["LabeledSeries"].fromMedicationOrder(medOrder, dateRange, medOrder.medicationAdministrationSet.label);
                 var administrationSeries = labeledSeries[0];
                 var endpointSeries = labeledSeries[1];
                 data.push(administrationSeries);
@@ -7596,7 +7859,7 @@ var StepGraphData = /** @class */ (function (_super) {
                 tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
                     medOrder.firstAdministration.timestamp, [new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer)]);
                 tooltipMap.set(medOrderSet.rxNormCode.label.toLowerCase() +
-                    medOrder.lastAdmininistration.timestamp, [new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer)]);
+                    medOrder.lastAdministration.timestamp, [new _graphtypes_tooltips_medication_tooltips__WEBPACK_IMPORTED_MODULE_1__["MedicationTooltip"]().getTooltip(medOrder, sanitizer)]);
             }
         }
         // Do not display the units for Medication administration values on the card
@@ -7701,8 +7964,6 @@ var AxisGroup = /** @class */ (function () {
             }
             this.displayGroup = axes[0].resourceGroup.displayGrouping;
         }
-        // Go ahead and make the calls to get whether the data is available.
-        Promise.resolve(this.dataAvailableInAppTimeScope());
     }
     /**
      * Returns whether there is any data available for any axes in this group
@@ -7714,7 +7975,7 @@ var AxisGroup = /** @class */ (function () {
             return Promise.resolve(this.dataAvailable);
         }
         return Promise
-            .all(this.axes.map(function (axis) { return axis.dataAvailableInAppTimeScope(); }))
+            .all(this.axes.map(function (axis) { return axis.axisDataAvailableInAppTimeScope(); }))
             .then(function (rsc) {
             _this.dataAvailable = rsc.some(function (r) { return r === true; });
             return _this.dataAvailable;
@@ -7742,9 +8003,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clinicalconcepts_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../clinicalconcepts/loinc-code */ "./src/app/clinicalconcepts/loinc-code.ts");
 /* harmony import */ var _clinicalconcepts_rx_norm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../clinicalconcepts/rx-norm */ "./src/app/clinicalconcepts/rx-norm.ts");
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
-/* harmony import */ var _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphdatatypes/microbiographdata */ "./src/app/graphdatatypes/microbiographdata.ts");
-/* harmony import */ var _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphdatatypes/diagnosticgraphdata */ "./src/app/graphdatatypes/diagnosticgraphdata.ts");
+/* harmony import */ var _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphdatatypes/diagnosticgraphdata */ "./src/app/graphdatatypes/diagnosticgraphdata.ts");
+/* harmony import */ var _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphdatatypes/linegraphdata */ "./src/app/graphdatatypes/linegraphdata.ts");
+/* harmony import */ var _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphdatatypes/microbiographdata */ "./src/app/graphdatatypes/microbiographdata.ts");
 /* harmony import */ var _graphdatatypes_stepgraphdata__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../graphdatatypes/stepgraphdata */ "./src/app/graphdatatypes/stepgraphdata.ts");
 /* harmony import */ var _graph_graph_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./graph/graph.component */ "./src/app/graphtypes/graph/graph.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
@@ -7798,6 +8059,11 @@ var Axis = /** @class */ (function () {
         this.showTicks = true;
         // The encounters for the date range.
         this.encounters = [];
+        /**
+         * Returns whether there is data available for this axis within the
+         * application's time scope.
+         */
+        this.axisDataAvailable = true;
         this.chartType = resourceGroup.chartType;
         this.displayConcept = resourceGroup.displayGrouping;
         this.label = label;
@@ -7809,7 +8075,8 @@ var Axis = /** @class */ (function () {
             resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_bch_microbio_code__WEBPACK_IMPORTED_MODULE_0__["BCHMicrobioCode"]; });
         this.allDiagnosticReport =
             resourceCodeList.every(function (code) { return code instanceof _clinicalconcepts_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__["DiagnosticReportCode"]; });
-        if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio && !this.allDiagnosticReport) {
+        if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio &&
+            !this.allDiagnosticReport) {
             throw Error('All resource codes must be of the same type.');
         }
     }
@@ -7836,15 +8103,15 @@ var Axis = /** @class */ (function () {
             else {
                 _this.errorMessage = JSON.stringify(rejection, null, 4);
             }
-            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].emptyData();
+            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].emptyData();
         });
     };
-    /**
-     * Returns whether there is data available for this axis within the
-     * application's time scope.
-     */
-    Axis.prototype.dataAvailableInAppTimeScope = function () {
-        return this.resourceGroup.dataAvailableInAppTimeScope();
+    Axis.prototype.axisDataAvailableInAppTimeScope = function () {
+        var _this = this;
+        return this.resourceGroup.dataAvailableInAppTimeScope().then(function (res) {
+            _this.axisDataAvailable = res;
+            return _this.axisDataAvailable;
+        });
     };
     /**
      * Gets the appropriate GraphData by classifying the resource codes and
@@ -7901,11 +8168,11 @@ var Axis = /** @class */ (function () {
                     if (obsSetList.some(function (obsSet) { return obsSet.anyQualitative; }) ||
                         allUnits.size > 1) {
                         _this.showTicks = false;
-                        return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromObservationSetListDiscrete(_this.displayConcept.label, obsSetList, _this.sanitizer, _this.encounters);
+                        return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].fromObservationSetListDiscrete(_this.displayConcept.label, obsSetList, _this.sanitizer, _this.encounters);
                     }
-                    return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromObservationSetList(_this.displayConcept.label, obsSetList, _this.resourceGroup, _this.sanitizer, _this.encounters);
+                    return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].fromObservationSetList(_this.displayConcept.label, obsSetList, _this.resourceGroup, _this.sanitizer, _this.encounters);
                 }
-                return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].emptyData();
+                return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].emptyData();
             });
         }
     };
@@ -7927,13 +8194,13 @@ var Axis = /** @class */ (function () {
     Axis.prototype.getStepGraphDataForMB = function (bchCodes, dateRange) {
         var _this = this;
         return bchCodes.getResourceSet(dateRange).then(function (microbioReports) {
-            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_6__["MicrobioGraphData"].fromMicrobioReports(microbioReports, _this.sanitizer);
+            return _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_7__["MicrobioGraphData"].fromMicrobioReports(microbioReports, _this.sanitizer);
         });
     };
     Axis.prototype.getStepGraphDataForDiagnosticReport = function (diagCodes, dateRange) {
         var _this = this;
         return diagCodes.getResourceSet(dateRange).then(function (diagReports) {
-            return _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_7__["DiagnosticGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
+            return _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_5__["DiagnosticGraphData"].fromDiagnosticReports(diagReports, _this.sanitizer);
         });
     };
     /**
@@ -7944,14 +8211,10 @@ var Axis = /** @class */ (function () {
         var _this = this;
         return rxNorms.getResourceSet(dateRange)
             .then(function (rxNs) {
-            var medOrders = [].concat.apply([], rxNs.map(function (rx) { return rx.orders.resourceList; }));
-            return medOrders.map(function (order) { return order.setMedicationAdministrations(_this.fhirService); });
+            return [].concat.apply([], rxNs.map(function (rx) { return rx.orders.resourceList; }));
         })
             .then(function (orders) {
-            return Promise.all(orders);
-        })
-            .then(function (orders) {
-            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_5__["LineGraphData"].fromMedicationOrderSet(new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_4__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
+            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].fromMedicationOrderSet(new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_4__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
         });
     };
     /**
@@ -7966,7 +8229,7 @@ var Axis = /** @class */ (function () {
      * Returns whether there's resolved data for this axis.
      */
     Axis.prototype.dataResolved = function () {
-        return this.alreadyResolvedData ? true : false;
+        return this.alreadyResolvedData && this.axisDataAvailable ? true : false;
     };
     return Axis;
 }());
@@ -10144,8 +10407,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationTooltip", function() { return MedicationTooltip; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MedicationAdministrationTooltip", function() { return MedicationAdministrationTooltip; });
 /* harmony import */ var src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/number_utils */ "./src/app/number_utils.ts");
-/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
-/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tooltips/tooltip */ "./src/app/graphtypes/tooltips/tooltip.ts");
+/* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -10166,6 +10430,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+
 /**
  * Makes a tooltip for a medication order that lists the order's first and last
  * doses in a table.
@@ -10175,21 +10440,21 @@ var MedicationTooltip = /** @class */ (function (_super) {
     function MedicationTooltip() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    MedicationTooltip.prototype.getTooltip = function (order, sanitizer) {
-        var medication = order.label;
-        var firstDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(order.firstAdministration.timestamp);
-        var lastDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(order.lastAdmininistration.timestamp);
-        var dosageInstruction = order.dosageInstruction;
-        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader(medication, table, sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['First Dose', firstDose], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Last Dose', lastDose], sanitizer);
-        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['Dosage Instructions', dosageInstruction], sanitizer);
+    MedicationTooltip.prototype.getTooltip = function (annotatedOrder, sanitizer) {
+        var medication = annotatedOrder.label;
+        var firstDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].formatTimestamp(annotatedOrder.firstAdministration.timestamp);
+        var lastDose = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].formatTimestamp(annotatedOrder.lastAdministration.timestamp);
+        var dosageInstruction = annotatedOrder.order.dosageInstruction;
+        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addHeader(medication + ": Order #" + annotatedOrder.order.orderId, table, sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].FIRST_DOSE, firstDose], sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].LAST_DOSE, lastDose], sanitizer);
+        _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].DOSAGE_INSTRUCTIONS, dosageInstruction], sanitizer);
         var tooltipChart = table.outerHTML;
-        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__["AnnotatedTooltip"](tooltipChart);
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     return MedicationTooltip;
-}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 /**
  * Makes a tooltip for a medication administration that shows its dose
@@ -10202,38 +10467,40 @@ var MedicationAdministrationTooltip = /** @class */ (function (_super) {
     }
     MedicationAdministrationTooltip.prototype.getTooltip = function (administrations, sanitizer) {
         var timestamp = administrations[0].medAdministration.timestamp;
-        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].createNewTable();
+        var table = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].createNewTable();
         for (var _i = 0, administrations_1 = administrations; _i < administrations_1.length; _i++) {
             var administration = administrations_1[_i];
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addHeader(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(timestamp) + ': Dose ' +
-                administration.doseInOrder + ' of ' +
-                administration.medAdministration.rxNormCode.label, table, sanitizer, 3);
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, ['', 'Time', 'Dose'], sanitizer);
-            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
-                'This dose',
-                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(administration.medAdministration.timestamp),
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addHeader(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].formatTimestamp(timestamp) + ": " + administration.medAdministration.rxNormCode
+                .label + " dose. Part of Order #" + administration.medAdministration.medicationOrderId, table, sanitizer, 3);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, ['', 'Time', 'Dose'], sanitizer);
+            _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [
+                src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].THIS_DOSE,
+                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].formatTimestamp(administration.medAdministration.timestamp),
                 this.formatDosage(administration.medAdministration)
             ], sanitizer);
             if (administration.previousDose) {
                 var timestampDifference = administration.medAdministration.timestamp.diff(administration.previousDose.medAdministration.timestamp);
-                var doseDiffText = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].formatTimestamp(administration.previousDose.medAdministration.timestamp) +
-                    '<br>(' + timestampDifference.toFormat('h:m') + ' after dose ' +
-                    administration.previousDose.doseInOrder + ')';
-                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"].addRow(table, [
-                    'Previous dose', doseDiffText,
+                var doseDiffText = _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].formatTimestamp(administration.previousDose.medAdministration.timestamp) +
+                    '<br>(' + timestampDifference.toFormat('h:m') +
+                    ' before this dose)';
+                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [
+                    src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].PREVIOUS_DOSE, doseDiffText,
                     this.formatDosage(administration.previousDose.medAdministration)
                 ], sanitizer);
             }
+            else {
+                _tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"].addRow(table, [src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].NO_PREVIOUS_DOSE], sanitizer, undefined, false, 3);
+            }
         }
         var tooltipChart = table.outerHTML;
-        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_2__["AnnotatedTooltip"](tooltipChart);
+        return new _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__["AnnotatedTooltip"](tooltipChart);
     };
     MedicationAdministrationTooltip.prototype.formatDosage = function (administration) {
         return Object(src_app_number_utils__WEBPACK_IMPORTED_MODULE_0__["formatNumberWithPrecision"])(administration.dosage.quantity) + ' ' +
             administration.dosage.unit;
     };
     return MedicationAdministrationTooltip;
-}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_1__["Tooltip"]));
+}(_tooltips_tooltip__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]));
 
 
 
@@ -10507,9 +10774,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandardTooltip", function() { return StandardTooltip; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _theme_verily_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/verily_colors */ "./src/app/theme/verily_colors.ts");
 /* harmony import */ var _annotated_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotated-tooltip */ "./src/app/graphtypes/tooltips/annotated-tooltip.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
@@ -10571,7 +10838,7 @@ var Tooltip = /** @class */ (function () {
      */
     Tooltip.formatTimestamp = function (timestamp) {
         return timestamp.toLocal().toLocaleString() + ' ' +
-            timestamp.toLocal().toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].TIME_24_SIMPLE);
+            timestamp.toLocal().toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].TIME_24_SIMPLE);
     };
     /**
      * Adds a header to the HTMLTableElement
@@ -10596,15 +10863,19 @@ var Tooltip = /** @class */ (function () {
      * @param sanitizer A DOM sanitizer
      * @param color Color that is displayed on the legend and the graph.
      * @param isAbnormal Boolean that depicts whether the datapoint is abnormal
+     * @param colspan Number that specifies how many columns each cell should span
      */
-    Tooltip.addRow = function (table, cellText, sanitizer, color, isAbnormal) {
+    Tooltip.addRow = function (table, cellText, sanitizer, color, isAbnormal, colspan) {
         var row = table.insertRow();
         for (var i = 0; i < cellText.length; i++) {
             var cell1 = row.insertCell();
+            if (colspan) {
+                cell1.setAttribute('colspan', colspan.toString());
+            }
             if (i === 0) {
                 cell1.className = 'name';
                 if (isAbnormal) {
-                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["ABNORMAL"]);
+                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_2__["ABNORMAL"]);
                 }
                 if (color) {
                     cell1.appendChild(Tooltip.makeColorSwatch(color, isAbnormal));
@@ -10618,7 +10889,7 @@ var Tooltip = /** @class */ (function () {
             else {
                 cell1.className = 'value';
                 if (isAbnormal) {
-                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_1__["ABNORMAL"]);
+                    cell1.setAttribute('style', 'color: ' + _theme_verily_colors__WEBPACK_IMPORTED_MODULE_2__["ABNORMAL"]);
                 }
             }
             cell1.innerHTML = sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, cellText[i]);
@@ -10639,7 +10910,8 @@ var Tooltip = /** @class */ (function () {
         }
         else {
             // Creates a circular color swatch
-            colorSpan.setAttribute('style', 'background-color: ' + color.toString() + '; ' + this.TOOLTIP_NORMAL_CSS);
+            colorSpan.setAttribute('style', 'background-color: ' + color.toString() + '; ' +
+                this.TOOLTIP_NORMAL_CSS);
         }
         return colorSpan;
     };
@@ -10673,7 +10945,7 @@ var StandardTooltip = /** @class */ (function (_super) {
     }
     StandardTooltip.prototype.getTooltip = function (unused, sanitizer) {
         var table = Tooltip.createNewTable();
-        Tooltip.addTimeHeader(luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].fromJSDate(new Date(this.dataPoints[0].x)), table, sanitizer);
+        Tooltip.addTimeHeader(luxon__WEBPACK_IMPORTED_MODULE_1__["DateTime"].fromJSDate(new Date(this.dataPoints[0].x)), table, sanitizer);
         for (var _i = 0, _a = this.dataPoints; _i < _a.length; _i++) {
             var pt = _a[_i];
             Tooltip.addRow(table, [pt.name, pt.value + ' ' + this.unit], sanitizer, this.color(pt));
@@ -10847,14 +11119,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fhir-data-classes/annotated-microbio-report */ "./src/app/fhir-data-classes/annotated-microbio-report.ts");
-/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
-/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
-/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
-/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
-/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
-/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fhir-data-classes/annotated-microbio-report */ "./src/app/fhir-data-classes/annotated-microbio-report.ts");
+/* harmony import */ var _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fhir-data-classes/diagnostic-report */ "./src/app/fhir-data-classes/diagnostic-report.ts");
+/* harmony import */ var _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fhir-data-classes/encounter */ "./src/app/fhir-data-classes/encounter.ts");
+/* harmony import */ var _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fhir-data-classes/medication-administration */ "./src/app/fhir-data-classes/medication-administration.ts");
+/* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
+/* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
+/* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -10895,10 +11168,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MockFhirService = /** @class */ (function (_super) {
     __extends(MockFhirService, _super);
-    function MockFhirService(http) {
-        var _this = _super.call(this) || this;
+    function MockFhirService(http, resourceCodeCreator) {
+        var _this = _super.call(this, resourceCodeCreator) || this;
         _this.http = http;
         _this.assetPath = './assets/' + _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].mockDataFolder + '/';
         _this.allFilePaths = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].mockDataFiles.map(function (x) { return _this.assetPath + x + '.json'; });
@@ -10908,7 +11182,51 @@ var MockFhirService = /** @class */ (function (_super) {
         _this.medicationOrderMap = new Map();
         _this.diagnosticReportMap = new Map();
         _this.encounters = new Array();
-        _this.allDataPromise = _this.mapAllData();
+        _this.loadAllData = _this.loadAllCodes.then(function () { return Promise.all(_this.allFilePaths.map(function (filePath) {
+            return _this.http.get(filePath).toPromise().then(function (data) {
+                if (filePath.includes('_MB_data')) {
+                    _this.microbioJson = data;
+                }
+                try {
+                    var entry = data.entry;
+                    // Sometimes data comes to us in bundles, and then we want to
+                    // flatten it into a series of resources.
+                    if (data.length > 0) {
+                        entry = data.map(function (bundle) { return bundle.entry; }).flat();
+                    }
+                    var _loop_1 = function (json) {
+                        var mockRequestId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
+                        var resourceType = json.resource.resourceType;
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation) {
+                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
+                        }
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration) {
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
+                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.medicationOrderId]; });
+                        }
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder) {
+                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__["MedicationOrder"](d, mockRequestId); }, function (order) { return [order.orderId]; });
+                        }
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter) {
+                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_9__["Encounter"](json.resource, mockRequestId);
+                            _this.encounters.push(encounter);
+                        }
+                        // Not used for microbio data, but only for diagnosticReport data
+                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport) {
+                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReport"](d, mockRequestId); }, function (report) { return [report.code]; });
+                        }
+                    };
+                    for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
+                        var json = entry_1[_i];
+                        _loop_1(json);
+                    }
+                }
+                catch (_a) {
+                    console.warn('Trouble reading file: ' + filePath +
+                        '. Continuing on since this is the mock server.');
+                }
+            });
+        })); });
         return _this;
     }
     MockFhirService.prototype.constructResourceMap = function (json, mapToUpdate, constructorFn, getCodesFn) {
@@ -10930,54 +11248,6 @@ var MockFhirService = /** @class */ (function (_super) {
             console.debug(err);
         }
     };
-    MockFhirService.prototype.mapAllData = function () {
-        var _this = this;
-        return Promise.all(this.allFilePaths.map(function (filePath) {
-            return _this.http.get(filePath).toPromise().then(function (data) {
-                if (filePath.includes('_MB_data')) {
-                    _this.microbioJson = data;
-                }
-                try {
-                    var entry = data.entry;
-                    // Sometimes data comes to us in bundles, and then we want to flatten
-                    // it into a series of resources.
-                    if (data.length > 0) {
-                        entry = data.map(function (bundle) { return bundle.entry; }).flat();
-                    }
-                    var _loop_1 = function (json) {
-                        var mockRequestId = Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])();
-                        var resourceType = json.resource.resourceType;
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Observation) {
-                            _this.constructResourceMap(json, _this.loincMap, function (x) { return new _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["Observation"](x, mockRequestId); }, function (obs) { return obs.codes; });
-                        }
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationAdministration) {
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByCode, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.rxNormCode]; });
-                            _this.constructResourceMap(json, _this.medicationAdministrationMapByOrderId, function (d) { return new _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_9__["MedicationAdministration"](d, mockRequestId); }, function (admin) { return [admin.medicationOrderId]; });
-                        }
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].MedicationOrder) {
-                            _this.constructResourceMap(json, _this.medicationOrderMap, function (d) { return new _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_10__["MedicationOrder"](d, mockRequestId); }, function (order) { return [order.orderId]; });
-                        }
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].Encounter) {
-                            var encounter = new _fhir_data_classes_encounter__WEBPACK_IMPORTED_MODULE_8__["Encounter"](json.resource, mockRequestId);
-                            _this.encounters.push(encounter);
-                        }
-                        // Not used for microbio data, but only for diagnosticReport data
-                        if (resourceType === src_constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport) {
-                            _this.constructResourceMap(json, _this.diagnosticReportMap, function (d) { return new _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_7__["DiagnosticReport"](d, mockRequestId); }, function (report) { return [report.code]; });
-                        }
-                    };
-                    for (var _i = 0, entry_1 = entry; _i < entry_1.length; _i++) {
-                        var json = entry_1[_i];
-                        _loop_1(json);
-                    }
-                }
-                catch (_a) {
-                    console.warn('Trouble reading file: ' + filePath +
-                        '. Continuing on since this is the mock server.');
-                }
-            });
-        }));
-    };
     /**
      * Gets observations from a specified date range with a specific LOINC code.
      * @param code The LOINC code for which to get observations.
@@ -10987,18 +11257,19 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getObservationsWithCode = function (code, dateRange) {
         var _this = this;
-        return this.allDataPromise.then(function (map) { return _this.getObservations(_this.loincMap, code, dateRange); });
+        return this.loadAllData.then(function (map) { return _this.getObservations(_this.loincMap, code, dateRange); });
     };
     MockFhirService.prototype.getObservations = function (map, code, dateRange) {
         return map.has(code) ?
             map.get(code)
                 .filter(function (obs) { return dateRange.contains(obs.timestamp); })
-                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_12__["ObservationStatus"].EnteredInError; }) :
+                .filter(function (obs) { return obs.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__["ObservationStatus"].EnteredInError; }) :
             [];
     };
     MockFhirService.prototype.observationsPresentWithCode = function (code, dateRange) {
-        return this.getObservationsWithCode(code, dateRange)
-            .then(function (results) { return results.length > 0; });
+        var _this = this;
+        return this.loadAllData.then(function () { return _this.getObservationsWithCode(code, dateRange)
+            .then(function (results) { return results.length > 0; }); });
     };
     /**
      * Gets medication data from a specified date range with a specific Rx code
@@ -11007,7 +11278,7 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange) {
         var _this = this;
-        return this.allDataPromise.then(function (x) {
+        return this.loadAllData.then(function () {
             var allMedAdmins = new Array();
             _this.medicationAdministrationMapByCode.forEach(function (medAdmins, code) {
                 if (codes.includes(code)) {
@@ -11015,15 +11286,19 @@ var MockFhirService = /** @class */ (function (_super) {
                 }
             });
             return Promise.resolve(allMedAdmins);
+        }, function (rejection) {
+            throw rejection;
         });
     };
     MockFhirService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        return this.getMedicationAdministrationsWithCodes([code], dateRange)
+        var _this = this;
+        return this.loadAllData.then(function () { return _this.getMedicationAdministrationsWithCodes([code], dateRange)
             .then(function (obs) { return obs.length > 0; }, function (rejection) {
-            // If any MedicationAdministration for this code results in an error,
-            // do not show any MedicationAdministrations at all.
+            // If any MedicationAdministration for this code results in
+            // an error, do not show any MedicationAdministrations at
+            // all.
             throw rejection;
-        });
+        }); });
     };
     /**
      * Returns arbitrary orders for current mock medications.
@@ -11031,17 +11306,9 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getMedicationOrderWithId = function (id) {
         var _this = this;
-        return this.allDataPromise.then(function (x) { return _this.medicationOrderMap.has(id) ?
+        return this.loadAllData.then(function (x) { return _this.medicationOrderMap.has(id) ?
             _this.medicationOrderMap.get(id)[0] :
             undefined; });
-    };
-    /**
-     * Gets administrations for specified order id.
-     * @param id The id to pull the order from.
-     */
-    MockFhirService.prototype.getMedicationAdministrationsWithOrder = function (id, code) {
-        var _this = this;
-        return this.allDataPromise.then(function (x) { return _this.medicationAdministrationMapByOrderId.get(id); });
     };
     /**
      * Gets the encounters for the patient for any encounter that falls in the
@@ -11051,7 +11318,7 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getEncountersForPatient = function (dateRange) {
         var _this = this;
-        return this.allDataPromise.then(function (x) { return _this.encounters.filter(function (encounter) { return dateRange.intersection(encounter.period) !== null &&
+        return this.loadAllData.then(function (x) { return _this.encounters.filter(function (encounter) { return dateRange.intersection(encounter.period) !== null &&
             encounter.period.start >= luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().minus({ years: 1 }); }); });
     };
     /**
@@ -11074,10 +11341,10 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getMicrobioReports = function (codeGroup, dateRange, limitCount) {
         var _this = this;
-        return this.allDataPromise.then(function (x) {
-            var microbioReports = _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_11__["MicrobioReport"]
+        return this.loadAllData.then(function (x) {
+            var microbioReports = _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_12__["MicrobioReport"]
                 .parseAndFilterMicrobioData(_this.microbioJson, codeGroup)
-                .filter(function (report) { return dateRange.contains(new _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_6__["AnnotatedMicrobioReport"](report).timestamp); });
+                .filter(function (report) { return dateRange.contains(new _fhir_data_classes_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_7__["AnnotatedMicrobioReport"](report).timestamp); });
             return microbioReports.slice(0, limitCount ? limitCount : undefined);
         });
     };
@@ -11095,7 +11362,7 @@ var MockFhirService = /** @class */ (function (_super) {
      */
     MockFhirService.prototype.getAnnotatedDiagnosticReports = function (codeGroup, dateRange, limitCount) {
         var _this = this;
-        return this.allDataPromise.then(function (x) {
+        return this.loadAllData.then(function (x) {
             var annotatedReportsArr = new Array();
             for (var _i = 0, _a = codeGroup.resourceCodes; _i < _a.length; _i++) {
                 var code = _a[_i];
@@ -11127,10 +11394,10 @@ var MockFhirService = /** @class */ (function (_super) {
     };
     MockFhirService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_6__["ResourceCodeCreator"]])
     ], MockFhirService);
     return MockFhirService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_13__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
 
 
 
@@ -11280,7 +11547,7 @@ var SetupDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\n.search-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -webkit-box;\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: -webkit-gradient(linear, left top, right top, from(#4527A0) , to(#870D4E));\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.encounters-error {\n  width: 50%;\n  margin-bottom: 16px;\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxvQkFBYTtFQUFiLGFBQWE7RUFDYixvQkFBb0I7QUFDdEI7O0FBRUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0FBQzFDOztBQUVBO0VBQ0UsZ0NBQWdDO0NBQ2pDLDRGQUE4RDtDQUE5RCw4REFBOEQ7Q0FDOUQsWUFBWTtBQUNiOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUNBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsVUFBVTtFQUNWLG1CQUFtQjtFQUNuQixxQkFBcUI7RUFDckIscUJBQXFCO0FBQ3ZCIiwiZmlsZSI6InNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJ1dHRvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuaDMge1xuICBwYWRkaW5nOiA1cHg7XG4gIG1hcmdpbjogMTBweDtcbn1cblxuaDEsIGgyIHtcbiAgZm9udC1mYW1pbHk6ICdNb250c2VycmF0Jywgc2Fucy1zZXJpZjtcbn1cblxuLnNlYXJjaC1pY29uIHtcbiAgcGFkZGluZy10b3A6IDIwcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBib3R0b207XG59XG5cbi5hY3Rpb25zIHtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIHBhZGRpbmc6IDIwcHg7XG59XG5cbi5jYXRlZ29yeSB7XG4gIHBhZGRpbmctbGVmdDogMTBweDtcbn1cblxuLm1haW5TZXR1cCB7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nLXRvcDogMjBweDtcbiAgcGFkZGluZy1sZWZ0OiA0MHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuLmNvbmNlcHRPcHRpb25zIHtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLXJvdywgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbn1cblxuLmRlZmF1bHRCYWNrZ3JvdW5kQ29sb3Ige1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjAyMDIwOyAvKiBHcmV5IDkwMCAqL1xufVxuXG4uYWNjZW50QmFja2dyb3VuZENvbG9yIHtcbiAgLyogRGVlcCBQdXJwbGUgODAwIHRvIFBpbmsgOTAwICovXG4gYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNDUyN0EwICwgIzg3MEQ0RSk7XG4gY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtd3JhcHBlciB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWNoZWNrYm94LWZyYW1lIHtcbiAgYm9yZGVyLWNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LXJhZGlvLW91dGVyLWNpcmNsZSB7XG4gIGJvcmRlci1jb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1jaGVja2JveC1kaXNhYmxlZCAubWF0LWNoZWNrYm94LWxhYmVsIHtcbiAgY29sb3I6IGdyYXk7XG59XG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC1lbXB0eS5tYXQtZm9ybS1maWVsZC1sYWJlbCB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtbGFiZWwge1xuICBjb2xvcjp3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC11bmRlcmxpbmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC5tYXQtZm9jdXNlZCAubWF0LWZvcm0tZmllbGQtcmlwcGxlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtdW5kZXJsaW5lIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuYXBwLXNldHVwIC5tYXQtaW5wdXQtcGxhY2Vob2xkZXIge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5lbmNvdW50ZXJzLWVycm9yIHtcbiAgd2lkdGg6IDUwJTtcbiAgbWFyZ2luLWJvdHRvbTogMTZweDtcbiAgd2hpdGUtc3BhY2U6IHByZS13cmFwO1xuICB3b3JkLWJyZWFrOiBicmVhay1hbGw7XG59XG4iXX0= */"
+module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\n.search-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.category-group-tile {\n  padding-bottom: 10px;\n}\n\n.category-label {\n  line-height: 28px;\n  margin: 0px;\n  padding: 0px;\n  padding-left: 15px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-figure {\n  align-items: flex-start !important;\n  justify-content: left !important;\n}\n\n::ng-deep .mat-checkbox-label {\n  line-height: 28px !important;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.encounters-error {\n  width: 50%;\n  margin-bottom: 16px;\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQ0FBa0M7RUFDbEMsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsNEJBQTRCO0FBQzlCOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLHlCQUF5QixFQUFFLGFBQWE7QUFDMUM7O0FBRUE7RUFDRSxnQ0FBZ0M7Q0FDakMsOERBQThEO0NBQzlELFlBQVk7QUFDYjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFDQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixtQkFBbUI7RUFDbkIscUJBQXFCO0VBQ3JCLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL3NldHVwL3NldHVwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJidXR0b24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5cbmgzIHtcbiAgcGFkZGluZzogNXB4O1xuICBtYXJnaW46IDEwcHg7XG59XG5cbmgxLCBoMiB7XG4gIGZvbnQtZmFtaWx5OiAnTW9udHNlcnJhdCcsIHNhbnMtc2VyaWY7XG59XG5cbi5zZWFyY2gtaWNvbiB7XG4gIHBhZGRpbmctdG9wOiAyMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xufVxuXG4uYWN0aW9ucyB7XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICBwYWRkaW5nOiAyMHB4O1xufVxuXG4uY2F0ZWdvcnkge1xuICBwYWRkaW5nLWxlZnQ6IDEwcHg7XG59XG5cbi5jYXRlZ29yeS1ncm91cC10aWxlIHtcbiAgcGFkZGluZy1ib3R0b206IDEwcHg7XG59XG5cbi5jYXRlZ29yeS1sYWJlbCB7XG4gIGxpbmUtaGVpZ2h0OiAyOHB4O1xuICBtYXJnaW46IDBweDtcbiAgcGFkZGluZzogMHB4O1xuICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG59XG5cbi5tYWluU2V0dXAge1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZy10b3A6IDIwcHg7XG4gIHBhZGRpbmctbGVmdDogNDBweDtcbiAgY29sb3I6IHdoaXRlO1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbi5jb25jZXB0T3B0aW9ucyB7XG4gIHBhZGRpbmctbGVmdDogMjVweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtZmlndXJlIHtcbiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQgIWltcG9ydGFudDtcbiAganVzdGlmeS1jb250ZW50OiBsZWZ0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAubWF0LWNoZWNrYm94LWxhYmVsIHtcbiAgbGluZS1oZWlnaHQ6IDI4cHggIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbGJhci1yb3csIC5tYXQtdG9vbGJhci1zaW5nbGUtcm93IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG59XG5cbi5kZWZhdWx0QmFja2dyb3VuZENvbG9yIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIwMjAyMDsgLyogR3JleSA5MDAgKi9cbn1cblxuLmFjY2VudEJhY2tncm91bmRDb2xvciB7XG4gIC8qIERlZXAgUHVycGxlIDgwMCB0byBQaW5rIDkwMCAqL1xuIGJhY2tncm91bmQtaW1hZ2U6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgIzQ1MjdBMCAsICM4NzBENEUpO1xuIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwICBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLXdyYXBwZXIge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1jaGVja2JveC1mcmFtZSB7XG4gIGJvcmRlci1jb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1yYWRpby1vdXRlci1jaXJjbGUge1xuICBib3JkZXItY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtY2hlY2tib3gtZGlzYWJsZWQgLm1hdC1jaGVja2JveC1sYWJlbCB7XG4gIGNvbG9yOiBncmF5O1xufVxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtZW1wdHkubWF0LWZvcm0tZmllbGQtbGFiZWwge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLWxhYmVsIHtcbiAgY29sb3I6d2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtdW5kZXJsaW5lIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQubWF0LWZvY3VzZWQgLm1hdC1mb3JtLWZpZWxkLXJpcHBsZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLXVuZGVybGluZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG59XG5cbmFwcC1zZXR1cCAubWF0LWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgY29sb3I6IHdoaXRlO1xufVxuXG4uZW5jb3VudGVycy1lcnJvciB7XG4gIHdpZHRoOiA1MCU7XG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XG4gIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcbiAgd29yZC1icmVhazogYnJlYWstYWxsO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -11291,7 +11558,7 @@ module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"setupDataService.encountersError\" class=\"encounters-error\">\n        <mat-expansion-panel-header>\n          <mat-icon>error</mat-icon>Error loading patient encounters.\n        </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeMonths\">\n          {{uiConstants.LAST_THREE_MONTHS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastMonth\">\n          {{uiConstants.LAST_MONTH}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastSevenDays\" [checked]=\"true\">\n          {{uiConstants.LAST_SEVEN_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastThreeDays\">\n          {{uiConstants.LAST_THREE_DAYS}}\n        </mat-radio-button>\n      </div>\n      <div>\n        <mat-radio-button [value]=\"lastOneDay\">\n          {{uiConstants.LAST_ONE_DAY}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div *ngFor=\"let entry of displayGroupingOptions | async\">\n      <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n        <h3>{{entry[0].label}}</h3>\n      </div>\n      <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n        <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n          [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n          {{element.label}} <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n          <span class=\"grayout\"\n            *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n        </mat-checkbox>\n      </div>\n    </div>\n    <div *ngIf=\"(displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>\n"
+module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"setupDataService.encountersError\" class=\"encounters-error\">\n      <mat-expansion-panel-header>\n        <mat-icon>error</mat-icon>Error loading patient encounters.\n      </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div *ngFor=\"let item of staticTimeOptions\">\n        <mat-radio-button [value]=\"item[0]\">\n          {{item[1]}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div>\n      <!--rowHeight is 28px since that is what the line height is for the content. -->\n      <mat-grid-list cols=\"2\" rowHeight=\"28px\" gutterSize=\"0px\">\n        <!--rowspan is set to the number of concepts in the grouping + 2 (the category header row and a blank row for spacing) -->\n        <mat-grid-tile class=\"category-group-tile\" *ngFor=\"let entry of displayGroupingOptions | async\"\n          [rowspan]=\"(2 +entry[1].length)\">\n          <div>\n            <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n              <h3 class=\"category-label\">{{entry[0].label}}</h3>\n            </div>\n            <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n              <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n                [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n                {{element.label}} <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n                <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n              </mat-checkbox>\n            </div>\n          </div>\n        </mat-grid-tile>\n      </mat-grid-list>\n    </div>\n    <div *ngIf=\"displayGroupingOptions && (displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -11314,10 +11581,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
-/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _result_error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../result-error */ "./src/app/result-error.ts");
+/* harmony import */ var _setup_data_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../setup-data.service */ "./src/app/setup-data.service.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -11346,6 +11614,7 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var LoadStatus;
 (function (LoadStatus) {
     LoadStatus[LoadStatus["LOADING"] = 0] = "LOADING";
@@ -11358,13 +11627,12 @@ var LoadStatus;
  * configuration.
  */
 var SetupComponent = /** @class */ (function () {
-    function SetupComponent(resourceCodeManager, route, router, setupDataService, fhirService, uiConstants) {
+    function SetupComponent(resourceCodeManager, route, router, setupDataService, fhirService, resourceCodeCreator, uiConstants) {
         this.route = route;
         this.router = router;
         this.setupDataService = setupDataService;
         this.fhirService = fhirService;
         this.uiConstants = uiConstants;
-        this.allConcepts = new Array();
         this.checkedConcepts = new Map();
         this.chosenConcepts = new Array();
         this.useDebugger = _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].useDebugger;
@@ -11388,14 +11656,29 @@ var SetupComponent = /** @class */ (function () {
         this.sortResources = (function (a, b) {
             return a.label.localeCompare(b.label);
         });
-        // Set up jut a couple things so we don't have to hold on to them as
-        // unnecessary class variables.
-        var displayGroups = resourceCodeManager.getDisplayGroupMapping();
-        /* Load in the concepts to display, flattening them all into a
-         * single-depth array. */
-        this.allConcepts = Array.from(displayGroups.values())
-            .reduce(function (acc, val) { return acc.concat(val); }, []);
-        this.displayGroupings = Array.from(displayGroups.entries());
+        this.allConcepts =
+            resourceCodeManager
+                .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+                .then(function (displayGroups) {
+                /* Load in the concepts to display, flattening them
+                 * all into a single-depth array. */
+                return Array.from(displayGroups.values())
+                    .reduce(function (acc, val) { return acc.concat(val); }, []);
+            });
+        this.displayGroupings =
+            resourceCodeManager
+                .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+                .then(function (displayGroups) {
+                return Array.from(displayGroups.entries());
+            });
+        this.staticTimeOptions = [
+            [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
+            [this.lastMonth, uiConstants.LAST_MONTH],
+            [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS],
+            [this.lastThreeDays, uiConstants.LAST_THREE_DAYS],
+            [this.lastOneDay, uiConstants.LAST_ONE_DAY]
+        ];
+        this.setupInterface();
     }
     SetupComponent.prototype.ngOnDestroy = function () {
         // Pass the selected information through to the setup data service.
@@ -11405,22 +11688,42 @@ var SetupComponent = /** @class */ (function () {
             this.selectedDateRange.value :
             luxon__WEBPACK_IMPORTED_MODULE_4__["Interval"].fromDateTimes(this.today.minus({ days: 7 }), this.today);
     };
-    SetupComponent.prototype.ngOnInit = function () {
+    SetupComponent.prototype.setupInterface = function () {
         var _this = this;
-        // Watch for changes to the user input on the autocomplete panel.
-        this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])(''), // The autocomplete input starts with nothing typed in.
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (concept) { return concept ? _this.filter(concept) :
-            _this.displayGroupings.slice(); }));
-        for (var _i = 0, _a = this.allConcepts; _i < _a.length; _i++) {
-            var concept = _a[_i];
-            this.checkedConcepts[concept.label] = false;
-            var showByDefault = concept.axes.some(function (axis) { return axis.resourceGroup.showByDefault; });
-            if (showByDefault) {
-                this.checkedConcepts[concept.label] = true;
-            }
-        }
         // Retrieve the patient encounters. When they load in asynchronously,
         // the radio buttons for encounter selection will show up.
+        this.getEncounters();
+        this.displayGroupings.then(function (displayGroupings) {
+            // Check off concepts that are on by default.
+            displayGroupings.forEach(function (row) {
+                // row[1] is an AxisGroup[] corresponding to the display grouping in
+                // row[0].
+                var axisGroupArray = row[1];
+                axisGroupArray.forEach(function (concept) {
+                    _this.checkedConcepts[concept.label] =
+                        concept.axes.some(function (axis) { return axis.resourceGroup.showByDefault; });
+                    _this.codeGroupAvailable.set(concept.label, LoadStatus.LOADING);
+                    concept.dataAvailableInAppTimeScope().then(function (available) {
+                        if (!available) {
+                            _this.checkedConcepts[concept.label] = false;
+                        }
+                        _this.codeGroupAvailable.set(concept.label, available ? LoadStatus.DATA_AVAILABLE :
+                            LoadStatus.DATA_UNAVAILABLE);
+                    });
+                });
+            });
+            // Watch for changes to the user input on the autocomplete panel.
+            _this.displayGroupingOptions = _this.conceptCtrl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])(''), // The autocomplete input starts with nothing typed in.
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (concept) { return concept ? _this.filter(concept, displayGroupings) :
+                displayGroupings.slice(); }));
+            // Check to see which clinical concepts have any data, and
+            // enable/disable on that basis.
+            displayGroupings.forEach(function (grouping) {
+            });
+        });
+    };
+    SetupComponent.prototype.getEncounters = function () {
+        var _this = this;
         this.setupDataService.encountersError = null;
         this.fhirService.getEncountersForPatient(src_constants__WEBPACK_IMPORTED_MODULE_6__["APP_TIMESPAN"])
             .then(function (encounters) {
@@ -11430,34 +11733,17 @@ var SetupComponent = /** @class */ (function () {
                 });
             }
         }, function (rejection) {
-            if (rejection instanceof _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"]) {
+            if (rejection instanceof _result_error__WEBPACK_IMPORTED_MODULE_11__["ResultError"]) {
                 _this.setupDataService.encountersError = rejection;
             }
             else if (rejection instanceof Error) {
                 _this.setupDataService.encountersError =
-                    new _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"](new Set(), rejection.message);
+                    new _result_error__WEBPACK_IMPORTED_MODULE_11__["ResultError"](new Set(), rejection.message);
             }
             else {
                 _this.setupDataService.encountersError =
-                    new _result_error__WEBPACK_IMPORTED_MODULE_10__["ResultError"](new Set(), '', rejection);
+                    new _result_error__WEBPACK_IMPORTED_MODULE_11__["ResultError"](new Set(), '', rejection);
             }
-        });
-        // Check to see which clinical concepts have any data, and enable/disable
-        // on that basis.
-        this.displayGroupings.forEach(function (grouping) {
-            var resourceCodes = grouping[1];
-            resourceCodes.forEach(function (rsc) {
-                _this.codeGroupAvailable.set(rsc.label, LoadStatus.LOADING);
-                rsc.dataAvailableInAppTimeScope().then(function (available) {
-                    if (!available) {
-                        _this.checkedConcepts[rsc.label] = false;
-                        _this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_UNAVAILABLE);
-                    }
-                    else {
-                        _this.codeGroupAvailable.set(rsc.label, LoadStatus.DATA_AVAILABLE);
-                    }
-                });
-            });
         });
     };
     /**
@@ -11465,42 +11751,53 @@ var SetupComponent = /** @class */ (function () {
      * charts selected.
      */
     SetupComponent.prototype.onContinue = function () {
-        for (var _i = 0, _a = this.allConcepts; _i < _a.length; _i++) {
-            var concept = _a[_i];
-            if (this.checkedConcepts[concept.label]) {
-                this.chosenConcepts.push(concept);
+        var _this = this;
+        this.allConcepts.then(function (allConcepts) {
+            for (var _i = 0, allConcepts_1 = allConcepts; _i < allConcepts_1.length; _i++) {
+                var concept = allConcepts_1[_i];
+                if (_this.checkedConcepts[concept.label]) {
+                    _this.chosenConcepts.push(concept);
+                }
             }
-        }
-        this.router.navigate(['/main'], { skipLocationChange: true });
+            _this.router.navigate(['/main'], { skipLocationChange: true });
+        });
     };
     /**
      * The user wishes to select all concepts.
      */
     SetupComponent.prototype.selectAll = function () {
-        for (var _i = 0, _a = this.allConcepts; _i < _a.length; _i++) {
-            var concept = _a[_i];
-            if (this.codeGroupAvailable.has(concept.label) &&
-                this.codeGroupAvailable.get(concept.label) !==
-                    LoadStatus.DATA_UNAVAILABLE) {
-                this.checkedConcepts[concept.label] = true;
+        var _this = this;
+        this.allConcepts.then(function (allConcepts) {
+            for (var _i = 0, allConcepts_2 = allConcepts; _i < allConcepts_2.length; _i++) {
+                var concept = allConcepts_2[_i];
+                if (_this.codeGroupAvailable.has(concept.label) &&
+                    _this.codeGroupAvailable.get(concept.label) !==
+                        LoadStatus.DATA_UNAVAILABLE) {
+                    _this.checkedConcepts[concept.label] = true;
+                }
             }
-        }
+        });
     };
     /**
      * The user wishes to clear all select concepts.
      */
     SetupComponent.prototype.clearAll = function () {
-        for (var _i = 0, _a = this.allConcepts; _i < _a.length; _i++) {
-            var concept = _a[_i];
-            this.checkedConcepts[concept.label] = false;
-        }
+        var _this = this;
+        this.allConcepts.then(function (allConcepts) {
+            for (var _i = 0, allConcepts_3 = allConcepts; _i < allConcepts_3.length; _i++) {
+                var concept = allConcepts_3[_i];
+                _this.checkedConcepts[concept.label] = false;
+            }
+        });
     };
     /**
      * Filter the concepts shown on the autocomplete menu.
      */
-    SetupComponent.prototype.filter = function (concept) {
-        return this.displayGroupings
-            .filter(function (entry) { return entry[1].some(function (codes) { return codes.label.toLowerCase().indexOf(concept.toLowerCase()) === 0; }); })
+    SetupComponent.prototype.filter = function (concept, displayGroupings) {
+        return displayGroupings
+            .filter(function (entry) {
+            return entry[1].some(function (axis) { return axis.label.toLowerCase().indexOf(concept.toLowerCase()) === 0; });
+        })
             .map(function (entry) {
             var displayGrouping = entry[0];
             var resourceCodesFiltered = entry[1].filter(function (codes) { return codes.label.toLowerCase().indexOf(concept.toLowerCase()) === 0; });
@@ -11517,10 +11814,11 @@ var SetupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./setup.component.html */ "./src/app/setup/setup.component.html"),
             styles: [__webpack_require__(/*! ./setup.component.css */ "./src/app/setup/setup.component.css")]
         }),
-        __param(5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_8__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_11__["SetupDataService"],
-            _fhir_service__WEBPACK_IMPORTED_MODULE_9__["FhirService"], Object])
+        __param(6, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_6__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_9__["ResourceCodeManager"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _setup_data_service__WEBPACK_IMPORTED_MODULE_12__["SetupDataService"],
+            _fhir_service__WEBPACK_IMPORTED_MODULE_10__["FhirService"],
+            _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_8__["ResourceCodeCreator"], Object])
     ], SetupComponent);
     return SetupComponent;
 }());
@@ -11905,9 +12203,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clinicalconcepts/resource-code-manager */ "./src/app/clinicalconcepts/resource-code-manager.ts");
-/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../help-dialog/help-dialog.component */ "./src/app/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ifu-dialog/ifu-dialog.component */ "./src/app/ifu-dialog/ifu-dialog.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -11931,16 +12231,21 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 var TimelineToolbarComponent = /** @class */ (function () {
-    function TimelineToolbarComponent(resourceCodeManager, helpDialog, ifuDialog, uiConstants) {
+    function TimelineToolbarComponent(fhirService, resourceCodeManager, helpDialog, ifuDialog, uiConstants, resourceCodeCreator) {
+        var _this = this;
         this.helpDialog = helpDialog;
         this.ifuDialog = ifuDialog;
         this.uiConstants = uiConstants;
         this.showMockDataMessage = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].useMockServer;
         this.saveSnapshot = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.addTextbox = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        var displayGroups = resourceCodeManager.getDisplayGroupMapping();
-        this.displayGroupings = Array.from(displayGroups.entries());
+        resourceCodeManager.getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then(function (displayGroups) {
+            _this.displayGroupings = Array.from(displayGroups.entries());
+        });
     }
     // Emits an event indicating to CardContainer to save a snapshot of the page.
     TimelineToolbarComponent.prototype.snapshot = function () {
@@ -11952,11 +12257,11 @@ var TimelineToolbarComponent = /** @class */ (function () {
         this.addTextbox.emit();
     };
     TimelineToolbarComponent.prototype.openHelpDialog = function () {
-        var dialogRef = this.helpDialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_5__["HelpDialogComponent"]);
+        var dialogRef = this.helpDialog.open(_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_7__["HelpDialogComponent"]);
         Object(src_constants__WEBPACK_IMPORTED_MODULE_2__["recordGoogleAnalyticsEvent"])('viewTutorial', 'tutorial', new Date().toDateString());
     };
     TimelineToolbarComponent.prototype.openIFU = function () {
-        var dialogRef = this.ifuDialog.open(_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_6__["IfuDialogComponent"]);
+        var dialogRef = this.ifuDialog.open(_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_8__["IfuDialogComponent"]);
         Object(src_constants__WEBPACK_IMPORTED_MODULE_2__["recordGoogleAnalyticsEvent"])('viewTutorial', 'tutorial', new Date().toDateString());
     };
     __decorate([
@@ -11973,9 +12278,9 @@ var TimelineToolbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./timeline-toolbar.component.html */ "./src/app/timeline-toolbar/timeline-toolbar.component.html"),
             styles: [__webpack_require__(/*! ../cardcontainer/cardcontainer.component.css */ "./src/app/cardcontainer/cardcontainer.component.css")]
         }),
-        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
-        __metadata("design:paramtypes", [_clinicalconcepts_resource_code_manager__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeManager"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object])
+        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(src_constants__WEBPACK_IMPORTED_MODULE_2__["UI_CONSTANTS_TOKEN"])),
+        __metadata("design:paramtypes", [_fhir_service__WEBPACK_IMPORTED_MODULE_6__["FhirService"], _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeManager"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], Object, _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_4__["ResourceCodeCreator"]])
     ], TimelineToolbarComponent);
     return TimelineToolbarComponent;
 }());
@@ -12080,7 +12385,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.1.0.6.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.0.0.0alpha1',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
@@ -12153,6 +12458,14 @@ var UI_CONSTANTS = {
     STATUS: 'Status',
     SPECIMEN: 'Specimen',
     REPORT_ATTACHMENT: 'Report Attachment',
+    TIME_SINCE_PREVIOUS_DOSE: 'Time since previous dose in this timeframe',
+    TIME_BEFORE_NEXT_DOSE: 'Time before next dose in this timeframe',
+    FIRST_DOSE: 'First dose within this timeframe',
+    LAST_DOSE: 'Last dose within this timeframe',
+    THIS_DOSE: 'This dose',
+    PREVIOUS_DOSE: 'Previous dose within this timeframe',
+    NO_PREVIOUS_DOSE: 'No previous dose within this timeframe',
+    DOSAGE_INSTRUCTIONS: 'Dosage Instructions'
 };
 
 
@@ -12168,16 +12481,25 @@ var UI_CONSTANTS = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zone.js/dist/zone-error */ "./node_modules/zone.js/dist/zone-error.js");
-/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _environment_file_locations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./environment_file_locations */ "./src/environments/environment_file_locations.ts");
+/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zone.js/dist/zone-error */ "./node_modules/zone.js/dist/zone-error.js");
+/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_1__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-var environment = {
-    production: false,
-    useMockServer: true,
-    mockDataFolder: 'demo_data/test_bmedtimeB',
-    mockDataFiles: [
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+var environment = __assign({ production: false, useMockServer: true, mockDataFolder: 'demo_data/test_bmedtimeB', mockDataFiles: [
         'BMedTimeB_DiagReport',
         'BMedTimeB_Encounter',
         'BMedTimeB_Obs_labs',
@@ -12185,9 +12507,55 @@ var environment = {
         'BMedtimeB_MB_data',
         'BMedTimeB_Med_Admins',
         'BMedTimeB_Med_Orders',
-    ],
-    useDebugger: false,
-    showRadiology: true,
+    ] }, _environment_file_locations__WEBPACK_IMPORTED_MODULE_0__["environment_file_locations"], { useDebugger: false });
+/*
+ * In development mode, to ignore zone related error stack frames such as
+ * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
+ * import the following file, but please comment it out in production mode
+ * because it will have performance impact when throw error
+ */
+ // Included with Angular CLI.
+
+
+/***/ }),
+
+/***/ "./src/environments/environment_file_locations.ts":
+/*!********************************************************!*\
+  !*** ./src/environments/environment_file_locations.ts ***!
+  \********************************************************/
+/*! exports provided: environment_file_locations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment_file_locations", function() { return environment_file_locations; });
+/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zone.js/dist/zone-error */ "./node_modules/zone.js/dist/zone-error.js");
+/* harmony import */ var zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(zone_js_dist_zone_error__WEBPACK_IMPORTED_MODULE_0__);
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+// This file can be replaced during build by using the `fileReplacements`
+// array.// `ng build ---prod` replaces `environment.ts` with
+// `environment.prod.ts`. The list of file replacements can be found in
+// `angular.json`.
+// This file is used in the e2e tests.
+var environment_file_locations = {
+    conceptsFolder: 'clinical_concept_configuration',
+    vitalGroupFile: 'vital_sign_groups.json',
+    vitalConceptsFile: 'vital_signs.json',
+    labConceptsFile: 'lab_results.json',
+    labGroupFile: 'lab_groups.json',
+    radiologyConceptsFile: 'radiology_results.json',
+    radiologyGroupFile: 'radiology_groups.json',
+    antibioticConceptsFile: 'medications_antibiotics.json',
+    antibioticGroupFile: 'medication_groups_antibiotics.json',
+    antiviralConceptsFile: 'medications_antivirals.json',
+    antiviralGroupFile: 'medication_groups_antivirals.json',
+    antifungalConceptsFile: 'medications_antifungals.json',
+    antifungalGroupFile: 'medication_groups_antifungals.json',
+    microbioGroupFile: 'microbio_groups.json',
+    microbioConceptsFile: 'microbio_results.json'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

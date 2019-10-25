@@ -1,0 +1,58 @@
+[
+    {
+        "groupNames": [
+            "Acyclovir"
+        ],
+        "displayName": "Acyclovir 0.05 MG/MG Topical Ointment",
+        "codeString": "197312"
+    },
+    {
+        "groupNames": [
+            "Acyclovir"
+        ],
+        "displayName": "Acyclovir 50 MG/ML Injection",
+        "codeString": "1734933"
+    },
+    {
+        "groupNames": [
+            "Foscarnet"
+        ],
+        "displayName": "Foscarnet",
+        "codeString": "33562"
+    },
+    {
+        "groupNames": [
+            "Foscarnet"
+        ],
+        "displayName": "foscarnet sodium 24 MG/ML Injection",
+        "codeString": "1734380"
+    },
+    {
+        "groupNames": [
+            "Ganciclovir"
+        ],
+        "displayName": "Ganciclovir 50 MG/ML Injectable Solution",
+        "codeString": "310442"
+    },
+    {
+        "groupNames": [
+            "Oseltamivir"
+        ],
+        "displayName": "Oseltamivir 75 MG Oral Capsule",
+        "codeString": "312122"
+    },
+    {
+        "groupNames": [
+            "Valacyclovir"
+        ],
+        "displayName": "valacyclovir 500 MG Oral Tablet",
+        "codeString": "313565"
+    },
+    {
+        "groupNames": [
+            "Valganciclovir"
+        ],
+        "displayName": "valganciclovir 450 MG Oral Tablet",
+        "codeString": "313566"
+    }
+]

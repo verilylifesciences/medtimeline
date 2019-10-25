@@ -3,13 +3,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import { InjectionToken } from '@angular/core';
-import { DateTime, Duration, Interval } from 'luxon';
+import {InjectionToken} from '@angular/core';
+import {DateTime, Duration, Interval} from 'luxon';
 
-import { environment } from './environments/environment';
+import {environment} from './environments/environment';
 
 export function recordGoogleAnalyticsEvent(
-  eventName: string, eventCategory: string, eventLabel: string) {
+    eventName: string, eventCategory: string, eventLabel: string) {
   if ((<any>window).gtag) {
     (<any>window).gtag('event', eventName, {
       'event_category': eventCategory,
@@ -20,18 +20,18 @@ export function recordGoogleAnalyticsEvent(
 
 /** The period of time this app will search for patient encounters in.  */
 export const APP_TIMESPAN = environment.production ?
-  Interval.fromDateTimes(
-    DateTime.utc().minus(Duration.fromObject({ months: 6 })),
-    DateTime.utc()) :
-  Interval.fromDateTimes(
-    DateTime.utc().minus(Duration.fromObject({ months: 60 })),
-    DateTime.utc());
+    Interval.fromDateTimes(
+        DateTime.utc().minus(Duration.fromObject({months: 6})),
+        DateTime.utc()) :
+    Interval.fromDateTimes(
+        DateTime.utc().minus(Duration.fromObject({months: 60})),
+        DateTime.utc());
 
 /**
  * Do not consider any encounters with a start date earlier than a year from
  * now.
  */
-export const EARLIEST_ENCOUNTER_START_DATE = DateTime.utc().minus({ years: 1 });
+export const EARLIEST_ENCOUNTER_START_DATE = DateTime.utc().minus({years: 1});
 
 /** Constants used for FHIR resource types. */
 export enum FhirResourceType {
@@ -57,7 +57,7 @@ export let UI_CONSTANTS_TOKEN = new InjectionToken('UiConstantsToken');
 export const UI_CONSTANTS = {
   SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
   LOINC_VERIFIED_STRING:
-    'These BCH data mappings were verified 2019-04-30. v.1.0.6.0',
+      'These BCH data mappings were verified 2019-04-30. v.2.0.0.0alpha1',
   // Tooltip for adding a card inline
   ADD_TIMELINE_HERE: 'Add timeline here',
   // Dialog for adding an event to the custom timeline
@@ -73,7 +73,7 @@ export const UI_CONSTANTS = {
   ADD_CUSTOM_TIMELINE: 'Add Custom Timeline',
   CUSTOM_TIMELINE_LABEL: 'Custom Timeline',
   CUSTOM_TIMELINE_INSTRUCTIONS:
-    'Click on this graph to add a flag for anything you want to keep track of.',
+      'Click on this graph to add a flag for anything you want to keep track of.',
   // Annotation constants
   ADD_ANNOTATION: 'Add Textbox',
   ANNOTATION_INSTRUCTIONS: 'Add your text here.',
@@ -91,8 +91,8 @@ export const UI_CONSTANTS = {
   // Error handling
   BAD_DATA_ERROR: 'Invalid data received. Please check the PowerChart.',
   BAD_ENCOUNTER_ERROR:
-    'Unable to retrieve hospital visit dates for this patient.' +
-    ' You can select any time period in the past six months.',
+      'Unable to retrieve hospital visit dates for this patient.' +
+      ' You can select any time period in the past six months.',
   // Setup screen
   INITIAL_CONFIGURATION_HEADER: 'MedTimeLine',
   LAST_ONE_DAY: 'Since midnight yesterday',

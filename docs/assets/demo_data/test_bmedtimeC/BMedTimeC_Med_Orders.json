@@ -114,7 +114,13 @@
         },
         "note": "Order Comment: Peak and trough monitoring recommended",
         "medicationCodeableConcept": {
-          "text": "gentamicin"
+          "text": "Gentamicin Sulfate (USP) 40 MG/ML Injectable Solution",
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "313996"
+            }
+          ]
         },
         "dosageInstruction": [
           {
@@ -191,7 +197,13 @@
         },
         "note": "Order Comment: Maximum infusion rate: \r\nFor patients <66 kg, max infusion rate = 15 mg/kg/hr [round UP to nearest 1/2 hour] \r\nFor patients >/=66 kg, max infusion rate = 1000 mg/hr",
         "medicationCodeableConcept": {
-          "text": "vancomycin"
+          "text": "vancomycin",
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11124"
+            }
+          ]
         },
         "dosageInstruction": [
           {
