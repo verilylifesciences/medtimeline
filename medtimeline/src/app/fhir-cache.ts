@@ -1,6 +1,6 @@
 import {DateTime, Interval} from 'luxon';
 
-import {FhirResourceType} from '../constants';
+import {APP_TIMESPAN, FhirResourceType} from '../constants';
 
 import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
@@ -34,7 +34,7 @@ function getNextSearchResultsPage(
       responseData.map(result => new RawResource(result.resource, requestId)));
 
   // if there are anymore pages, get the next set of results.
-  if (response.data.link.some((link) => link.relation === 'next')) {
+  if (response.data.link.some((linkItem) => linkItem.relation === 'next')) {
     return smartApi.patient.api.nextPage({bundle: response.data})
         .then(
             nextResponse => {
@@ -100,8 +100,6 @@ export abstract class FhirCache<T extends ResultClassWithTimestamp> {
    * fetched multiple times during page loading.
    */
   private timeOfLastRefreshOfTodaysResults: DateTime;
-
-  constructor(private readonly smartApiPromise) {}
 
   /**
    * A function that takes a RawResource object and converts it to the
@@ -214,55 +212,69 @@ export abstract class FhirCache<T extends ResultClassWithTimestamp> {
    * @param dateRange: the Interval to fetch data within.
    * @returns an array of Resource objects that extend ResultClassWithTimestamp
    */
-  getResource(dateRange: Interval): Promise<T[]> {
-    return this.smartApiPromise.then(smartApi => {
-      // splits the date range by day and checks if the cache contains that day.
-      // Merges days not in the cache into a list of intervals that cover those
-      // days.
-      const rangesToFetch =
-          Interval.merge(this.splitDateRangeByDay(dateRange).filter(day => {
-            const currentTime = DateTime.utc();
-            if (day.start.toISODate() === currentTime.toISODate()) {
-              // we filter out today if we have refreshed today's results
-              // within the last minute.
-              return !(
-                  this.timeOfLastRefreshOfTodaysResults &&
-                  currentTime
-                          .diff(
-                              this.timeOfLastRefreshOfTodaysResults, 'minutes')
-                          .minutes < 1);
-              // sometimes due to timezone handling we end up with a date that
-              // is after today. We do not need to fetch that date.
-            } else if (day.start.toMillis() > currentTime.toMillis()) {
-              return false;
-            }
-            return !this.cache.has(day.start.toISODate());
-          }));
+  getResource(smartApi, dateRange: Interval): Promise<T[]> {
+    // splits the date range by day and checks if the cache contains that day.
+    // Merges days not in the cache into a list of intervals that cover those
+    // days.
+    const rangesToFetch =
+        Interval.merge(this.splitDateRangeByDay(dateRange).filter(day => {
+          const currentTime = DateTime.utc();
+          if (day.start.toISODate() === currentTime.toISODate()) {
+            // we filter out today if we have refreshed today's results
+            // within the last minute.
+            return !(
+                this.timeOfLastRefreshOfTodaysResults &&
+                currentTime
+                        .diff(this.timeOfLastRefreshOfTodaysResults, 'minutes')
+                        .minutes < 1);
+            // sometimes due to timezone handling we end up with a date that
+            // is after today. We do not need to fetch that date.
+          } else if (day.start.toMillis() > currentTime.toMillis()) {
+            return false;
+          }
+          return !this.cache.has(day.start.toISODate());
+        }));
 
-      // for each date interval, fetch the resource from FHIR and add the data
-      // to the cache.
-      const fetchPromises = rangesToFetch.map(range => {
-        return this.fetchResourceAndAddToCache(smartApi, range);
-      });
-
-      // after all date ranges have been fetched from FHIR and added to the
-      // cache. Get all data from the cache for the full date range.
-      return Promise.all(fetchPromises)
-          .then(
-              _ => {
-                return this.getResourceFromCache(dateRange)
-                    .map(result => this.createFunction(result))
-                    .filter(result => !!result);
-              },
-              rejection => {
-                throw rejection;
-              });
+    // for each date interval, fetch the resource from FHIR and add the data
+    // to the cache.
+    const fetchPromises = rangesToFetch.map(range => {
+      return this.fetchResourceAndAddToCache(smartApi, range);
     });
+
+    // after all date ranges have been fetched from FHIR and added to the
+    // cache. Get all data from the cache for the full date range.
+    return Promise.all(fetchPromises)
+        .then(
+            _ => {
+              return this.getResourceFromCache(dateRange)
+                  .map(result => this.createFunction(result))
+                  .filter(result => !!result);
+            },
+            rejection => {
+              throw rejection;
+            });
   }
 }
 
 /** Cache for MedicationAdministrations */
 export class MedicationCache extends FhirCache<MedicationAdministration> {
+  /** Promise to load all results into the Cache within the App Timespan. */
+  resultsLoaded: Promise<void>;
+
+  getResource(smartApi, dateRange: Interval):
+      Promise<MedicationAdministration[]> {
+    // if we have not alraedy loaded all the results into the cache within the
+    // App Timespan, add them first. This helps with loading time for subsequent
+    // calls for medications.
+    if (!this.resultsLoaded) {
+      this.resultsLoaded =
+          this.fetchResourceAndAddToCache(smartApi, APP_TIMESPAN);
+    }
+    return this.resultsLoaded.then(() => {
+      return super.getResource(smartApi, dateRange);
+    });
+  }
+
   /**
    * Creates a MedicationAdministration from a RawResource.
    * Note: will return undefined if the Medication Encoding extracted from the
@@ -332,8 +344,8 @@ export class ObservationCache extends FhirCache<Observation> {
   /** The LOINCCode that the cached observations are associated with. */
   readonly code: LOINCCode;
 
-  constructor(smartApiPromise, code: LOINCCode) {
-    super(smartApiPromise);
+  constructor(code: LOINCCode) {
+    super();
     this.code = code;
   }
 
@@ -369,14 +381,12 @@ export class EncounterCache {
   /** The last time the cache was refreshed. */
   private lastFhirFetchTime: DateTime;
 
-  constructor(private readonly smartApiPromise) {}
-
   /**
    * Gets all Encounters.
    * Note: Encounters cannot be searched by date, so this will return all
    * encounters.
    */
-  getResource(): Promise<Encounter[]> {
+  getResource(smartApi): Promise<Encounter[]> {
     const currentTime = DateTime.utc();
     let cachePromise;
     // if the last fetch of Encounters from FHIR was within 1 minute, we don't
@@ -388,15 +398,13 @@ export class EncounterCache {
       cachePromise = Promise.resolve(this.cache);
     } else {
       this.lastFhirFetchTime = currentTime;
-      cachePromise = this.smartApiPromise.then(smartApi => {
-        const queryParams = {
-          type: FhirResourceType.Encounter,
-        };
-        return fetchAllFromFhir(smartApi, queryParams).then(results => {
-          this.cache = results;
-          this.lastFhirFetchTime = currentTime;
-          return results;
-        });
+      const queryParams = {
+        type: FhirResourceType.Encounter,
+      };
+      cachePromise = fetchAllFromFhir(smartApi, queryParams).then(results => {
+        this.cache = results;
+        this.lastFhirFetchTime = currentTime;
+        return results;
       });
     }
     return Promise.resolve(cachePromise)

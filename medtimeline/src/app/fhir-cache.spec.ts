@@ -70,9 +70,6 @@ const RESULT_OBJECTS = [
 
 describe('FhirCache', () => {
   let fhirCache: StubFhirCache;
-  let clientReadyCallback: (any) => void;
-  let clientError: (any) => void;
-
   const smartApi = {
     patient: {
       api: {search: () => Promise.resolve(), nextPage: () => Promise.resolve()}
@@ -82,47 +79,22 @@ describe('FhirCache', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({imports: [HttpClientModule]});
-    const smartOnFhirClient = {
-      oauth2: {
-        ready: (smart, err) => {
-          clientReadyCallback = smart;
-          clientError = err;
-        }
-      }
-    };
-    const smartApiPromise = new Promise(
-        (resolve, reject) => smartOnFhirClient.oauth2.ready(
-            smart => resolve(smart), err => reject(err)));
-    fhirCache = new StubFhirCache(smartApiPromise);
+    fhirCache = new StubFhirCache();
   });
-
-  it('should bubble error to getResource when smart api promise is rejected',
-     (done: DoneFn) => {
-       spyOn(smartApi.patient.api, 'search');
-       clientError('api failed');
-       fhirCache.getResource(dateRange).catch(err => {
-         expect(err).toBe('api failed');
-         expect(smartApi.patient.api.search).not.toHaveBeenCalled();
-         done();
-       });
-     });
 
   it('if getResource is called before smart API promise is resolved, it returns the results.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const searchSpy = spyOn(smartApi.patient.api, 'search')
                              .and.returnValue(Promise.resolve(RAW_RESPONSE));
-       fhirCache.getResource(dateRange).then(res => {
+       fhirCache.getResource(smartApi, dateRange).then(res => {
          expect(res).toEqual(RESULT_OBJECTS);
          expect(searchSpy).toHaveBeenCalledTimes(1);
          done();
        });
-       clientReadyCallback(smartApi);
      });
 
   it('fetchAllFromFhir should resolve multiple pages of calls to the API',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const searchSpy =
            spyOn(smartApi.patient.api, 'search')
                .and.returnValue(Promise.resolve(RESPONSE_WITH_NEXT_PAGE));
@@ -130,7 +102,7 @@ describe('FhirCache', () => {
                                .and.returnValues(
                                    Promise.resolve(RESPONSE_WITH_NEXT_PAGE),
                                    Promise.resolve(RAW_RESPONSE));
-       fhirCache.getResource(dateRange).then(results => {
+       fhirCache.getResource(smartApi, dateRange).then(results => {
          expect(searchSpy.calls.count()).toBe(1);
          expect(nextPageSpy.calls.count()).toBe(2);
          expect(results.length).toBe(6);
@@ -140,10 +112,9 @@ describe('FhirCache', () => {
 
   it('if all uncached should call FHIR service a single time and cache should be updated',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const searchSpy = spyOn(smartApi.patient.api, 'search')
                              .and.returnValue(Promise.resolve(RAW_RESPONSE));
-       const result = fhirCache.getResource(dateRange);
+       const result = fhirCache.getResource(smartApi, dateRange);
 
        result.then(res => {
          expect(res).toEqual(RESULT_OBJECTS);
@@ -162,15 +133,14 @@ describe('FhirCache', () => {
 
   it('if all days in date range are cached, should not call for the FHIR resource again.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const searchSpy = spyOn(smartApi.patient.api, 'search')
                              .and.returnValue(Promise.resolve(RAW_RESPONSE));
-       fhirCache.getResource(dateRange)
+       fhirCache.getResource(smartApi, dateRange)
            .then(result => {
              expect(result).toEqual(RESULT_OBJECTS);
            })
            .then(x => {
-             return fhirCache.getResource(dateRange);
+             return fhirCache.getResource(smartApi, dateRange);
            })
            .then(result => {
              expect(result).toEqual(RESULT_OBJECTS);
@@ -194,7 +164,6 @@ describe('FhirCache', () => {
 
   it('if today is requested, it should not be added to the cache.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const now = DateTime.utc();
        const todayResponse = {
          headers: (requestId) => '12345',
@@ -211,6 +180,7 @@ describe('FhirCache', () => {
 
        // just get data for today.
        const result = fhirCache.getResource(
+           smartApi,
            Interval.fromDateTimes(now.startOf('day'), now.endOf('day')));
 
        result.then(res => {
@@ -224,7 +194,6 @@ describe('FhirCache', () => {
 
   it('if part of a date range is in the cache, call FHIR for dates not in the cache.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        const cachedRawResource = new RawResource(
            {label: 'cached', effectiveDateTime: '2012-08-06T07:00:00.000Z'},
            '9999');
@@ -264,7 +233,7 @@ describe('FhirCache', () => {
            spyOn(smartApi.patient.api, 'search')
                .and.returnValues(
                    Promise.resolve(response1), Promise.resolve(response2));
-       const result = fhirCache.getResource(intervalToGet);
+       const result = fhirCache.getResource(smartApi, intervalToGet);
 
        result.then(res => {
          const expectedResults = [
@@ -290,12 +259,11 @@ describe('FhirCache', () => {
 
   it('if an error is raised when data is fetched, the error is bubbled and the cache is unchanged.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        // throw an error the second time search is called.
        const searchSpy = spyOn(smartApi.patient.api, 'search')
                              .and.returnValue(Promise.reject(Error('error')));
 
-       fhirCache.getResource(dateRange).catch(err => {
+       fhirCache.getResource(smartApi, dateRange).catch(err => {
          expect(Array.from(fhirCache.cache.keys()).length).toEqual(0);
          expect(searchSpy).toHaveBeenCalledTimes(1);
          done();
@@ -304,11 +272,10 @@ describe('FhirCache', () => {
 
   it('if an error is raised when data is formatted, the error is bubbled but the cache is updated.',
      (done: DoneFn) => {
-       clientReadyCallback(smartApi);
        spyOn(fhirCache, 'createFunction').and.throwError('error');
        const searchSpy = spyOn(smartApi.patient.api, 'search')
                              .and.returnValues(Promise.resolve(RAW_RESPONSE));
-       fhirCache.getResource(dateRange).catch(err => {
+       fhirCache.getResource(smartApi, dateRange).catch(err => {
          expect(fhirCache.cache.get('2012-08-23')).toEqual([]);
          const rawResource1 =
              new RawResource(RAW_RESPONSE.data.entry[0].resource, '12345');

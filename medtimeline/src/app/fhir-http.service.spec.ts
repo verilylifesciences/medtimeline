@@ -5,7 +5,6 @@
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
-import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
@@ -17,10 +16,20 @@ import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
 import {FhirHttpService} from './fhir-http.service';
 import {FhirService} from './fhir.service';
 import {ChartType} from './graphtypes/graph/graph.component';
-import {makeSampleObservationJson, StubFhirService} from './test_utils';
+import {makeSampleObservationJson, StubFhirService, makeMedicationAdministration} from './test_utils';
+import {MedicationCache, DiagnosticReportCache, EncounterCache} from './fhir-cache';
+
+class FakeFhirHttpService extends FhirHttpService {
+  resetCaches() {
+    FhirHttpService.medicationCache = new MedicationCache();
+    FhirHttpService.observationCache = new Map();
+    FhirHttpService.diagnosticReportCache = new DiagnosticReportCache();
+    FhirHttpService.encounterCache = new EncounterCache();
+  }
+}
 
 describe('FhirHttpService', () => {
-  let service: FhirHttpService;
+  let service: FakeFhirHttpService;
   let clientReadyCallback: (any) => void;
   let clientError: (any) => void;
   const smartApi = {
@@ -85,7 +94,7 @@ describe('FhirHttpService', () => {
       imports: [HttpClientModule],
       providers: [
         {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
-        {provide: FhirService, useClass: StubFhirService}
+        {provide: FhirService, useClass: FakeFhirHttpService}
       ]
     });
     (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
@@ -108,9 +117,10 @@ describe('FhirHttpService', () => {
         }
       }
     };
-    service = new FhirHttpService(
+    service = new FakeFhirHttpService(
         null, smartOnFhirClient, TestBed.get(HttpClient),
         TestBed.get(ResourceCodeCreator));
+    service.resetCaches();
   });
 
 
@@ -221,166 +231,48 @@ describe('FhirHttpService', () => {
         });
   });
 
-  it('should resolve medicationsPresentWithCode to true with only one API call if first response has a medication with the given code.',
-     (done: DoneFn) => {
-       const medicationResponse = {
-         data: {
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
-                 text: 'vancomycin'
-               }
-             }
-           }]
-         }
-       };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(medicationResponse));
-       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
 
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(true);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).not.toHaveBeenCalled();
-             done();
-           });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should resolve medicationsPresentWithCode to false if first response has no medication with the given code and there is no next page.',
+  it('medicationsPresentWithCode should resolve to True any MedicationAdministrations are returned',
      (done: DoneFn) => {
-       const medicationReponse = {
+       const responseWithNextPage = {
+         headers: (requestId) => '6789',
          data: {
            link: [],
            entry: [{
              resource: {
                medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
-                 text:
-                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
-               }
-             }
-           }]
-         }
-       };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(medicationReponse));
-       const nextPageSpy = spyOn(smartApi.patient.api, 'nextPage');
-
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(false);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).not.toHaveBeenCalled();
-             done();
-           });
-       clientReadyCallback(smartApi);
-     });
-
-  it('should resolve medicationsPresentWithCode to true if second page has medication with given code.',
-     (done: DoneFn) => {
-       const firstMedicationReponse = {
-         data: {
-           link: [{relation: 'next'}],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
-                 text:
-                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
-               }
-             }
-           }]
-         }
-       };
-
-       const secondMedicationReponse = {
-         data: {
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
                  coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
                  text: 'vancomycin'
-               }
+               },
+               effectiveTimeDateTime: '2018-08-22T22:31:02.000Z',
+               status: 'completed'
              }
            }]
          }
        };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(firstMedicationReponse));
-       const nextPageSpy =
-           spyOn(smartApi.patient.api, 'nextPage')
-               .and.returnValue(Promise.resolve(secondMedicationReponse));
-
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(true);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).toHaveBeenCalledTimes(1);
-             done();
-           });
+       spyOn(smartApi.patient.api, 'search')
+           .and.returnValue(Promise.resolve(responseWithNextPage));
        clientReadyCallback(smartApi);
+       const code = (RxNormCode.fromCodeString('11124') as RxNormCode);
+       service.medicationsPresentWithCode(code, dateRange).then(response => {
+         expect(response).toBe(true);
+         done();
+       });
      });
 
-  it('should resolve medicationsPresentWithCode to false if no medication with code on multiple pages.',
+  it('medicationsPresentWithCode should resolve to False if no MedicationAdministrations are returned',
      (done: DoneFn) => {
-       const firstMedicationReponse = {
-         data: {
-           link: [{relation: 'next'}],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
-                 text:
-                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
-               }
-             }
-           }]
-         }
+       const emptyResponse = {
+         headers: (requestId) => '6789',
+         data: {link: [], entry: []}
        };
-
-       const secondMedicationReponse = {
-         data: {
-           link: [],
-           entry: [{
-             resource: {
-               medicationCodeableConcept: {
-                 coding: [{system: RxNormCode.CODING_STRING, code: '310466'}],
-                 text:
-                     'Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment'
-               }
-             }
-           }]
-         }
-       };
-       const searchSpy =
-           spyOn(smartApi.patient.api, 'search')
-               .and.returnValue(Promise.resolve(firstMedicationReponse));
-       const nextPageSpy =
-           spyOn(smartApi.patient.api, 'nextPage')
-               .and.returnValue(Promise.resolve(secondMedicationReponse));
-
-       service
-           .medicationsPresentWithCode(
-               (RxNormCode.fromCodeString('11124') as RxNormCode), dateRange)
-           .then(response => {
-             expect(response).toEqual(false);
-             expect(searchSpy).toHaveBeenCalledTimes(1);
-             expect(nextPageSpy).toHaveBeenCalledTimes(1);
-             done();
-           });
+       spyOn(smartApi.patient.api, 'search')
+           .and.returnValue(Promise.resolve(emptyResponse));
        clientReadyCallback(smartApi);
+       service.medicationsPresentWithCode(code, dateRange).then(response => {
+         expect(response).toBe(false);
+         done();
+       });
      });
 
   it('getAnnotatedDiagnosticReport should return AnnotatedDiagnosticReport ' +
@@ -511,6 +403,7 @@ describe('FhirHttpService', () => {
            ]
          }
        };
+
        const diagnosticReadSpy =
            spyOn(smartApi.patient.api, 'search')
                .and.returnValue(Promise.resolve(diagnosticResponseErrorStatus));

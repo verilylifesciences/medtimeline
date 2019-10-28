@@ -3,7 +3,6 @@ import {Interval} from 'luxon';
 import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
-import {AnnotatedMedicationOrder} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 
 /**
@@ -38,10 +37,11 @@ function getMedicationMonitoringAnnotationFunction(
   return (observation: Observation,
           dateRange: Interval): Promise<AnnotatedObservation> => {
     return rxNormGroup.getResourceSet(dateRange).then(rxNorms => {
-      const medOrders: AnnotatedMedicationOrder[] = [].concat.apply(
-          [], rxNorms.map(rxNorm => rxNorm.orders.resourceList));
+      // We know that we're only pushing in one RxNorm
+      // so it's safe to grab the first (and only) one in
+      // the list.
       return AnnotatedObservation.forMedicationMonitoring(
-          observation, medOrders);
+          observation, rxNorms[0].orders);
     });
   };
 }
@@ -72,12 +72,6 @@ export const ANNOTATION_CONFIGURATION = [
     'groupName': 'Vancomycin monitoring',
     'makeAnnotatedFunction': (refGroup) =>
         getMedicationMonitoringAnnotationFunction(refGroup),
-    'refGroup': 'Vancomycin Monitoring Reference'
-  },
-  {
-    'groupName': 'Gentamicin monitoring',
-    'makeAnnotatedFunction': (refGroup) =>
-        getMedicationMonitoringAnnotationFunction(refGroup),
-    'refGroup': 'Gentamicin Monitoring Reference'
+    'refGroup': 'Vancomycin'
   }
 ];

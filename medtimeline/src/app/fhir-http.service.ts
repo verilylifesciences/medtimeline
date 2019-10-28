@@ -5,7 +5,6 @@
 
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../constants';
@@ -25,7 +24,6 @@ import {MedicationAdministration, MedicationAdministrationStatus} from './fhir-d
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
-import {ResultClass} from './fhir-resource-set';
 import {FhirService} from './fhir.service';
 import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
@@ -35,19 +33,19 @@ export class FhirHttpService extends FhirService {
   readonly smartApiPromise: Promise<any>;
 
   /** Cache for all MedicationAdministrations. */
-  private medicationCache: MedicationCache;
+  protected static medicationCache = new MedicationCache();
 
   /** Cache for all DiagnosticReports. */
-  private diagnosticReportCache: DiagnosticReportCache;
+  protected static diagnosticReportCache = new DiagnosticReportCache();
 
   /**
    * Cache for all Observations. Map from LOINCCode to the ObservationCache
    * for that LOINCCode.
    */
-  private observationCache: Map<LOINCCode, ObservationCache>;
+  protected static observationCache = new Map<LOINCCode, ObservationCache>();
 
   /** Cache for all Encounters. */
-  private encounterCache: EncounterCache;
+  protected static encounterCache = new EncounterCache();
 
   constructor(
       private debugService: DebuggerService,
@@ -60,12 +58,6 @@ export class FhirHttpService extends FhirService {
     this.smartApiPromise = new Promise(
         (resolve, reject) => smartOnFhirClient.oauth2.ready(
             smart => resolve(smart), err => reject(err)));
-
-    this.medicationCache = new MedicationCache(this.smartApiPromise);
-    this.diagnosticReportCache =
-        new DiagnosticReportCache(this.smartApiPromise);
-    this.observationCache = new Map<LOINCCode, ObservationCache>();
-    this.encounterCache = new EncounterCache(this.smartApiPromise);
   }
 
   /**
@@ -75,19 +67,21 @@ export class FhirHttpService extends FhirService {
    */
   getObservationsWithCode(code: LOINCCode, dateRange: Interval):
       Promise<Observation[]> {
-    let cacheForCode = this.observationCache.get(code);
+    let cacheForCode = FhirHttpService.observationCache.get(code);
 
     if (!cacheForCode) {
-      cacheForCode = new ObservationCache(this.smartApiPromise, code);
-      this.observationCache.set(code, cacheForCode);
+      cacheForCode = new ObservationCache(code);
+      FhirHttpService.observationCache.set(code, cacheForCode);
     }
-    return this.loadAllCodes.then(() => {
-      return cacheForCode.getResource(dateRange).then(
-          (results: Observation[]) => {
-            return results.filter(
-                result => result.status !== ObservationStatus.EnteredInError);
-          });
-    });
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(([smartApi, _]) => {
+          return cacheForCode.getResource(smartApi, dateRange)
+              .then((results: Observation[]) => {
+                return results.filter(
+                    result =>
+                        result.status !== ObservationStatus.EnteredInError);
+              });
+        });
   }
 
   /**
@@ -102,8 +96,7 @@ export class FhirHttpService extends FhirService {
    */
   observationsPresentWithCode(code: LOINCCode, dateRange: Interval):
       Promise<boolean> {
-    const queryParams = new ObservationCache(this.smartApiPromise, code)
-                            .getQueryParams(dateRange);
+    const queryParams = new ObservationCache(code).getQueryParams(dateRange);
     return Promise.all([this.smartApiPromise, this.loadAllCodes])
         .then(
             ([smartApi, codes]) =>
@@ -121,46 +114,16 @@ export class FhirHttpService extends FhirService {
   getMedicationAdministrationsWithCodes(
       codes: RxNormCode[], dateRange: Interval,
       limitCount?: number): Promise<MedicationAdministration[]> {
-    return this.medicationCache.getResource(dateRange).then(
-        (results: MedicationAdministration[]) => results.filter(
-            result => codes.includes(result.rxNormCode) &&
-                result.status !==
-                    MedicationAdministrationStatus.ENTERED_IN_ERROR));
-  }
-
-  /**
-   * Determines whether a medication with the given RxNormCode exists.
-   *
-   * Checks a single response page and only calls the next page if no
-   * medications with the given code exist. Cerner's implementation of FHIR
-   * does not support searching by RxNormCode, so we need to get all of the
-   * medications and filter the response.
-   *
-   * @param smartApi The resolved smartOnFhirClient which called the original
-   *     "search"
-   * @param response The response of the previous page
-   * @param code The RxNormCode to search for
-   */
-  private checkMedicationsPresentNextPage(smartApi, response, code: RxNormCode):
-      Promise<boolean> {
-    const results = response.data.entry || [];
-    const resultsWithCode = results.filter(
-        result =>
-            code === ResultClass.extractMedicationEncoding(result.resource));
-
-    if (resultsWithCode.length > 0) {
-      return Promise.resolve(true);
-    } else {
-      if (response.data.link.some((link) => link.relation === 'next')) {
-        return smartApi.patient.api.nextPage({bundle: response.data})
-            .then(nextResponse => {
-              return this.checkMedicationsPresentNextPage(
-                  smartApi, nextResponse, code);
-            });
-      } else {
-        return Promise.resolve(false);
-      }
-    }
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(([smartApi, _]) => {
+          return FhirHttpService.medicationCache
+              .getResource(smartApi, dateRange)
+              .then(
+                  (results: MedicationAdministration[]) => results.filter(
+                      result => codes.includes(result.rxNormCode) &&
+                          result.status !==
+                              MedicationAdministrationStatus.ENTERED_IN_ERROR));
+        });
   }
 
   /**
@@ -171,14 +134,10 @@ export class FhirHttpService extends FhirService {
    */
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
-    const queryParams = this.medicationCache.getQueryParams(dateRange);
-    return Promise.all([this.smartApiPromise, this.loadAllCodes])
-        .then(
-            ([smartApi, codes]) =>
-                smartApi.patient.api.search(queryParams)
-                    .then(
-                        response => this.checkMedicationsPresentNextPage(
-                            smartApi, response, code)));
+    return this.getMedicationAdministrationsWithCodes([code], dateRange)
+        .then(medAdmins => {
+          return medAdmins.length > 0 ? true : false;
+        });
   }
 
   /**
@@ -220,15 +179,17 @@ export class FhirHttpService extends FhirService {
     // then filter them down to those which intersect with the date range
     // we query, and those that have a start date no earlier than a year
     // prior to now.
-    return this.encounterCache.getResource().then(
-        (results: Encounter[]) =>
-            results
-                .filter(
-                    (result: Encounter) =>
-                        dateRange.intersection(result.period) !== null)
-                .filter(
-                    (result: Encounter) =>
-                        result.period.start >= EARLIEST_ENCOUNTER_START_DATE));
+    return this.smartApiPromise.then(smartApi => {
+      return FhirHttpService.encounterCache.getResource(smartApi).then(
+          (results: Encounter[]) =>
+              results
+                  .filter(
+                      (result: Encounter) =>
+                          dateRange.intersection(result.period) !== null)
+                  .filter(
+                      (result: Encounter) => result.period.start >=
+                          EARLIEST_ENCOUNTER_START_DATE));
+    });
   }
 
   /**
@@ -348,16 +309,21 @@ export class FhirHttpService extends FhirService {
       codeGroup: DiagnosticReportCodeGroup,
       dateRange: Interval): Promise<AnnotatedDiagnosticReport[]> {
     const codes = codeGroup.resourceCodes;
-    return this.diagnosticReportCache.getResource(dateRange).then(
-        (results: DiagnosticReport[]) => {
-          const annotatedReportsArr =
-              results
-                  .filter((result: DiagnosticReport) => {
-                    return codes.includes(result.code) &&
-                        result.status !== DiagnosticReportStatus.EnteredInError;
-                  })
-                  .map(report => this.addAttachment(report));
-          return Promise.all(annotatedReportsArr);
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(([smartApi, _]) => {
+          return FhirHttpService.diagnosticReportCache
+              .getResource(smartApi, dateRange)
+              .then((results: DiagnosticReport[]) => {
+                const annotatedReportsArr =
+                    results
+                        .filter((result: DiagnosticReport) => {
+                          return codes.includes(result.code) &&
+                              result.status !==
+                              DiagnosticReportStatus.EnteredInError;
+                        })
+                        .map(report => this.addAttachment(report));
+                return Promise.all(annotatedReportsArr);
+              });
         });
   }
 
