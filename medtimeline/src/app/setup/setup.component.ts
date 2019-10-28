@@ -111,7 +111,7 @@ export class SetupComponent implements OnDestroy {
 
   constructor(
       resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
-      private router: Router, private setupDataService: SetupDataService,
+      private router: Router, readonly setupDataService: SetupDataService,
       private fhirService: FhirService,
       resourceCodeCreator: ResourceCodeCreator,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
