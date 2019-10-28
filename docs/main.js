@@ -2707,10 +2707,8 @@ function getBloodPressureAnnotationFunction(bpDetailsResourceGroup) {
 function getMedicationMonitoringAnnotationFunction(rxNormGroup) {
     return function (observation, dateRange) {
         return rxNormGroup.getResourceSet(dateRange).then(function (rxNorms) {
-            // We know that we're only pushing in one RxNorm
-            // so it's safe to grab the first (and only) one in
-            // the list.
-            return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_0__["AnnotatedObservation"].forMedicationMonitoring(observation, rxNorms[0].orders);
+            var medOrders = [].concat.apply([], rxNorms.map(function (rxNorm) { return rxNorm.orders.resourceList; }));
+            return _fhir_data_classes_annotated_observation__WEBPACK_IMPORTED_MODULE_0__["AnnotatedObservation"].forMedicationMonitoring(observation, medOrders);
         });
     };
 }
@@ -2742,7 +2740,14 @@ var ANNOTATION_CONFIGURATION = [
         'makeAnnotatedFunction': function (refGroup) {
             return getMedicationMonitoringAnnotationFunction(refGroup);
         },
-        'refGroup': 'Vancomycin'
+        'refGroup': 'Vancomycin Monitoring Reference'
+    },
+    {
+        'groupName': 'Gentamicin monitoring',
+        'makeAnnotatedFunction': function (refGroup) {
+            return getMedicationMonitoringAnnotationFunction(refGroup);
+        },
+        'refGroup': 'Gentamicin Monitoring Reference'
     }
 ];
 
@@ -3878,7 +3883,7 @@ function getNextSearchResultsPage(smartApi, response, results) {
     var responseData = response.data.entry || [];
     results = results.concat(responseData.map(function (result) { return new _fhir_resource_set__WEBPACK_IMPORTED_MODULE_7__["RawResource"](result.resource, requestId); }));
     // if there are anymore pages, get the next set of results.
-    if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
+    if (response.data.link.some(function (linkItem) { return linkItem.relation === 'next'; })) {
         return smartApi.patient.api.nextPage({ bundle: response.data })
             .then(function (nextResponse) {
             return getNextSearchResultsPage(smartApi, nextResponse, results);
@@ -3911,8 +3916,7 @@ function fetchAllFromFhir(smartApi, queryParams) {
  * Abstract Class for Fetching and Caching FHIR Resources.
  */
 var FhirCache = /** @class */ (function () {
-    function FhirCache(smartApiPromise) {
-        this.smartApiPromise = smartApiPromise;
+    function FhirCache() {
         /**
          * Cache of Raw Resources.
          * A mapping from the timestamp as a date string to a list of RawResources
@@ -4011,44 +4015,42 @@ var FhirCache = /** @class */ (function () {
      * @param dateRange: the Interval to fetch data within.
      * @returns an array of Resource objects that extend ResultClassWithTimestamp
      */
-    FhirCache.prototype.getResource = function (dateRange) {
+    FhirCache.prototype.getResource = function (smartApi, dateRange) {
         var _this = this;
-        return this.smartApiPromise.then(function (smartApi) {
-            // splits the date range by day and checks if the cache contains that day.
-            // Merges days not in the cache into a list of intervals that cover those
-            // days.
-            var rangesToFetch = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].merge(_this.splitDateRangeByDay(dateRange).filter(function (day) {
-                var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
-                if (day.start.toISODate() === currentTime.toISODate()) {
-                    // we filter out today if we have refreshed today's results
-                    // within the last minute.
-                    return !(_this.timeOfLastRefreshOfTodaysResults &&
-                        currentTime
-                            .diff(_this.timeOfLastRefreshOfTodaysResults, 'minutes')
-                            .minutes < 1);
-                    // sometimes due to timezone handling we end up with a date that
-                    // is after today. We do not need to fetch that date.
-                }
-                else if (day.start.toMillis() > currentTime.toMillis()) {
-                    return false;
-                }
-                return !_this.cache.has(day.start.toISODate());
-            }));
-            // for each date interval, fetch the resource from FHIR and add the data
-            // to the cache.
-            var fetchPromises = rangesToFetch.map(function (range) {
-                return _this.fetchResourceAndAddToCache(smartApi, range);
-            });
-            // after all date ranges have been fetched from FHIR and added to the
-            // cache. Get all data from the cache for the full date range.
-            return Promise.all(fetchPromises)
-                .then(function (_) {
-                return _this.getResourceFromCache(dateRange)
-                    .map(function (result) { return _this.createFunction(result); })
-                    .filter(function (result) { return !!result; });
-            }, function (rejection) {
-                throw rejection;
-            });
+        // splits the date range by day and checks if the cache contains that day.
+        // Merges days not in the cache into a list of intervals that cover those
+        // days.
+        var rangesToFetch = luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"].merge(this.splitDateRangeByDay(dateRange).filter(function (day) {
+            var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
+            if (day.start.toISODate() === currentTime.toISODate()) {
+                // we filter out today if we have refreshed today's results
+                // within the last minute.
+                return !(_this.timeOfLastRefreshOfTodaysResults &&
+                    currentTime
+                        .diff(_this.timeOfLastRefreshOfTodaysResults, 'minutes')
+                        .minutes < 1);
+                // sometimes due to timezone handling we end up with a date that
+                // is after today. We do not need to fetch that date.
+            }
+            else if (day.start.toMillis() > currentTime.toMillis()) {
+                return false;
+            }
+            return !_this.cache.has(day.start.toISODate());
+        }));
+        // for each date interval, fetch the resource from FHIR and add the data
+        // to the cache.
+        var fetchPromises = rangesToFetch.map(function (range) {
+            return _this.fetchResourceAndAddToCache(smartApi, range);
+        });
+        // after all date ranges have been fetched from FHIR and added to the
+        // cache. Get all data from the cache for the full date range.
+        return Promise.all(fetchPromises)
+            .then(function (_) {
+            return _this.getResourceFromCache(dateRange)
+                .map(function (result) { return _this.createFunction(result); })
+                .filter(function (result) { return !!result; });
+        }, function (rejection) {
+            throw rejection;
         });
     };
     return FhirCache;
@@ -4060,6 +4062,19 @@ var MedicationCache = /** @class */ (function (_super) {
     function MedicationCache() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    MedicationCache.prototype.getResource = function (smartApi, dateRange) {
+        var _this = this;
+        // if we have not alraedy loaded all the results into the cache within the
+        // App Timespan, add them first. This helps with loading time for subsequent
+        // calls for medications.
+        if (!this.resultsLoaded) {
+            this.resultsLoaded =
+                this.fetchResourceAndAddToCache(smartApi, _constants__WEBPACK_IMPORTED_MODULE_1__["APP_TIMESPAN"]);
+        }
+        return this.resultsLoaded.then(function () {
+            return _super.prototype.getResource.call(_this, smartApi, dateRange);
+        });
+    };
     /**
      * Creates a MedicationAdministration from a RawResource.
      * Note: will return undefined if the Medication Encoding extracted from the
@@ -4129,8 +4144,8 @@ var DiagnosticReportCache = /** @class */ (function (_super) {
 /** Cache for Observations */
 var ObservationCache = /** @class */ (function (_super) {
     __extends(ObservationCache, _super);
-    function ObservationCache(smartApiPromise, code) {
-        var _this = _super.call(this, smartApiPromise) || this;
+    function ObservationCache(code) {
+        var _this = _super.call(this) || this;
         _this.code = code;
         return _this;
     }
@@ -4159,15 +4174,14 @@ var ObservationCache = /** @class */ (function (_super) {
 
 /** Cache for Encounters. */
 var EncounterCache = /** @class */ (function () {
-    function EncounterCache(smartApiPromise) {
-        this.smartApiPromise = smartApiPromise;
+    function EncounterCache() {
     }
     /**
      * Gets all Encounters.
      * Note: Encounters cannot be searched by date, so this will return all
      * encounters.
      */
-    EncounterCache.prototype.getResource = function () {
+    EncounterCache.prototype.getResource = function (smartApi) {
         var _this = this;
         var currentTime = luxon__WEBPACK_IMPORTED_MODULE_0__["DateTime"].utc();
         var cachePromise;
@@ -4181,15 +4195,13 @@ var EncounterCache = /** @class */ (function () {
         }
         else {
             this.lastFhirFetchTime = currentTime;
-            cachePromise = this.smartApiPromise.then(function (smartApi) {
-                var queryParams = {
-                    type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].Encounter,
-                };
-                return fetchAllFromFhir(smartApi, queryParams).then(function (results) {
-                    _this.cache = results;
-                    _this.lastFhirFetchTime = currentTime;
-                    return results;
-                });
+            var queryParams = {
+                type: _constants__WEBPACK_IMPORTED_MODULE_1__["FhirResourceType"].Encounter,
+            };
+            cachePromise = fetchAllFromFhir(smartApi, queryParams).then(function (results) {
+                _this.cache = results;
+                _this.lastFhirFetchTime = currentTime;
+                return results;
             });
         }
         return Promise.resolve(cachePromise)
@@ -4334,10 +4346,8 @@ var AnnotatedMicrobioReport = /** @class */ (function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedObservation", function() { return AnnotatedObservation; });
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
+/* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
+/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fhir-resource-set */ "./src/app/fhir-resource-set.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -4355,7 +4365,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-
 
 
 /**
@@ -4386,31 +4395,16 @@ var AnnotatedObservation = /** @class */ (function (_super) {
      * @throws Error if there are two medication orders in MedicationOrderSet
      *     that contain the timestamp of the observation
      */
-    AnnotatedObservation.forMedicationMonitoring = function (observation, medicationOrderSet) {
+    AnnotatedObservation.forMedicationMonitoring = function (observation, medicationOrders) {
         // Look in the medication order set's administrations and find the ones
         // closest in time to this observation.
         var timeSinceLast;
         var timeBeforeNext;
         var annotations = new Array();
-        // Find the medication order set that coincides in time with this
-        // administration (if any).
-        var containingMedicationOrder;
-        for (var _i = 0, _a = medicationOrderSet.resourceList; _i < _a.length; _i++) {
-            var order = _a[_i];
-            if (luxon__WEBPACK_IMPORTED_MODULE_0__["Interval"]
-                .fromDateTimes(order.firstAdministration.timestamp, order.lastAdministration.timestamp)
-                .contains(observation.timestamp)) {
-                if (containingMedicationOrder) {
-                    throw Error('Two medication orders contain this monitoring point.');
-                }
-                containingMedicationOrder = order;
-            }
-        }
-        if (containingMedicationOrder) {
-            // Find the spot in the array of administrations where the monitoring
-            // would fall, timewise.
-            var sortedAdmins = containingMedicationOrder.medicationAdministrationSet.resourceList
-                .sort(function (a, b) { return a.medAdministration.timestamp.toMillis() -
+        if (medicationOrders.length > 0) {
+            // Flatten all medication admins within the orders into one list and sort
+            var allAdmins = [].concat.apply([], medicationOrders.map(function (order) { return order.medicationAdministrationSet.resourceList; }));
+            var sortedAdmins = allAdmins.sort(function (a, b) { return a.medAdministration.timestamp.toMillis() -
                 b.medAdministration.timestamp.toMillis(); });
             var idx = 0;
             while (idx < sortedAdmins.length &&
@@ -4430,10 +4424,10 @@ var AnnotatedObservation = /** @class */ (function (_super) {
             timeBeforeNext =
                 doseAfterObs.medAdministration.timestamp.diff(observation.timestamp);
             annotations.push([
-                src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].TIME_SINCE_PREVIOUS_DOSE, timeSinceLast.toFormat('h:mm')
+                src_constants__WEBPACK_IMPORTED_MODULE_0__["UI_CONSTANTS"].TIME_SINCE_PREVIOUS_DOSE, timeSinceLast.toFormat('h:mm')
             ]);
             annotations.push([
-                src_constants__WEBPACK_IMPORTED_MODULE_1__["UI_CONSTANTS"].TIME_BEFORE_NEXT_DOSE, timeBeforeNext.toFormat('h:mm')
+                src_constants__WEBPACK_IMPORTED_MODULE_0__["UI_CONSTANTS"].TIME_BEFORE_NEXT_DOSE, timeBeforeNext.toFormat('h:mm')
             ]);
         }
         return new AnnotatedObservation(observation, annotations);
@@ -4462,7 +4456,7 @@ var AnnotatedObservation = /** @class */ (function (_super) {
         return new AnnotatedObservation(observation, annotations);
     };
     return AnnotatedObservation;
-}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_2__["ResultClassWithTimestamp"]));
+}(_fhir_resource_set__WEBPACK_IMPORTED_MODULE_1__["ResultClassWithTimestamp"]));
 
 
 
@@ -5940,11 +5934,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fhir_data_classes_medication_order__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fhir-data-classes/medication-order */ "./src/app/fhir-data-classes/medication-order.ts");
 /* harmony import */ var _fhir_data_classes_microbio_report__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fhir-data-classes/microbio-report */ "./src/app/fhir-data-classes/microbio-report.ts");
 /* harmony import */ var _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fhir-data-classes/observation */ "./src/app/fhir-data-classes/observation.ts");
-/* harmony import */ var _fhir_resource_set__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir-resource-set */ "./src/app/fhir-resource-set.ts");
-/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
-/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
+/* harmony import */ var _fhir_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fhir.service */ "./src/app/fhir.service.ts");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fhir_config */ "./src/app/fhir_config.js");
+/* harmony import */ var _fhir_config__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_fhir_config__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./smart-on-fhir-client */ "./src/app/smart-on-fhir-client.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -5991,7 +5984,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var FhirHttpService = /** @class */ (function (_super) {
     __extends(FhirHttpService, _super);
     function FhirHttpService(debugService, smartOnFhirClient, http, resourceCodeCreator) {
@@ -6002,27 +5994,28 @@ var FhirHttpService = /** @class */ (function (_super) {
         // ready. This allows clients of this service to call service methods
         // which depend on the API, regardless of whether the API is ready or not.
         _this.smartApiPromise = new Promise(function (resolve, reject) { return smartOnFhirClient.oauth2.ready(function (smart) { return resolve(smart); }, function (err) { return reject(err); }); });
-        _this.medicationCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["MedicationCache"](_this.smartApiPromise);
-        _this.diagnosticReportCache =
-            new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReportCache"](_this.smartApiPromise);
-        _this.observationCache = new Map();
-        _this.encounterCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["EncounterCache"](_this.smartApiPromise);
         return _this;
     }
+    FhirHttpService_1 = FhirHttpService;
     /**
      * Gets observations from a specified date range with a specific LOINC code.
      * @param code The LOINC code for which to get observations.
      * @param dateRange The time interval observations should fall between.
      */
     FhirHttpService.prototype.getObservationsWithCode = function (code, dateRange) {
-        var cacheForCode = this.observationCache.get(code);
+        var cacheForCode = FhirHttpService_1.observationCache.get(code);
         if (!cacheForCode) {
-            cacheForCode = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](this.smartApiPromise, code);
-            this.observationCache.set(code, cacheForCode);
+            cacheForCode = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](code);
+            FhirHttpService_1.observationCache.set(code, cacheForCode);
         }
-        return this.loadAllCodes.then(function () {
-            return cacheForCode.getResource(dateRange).then(function (results) {
-                return results.filter(function (result) { return result.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__["ObservationStatus"].EnteredInError; });
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], _ = _a[1];
+            return cacheForCode.getResource(smartApi, dateRange)
+                .then(function (results) {
+                return results.filter(function (result) {
+                    return result.status !== _fhir_data_classes_observation__WEBPACK_IMPORTED_MODULE_13__["ObservationStatus"].EnteredInError;
+                });
             });
         });
     };
@@ -6037,8 +6030,7 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param dateRange the time interval the observations should fall between
      */
     FhirHttpService.prototype.observationsPresentWithCode = function (code, dateRange) {
-        var queryParams = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](this.smartApiPromise, code)
-            .getQueryParams(dateRange);
+        var queryParams = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["ObservationCache"](code).getQueryParams(dateRange);
         return Promise.all([this.smartApiPromise, this.loadAllCodes])
             .then(function (_a) {
             var smartApi = _a[0], codes = _a[1];
@@ -6054,43 +6046,15 @@ var FhirHttpService = /** @class */ (function (_super) {
      *     query for.
      */
     FhirHttpService.prototype.getMedicationAdministrationsWithCodes = function (codes, dateRange, limitCount) {
-        return this.medicationCache.getResource(dateRange).then(function (results) { return results.filter(function (result) { return codes.includes(result.rxNormCode) &&
-            result.status !==
-                _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministrationStatus"].ENTERED_IN_ERROR; }); });
-    };
-    /**
-     * Determines whether a medication with the given RxNormCode exists.
-     *
-     * Checks a single response page and only calls the next page if no
-     * medications with the given code exist. Cerner's implementation of FHIR
-     * does not support searching by RxNormCode, so we need to get all of the
-     * medications and filter the response.
-     *
-     * @param smartApi The resolved smartOnFhirClient which called the original
-     *     "search"
-     * @param response The response of the previous page
-     * @param code The RxNormCode to search for
-     */
-    FhirHttpService.prototype.checkMedicationsPresentNextPage = function (smartApi, response, code) {
-        var _this = this;
-        var results = response.data.entry || [];
-        var resultsWithCode = results.filter(function (result) {
-            return code === _fhir_resource_set__WEBPACK_IMPORTED_MODULE_14__["ResultClass"].extractMedicationEncoding(result.resource);
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], _ = _a[1];
+            return FhirHttpService_1.medicationCache
+                .getResource(smartApi, dateRange)
+                .then(function (results) { return results.filter(function (result) { return codes.includes(result.rxNormCode) &&
+                result.status !==
+                    _fhir_data_classes_medication_administration__WEBPACK_IMPORTED_MODULE_10__["MedicationAdministrationStatus"].ENTERED_IN_ERROR; }); });
         });
-        if (resultsWithCode.length > 0) {
-            return Promise.resolve(true);
-        }
-        else {
-            if (response.data.link.some(function (link) { return link.relation === 'next'; })) {
-                return smartApi.patient.api.nextPage({ bundle: response.data })
-                    .then(function (nextResponse) {
-                    return _this.checkMedicationsPresentNextPage(smartApi, nextResponse, code);
-                });
-            }
-            else {
-                return Promise.resolve(false);
-            }
-        }
     };
     /**
      * Determines whether their is a medication present with the given code
@@ -6099,13 +6063,9 @@ var FhirHttpService = /** @class */ (function (_super) {
      * @param dateRange The date range to get medications for
      */
     FhirHttpService.prototype.medicationsPresentWithCode = function (code, dateRange) {
-        var _this = this;
-        var queryParams = this.medicationCache.getQueryParams(dateRange);
-        return Promise.all([this.smartApiPromise, this.loadAllCodes])
-            .then(function (_a) {
-            var smartApi = _a[0], codes = _a[1];
-            return smartApi.patient.api.search(queryParams)
-                .then(function (response) { return _this.checkMedicationsPresentNextPage(smartApi, response, code); });
+        return this.getMedicationAdministrationsWithCodes([code], dateRange)
+            .then(function (medAdmins) {
+            return medAdmins.length > 0 ? true : false;
         });
     };
     /**
@@ -6147,13 +6107,14 @@ var FhirHttpService = /** @class */ (function (_super) {
         // then filter them down to those which intersect with the date range
         // we query, and those that have a start date no earlier than a year
         // prior to now.
-        return this.encounterCache.getResource().then(function (results) {
-            return results
-                .filter(function (result) {
-                return dateRange.intersection(result.period) !== null;
-            })
-                .filter(function (result) {
-                return result.period.start >= _constants__WEBPACK_IMPORTED_MODULE_3__["EARLIEST_ENCOUNTER_START_DATE"];
+        return this.smartApiPromise.then(function (smartApi) {
+            return FhirHttpService_1.encounterCache.getResource(smartApi).then(function (results) {
+                return results
+                    .filter(function (result) {
+                    return dateRange.intersection(result.period) !== null;
+                })
+                    .filter(function (result) { return result.period.start >=
+                    _constants__WEBPACK_IMPORTED_MODULE_3__["EARLIEST_ENCOUNTER_START_DATE"]; });
             });
         });
     };
@@ -6211,7 +6172,7 @@ var FhirHttpService = /** @class */ (function (_super) {
      */
     FhirHttpService.prototype.getMicrobioReports = function (codeGroup, dateRange) {
         var _this = this;
-        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"]) {
+        if (!_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"]) {
             console.debug('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
@@ -6225,8 +6186,8 @@ var FhirHttpService = /** @class */ (function (_super) {
                 callParams = callParams.append('item-date', 'ge' + dateRange.start.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('item-date', 'le' + dateRange.end.toFormat('yyyy-MM-dd'));
             callParams = callParams.append('_format', 'json');
-            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].username + ':' +
-                _fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].password);
+            var authString = btoa(_fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].username + ':' +
+                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].password);
             var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -6234,7 +6195,7 @@ var FhirHttpService = /** @class */ (function (_super) {
             });
             return _this.http
                 .get([
-                _fhir_config__WEBPACK_IMPORTED_MODULE_16__["microbiology"].url,
+                _fhir_config__WEBPACK_IMPORTED_MODULE_15__["microbiology"].url,
                 _constants__WEBPACK_IMPORTED_MODULE_3__["FhirResourceType"].DiagnosticReport
             ].join('/'), { headers: httpHeaders, params: callParams })
                 .toPromise()
@@ -6256,14 +6217,21 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getAnnotatedDiagnosticReports = function (codeGroup, dateRange) {
         var _this = this;
         var codes = codeGroup.resourceCodes;
-        return this.diagnosticReportCache.getResource(dateRange).then(function (results) {
-            var annotatedReportsArr = results
-                .filter(function (result) {
-                return codes.includes(result.code) &&
-                    result.status !== _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_9__["DiagnosticReportStatus"].EnteredInError;
-            })
-                .map(function (report) { return _this.addAttachment(report); });
-            return Promise.all(annotatedReportsArr);
+        return Promise.all([this.smartApiPromise, this.loadAllCodes])
+            .then(function (_a) {
+            var smartApi = _a[0], _ = _a[1];
+            return FhirHttpService_1.diagnosticReportCache
+                .getResource(smartApi, dateRange)
+                .then(function (results) {
+                var annotatedReportsArr = results
+                    .filter(function (result) {
+                    return codes.includes(result.code) &&
+                        result.status !==
+                            _fhir_data_classes_diagnostic_report__WEBPACK_IMPORTED_MODULE_9__["DiagnosticReportStatus"].EnteredInError;
+                })
+                    .map(function (report) { return _this.addAttachment(report); });
+                return Promise.all(annotatedReportsArr);
+            });
         });
     };
     /**
@@ -6288,13 +6256,25 @@ var FhirHttpService = /** @class */ (function (_super) {
                 .catch(function (err) { return err.message; });
         });
     };
-    FhirHttpService = __decorate([
+    var FhirHttpService_1;
+    /** Cache for all MedicationAdministrations. */
+    FhirHttpService.medicationCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["MedicationCache"]();
+    /** Cache for all DiagnosticReports. */
+    FhirHttpService.diagnosticReportCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["DiagnosticReportCache"]();
+    /**
+     * Cache for all Observations. Map from LOINCCode to the ObservationCache
+     * for that LOINCCode.
+     */
+    FhirHttpService.observationCache = new Map();
+    /** Cache for all Encounters. */
+    FhirHttpService.encounterCache = new _fhir_cache__WEBPACK_IMPORTED_MODULE_8__["EncounterCache"]();
+    FhirHttpService = FhirHttpService_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_17__["SMART_ON_FHIR_CLIENT"])),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_16__["SMART_ON_FHIR_CLIENT"])),
         __metadata("design:paramtypes", [_debugger_service__WEBPACK_IMPORTED_MODULE_7__["DebuggerService"], Object, _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_5__["ResourceCodeCreator"]])
     ], FhirHttpService);
     return FhirHttpService;
-}(_fhir_service__WEBPACK_IMPORTED_MODULE_15__["FhirService"]));
+}(_fhir_service__WEBPACK_IMPORTED_MODULE_14__["FhirService"]));
 
 
 
@@ -12385,7 +12365,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.0.0.0alpha1',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.0.0.0alpha2',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
@@ -12463,8 +12443,8 @@ var UI_CONSTANTS = {
     FIRST_DOSE: 'First dose within this timeframe',
     LAST_DOSE: 'Last dose within this timeframe',
     THIS_DOSE: 'This dose',
-    PREVIOUS_DOSE: 'Previous dose within this timeframe',
-    NO_PREVIOUS_DOSE: 'No previous dose within this timeframe',
+    PREVIOUS_DOSE: 'Previous dose within this timeframe (for this order)',
+    NO_PREVIOUS_DOSE: 'No previous dose within this timeframe (for this order).',
     DOSAGE_INSTRUCTIONS: 'Dosage Instructions'
 };
 
