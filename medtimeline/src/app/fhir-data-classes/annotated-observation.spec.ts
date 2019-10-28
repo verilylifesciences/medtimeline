@@ -8,13 +8,15 @@ import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from './medication-order';
+import {MedicationAdministration} from './medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from './medication-order';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
 
@@ -49,47 +51,50 @@ describe('AnnotatedObservation', () => {
     expect(annotated.label).toBe(obs.label);
   });
 
-  it('forMedicationMonitoring should give blank annotations' +
-         ' for observations outside of a medication order',
-     () => {
-       const medOrder = makeMedicationOrder();
-
-       const firstAdmin = makeMedicationAdministration(
-           DateTime.fromISO('1992-11-01T00:00:00.00').toString());
-       const lastAdmin = makeMedicationAdministration(
-           DateTime.fromISO('1992-11-04T00:00:00.00').toString());
-
-       const annotatedMedOrder =
-           new AnnotatedMedicationOrder(medOrder, [firstAdmin, lastAdmin]);
-
-       const medOrderSet = new MedicationOrderSet([annotatedMedOrder]);
-
-       const annotated =
-           AnnotatedObservation.forMedicationMonitoring(obs, medOrderSet);
-       expect(annotated.observation).toEqual(obs);
-       expect(annotated.annotationValues.length).toEqual(0);
-       expect(annotated.label).toBe(obs.label);
-     });
-
   it('forMedicationMonitoring should give correct annotations' +
          ' for observations with preceding and following doses',
      () => {
-       const medOrder = makeMedicationOrder();
+       const medOrderPrimaryVanc = makeMedicationOrder();
 
-       const firstAdmin = makeMedicationAdministration(
+       const adminPrimaryVanc1 = makeMedicationAdministration(
            DateTime.fromISO('1992-11-01T00:00:00.00').toString());
-       const secondAdmin = makeMedicationAdministration(
+       const adminPrimaryVanc2 = makeMedicationAdministration(
            DateTime.fromISO('1992-11-04T00:00:00.00').toString());
-       const thirdAdmin = makeMedicationAdministration(
-           DateTime.fromISO('1992-11-09T00:00:00.00').toString());
 
-       const annotatedMedOrder = new AnnotatedMedicationOrder(
-           medOrder, [thirdAdmin, firstAdmin, secondAdmin]);
+       const annotatedMedOrder1 = new AnnotatedMedicationOrder(
+           medOrderPrimaryVanc, [adminPrimaryVanc2, adminPrimaryVanc1]);
 
-       const medOrderSet = new MedicationOrderSet([annotatedMedOrder]);
+       const secondaryVancMedicationCoding = {
+         coding: [{system: RxNormCode.CODING_STRING, code: '1807508'}],
+         text: '200 ML Vancomycin 5 MG/ML Injection'
+       };
+       const orderSecondaryVanc = new MedicationOrder(
+           {
+             medicationReference: {display: secondaryVancMedicationCoding.text},
+             medicationCodeableConcept: secondaryVancMedicationCoding,
+             id: 12
+           },
+           REQUEST_ID);
+       const adminSecondaryVanc1 = new MedicationAdministration(
+           {
+             effectiveTimeDateTime:
+                 DateTime.fromISO('1992-11-09T00:00:00.00').toString(),
+             medicationReference: {display: secondaryVancMedicationCoding.text},
+             dosage: {
+               quantity: {value: 200, unit: 'mg'},
+               route: {text: 'injection'},
+               text: '200mg 5ml/mg injection daily'
+             },
+             medicationCodeableConcept: secondaryVancMedicationCoding,
+             prescription: {reference: 'MedicationOrder/22'}
+           },
+           REQUEST_ID);
 
-       const annotated =
-           AnnotatedObservation.forMedicationMonitoring(obs, medOrderSet);
+       const annotatedMedOrder2 = new AnnotatedMedicationOrder(
+           orderSecondaryVanc, [adminSecondaryVanc1]);
+
+       const annotated = AnnotatedObservation.forMedicationMonitoring(
+           obs, [annotatedMedOrder2, annotatedMedOrder1]);
        expect(annotated.observation).toEqual(obs);
        expect(annotated.annotationValues.length).toEqual(2);
        expect(annotated.annotationValues[0]).toEqual([

@@ -228,5 +228,15 @@
         "groupName": "Vancomycin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
+    },
+    {
+      "groupName": "Vancomycin Monitoring Reference",
+      "graphType": "NONE",
+      "displayGroupOnSameAxis": true
+    },
+    {
+      "groupName": "Gentamicin Monitoring Reference",
+      "graphType": "NONE",
+      "displayGroupOnSameAxis": true
     }
 ]
