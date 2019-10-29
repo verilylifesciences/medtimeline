@@ -5,11 +5,12 @@
 
 import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Tooltip} from '../tooltips/tooltip';
-import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
 import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
 import {UI_CONSTANTS} from 'src/constants';
 import {v4 as uuid} from 'uuid';
+
+import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';
+import {Tooltip} from '../tooltips/tooltip';
 
 /*
  * This class makes a tooltip for a DiagnosticReport that applies to all points
@@ -30,23 +31,16 @@ export class DiagnosticTooltip extends Tooltip<AnnotatedDiagnosticReport> {
     if (this.addTimestampRow) {
       Tooltip.addTimeHeader(timestamp, table, sanitizer);
     }
-    if (annotatedReport.text) {
-      const htmlText = annotatedReport.text.div;
-      Tooltip.addHeader(UI_CONSTANTS.SUMMARY, table, sanitizer);
-      Tooltip.addRow(table, [htmlText], sanitizer);
-    } else {
-      // If there is no additional text (Narrative) that is added, the tooltip
-      // will display some other default information.
-      Tooltip.addRow(table, [UI_CONSTANTS.CATEGORY, annotatedReport.report.category], sanitizer);
-      Tooltip.addRow(table, [UI_CONSTANTS.STATUS, annotatedReport.report.status], sanitizer);
-    }
-    // The AnnotatedTooltip will have the same ID as the button that it corresponds with
+
+    // The AnnotatedTooltip will have the same ID as the button that it
+    // corresponds with
     const uniqueID = uuid();
     // Replace the dashes in the UUID to meet HTML requirements.
     const re = /\-/gi;
     const buttonID = 'button' + uniqueID.replace(re, '');
     // Attach button to the tooltip to display attachments
-    this.addAttachmentButton(buttonID, UI_CONSTANTS.REPORT_ATTACHMENT, table, sanitizer);
+    this.addAttachmentButton(
+        buttonID, UI_CONSTANTS.REPORT_ATTACHMENT, table, sanitizer);
 
     const tooltipChart = table.outerHTML;
     const additionalAttachment = [annotatedReport.attachmentHtml];
@@ -60,8 +54,9 @@ export class DiagnosticTooltip extends Tooltip<AnnotatedDiagnosticReport> {
    * @param table HTMLTableElement on the tooltip that needs to be edited
    * @param sanitizer A DOM sanitizer
    */
-  private addAttachmentButton(buttonID: string, buttonLabel: string,
-        table: HTMLTableElement, sanitizer: DomSanitizer) {
+  private addAttachmentButton(
+      buttonID: string, buttonLabel: string, table: HTMLTableElement,
+      sanitizer: DomSanitizer) {
     const row = table.insertRow();
     const cell1 = row.insertCell();
     const button = document.createElement('button');
