@@ -18,7 +18,7 @@ import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';

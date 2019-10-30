@@ -6,7 +6,7 @@
 // tslint:disable-next-line:max-line-length
 import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Interval} from 'luxon';
-import {FhirService} from 'src/app/fhir.service';
+import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
 import {GraphData} from 'src/app/graphdatatypes/graphdata';
 import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';

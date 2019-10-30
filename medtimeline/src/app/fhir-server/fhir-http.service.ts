@@ -7,25 +7,26 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 
-import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../constants';
+import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../../constants';
+import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
+import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {documentReferenceLoinc} from '../conceptmappings/resource-code-manager';
+import {DebuggerService} from '../debugger.service';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
+import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-data-classes/diagnostic-report';
+import {Encounter} from '../fhir-data-classes/encounter';
+import {MedicationAdministration, MedicationAdministrationStatus} from '../fhir-data-classes/medication-administration';
+import {MedicationOrder} from '../fhir-data-classes/medication-order';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
+import {Observation, ObservationStatus} from '../fhir-data-classes/observation';
+import {ResultClass} from '../fhir-resource-set';
+import * as FhirConfig from '../fhir_config';
 
-import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {LOINCCode} from './clinicalconcepts/loinc-code';
-import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {documentReferenceLoinc} from './conceptmappings/resource-code-manager';
-import {DebuggerService} from './debugger.service';
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport, DiagnosticReportStatus} from './fhir-data-classes/diagnostic-report';
-import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration, MedicationAdministrationStatus} from './fhir-data-classes/medication-administration';
-import {MedicationOrder} from './fhir-data-classes/medication-order';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
-import {Observation, ObservationStatus} from './fhir-data-classes/observation';
 import {FhirService} from './fhir.service';
-import * as FhirConfig from './fhir_config';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 
 @Injectable()

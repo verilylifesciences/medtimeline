@@ -16,10 +16,10 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
+import {FhirService} from '../fhir-server/fhir.service';
 
 import {Observation} from './../fhir-data-classes/observation';
 import {ObservationSet} from './../fhir-data-classes/observation-set';
-import {FhirService} from './../fhir.service';
 // tslint:disable-next-line:max-line-length
 import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from './../test_utils';
 import {makeDiagnosticReportWithoutTextField, makeSampleDiscreteObservation} from './../test_utils';

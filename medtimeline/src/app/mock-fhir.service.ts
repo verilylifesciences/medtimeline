@@ -25,7 +25,7 @@ import {MedicationAdministration} from './fhir-data-classes/medication-administr
 import {MedicationOrder} from './fhir-data-classes/medication-order';
 import {MicrobioReport} from './fhir-data-classes/microbio-report';
 import {Observation, ObservationStatus} from './fhir-data-classes/observation';
-import {FhirService} from './fhir.service';
+import {FhirService} from './fhir-server/fhir.service';
 
 @Injectable()
 export class MockFhirService extends FhirService {

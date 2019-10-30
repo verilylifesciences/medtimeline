@@ -7,13 +7,12 @@
 import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 
-import {DisplayGrouping, labResult, vitalSign} from '../clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {FhirService} from '../fhir-server/fhir.service';
-import {StubFhirService} from '../test_utils';
+import {DisplayGrouping, labResult, vitalSign} from '../../clinicalconcepts/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
+import {FhirService} from '../../fhir-server/fhir.service';
+import {StubFhirService} from '../../utils/test_utils';
 
 import {Axis} from './axis';
 import {AxisGroup} from './axis-group';
@@ -30,8 +29,7 @@ describe('AxisGroup', () => {
           imports: [HttpClientModule],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+            ResourceCodeCreator
           ]
         })
         .compileComponents();

@@ -13,7 +13,7 @@ import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphtypes/axis-group';
 
 /**

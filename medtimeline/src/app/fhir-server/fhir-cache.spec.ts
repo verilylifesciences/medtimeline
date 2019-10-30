@@ -2,8 +2,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
+import {RawResource, ResultClassWithTimestamp} from '../fhir-resource-set';
+
 import {FhirCache} from './fhir-cache';
-import {RawResource, ResultClassWithTimestamp} from './fhir-resource-set';
 
 const dateRange: Interval = Interval.fromDateTimes(
     DateTime.fromISO('2012-08-23T00:00:00.00'),

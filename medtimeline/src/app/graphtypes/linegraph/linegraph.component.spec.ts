@@ -13,7 +13,7 @@ import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
-import {FhirService} from 'src/app/fhir.service';
+import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ObservationSet} from '../../fhir-data-classes/observation-set';

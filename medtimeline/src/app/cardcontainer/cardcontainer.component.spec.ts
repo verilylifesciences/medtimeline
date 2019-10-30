@@ -43,7 +43,7 @@ import {DataSelectorElementComponent} from '../data-selector-element/data-select
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {DeleteDialogComponent} from '../dialogs/delete-dialog/delete-dialog.component';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {CustomizableGraphAnnotation} from '../graphtypes/customizable-graph/customizable-graph-annotation';
 import {CustomizableGraphComponent} from '../graphtypes/customizable-graph/customizable-graph.component';

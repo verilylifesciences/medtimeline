@@ -19,7 +19,7 @@ import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
-import {FhirService} from 'src/app/fhir.service';
+import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {Axis} from 'src/app/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphtypes/axis-group';
 import {DiagnosticGraphComponent} from 'src/app/graphtypes/diagnostic-graph/diagnostic-graph.component';

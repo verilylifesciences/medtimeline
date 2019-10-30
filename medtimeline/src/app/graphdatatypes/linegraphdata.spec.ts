@@ -18,7 +18,7 @@ import {AnnotatedAdministration, MedicationAdministrationSet} from '../fhir-data
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../fhir-data-classes/medication-order';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';

@@ -6,15 +6,15 @@
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
-
-import {MicrobioReport} from '../fhir-data-classes/microbio-report';
-import {FhirService} from '../fhir.service';
-import {Tooltip} from '../graphtypes/tooltips/tooltip';
-import {makeMicrobioReports} from '../test_utils';
 import * as Colors from 'src/app/theme/verily_colors';
 
-import {MicrobioGraphData} from './microbiographdata';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
+import {FhirService} from '../fhir-server/fhir.service';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
+import {Tooltip} from '../graphtypes/tooltips/tooltip';
+import {makeMicrobioReports} from '../test_utils';
+
+import {MicrobioGraphData} from './microbiographdata';
 
 const REQUEST_ID = '1234';
 
@@ -32,7 +32,7 @@ describe('MicrobioGraphData', () => {
      () => {
        const microbioReports = makeMicrobioReports();
        const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
-            microbioReports, TestBed.get(DomSanitizer));
+           microbioReports, TestBed.get(DomSanitizer));
        // All the endpoint series are also in the master series list.
        expect(stepgraphdata.series.length).toEqual(5);
      });
@@ -42,7 +42,7 @@ describe('MicrobioGraphData', () => {
      () => {
        const microbioReports = makeMicrobioReports();
        const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
-            microbioReports, TestBed.get(DomSanitizer));
+           microbioReports, TestBed.get(DomSanitizer));
        const series1 = stepgraphdata.series[0];
        expect(series1.coordinates[0]).toEqual([
          DateTime.fromISO('2018-08-31T13:48:00.000-04:00'),
@@ -145,7 +145,8 @@ describe('MicrobioGraphData', () => {
                          .toMillis()
                          .toString();
        expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();
-       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(stepgraphdata.tooltipMap.get(mbKey));
+       const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+           stepgraphdata.tooltipMap.get(mbKey));
        expect(annotatedTT.tooltipChart)
            .toEqual(
                '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
@@ -164,7 +165,8 @@ describe('MicrobioGraphData', () => {
                '<table class="c3-tooltip"><tbody>' +
                '<tr><th colspan="2">Result set</th></tr>' +
                '<tr><td class="name"><span style="background-color: ' +
-               'rgb(195, 132, 25); ' + Tooltip.TOOLTIP_NORMAL_CSS + '"></span>' +
+               'rgb(195, 132, 25); ' + Tooltip.TOOLTIP_NORMAL_CSS +
+               '"></span>' +
                '<div style="display: inline-block;">Fungus Culture</div></td>' +
                '<td class="value">Negative or Flora</td></tr>' +
                '<tr><td class="name">Status</td>' +
@@ -175,8 +177,7 @@ describe('MicrobioGraphData', () => {
 
   it('should generate tooltip text correctly when abnormal values exist', () => {
     const mb1 = {
-      category:
-          {coding: [{code: 'MB', system: 'http://hl7.org/fhir/v2/0074'}]},
+      category: {coding: [{code: 'MB', system: 'http://hl7.org/fhir/v2/0074'}]},
       contained: [
         {
           collection: {collectedDateTime: '2019-02-14T17:34:43-05:00'},
@@ -197,8 +198,7 @@ describe('MicrobioGraphData', () => {
             coding: [{
               code: 'CHECKRESULT',
               display: 'Check Result',
-              system:
-                  'http://hl7.org/fhir/ValueSet/observation-interpretation'
+              system: 'http://hl7.org/fhir/ValueSet/observation-interpretation'
             }]
           },
           resourceType: 'Observation'
@@ -217,21 +217,27 @@ describe('MicrobioGraphData', () => {
     const stepgraphdata = MicrobioGraphData.fromMicrobioReports(
         microbioReports, TestBed.get(DomSanitizer));
     const mbKey = DateTime.fromISO('2019-02-14T17:34:43-05:00')
-        .toUTC().toMillis().toString();
+                      .toUTC()
+                      .toMillis()
+                      .toString();
     expect(stepgraphdata.tooltipMap.has(mbKey)).toBeTruthy();
-    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(stepgraphdata.tooltipMap.get(mbKey));
-    expect(annotatedTT.tooltipChart).toEqual(
-          '<table class="c3-tooltip"><tbody>' +
-          '<tr><th colspan="2">' +
-          Tooltip.formatTimestamp(DateTime.fromISO('2019-02-14T17:34:43-05:00')) +
-          '</th></tr>' +
-          '<tr><th colspan="2">Result set</th></tr>' +
-          '<tr><td class="name" style="color: ' + Colors.ABNORMAL + '">' +
-          '<span style="' + Tooltip.TOOLTIP_ABNORMAL_CSS + 'rgb(195, 132, 25)">' +
-          '</span><div style="display: inline-block;">Fungus Culture</div></td>' +
-          '<td class="value" style="color: ' + Colors.ABNORMAL + '">Check result</td></tr>' +
-          '<tr><td class="name">Status</td><td class="value">Partial</td></tr>' +
-          '<tr><td class="name">Specimen</td><td class="value">BAL</td></tr></tbody></table>');
-
+    const annotatedTT = AnnotatedTooltip.combineAnnotatedTooltipArr(
+        stepgraphdata.tooltipMap.get(mbKey));
+    expect(annotatedTT.tooltipChart)
+        .toEqual(
+            '<table class="c3-tooltip"><tbody>' +
+            '<tr><th colspan="2">' +
+            Tooltip.formatTimestamp(
+                DateTime.fromISO('2019-02-14T17:34:43-05:00')) +
+            '</th></tr>' +
+            '<tr><th colspan="2">Result set</th></tr>' +
+            '<tr><td class="name" style="color: ' + Colors.ABNORMAL + '">' +
+            '<span style="' + Tooltip.TOOLTIP_ABNORMAL_CSS +
+            'rgb(195, 132, 25)">' +
+            '</span><div style="display: inline-block;">Fungus Culture</div></td>' +
+            '<td class="value" style="color: ' + Colors.ABNORMAL +
+            '">Check result</td></tr>' +
+            '<tr><td class="name">Status</td><td class="value">Partial</td></tr>' +
+            '<tr><td class="name">Specimen</td><td class="value">BAL</td></tr></tbody></table>');
   });
 });

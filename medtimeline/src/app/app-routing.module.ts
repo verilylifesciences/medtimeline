@@ -7,7 +7,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {CardcontainerComponent} from './cardcontainer/cardcontainer.component';
-import {FhirLaunchComponent} from './fhir-launch/fhir-launch.component';
+import {FhirLaunchComponent} from './fhir-server/fhir-launch/fhir-launch.component';
 import {SetupComponent} from './setup/setup.component';
 
 /* On their end, it's locked down so that the only acceptable redirect

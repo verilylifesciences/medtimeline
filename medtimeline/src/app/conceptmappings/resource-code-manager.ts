@@ -13,7 +13,7 @@ import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode, ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphtypes/axis';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';

@@ -8,7 +8,7 @@ import {APP_TIMESPAN} from 'src/constants';
 
 import {AnnotatedMicrobioReport} from '../fhir-data-classes/annotated-microbio-report';
 import {MicrobioReport} from '../fhir-data-classes/microbio-report';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 
 import {AbstractResourceCodeGroup, ResourceCode} from './resource-code-group';
 

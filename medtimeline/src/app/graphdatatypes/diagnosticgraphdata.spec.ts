@@ -7,11 +7,11 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 
-import {FhirService} from '../fhir.service';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
+import {FhirService} from '../fhir-server/fhir.service';
 import {makeDiagnosticReports} from '../test_utils';
 
 import {DiagnosticGraphData} from './diagnosticgraphdata';
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
 
 describe('DiagnosticGraphData', () => {
   let fhirServiceStub: any;
@@ -24,30 +24,32 @@ describe('DiagnosticGraphData', () => {
 
   it('fromDiagnosticReports should correctly calculate a ' +
          'LabeledSeries for each DiagnosticReport.',
-    () => {
-      const diagnosticReports = makeDiagnosticReports();
-      const annotatedDiagnosticReports = diagnosticReports
-                    .map(report => new AnnotatedDiagnosticReport(report));
-      const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
-        annotatedDiagnosticReports, TestBed.get(DomSanitizer));
-      expect(diagnosticgraphdata.series.length).toEqual(2);
-    });
+     () => {
+       const diagnosticReports = makeDiagnosticReports();
+       const annotatedDiagnosticReports = diagnosticReports.map(
+           report => new AnnotatedDiagnosticReport(report));
+       const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
+           annotatedDiagnosticReports, TestBed.get(DomSanitizer));
+       expect(diagnosticgraphdata.series.length).toEqual(2);
+     });
 
   it('fromDiagnosticReports should correctly calculate ' +
          'time and position for each Diagnostic Report Observation',
-    () => {
-      const diagnosticReports = makeDiagnosticReports();
-      const annotatedDiagnosticReports = diagnosticReports
-                    .map(report => new AnnotatedDiagnosticReport(report));
-      const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
-        annotatedDiagnosticReports, TestBed.get(DomSanitizer));
+     () => {
+       const diagnosticReports = makeDiagnosticReports();
+       const annotatedDiagnosticReports = diagnosticReports.map(
+           report => new AnnotatedDiagnosticReport(report));
+       const diagnosticgraphdata = DiagnosticGraphData.fromDiagnosticReports(
+           annotatedDiagnosticReports, TestBed.get(DomSanitizer));
 
-      const series1 = diagnosticgraphdata.series[0];
-      expect(series1.coordinates[0]).toEqual([
-        DateTime.fromISO('2019-02-11T20:03:09.000Z'), 'RAD']);
+       const series1 = diagnosticgraphdata.series[0];
+       expect(series1.coordinates[0]).toEqual([
+         DateTime.fromISO('2019-02-11T20:03:09.000Z'), 'RAD'
+       ]);
 
-      const series2 = diagnosticgraphdata.series[1];
-      expect(series2.coordinates[0]).toEqual([
-        DateTime.fromISO('2019-02-12T22:31:02.000Z'), 'CT']);
-    });
+       const series2 = diagnosticgraphdata.series[1];
+       expect(series2.coordinates[0]).toEqual([
+         DateTime.fromISO('2019-02-12T22:31:02.000Z'), 'CT'
+       ]);
+     });
 });

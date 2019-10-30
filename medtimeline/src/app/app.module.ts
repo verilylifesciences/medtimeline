@@ -42,9 +42,10 @@ import {ConfirmSaveComponent} from './dialogs/confirm-save/confirm-save.componen
 import {DeleteDialogComponent} from './dialogs/delete-dialog/delete-dialog.component';
 import {HelpDialogComponent} from './dialogs/help-dialog/help-dialog.component';
 import {IfuDialogComponent} from './dialogs/ifu-dialog/ifu-dialog.component';
-import {FhirHttpService} from './fhir-http.service';
-import {FhirLaunchComponent} from './fhir-launch/fhir-launch.component';
-import {FhirService} from './fhir.service';
+import {FhirHttpService} from './fhir-server/fhir-http.service';
+import {FhirLaunchComponent} from './fhir-server/fhir-launch/fhir-launch.component';
+import {FhirService} from './fhir-server/fhir.service';
+import {SMART_ON_FHIR_CLIENT} from './fhir-server/smart-on-fhir-client';
 import {CustomizableGraphComponent} from './graphtypes/customizable-graph/customizable-graph.component';
 import {DiagnosticGraphComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.component';
 import {DiagnosticGraphDialogComponent} from './graphtypes/diagnostic-graph/diagnostic-graph.dialog.component';
@@ -54,7 +55,6 @@ import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.compone
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {MockFhirService} from './mock-fhir.service';
 import {SetupComponent} from './setup/setup.component';
-import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 import {TimelineControllerComponent} from './time-navigation/timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timeline-toolbar.component';
 

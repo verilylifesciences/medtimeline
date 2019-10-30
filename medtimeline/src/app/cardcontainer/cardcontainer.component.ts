@@ -17,7 +17,7 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from '../dialogs/confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../dialogs/delete-dialog/delete-dialog.component';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {CustomizableData} from '../graphdatatypes/customizabledata';
 import {AxisGroup} from '../graphtypes/axis-group';
 import {ChartType} from '../graphtypes/graph/graph.component';

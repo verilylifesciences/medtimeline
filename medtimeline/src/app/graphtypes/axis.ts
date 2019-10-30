@@ -15,7 +15,7 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {MedicationOrderSet} from '../fhir-data-classes/medication-order';
-import {FhirService} from '../fhir.service';
+import {FhirService} from '../fhir-server/fhir.service';
 import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {GraphData} from '../graphdatatypes/graphdata';
 import {LineGraphData} from '../graphdatatypes/linegraphdata';

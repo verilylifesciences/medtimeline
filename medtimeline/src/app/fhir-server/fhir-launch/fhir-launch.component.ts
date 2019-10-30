@@ -9,9 +9,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
-import * as FhirConfig from './../fhir_config';
+import * as FhirConfig from '../../fhir_config';
 
 /* Type definition for SMART on FHIR client (from assets/fhir-client.min.js) */
 declare var FHIR: any;
