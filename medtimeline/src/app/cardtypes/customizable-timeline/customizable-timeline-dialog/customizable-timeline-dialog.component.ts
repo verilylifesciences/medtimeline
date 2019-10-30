@@ -10,7 +10,7 @@ import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
 // tslint:disable-next-line:max-line-length
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
+import {CustomizableGraphAnnotation} from 'src/app/graphs/graphtypes/customizable-graph/customizable-graph-annotation';
 // tslint:disable-next-line:max-line-length
 import * as Colors from 'src/app/theme/verily_colors';
 

@@ -14,7 +14,7 @@ import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {FhirService} from '../fhir-server/fhir.service';
-import {AxisGroup} from '../graphtypes/axis-group';
+import {AxisGroup} from '../graphs/graphtypes/axis-group';
 
 /**
  * Shows a button with expanding menus for selecting data elements to display.

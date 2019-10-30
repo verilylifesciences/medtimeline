@@ -19,9 +19,9 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir-server/fhir.service';
-import {Axis} from '../graphtypes/axis';
-import {AxisGroup} from '../graphtypes/axis-group';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {Axis} from '../graphs/graphtypes/axis';
+import {AxisGroup} from '../graphs/graphtypes/axis-group';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {StubFhirService} from '../test_utils';
 
 import {SetupComponent} from './setup.component';

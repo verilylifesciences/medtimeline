@@ -16,7 +16,7 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 ;
 import {FhirHttpService} from './fhir-http.service';
 import {FhirService} from './fhir.service';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {makeSampleObservationJson, StubFhirService, makeMedicationAdministration} from '../test_utils';
 import {MedicationCache, DiagnosticReportCache, EncounterCache} from './fhir-cache';
 

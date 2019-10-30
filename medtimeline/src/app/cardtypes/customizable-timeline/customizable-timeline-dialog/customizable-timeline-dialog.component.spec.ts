@@ -13,7 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DateTime} from 'luxon';
 // tslint:disable-next-line:max-line-length
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
+import {CustomizableGraphAnnotation} from 'src/app/graphs/graphtypes/customizable-graph/customizable-graph-annotation';
 
 import {CustomizableTimelineDialogComponent} from './customizable-timeline-dialog.component';
 

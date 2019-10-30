@@ -12,8 +12,8 @@ import {ChartsModule} from 'ng2-charts';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
-import {CustomizableGraphAnnotation} from 'src/app/graphtypes/customizable-graph/customizable-graph-annotation';
-import {CustomizableGraphComponent} from 'src/app/graphtypes/customizable-graph/customizable-graph.component';
+import {CustomizableGraphAnnotation} from 'src/app/graphs/graphtypes/customizable-graph/customizable-graph-annotation';
+import {CustomizableGraphComponent} from 'src/app/graphs/graphtypes/customizable-graph/customizable-graph.component';
 import {StubFhirService} from 'src/app/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 

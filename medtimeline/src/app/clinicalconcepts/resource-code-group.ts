@@ -7,7 +7,7 @@ import {Interval} from 'luxon';
 
 import {TimestampedObject} from '../fhir-resource-set';
 import {FhirService} from '../fhir-server/fhir.service';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {DisplayGrouping} from './display-grouping';
 
 /**

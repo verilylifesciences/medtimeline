@@ -4,7 +4,9 @@
 // license that can be found in the LICENSE file.
 
 import {Component, Inject} from '@angular/core';
-import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import html2canvas from 'html2canvas';
 import {DateTime, Interval} from 'luxon';
 import {DragulaService} from 'ng2-dragula';
@@ -18,9 +20,9 @@ import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from '../dialogs/confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../dialogs/delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir-server/fhir.service';
-import {CustomizableData} from '../graphdatatypes/customizabledata';
-import {AxisGroup} from '../graphtypes/axis-group';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {CustomizableData} from '../graphs/graphdatatypes/customizabledata';
+import {AxisGroup} from '../graphs/graphtypes/axis-group';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {SetupDataService} from '../setup-data.service';
 
 @Component({

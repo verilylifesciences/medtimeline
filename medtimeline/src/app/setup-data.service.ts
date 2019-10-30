@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
 import {Interval} from 'luxon';
 
 import {Encounter} from './fhir-data-classes/encounter';
-import {AxisGroup} from './graphtypes/axis-group';
+import {AxisGroup} from './graphs/graphtypes/axis-group';
 import {ResultError} from './result-error';
 
 /**

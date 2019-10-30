@@ -8,7 +8,7 @@ import {MatListModule} from '@angular/material/list';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {labResult} from '../clinicalconcepts/display-grouping';
-import {AxisGroup} from '../graphtypes/axis-group';
+import {AxisGroup} from '../graphs/graphtypes/axis-group';
 
 import {DataSelectorElementComponent} from './data-selector-element.component';
 

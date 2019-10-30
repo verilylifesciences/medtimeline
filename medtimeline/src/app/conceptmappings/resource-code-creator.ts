@@ -12,7 +12,7 @@ import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microb
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 
 
 /**

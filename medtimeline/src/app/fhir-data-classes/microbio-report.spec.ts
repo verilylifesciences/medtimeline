@@ -6,7 +6,7 @@
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
 import {microbio} from '../clinicalconcepts/display-grouping';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 
 import {DiagnosticReportStatus} from './diagnostic-report';
 import {MicrobioReport} from './microbio-report';

@@ -7,9 +7,9 @@
 import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Interval} from 'luxon';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
-import {CustomizableData} from 'src/app/graphdatatypes/customizabledata';
-import {GraphData} from 'src/app/graphdatatypes/graphdata';
-import {GraphComponent} from 'src/app/graphtypes/graph/graph.component';
+import {CustomizableData} from 'src/app/graphs/graphdatatypes/customizabledata';
+import {GraphData} from 'src/app/graphs/graphdatatypes/graphdata';
+import {GraphComponent} from 'src/app/graphs/graphtypes/graph/graph.component';
 import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 /**

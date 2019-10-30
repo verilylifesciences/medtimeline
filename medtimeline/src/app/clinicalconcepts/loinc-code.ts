@@ -10,7 +10,7 @@ import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
 import {Observation} from '../fhir-data-classes/observation';
 import {ObservationSet} from '../fhir-data-classes/observation-set';
 import {FhirService} from '../fhir-server/fhir.service';
-import {ChartType} from '../graphtypes/graph/graph.component';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 
 import {DisplayGrouping} from './display-grouping';
 import {ResourceCode} from './resource-code-group';

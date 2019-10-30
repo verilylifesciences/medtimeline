@@ -7,14 +7,14 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
 import * as Color from 'color';
 import {DateTime, Interval} from 'luxon';
-import {GraphData} from 'src/app/graphdatatypes/graphdata';
-import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
-import {AxisGroup} from 'src/app/graphtypes/axis-group';
-import {LegendInfo} from 'src/app/graphtypes/legend-info';
+import {GraphData} from 'src/app/graphs/graphdatatypes/graphdata';
+import {LabeledSeries} from 'src/app/graphs/graphdatatypes/labeled-series';
+import {AxisGroup} from 'src/app/graphs/graphtypes/axis-group';
+import {LegendInfo} from 'src/app/graphs/graphtypes/legend-info';
 import {recordGoogleAnalyticsEvent} from 'src/constants';
 
-import {ChartType, GraphComponent} from '../../graphtypes/graph/graph.component';
-import {LineGraphComponent} from '../../graphtypes/linegraph/linegraph.component';
+import {ChartType, GraphComponent} from '../../graphs/graphtypes/graph/graph.component';
+import {LineGraphComponent} from '../../graphs/graphtypes/linegraph/linegraph.component';
 import * as Colors from '../../theme/verily_colors';
 
 /**

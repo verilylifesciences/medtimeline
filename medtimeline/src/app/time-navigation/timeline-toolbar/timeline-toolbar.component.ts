@@ -14,7 +14,7 @@ import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
 import {HelpDialogComponent} from '../../dialogs/help-dialog/help-dialog.component';
 import {IfuDialogComponent} from '../../dialogs/ifu-dialog/ifu-dialog.component';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {AxisGroup} from '../../graphtypes/axis-group';
+import {AxisGroup} from '../../graphs/graphtypes/axis-group';
 
 @Component({
   selector: 'app-timeline-toolbar',
