@@ -39,7 +39,7 @@ import {MultiGraphCardComponent} from '../cardtypes/multigraphcard/multigraphcar
 import {TextboxcardComponent} from '../cardtypes/textboxcard/textboxcard.component';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
+import {DataSelectorElementComponent} from '../data-selector-menu/data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from '../data-selector-menu/data-selector-menu.component';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {DeleteDialogComponent} from '../dialogs/delete-dialog/delete-dialog.component';

@@ -6,7 +6,7 @@
 import {AfterViewInit, Component, Inject, Input} from '@angular/core';
 import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {AxisGroup} from '../graphs/graphtypes/axis-group';
+import {AxisGroup} from '../../graphs/graphtypes/axis-group';
 
 /**
  * Represents one element in a list or menu of ResourceCodesForCards

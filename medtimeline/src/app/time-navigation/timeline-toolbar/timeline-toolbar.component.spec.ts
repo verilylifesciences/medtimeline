@@ -14,7 +14,7 @@ import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
-import {DataSelectorElementComponent} from '../../data-selector-element/data-selector-element.component';
+import {DataSelectorElementComponent} from '../../data-selector-menu/data-selector-element/data-selector-element.component';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {StubFhirService} from '../../utils/test_utils';
 

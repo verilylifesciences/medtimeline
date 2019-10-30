@@ -16,13 +16,13 @@ import {labResult, vitalSign} from '../clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {DataSelectorElementComponent} from '../data-selector-element/data-selector-element.component';
 import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {StubFhirService} from '../utils/test_utils';
 
+import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from './data-selector-menu.component';
 
 describe('DataSelectorMenuComponent', () => {
