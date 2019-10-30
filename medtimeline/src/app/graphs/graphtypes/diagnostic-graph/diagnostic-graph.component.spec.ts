@@ -12,8 +12,8 @@ import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/tes
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport} from 'src/app/fhir-data-classes/diagnostic-report';
+import {AnnotatedDiagnosticReport} from 'src/app/fhir-resources/annotated/annotated-diagnostic-report';
+import {DiagnosticReport} from 'src/app/fhir-resources/diagnostic-report';
 import {DiagnosticGraphData} from 'src/app/graphs/graphdatatypes/diagnosticgraphdata';
 import {makeDiagnosticReports} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';

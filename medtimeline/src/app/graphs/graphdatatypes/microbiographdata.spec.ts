@@ -8,7 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 import * as Colors from 'src/app/theme/verily_colors';
 
-import {MicrobioReport} from '../../fhir-data-classes/microbio-report';
+import {MicrobioReport} from '../../fhir-resources/microbio-report';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {AnnotatedTooltip} from '../../graphs/graphtypes/tooltips/annotated-tooltip';
 import {Tooltip} from '../../graphs/graphtypes/tooltips/tooltip';

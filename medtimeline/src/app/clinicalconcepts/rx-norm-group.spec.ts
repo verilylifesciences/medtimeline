@@ -9,8 +9,8 @@ import {DateTime, Interval} from 'luxon';
 
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {MedicationOrder} from '../fhir-data-classes/medication-order';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {MedicationOrder} from '../fhir-resources/medication-order';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {StubFhirService} from '../utils/test_utils';
 

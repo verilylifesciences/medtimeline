@@ -10,8 +10,8 @@ import {environment} from 'src/environments/environment_test_bmedtimeB';
 
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
+import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
 import {FhirService} from '../fhir-server/fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {MockFhirService} from '../mock-fhir.service';

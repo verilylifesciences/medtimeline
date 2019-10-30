@@ -8,16 +8,16 @@ import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {RxNormCode} from '../../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 // tslint:disable-next-line:max-line-length
-import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../utils/test_utils';
+import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../../utils/test_utils';
+import {MedicationAdministration} from '../medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../medication-order';
+import {Observation} from '../observation';
+import {ObservationSet} from '../observation-set';
 
 import {AnnotatedObservation} from './annotated-observation';
-import {MedicationAdministration} from './medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from './medication-order';
-import {Observation} from './observation';
-import {ObservationSet} from './observation-set';
 
 // Copyright 2018 Verily Life Sciences Inc.
 //

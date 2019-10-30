@@ -119,6 +119,7 @@ describe('CardcontainerComponent', () => {
             DragulaService,
             SetupDataService,
             {provide: FhirService, useClass: StubFhirService},
+
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             {provide: MAT_DIALOG_DATA, useValue: {}},
           ],

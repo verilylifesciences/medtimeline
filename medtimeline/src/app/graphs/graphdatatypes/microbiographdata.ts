@@ -4,10 +4,10 @@
 // license that can be found in the LICENSE file.
 
 import {DomSanitizer} from '@angular/platform-browser';
-import {CHECK_RESULT_CODE} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
+import {CHECK_RESULT_CODE} from 'src/app/fhir-resources/observation-interpretation-valueset';
 
-import {AnnotatedMicrobioReport} from '../../fhir-data-classes/annotated-microbio-report';
-import {MicrobioReport} from '../../fhir-data-classes/microbio-report';
+import {AnnotatedMicrobioReport} from '../../fhir-resources/annotated/annotated-microbio-report';
+import {MicrobioReport} from '../../fhir-resources/microbio-report';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MicrobioTooltip} from '../graphtypes/tooltips/microbio-tooltips';
 

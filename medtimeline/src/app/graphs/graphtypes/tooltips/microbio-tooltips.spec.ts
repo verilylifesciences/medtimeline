@@ -5,7 +5,7 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedMicrobioReport} from 'src/app/fhir-data-classes/annotated-microbio-report';
+import {AnnotatedMicrobioReport} from 'src/app/fhir-resources/annotated/annotated-microbio-report';
 import {makeMicrobioReports} from 'src/app/utils/test_utils';
 
 import {MicrobioTooltip} from './microbio-tooltips';

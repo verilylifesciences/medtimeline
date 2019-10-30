@@ -14,7 +14,7 @@ import * as moment from 'moment';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {Encounter} from '../../fhir-data-classes/encounter';
+import {Encounter} from '../../fhir-resources/encounter';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {StubFhirService} from '../../utils/test_utils';
 

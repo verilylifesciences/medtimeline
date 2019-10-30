@@ -10,7 +10,7 @@ import {DateTime} from 'luxon';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 
-import {AnnotatedObservation} from './annotated-observation';
+import {AnnotatedObservation} from './annotated/annotated-observation';
 import {Observation} from './observation';
 import {ObservationSet} from './observation-set';
 

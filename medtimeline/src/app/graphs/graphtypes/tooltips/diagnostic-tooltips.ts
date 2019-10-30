@@ -5,7 +5,7 @@
 
 import {SecurityContext} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
+import {AnnotatedDiagnosticReport} from 'src/app/fhir-resources/annotated/annotated-diagnostic-report';
 import {UI_CONSTANTS} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 

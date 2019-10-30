@@ -13,7 +13,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from '../../utils/test_utils';
 
 import {StepGraphData} from './stepgraphdata';

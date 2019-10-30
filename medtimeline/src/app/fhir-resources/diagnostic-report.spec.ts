@@ -7,7 +7,7 @@ import {DateTime} from 'luxon';
 
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
 
-import {AnnotatedDiagnosticReport} from './annotated-diagnostic-report';
+import {AnnotatedDiagnosticReport} from './annotated/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticServiceSectionCodes} from './diagnostic-report';
 
 const REQUEST_ID = '1234';

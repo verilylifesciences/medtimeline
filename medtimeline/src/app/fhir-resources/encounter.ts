@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime, Interval} from 'luxon';
-import {ResultError} from './../result-error';
+import {ResultError} from '../result-error';
 
 /**
  * This object represents basic information about an Encounter: what its

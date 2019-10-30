@@ -9,7 +9,7 @@ import * as moment from 'moment';
 import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
 import {APP_TIMESPAN, recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {Encounter} from '../../fhir-data-classes/encounter';
+import {Encounter} from '../../fhir-resources/encounter';
 import {ResultError} from '../../result-error';
 import {getDaysForIntervalSet} from '../../utils/date_utils';
 

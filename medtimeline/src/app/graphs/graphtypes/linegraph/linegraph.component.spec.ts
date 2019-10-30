@@ -11,11 +11,11 @@ import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
-import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
+import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-observation';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {ObservationSet} from '../../../fhir-data-classes/observation-set';
+import {ObservationSet} from '../../../fhir-resources/observation-set';
 import {makeSampleObservation, StubFhirService} from '../../../utils/test_utils';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {ChartType} from '../graph/graph.component';

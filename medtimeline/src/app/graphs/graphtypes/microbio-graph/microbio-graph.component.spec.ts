@@ -7,7 +7,7 @@ import {Inject} from '@angular/core';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
-import {MicrobioReport} from 'src/app/fhir-data-classes/microbio-report';
+import {MicrobioReport} from 'src/app/fhir-resources/microbio-report';
 import {MicrobioGraphData} from 'src/app/graphs/graphdatatypes/microbiographdata';
 import {WHITE} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';

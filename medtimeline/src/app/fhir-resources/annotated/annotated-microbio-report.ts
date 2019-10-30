@@ -5,8 +5,8 @@
 
 
 
-import {TimestampedObject} from '../fhir-resource-set';
-import {MicrobioReport} from './microbio-report';
+import {TimestampedObject} from '../../fhir-resource-set';
+import {MicrobioReport} from '../microbio-report';
 
 /**
  * A microbio report with the timestamp for a specific culture type extended.

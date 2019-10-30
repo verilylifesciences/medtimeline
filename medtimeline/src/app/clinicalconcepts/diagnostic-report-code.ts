@@ -6,7 +6,7 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
+import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {FhirService} from '../fhir-server/fhir.service';
 
 import {AbstractResourceCodeGroup, ResourceCode} from './resource-code-group';

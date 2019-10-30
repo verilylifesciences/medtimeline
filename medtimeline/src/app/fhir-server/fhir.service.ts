@@ -14,13 +14,13 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
-import {Encounter} from '../fhir-data-classes/encounter';
-import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {MedicationOrder} from '../fhir-data-classes/medication-order';
-import {MicrobioReport} from '../fhir-data-classes/microbio-report';
-import {Observation} from '../fhir-data-classes/observation';
+import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
+import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
+import {Encounter} from '../fhir-resources/encounter';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {MedicationOrder} from '../fhir-resources/medication-order';
+import {MicrobioReport} from '../fhir-resources/microbio-report';
+import {Observation} from '../fhir-resources/observation';
 
 @Injectable()
 export abstract class FhirService {

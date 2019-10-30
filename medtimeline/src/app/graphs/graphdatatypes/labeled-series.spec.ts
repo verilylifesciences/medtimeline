@@ -13,11 +13,11 @@ import {DateTime, Interval} from 'luxon';
 
 import {RxNormCode} from '../../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
-import {AnnotatedDiagnosticReport} from '../../fhir-data-classes/annotated-diagnostic-report';
-import {AnnotatedObservation} from '../../fhir-data-classes/annotated-observation';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-classes/medication-order';
-import {Observation} from '../../fhir-data-classes/observation';
-import {ObservationSet} from '../../fhir-data-classes/observation-set';
+import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
+import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {Observation} from '../../fhir-resources/observation';
+import {ObservationSet} from '../../fhir-resources/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
 // tslint:disable-next-line:max-line-length
 import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from '../../utils/test_utils';

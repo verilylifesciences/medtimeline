@@ -7,7 +7,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 
-import {AnnotatedDiagnosticReport} from '../../fhir-data-classes/annotated-diagnostic-report';
+import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {makeDiagnosticReports} from '../../utils/test_utils';
 

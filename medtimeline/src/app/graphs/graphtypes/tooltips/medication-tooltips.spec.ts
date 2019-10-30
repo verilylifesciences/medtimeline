@@ -8,8 +8,8 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
-import {AnnotatedAdministration} from 'src/app/fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder} from 'src/app/fhir-data-classes/medication-order';
+import {AnnotatedAdministration} from 'src/app/fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder} from 'src/app/fhir-resources/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS} from 'src/constants';
 

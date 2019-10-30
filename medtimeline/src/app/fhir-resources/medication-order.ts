@@ -10,8 +10,8 @@
 import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, ResultClass} from '../fhir-resource-set';
 import {FhirService} from '../fhir-server/fhir.service';
+import {ResultError} from '../result-error';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
-import {ResultError} from './../result-error';
 
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 

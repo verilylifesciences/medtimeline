@@ -9,9 +9,9 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {AnnotatedObservation} from '../fhir-data-classes/annotated-observation';
-import {Observation} from '../fhir-data-classes/observation';
-import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from '../fhir-data-classes/observation-interpretation-valueset';
+import {AnnotatedObservation} from '../fhir-resources/annotated/annotated-observation';
+import {Observation} from '../fhir-resources/observation';
+import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from '../fhir-resources/observation-interpretation-valueset';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 
 import {vitalSign} from './display-grouping';

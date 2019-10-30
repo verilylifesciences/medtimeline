@@ -13,11 +13,11 @@ import {DisplayGrouping, labResult} from '../../clinicalconcepts/display-groupin
 import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
-import {AnnotatedObservation} from '../../fhir-data-classes/annotated-observation';
-import {AnnotatedAdministration} from '../../fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-classes/medication-order';
-import {Observation} from '../../fhir-data-classes/observation';
-import {ObservationSet} from '../../fhir-data-classes/observation-set';
+import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
+import {AnnotatedAdministration} from '../../fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {Observation} from '../../fhir-resources/observation';
+import {ObservationSet} from '../../fhir-resources/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../utils/test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';

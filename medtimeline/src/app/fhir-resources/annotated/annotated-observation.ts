@@ -6,12 +6,12 @@
 import {Duration, Interval} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
-import {ResultClassWithTimestamp} from '../fhir-resource-set';
+import {ResultClassWithTimestamp} from '../../fhir-resource-set';
 
-import {MedicationAdministration} from './medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from './medication-order';
-import {Observation} from './observation';
-import {ObservationSet} from './observation-set';
+import {MedicationAdministration} from '../medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../medication-order';
+import {Observation} from '../observation';
+import {ObservationSet} from '../observation-set';
 
 /**
  * An Observation with additional information to display in its tooltip.

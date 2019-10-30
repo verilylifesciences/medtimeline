@@ -6,9 +6,9 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
-import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
-import {Observation} from 'src/app/fhir-data-classes/observation';
-import {NORMAL} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
+import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-observation';
+import {Observation} from 'src/app/fhir-resources/observation';
+import {NORMAL} from 'src/app/fhir-resources/observation-interpretation-valueset';
 
 import {AnnotatedTooltip} from './annotated-tooltip';
 import {Tooltip} from './tooltip';

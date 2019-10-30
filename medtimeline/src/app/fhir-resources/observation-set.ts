@@ -8,7 +8,7 @@ import {DateTime} from 'luxon';
 import {FhirResourceSet} from '../fhir-resource-set';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
 
-import {AnnotatedObservation} from './annotated-observation';
+import {AnnotatedObservation} from './annotated/annotated-observation';
 
 /**
  * A set of observations that belong together as part of the same series.

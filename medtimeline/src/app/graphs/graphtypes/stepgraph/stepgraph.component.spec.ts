@@ -15,7 +15,7 @@ import {ChartsModule} from 'ng2-charts';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../../fhir-data-classes/medication-order';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../../fhir-resources/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from '../../../utils/test_utils';
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 

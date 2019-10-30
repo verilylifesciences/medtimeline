@@ -7,14 +7,14 @@ import {DateTime, Interval} from 'luxon';
 
 // tslint:disable-next-line:max-line-length
 import {DisplayGrouping, negFinalMB, negOtherMB, negPrelimMB, posFinalMB, posOtherNB, posPrelimMB, radiology} from '../../clinicalconcepts/display-grouping';
-import {AnnotatedDiagnosticReport} from '../../fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReportStatus} from '../../fhir-data-classes/diagnostic-report';
-import {Encounter} from '../../fhir-data-classes/encounter';
-import {MedicationAdministration} from '../../fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-classes/medication-order';
-import {MicrobioReport} from '../../fhir-data-classes/microbio-report';
-import {CHECK_RESULT_CODE, NORMAL} from '../../fhir-data-classes/observation-interpretation-valueset';
-import {ObservationSet} from '../../fhir-data-classes/observation-set';
+import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
+import {DiagnosticReportStatus} from '../../fhir-resources/diagnostic-report';
+import {Encounter} from '../../fhir-resources/encounter';
+import {MedicationAdministration} from '../../fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {MicrobioReport} from '../../fhir-resources/microbio-report';
+import {CHECK_RESULT_CODE, NORMAL} from '../../fhir-resources/observation-interpretation-valueset';
+import {ObservationSet} from '../../fhir-resources/observation-set';
 import {LegendInfo} from '../graphtypes/legend-info';
 
 /**

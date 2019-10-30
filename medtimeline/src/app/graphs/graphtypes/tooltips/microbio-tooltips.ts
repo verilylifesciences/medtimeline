@@ -5,18 +5,17 @@
 
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
-
-import {AnnotatedMicrobioReport} from 'src/app/fhir-data-classes/annotated-microbio-report';
-import {DiagnosticReportStatus} from 'src/app/fhir-data-classes/diagnostic-report';
+import {AnnotatedMicrobioReport} from 'src/app/fhir-resources/annotated/annotated-microbio-report';
+import {DiagnosticReportStatus} from 'src/app/fhir-resources/diagnostic-report';
 import {UI_CONSTANTS} from 'src/constants';
 
-import {Tooltip} from './tooltip';
 import {AnnotatedTooltip} from './annotated-tooltip';
+import {Tooltip} from './tooltip';
 
 /*
- * This class makes a tooltip for BCH Microbio DiagnosticReport that applies to all points
- * charted from the same report. It lists the time of the report, the report
- * status, as well as all results contained in the report.
+ * This class makes a tooltip for BCH Microbio DiagnosticReport that applies to
+ * all points charted from the same report. It lists the time of the report, the
+ * report status, as well as all results contained in the report.
  */
 export class MicrobioTooltip extends Tooltip<AnnotatedMicrobioReport> {
   constructor(private addTimestampRow = true, private color?: Color) {

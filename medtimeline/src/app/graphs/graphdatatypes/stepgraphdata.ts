@@ -6,7 +6,7 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
-import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
+import {MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 

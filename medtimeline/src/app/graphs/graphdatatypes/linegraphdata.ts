@@ -7,10 +7,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
 import {ResourceCodeGroup} from '../../clinicalconcepts/resource-code-group';
-import {Encounter} from '../../fhir-data-classes/encounter';
-import {MedicationOrderSet} from '../../fhir-data-classes/medication-order';
-import {NORMAL} from '../../fhir-data-classes/observation-interpretation-valueset';
-import {ObservationSet} from '../../fhir-data-classes/observation-set';
+import {Encounter} from '../../fhir-resources/encounter';
+import {MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {NORMAL} from '../../fhir-resources/observation-interpretation-valueset';
+import {ObservationSet} from '../../fhir-resources/observation-set';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 // tslint:disable-next-line:max-line-length

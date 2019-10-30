@@ -1,13 +1,12 @@
 import {DateTime, Interval} from 'luxon';
 
 import {APP_TIMESPAN, FhirResourceType} from '../../constants';
-
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
-import {Encounter} from '../fhir-data-classes/encounter';
-import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {Observation} from '../fhir-data-classes/observation';
 import {RawResource, ResultClass, ResultClassWithTimestamp} from '../fhir-resource-set';
+import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
+import {Encounter} from '../fhir-resources/encounter';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {Observation} from '../fhir-resources/observation';
 
 const GREATER_OR_EQUAL = 'ge';
 const LESS_OR_EQUAL = 'le';

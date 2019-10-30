@@ -6,8 +6,8 @@
 import {Interval} from 'luxon';
 
 import {AbstractResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
-import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-data-classes/medication-order';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet, MedicationOrderStatus} from '../fhir-resources/medication-order';
 
 import {RxNormCode} from './rx-norm';
 

@@ -17,14 +17,14 @@ import {LOINCCode} from './clinicalconcepts/loinc-code';
 import {ResourceCode} from './clinicalconcepts/resource-code-group';
 import {RxNormCode} from './clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
-import {AnnotatedMicrobioReport} from './fhir-data-classes/annotated-microbio-report';
-import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
-import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration} from './fhir-data-classes/medication-administration';
-import {MedicationOrder} from './fhir-data-classes/medication-order';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
-import {Observation, ObservationStatus} from './fhir-data-classes/observation';
+import {AnnotatedDiagnosticReport} from './fhir-resources/annotated/annotated-diagnostic-report';
+import {AnnotatedMicrobioReport} from './fhir-resources/annotated/annotated-microbio-report';
+import {DiagnosticReport} from './fhir-resources/diagnostic-report';
+import {Encounter} from './fhir-resources/encounter';
+import {MedicationAdministration} from './fhir-resources/medication-administration';
+import {MedicationOrder} from './fhir-resources/medication-order';
+import {MicrobioReport} from './fhir-resources/microbio-report';
+import {Observation, ObservationStatus} from './fhir-resources/observation';
 import {FhirService} from './fhir-server/fhir.service';
 
 @Injectable()

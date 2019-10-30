@@ -7,8 +7,8 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {DateTime} from 'luxon';
-import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
-import {Observation} from 'src/app/fhir-data-classes/observation';
+import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-observation';
+import {Observation} from 'src/app/fhir-resources/observation';
 import * as Colors from 'src/app/theme/verily_colors';
 import {makeSampleDiscreteObservation, makeSampleObservation} from 'src/app/utils/test_utils';
 

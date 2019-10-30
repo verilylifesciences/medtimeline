@@ -9,7 +9,7 @@ import {DateTime, Interval} from 'luxon';
 import {DisplayGrouping} from './clinicalconcepts/display-grouping';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
-import {Encounter} from './fhir-data-classes/encounter';
+import {Encounter} from './fhir-resources/encounter';
 import {FhirService} from './fhir-server/fhir.service';
 import {AxisGroup} from './graphs/graphtypes/axis-group';
 import {ResultError} from './result-error';

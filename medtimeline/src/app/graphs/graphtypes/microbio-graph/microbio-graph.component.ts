@@ -6,9 +6,10 @@
 import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
-import {CHECK_RESULT_CODE, PARTIAL} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
+import {CHECK_RESULT_CODE, PARTIAL} from 'src/app/fhir-resources/observation-interpretation-valueset';
 import {WHITE} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
+
 import {LabeledSeries} from '../../graphdatatypes/labeled-series';
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';

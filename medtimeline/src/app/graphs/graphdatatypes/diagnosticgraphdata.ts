@@ -5,8 +5,8 @@
 
 import {DomSanitizer} from '@angular/platform-browser';
 
-import {AnnotatedDiagnosticReport} from '../../fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport} from '../../fhir-data-classes/diagnostic-report';
+import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
+import {DiagnosticReport} from '../../fhir-resources/diagnostic-report';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {DiagnosticTooltip} from '../graphtypes/tooltips/diagnostic-tooltips';
 
