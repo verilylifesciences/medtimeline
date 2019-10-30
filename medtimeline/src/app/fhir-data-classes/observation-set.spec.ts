@@ -28,7 +28,7 @@ describe('ObservationSet', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        ResourceCodeCreator,
       ]
     });
     Promise.resolve((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
