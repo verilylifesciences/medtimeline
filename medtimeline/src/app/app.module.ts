@@ -55,8 +55,8 @@ import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
 import {MockFhirService} from './mock-fhir.service';
 import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
-import {TimelineControllerComponent} from './timeline-controller/timeline-controller.component';
-import {TimelineToolbarComponent} from './timeline-toolbar/timeline-toolbar.component';
+import {TimelineControllerComponent} from './time-navigation/timeline-controller/timeline-controller.component';
+import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timeline-toolbar.component';
 
 @NgModule({
   declarations: [

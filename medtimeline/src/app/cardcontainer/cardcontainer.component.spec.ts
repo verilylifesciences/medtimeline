@@ -54,8 +54,8 @@ import {ScatterplotComponent} from '../graphtypes/scatterplot/scatterplot.compon
 import {StepGraphComponent} from '../graphtypes/stepgraph/stepgraph.component';
 import {SetupDataService} from '../setup-data.service';
 import {StubFhirService} from '../test_utils';
-import {TimelineControllerComponent} from '../timeline-controller/timeline-controller.component';
-import {TimelineToolbarComponent} from '../timeline-toolbar/timeline-toolbar.component';
+import {TimelineControllerComponent} from '../time-navigation/timeline-controller/timeline-controller.component';
+import {TimelineToolbarComponent} from '../time-navigation/timeline-toolbar/timeline-toolbar.component';
 
 import {CardcontainerComponent} from './cardcontainer.component';
 

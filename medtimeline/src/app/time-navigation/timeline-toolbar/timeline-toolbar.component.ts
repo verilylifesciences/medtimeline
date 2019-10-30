@@ -7,19 +7,19 @@ import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 
 import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
-import {environment} from '../../environments/environment';
-import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {HelpDialogComponent} from '../dialogs/help-dialog/help-dialog.component';
-import {IfuDialogComponent} from '../dialogs/ifu-dialog/ifu-dialog.component';
-import {FhirService} from '../fhir.service';
-import {AxisGroup} from '../graphtypes/axis-group';
+import {environment} from '../../../environments/environment';
+import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
+import {HelpDialogComponent} from '../../dialogs/help-dialog/help-dialog.component';
+import {IfuDialogComponent} from '../../dialogs/ifu-dialog/ifu-dialog.component';
+import {FhirService} from '../../fhir.service';
+import {AxisGroup} from '../../graphtypes/axis-group';
 
 @Component({
   selector: 'app-timeline-toolbar',
   templateUrl: './timeline-toolbar.component.html',
-  styleUrls: ['../cardcontainer/cardcontainer.component.css']
+  styleUrls: ['../../cardcontainer/cardcontainer.component.css']
 })
 export class TimelineToolbarComponent {
   displayGroupings: Array<[DisplayGrouping, AxisGroup[]]>;

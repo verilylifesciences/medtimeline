@@ -14,9 +14,9 @@ import * as moment from 'moment';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {Encounter} from '../fhir-data-classes/encounter';
-import {FhirService} from '../fhir.service';
-import {StubFhirService} from '../test_utils';
+import {Encounter} from '../../fhir-data-classes/encounter';
+import {FhirService} from '../../fhir.service';
+import {StubFhirService} from '../../test_utils';
 
 import {TimelineControllerComponent} from './timeline-controller.component';
 
