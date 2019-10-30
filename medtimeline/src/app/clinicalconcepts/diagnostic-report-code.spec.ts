@@ -13,8 +13,8 @@ import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
 import {FhirService} from '../fhir-server/fhir.service';
+import {MockFhirService} from '../fhir-server/mock-fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {MockFhirService} from '../mock-fhir.service';
 import {makeDiagnosticReports, StubFhirService} from '../utils/test_utils';
 
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';

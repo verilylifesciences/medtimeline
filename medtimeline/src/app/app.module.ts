@@ -45,6 +45,7 @@ import {IfuDialogComponent} from './dialogs/ifu-dialog/ifu-dialog.component';
 import {FhirHttpService} from './fhir-server/fhir-http.service';
 import {FhirLaunchComponent} from './fhir-server/fhir-launch/fhir-launch.component';
 import {FhirService} from './fhir-server/fhir.service';
+import {MockFhirService} from './fhir-server/mock-fhir.service';
 import {SMART_ON_FHIR_CLIENT} from './fhir-server/smart-on-fhir-client';
 import {CustomizableGraphComponent} from './graphs/graphtypes/customizable-graph/customizable-graph.component';
 import {DiagnosticGraphComponent} from './graphs/graphtypes/diagnostic-graph/diagnostic-graph.component';
@@ -53,7 +54,6 @@ import {LineGraphComponent} from './graphs/graphtypes/linegraph/linegraph.compon
 import {MicrobioGraphComponent} from './graphs/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from './graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from './graphs/graphtypes/stepgraph/stepgraph.component';
-import {MockFhirService} from './mock-fhir.service';
 import {SetupComponent} from './setup/setup.component';
 import {TimelineControllerComponent} from './time-navigation/timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timeline-toolbar.component';

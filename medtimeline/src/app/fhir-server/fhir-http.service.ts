@@ -14,7 +14,7 @@ import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {documentReferenceLoinc} from '../conceptmappings/resource-code-manager';
-import {DebuggerService} from '../debugger.service';
+import {DebuggerService} from '../debugger/debugger.service';
 import {ResultClass} from '../fhir-resource-set';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-resources/diagnostic-report';

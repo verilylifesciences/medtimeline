@@ -5,7 +5,7 @@
 
 import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {SetupDataService} from 'src/app/setup-data.service';
+import {SetupDataService} from 'src/app/setup/setup-data.service';
 import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../../environments/environment';

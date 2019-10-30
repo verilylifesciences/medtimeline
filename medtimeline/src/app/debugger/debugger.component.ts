@@ -7,7 +7,7 @@ import 'fhirclient';
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
-import {DebuggerService} from '../debugger.service';
+import {DebuggerService} from './debugger.service';
 
 @Component({
   selector: 'app-debugger',

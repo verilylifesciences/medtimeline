@@ -21,7 +21,7 @@ import {FhirService} from '../fhir-server/fhir.service';
 import {CustomizableData} from '../graphs/graphdatatypes/customizabledata';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {SetupDataService} from '../setup-data.service';
+import {SetupDataService} from '../setup/setup-data.service';
 
 @Component({
   selector: 'app-cardcontainer',

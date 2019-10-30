@@ -52,7 +52,7 @@ import {LineGraphComponent} from '../graphs/graphtypes/linegraph/linegraph.compo
 import {MicrobioGraphComponent} from '../graphs/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from '../graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from '../graphs/graphtypes/stepgraph/stepgraph.component';
-import {SetupDataService} from '../setup-data.service';
+import {SetupDataService} from '../setup/setup-data.service';
 import {TimelineControllerComponent} from '../time-navigation/timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from '../time-navigation/timeline-toolbar/timeline-toolbar.component';
 import {StubFhirService} from '../utils/test_utils';

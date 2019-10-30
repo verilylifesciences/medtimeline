@@ -9,23 +9,23 @@ import {DateTime, Interval} from 'luxon';
 import {FhirResourceType} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 
-import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {LOINCCode} from './clinicalconcepts/loinc-code';
-import {ResourceCode} from './clinicalconcepts/resource-code-group';
-import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {AnnotatedDiagnosticReport} from './fhir-resources/annotated/annotated-diagnostic-report';
-import {AnnotatedMicrobioReport} from './fhir-resources/annotated/annotated-microbio-report';
-import {DiagnosticReport} from './fhir-resources/diagnostic-report';
-import {Encounter} from './fhir-resources/encounter';
-import {MedicationAdministration} from './fhir-resources/medication-administration';
-import {MedicationOrder} from './fhir-resources/medication-order';
-import {MicrobioReport} from './fhir-resources/microbio-report';
-import {Observation, ObservationStatus} from './fhir-resources/observation';
-import {FhirService} from './fhir-server/fhir.service';
+import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
+import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
+import {AnnotatedMicrobioReport} from '../fhir-resources/annotated/annotated-microbio-report';
+import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
+import {Encounter} from '../fhir-resources/encounter';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {MedicationOrder} from '../fhir-resources/medication-order';
+import {MicrobioReport} from '../fhir-resources/microbio-report';
+import {Observation, ObservationStatus} from '../fhir-resources/observation';
+import {FhirService} from './fhir.service';
 
 @Injectable()
 export class MockFhirService extends FhirService {

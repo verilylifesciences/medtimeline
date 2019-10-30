@@ -18,7 +18,7 @@ import {Encounter} from '../fhir-resources/encounter';
 import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ResultError} from '../result-error';
-import {SetupDataService} from '../setup-data.service';
+import {SetupDataService} from './setup-data.service';
 
 enum LoadStatus {
   LOADING,
