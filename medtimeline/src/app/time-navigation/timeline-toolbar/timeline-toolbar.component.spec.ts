@@ -16,7 +16,7 @@ import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from '../../data-selector-element/data-selector-element.component';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {StubFhirService} from '../../test_utils';
+import {StubFhirService} from '../../utils/test_utils';
 
 import {TimelineToolbarComponent} from './timeline-toolbar.component';
 

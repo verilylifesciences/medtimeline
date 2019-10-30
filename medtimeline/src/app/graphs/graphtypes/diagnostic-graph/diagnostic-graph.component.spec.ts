@@ -15,7 +15,7 @@ import {ChartsModule} from 'ng2-charts';
 import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
 import {DiagnosticReport} from 'src/app/fhir-data-classes/diagnostic-report';
 import {DiagnosticGraphData} from 'src/app/graphs/graphdatatypes/diagnosticgraphdata';
-import {makeDiagnosticReports} from 'src/app/test_utils';
+import {makeDiagnosticReports} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {AnnotatedTooltip} from '../tooltips/annotated-tooltip';

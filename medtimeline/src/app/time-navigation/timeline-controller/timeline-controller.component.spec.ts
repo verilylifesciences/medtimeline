@@ -16,7 +16,7 @@ import {APP_TIMESPAN, UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {Encounter} from '../../fhir-data-classes/encounter';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {StubFhirService} from '../../test_utils';
+import {StubFhirService} from '../../utils/test_utils';
 
 import {TimelineControllerComponent} from './timeline-controller.component';
 

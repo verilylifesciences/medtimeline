@@ -20,8 +20,8 @@ import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
 // tslint:disable-next-line:max-line-length
-import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from '../../test_utils';
-import {makeDiagnosticReportWithoutTextField, makeSampleDiscreteObservation} from '../../test_utils';
+import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from '../../utils/test_utils';
+import {makeDiagnosticReportWithoutTextField, makeSampleDiscreteObservation} from '../../utils/test_utils';
 
 import {LabeledSeries} from './labeled-series';
 

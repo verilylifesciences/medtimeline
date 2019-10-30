@@ -12,7 +12,7 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 // tslint:disable-next-line:max-line-length
-import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../utils/test_utils';
 
 import {AnnotatedObservation} from './annotated-observation';
 import {MedicationAdministration} from './medication-administration';

@@ -1,4 +1,4 @@
-import {fixUnitAbbreviations} from '../unit_utils';
+import {fixUnitAbbreviations} from '../utils/unit_utils';
 
 // Copyright 2018 Verily Life Sciences Inc.
 //

@@ -16,7 +16,7 @@ import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../../fhir-data-classes/medication-order';
-import {makeMedicationAdministration, makeMedicationOrder} from '../../../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder} from '../../../utils/test_utils';
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';
 
 import {StepGraphComponent} from './stepgraph.component';

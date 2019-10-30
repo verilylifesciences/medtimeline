@@ -7,11 +7,11 @@ import {Component, EventEmitter, Inject, Input, OnInit, Output, Renderer2, ViewC
 import {DateTime, Duration, Interval} from 'luxon';
 import * as moment from 'moment';
 import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
-
 import {APP_TIMESPAN, recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
-import {getDaysForIntervalSet} from '../../date_utils';
+
 import {Encounter} from '../../fhir-data-classes/encounter';
 import {ResultError} from '../../result-error';
+import {getDaysForIntervalSet} from '../../utils/date_utils';
 
 /**
  * Date range picker for selecting the time span to show in all the charts.

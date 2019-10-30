@@ -9,7 +9,7 @@ import {DateTime} from 'luxon';
 
 import {AnnotatedDiagnosticReport} from '../../fhir-data-classes/annotated-diagnostic-report';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {makeDiagnosticReports} from '../../test_utils';
+import {makeDiagnosticReports} from '../../utils/test_utils';
 
 import {DiagnosticGraphData} from './diagnosticgraphdata';
 

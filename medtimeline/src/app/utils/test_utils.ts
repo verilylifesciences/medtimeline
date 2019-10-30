@@ -9,20 +9,20 @@
 import {Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 
-import {BCHMicrobioCodeGroup} from './clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from './clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping} from './clinicalconcepts/display-grouping';
-import {LOINCCode} from './clinicalconcepts/loinc-code';
-import {RxNormCode} from './clinicalconcepts/rx-norm';
-import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
-import {AnnotatedDiagnosticReport} from './fhir-data-classes/annotated-diagnostic-report';
-import {DiagnosticReport} from './fhir-data-classes/diagnostic-report';
-import {Encounter} from './fhir-data-classes/encounter';
-import {MedicationAdministration} from './fhir-data-classes/medication-administration';
-import {MedicationOrder} from './fhir-data-classes/medication-order';
-import {MicrobioReport} from './fhir-data-classes/microbio-report';
-import {Observation} from './fhir-data-classes/observation';
-import {FhirService} from './fhir-server/fhir.service';
+import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
+import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
+import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {AnnotatedDiagnosticReport} from '../fhir-data-classes/annotated-diagnostic-report';
+import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
+import {Encounter} from '../fhir-data-classes/encounter';
+import {MedicationAdministration} from '../fhir-data-classes/medication-administration';
+import {MedicationOrder} from '../fhir-data-classes/medication-order';
+import {MicrobioReport} from '../fhir-data-classes/microbio-report';
+import {Observation} from '../fhir-data-classes/observation';
+import {FhirService} from '../fhir-server/fhir.service';
 
 const REQUEST_ID = '1234';
 

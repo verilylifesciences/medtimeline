@@ -12,7 +12,7 @@ import {BaseChartDirective, Color} from 'ng2-charts';
 import {GraphData} from 'src/app/graphs/graphdatatypes/graphdata';
 import {LabeledSeries} from 'src/app/graphs/graphdatatypes/labeled-series';
 import {LineGraphData} from 'src/app/graphs/graphdatatypes/linegraphdata';
-import {formatNumberWithPrecision} from 'src/app/number_utils';
+import {formatNumberWithPrecision} from 'src/app/utils/number_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 

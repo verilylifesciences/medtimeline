@@ -28,7 +28,7 @@ import {LineGraphComponent} from 'src/app/graphs/graphtypes/linegraph/linegraph.
 import {MicrobioGraphComponent} from 'src/app/graphs/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from 'src/app/graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphs/graphtypes/stepgraph/stepgraph.component';
-import {StubFhirService} from 'src/app/test_utils';
+import {StubFhirService} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {CardComponent} from '../card/card.component';

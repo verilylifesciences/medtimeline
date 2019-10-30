@@ -11,7 +11,7 @@ import {DateTime} from 'luxon';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {makeMedicationAdministration} from '../test_utils';
+import {makeMedicationAdministration} from '../utils/test_utils';
 
 import {Dosage} from './dosage';
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from './medication-administration';

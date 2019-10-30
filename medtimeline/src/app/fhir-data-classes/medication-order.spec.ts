@@ -13,7 +13,7 @@ import {DateTime} from 'luxon';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {makeMedicationAdministration, makeMedicationOrder} from '../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder} from '../utils/test_utils';
 
 import {MedicationAdministration} from './medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from './medication-order';

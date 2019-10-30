@@ -53,9 +53,9 @@ import {MicrobioGraphComponent} from '../graphs/graphtypes/microbio-graph/microb
 import {ScatterplotComponent} from '../graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from '../graphs/graphtypes/stepgraph/stepgraph.component';
 import {SetupDataService} from '../setup-data.service';
-import {StubFhirService} from '../test_utils';
 import {TimelineControllerComponent} from '../time-navigation/timeline-controller/timeline-controller.component';
 import {TimelineToolbarComponent} from '../time-navigation/timeline-toolbar/timeline-toolbar.component';
+import {StubFhirService} from '../utils/test_utils';
 
 import {CardcontainerComponent} from './cardcontainer.component';
 

@@ -19,8 +19,8 @@ import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-data-clas
 import {Observation} from '../../fhir-data-classes/observation';
 import {ObservationSet} from '../../fhir-data-classes/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../test_utils';
-import {makeSampleDiscreteObservation, makeSampleObservation} from '../../test_utils';
+import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../utils/test_utils';
+import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';
 import {ChartType} from '../graphtypes/graph/graph.component';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';

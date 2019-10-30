@@ -12,7 +12,7 @@ import {MicrobioReport} from '../../fhir-data-classes/microbio-report';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {AnnotatedTooltip} from '../../graphs/graphtypes/tooltips/annotated-tooltip';
 import {Tooltip} from '../../graphs/graphtypes/tooltips/tooltip';
-import {makeMicrobioReports} from '../../test_utils';
+import {makeMicrobioReports} from '../../utils/test_utils';
 
 import {MicrobioGraphData} from './microbiographdata';
 

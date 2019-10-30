@@ -15,7 +15,7 @@ import {DiagnosticReport} from '../fhir-data-classes/diagnostic-report';
 import {FhirService} from '../fhir-server/fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {MockFhirService} from '../mock-fhir.service';
-import {makeDiagnosticReports, StubFhirService} from '../test_utils';
+import {makeDiagnosticReports, StubFhirService} from '../utils/test_utils';
 
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
 import {DisplayGrouping} from './display-grouping';

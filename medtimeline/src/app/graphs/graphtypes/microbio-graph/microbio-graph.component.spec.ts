@@ -12,7 +12,7 @@ import {MicrobioGraphData} from 'src/app/graphs/graphdatatypes/microbiographdata
 import {WHITE} from 'src/app/theme/verily_colors';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {makeMicrobioReports, makePartialMicrobioReports} from '../../../test_utils';
+import {makeMicrobioReports, makePartialMicrobioReports} from '../../../utils/test_utils';
 
 import {MicrobioGraphComponent} from './microbio-graph.component';
 

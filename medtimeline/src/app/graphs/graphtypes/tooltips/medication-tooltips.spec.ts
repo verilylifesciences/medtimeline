@@ -10,7 +10,7 @@ import {DateTime} from 'luxon';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {AnnotatedAdministration} from 'src/app/fhir-data-classes/medication-administration';
 import {AnnotatedMedicationOrder} from 'src/app/fhir-data-classes/medication-order';
-import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/test_utils';
+import {makeMedicationAdministration, makeMedicationOrder} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS} from 'src/constants';
 
 import {MedicationAdministrationTooltip, MedicationTooltip} from './medication-tooltips';

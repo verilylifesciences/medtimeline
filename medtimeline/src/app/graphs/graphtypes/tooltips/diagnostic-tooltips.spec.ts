@@ -6,7 +6,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AnnotatedDiagnosticReport} from 'src/app/fhir-data-classes/annotated-diagnostic-report';
-import {makeDiagnosticReports, makeDiagnosticReportWithoutTextField} from 'src/app/test_utils';
+import {makeDiagnosticReports, makeDiagnosticReportWithoutTextField} from 'src/app/utils/test_utils';
 
 import {DiagnosticTooltip} from './diagnostic-tooltips';
 import {Tooltip} from './tooltip';

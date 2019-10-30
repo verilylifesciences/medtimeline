@@ -5,7 +5,6 @@
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
-import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
@@ -17,7 +16,7 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {FhirHttpService} from './fhir-http.service';
 import {FhirService} from './fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {makeSampleObservationJson, StubFhirService, makeMedicationAdministration} from '../test_utils';
+import {makeSampleObservationJson} from '../utils/test_utils';
 import {MedicationCache, DiagnosticReportCache, EncounterCache} from './fhir-cache';
 
 class FakeFhirHttpService extends FhirHttpService {

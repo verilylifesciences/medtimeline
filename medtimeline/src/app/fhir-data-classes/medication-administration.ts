@@ -8,7 +8,7 @@ import {FhirResourceType} from 'src/constants';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {FhirResourceSet, ResultClass, ResultClassWithTimestamp} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../unit_utils';
+import {fixUnitAbbreviations} from '../utils/unit_utils';
 import {ResultError} from './../result-error';
 
 import {Dosage} from './dosage';

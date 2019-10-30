@@ -9,7 +9,7 @@ import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
 import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
 import {ResultClass} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../unit_utils';
+import {fixUnitAbbreviations} from '../utils/unit_utils';
 import {ResultError} from './../result-error';
 
 import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';

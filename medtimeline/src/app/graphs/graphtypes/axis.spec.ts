@@ -12,7 +12,7 @@ import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
 import {ResourceCodeGroup} from '../../clinicalconcepts/resource-code-group';
 import {RxNormCode} from '../../clinicalconcepts/rx-norm';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {makeSampleDiscreteObservation, makeSampleObservation} from '../../test_utils';
+import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';
 
 import {Axis} from './axis';
 import {ChartType} from './graph/graph.component';

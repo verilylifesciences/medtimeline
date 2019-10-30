@@ -21,7 +21,7 @@ import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {StubFhirService} from '../test_utils';
+import {StubFhirService} from '../utils/test_utils';
 
 import {DataSelectorMenuComponent} from './data-selector-menu.component';
 
