@@ -8,7 +8,7 @@ import {APP_TIMESPAN} from 'src/constants';
 
 import {AnnotatedObservation} from '../fhir-resources/annotated/annotated-observation';
 import {Observation} from '../fhir-resources/observation';
-import {ObservationSet} from '../fhir-resources/observation-set';
+import {ObservationSet} from '../fhir-resources/sets/observation-set';
 import {FhirService} from '../fhir-server/fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 

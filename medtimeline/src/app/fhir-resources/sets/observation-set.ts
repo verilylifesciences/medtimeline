@@ -5,10 +5,10 @@
 
 import {DateTime} from 'luxon';
 
-import {FhirResourceSet} from '../fhir-resource-set';
-import {fixUnitAbbreviations} from '../utils/unit_utils';
+import {fixUnitAbbreviations} from '../../utils/unit_utils';
+import {AnnotatedObservation} from '../annotated/annotated-observation';
 
-import {AnnotatedObservation} from './annotated/annotated-observation';
+import {FhirResourceSet} from './fhir-resource-set';
 
 /**
  * A set of observations that belong together as part of the same series.

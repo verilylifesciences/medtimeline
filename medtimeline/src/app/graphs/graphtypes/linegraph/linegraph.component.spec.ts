@@ -15,7 +15,7 @@ import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-o
 import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {ObservationSet} from '../../../fhir-resources/observation-set';
+import {ObservationSet} from '../../../fhir-resources/sets/observation-set';
 import {makeSampleObservation, StubFhirService} from '../../../utils/test_utils';
 import {LineGraphData} from '../../graphdatatypes/linegraphdata';
 import {ChartType} from '../graph/graph.component';

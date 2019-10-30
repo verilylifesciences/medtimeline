@@ -14,7 +14,7 @@ import {MedicationAdministration} from '../../fhir-resources/medication-administ
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {MicrobioReport} from '../../fhir-resources/microbio-report';
 import {CHECK_RESULT_CODE, NORMAL} from '../../fhir-resources/observation-interpretation-valueset';
-import {ObservationSet} from '../../fhir-resources/observation-set';
+import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {LegendInfo} from '../graphtypes/legend-info';
 
 /**

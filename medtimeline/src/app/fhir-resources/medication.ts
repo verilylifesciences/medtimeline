@@ -5,10 +5,10 @@
 
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {ResultClass} from '../fhir-resource-set';
 import {ResultError} from '../result-error';
 
 import {Dosage} from './dosage';
+import {ResultClass} from './sets/fhir-resource-set';
 
 /**
  * This object represents relevant components of a medication contained as part

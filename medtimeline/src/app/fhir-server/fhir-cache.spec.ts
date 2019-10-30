@@ -2,7 +2,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
-import {RawResource, ResultClassWithTimestamp} from '../fhir-resource-set';
+import {RawResource, ResultClassWithTimestamp} from '../fhir-resources/sets/fhir-resource-set';
 
 import {FhirCache} from './fhir-cache';
 

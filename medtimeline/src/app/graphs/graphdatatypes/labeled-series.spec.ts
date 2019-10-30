@@ -17,7 +17,7 @@ import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotate
 import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {Observation} from '../../fhir-resources/observation';
-import {ObservationSet} from '../../fhir-resources/observation-set';
+import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
 // tslint:disable-next-line:max-line-length
 import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from '../../utils/test_utils';

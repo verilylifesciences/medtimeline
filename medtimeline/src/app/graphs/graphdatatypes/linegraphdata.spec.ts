@@ -17,7 +17,7 @@ import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-obs
 import {AnnotatedAdministration} from '../../fhir-resources/medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {Observation} from '../../fhir-resources/observation';
-import {ObservationSet} from '../../fhir-resources/observation-set';
+import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../utils/test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';

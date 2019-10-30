@@ -7,11 +7,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {LOINCCode} from '../../clinicalconcepts/loinc-code';
+import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 
-import {AnnotatedObservation} from './annotated/annotated-observation';
-import {Observation} from './observation';
+import {AnnotatedObservation} from '../annotated/annotated-observation';
+import {Observation} from '../observation';
 import {ObservationSet} from './observation-set';
 
 const REQUEST_ID = '1234';

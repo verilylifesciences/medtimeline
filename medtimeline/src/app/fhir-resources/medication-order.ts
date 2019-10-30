@@ -8,12 +8,10 @@
 /* tslint:disable:object-literal-shorthand*/
 
 import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
-import {FhirResourceSet, ResultClass} from '../fhir-resource-set';
-import {FhirService} from '../fhir-server/fhir.service';
+import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from '../fhir-resources/medication-administration';
+import {FhirResourceSet, ResultClass} from '../fhir-resources/sets/fhir-resource-set';
 import {ResultError} from '../result-error';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
-
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from './medication-administration';
 
 /**
  * FHIR element for MedicationOrderStatus, from the DSTU2 version of the
@@ -27,7 +25,7 @@ export const MedicationOrderStatus = {
   ENTERED_IN_ERROR: 'entered-in-error',
   STOPPED: 'stopped',
   DRAFT: 'draft',
-}
+};
 
 /**
  * This object represents a FHIR MedicationOrder. It does not contain

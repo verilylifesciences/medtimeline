@@ -15,7 +15,6 @@ import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {documentReferenceLoinc} from '../conceptmappings/resource-code-manager';
 import {DebuggerService} from '../debugger/debugger.service';
-import {ResultClass} from '../fhir-resource-set';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-resources/diagnostic-report';
 import {Encounter} from '../fhir-resources/encounter';
@@ -23,6 +22,7 @@ import {MedicationAdministration, MedicationAdministrationStatus} from '../fhir-
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
+import {ResultClass} from '../fhir-resources/sets/fhir-resource-set';
 import * as FhirConfig from '../fhir_config';
 
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';

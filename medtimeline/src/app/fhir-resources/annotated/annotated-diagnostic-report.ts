@@ -3,9 +3,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {TimestampedObject} from '../../fhir-resource-set';
 import {DiagnosticReport} from '../diagnostic-report';
 import {Narrative} from '../narrative';
+import {TimestampedObject} from '../sets/fhir-resource-set';
 
 /**
  * A diagnostic report with Narrative text extended.

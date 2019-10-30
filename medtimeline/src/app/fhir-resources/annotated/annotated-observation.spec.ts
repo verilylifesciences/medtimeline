@@ -15,7 +15,7 @@ import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObs
 import {MedicationAdministration} from '../medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../medication-order';
 import {Observation} from '../observation';
-import {ObservationSet} from '../observation-set';
+import {ObservationSet} from '../sets/observation-set';
 
 import {AnnotatedObservation} from './annotated-observation';
 

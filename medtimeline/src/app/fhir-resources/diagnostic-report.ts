@@ -8,10 +8,10 @@ import {DateTime} from 'luxon';
 
 import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
 import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {ResultClassWithTimestamp} from '../fhir-resource-set';
 import {ResultError} from '../result-error';
 
 import {Attachment} from './attachment';
+import {ResultClassWithTimestamp} from './sets/fhir-resource-set';
 
 /**
  * FHIR element for DiagnosticReportStatus, from the DSTU2 version of the

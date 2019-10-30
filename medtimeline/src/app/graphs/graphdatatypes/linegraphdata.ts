@@ -10,7 +10,7 @@ import {ResourceCodeGroup} from '../../clinicalconcepts/resource-code-group';
 import {Encounter} from '../../fhir-resources/encounter';
 import {MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {NORMAL} from '../../fhir-resources/observation-interpretation-valueset';
-import {ObservationSet} from '../../fhir-resources/observation-set';
+import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 // tslint:disable-next-line:max-line-length
