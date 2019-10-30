@@ -5,8 +5,8 @@
 
 import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 import {DiagnosticGraphData} from 'src/app/graphdatatypes/diagnosticgraphdata';
+import {MicrobioGraphData} from 'src/app/graphdatatypes/microbiographdata';
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {StepGraphData} from '../../graphdatatypes/stepgraphdata';

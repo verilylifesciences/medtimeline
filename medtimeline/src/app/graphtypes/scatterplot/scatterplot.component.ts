@@ -5,8 +5,8 @@
 
 import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {GraphComponent} from '../graph/graph.component';
 import {LineGraphComponent} from '../linegraph/linegraph.component';
 

@@ -8,9 +8,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
 import {CHECK_RESULT_CODE, PARTIAL} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
 import {LabeledSeries} from 'src/app/graphdatatypes/labeled-series';
-import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {WHITE} from 'src/app/theme/verily_colors';
 
+import {UI_CONSTANTS_TOKEN} from 'src/constants';
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';
 
@@ -58,10 +58,13 @@ export class MicrobioGraphComponent extends StepGraphComponent {
         // Making partial points have an outline rather than filled in
         if (isPartial) {
           pointBackgroundColors.push(WHITE.rgb().string());
-          pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+          pointBorderColors.push(
+              labeledSeries.legendInfo.outline.rgb().string());
         } else {
-          pointBackgroundColors.push(labeledSeries.legendInfo.fill.rgb().string());
-          pointBorderColors.push(labeledSeries.legendInfo.outline.rgb().string());
+          pointBackgroundColors.push(
+              labeledSeries.legendInfo.fill.rgb().string());
+          pointBorderColors.push(
+              labeledSeries.legendInfo.outline.rgb().string());
         }
         (chartjsSeries as any).pointStyle = pointStyle;
         (chartjsSeries as any).pointBackgroundColor = pointBackgroundColors;

@@ -5,7 +5,7 @@
 
 import 'fhirclient';
 
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,11 +35,13 @@ import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
-import {ConfirmSaveComponent} from './confirm-save/confirm-save.component';
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
 import {DataSelectorMenuComponent} from './data-selector-menu/data-selector-menu.component';
 import {DebuggerComponent} from './debugger/debugger.component';
-import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
+import {ConfirmSaveComponent} from './dialogs/confirm-save/confirm-save.component';
+import {DeleteDialogComponent} from './dialogs/delete-dialog/delete-dialog.component';
+import {HelpDialogComponent} from './dialogs/help-dialog/help-dialog.component';
+import {IfuDialogComponent} from './dialogs/ifu-dialog/ifu-dialog.component';
 import {FhirHttpService} from './fhir-http.service';
 import {FhirLaunchComponent} from './fhir-launch/fhir-launch.component';
 import {FhirService} from './fhir.service';
@@ -50,8 +52,6 @@ import {LineGraphComponent} from './graphtypes/linegraph/linegraph.component';
 import {MicrobioGraphComponent} from './graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from './graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from './graphtypes/stepgraph/stepgraph.component';
-import {HelpDialogComponent} from './help-dialog/help-dialog.component';
-import {IfuDialogComponent} from './ifu-dialog/ifu-dialog.component';
 import {MockFhirService} from './mock-fhir.service';
 import {SetupComponent} from './setup/setup.component';
 import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';

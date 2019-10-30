@@ -14,7 +14,7 @@ import {UI_CONSTANTS_TOKEN} from 'src/constants';
 @Component({
   selector: 'app-delete-dialog',
   templateUrl: './delete-dialog.component.html',
-  styleUrls: ['../cardcontainer/cardcontainer.component.css']
+  styleUrls: ['../../cardcontainer/cardcontainer.component.css']
 })
 export class DeleteDialogComponent {
   constructor(
