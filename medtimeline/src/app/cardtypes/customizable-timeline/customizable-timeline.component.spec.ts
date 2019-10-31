@@ -41,8 +41,8 @@ describe('CustomizableTimelineComponent', () => {
             {provide: MatDialog, useValue: null},
             {provide: FhirService, useClass: StubFhirService},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
-            ResourceCodeCreator,
-            ResourceCodeManager,
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
           ]
         })
         .compileComponents();

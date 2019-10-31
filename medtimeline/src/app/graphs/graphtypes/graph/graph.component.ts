@@ -308,8 +308,10 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     const data = [];
     for (const series of this.data.series) {
       let lineWidth: number = GraphComponent.THIN_LINE;
+      let adjustedPointRadius = 3;
       if (focusOnSeries !== undefined && focusOnSeries.includes(series)) {
         lineWidth = GraphComponent.THICK_LINE;
+        adjustedPointRadius = 4;
       }
       if (series.coordinates.length > 0) {
         data.push({
@@ -321,7 +323,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
           fill: false,
           borderWidth: lineWidth,
           pointBorderWidth: 2,
-          pointRadius: 3,
+          pointRadius: adjustedPointRadius,
           backgroundColor: series.legendInfo.fill,
           borderColor: series.legendInfo.fill,
           pointBackgroundColor: series.legendInfo.fill,

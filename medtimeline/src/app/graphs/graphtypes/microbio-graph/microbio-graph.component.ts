@@ -7,16 +7,15 @@ import {Component, forwardRef, Inject} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ChartPoint} from 'chart.js';
 import {CHECK_RESULT_CODE, PARTIAL} from 'src/app/fhir-data-classes/observation-interpretation-valueset';
-import {LabeledSeries} from 'src/app/graphs/graphdatatypes/labeled-series';
 import {WHITE} from 'src/app/theme/verily_colors';
-
 import {UI_CONSTANTS_TOKEN} from 'src/constants';
+import {LabeledSeries} from '../../graphdatatypes/labeled-series';
 import {GraphComponent} from '../graph/graph.component';
 import {StepGraphComponent} from '../stepgraph/stepgraph.component';
 
 @Component({
   selector: 'app-microbio-graph',
-  templateUrl: '../graph/graph.component.html',
+  templateUrl: '../stepgraph/stepgraph.component.html',
   styleUrls: ['../graph.css'],
   providers: [{
     provide: GraphComponent,

@@ -85,6 +85,18 @@ describe('StepGraphComponent', () => {
       {x: '2018-09-14T11:00:00.000Z', y: 'vancomycin'}
     ]);
   });
+
+  it('should adjust tick labels correctly', () => {
+    const ticks = [
+      'vancomycin', '200 MG of Vancomycin',
+      'this is such a long label that it will be cut off'
+    ];
+    const expectedResult = [
+      ['vancomycin'], ['200 MG of', 'Vancomycin'],
+      ['this is such', 'a long label...']
+    ];
+    expect(component.adjustTickLabels(ticks)).toEqual(expectedResult);
+  });
 });
 
 /* tslint:enable:object-literal-shorthand*/

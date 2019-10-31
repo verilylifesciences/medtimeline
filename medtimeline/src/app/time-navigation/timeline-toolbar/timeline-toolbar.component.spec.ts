@@ -37,7 +37,8 @@ describe('TimelineToolbarComponent', () => {
           ],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator, ResourceCodeManager,
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: MatDialogRef, useValue: {}},
             {provide: MatDialog, useValue: {}},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}

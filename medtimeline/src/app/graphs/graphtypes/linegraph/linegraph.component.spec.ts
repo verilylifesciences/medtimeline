@@ -11,6 +11,7 @@ import {ChartsModule} from 'ng2-charts';
 import {labResult} from 'src/app/clinicalconcepts/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from 'src/app/fhir-data-classes/annotated-observation';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
@@ -44,7 +45,8 @@ describe('LineGraphComponent', () => {
           providers: [
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator,
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
           ]
         })
         .compileComponents();

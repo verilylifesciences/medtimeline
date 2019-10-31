@@ -68,7 +68,7 @@ describe('RxNormGroup', () => {
         .configureTestingModule({
           imports: [HttpClientModule],
           providers: [
-            ResourceCodeCreator,
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
           ]
         })
         .compileComponents();

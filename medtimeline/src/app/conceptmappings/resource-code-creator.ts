@@ -176,11 +176,11 @@ export class ResourceCodeCreator {
    * configuration. Returns a map of listed display groupings to their
    * corresponding clinical concepts.
    */
-  private createConceptsFromFile<R extends ResourceCode>(
+  private createConceptsFromFile(
       filePath: string,
       displayGrouping: DisplayGrouping,
-      ): Promise<Map<string, R[]>> {
-    const groupToConcept = new Map<string, R[]>();
+      ): Promise<Map<string, ResourceCode[]>> {
+    const groupToConcept = new Map<string, ResourceCode[]>();
     return this.http.get(filePath).toPromise<any>().then(clinicalConcepts => {
       for (const concept of clinicalConcepts) {
         const code = this.createResourceCode(displayGrouping, concept);
@@ -193,7 +193,6 @@ export class ResourceCodeCreator {
         if (concept.innerComponentOnly) {
           continue;
         }
-        let concepts = [];
         // If the concept has no higher level grouping, then use its display
         // name as the proxy for its grouping.
         if (!concept.groupNames) {
@@ -201,9 +200,7 @@ export class ResourceCodeCreator {
         }
 
         for (const groupName of concept.groupNames) {
-          if (groupToConcept.has(groupName)) {
-            concepts = groupToConcept.get(groupName);
-          }
+          const concepts = groupToConcept.get(groupName) || [];
           concepts.push(code);
           groupToConcept.set(groupName, concepts);
         }

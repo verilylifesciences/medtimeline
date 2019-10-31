@@ -10,6 +10,7 @@ import {UI_CONSTANTS} from 'src/constants';
 
 import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../utils/test_utils';
 
@@ -29,12 +30,16 @@ let obs: Observation;
 
 describe('AnnotatedObservation', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({imports: [HttpClientModule]});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator}
+      ]
+    });
   }));
 
   beforeEach(() => {
-    // Needed to load in the LOINC codes so that we can create the fake
-    // medications below.
     const rcc = new ResourceCodeCreator(TestBed.get(HttpClient));
     obs = makeSampleObservation(10, DateTime.fromISO('1992-11-06T00:00:00.00'));
   });

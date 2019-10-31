@@ -42,7 +42,8 @@ describe('DataSelectorMenuComponent', () => {
           ],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator, ResourceCodeManager,
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
 
           ]

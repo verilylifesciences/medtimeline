@@ -5,13 +5,15 @@
 
 import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {SetupDataService} from 'src/app/setup-data.service';
-import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {environment} from '../../../environments/environment';
 import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
 import {HelpDialogComponent} from '../../dialogs/help-dialog/help-dialog.component';
 import {IfuDialogComponent} from '../../dialogs/ifu-dialog/ifu-dialog.component';
+import {FhirService} from '../../fhir-server/fhir.service';
 import {AxisGroup} from '../../graphs/graphtypes/axis-group';
 
 @Component({
@@ -27,12 +29,14 @@ export class TimelineToolbarComponent {
   @Output() addTextbox = new EventEmitter<null>();
 
   constructor(
-      setupDataService: SetupDataService, private helpDialog: MatDialog,
-      private ifuDialog: MatDialog,
-      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    setupDataService.displayGroupMapping.then((displayGroups) => {
-      this.displayGroupings = Array.from(displayGroups.entries());
-    });
+      fhirService: FhirService, resourceCodeManager: ResourceCodeManager,
+      private helpDialog: MatDialog, private ifuDialog: MatDialog,
+      @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any,
+      resourceCodeCreator: ResourceCodeCreator) {
+    resourceCodeManager.getDisplayGroupMapping(fhirService, resourceCodeCreator)
+        .then((displayGroups) => {
+          this.displayGroupings = Array.from(displayGroups.entries());
+        });
   }
 
   // Emits an event indicating to CardContainer to save a snapshot of the page.

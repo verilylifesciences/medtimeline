@@ -114,13 +114,19 @@ describe('CardcontainerComponent', () => {
             DeleteDialogComponent
           ],
           providers: [
-            ResourceCodeManager,
-            ResourceCodeCreator,
-            DragulaService,
-            SetupDataService,
             {provide: FhirService, useClass: StubFhirService},
+            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
-            {provide: MAT_DIALOG_DATA, useValue: {}},
+            DragulaService, {provide: MAT_DIALOG_DATA, useValue: {}}, {
+              provide: SetupDataService,
+              useValue: {
+                selectedConcepts: [],
+                encounters: [],
+                selectedDateRange: Interval.fromDateTimes(
+                    DateTime.utc().minus({days: 7}), DateTime.utc())
+              }
+            }
           ],
         })
         .compileComponents();

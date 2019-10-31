@@ -121,8 +121,6 @@ import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timel
     MatExpansionModule,
   ],
   providers: [
-    ResourceCodeCreator,
-    ResourceCodeManager,
     // This sets up a provider for the smart on fhir client defined by
     // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
     // injected into the service that uses it to allow for easier testing.
@@ -131,7 +129,8 @@ import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timel
       provide: FhirService,
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },
-
+    {provide: ResourceCodeManager, useClass: ResourceCodeManager},
+    {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
     {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
   ],
   bootstrap: [AppComponent],

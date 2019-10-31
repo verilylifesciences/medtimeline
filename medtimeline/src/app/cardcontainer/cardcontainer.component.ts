@@ -15,6 +15,8 @@ import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {ConfirmSaveComponent} from '../dialogs/confirm-save/confirm-save.component';
 import {DeleteDialogComponent} from '../dialogs/delete-dialog/delete-dialog.component';
 import {FhirService} from '../fhir-server/fhir.service';
@@ -53,13 +55,7 @@ export class CardcontainerComponent {
       Array<{[key: string]: AxisGroup | string | CustomizableData}> = [];
 
   // The original concepts to duplicate, if necessary.
-  readonly originalConcepts: Promise<AxisGroup[]> =
-      this.setupDataService.displayGroupMapping.then((mapping) => {
-        /* Load in the concepts to display, flattening them all into a
-         * single-depth array. */
-        return Array.from(mapping.values())
-            .reduce((acc, val) => acc.concat(val), []);
-      });
+  originalConcepts: Promise<AxisGroup[]>;
 
   // Hold an instance of this enum so that the HTML template can access it.
   readonly chartType = ChartType;
@@ -90,19 +86,28 @@ export class CardcontainerComponent {
   private eventsForCustomTimelines =
       new Map<string, Array<{[key: string]: number | string}>>();
 
-
-
   constructor(
       dragulaService: DragulaService,
-      private setupDataService: SetupDataService,
+      private fhirService: FhirService,
+      resourceCodeCreator: ResourceCodeCreator,
+      resourceCodeManager: ResourceCodeManager,
       private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
+      readonly setupDataService: SetupDataService,
       private saveDialog: MatDialog,
-      private fhirService: FhirService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any,
   ) {
     this.setUpCards();
     this.setUpDrag(dragulaService);
+    this.originalConcepts =
+        resourceCodeManager
+            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
+            .then((mapping) => {
+              /* Load in the concepts to display, flattening them all into a
+               * single-depth array. */
+              return Array.from(mapping.values())
+                  .reduce((acc, val) => acc.concat(val), []);
+            });
   }
 
   private setUpCards() {
