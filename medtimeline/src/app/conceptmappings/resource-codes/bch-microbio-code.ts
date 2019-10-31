@@ -6,9 +6,9 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
-import {AnnotatedMicrobioReport} from '../fhir-resources/annotated/annotated-microbio-report';
-import {MicrobioReport} from '../fhir-resources/microbio-report';
-import {FhirService} from '../fhir-server/fhir.service';
+import {AnnotatedMicrobioReport} from '../../fhir-resources/annotated/annotated-microbio-report';
+import {MicrobioReport} from '../../fhir-resources/microbio-report';
+import {FhirService} from '../../fhir-server/fhir.service';
 
 import {AbstractResourceCodeGroup, ResourceCode} from './resource-code-group';
 

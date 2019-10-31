@@ -9,11 +9,6 @@
 import {Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
@@ -23,6 +18,11 @@ import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation} from '../fhir-resources/observation';
 import {FhirService} from '../fhir-server/fhir.service';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 
 const REQUEST_ID = '1234';
 

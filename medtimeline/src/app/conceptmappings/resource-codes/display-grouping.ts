@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import * as Color from 'color';
-import * as Colors from '../theme/verily_colors';
+import * as Colors from '../../theme/verily_colors';
 
 export const ALL_DISPLAY_GROUPS_MAP = new Map<string, DisplayGrouping>();
 

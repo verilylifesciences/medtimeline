@@ -10,12 +10,6 @@ import {FhirResourceType} from 'src/constants';
 import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
-
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {AnnotatedMicrobioReport} from '../fhir-resources/annotated/annotated-microbio-report';
@@ -25,6 +19,12 @@ import {MedicationAdministration} from '../fhir-resources/medication-administrat
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+
 import {FhirService} from './fhir.service';
 
 @Injectable()

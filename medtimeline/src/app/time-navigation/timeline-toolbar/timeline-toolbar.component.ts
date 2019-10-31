@@ -9,7 +9,7 @@ import {SetupDataService} from 'src/app/setup/setup-data.service';
 import {recordGoogleAnalyticsEvent, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../../environments/environment';
-import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import {DisplayGrouping} from '../../conceptmappings/resource-codes/display-grouping';
 import {HelpDialogComponent} from '../../dialogs/help-dialog/help-dialog.component';
 import {IfuDialogComponent} from '../../dialogs/ifu-dialog/ifu-dialog.component';
 import {AxisGroup} from '../../graphs/graphtypes/axis-group';

@@ -5,9 +5,9 @@
 
 import {DateTime} from 'luxon';
 
-import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {BCHMicrobioCode} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {ResultError} from '../result-error';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
 

@@ -9,9 +9,9 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 
-import {DisplayGrouping, labResult, vitalSign} from '../../clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
 import {FhirService} from '../../fhir-server/fhir.service';
+import {DisplayGrouping, labResult, vitalSign} from '../../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
 import {StubFhirService} from '../../utils/test_utils';
 
 import {Axis} from './axis';

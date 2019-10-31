@@ -8,11 +8,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {labResult} from 'src/app/clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-observation';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
+import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ObservationSet} from '../../../fhir-resources/sets/observation-set';

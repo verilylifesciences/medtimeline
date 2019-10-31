@@ -7,7 +7,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatListModule} from '@angular/material/list';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {labResult} from '../../clinicalconcepts/display-grouping';
+import {labResult} from '../../conceptmappings/resource-codes/display-grouping';
 import {AxisGroup} from '../../graphs/graphtypes/axis-group';
 
 import {DataSelectorElementComponent} from './data-selector-element.component';

@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 import {DateTime} from 'luxon';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
 
 import {Observation} from './observation';
 import {OBSERVATION_INTERPRETATION_VALUESET_URL, ObservationInterpretation} from './observation-interpretation-valueset';

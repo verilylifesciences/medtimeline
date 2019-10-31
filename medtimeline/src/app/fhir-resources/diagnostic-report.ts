@@ -6,8 +6,8 @@
 
 import {DateTime} from 'luxon';
 
-import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {DiagnosticReportCode} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {ResultError} from '../result-error';
 
 import {Attachment} from './attachment';

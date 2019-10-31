@@ -8,8 +8,8 @@ import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 import {UI_CONSTANTS} from 'src/constants';
 
-import {RxNormCode} from '../../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
+import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../../utils/test_utils';
 import {MedicationAdministration} from '../medication-administration';

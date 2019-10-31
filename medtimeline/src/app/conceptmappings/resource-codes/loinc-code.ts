@@ -6,11 +6,11 @@
 import {Interval} from 'luxon';
 import {APP_TIMESPAN} from 'src/constants';
 
-import {AnnotatedObservation} from '../fhir-resources/annotated/annotated-observation';
-import {Observation} from '../fhir-resources/observation';
-import {ObservationSet} from '../fhir-resources/sets/observation-set';
-import {FhirService} from '../fhir-server/fhir.service';
-import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
+import {Observation} from '../../fhir-resources/observation';
+import {ObservationSet} from '../../fhir-resources/sets/observation-set';
+import {FhirService} from '../../fhir-server/fhir.service';
+import {ChartType} from '../../graphs/graphtypes/graph/graph.component';
 
 import {DisplayGrouping} from './display-grouping';
 import {ResourceCode} from './resource-code-group';

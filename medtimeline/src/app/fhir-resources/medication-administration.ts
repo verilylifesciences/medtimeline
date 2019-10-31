@@ -6,7 +6,7 @@
 import {DateTime} from 'luxon';
 import {FhirResourceType} from 'src/constants';
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {ResultError} from '../result-error';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
 

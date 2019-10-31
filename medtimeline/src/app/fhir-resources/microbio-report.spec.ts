@@ -3,10 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {microbio} from '../clinicalconcepts/display-grouping';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {microbio} from '../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
 
 import {DiagnosticReportStatus} from './diagnostic-report';
 import {MicrobioReport} from './microbio-report';

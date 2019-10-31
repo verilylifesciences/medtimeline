@@ -5,7 +5,7 @@
 
 import {FhirResourceType} from 'src/constants';
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 
 import {ContainedMedication} from './medication';
 

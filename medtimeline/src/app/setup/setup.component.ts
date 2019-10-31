@@ -13,11 +13,12 @@ import {map, startWith} from 'rxjs/operators';
 import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
-import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
 import {Encounter} from '../fhir-resources/encounter';
 import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
+import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
 import {ResultError} from '../result-error';
+
 import {SetupDataService} from './setup-data.service';
 
 enum LoadStatus {

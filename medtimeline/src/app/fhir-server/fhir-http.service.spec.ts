@@ -7,10 +7,10 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
-import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 ;
 import {FhirHttpService} from './fhir-http.service';

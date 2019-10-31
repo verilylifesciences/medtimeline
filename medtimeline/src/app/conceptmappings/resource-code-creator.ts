@@ -6,13 +6,13 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 import {environment} from '../../environments/environment';
-import {BCHMicrobioCode} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
-import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology, vitalSign} from '../clinicalconcepts/display-grouping';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {BCHMicrobioCode} from './resource-codes/bch-microbio-code';
+import {DiagnosticReportCode} from './resource-codes/diagnostic-report-code';
+import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology, vitalSign} from './resource-codes/display-grouping';
+import {LOINCCode} from './resource-codes/loinc-code';
+import {ResourceCode} from './resource-codes/resource-code-group';
+import {RxNormCode} from './resource-codes/rx-norm';
 
 
 /**

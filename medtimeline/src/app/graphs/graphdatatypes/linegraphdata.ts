@@ -6,11 +6,11 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
-import {ResourceCodeGroup} from '../../clinicalconcepts/resource-code-group';
 import {Encounter} from '../../fhir-resources/encounter';
 import {MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {NORMAL} from '../../fhir-resources/observation-interpretation-valueset';
 import {ObservationSet} from '../../fhir-resources/sets/observation-set';
+import {ResourceCodeGroup} from '../../conceptmappings/resource-codes/resource-code-group';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
 import {MedicationAdministrationTooltip} from '../graphtypes/tooltips/medication-tooltips';
 // tslint:disable-next-line:max-line-length

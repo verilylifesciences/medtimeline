@@ -8,13 +8,13 @@ import {async, TestBed} from '@angular/core/testing';
 
 import {DateTime} from 'luxon';
 
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {makeMedicationAdministration} from '../utils/test_utils';
 
 import {Dosage} from './dosage';
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from './medication-administration';
+import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from '../fhir-resources/medication-administration';
 
 const medicationCoding = {
   coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],

@@ -4,7 +4,7 @@
 // license that can be found in the LICENSE file.
 
 
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {ResultError} from '../result-error';
 
 import {Dosage} from './dosage';

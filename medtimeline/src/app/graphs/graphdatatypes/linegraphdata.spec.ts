@@ -9,8 +9,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import * as Colors from 'src/app/theme/verily_colors';
 
-import {DisplayGrouping, labResult} from '../../clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
 import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
@@ -19,6 +17,8 @@ import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources
 import {Observation} from '../../fhir-resources/observation';
 import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
+import {DisplayGrouping, labResult} from '../../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../utils/test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';
 import {ChartType} from '../graphtypes/graph/graph.component';

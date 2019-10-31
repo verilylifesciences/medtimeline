@@ -5,7 +5,7 @@
 
 import {DateTime} from 'luxon';
 
-import {DiagnosticReportCode} from '../clinicalconcepts/diagnostic-report-code';
+import {DiagnosticReportCode} from '../conceptmappings/resource-codes/diagnostic-report-code';
 
 import {AnnotatedDiagnosticReport} from './annotated/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticServiceSectionCodes} from './diagnostic-report';

@@ -7,8 +7,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import * as Color from 'color';
 import {AnnotatedMicrobioReport} from 'src/app/fhir-resources/annotated/annotated-microbio-report';
 import {DiagnosticReportStatus} from 'src/app/fhir-resources/diagnostic-report';
-import {UI_CONSTANTS} from 'src/constants';
 
+import {UI_CONSTANTS} from '../../../../constants';
 import {AnnotatedTooltip} from './annotated-tooltip';
 import {Tooltip} from './tooltip';
 

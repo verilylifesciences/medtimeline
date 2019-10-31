@@ -7,12 +7,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {MedicationAdministration} from '../fhir-resources/medication-administration';
-import {MedicationOrder} from '../fhir-resources/medication-order';
-import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {StubFhirService} from '../utils/test_utils';
+import {ResourceCodeCreator} from '../resource-code-creator';
+import {ResourceCodeManager} from '../resource-code-manager';
+import {MedicationAdministration} from '../../fhir-resources/medication-administration';
+import {MedicationOrder} from '../../fhir-resources/medication-order';
+import {ChartType} from '../../graphs/graphtypes/graph/graph.component';
+import {StubFhirService} from '../../utils/test_utils';
 
 import {DisplayGrouping} from './display-grouping';
 import {RxNormCode} from './rx-norm';

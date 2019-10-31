@@ -3,11 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Duration, Interval} from 'luxon';
-import {UI_CONSTANTS} from 'src/constants';
+import {Duration} from 'luxon';
 
-import {MedicationAdministration} from '../medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrderSet} from '../medication-order';
+import {UI_CONSTANTS} from '../../../constants';
+import {AnnotatedMedicationOrder} from '../medication-order';
 import {Observation} from '../observation';
 import {ResultClassWithTimestamp} from '../sets/fhir-resource-set';
 import {ObservationSet} from '../sets/observation-set';

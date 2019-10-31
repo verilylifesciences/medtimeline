@@ -1,10 +1,10 @@
 import {Interval} from 'luxon';
 
-import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
-import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {AnnotatedObservation} from '../fhir-resources/annotated/annotated-observation';
 import {AnnotatedMedicationOrder} from '../fhir-resources/medication-order';
 import {Observation} from '../fhir-resources/observation';
+import {LOINCCodeGroup} from './resource-codes/loinc-code';
+import {RxNormCodeGroup} from './resource-codes/rx-norm-group';
 
 /**
  * Returns the function to annotate a Blood Pressure Resource group with

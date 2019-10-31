@@ -8,10 +8,6 @@ import {Inject, Injectable} from '@angular/core';
 import {DateTime, Interval} from 'luxon';
 
 import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../../constants';
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {documentReferenceLoinc} from '../conceptmappings/resource-code-manager';
 import {DebuggerService} from '../debugger/debugger.service';
@@ -24,6 +20,10 @@ import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
 import {ResultClass} from '../fhir-resources/sets/fhir-resource-set';
 import * as FhirConfig from '../fhir_config';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
 import {FhirService} from './fhir.service';

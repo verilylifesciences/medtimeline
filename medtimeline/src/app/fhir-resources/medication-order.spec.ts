@@ -10,13 +10,12 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../fhir-resources/medication-order';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {makeMedicationAdministration, makeMedicationOrder} from '../utils/test_utils';
-
-import {MedicationAdministration} from './medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from './medication-order';
 
 const REQUEST_ID = '1234';
 

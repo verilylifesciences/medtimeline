@@ -7,11 +7,6 @@ import {Injectable} from '@angular/core';
 import {Interval} from 'luxon';
 import {of} from 'rxjs';
 
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {LOINCCode, LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
-import {RxNormCode} from '../clinicalconcepts/rx-norm';
-import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
@@ -21,6 +16,11 @@ import {MedicationAdministration} from '../fhir-resources/medication-administrat
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation} from '../fhir-resources/observation';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+import {RxNormCodeGroup} from '../conceptmappings/resource-codes/rx-norm-group';
 
 @Injectable()
 export abstract class FhirService {

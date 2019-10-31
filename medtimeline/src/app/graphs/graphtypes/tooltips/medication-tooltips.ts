@@ -7,8 +7,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Duration} from 'luxon';
 import {AnnotatedAdministration, MedicationAdministration} from 'src/app/fhir-resources/medication-administration';
 import {formatNumberWithPrecision} from 'src/app/utils/number_utils';
-import {UI_CONSTANTS} from 'src/constants';
 
+import {UI_CONSTANTS} from '../../../../constants';
 import {AnnotatedMedicationOrder} from '../../../fhir-resources/medication-order';
 import {Tooltip} from '../tooltips/tooltip';
 

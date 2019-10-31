@@ -5,9 +5,9 @@
 
 import {Interval} from 'luxon';
 
-import {TimestampedObject} from '../fhir-resources/sets/fhir-resource-set';
-import {FhirService} from '../fhir-server/fhir.service';
-import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {TimestampedObject} from '../../fhir-resources/sets/fhir-resource-set';
+import {FhirService} from '../../fhir-server/fhir.service';
+import {ChartType} from '../../graphs/graphtypes/graph/graph.component';
 import {DisplayGrouping} from './display-grouping';
 
 /**

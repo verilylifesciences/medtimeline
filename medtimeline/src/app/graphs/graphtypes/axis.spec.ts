@@ -7,10 +7,10 @@ import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
-import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../../clinicalconcepts/loinc-code';
-import {ResourceCodeGroup} from '../../clinicalconcepts/resource-code-group';
-import {RxNormCode} from '../../clinicalconcepts/rx-norm';
+import {DisplayGrouping} from '../../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
+import {ResourceCodeGroup} from '../../conceptmappings/resource-codes/resource-code-group';
+import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 import {FhirService} from '../../fhir-server/fhir.service';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';
 

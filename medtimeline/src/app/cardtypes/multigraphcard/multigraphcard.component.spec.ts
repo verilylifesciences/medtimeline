@@ -15,8 +15,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {labResult} from 'src/app/clinicalconcepts/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from 'src/app/clinicalconcepts/loinc-code';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
@@ -28,6 +26,8 @@ import {LineGraphComponent} from 'src/app/graphs/graphtypes/linegraph/linegraph.
 import {MicrobioGraphComponent} from 'src/app/graphs/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from 'src/app/graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphs/graphtypes/stepgraph/stepgraph.component';
+import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {StubFhirService} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 

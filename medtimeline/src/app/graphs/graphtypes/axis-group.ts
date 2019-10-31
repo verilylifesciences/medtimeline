@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {DisplayGrouping} from '../../clinicalconcepts/display-grouping';
+import {DisplayGrouping} from '../../conceptmappings/resource-codes/display-grouping';
 
 import {Axis} from './axis';
 

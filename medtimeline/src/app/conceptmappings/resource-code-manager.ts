@@ -6,17 +6,17 @@
 import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
-import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../clinicalconcepts/diagnostic-report-code';
-import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology} from '../clinicalconcepts/display-grouping';
-import {LOINCCodeGroup} from '../clinicalconcepts/loinc-code';
-import {LOINCCode} from '../clinicalconcepts/loinc-code';
-import {ResourceCode, ResourceCodeGroup} from '../clinicalconcepts/resource-code-group';
-import {RxNormCodeGroup} from '../clinicalconcepts/rx-norm-group';
 import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from './resource-codes/diagnostic-report-code';
+import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology} from './resource-codes/display-grouping';
+import {LOINCCodeGroup} from './resource-codes/loinc-code';
+import {LOINCCode} from './resource-codes/loinc-code';
+import {ResourceCode, ResourceCodeGroup} from './resource-codes/resource-code-group';
+import {RxNormCodeGroup} from './resource-codes/rx-norm-group';
 
 import {ANNOTATION_CONFIGURATION} from './annotation-mapping';
 import {GroupConfiguration, ResourceCodeCreator} from './resource-code-creator';

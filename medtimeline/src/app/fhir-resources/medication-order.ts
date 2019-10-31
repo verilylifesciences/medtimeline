@@ -7,9 +7,9 @@
 // about that in our testing code.
 /* tslint:disable:object-literal-shorthand*/
 
-import {MedicationConceptGroup, RxNormCode} from '../clinicalconcepts/rx-norm';
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet} from '../fhir-resources/medication-administration';
 import {FhirResourceSet, ResultClass} from '../fhir-resources/sets/fhir-resource-set';
+import {MedicationConceptGroup, RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {ResultError} from '../result-error';
 import {fixUnitAbbreviations} from '../utils/unit_utils';
 

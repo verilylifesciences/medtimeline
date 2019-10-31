@@ -5,12 +5,12 @@
 
 import {APP_TIMESPAN} from 'src/constants';
 
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
-import {MedicationOrderSet} from '../fhir-resources/medication-order';
-import {FhirService} from '../fhir-server/fhir.service';
-import * as Colors from '../theme/verily_colors';
+import {MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {FhirService} from '../../fhir-server/fhir.service';
+import * as Colors from '../../theme/verily_colors';
 
 import {DisplayGrouping} from './display-grouping';
+import {ResourceCode} from './resource-code-group';
 
 export class MedicationConceptGroup extends DisplayGrouping {}
 

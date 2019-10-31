@@ -5,8 +5,8 @@
 
 
 import {FhirResourceType} from '../../constants';
-import {BCHMicrobioCodeGroup} from '../clinicalconcepts/bch-microbio-code';
-import {ResourceCode} from '../clinicalconcepts/resource-code-group';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {ResultError} from '../result-error';
 
 import {DiagnosticReportStatus} from './diagnostic-report';
