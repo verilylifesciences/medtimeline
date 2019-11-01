@@ -33,7 +33,7 @@ describe('DiagnosticTooltip', () => {
     expect(annotatedTooltip.tooltipChart).toBeDefined();
     expect(annotatedTooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody>' +
+            '<table class="tooltip"><tbody>' +
             '<tr><th colspan="2">' + Tooltip.formatTimestamp(report.timestamp) +
             '</th></tr>' +
             '<tr><td><button class="mat-menu-item" id="' + buttonID + '">' +
@@ -59,7 +59,7 @@ describe('DiagnosticTooltip', () => {
     expect(annotatedTooltip.tooltipChart).toBeDefined();
     expect(annotatedTooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody>' +
+            '<table class="tooltip"><tbody>' +
             '<tr><td><button class="mat-menu-item" id="' + buttonID + '">' +
             'Report Attachment</button></td></tr>' +
             '</tbody></table>');

@@ -5,8 +5,9 @@
 
 import {DateTime, Interval} from 'luxon';
 
-import {LabeledSeries} from './labeled-series';
 import {AnnotatedTooltip} from '../graphtypes/tooltips/annotated-tooltip';
+
+import {LabeledSeries} from './labeled-series';
 
 /**
  * The base class for holding data pertaining to one graph.
@@ -40,8 +41,9 @@ export class GraphData {
        * is unset, then we fall back to the default lookup, which is by x-value.
        *
        * The value of the map is an AnnotatedTooltip[] that contains additional
-       * values that need more processing before it can be displayed, an optional id,
-       * and a string representing the innerhtml that we want to display as the tooltip
+       * values that need more processing before it can be displayed, an
+       * optional id, and a string representing the innerhtml that we want to
+       * display as the tooltip
        */
       readonly tooltipMap?: Map<string, AnnotatedTooltip[]>,
       /**

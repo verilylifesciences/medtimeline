@@ -47,7 +47,7 @@ describe('MedicationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip">' +
+            '<table class="tooltip">' +
             '<tbody><tr><th colspan="2">vancomycin: Order #' +
             annotatedOrder.order.orderId + '</th></tr>' +
             '<tr>' +
@@ -70,7 +70,7 @@ describe('MedicationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip">' +
+            '<table class="tooltip">' +
             '<tbody><tr><th colspan="2">vancomycin: Order #' +
             annotatedOrder.order.orderId + '</th></tr>' +
             '<tr>' +
@@ -121,7 +121,7 @@ describe('MedicationAdministrationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody>' +
+            '<table class="tooltip"><tbody>' +
             '<tr>' +
             '<th colspan="3">' +
             Tooltip.formatTimestamp(admin1.medAdministration.timestamp) +
@@ -148,7 +148,7 @@ describe('MedicationAdministrationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody>' +
+            '<table class="tooltip"><tbody>' +
             '<tr><th colspan="3">' +
             Tooltip.formatTimestamp(admin2.medAdministration.timestamp) +
             ': Vancomycin dose. Part of Order #' +

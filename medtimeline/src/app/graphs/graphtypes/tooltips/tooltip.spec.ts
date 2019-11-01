@@ -29,9 +29,10 @@ describe('StandardTooltip', () => {
           {x: new Date(2001, 1, 1), name: 'name', value: 25}
         ],
         () => Color.rgb(244, 244, 244), 'unit');
-    expect(tooltip.getTooltip(undefined, TestBed.get(DomSanitizer)).tooltipChart)
+    expect(
+        tooltip.getTooltip(undefined, TestBed.get(DomSanitizer)).tooltipChart)
         .toBe(
-            '<table class="c3-tooltip">' +
+            '<table class="tooltip">' +
             '<tbody><tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.fromJSDate(new Date(2001, 1, 1))) +
             '</th></tr>' +

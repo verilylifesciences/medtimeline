@@ -11,14 +11,14 @@ import * as Colors from 'src/app/theme/verily_colors';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../../conceptmappings/resource-code-manager';
+import {DisplayGrouping, labResult} from '../../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
 import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
 import {AnnotatedAdministration} from '../../fhir-resources/medication-administration';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {Observation} from '../../fhir-resources/observation';
 import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
-import {DisplayGrouping, labResult} from '../../conceptmappings/resource-codes/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
 import {makeMedicationAdministration, makeMedicationOrder, StubFhirService} from '../../utils/test_utils';
 import {makeSampleDiscreteObservation, makeSampleObservation} from '../../utils/test_utils';
 import {ChartType} from '../graphtypes/graph/graph.component';
@@ -180,7 +180,7 @@ describe('LineGraphData', () => {
         lgData.tooltipMap.get(MARCH_23_DATETIME.toMillis().toString()));
     expect(annotatedTT.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
+            '<table class="tooltip"><tbody><tr><th colspan="2">' +
             Tooltip.formatTimestamp(MARCH_23_DATETIME) +
             '</th></tr><tr><td class="name" style="color: ' + Colors.ABNORMAL +
             '"><span style="' + Tooltip.TOOLTIP_ABNORMAL_CSS +
@@ -188,7 +188,7 @@ describe('LineGraphData', () => {
             '<div style="display: inline-block;">Blood pressure</div></td><td class="value" ' +
             'style="color: ' + Colors.ABNORMAL +
             '">80 mmHg (Low)</td></tr></tbody></table>' +
-            '<table class="c3-tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
+            '<table class="tooltip"><tbody><tr><th colspan="2">Caution: abnormal value</th></tr>' +
             '</tbody></table>');
   });
 
