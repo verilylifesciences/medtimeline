@@ -149,7 +149,7 @@ describe('MicrobioGraphData', () => {
            stepgraphdata.tooltipMap.get(mbKey));
        expect(annotatedTT.tooltipChart)
            .toEqual(
-               '<table class="c3-tooltip"><tbody><tr><th colspan="2">' +
+               '<table class="tooltip"><tbody><tr><th colspan="2">' +
                Tooltip.formatTimestamp(
                    DateTime.fromISO('2019-02-14T17:34:43-05:00')) +
                '</th></tr>' +
@@ -162,7 +162,7 @@ describe('MicrobioGraphData', () => {
                '<td class="value">Final</td></tr>' +
                '<tr><td class="name">Specimen</td>' +
                '<td class="value">BAL</td></tr></tbody></table>' +
-               '<table class="c3-tooltip"><tbody>' +
+               '<table class="tooltip"><tbody>' +
                '<tr><th colspan="2">Result set</th></tr>' +
                '<tr><td class="name"><span style="background-color: ' +
                'rgb(195, 132, 25); ' + Tooltip.TOOLTIP_NORMAL_CSS +
@@ -225,7 +225,7 @@ describe('MicrobioGraphData', () => {
         stepgraphdata.tooltipMap.get(mbKey));
     expect(annotatedTT.tooltipChart)
         .toEqual(
-            '<table class="c3-tooltip"><tbody>' +
+            '<table class="tooltip"><tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(
                 DateTime.fromISO('2019-02-14T17:34:43-05:00')) +

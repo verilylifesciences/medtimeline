@@ -258,8 +258,7 @@ export class LineGraphComponent extends GraphComponent<LineGraphData> implements
       // Creates an HTML table for the tooltip text, and adds it to the tooltip
       // map. This was done separately because not all line graphs have normal
       // bounds depicted.
-      const tooltipText =
-          '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
+      const tooltipText = '<table class="tooltip"><tbody><tr><th colspan="1">' +
           'Normal Boundary</th></tr>' +
           '<tr><td><div style="white-space:pre-line; text-align:center;">' +
           '<b>Upper: </b>' + yNormalBounds[1] + ' ' + this.data.unit + '\n' +

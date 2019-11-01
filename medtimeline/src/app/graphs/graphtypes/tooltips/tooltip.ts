@@ -40,7 +40,7 @@ export abstract class Tooltip<T> {
    */
   static createNewTable(): HTMLTableElement {
     const table: HTMLTableElement = document.createElement('table');
-    table.setAttribute('class', 'c3-tooltip');
+    table.setAttribute('class', 'tooltip');
     return table;
   }
 
