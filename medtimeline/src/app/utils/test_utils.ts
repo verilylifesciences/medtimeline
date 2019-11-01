@@ -60,6 +60,12 @@ export class StubFhirService extends FhirService {
     return Promise.resolve(true);
   }
 
+  dataAvailableForMedications(): Promise<Set<RxNormCode>> {
+    return Promise.resolve(new Set(
+        [RxNormCode.fromCodeString(medicationCodingConcept.coding[0].code) as
+         RxNormCode]));
+  }
+
   getMedicationOrderWithId(id: string): Promise<MedicationOrder> {
     return Promise.resolve(makeMedicationOrder());
   }
@@ -182,8 +188,8 @@ export function makeMedicationOrder(): MedicationOrder {
 
 export function makeSampleDiscreteObservationJson(
     result: string, timestamp: DateTime, interpretation = 'N'): any {
-  // we use a fake LOINCCode for testing. We make sure it is created and if not,
-  // we create it.
+  // we use a fake LOINCCode for testing. We make sure it is created and if
+  // not, we create it.
   const loincCodeString = '4090-7';
   if (!LOINCCode.fromCodeString(loincCodeString)) {
     const newLoincCode = new LOINCCode(

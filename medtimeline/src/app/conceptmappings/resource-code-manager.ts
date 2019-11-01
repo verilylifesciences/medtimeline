@@ -10,17 +10,16 @@ import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-
-import {ANNOTATION_CONFIGURATION} from './annotation-mapping';
-import {GroupConfiguration, ResourceCodeCreator} from './resource-code-creator';
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from './resource-codes/bch-microbio-code';
-import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './resource-codes/diagnostic-report-code';
+import {DiagnosticReportCodeGroup} from './resource-codes/diagnostic-report-code';
 import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology} from './resource-codes/display-grouping';
 import {LOINCCodeGroup} from './resource-codes/loinc-code';
 import {LOINCCode} from './resource-codes/loinc-code';
 import {ResourceCode, ResourceCodeGroup} from './resource-codes/resource-code-group';
-import {RxNormCode} from './resource-codes/rx-norm';
 import {RxNormCodeGroup} from './resource-codes/rx-norm-group';
+
+import {ANNOTATION_CONFIGURATION} from './annotation-mapping';
+import {GroupConfiguration, ResourceCodeCreator} from './resource-code-creator';
 
 // We declare a new LOINCCode referencing a DocumentReference, but do not
 // include it in the groupings below because it is not graphed/displayed in the
@@ -73,23 +72,21 @@ export class ResourceCodeManager {
     const resourceGroups = new Array<ResourceCodeGroup>();
     axisGroups.forEach((concepts, label) => {
       let group;
-
-      if (concepts[0] instanceof LOINCCode) {
-        group = new LOINCCodeGroup(
-            fhirService, label, concepts, displayGrouping, chartType);
-      } else if (concepts[0] instanceof RxNormCode) {
-        group = new RxNormCodeGroup(
-            fhirService, label, concepts, displayGrouping, chartType);
-      } else if (concepts[0] instanceof DiagnosticReportCode) {
+      if (displayGrouping === radiology) {
         group = new DiagnosticReportCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
-      } else if (concepts[0] instanceof BCHMicrobioCode) {
+      } else if (displayGrouping === microbio) {
         group = new BCHMicrobioCodeGroup(
             fhirService, label, concepts, displayGrouping, chartType);
+      } else if ([antibiotics, antifungals, antivirals].includes(
+                     displayGrouping)) {
+        group = new RxNormCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
+      } else {
+        group = new LOINCCodeGroup(
+            fhirService, label, concepts, displayGrouping, chartType);
       }
-      if (group) {
-        resourceGroups.push(group);
-      }
+      resourceGroups.push(group);
     });
     return resourceGroups;
   }
@@ -163,15 +160,16 @@ export class ResourceCodeManager {
     for (const annotation of ANNOTATION_CONFIGURATION) {
       const groups = resourceGroups.get(annotation.groupName);
       const refGroup = resourceGroups.get(annotation.refGroup);
+      // Right now we only support tooltips that several primary code groups to
+      // another reference group. Some tooltips, for example, medication
+      // monitoring, need multiple reference groups for annotation. We will
+      // support this in a later release.
       if ((!groups || !refGroup) || (refGroup.length > 1)) {
         continue;
       }
       for (const group of groups) {
-        // Right now we only support annotating LOINCCodeGroups; could be
-        // extended in the future.
-        if (group instanceof LOINCCodeGroup) {
-          group.setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup[0]));
-        }
+        (group as LOINCCodeGroup)
+            .setMakeAnnotated(annotation.makeAnnotatedFunction(refGroup[0]));
       }
     }
   }
@@ -190,6 +188,7 @@ export class ResourceCodeManager {
                 this.annotateResourceGroups(resourceGroupMap);
                 const axisGroups =
                     this.createAxisGroups(resourceGroupMap, fhirService);
+
                 const mapping = new Map<DisplayGrouping, AxisGroup[]>();
                 for (const group of axisGroups) {
                   if (mapping.has(group.displayGroup)) {

@@ -13,10 +13,12 @@ import {map, startWith} from 'rxjs/operators';
 import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
+import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+import {RxNormCodeGroup} from '../conceptmappings/resource-codes/rx-norm-group';
 import {Encounter} from '../fhir-resources/encounter';
 import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
-import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
 import {ResultError} from '../result-error';
 
 import {SetupDataService} from './setup-data.service';
@@ -99,6 +101,17 @@ export class SetupComponent implements OnDestroy {
     return a.label.localeCompare(b.label);
   });
 
+  /**
+   * Promise to load all Medication data that when resolved returns a Set of
+   * all RxNormCodes that have data available within the App Timeframe.
+   *
+   * We load all the medication data on setup to cut down on the number of
+   * calls for medication administration data availability and enhance
+   * performance.
+   */
+  private readonly loadedMedications =
+      this.fhirService.dataAvailableForMedications();
+
   ngOnDestroy() {
     // Pass the selected information through to the setup data service.
     this.setupDataService.selectedConcepts = this.chosenConcepts;
@@ -133,32 +146,90 @@ export class SetupComponent implements OnDestroy {
     this.setupInterface();
   }
 
+  /**
+   * Sets the status for the AxisGroup based on whether data is available.
+   * If not available, the AxisGroup will be unchecked.
+   *
+   * @param axisGroup AxisGroup to set availability status for
+   * @param available whether there is any data for the AxisGroup
+   */
+  setAxisGroupStatus(axisGroup: AxisGroup, available: boolean) {
+    axisGroup.dataAvailable = available
+    if (!available) {
+      this.checkedConcepts[axisGroup.label] = false;
+    }
+    this.codeGroupAvailable.set(
+        axisGroup.label,
+        available ? LoadStatus.DATA_AVAILABLE : LoadStatus.DATA_UNAVAILABLE);
+  }
+
+  /**
+   * Sets up availability for AxisGroups that are associated with Medications.
+   *
+   * Since MedicationAdministration loading takes a long time (due to Cerner
+   * limitations), we have preloaded the availability for all RxNormCodes.
+   * Instead of making a call to the server for each Medication to check
+   * availability, we use the pre-loaded list of available RxNormCodes.
+   *
+   * @param medAxisGroups AxisGroups with at least one axis that has an
+   *     RxNormCodeGroup.
+   */
+  setupMedicationAxisGroups(medAxisGroups: AxisGroup[]) {
+    this.loadedMedications.then(rxNormCodesWithData => {
+      medAxisGroups.forEach((axisGroup: AxisGroup) => {
+        const availablityPromises = axisGroup.axes.map(axis => {
+          // some AxisGroups have RxNormCodeGroups and non-RxNormCodeGroups axes
+          // such as Medication administrations and monitoring (LOINC). We check
+          // for availability differently depending on the resource group type.
+          if (axis.resourceGroup instanceof RxNormCodeGroup) {
+            const axisHasData = axis.resourceGroup.resourceCodes.some(
+                (code: RxNormCode) => rxNormCodesWithData.has(code));
+            // since we are not using the axisDataAvailableInAppTimeScope
+            // function, we need to set axisDataAvailable manually
+            axis.axisDataAvailable = axisHasData;
+            return Promise.resolve(axisHasData);
+          } else {
+            return axis.axisDataAvailableInAppTimeScope();
+          }
+        });
+        Promise.all(availablityPromises).then(availablityList => {
+          this.setAxisGroupStatus(
+              axisGroup, availablityList.some(avail => !!avail));
+        });
+      });
+    });
+  }
+
   setupInterface() {
     // Retrieve the patient encounters. When they load in asynchronously,
     // the radio buttons for encounter selection will show up.
     this.getEncounters();
+    const medAxisGroups = [];
     this.displayGroupings.then((displayGroupings) => {
-      // Check off concepts that are on by default.
       displayGroupings.forEach((row) => {
         // row[1] is an AxisGroup[] corresponding to the display grouping in
         // row[0].
         const axisGroupArray = row[1];
-        axisGroupArray.forEach((concept) => {
-          this.checkedConcepts[concept.label] =
-              concept.axes.some(axis => axis.resourceGroup.showByDefault);
+        axisGroupArray.forEach((axisGroup) => {
+          // Check off concepts that are on by default and set initial status
+          // to loading.
+          this.checkedConcepts[axisGroup.label] =
+              axisGroup.axes.some(axis => axis.resourceGroup.showByDefault);
+          this.codeGroupAvailable.set(axisGroup.label, LoadStatus.LOADING);
 
-          this.codeGroupAvailable.set(concept.label, LoadStatus.LOADING);
-          concept.dataAvailableInAppTimeScope().then(available => {
-            if (!available) {
-              this.checkedConcepts[concept.label] = false;
-            }
-            this.codeGroupAvailable.set(
-                concept.label,
-                available ? LoadStatus.DATA_AVAILABLE :
-                            LoadStatus.DATA_UNAVAILABLE);
-          });
+          // if any of the axes in the axis group are for RxNormCodeGroups,
+          // we handle the axis group differently for performance reasons.
+          if (axisGroup.axes.some(
+                  axis => axis.resourceGroup instanceof RxNormCodeGroup)) {
+            medAxisGroups.push(axisGroup);
+          } else {
+            axisGroup.dataAvailableInAppTimeScope().then(available => {
+              this.setAxisGroupStatus(axisGroup, available);
+            });
+          }
         });
       });
+      this.setupMedicationAxisGroups(medAxisGroups);
 
       // Watch for changes to the user input on the autocomplete panel.
       this.displayGroupingOptions = this.conceptCtrl.valueChanges.pipe(
@@ -166,13 +237,6 @@ export class SetupComponent implements OnDestroy {
               ''),  // The autocomplete input starts with nothing typed in.
           map(concept => concept ? this.filter(concept, displayGroupings) :
                                    displayGroupings.slice()));
-
-      // Check to see which clinical concepts have any data, and
-      // enable/disable on that basis.
-      displayGroupings.forEach(
-          grouping => {
-
-          });
     });
   }
 

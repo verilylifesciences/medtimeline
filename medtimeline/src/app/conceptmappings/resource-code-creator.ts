@@ -107,22 +107,10 @@ export class ResourceCodeCreator {
                   displayGroup);
             }))
             .then((conceptsFromFile: Array<Map<string, ResourceCode[]>>) => {
-              // Reduce into one flattened map, allowing for mixing across
-              // concept groups.
-              const allConceptsMap = new Map();
-              for (const mapEntry of conceptsFromFile) {
-                for (const entry of Array.from(mapEntry.entries())) {
-                  const group = entry[0];
-                  let resourceCodes = entry[1];
-
-                  if (allConceptsMap.has(group)) {
-                    resourceCodes =
-                        resourceCodes.concat(allConceptsMap.get(group));
-                  }
-                  allConceptsMap.set(group, resourceCodes);
-                }
-              }
-
+              // Reduce into one flattened map.
+              const allConceptsMap =
+                  new Map(conceptsFromFile.map((m) => Array.from(m))
+                              .reduce((acc, val) => [...acc, ...val]));
               // Match up the display groupings to their corresponding
               // group configurations.
               const groupConfigurationToResourceCodes =

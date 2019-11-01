@@ -9,6 +9,11 @@ import {of} from 'rxjs';
 
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+import {RxNormCodeGroup} from '../conceptmappings/resource-codes/rx-norm-group';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
 import {Encounter} from '../fhir-resources/encounter';
@@ -16,11 +21,6 @@ import {MedicationAdministration} from '../fhir-resources/medication-administrat
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation} from '../fhir-resources/observation';
-import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
-import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
-import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
-import {RxNormCodeGroup} from '../conceptmappings/resource-codes/rx-norm-group';
 
 @Injectable()
 export abstract class FhirService {
@@ -53,6 +53,14 @@ export abstract class FhirService {
           throw rejection;
         });
   }
+
+  /**
+   * Checks which RxNormCodes are present within the App Timespan.
+   *
+   * @returns A Promise that resolves to the Set of RxNormCodes with data
+   *     available.
+   */
+  abstract dataAvailableForMedications(): Promise<Set<RxNormCode>>;
 
   /**
    * Returns whether there are any annotated diagnosticreports with this code in

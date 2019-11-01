@@ -34,7 +34,7 @@ describe('MicrobioTooltip', () => {
     // regular expression strips it from the HTML check.
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip"><tbody>' +
+            '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(annotated.timestamp) + '</th></tr>' +
             '<tr><th colspan="2">Result set</th></tr>' +
@@ -57,7 +57,7 @@ describe('MicrobioTooltip', () => {
     // regular expression strips it from the HTML check.
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip"><tbody>' +
+            '<table class="c3-tooltip"><tbody>' +
             '<tr><th colspan="2">Result set</th></tr>' +
             '<tr><td class="name">Ova and Parasite Exam</td>' +
             '<td class="value">Negative or Flora</td></tr>' +

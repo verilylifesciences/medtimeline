@@ -189,14 +189,20 @@ export class MockFhirService extends FhirService {
         });
   }
 
+  dataAvailableForMedications() {
+    return this.loadAllData.then(() => {
+      return new Set(this.medicationAdministrationMapByCode.keys());
+    });
+  }
+
   medicationsPresentWithCode(code: RxNormCode, dateRange: Interval):
       Promise<boolean> {
     return this.loadAllData.then(
         () => this.getMedicationAdministrationsWithCodes([code], dateRange)
                   .then(obs => obs.length > 0, rejection => {
-                    // If any MedicationAdministration for this code results in
-                    // an error, do not show any MedicationAdministrations at
-                    // all.
+                    // If any MedicationAdministration for this code results
+                    // in an error, do not show any MedicationAdministrations
+                    // at all.
                     throw rejection;
                   }));
   }

@@ -23,10 +23,10 @@
 }
 
 /* All the below styles apply to elements within the graphs. Because these
-are nested inside the components, we have to prefix the
+are nested inside the components and within C3 divs, we have to prefix the
 style names with ::ng-deep.  */
 
-::ng-deep .tooltip {
+::ng-deep .c3-tooltip {
   font-size: 13px;
   border-collapse: collapse;
   border-spacing: 0;
@@ -43,11 +43,11 @@ style names with ::ng-deep.  */
   border: solid 1px #ddd;
 }
 
-::ng-deep .tooltip tr {
+::ng-deep .c3-tooltip tr {
   border: 1px solid #CCC;
 }
 
-::ng-deep .tooltip > tbody > tr > th {
+::ng-deep .c3-tooltip > tbody > tr > th {
   width: 100%;
   word-wrap: break-word;
   background-color: #aaa;
@@ -57,7 +57,7 @@ style names with ::ng-deep.  */
   color: #FFF;
 }
 
-::ng-deep .tooltip td {
+::ng-deep .c3-tooltip td {
   width: 125px;
   font-size: 13px;
   padding: 3px 6px;

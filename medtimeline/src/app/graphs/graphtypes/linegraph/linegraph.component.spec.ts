@@ -9,10 +9,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
-import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {AnnotatedObservation} from 'src/app/fhir-resources/annotated/annotated-observation';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
+import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ObservationSet} from '../../../fhir-resources/sets/observation-set';
@@ -203,7 +203,7 @@ describe('LineGraphComponent', () => {
             component.dateRange.start.valueOf().toString()));
     expect(annotatedTT.tooltipChart)
         .toEqual(
-            '<table class="tooltip"><tbody><tr><th colspan="1">' +
+            '<table class="c3-tooltip"><tbody><tr><th colspan="1">' +
             'Normal Boundary</th></tr>' +
             '<tr><td><div style="white-space:pre-line; text-align:center;">' +
             '<b>Upper: </b>' + normalRange[1] + ' ' + component.data.unit +

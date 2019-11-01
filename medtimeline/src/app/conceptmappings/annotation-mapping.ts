@@ -69,13 +69,13 @@ export const ANNOTATION_CONFIGURATION = [
     'refGroup': 'Blood Pressure Details'
   },
   {
-    'groupName': 'Vancomycin',
+    'groupName': 'Vancomycin monitoring',
     'makeAnnotatedFunction': (refGroup) =>
         getMedicationMonitoringAnnotationFunction(refGroup),
     'refGroup': 'Vancomycin Monitoring Reference'
   },
   {
-    'groupName': 'Gentamicin',
+    'groupName': 'Gentamicin monitoring',
     'makeAnnotatedFunction': (refGroup) =>
         getMedicationMonitoringAnnotationFunction(refGroup),
     'refGroup': 'Gentamicin Monitoring Reference'

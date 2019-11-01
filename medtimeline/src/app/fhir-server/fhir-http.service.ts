@@ -10,6 +10,10 @@ import {DateTime, Interval} from 'luxon';
 import {APP_TIMESPAN, EARLIEST_ENCOUNTER_START_DATE, FhirResourceType} from '../../constants';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {documentReferenceLoinc} from '../conceptmappings/resource-code-manager';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {DebuggerService} from '../debugger/debugger.service';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport, DiagnosticReportStatus} from '../fhir-resources/diagnostic-report';
@@ -20,10 +24,6 @@ import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
 import {ResultClass} from '../fhir-resources/sets/fhir-resource-set';
 import * as FhirConfig from '../fhir_config';
-import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
-import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
-import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
 import {FhirService} from './fhir.service';
@@ -103,6 +103,28 @@ export class FhirHttpService extends FhirService {
             ([smartApi, codes]) =>
                 smartApi.patient.api.search(queryParams)
                     .then(response => !!response.data.entry));
+  }
+
+  /**
+   * Checks which RxNormCodes are present within the App Timespan.
+   *
+   * As a result, the MedicationCache is populated with all data within the
+   * App Timespan.
+   *
+   * @returns A Promise that resolves to the Set of RxNormCodes with data
+   *     available.
+   */
+  dataAvailableForMedications(): Promise<Set<RxNormCode>> {
+    return Promise.all([this.smartApiPromise, this.loadAllCodes])
+        .then(([smartApi, _]) => {
+          return FhirHttpService.medicationCache
+              .getResource(smartApi, APP_TIMESPAN)
+              .then((results: MedicationAdministration[]) => {
+                const codesPresent = new Set<RxNormCode>();
+                results.forEach(med => codesPresent.add(med.rxNormCode));
+                return codesPresent;
+              });
+        });
   }
 
   /**

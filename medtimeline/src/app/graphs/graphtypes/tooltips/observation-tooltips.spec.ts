@@ -41,7 +41,7 @@ describe('DiscreteObservationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip">' +
+            '<table class="c3-tooltip">' +
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) + '</th></tr>' +
@@ -63,7 +63,7 @@ describe('DiscreteObservationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip">' +
+            '<table class="c3-tooltip">' +
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) + '</th></tr>' +
@@ -96,7 +96,7 @@ describe('GenericObservationTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip">' +
+            '<table class="c3-tooltip">' +
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 23)) + '</th></tr>' +
@@ -124,7 +124,7 @@ describe('GenericAnnotatedObservationTooltip', () => {
        expect(tooltip.additionalAttachment).toBeUndefined();
        expect(tooltip.tooltipChart)
            .toEqual(
-               '<table class="tooltip">' +
+               '<table class="c3-tooltip">' +
                '<tbody>' +
                '<tr><th colspan="2">' +
                Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) +
@@ -155,7 +155,7 @@ describe('GenericAnnotatedObservationTooltip', () => {
        expect(tooltip.additionalAttachment).toBeUndefined();
        expect(tooltip.tooltipChart)
            .toEqual(
-               '<table class="tooltip">' +
+               '<table class="c3-tooltip">' +
                '<tbody>' +
                '<tr><th colspan="2">' +
                Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) +
@@ -187,7 +187,7 @@ describe('GenericAnnotatedObservationTooltip', () => {
        expect(tooltip.additionalAttachment).toBeUndefined();
        expect(tooltip.tooltipChart)
            .toEqual(
-               '<table class="tooltip">' +
+               '<table class="c3-tooltip">' +
                '<tbody>' +
                '<tr><th colspan="2">' +
                Tooltip.formatTimestamp(DateTime.utc(1988, 3, 25)) +
@@ -221,7 +221,7 @@ describe('GenericAbnormalTooltip', () => {
     expect(tooltip.additionalAttachment).toBeUndefined();
     expect(tooltip.tooltipChart)
         .toEqual(
-            '<table class="tooltip">' +
+            '<table class="c3-tooltip">' +
             '<tbody>' +
             '<tr><th colspan="2">' +
             Tooltip.formatTimestamp(DateTime.utc(1988, 3, 22)) + '</th></tr>' +
