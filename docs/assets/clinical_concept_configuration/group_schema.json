@@ -21,6 +21,7 @@
                 "LINE",
                 "DIAGNOSTIC",
                 "MICROBIO",
+                "STEP",
                 "NONE"
             ],
             "description": "The way the graph should be plotted for this display group. If NONE, then graph will not be displayed."

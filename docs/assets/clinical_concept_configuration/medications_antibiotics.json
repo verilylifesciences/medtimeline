@@ -1,329 +1,376 @@
 [
     {
         "groupNames": [
-            "Amoxicillin"
+            "Amoxicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Amoxicillin 50 MG/ML Oral Suspension",
         "codeString": "239191"
     },
     {
         "groupNames": [
-            "Amphotericin"
+            "Amphotericin",
+            "Antibiotics Summary"
         ],
         "displayName": "Amphotericin B 5 MG/ML Injectable Solution",
         "codeString": "239240"
     },
     {
         "groupNames": [
-            "Ampicillin"
+            "Ampicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ampicillin",
         "codeString": "733"
     },
     {
         "groupNames": [
-            "Ampicillin"
+            "Ampicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ampicillin 2000 MG Injection",
         "codeString": "1721476"
     },
     {
         "groupNames": [
-            "Azithromycin"
+            "Azithromycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Azithromycin",
         "codeString": "18631"
     },
     {
         "groupNames": [
-            "Azithromycin"
+            "Azithromycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Azithromycin 40 MG/ML Oral Suspension",
         "codeString": "141963"
     },
     {
         "groupNames": [
-            "Aztreonam"
+            "Aztreonam",
+            "Antibiotics Summary"
         ],
         "displayName": "Aztreonam",
         "codeString": "1272"
     },
     {
         "groupNames": [
-            "Aztreonam"
+            "Aztreonam",
+            "Antibiotics Summary"
         ],
         "displayName": "Aztreonam 2000 MG Injection",
         "codeString": "1664986"
     },
     {
         "groupNames": [
-            "Cefazolin"
+            "Cefazolin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefazolin",
         "codeString": "2180"
     },
     {
         "groupNames": [
-            "Cefazolin"
+            "Cefazolin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefazolin 1000 MG Injection",
         "codeString": "1665050"
     },
     {
         "groupNames": [
-            "Cefazolin"
+            "Cefazolin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefazolin 200 MG/ML Injectable Solution",
         "codeString": "313920"
     },
     {
         "groupNames": [
-            "Cefdinir"
+            "Cefdinir",
+            "Antibiotics Summary"
         ],
         "displayName": "cefdinir 25 MG/ML Oral Suspension",
         "codeString": "309054"
     },
     {
         "groupNames": [
-            "Cefdinir"
+            "Cefdinir",
+            "Antibiotics Summary"
         ],
         "displayName": "cefdinir 300 MG Oral Capsule",
         "codeString": "200346"
     },
     {
         "groupNames": [
-            "Cefepime"
+            "Cefepime",
+            "Antibiotics Summary"
         ],
         "displayName": "cefepime 1000 MG Injection",
         "codeString": "1665093"
     },
     {
         "groupNames": [
-            "Cefepime"
+            "Cefepime",
+            "Antibiotics Summary"
         ],
         "displayName": "cefepime 2000 MG Injection",
         "codeString": "1665088"
     },
     {
         "groupNames": [
-            "Cefixime"
+            "Cefixime",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefixime 20 MG/ML Oral Suspension",
         "codeString": "309058"
     },
     {
         "groupNames": [
-            "Cefotaxime"
+            "Cefotaxime",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefotaxime",
         "codeString": "2186"
     },
     {
         "groupNames": [
-            "Cefotaxime"
+            "Cefotaxime",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefotaxime 200 MG/ML Injectable Solution",
         "codeString": "309065"
     },
     {
         "groupNames": [
-            "Cefoxitin"
+            "Cefoxitin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefoxitin 200 MG/ML Injectable Solution",
         "codeString": "309072"
     },
     {
         "groupNames": [
-            "Ceftaroline"
+            "Ceftaroline",
+            "Antibiotics Summary"
         ],
         "displayName": "ceftaroline fosamil 30 MG/ML Injectable Solution",
         "codeString": "1040014"
     },
     {
         "groupNames": [
-            "Ceftazidime"
+            "Ceftazidime",
+            "Antibiotics Summary"
         ],
         "displayName": "Ceftazidime 200 MG/ML Injectable Solution",
         "codeString": "242800"
     },
     {
         "groupNames": [
-            "Ceftazidime"
+            "Ceftazidime",
+            "Antibiotics Summary"
         ],
         "displayName": "avibactam 0.000042 MG/ML / Ceftazidime 0.000167 MG/ML Injectable Solution",
         "codeString": "1603840"
     },
     {
         "groupNames": [
-            "Ceftriaxone"
+            "Ceftriaxone",
+            "Antibiotics Summary"
         ],
         "displayName": "Ceftriaxone 1000 MG Injection",
         "codeString": "1665021"
     },
     {
         "groupNames": [
-            "Ceftriaxone"
+            "Ceftriaxone",
+            "Antibiotics Summary"
         ],
         "displayName": "Ceftriaxone 2000 MG Injection",
         "codeString": "1665046"
     },
     {
         "groupNames": [
-            "Ceftriaxone"
+            "Ceftriaxone",
+            "Antibiotics Summary"
         ],
         "displayName": "Ceftriaxone 500 MG Injection",
         "codeString": "1665005"
     },
     {
         "groupNames": [
-            "Cefuroxime"
+            "Cefuroxime",
+            "Antibiotics Summary"
         ],
         "displayName": "Cefuroxime 50 MG/ML Oral Suspension",
         "codeString": "313926"
     },
     {
         "groupNames": [
-            "Cephalexin"
+            "Cephalexin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cephalexin 50 MG/ML Oral Suspension",
         "codeString": "309113"
     },
     {
         "groupNames": [
-            "Ciprofloxacin"
+            "Ciprofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ciprofloxacin 0.003 MG/MG Ophthalmic Ointment",
         "codeString": "309306"
     },
     {
         "groupNames": [
-            "Ciprofloxacin"
+            "Ciprofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ciprofloxacin 250 MG Oral Tablet",
         "codeString": "197511"
     },
     {
         "groupNames": [
-            "Ciprofloxacin"
+            "Ciprofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ciprofloxacin 3 MG/ML Ophthalmic Solution",
         "codeString": "309307"
     },
     {
         "groupNames": [
-            "Clavulanate"
+            "Clavulanate",
+            "Antibiotics Summary"
         ],
         "displayName": "12 HR Amoxicillin 1000 MG / Clavulanate 62.5 MG Extended Release Tablet",
         "codeString": "617995"
     },
     {
         "groupNames": [
-            "Clavulanate"
+            "Clavulanate",
+            "Antibiotics Summary"
         ],
         "displayName": "Amoxicillin 120 MG/ML / Clavulanate 8.58 MG/ML Oral Suspension",
         "codeString": "617993"
     },
     {
         "groupNames": [
-            "Clavulanate"
+            "Clavulanate",
+            "Antibiotics Summary"
         ],
         "displayName": "Amoxicillin 250 MG / Clavulanate 125 MG Oral Tablet",
         "codeString": "562251"
     },
     {
         "groupNames": [
-            "Clavulanate"
+            "Clavulanate",
+            "Antibiotics Summary"
         ],
         "displayName": "Amoxicillin 500 MG / Clavulanate 125 MG Oral Tablet",
         "codeString": "617296"
     },
     {
         "groupNames": [
-            "Clavulanate"
+            "Clavulanate",
+            "Antibiotics Summary"
         ],
         "displayName": "Amoxicillin 875 MG / Clavulanate 125 MG Oral Tablet",
         "codeString": "562508"
     },
     {
         "groupNames": [
-            "Clindamycin"
+            "Clindamycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Clindamycin",
         "codeString": "2582"
     },
     {
         "groupNames": [
-            "Clindamycin"
+            "Clindamycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Clindamycin 10 MG/ML Topical Solution",
         "codeString": "309333"
     },
     {
         "groupNames": [
-            "Clindamycin"
+            "Clindamycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Clindamycin 12 MG/ML Injectable Solution",
         "codeString": "309335"
     },
     {
         "groupNames": [
-            "Ciprofloxacin"
+            "Ciprofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ciprofloxacin 3 MG/ML / Dexamethasone 1 MG/ML Otic Suspension",
         "codeString": "403908"
     },
     {
         "groupNames": [
-            "Doxycycline"
+            "Doxycycline",
+            "Antibiotics Summary"
         ],
         "displayName": "doxycycline hyclate 50 MG Oral Capsule",
         "codeString": "1649405"
     },
     {
         "groupNames": [
-            "Erythromycin"
+            "Erythromycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Erythromycin 0.005 MG/MG Ophthalmic Ointment",
         "codeString": "310149"
     },
     {
         "groupNames": [
-            "Erythromycin"
+            "Erythromycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Erythromycin 250 MG Oral Tablet",
         "codeString": "598006"
     },
     {
         "groupNames": [
-            "Erythromycin"
+            "Erythromycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Erythromycin Ethylsuccinate 40 MG/ML Oral Suspension",
         "codeString": "686400"
     },
     {
         "groupNames": [
-            "Ethambutol"
+            "Ethambutol",
+            "Antibiotics Summary"
         ],
         "displayName": "Ethambutol Hydrochloride 100 MG Oral Tablet",
         "codeString": "995599"
     },
     {
         "groupNames": [
-            "Ethambutol"
+            "Ethambutol",
+            "Antibiotics Summary"
         ],
         "displayName": "Ethambutol Hydrochloride 400 MG Oral Tablet",
         "codeString": "995607"
     },
     {
         "groupNames": [
-            "Flucytosine"
+            "Flucytosine",
+            "Antibiotics Summary"
         ],
         "displayName": "Flucytosine 250 MG Oral Capsule",
         "codeString": "197702"
     },
     {
         "groupNames": [
-            "Fosfomycin"
+            "Fosfomycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Fosfomycin 33.3 MG/ML Oral Suspension",
         "codeString": "808917"
@@ -331,7 +378,8 @@
     {
         "groupNames": [
             "Gentamicin",
-            "Gentamicin Monitoring Reference"
+            "Gentamicin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Gentamicin Sulfate (USP) 0.003 MG/MG Ophthalmic Ointment",
         "codeString": "310466"
@@ -339,7 +387,8 @@
     {
         "groupNames": [
             "Gentamicin",
-            "Gentamicin Monitoring Reference"
+            "Gentamicin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Gentamicin Sulfate (USP) 1 MG/ML Topical Cream",
         "codeString": "197735"
@@ -347,7 +396,8 @@
     {
         "groupNames": [
             "Gentamicin",
-            "Gentamicin Monitoring Reference"
+            "Gentamicin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Gentamicin Sulfate (USP) 3 MG/ML Ophthalmic Solution",
         "codeString": "310467"
@@ -355,21 +405,24 @@
     {
         "groupNames": [
             "Gentamicin",
-            "Gentamicin Monitoring Reference"
+            "Gentamicin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Gentamicin Sulfate (USP) 40 MG/ML Injectable Solution",
         "codeString": "313996"
     },
     {
         "groupNames": [
-            "Ciprofloxacin"
+            "Ciprofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ciprofloxacin 2 MG/ML / Hydrocortisone 10 MG/ML Otic Suspension",
         "codeString": "309305"
     },
     {
         "groupNames": [
-            "Imipenem"
+            "Imipenem",
+            "Antibiotics Summary"
         ],
         "displayName": "Cilastatin / Imipenem",
         "codeString": "34482"
@@ -377,105 +430,120 @@
     {
         "groupNames": [
             "Imipenem",
-            "Cilastatin"
+            "Cilastatin",
+            "Antibiotics Summary"
         ],
         "displayName": "Cilastatin 500 MG / Imipenem 500 MG Injection",
         "codeString": "1726214"
     },
     {
         "groupNames": [
-            "Isoniazid"
+            "Isoniazid",
+            "Antibiotics Summary"
         ],
         "displayName": "isoniazid 100 MG Oral Tablet",
         "codeString": "311166"
     },
     {
         "groupNames": [
-            "Levofloxacin"
+            "Levofloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "Levofloxacin 500 MG Oral Tablet",
         "codeString": "199885"
     },
     {
         "groupNames": [
-            "Linezolid"
+            "Linezolid",
+            "Antibiotics Summary"
         ],
         "displayName": "300 ML linezolid 2 MG/ML Injection",
         "codeString": "1662285"
     },
     {
         "groupNames": [
-            "Linezolid"
+            "Linezolid",
+            "Antibiotics Summary"
         ],
         "displayName": "linezolid 600 MG Oral Tablet",
         "codeString": "311347"
     },
     {
         "groupNames": [
-            "Meropenem"
+            "Meropenem",
+            "Antibiotics Summary"
         ],
         "displayName": "meropenem 1000 MG Injection",
         "codeString": "1722939"
     },
     {
         "groupNames": [
-            "Metronidazole"
+            "Metronidazole",
+            "Antibiotics Summary"
         ],
         "displayName": "Metronidazole 0.0075 MG/MG Vaginal Gel",
         "codeString": "142046"
     },
     {
         "groupNames": [
-            "Metronidazole"
+            "Metronidazole",
+            "Antibiotics Summary"
         ],
         "displayName": "Metronidazole 5 MG/ML Injectable Solution",
         "codeString": "311683"
     },
     {
         "groupNames": [
-            "Metronidazole"
+            "Metronidazole",
+            "Antibiotics Summary"
         ],
         "displayName": "Metronidazole 500 MG Oral Tablet",
         "codeString": "311681"
     },
     {
         "groupNames": [
-            "Moxifloxacin"
+            "Moxifloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "moxifloxacin 1.6 MG/ML Injectable Solution",
         "codeString": "351156"
     },
     {
         "groupNames": [
-            "Moxifloxacin"
+            "Moxifloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "moxifloxacin 400 MG Oral Tablet",
         "codeString": "311787"
     },
     {
         "groupNames": [
-            "Moxifloxacin"
+            "Moxifloxacin",
+            "Antibiotics Summary"
         ],
         "displayName": "moxifloxacin 5 MG/ML Ophthalmic Solution",
         "codeString": "403818"
     },
     {
         "groupNames": [
-            "Nitrofurantoin"
+            "Nitrofurantoin",
+            "Antibiotics Summary"
         ],
         "displayName": "Nitrofurantoin 50 MG Oral Capsule",
         "codeString": "311995"
     },
     {
         "groupNames": [
-            "Penicillin"
+            "Penicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Penicillin G",
         "codeString": "7980"
     },
     {
         "groupNames": [
-            "Penicillin"
+            "Penicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Penicillin G Potassium 1000000 UNT/ML Injectable Solution",
         "codeString": "863538"
@@ -484,7 +552,8 @@
         "groupNames": [
             "Polymyxin",
             "Dexamethasone",
-            "Neomycin"
+            "Neomycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Dexamethasone 0.001 MG/MG / Neomycin 0.0035 MG/MG / Polymyxin B 10 UNT/MG Ophthalmic Ointment [Maxitrol]",
         "codeString": "208601"
@@ -492,35 +561,40 @@
     {
         "groupNames": [
             "Polymyxin",
-            "Neomycin"
+            "Neomycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Neomycin 40 MG/ML / Polymyxin B 200000 UNT/ML Irrigation Solution [Neosporin G. U. Irrigant]",
         "codeString": "211680"
     },
     {
         "groupNames": [
-            "Pyrazinamide"
+            "Pyrazinamide",
+            "Antibiotics Summary"
         ],
         "displayName": "Pyrazinamide 500 MG Oral Tablet",
         "codeString": "198181"
     },
     {
         "groupNames": [
-            "Rifampin"
+            "Rifampin",
+            "Antibiotics Summary"
         ],
         "displayName": "Rifampin",
         "codeString": "9384"
     },
     {
         "groupNames": [
-            "Rifampin"
+            "Rifampin",
+            "Antibiotics Summary"
         ],
         "displayName": "Rifampin 300 MG Oral Capsule",
         "codeString": "198202"
     },
     {
         "groupNames": [
-            "Rifampin"
+            "Rifampin",
+            "Antibiotics Summary"
         ],
         "displayName": "Rifampin 60 MG/ML Injectable Solution",
         "codeString": "312821"
@@ -528,7 +602,8 @@
     {
         "groupNames": [
             "Sulbactam",
-            "Ampicillin"
+            "Ampicillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Ampicillin 100 MG/ML / Sulbactam 50 MG/ML Injectable Solution",
         "codeString": "240984"
@@ -536,7 +611,8 @@
     {
         "groupNames": [
             "Tazobactam",
-            "Piperacillin"
+            "Piperacillin",
+            "Antibiotics Summary"
         ],
         "displayName": "Piperacillin 200 MG/ML / tazobactam 25 MG/ML Injectable Solution",
         "codeString": "312447"
@@ -544,7 +620,8 @@
     {
         "groupNames": [
             "Tobramycin",
-            "Dexamethasone"
+            "Dexamethasone",
+            "Antibiotics Summary"
         ],
         "displayName": "Dexamethasone 0.001 MG/MG / Tobramycin 0.003 MG/MG Ophthalmic Ointment",
         "codeString": "309682"
@@ -552,35 +629,40 @@
     {
         "groupNames": [
             "Tobramycin",
-            "Dexamethasone"
+            "Dexamethasone",
+            "Antibiotics Summary"
         ],
         "displayName": "Dexamethasone 1 MG/ML / Tobramycin 3 MG/ML Ophthalmic Suspension [Tobradex]",
         "codeString": "208813"
     },
     {
         "groupNames": [
-            "Tobramycin"
+            "Tobramycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Tobramycin 0.003 MG/MG Ophthalmic Ointment",
         "codeString": "313414"
     },
     {
         "groupNames": [
-            "Tobramycin"
+            "Tobramycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Tobramycin 3 MG/ML Ophthalmic Solution",
         "codeString": "313415"
     },
     {
         "groupNames": [
-            "Tobramycin"
+            "Tobramycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Tobramycin 40 MG/ML Injectable Solution",
         "codeString": "597823"
     },
     {
         "groupNames": [
-            "Tobramycin"
+            "Tobramycin",
+            "Antibiotics Summary"
         ],
         "displayName": "Tobramycin 75 MG/ML Inhalant Solution",
         "codeString": "1314763"
@@ -588,7 +670,8 @@
     {
         "groupNames": [
             "Trimethoprim",
-            "Sulfamethoxazole"
+            "Sulfamethoxazole",
+            "Antibiotics Summary"
         ],
         "displayName": "5 ML Sulfamethoxazole 80 MG/ML / Trimethoprim 16 MG/ML Injection",
         "codeString": "1809083"
@@ -596,7 +679,8 @@
     {
         "groupNames": [
             "Trimethoprim",
-            "Sulfamethoxazole"
+            "Sulfamethoxazole",
+            "Antibiotics Summary"
         ],
         "displayName": "Sulfamethoxazole 40 MG/ML / Trimethoprim 8 MG/ML Oral Suspension",
         "codeString": "313134"
@@ -604,7 +688,8 @@
     {
         "groupNames": [
             "Trimethoprim",
-            "Sulfamethoxazole"
+            "Sulfamethoxazole",
+            "Antibiotics Summary"
         ],
         "displayName": "Sulfamethoxazole 400 MG / Trimethoprim 80 MG Oral Tablet",
         "codeString": "198334"
@@ -612,7 +697,8 @@
     {
         "groupNames": [
             "Vancomycin",
-            "Vancomycin Monitoring Reference"
+            "Vancomycin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "200 ML Vancomycin 5 MG/ML Injection",
         "codeString": "1807508"
@@ -620,7 +706,8 @@
     {
         "groupNames": [
             "Vancomycin",
-            "Vancomycin Monitoring Reference"
+            "Vancomycin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Vancomycin",
         "codeString": "11124"
@@ -628,7 +715,8 @@
     {
         "groupNames": [
             "Vancomycin",
-            "Vancomycin Monitoring Reference"
+            "Vancomycin Monitoring Reference",
+            "Antibiotics Summary"
         ],
         "displayName": "Vancomycin 100 MG/ML Injectable Solution",
         "codeString": "239209"

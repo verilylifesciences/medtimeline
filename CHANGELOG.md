@@ -6,6 +6,31 @@ original submission: MedTimeLine v1.0.1.0, commit number 3f17565ee6549a97b9be164
 
 ## Versions
 
+### 2.0.0.0alpha3
+
+This is an alpha release and should not be used in production. Notably, end to end tests are
+broken. We are using this release to test against an external server, will make any updates,
+and then will fix the end to end tests.
+
+* Add some filtering parameters to the call for MedicationAdministrations.
+* Load Medications on Setup
+* Make the tooltip style not reference c3 since we use chart.js now.
+* Issue #37: Add in monitoring on vancomycin and gentamicin cards
+* Move resource-codes into concept-mapping so that everything to do with resource codes lives together.
+* Make a 'sets' folder within fhir-resources.
+* Let all the selection menu components live in the same folder.
+* Add a few service files to live alongside their components.
+* Rename fhir-data-classes to fhir-resources for better clarity.
+* Add Medication summary cards
+* Simplify dependency structure by letting the setup service handle concept loading.
+* Move all utils into their own subfolder.
+* Move everything that has to do with graphs into a folder.
+* Move FHIR server and related classes into their own folder.
+* Move time navigation components into a folder.
+* Put all the dialog boxes in a folder.
+* Only show attachement button in Radiology Tooltips
+
+
 ### 2.0.0.0alpha2
 
 This is an alpha release and should not be used in production. Notably, end to end tests are

@@ -1,5 +1,10 @@
 [
     {
+        "groupName": "Antibiotics Summary",
+        "graphType": "STEP",
+        "displayGroupOnSameAxis": true
+    },
+    {
         "groupName": "Amoxicillin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false

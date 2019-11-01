@@ -1,70 +1,80 @@
 [
     {
         "groupNames": [
-            "Fluconazole"
+            "Fluconazole",
+            "Antifungals Summary"
         ],
         "displayName": "100 ML Fluconazole 2 MG/ML Injection",
         "codeString": "1721315"
     },
     {
         "groupNames": [
-            "Fluconazole"
+            "Fluconazole",
+            "Antifungals Summary"
         ],
         "displayName": "Fluconazole",
         "codeString": "4450"
     },
     {
         "groupNames": [
-            "Fluconazole"
+            "Fluconazole",
+            "Antifungals Summary"
         ],
         "displayName": "Fluconazole 40 MG/ML Oral Suspension",
         "codeString": "310353"
     },
     {
         "groupNames": [
-            "Flucytosine"
+            "Flucytosine",
+            "Antifungals Summary"
         ],
         "displayName": "Flucytosine 250 MG Oral Capsule",
         "codeString": "197702"
     },
     {
         "groupNames": [
-            "Liposomal"
+            "Liposomal",
+            "Antifungals Summary"
         ],
         "displayName": "amphotericin B liposomal 4 MG/ML Injectable Solution",
         "codeString": "967385"
     },
     {
         "groupNames": [
-            "Micafungin"
+            "Micafungin",
+            "Antifungals Summary"
         ],
         "displayName": "MICAFUNGIN SODIUM 10 MG/ML Injectable Solution",
         "codeString": "861379"
     },
     {
         "groupNames": [
-            "Posaconazole"
+            "Posaconazole",
+            "Antifungals Summary"
         ],
         "displayName": "posaconazole 100 MG Enteric Coated Tablet",
         "codeString": "1482908"
     },
     {
         "groupNames": [
-            "Posaconazole"
+            "Posaconazole",
+            "Antifungals Summary"
         ],
         "displayName": "posaconazole 18 MG/ML Injectable Solution",
         "codeString": "1492043"
     },
     {
         "groupNames": [
-            "Voriconazole"
+            "Voriconazole",
+            "Antifungals Summary"
         ],
         "displayName": "voriconazole 200 MG Oral Tablet",
         "codeString": "349434"
     },
     {
         "groupNames": [
-            "Voriconazole"
+            "Voriconazole",
+            "Antifungals Summary"
         ],
         "displayName": "voriconazole 50 MG Oral Tablet",
         "codeString": "349435"
