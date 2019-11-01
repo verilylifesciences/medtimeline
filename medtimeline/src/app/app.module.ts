@@ -5,8 +5,8 @@
 
 import 'fhirclient';
 
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {Inject, NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
@@ -33,6 +33,7 @@ import {CustomizableTimelineDialogComponent} from './cardtypes/customizable-time
 import {CustomizableTimelineComponent} from './cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from './cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from './cardtypes/textboxcard/textboxcard.component';
+import {ConceptFileConfiguration} from './conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from './conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from './conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from './data-selector-menu/data-selector-element/data-selector-element.component';
@@ -121,18 +122,26 @@ import {TimelineToolbarComponent} from './time-navigation/timeline-toolbar/timel
     MatExpansionModule,
   ],
   providers: [
-    ResourceCodeCreator,
-    ResourceCodeManager,
+    ResourceCodeCreator, ResourceCodeManager,
     // This sets up a provider for the smart on fhir client defined by
     // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
     // injected into the service that uses it to allow for easier testing.
-    {provide: SMART_ON_FHIR_CLIENT, useValue: FHIR},
-    {
+    {provide: SMART_ON_FHIR_CLIENT, useValue: FHIR}, {
       provide: FhirService,
       useClass: environment.useMockServer ? MockFhirService : FhirHttpService
     },
-
-    {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+    {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}, {
+      provide: ConceptFileConfiguration,
+      useValue: new ConceptFileConfiguration(
+          environment.conceptsFolder, environment.vitalGroupFile,
+          environment.vitalConceptsFile, environment.labConceptsFile,
+          environment.labGroupFile, environment.radiologyConceptsFile,
+          environment.radiologyGroupFile, environment.antibioticConceptsFile,
+          environment.antibioticGroupFile, environment.antiviralConceptsFile,
+          environment.antiviralGroupFile, environment.antifungalConceptsFile,
+          environment.antifungalGroupFile, environment.microbioGroupFile,
+          environment.microbioConceptsFile)
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
