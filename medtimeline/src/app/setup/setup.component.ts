@@ -3,10 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatRadioGroup} from '@angular/material/radio';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {DateTime, Interval} from 'luxon';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -14,8 +14,6 @@ import {APP_TIMESPAN, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {environment} from '../../environments/environment';
 import {DisplayGrouping} from '../clinicalconcepts/display-grouping';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {Encounter} from '../fhir-data-classes/encounter';
 import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
@@ -81,7 +79,7 @@ export class SetupComponent implements OnDestroy {
   encounters: Encounter[];
 
   // Fixed time periods to offer as options for selection.
-  today: DateTime = DateTime.local().startOf('day');
+  private today: DateTime = DateTime.local().startOf('day');
   readonly lastOneDay =
       Interval.fromDateTimes(this.today.minus({days: 1}), this.today);
   readonly lastThreeDays =
@@ -110,26 +108,20 @@ export class SetupComponent implements OnDestroy {
   }
 
   constructor(
-      resourceCodeManager: ResourceCodeManager, private route: ActivatedRoute,
-      private router: Router, readonly setupDataService: SetupDataService,
+      private router: Router, private setupDataService: SetupDataService,
       private fhirService: FhirService,
-      resourceCodeCreator: ResourceCodeCreator,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     this.allConcepts =
-        resourceCodeManager
-            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
-            .then((displayGroups) => {
-              /* Load in the concepts to display, flattening them
-               * all into a single-depth array. */
-              return Array.from(displayGroups.values())
-                  .reduce((acc, val) => acc.concat(val), []);
-            });
+        setupDataService.displayGroupMapping.then((displayGroups) => {
+          /* Load in the concepts to display, flattening them
+           * all into a single-depth array. */
+          return Array.from(displayGroups.values())
+              .reduce((acc, val) => acc.concat(val), []);
+        });
     this.displayGroupings =
-        resourceCodeManager
-            .getDisplayGroupMapping(fhirService, resourceCodeCreator)
-            .then((displayGroups) => {
-              return Array.from(displayGroups.entries());
-            });
+        setupDataService.displayGroupMapping.then((displayGroups) => {
+          return Array.from(displayGroups.entries());
+        });
     this.staticTimeOptions = [
       [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
       [this.lastMonth, uiConstants.LAST_MONTH],

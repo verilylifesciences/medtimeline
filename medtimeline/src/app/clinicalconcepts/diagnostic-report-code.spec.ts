@@ -55,7 +55,7 @@ describe('DiagnosticReportCode', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        ResourceCodeCreator,
         {provide: FhirService, useClass: DiagnosticReportStubFhirService}
       ]
     });

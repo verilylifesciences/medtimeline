@@ -15,6 +15,7 @@ import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {FhirService} from '../fhir-server/fhir.service';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
+import {SetupDataService} from '../setup-data.service';
 
 /**
  * Shows a button with expanding menus for selecting data elements to display.
@@ -57,22 +58,20 @@ export class DataSelectorMenuComponent {
   filteredConcepts: Observable<AxisGroup[]>;
 
   constructor(
-      resourceCodeManager: ResourceCodeManager, fhirService: FhirService,
-      resourceCodeCreator: ResourceCodeCreator,
+      setupDataService: SetupDataService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
-    resourceCodeManager.getDisplayGroupMapping(fhirService, resourceCodeCreator)
-        .then((displayGroups) => {
-          const temp = Array.from(displayGroups.values());
-          this.allConcepts = [].concat.apply([], temp);
-          this.displayGroupings = Array.from(displayGroups.entries());
+    setupDataService.displayGroupMapping.then((displayGroups) => {
+      const temp = Array.from(displayGroups.values());
+      this.allConcepts = [].concat.apply([], temp);
+      this.displayGroupings = Array.from(displayGroups.entries());
 
-          // Watch for changes to the user input on the autocomplete panel.
-          this.filteredConcepts = this.conceptCtrl.valueChanges.pipe(
-              startWith(
-                  ''),  // The autocomplete input starts with nothing typed in.
-              map(concept => concept ? this.filter(concept, this.allConcepts) :
-                                       this.allConcepts.slice()));
-        });
+      // Watch for changes to the user input on the autocomplete panel.
+      this.filteredConcepts = this.conceptCtrl.valueChanges.pipe(
+          startWith(
+              ''),  // The autocomplete input starts with nothing typed in.
+          map(concept => concept ? this.filter(concept, this.allConcepts) :
+                                   this.allConcepts.slice()));
+    });
   }
 
   // Listens for an event indicating that the user has selected to add the

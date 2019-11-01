@@ -48,8 +48,7 @@ describe('LineGraphData', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-        {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+        ResourceCodeCreator, ResourceCodeManager,
         {provide: FhirService, useClass: StubFhirService}
       ]
     });

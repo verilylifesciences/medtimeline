@@ -44,8 +44,7 @@ describe('SetupComponent', () => {
             {provide: ActivatedRoute, useValue: {}},
             {provide: Router, useValue: {}},
             {provide: FhirService, useClass: StubFhirService},
-            {provide: ResourceCodeManager, useClass: ResourceCodeManager},
-            {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
+            ResourceCodeCreator, ResourceCodeManager,
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
           ]
         })
