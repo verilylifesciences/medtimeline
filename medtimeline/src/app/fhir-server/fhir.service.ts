@@ -127,12 +127,10 @@ export abstract class FhirService {
    * group.
    * @param codeGroup The RxNormCode code for which to get observations.
    * @param dateRange The time interval observations should fall between.
-   * @param limitCount If provided, the maximum number of observations to
-   *     query for.
    */
   abstract getMedicationAdministrationsWithCodes(
-      codes: RxNormCode[], dateRange: Interval,
-      limitCount?: number): Promise<MedicationAdministration[]>;
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]>;
 
   /**
    * Gets medication data from a specified date range with specific Rx codes,

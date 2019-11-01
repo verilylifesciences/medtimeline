@@ -300,7 +300,13 @@ export class MedicationCache extends FhirCache<MedicationAdministration> {
             GREATER_OR_EQUAL + dateRange.start.toISODate(),
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
-        }
+        },
+        notgiven: false,
+        status: 'in-progress,completed,on-hold',
+        // Despite documentation, this is the number of results per page,
+        // not the total number of results.
+        // https://groups.google.com/d/msg/cerner-fhir-developers/iW8hXIWcRX0/Y9mA__OqAQAJ
+        _count: 200
       }
     };
   }

@@ -22,7 +22,6 @@ import {MedicationAdministration, MedicationAdministrationStatus} from '../fhir-
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
-import {ResultClass} from '../fhir-resources/sets/fhir-resource-set';
 import * as FhirConfig from '../fhir_config';
 
 import {DiagnosticReportCache, EncounterCache, MedicationCache, ObservationCache} from './fhir-cache';
@@ -131,12 +130,10 @@ export class FhirHttpService extends FhirService {
    * Gets medication data from a specified date range with a specific Rx code
    * @param code The RxNormCode codes for which to get observations.
    * @param dateRange The time interval observations should fall between.
-   * @param limitCount If provided, the maximum number of observations to
-   *     query for.
    */
   getMedicationAdministrationsWithCodes(
-      codes: RxNormCode[], dateRange: Interval,
-      limitCount?: number): Promise<MedicationAdministration[]> {
+      codes: RxNormCode[],
+      dateRange: Interval): Promise<MedicationAdministration[]> {
     return Promise.all([this.smartApiPromise, this.loadAllCodes])
         .then(([smartApi, _]) => {
           return FhirHttpService.medicationCache
