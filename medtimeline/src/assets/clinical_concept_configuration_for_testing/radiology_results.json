@@ -1,0 +1,16 @@
+[
+  {
+    "codeString": "RADRPT",
+    "displayName": "Radiology Report",
+    "showByDefault": true,
+    "groupNames": ["Radiology"],
+    "_comments": "'RADRPT' is not actually in the official FHIR documentation, but is seen in the Cerner sandbox."
+  },
+  {
+    "codeString": "CT Report",
+    "displayName": "CT Report",
+    "showByDefault": true,
+    "groupNames": ["Radiology"],
+    "_comments": "'CT Report' is not actually in the official FHIR documentation, but is seen in the Cerner sandbox."
+  }
+]

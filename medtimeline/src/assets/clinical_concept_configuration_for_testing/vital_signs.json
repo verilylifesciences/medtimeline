@@ -1,0 +1,59 @@
+[
+  {
+    "codeString": "8310-5",
+    "displayName": "Temperature",
+    "showByDefault": true,
+    "displayBounds": {
+      "lower": 35,
+      "upper": 41
+    }
+  },
+  {
+    "codeString": "8462-4",
+    "displayName": "Diastolic Blood Pressure",
+    "showByDefault": true,
+    "displayBounds": {
+      "lower": 25,
+      "upper": 150
+    },
+    "innerComponentOnly": true
+  },
+  {
+    "codeString": "8480-6",
+    "displayName": "Systolic Blood Pressure",
+    "showByDefault": true,
+    "displayBounds": {
+      "lower": 30,
+      "upper": 250
+    },
+    "innerComponentOnly": true
+  },
+  {
+    "codeString": "55284-4",
+    "displayName": "Blood pressure",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood Pressure"
+    ]
+  },
+  {
+    "codeString": "8478-0",
+    "displayName": "Mean Arterial Pressure (Device)",
+    "showByDefault": true,
+    "displayBounds": {
+      "lower": 25,
+      "upper": 200
+    },
+    "groupNames": [
+      "Blood Pressure"
+    ]
+  },
+  {
+    "codeString": "41904-4",
+    "displayName": "Blood Pressure Location",
+    "showByDefault": true,
+    "groupNames": [
+      "Blood Pressure Details"
+    ]
+  }
+]

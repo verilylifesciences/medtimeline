@@ -1,0 +1,12 @@
+[
+  {
+    "groupName": "Blood Pressure",
+    "graphType": "LINE",
+    "displayGroupOnSameAxis": true
+  },
+  {
+    "groupName": "Blood Pressure Details",
+    "graphType": "NONE",
+    "displayGroupOnSameAxis": true
+  }
+]

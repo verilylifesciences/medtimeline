@@ -1,0 +1,34 @@
+[
+    {
+        "groupNames": [
+            "Acyclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "Acyclovir 0.05 MG/MG Topical Ointment",
+        "codeString": "197312"
+    },
+    {
+        "groupNames": [
+            "Acyclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "Acyclovir 50 MG/ML Injection",
+        "codeString": "1734933"
+    },
+    {
+        "groupNames": [
+            "Foscarnet",
+            "Antivirals Summary"
+        ],
+        "displayName": "Foscarnet",
+        "codeString": "33562"
+    },
+    {
+        "groupNames": [
+            "Foscarnet",
+            "Antivirals Summary"
+        ],
+        "displayName": "foscarnet sodium 24 MG/ML Injection",
+        "codeString": "1734380"
+    }
+]

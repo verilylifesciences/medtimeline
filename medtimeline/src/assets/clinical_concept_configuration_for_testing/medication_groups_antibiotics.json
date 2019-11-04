@@ -1,0 +1,17 @@
+[
+    {
+        "groupName": "Antibiotics Summary",
+        "graphType": "STEP",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Gentamicin",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    },
+    {
+        "groupName": "Gentamicin Monitoring Reference",
+        "graphType": "NONE",
+        "displayGroupOnSameAxis": true
+    }
+]
