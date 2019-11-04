@@ -301,7 +301,7 @@ export class MedicationCache extends FhirCache<MedicationAdministration> {
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
         },
-        notgiven: false,
+        notgiven: 'false',
         status: 'in-progress,completed,on-hold',
         // Despite documentation, this is the number of results per page,
         // not the total number of results.
