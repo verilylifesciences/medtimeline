@@ -5,12 +5,11 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
+import {environment} from '../../environments/environment';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-
-import {ConceptFileConfiguration} from './concept-file-configuration';
 import {BCHMicrobioCode} from './resource-codes/bch-microbio-code';
 import {DiagnosticReportCode} from './resource-codes/diagnostic-report-code';
-import {antibiotics, antifungals, antivirals, DisplayGrouping, microbio, radiology} from './resource-codes/display-grouping';
+import {antibiotics, antifungals, antivirals, DisplayGrouping, labResult, microbio, radiology, vitalSign} from './resource-codes/display-grouping';
 import {LOINCCode} from './resource-codes/loinc-code';
 import {ResourceCode} from './resource-codes/resource-code-group';
 import {RxNormCode} from './resource-codes/rx-norm';
@@ -33,9 +32,9 @@ export class GroupConfiguration {
  */
 @Injectable()
 export class ResourceCodeCreator {
-  constructor(
-      private http: HttpClient,
-      private conceptFileConfiguration: ConceptFileConfiguration) {}
+  constructor(private http: HttpClient) {}
+
+  private static assetPath = './assets/' + environment.conceptsFolder;
 
   private static stringToChartType = {
     'SCATTER': ChartType.SCATTER,
@@ -46,36 +45,36 @@ export class ResourceCodeCreator {
   };
 
 
-  loadJsonForAllGroups: Promise<Array<[DisplayGrouping, any]>> = Promise.all(
-      Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
-        const displayGroup: DisplayGrouping = entry[0];
-        const groupFile: string = entry[1][0];
-
-        return this.http
-            .get(this.conceptFileConfiguration.assetPath + '/' + groupFile)
-            .toPromise<any>()
-            .then(groups => {
-              // Without explicit typing here, the TS compiler complains.
-              const returned: [DisplayGrouping, any] = [displayGroup, groups];
-              return returned;
-            });
-      }));
-
-  loadJsonForAllConcepts: Promise<Array<[DisplayGrouping, any]>> = Promise.all(
-      Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
-        const displayGroup: DisplayGrouping = entry[0];
-        const conceptsFile: string = entry[1][1];
-
-        return this.http
-            .get(this.conceptFileConfiguration.assetPath + '/' + conceptsFile)
-            .toPromise<any>()
-            .then(clinicalConcepts => {
-              // Without explicit typing here, the TS compiler complains.
-              const returned: [DisplayGrouping, any] =
-                  [displayGroup, clinicalConcepts];
-              return returned;
-            });
-      }));
+  /**
+   * Map from DisplayGrouping to a tuple of file names that describe the groups
+   * and concepts that belong to that grouping.
+   * First file is the Group json file. Second file is the Concept json file.
+   * These files should be located within the directory of the assetPath.
+   */
+  private readonly fileMap = new Map([
+    [vitalSign, [environment.vitalGroupFile, environment.vitalConceptsFile]],
+    [labResult, [environment.labGroupFile, environment.labConceptsFile]],
+    [
+      radiology,
+      [environment.radiologyGroupFile, environment.radiologyConceptsFile]
+    ],
+    [
+      antibiotics,
+      [environment.antibioticGroupFile, environment.antibioticConceptsFile]
+    ],
+    [
+      antivirals,
+      [environment.antiviralGroupFile, environment.antiviralConceptsFile]
+    ],
+    [
+      antifungals,
+      [environment.antifungalGroupFile, environment.antifungalConceptsFile]
+    ],
+    [
+      microbio,
+      [environment.microbioGroupFile, environment.microbioConceptsFile]
+    ]
+  ]);
 
   /**
    * Loads in configuration for all the display groupings, including the
@@ -83,11 +82,13 @@ export class ResourceCodeCreator {
    * by default
    */
   private loadAllGroups: Promise<Map<string, GroupConfiguration>> =
-      this.loadJsonForAllGroups
-          .then((groupsList) => {
-            return groupsList.map(
-                group => this.createGroupConfigurations(group[0], group[1]));
-          })
+      Promise
+          .all(Array.from(this.fileMap).map((entry) => {
+            const displayGroup = entry[0];
+            const groupFile = entry[1][0];
+            return this.loadDisplayGroupsFromFile(
+                ResourceCodeCreator.assetPath + '/' + groupFile, displayGroup);
+          }))
           // Return one flattened map for all the display groups regardless of
           // their file source.
           .then(
@@ -95,15 +96,16 @@ export class ResourceCodeCreator {
                   new Map(allMaps.map((m) => Array.from(m))
                               .reduce((acc, val) => [...acc, ...val])));
 
-
-
   loadAllConcepts: Promise<Map<GroupConfiguration, ResourceCode[]>> =
       this.loadAllGroups.then((groupMap: Map<string, GroupConfiguration>) => {
-        return this.loadJsonForAllConcepts
-            .then((conceptsList) => {
-              return conceptsList.map(
-                  concept => this.createConcepts(concept[0], concept[1]));
-            })
+        return Promise
+            .all(Array.from(this.fileMap).map((entry) => {
+              const displayGroup: DisplayGrouping = entry[0];
+              const conceptsFile: string = entry[1][1];
+              return this.createConceptsFromFile(
+                  ResourceCodeCreator.assetPath + '/' + conceptsFile,
+                  displayGroup);
+            }))
             .then((conceptsFromFile: Array<Map<string, ResourceCode[]>>) => {
               // Reduce into one flattened map, allowing for mixing across
               // concept groups.
@@ -186,49 +188,54 @@ export class ResourceCodeCreator {
    * configuration. Returns a map of listed display groupings to their
    * corresponding clinical concepts.
    */
-  private createConcepts(displayGrouping: DisplayGrouping, json: any):
-      Map<string, ResourceCode[]> {
+  private createConceptsFromFile(
+      filePath: string,
+      displayGrouping: DisplayGrouping,
+      ): Promise<Map<string, ResourceCode[]>> {
     const groupToConcept = new Map<string, ResourceCode[]>();
+    return this.http.get(filePath).toPromise<any>().then(clinicalConcepts => {
+      for (const concept of clinicalConcepts) {
+        const code = this.createResourceCode(displayGrouping, concept);
+        // Concepts with innerComponentOnly=true are "components" of other
+        // concepts. (See
+        // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
+        // for more information.) In order for us to display these inner
+        // components, the Resource Code needs to be created, but we do not
+        // explicitly add them to a Resource Group.
+        if (concept.innerComponentOnly) {
+          continue;
+        }
+        // If the concept has no higher level grouping, then use its display
+        // name as the proxy for its grouping.
+        if (!concept.groupNames) {
+          concept.groupNames = [concept.displayName];
+        }
 
-    for (const concept of json) {
-      const code = this.createResourceCode(displayGrouping, concept);
-      // Concepts with innerComponentOnly=true are "components" of other
-      // concepts. (See
-      // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
-      // for more information.) In order for us to display these inner
-      // components, the Resource Code needs to be created, but we do not
-      // explicitly add them to a Resource Group.
-      if (concept.innerComponentOnly) {
-        continue;
+        for (const groupName of concept.groupNames) {
+          const concepts = groupToConcept.get(groupName) || [];
+          concepts.push(code);
+          groupToConcept.set(groupName, concepts);
+        }
       }
-      // If the concept has no higher level grouping, then use its display
-      // name as the proxy for its grouping.
-      if (!concept.groupNames) {
-        concept.groupNames = [concept.displayName];
-      }
-
-      for (const groupName of concept.groupNames) {
-        const concepts = groupToConcept.get(groupName) || [];
-        concepts.push(code);
-        groupToConcept.set(groupName, concepts);
-      }
-    }
-    return groupToConcept;
+      return groupToConcept;
+    });
   }
 
   /**
    * Reads in a JSON file for display group configurations and maps
    * display group names to simple chart configuration attributes.
    */
-  private createGroupConfigurations(
-      displayGrouping: DisplayGrouping,
-      json: any): Map<string, GroupConfiguration> {
-    return json.map(
-        group =>
-            [group.groupName,
-             new GroupConfiguration(
-                 group.groupName,
-                 ResourceCodeCreator.stringToChartType[group.graphType],
-                 group.displayGroupOnSameAxis, displayGrouping)]);
+  private loadDisplayGroupsFromFile(
+      filePath: string, displayGrouping: DisplayGrouping):
+      Promise<Map<string, GroupConfiguration>> {
+    return this.http.get(filePath).toPromise<any>().then(groups => {
+      return groups.map(
+          group =>
+              [group.groupName,
+               new GroupConfiguration(
+                   group.groupName,
+                   ResourceCodeCreator.stringToChartType[group.graphType],
+                   group.displayGroupOnSameAxis, displayGrouping)]);
+    });
   }
 }
