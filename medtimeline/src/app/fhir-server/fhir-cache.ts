@@ -301,7 +301,7 @@ export class MedicationCache extends FhirCache<MedicationAdministration> {
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
         },
-        notgiven: 'false',
+        notgiven: false,
         status: 'in-progress,completed,on-hold',
         // Despite documentation, this is the number of results per page,
         // not the total number of results.
@@ -415,8 +415,12 @@ export class EncounterCache {
     return Promise.resolve(cachePromise)
         .then(
             results => {
-              return results.map(
-                  result => new Encounter(result.json, result.requestId));
+              return results
+                  .filter(result => {
+                    const status = result.json.status;
+                    return status !== 'cancelled' && status !== 'planned';
+                  })
+                  .map(result => new Encounter(result.json, result.requestId));
             },
             rejection => {
               throw rejection;
