@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatDialog, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
@@ -37,10 +38,15 @@ describe('TimelineToolbarComponent', () => {
           ],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator, ResourceCodeManager,
+            ResourceCodeCreator,
+            ResourceCodeManager,
             {provide: MatDialogRef, useValue: {}},
             {provide: MatDialog, useValue: {}},
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+            {
+              provide: ConceptFileConfiguration,
+              useValue: new ConceptFileConfiguration()
+            },
           ]
         })
         .compileComponents();

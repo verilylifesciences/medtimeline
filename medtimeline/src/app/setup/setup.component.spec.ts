@@ -13,15 +13,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
+import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
+import {DisplayGrouping, labResult, vitalSign} from '../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
 import {DebuggerComponent} from '../debugger/debugger.component';
 import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
-import {DisplayGrouping, labResult, vitalSign} from '../conceptmappings/resource-codes/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
 import {StubFhirService} from '../utils/test_utils';
 
 import {SetupComponent} from './setup.component';
@@ -44,8 +45,13 @@ describe('SetupComponent', () => {
             {provide: ActivatedRoute, useValue: {}},
             {provide: Router, useValue: {}},
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator, ResourceCodeManager,
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+            ResourceCodeCreator,
+            ResourceCodeManager,
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+            {
+              provide: ConceptFileConfiguration,
+              useValue: new ConceptFileConfiguration()
+            },
           ]
         })
         .compileComponents();

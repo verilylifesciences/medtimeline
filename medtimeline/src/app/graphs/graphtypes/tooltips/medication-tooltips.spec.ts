@@ -7,6 +7,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime} from 'luxon';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {AnnotatedAdministration} from 'src/app/fhir-resources/medication-administration';
 import {AnnotatedMedicationOrder} from 'src/app/fhir-resources/medication-order';
@@ -24,7 +25,8 @@ describe('MedicationTooltip', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
-    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    const rcm = new ResourceCodeCreator(
+        TestBed.get(HttpClient), new ConceptFileConfiguration());
     Promise.resolve(rcm.loadAllConcepts);
 
     firstAdmin = makeMedicationAdministration(
@@ -96,7 +98,8 @@ describe('MedicationAdministrationTooltip', () => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
 
-    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    const rcm = new ResourceCodeCreator(
+        TestBed.get(HttpClient), new ConceptFileConfiguration());
     Promise.resolve(rcm.loadAllConcepts);
 
     admin1 = new AnnotatedAdministration(makeMedicationAdministration(

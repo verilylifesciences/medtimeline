@@ -7,12 +7,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
-import {ResourceCodeCreator} from '../resource-code-creator';
-import {ResourceCodeManager} from '../resource-code-manager';
 import {MedicationAdministration} from '../../fhir-resources/medication-administration';
 import {MedicationOrder} from '../../fhir-resources/medication-order';
 import {ChartType} from '../../graphs/graphtypes/graph/graph.component';
 import {StubFhirService} from '../../utils/test_utils';
+import {ConceptFileConfiguration} from '../concept-file-configuration';
+import {ResourceCodeCreator} from '../resource-code-creator';
 
 import {DisplayGrouping} from './display-grouping';
 import {RxNormCode} from './rx-norm';
@@ -69,14 +69,15 @@ describe('RxNormGroup', () => {
           imports: [HttpClientModule],
           providers: [
             ResourceCodeCreator,
+            {
+              provide: ConceptFileConfiguration,
+              useValue: new ConceptFileConfiguration()
+            },
           ]
         })
         .compileComponents();
 
-
-
     rxStubFhirService = new RxStubFhirService(TestBed.get(ResourceCodeCreator));
-
 
     // We wait until the clinical concepts are resolved to create all the
     // resources needed for the test.

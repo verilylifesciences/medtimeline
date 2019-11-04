@@ -8,6 +8,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
@@ -45,6 +46,10 @@ describe('LineGraphComponent', () => {
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             {provide: FhirService, useClass: StubFhirService},
             ResourceCodeCreator,
+            {
+              provide: ConceptFileConfiguration,
+              useValue: new ConceptFileConfiguration()
+            },
           ]
         })
         .compileComponents();

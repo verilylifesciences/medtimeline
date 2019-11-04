@@ -15,8 +15,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
+import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
 import {Axis} from 'src/app/graphs/graphtypes/axis';
 import {AxisGroup} from 'src/app/graphs/graphtypes/axis-group';
@@ -26,8 +29,6 @@ import {LineGraphComponent} from 'src/app/graphs/graphtypes/linegraph/linegraph.
 import {MicrobioGraphComponent} from 'src/app/graphs/graphtypes/microbio-graph/microbio-graph.component';
 import {ScatterplotComponent} from 'src/app/graphs/graphtypes/scatterplot/scatterplot.component';
 import {StepGraphComponent} from 'src/app/graphs/graphtypes/stepgraph/stepgraph.component';
-import {labResult} from 'src/app/conceptmappings/resource-codes/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from 'src/app/conceptmappings/resource-codes/loinc-code';
 import {StubFhirService} from 'src/app/utils/test_utils';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
@@ -55,8 +56,13 @@ describe('MultiGraphCardComponent', () => {
           ],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator, ResourceCodeManager,
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
+            ResourceCodeCreator,
+            ResourceCodeManager,
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
+            {
+              provide: ConceptFileConfiguration,
+              useValue: new ConceptFileConfiguration()
+            },
           ],
         })
         .compileComponents();

@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import * as Colors from 'src/app/theme/verily_colors';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
@@ -48,8 +49,13 @@ describe('LineGraphData', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        ResourceCodeCreator, ResourceCodeManager,
-        {provide: FhirService, useClass: StubFhirService}
+        ResourceCodeCreator,
+        ResourceCodeManager,
+        {provide: FhirService, useClass: StubFhirService},
+        {
+          provide: ConceptFileConfiguration,
+          useValue: new ConceptFileConfiguration()
+        },
       ]
     });
   }));
