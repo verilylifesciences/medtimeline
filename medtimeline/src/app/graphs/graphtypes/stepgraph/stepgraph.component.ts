@@ -55,7 +55,9 @@ export class StepGraphComponent extends
         // we add the temp line to the list of results and restart the temp
         // string with the word.
         if ((temp + word).length > this.Y_AXIS_TICK_MAX_LENGTH) {
-          resultLabel.push(temp);
+          if (temp.length > 0) {
+            resultLabel.push(temp);
+          }
           temp = word;
         } else {
           temp = temp.length > 0 ? temp + ' ' + word : word;
