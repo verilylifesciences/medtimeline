@@ -91,11 +91,11 @@ describe('StepGraphComponent', () => {
   it('should adjust tick labels correctly', () => {
     const ticks = [
       'vancomycin', '200 MG of Vancomycin',
-      'this is such a long label that it will be cut off', 'longfirstword'
+      'this is such a long label that it will be cut off'
     ];
     const expectedResult = [
       ['vancomycin'], ['200 MG of', 'Vancomycin'],
-      ['this is such', 'a long label...'], ['longfirstword']
+      ['this is such', 'a long label...']
     ];
     expect(component.adjustTickLabels(ticks)).toEqual(expectedResult);
   });

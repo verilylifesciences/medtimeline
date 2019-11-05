@@ -33,7 +33,7 @@ export const ALL_CARD_LABELS_WITH_DATA = [
   'Urinalysis',
   'CSF',
   'Radiology',
-  'Vancomycin & Gentamicin Summary',
+  'Antibiotics Summary',
   'Vancomycin',
   'Gentamicin',
   'Respiratory',
@@ -60,8 +60,6 @@ export const ALL_DEFAULT_CARD_LABELS = [
   'Bilirubin, Total',
   'Complete Blood Count White Blood Cell',
   'Radiology',
-  'Vancomycin & Gentamicin Summary',
-  'Vancomycin',
   'Respiratory',
   'Other',
   'Blood',
@@ -70,12 +68,14 @@ export const ALL_DEFAULT_CARD_LABELS = [
 export const VITAL_SIGNS = 'Vital Signs';
 export const LAB_RESULTS = 'Lab Results';
 export const RADIOLOGY = 'Radiology';
-export const MEDICATIONS = 'Medications';
+export const ANTIBIOTICS = 'Antibiotics';
+export const ANTIFUNGALS = 'Antifungals';
+export const ANTIVIRALS = 'Antivirals';
 export const MICROBIO = 'Microbiology';
 
 export const SUBMENU_LABELS = [
-  'Search for a concept', VITAL_SIGNS, LAB_RESULTS, RADIOLOGY, MEDICATIONS,
-  MICROBIO
+  'Search for a concept', VITAL_SIGNS, LAB_RESULTS, RADIOLOGY, ANTIBIOTICS,
+  ANTIFUNGALS, ANTIVIRALS, MICROBIO
 ];
 
 export const SUBMENU_VITALS = [
@@ -90,9 +90,6 @@ export const SUBMENU_LABS = [
   'CSF', 'ESR (Erythrocyte Sedimentation Rate)', 'Other Fluid', 'Uric acid',
   'Urinalysis'
 ];
-
-export const SUBMENU_MEDICATION =
-    ['Vancomycin & Gentamicin Summary', 'Vancomycin', 'Gentamicin'];
 
 export const SUBMENU_MICROBIO =
     ['Blood', 'CSF Microbiology', 'Other', 'Respiratory', 'Stool'];

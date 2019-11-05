@@ -23,6 +23,7 @@
   </ng-template>
 </mat-menu>
 <mat-menu #conceptSelectorMenu="matMenu" [style.padding]="0">
+  <div aria-label="Concept Selector Menu">
   <ng-template matMenuContent>
     <button mat-menu-item [matMenuTriggerFor]="menu">
       {{uiConstants.SEARCH_FOR_A_CONCEPT}}
@@ -52,6 +53,7 @@
       </button>
       <mat-divider></mat-divider>
       <mat-menu #subConceptSelectorMenu="matMenu">
+        <div [attr.aria-label]="entry[0].label + ' Menu'">
         <ng-template matMenuContent>
           <button *ngFor="let axisGroup of entry[1]" (click)="addConceptCard(axisGroup.label)" class="conceptSelector"
             mat-menu-item>
@@ -60,7 +62,9 @@
             <mat-divider></mat-divider>
           </button>
         </ng-template>
+      </div>
       </mat-menu>
     </ng-container>
   </ng-template>
+  </div>
 </mat-menu>

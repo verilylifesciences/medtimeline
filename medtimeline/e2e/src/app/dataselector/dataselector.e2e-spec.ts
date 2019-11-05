@@ -7,16 +7,16 @@ import 'jasmine';
 
 import {browser} from 'protractor';
 
-import {LAB_RESULTS, MEDICATIONS, MICROBIO, RADIOLOGY, SUBMENU_DIAGNOSTIC, SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MEDICATION, SUBMENU_MICROBIO, SUBMENU_VITALS, VITAL_SIGNS} from '../constants';
+import {ANTIBIOTICS, ANTIFUNGALS, ANTIVIRALS, LAB_RESULTS, MICROBIO, RADIOLOGY, SUBMENU_DIAGNOSTIC, SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MICROBIO, SUBMENU_VITALS, VITAL_SIGNS} from '../constants';
 import {IndexPage} from '../index.po';
 
 import {DataSelectorPage} from './dataselector.po';
 
 describe('Data Selector', () => {
-  const index: IndexPage = new IndexPage();
-  const dataSelector: DataSelectorPage = new DataSelectorPage();
+  const index = new IndexPage();
+  const dataSelector = new DataSelectorPage();
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 50 * 1000;
-  const subMenu = dataSelector.getSubMenu(1);
+  const subMenu = dataSelector.getSubMenu('Concept Selector Menu');
 
 
   beforeEach(async () => {
@@ -42,7 +42,8 @@ describe('Data Selector', () => {
 
   it('menu should close after adding a textbox', async () => {
     const menu = await dataSelector.getMenu();
-    const textboxOption = await dataSelector.getItems(menu).get(0);
+    const textboxOption =
+        await dataSelector.getMenuItemWithText(menu, 'Add Textbox');
     await index.waitForClickable(
         textboxOption, jasmine.DEFAULT_TIMEOUT_INTERVAL);
     await textboxOption.click();
@@ -52,98 +53,45 @@ describe('Data Selector', () => {
 
   it('submenu should open after adding a card', async () => {
     await dataSelector.clickOnAddCard();
-
     const itemsText = await dataSelector.getItems(subMenu).getText();
-    expect(itemsText).toEqual(SUBMENU_LABELS);
+    expect(new Set(itemsText)).toEqual(new Set(SUBMENU_LABELS));
   });
 
   it('top option of submenu should be searching for a concept', async () => {
     await dataSelector.clickOnAddCard();
-
+    const subMenu = await dataSelector.getSubMenu('Concept Selector Menu');
     const itemText = await dataSelector.getItems(subMenu).get(0).getText();
     expect(itemText).toEqual(SUBMENU_LABELS[0]);
   });
 
   it('vital signs option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-    const vitalsSubmenuIndex = SUBMENU_LABELS.indexOf(VITAL_SIGNS);
-    const addVitals = await dataSelector.getItems(subMenu).get(1);
-
-    await index.waitForClickable(addVitals, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-    await addVitals.click();
-
-    const vitalsMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(vitalsMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_VITALS));
+    await dataSelector.checkConceptMenuItems(VITAL_SIGNS, SUBMENU_VITALS);
   });
 
   it('lab results option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-    const labsSubmenuIndex = SUBMENU_LABELS.indexOf(LAB_RESULTS);
-    const addLabs = await dataSelector.getItems(subMenu).get(labsSubmenuIndex);
-
-    await index.waitForClickable(addLabs, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-    await addLabs.click();
-
-    const labsMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(labsMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_LABS));
+    await dataSelector.checkConceptMenuItems(LAB_RESULTS, SUBMENU_LABS);
   });
 
   it('radiology option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-    const radiologySubmenuIndex = SUBMENU_LABELS.indexOf(RADIOLOGY);
-    const addRad =
-        await dataSelector.getItems(subMenu).get(radiologySubmenuIndex);
-
-    await index.waitForClickable(addRad, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-    await addRad.click();
-
-    const radMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(radMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_DIAGNOSTIC));
+    await dataSelector.checkConceptMenuItems(RADIOLOGY, SUBMENU_DIAGNOSTIC);
   });
 
-  it('vanc and gent option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-    const medsSubmenuIndex = SUBMENU_LABELS.indexOf(MEDICATIONS);
-    const addMeds = await dataSelector.getItems(subMenu).get(medsSubmenuIndex);
+  it('antibiotics option menu should have Antibiotics Summary', async () => {
+    const items = await dataSelector.getConceptMenuItems(ANTIBIOTICS);
+    expect(items.has(ANTIBIOTICS + ' Summary'));
+  });
 
-    await index.waitForClickable(addMeds, jasmine.DEFAULT_TIMEOUT_INTERVAL);
+  it('antivirals option menu should have Antivirals Summary', async () => {
+    const items = await dataSelector.getConceptMenuItems(ANTIVIRALS);
+    expect(items.has(ANTIVIRALS + ' Summary'));
+  });
 
-    await addMeds.click();
-
-    const medsMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(medsMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_MEDICATION));
-    expect(itemsText.length).toEqual(3);
+  it('antifungals option menu should have Antifungals Summary', async () => {
+    const items = await dataSelector.getConceptMenuItems(ANTIFUNGALS);
+    expect(items.has(ANTIFUNGALS + ' Summary'));
   });
 
   it('microbio option menu should have correct options', async () => {
-    await dataSelector.clickOnAddCard();
-    const microbioSubmenuIndex = SUBMENU_LABELS.indexOf(MICROBIO);
-    const addMB =
-        await dataSelector.getItems(subMenu).get(microbioSubmenuIndex);
-
-    await index.waitForClickable(addMB, jasmine.DEFAULT_TIMEOUT_INTERVAL);
-
-    await addMB.click();
-
-    const mbMenu = await dataSelector.getSubMenu(2);
-    const itemsText: any = await dataSelector.getItems(mbMenu).getText();
-
-    expect(new Set(itemsText.map(item => item.split('No')[0].trim())))
-        .toEqual(new Set(SUBMENU_MICROBIO));
+    await dataSelector.checkConceptMenuItems(MICROBIO, SUBMENU_MICROBIO);
   });
 });
