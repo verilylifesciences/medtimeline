@@ -10,11 +10,12 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
 
+import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
-import {MedicationAdministration} from '../fhir-resources/medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../fhir-resources/medication-order';
 import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+import {MedicationAdministration} from '../fhir-resources/medication-administration';
+import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../fhir-resources/medication-order';
 import {makeMedicationAdministration, makeMedicationOrder} from '../utils/test_utils';
 
 const REQUEST_ID = '1234';
@@ -34,7 +35,8 @@ describe('MedicationOrder', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     });
-    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    const rcm = new ResourceCodeCreator(
+        TestBed.get(HttpClient), new ConceptFileConfiguration());
     Promise.resolve(rcm.loadAllConcepts);
   }));
 
@@ -147,7 +149,8 @@ describe('AnnotatedMedicationOrder', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({imports: [HttpClientModule]})
         .compileComponents();
-    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
+    const rcm = new ResourceCodeCreator(
+        TestBed.get(HttpClient), new ConceptFileConfiguration());
     Promise.resolve(rcm.loadAllConcepts);
 
 

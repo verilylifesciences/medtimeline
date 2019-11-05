@@ -6,6 +6,7 @@
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
+import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {UI_CONSTANTS} from 'src/constants';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
@@ -13,7 +14,7 @@ import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 // tslint:disable-next-line:max-line-length
 import {makeMedicationAdministration, makeMedicationOrder, makeSampleDiscreteObservationJson, makeSampleObservation} from '../../utils/test_utils';
 import {MedicationAdministration} from '../medication-administration';
-import {AnnotatedMedicationOrder, MedicationOrder, MedicationOrderSet} from '../medication-order';
+import {AnnotatedMedicationOrder, MedicationOrder} from '../medication-order';
 import {Observation} from '../observation';
 import {ObservationSet} from '../sets/observation-set';
 
@@ -35,7 +36,8 @@ describe('AnnotatedObservation', () => {
   beforeEach(() => {
     // Needed to load in the LOINC codes so that we can create the fake
     // medications below.
-    const rcc = new ResourceCodeCreator(TestBed.get(HttpClient));
+    const rcc = new ResourceCodeCreator(
+        TestBed.get(HttpClient), new ConceptFileConfiguration());
     obs = makeSampleObservation(10, DateTime.fromISO('1992-11-06T00:00:00.00'));
   });
 
