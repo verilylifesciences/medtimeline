@@ -33,8 +33,7 @@
     "displayBounds": {
       "lower": 5,
       "upper": 100
-    },
-    "forceDisplayBounds": true
+    }
   },
   {
     "codeString": "8462-4",

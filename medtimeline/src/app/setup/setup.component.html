@@ -25,7 +25,7 @@
         </mat-radio-button>
       </div>
       <div *ngFor="let item of staticTimeOptions">
-        <mat-radio-button [value]="item[0]">
+        <mat-radio-button [value]="item[0]" [checked]="item[2]">
           {{item[1]}}
         </mat-radio-button>
       </div>

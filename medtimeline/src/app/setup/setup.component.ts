@@ -94,8 +94,11 @@ export class SetupComponent implements OnDestroy {
   readonly lastThreeMonths =
       Interval.fromDateTimes(this.today.minus({months: 3}), this.today);
 
-  /** The time options that are always available. */
-  staticTimeOptions: Array<[Interval, string]>;
+  /**
+   * The time options that are always available. The boolean indicates which is
+   * selected by default.
+   */
+  staticTimeOptions: Array<[Interval, string, boolean]>;
 
   sortResources = (function(a, b) {
     return a.label.localeCompare(b.label);
@@ -137,11 +140,11 @@ export class SetupComponent implements OnDestroy {
           return Array.from(displayGroups.entries());
         });
     this.staticTimeOptions = [
-      [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
-      [this.lastMonth, uiConstants.LAST_MONTH],
-      [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS],
-      [this.lastThreeDays, uiConstants.LAST_THREE_DAYS],
-      [this.lastOneDay, uiConstants.LAST_ONE_DAY]
+      [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS, false],
+      [this.lastMonth, uiConstants.LAST_MONTH, false],
+      [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS, true],
+      [this.lastThreeDays, uiConstants.LAST_THREE_DAYS, false],
+      [this.lastOneDay, uiConstants.LAST_ONE_DAY, false]
     ];
     this.setupInterface();
   }
