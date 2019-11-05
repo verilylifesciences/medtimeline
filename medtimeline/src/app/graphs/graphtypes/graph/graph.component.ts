@@ -50,9 +50,6 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   static readonly Y_AXIS_ID = 'y-axis-0';
   static readonly X_AXIS_ID = 'x-axis-0';
 
-  /** The base chart height to use when rendering. */
-  readonly BASE_CHART_HEIGHT_PX = 150;
-
   /**
    * The entire interval represented by the current date range. This Interval
    * goes from the beginning of the first day of the date range, to the end of
@@ -513,7 +510,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       ticks: {
         // Only show as many tick labels will fit neatly on the axis.
         autoSkip: true,
-        display: true
+        display: true,
+        fontSize: 12,
+        padding: -10,
       },
       scaleLabel: {fontFamily: 'Work Sans'}
     };
