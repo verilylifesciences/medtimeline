@@ -51,6 +51,7 @@ h1, h2 {
 ::ng-deep .mat-figure {
   align-items: flex-start !important;
   justify-content: left !important;
+  display: -ms-grid;
 }
 
 ::ng-deep .mat-checkbox-label {
