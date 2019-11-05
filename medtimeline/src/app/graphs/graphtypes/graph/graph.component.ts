@@ -40,7 +40,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * hand with how we choose to wrap the labels in the rendered chart, so if
    * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
    */
-  private static readonly Y_AXIS_LEFT_PADDING = 155;
+  private static readonly Y_AXIS_LEFT_PADDING = 125;
 
   /** Line weights for emphasized and non-emphasized line graphs. */
   private static readonly THICK_LINE = 3;
@@ -49,6 +49,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   /** Constants for x and y axis names. */
   static readonly Y_AXIS_ID = 'y-axis-0';
   static readonly X_AXIS_ID = 'x-axis-0';
+
+  /** The base chart height to use when rendering. */
+  readonly BASE_CHART_HEIGHT_PX = 150;
 
   /**
    * The entire interval represented by the current date range. This Interval
@@ -98,7 +101,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   readonly chartOptions: (ChartOptions&{annotation: any}) = {
     // Draw straight lines between points instead of curves.
     elements: {line: {tension: 0}},
-    layout: {padding: {top: 5}},
+    layout: {padding: {top: 15}},
     // We make our own legend so we don't show the built-in one.
     legend: {display: false},
     scales: {xAxes: [this.generateXAxis()], yAxes: [this.generateYAxis()]},
@@ -510,9 +513,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
       ticks: {
         // Only show as many tick labels will fit neatly on the axis.
         autoSkip: true,
-        display: true,
-        fontSize: 12,
-        padding: -10,
+        display: true
       },
       scaleLabel: {fontFamily: 'Work Sans'}
     };

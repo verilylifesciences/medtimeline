@@ -19,7 +19,8 @@ describe('ResourceCodeCreator', () => {
           imports: [HttpClientModule],
           providers: [{
             provide: ConceptFileConfiguration,
-            useValue: new ConceptFileConfiguration()
+            useValue: new ConceptFileConfiguration(
+                'clinical_concept_configuration_for_testing')
           }],
         })
         .compileComponents();

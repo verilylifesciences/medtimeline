@@ -1,0 +1,7 @@
+[
+  {
+      "groupName": "Radiology",
+      "graphType": "DIAGNOSTIC",
+      "displayGroupOnSameAxis": true
+  }
+]
