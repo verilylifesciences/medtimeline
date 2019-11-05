@@ -40,7 +40,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * hand with how we choose to wrap the labels in the rendered chart, so if
    * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
    */
-  private static readonly Y_AXIS_LEFT_PADDING = 125;
+  private static readonly Y_AXIS_LEFT_PADDING = 155;
 
   /** Line weights for emphasized and non-emphasized line graphs. */
   private static readonly THICK_LINE = 3;
