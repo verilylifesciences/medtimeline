@@ -12,7 +12,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
@@ -42,8 +41,7 @@ describe('StepGraphComponent', () => {
         .compileComponents();
 
 
-    const rcm = new ResourceCodeCreator(
-        TestBed.get(HttpClient), new ConceptFileConfiguration());
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
     Promise.resolve(rcm.loadAllConcepts);
     medicationAdministrations = [
       makeMedicationAdministration('2018-09-10T11:00:00.000Z'),

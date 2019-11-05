@@ -7,12 +7,11 @@
 import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 
+import {FhirService} from '../../fhir-server/fhir.service';
 import {DisplayGrouping, labResult, vitalSign} from '../../conceptmappings/resource-codes/display-grouping';
 import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/loinc-code';
-import {FhirService} from '../../fhir-server/fhir.service';
 import {StubFhirService} from '../../utils/test_utils';
 
 import {Axis} from './axis';
@@ -30,11 +29,7 @@ describe('AxisGroup', () => {
           imports: [HttpClientModule],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator,
-            {
-              provide: ConceptFileConfiguration,
-              useValue: new ConceptFileConfiguration()
-            },
+            ResourceCodeCreator
           ]
         })
         .compileComponents();

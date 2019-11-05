@@ -9,7 +9,6 @@ import {MatCardModule, MatDialog, MatIconModule, MatTooltipModule} from '@angula
 import {By} from '@angular/platform-browser';
 import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
-import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from 'src/app/conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from 'src/app/conceptmappings/resource-code-manager';
 import {FhirService} from 'src/app/fhir-server/fhir.service';
@@ -42,10 +41,6 @@ describe('CustomizableTimelineComponent', () => {
             {provide: MatDialog, useValue: null},
             {provide: FhirService, useClass: StubFhirService},
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
-            {
-              provide: ConceptFileConfiguration,
-              useValue: new ConceptFileConfiguration()
-            },
             ResourceCodeCreator,
             ResourceCodeManager,
           ]

@@ -12,15 +12,14 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UI_CONSTANTS, UI_CONSTANTS_TOKEN} from 'src/constants';
 
-import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
-import {labResult, vitalSign} from '../conceptmappings/resource-codes/display-grouping';
-import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
 import {FhirService} from '../fhir-server/fhir.service';
 import {Axis} from '../graphs/graphtypes/axis';
 import {AxisGroup} from '../graphs/graphtypes/axis-group';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
+import {labResult, vitalSign} from '../conceptmappings/resource-codes/display-grouping';
+import {LOINCCode, LOINCCodeGroup} from '../conceptmappings/resource-codes/loinc-code';
 import {StubFhirService} from '../utils/test_utils';
 
 import {DataSelectorElementComponent} from './data-selector-element/data-selector-element.component';
@@ -43,13 +42,8 @@ describe('DataSelectorMenuComponent', () => {
           ],
           providers: [
             {provide: FhirService, useClass: StubFhirService},
-            ResourceCodeCreator,
-            ResourceCodeManager,
-            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
-            {
-              provide: ConceptFileConfiguration,
-              useValue: new ConceptFileConfiguration()
-            },
+            ResourceCodeCreator, ResourceCodeManager,
+            {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS}
 
           ]
         })

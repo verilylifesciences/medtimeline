@@ -23,10 +23,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {By} from '@angular/platform-browser';
+import {By, DomSanitizer} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {ChartsModule} from 'ng2-charts';
 import {DragulaService} from 'ng2-dragula';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
@@ -37,7 +37,6 @@ import {CardComponent} from '../cardtypes/card/card.component';
 import {CustomizableTimelineComponent} from '../cardtypes/customizable-timeline/customizable-timeline.component';
 import {MultiGraphCardComponent} from '../cardtypes/multigraphcard/multigraphcard.component';
 import {TextboxcardComponent} from '../cardtypes/textboxcard/textboxcard.component';
-import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCodeManager} from '../conceptmappings/resource-code-manager';
 import {DataSelectorElementComponent} from '../data-selector-menu/data-selector-element/data-selector-element.component';
@@ -59,6 +58,9 @@ import {TimelineToolbarComponent} from '../time-navigation/timeline-toolbar/time
 import {StubFhirService} from '../utils/test_utils';
 
 import {CardcontainerComponent} from './cardcontainer.component';
+
+const resourceCodeManagerStub =
+    new ResourceCodeManager(TestBed.get(DomSanitizer));
 
 describe('CardcontainerComponent', () => {
   let component: CardcontainerComponent;
@@ -117,10 +119,7 @@ describe('CardcontainerComponent', () => {
             DragulaService,
             SetupDataService,
             {provide: FhirService, useClass: StubFhirService},
-            {
-              provide: ConceptFileConfiguration,
-              useValue: new ConceptFileConfiguration()
-            },
+
             {provide: UI_CONSTANTS_TOKEN, useValue: UI_CONSTANTS},
             {provide: MAT_DIALOG_DATA, useValue: {}},
           ],

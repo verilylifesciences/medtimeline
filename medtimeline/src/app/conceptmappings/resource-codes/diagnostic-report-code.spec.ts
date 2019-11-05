@@ -3,17 +3,19 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
+import {environment} from 'src/environments/environment_test_bmedtimeB';
 
+import {ResourceCodeCreator} from '../resource-code-creator';
+import {ResourceCodeManager} from '../resource-code-manager';
 import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
 import {DiagnosticReport} from '../../fhir-resources/diagnostic-report';
 import {FhirService} from '../../fhir-server/fhir.service';
+import {MockFhirService} from '../../fhir-server/mock-fhir.service';
 import {ChartType} from '../../graphs/graphtypes/graph/graph.component';
 import {makeDiagnosticReports, StubFhirService} from '../../utils/test_utils';
-import {ConceptFileConfiguration} from '../concept-file-configuration';
-import {ResourceCodeCreator} from '../resource-code-creator';
 
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from './diagnostic-report-code';
 import {DisplayGrouping} from './display-grouping';
@@ -54,11 +56,7 @@ describe('DiagnosticReportCode', () => {
       imports: [HttpClientModule],
       providers: [
         ResourceCodeCreator,
-        {provide: FhirService, useClass: DiagnosticReportStubFhirService},
-        {
-          provide: ConceptFileConfiguration,
-          useValue: new ConceptFileConfiguration()
-        },
+        {provide: FhirService, useClass: DiagnosticReportStubFhirService}
       ]
     });
     (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)

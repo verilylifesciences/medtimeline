@@ -46,41 +46,36 @@ export class ResourceCodeCreator {
   };
 
 
-  private loadJsonForAllGroups: Promise<Array<[DisplayGrouping, any]>> =
-      Promise.all(
-          Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
-            const displayGroup: DisplayGrouping = entry[0];
-            const groupFile: string = entry[1][0];
+  loadJsonForAllGroups: Promise<Array<[DisplayGrouping, any]>> = Promise.all(
+      Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
+        const displayGroup: DisplayGrouping = entry[0];
+        const groupFile: string = entry[1][0];
 
-            return this.http
-                .get(this.conceptFileConfiguration.assetPath + '/' + groupFile)
-                .toPromise<any>()
-                .then(groups => {
-                  // Without explicit typing here, the TS compiler complains.
-                  const returned: [DisplayGrouping, any] =
-                      [displayGroup, groups];
-                  return returned;
-                });
-          }));
+        return this.http
+            .get(this.conceptFileConfiguration.assetPath + '/' + groupFile)
+            .toPromise<any>()
+            .then(groups => {
+              // Without explicit typing here, the TS compiler complains.
+              const returned: [DisplayGrouping, any] = [displayGroup, groups];
+              return returned;
+            });
+      }));
 
-  private loadJsonForAllConcepts: Promise<Array<[DisplayGrouping, any]>> =
-      Promise.all(
-          Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
-            const displayGroup: DisplayGrouping = entry[0];
-            const conceptsFile: string = entry[1][1];
+  loadJsonForAllConcepts: Promise<Array<[DisplayGrouping, any]>> = Promise.all(
+      Array.from(this.conceptFileConfiguration.fileMap).map((entry) => {
+        const displayGroup: DisplayGrouping = entry[0];
+        const conceptsFile: string = entry[1][1];
 
-            return this.http
-                .get(
-                    this.conceptFileConfiguration.assetPath + '/' +
-                    conceptsFile)
-                .toPromise<any>()
-                .then(clinicalConcepts => {
-                  // Without explicit typing here, the TS compiler complains.
-                  const returned: [DisplayGrouping, any] =
-                      [displayGroup, clinicalConcepts];
-                  return returned;
-                });
-          }));
+        return this.http
+            .get(this.conceptFileConfiguration.assetPath + '/' + conceptsFile)
+            .toPromise<any>()
+            .then(clinicalConcepts => {
+              // Without explicit typing here, the TS compiler complains.
+              const returned: [DisplayGrouping, any] =
+                  [displayGroup, clinicalConcepts];
+              return returned;
+            });
+      }));
 
   /**
    * Loads in configuration for all the display groupings, including the

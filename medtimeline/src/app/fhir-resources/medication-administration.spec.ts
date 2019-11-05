@@ -5,16 +5,16 @@
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
+
 import {DateTime} from 'luxon';
 
-import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
-import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from '../fhir-resources/medication-administration';
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {makeMedicationAdministration} from '../utils/test_utils';
 
 import {Dosage} from './dosage';
+import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from '../fhir-resources/medication-administration';
 
 const medicationCoding = {
   coding: [{system: RxNormCode.CODING_STRING, code: '11124'}],
@@ -30,8 +30,7 @@ describe('MedicationAdministration', () => {
         imports: [HttpClientModule],
       });
 
-      const rcm = new ResourceCodeCreator(
-          TestBed.get(HttpClient), new ConceptFileConfiguration());
+      const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
       Promise.resolve(rcm.loadAllConcepts);
     }));
   });
@@ -203,8 +202,7 @@ describe('MedicationAdministration', () => {
 describe('MedicationAdministrationSet', () => {
   describe('RxNormGroup', () => {
     beforeEach(async(() => {
-      const rcm = new ResourceCodeCreator(
-          TestBed.get(HttpClient), new ConceptFileConfiguration());
+      const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
       Promise.resolve(rcm.loadAllConcepts);
     }));
   });

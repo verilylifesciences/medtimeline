@@ -7,19 +7,17 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
-import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
 import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
 import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
 import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
-
+import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 ;
 import {FhirHttpService} from './fhir-http.service';
 import {FhirService} from './fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {makeSampleObservationJson} from '../utils/test_utils';
 import {MedicationCache, DiagnosticReportCache, EncounterCache} from './fhir-cache';
-import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 
 class FakeFhirHttpService extends FhirHttpService {
   resetCaches() {
@@ -96,11 +94,7 @@ describe('FhirHttpService', () => {
       imports: [HttpClientModule],
       providers: [
         {provide: ResourceCodeCreator, useClass: ResourceCodeCreator},
-        {provide: FhirService, useClass: FakeFhirHttpService},
-        {
-          provide: ConceptFileConfiguration,
-          useValue: new ConceptFileConfiguration()
-        },
+        {provide: FhirService, useClass: FakeFhirHttpService}
       ]
     });
     (TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)

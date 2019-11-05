@@ -95,7 +95,8 @@ export class StepGraphComponent extends
     }
     // Show the labels alphabetically along the y-axis.
     const allLabels = Array.from(allLabelsSet).sort();
-    // Add blank labels to the top and bottom of the graph to add some padding.
+    // Add blank labels to the top and bottom of the graph to add some
+    // padding.
     allLabels.push('\t');
     allLabels.unshift('\t');
     this.chartOptions.scales.yAxes[0]['labels'] = allLabels;
@@ -105,6 +106,9 @@ export class StepGraphComponent extends
     // mapping from data points to the axis still works without adjustment.
     this.chartOptions.scales.yAxes[0].beforeTickToLabelConversion = (scale) => {
       scale.ticks = this.adjustTickLabels(scale.ticks);
+      // based on the number of ticks, update the height of the graph
+      const height = Math.max(125, (scale.ticks.length) * 35);
+      scale.chart.canvas.parentNode.style.height = height + 'px';
     };
   }
   adjustGeneratedChartConfiguration() {}

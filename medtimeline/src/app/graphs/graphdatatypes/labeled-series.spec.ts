@@ -10,16 +10,15 @@
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
-import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
-import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 import {AnnotatedDiagnosticReport} from '../../fhir-resources/annotated/annotated-diagnostic-report';
 import {AnnotatedObservation} from '../../fhir-resources/annotated/annotated-observation';
 import {AnnotatedMedicationOrder, MedicationOrderSet} from '../../fhir-resources/medication-order';
 import {Observation} from '../../fhir-resources/observation';
 import {ObservationSet} from '../../fhir-resources/sets/observation-set';
 import {FhirService} from '../../fhir-server/fhir.service';
+import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 // tslint:disable-next-line:max-line-length
 import {makeDiagnosticReports, makeEncounter, makeMedicationAdministration, makeMedicationOrder, makeMicrobioReports, makeSampleObservation} from '../../utils/test_utils';
 import {makeDiagnosticReportWithoutTextField, makeSampleDiscreteObservation} from '../../utils/test_utils';
@@ -49,8 +48,7 @@ describe('LabeledSeries', () => {
         })
         .compileComponents();
 
-    const rcm = new ResourceCodeCreator(
-        TestBed.get(HttpClient), new ConceptFileConfiguration());
+    const rcm = new ResourceCodeCreator(TestBed.get(HttpClient));
     Promise.resolve(rcm.loadAllConcepts);
 
     annotatedOrder = new AnnotatedMedicationOrder(

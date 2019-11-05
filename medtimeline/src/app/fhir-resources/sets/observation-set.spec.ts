@@ -6,7 +6,6 @@
 import {HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime} from 'luxon';
-import {ConceptFileConfiguration} from 'src/app/conceptmappings/concept-file-configuration';
 
 import {ResourceCodeCreator} from '../../conceptmappings/resource-code-creator';
 import {LOINCCode} from '../../conceptmappings/resource-codes/loinc-code';
@@ -30,10 +29,6 @@ describe('ObservationSet', () => {
       imports: [HttpClientModule],
       providers: [
         ResourceCodeCreator,
-        {
-          provide: ConceptFileConfiguration,
-          useValue: new ConceptFileConfiguration()
-        },
       ]
     });
     Promise.resolve((TestBed.get(ResourceCodeCreator) as ResourceCodeCreator)
