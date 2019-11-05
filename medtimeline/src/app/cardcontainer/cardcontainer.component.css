@@ -2,7 +2,6 @@
   background-color: #202020; /* GREY_900 */
   display: flex;
   display: -ms-flexbox; /* For IE10 */
-  padding: 15px;
   width: 100%;
   min-height: 100%;
   height: 100%;
