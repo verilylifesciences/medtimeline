@@ -1,0 +1,12 @@
+[
+    {
+        "groupName": "Urinalysis",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Complete Blood Count",
+        "graphType": "LINE",
+        "displayGroupOnSameAxis": false
+    }
+]

@@ -415,12 +415,8 @@ export class EncounterCache {
     return Promise.resolve(cachePromise)
         .then(
             results => {
-              return results
-                  .filter(result => {
-                    const status = result.json.status;
-                    return status !== 'cancelled' && status !== 'planned';
-                  })
-                  .map(result => new Encounter(result.json, result.requestId));
+              return results.map(
+                  result => new Encounter(result.json, result.requestId));
             },
             rejection => {
               throw rejection;

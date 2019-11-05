@@ -1,0 +1,12 @@
+[
+    {
+        "groupName": "Antifungals Summary",
+        "graphType": "STEP",
+        "displayGroupOnSameAxis": true
+    },
+    {
+        "groupName": "Fluconazole",
+        "graphType": "SCATTER",
+        "displayGroupOnSameAxis": false
+    }
+]
