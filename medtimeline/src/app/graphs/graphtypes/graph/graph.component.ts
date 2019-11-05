@@ -98,7 +98,7 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   readonly chartOptions: (ChartOptions&{annotation: any}) = {
     // Draw straight lines between points instead of curves.
     elements: {line: {tension: 0}},
-    layout: {padding: {top: 15}},
+    layout: {padding: {top: 5}},
     // We make our own legend so we don't show the built-in one.
     legend: {display: false},
     scales: {xAxes: [this.generateXAxis()], yAxes: [this.generateYAxis()]},
