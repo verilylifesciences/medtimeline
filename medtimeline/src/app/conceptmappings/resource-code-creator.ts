@@ -23,7 +23,8 @@ export class GroupConfiguration {
   constructor(
       readonly groupName: string, readonly chartType: ChartType,
       readonly showOnSameAxis: boolean,
-      readonly displayGrouping: DisplayGrouping) {}
+      readonly displayGrouping: DisplayGrouping,
+      readonly parentGroupName?: string) {}
 }
 
 /**
@@ -87,7 +88,7 @@ export class ResourceCodeCreator {
    * grouping name, the chart type for the grouping, whether it's displayed
    * by default
    */
-  private loadAllGroups: Promise<Map<string, GroupConfiguration>> =
+  loadAllGroups: Promise<Map<string, GroupConfiguration>> =
       this.loadJsonForAllGroups
           .then((groupsList) => {
             return groupsList.map(
@@ -234,6 +235,7 @@ export class ResourceCodeCreator {
              new GroupConfiguration(
                  group.groupName,
                  ResourceCodeCreator.stringToChartType[group.graphType],
-                 group.displayGroupOnSameAxis, displayGrouping)]);
+                 group.displayGroupOnSameAxis, displayGrouping,
+                 group.parentGroupName)]);
   }
 }
