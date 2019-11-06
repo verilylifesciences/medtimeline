@@ -299,8 +299,8 @@ describe('LOINCCodeGroup', () => {
 
        loincGroup.getResourceFromFhir(INTERVAL).then(results => {
          expect(results.length).toEqual(1);
-         for (const obs of results) {
-           expect(obs.annotationValues).toEqual([
+         for (const o of results) {
+           expect(o.annotationValues).toEqual([
              ['annotation 1', 'annotation a']
            ]);
          }

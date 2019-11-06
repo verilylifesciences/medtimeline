@@ -7,19 +7,18 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {async, TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';
 
+import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
 import {DisplayGrouping} from '../conceptmappings/resource-codes/display-grouping';
 import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
 import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
-
-;
-import {FhirHttpService} from './fhir-http.service';
-import {FhirService} from './fhir.service';
 import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {makeSampleObservationJson} from '../utils/test_utils';
-import {MedicationCache, DiagnosticReportCache, EncounterCache} from './fhir-cache';
-import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configuration';
+
+import {DiagnosticReportCache, EncounterCache, MedicationCache} from './fhir-cache';
+import {FhirHttpService} from './fhir-http.service';
+import {FhirService} from './fhir.service';
 
 class FakeFhirHttpService extends FhirHttpService {
   resetCaches() {
@@ -259,8 +258,8 @@ describe('FhirHttpService', () => {
        spyOn(smartApi.patient.api, 'search')
            .and.returnValue(Promise.resolve(responseWithNextPage));
        clientReadyCallback(smartApi);
-       const code = (RxNormCode.fromCodeString('11124') as RxNormCode);
-       service.medicationsPresentWithCode(code, dateRange).then(response => {
+       const rxNorm = (RxNormCode.fromCodeString('11124') as RxNormCode);
+       service.medicationsPresentWithCode(rxNorm, dateRange).then(response => {
          expect(response).toBe(true);
          done();
        });

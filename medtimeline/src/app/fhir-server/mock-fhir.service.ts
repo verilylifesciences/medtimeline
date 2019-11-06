@@ -11,6 +11,11 @@ import {v4 as uuid} from 'uuid';
 
 import {environment} from '../../environments/environment';
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
+import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
+import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
+import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
+import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 import {AnnotatedDiagnosticReport} from '../fhir-resources/annotated/annotated-diagnostic-report';
 import {AnnotatedMicrobioReport} from '../fhir-resources/annotated/annotated-microbio-report';
 import {DiagnosticReport} from '../fhir-resources/diagnostic-report';
@@ -19,11 +24,6 @@ import {MedicationAdministration} from '../fhir-resources/medication-administrat
 import {MedicationOrder} from '../fhir-resources/medication-order';
 import {MicrobioReport} from '../fhir-resources/microbio-report';
 import {Observation, ObservationStatus} from '../fhir-resources/observation';
-import {BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
-import {DiagnosticReportCodeGroup} from '../conceptmappings/resource-codes/diagnostic-report-code';
-import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
-import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
-import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
 
 import {FhirService} from './fhir.service';
 
@@ -43,31 +43,6 @@ export class MockFhirService extends FhirService {
       new Map<ResourceCode, DiagnosticReport[]>();
   private readonly encounters = new Array<Encounter>();
   private microbioJson: JSON;
-
-  constructor(
-      private http: HttpClient, resourceCodeCreator: ResourceCodeCreator) {
-    super(resourceCodeCreator);
-  }
-
-  private constructResourceMap<K, V>(
-      json: any, mapToUpdate: Map<K, V[]>, constructorFn: (any) => V,
-      getCodesFn: (value: V) => K[]) {
-    try {
-      const obj = constructorFn(json.resource);
-      const uniqueCodes = Array.from(new Set(getCodesFn(obj)));
-      for (const code of uniqueCodes) {
-        let existing = mapToUpdate.get(code);
-        if (!existing) {
-          existing = [];
-        }
-        existing.push(obj);
-        mapToUpdate.set(code, existing);
-      }
-    } catch (err) {
-      // tslint:disable-next-line:no-console
-      console.debug(err);
-    }
-  }
 
   loadAllData: Promise<void[]> = this.loadAllCodes.then(
       () => Promise.all(this.allFilePaths.map(filePath => {
@@ -132,6 +107,31 @@ export class MockFhirService extends FhirService {
         });
       })));
 
+
+  constructor(
+      private http: HttpClient, resourceCodeCreator: ResourceCodeCreator) {
+    super(resourceCodeCreator);
+  }
+
+  private constructResourceMap<K, V>(
+      json: any, mapToUpdate: Map<K, V[]>, constructorFn: (any) => V,
+      getCodesFn: (value: V) => K[]) {
+    try {
+      const obj = constructorFn(json.resource);
+      const uniqueCodes = Array.from(new Set(getCodesFn(obj)));
+      for (const code of uniqueCodes) {
+        let existing = mapToUpdate.get(code);
+        if (!existing) {
+          existing = [];
+        }
+        existing.push(obj);
+        mapToUpdate.set(code, existing);
+      }
+    } catch (err) {
+      // tslint:disable-next-line:no-console
+      console.debug(err);
+    }
+  }
 
   /**
    * Gets observations from a specified date range with a specific LOINC code.

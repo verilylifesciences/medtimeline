@@ -23,7 +23,7 @@ class StubFhirCache extends FhirCache<ResultClassWithTimestamp> {
     return DateTime.fromISO(result.json.effectiveDateTime);
   }
 
-  getQueryParams(dateRange) {
+  getQueryParams(dateRangeParam) {
     return {type: 'fake'};
   }
 }

@@ -6,7 +6,7 @@
 import 'jasmine';
 
 import {browser} from 'protractor';
-
+// tslint:disable-next-line:max-line-length
 import {ANTIBIOTICS, ANTIFUNGALS, ANTIVIRALS, LAB_RESULTS, MICROBIO, RADIOLOGY, SUBMENU_DIAGNOSTIC, SUBMENU_LABELS, SUBMENU_LABS, SUBMENU_MICROBIO, SUBMENU_VITALS, VITAL_SIGNS} from '../constants';
 import {IndexPage} from '../index.po';
 
@@ -59,8 +59,8 @@ describe('Data Selector', () => {
 
   it('top option of submenu should be searching for a concept', async () => {
     await dataSelector.clickOnAddCard();
-    const subMenu = await dataSelector.getSubMenu('Concept Selector Menu');
-    const itemText = await dataSelector.getItems(subMenu).get(0).getText();
+    const submenu = await dataSelector.getSubMenu('Concept Selector Menu');
+    const itemText = await dataSelector.getItems(submenu).get(0).getText();
     expect(itemText).toEqual(SUBMENU_LABELS[0]);
   });
 

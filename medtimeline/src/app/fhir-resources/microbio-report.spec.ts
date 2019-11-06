@@ -3,10 +3,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../conceptmappings/resource-codes/bch-microbio-code';
 import {microbio} from '../conceptmappings/resource-codes/display-grouping';
 import {LOINCCode} from '../conceptmappings/resource-codes/loinc-code';
+import {ChartType} from '../graphs/graphtypes/graph/graph.component';
 
 import {DiagnosticReportStatus} from './diagnostic-report';
 import {MicrobioReport} from './microbio-report';
@@ -201,7 +201,7 @@ const respiratoryCodes = [new BCHMicrobioCode(
     'microbio-report-test-resp-1', microbio, 'microbio-report-test-resp-1')];
 
 const bloodCodes = [new BCHMicrobioCode(
-    'microbio-report-test-blood-1', microbio, 'microbio-report-test-blood-1')]
+    'microbio-report-test-blood-1', microbio, 'microbio-report-test-blood-1')];
 
 describe('MicrobioReport', () => {
   const drString = {

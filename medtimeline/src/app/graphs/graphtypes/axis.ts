@@ -6,9 +6,6 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {Interval} from 'luxon';
 
-import {Encounter} from '../../fhir-resources/encounter';
-import {MedicationOrderSet} from '../../fhir-resources/medication-order';
-import {FhirService} from '../../fhir-server/fhir.service';
 import {BCHMicrobioCode, BCHMicrobioCodeGroup} from '../../conceptmappings/resource-codes/bch-microbio-code';
 import {DiagnosticReportCode, DiagnosticReportCodeGroup} from '../../conceptmappings/resource-codes/diagnostic-report-code';
 import {DisplayGrouping} from '../../conceptmappings/resource-codes/display-grouping';
@@ -16,6 +13,9 @@ import {LOINCCode, LOINCCodeGroup} from '../../conceptmappings/resource-codes/lo
 import {ResourceCodeGroup} from '../../conceptmappings/resource-codes/resource-code-group';
 import {RxNormCode} from '../../conceptmappings/resource-codes/rx-norm';
 import {RxNormCodeGroup} from '../../conceptmappings/resource-codes/rx-norm-group';
+import {Encounter} from '../../fhir-resources/encounter';
+import {MedicationOrderSet} from '../../fhir-resources/medication-order';
+import {FhirService} from '../../fhir-server/fhir.service';
 import {DiagnosticGraphData} from '../graphdatatypes/diagnosticgraphdata';
 import {GraphData} from '../graphdatatypes/graphdata';
 import {LineGraphData} from '../graphdatatypes/linegraphdata';
@@ -79,6 +79,9 @@ export class Axis {
   private allRx: boolean;
   private allBCHMicrobio: boolean;
   private allDiagnosticReport: boolean;
+
+  /** Whether there is data available for this axis in the app time scope. */
+  axisDataAvailable = true;
 
   /**
    * The constructor for this axis.
@@ -146,7 +149,6 @@ export class Axis {
    * Returns whether there is data available for this axis within the
    * application's time scope.
    */
-  axisDataAvailable = true;
   axisDataAvailableInAppTimeScope(): Promise<boolean> {
     return this.resourceGroup.dataAvailableInAppTimeScope().then(res => {
       this.axisDataAvailable = res;

@@ -30,8 +30,6 @@ import {SMART_ON_FHIR_CLIENT} from './smart-on-fhir-client';
 
 @Injectable()
 export class FhirHttpService extends FhirService {
-  readonly smartApiPromise: Promise<any>;
-
   /** Cache for all MedicationAdministrations. */
   protected static medicationCache = new MedicationCache();
 
@@ -46,6 +44,8 @@ export class FhirHttpService extends FhirService {
 
   /** Cache for all Encounters. */
   protected static encounterCache = new EncounterCache();
+
+  readonly smartApiPromise: Promise<any>;
 
   constructor(
       private debugService: DebuggerService,
@@ -273,7 +273,7 @@ export class FhirHttpService extends FhirService {
   getMicrobioReports(codeGroup: BCHMicrobioCodeGroup, dateRange: Interval):
       Promise<MicrobioReport[]> {
     if (!FhirConfig.microbiology) {
-      console.debug(
+      console.warn(
           'No microbiology parameters available in the configuration.');
       return Promise.resolve([]);
     }

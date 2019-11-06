@@ -59,8 +59,8 @@ function fetchAllFromFhir(smartApi, queryParams): Promise<RawResource[]> {
       .then(
           response => {
             return getNextSearchResultsPage(smartApi, response, results)
-                .then(results => {
-                  return results.filter(result => !!result);
+                .then(res => {
+                  return res.filter(result => !!result);
                 });
           },
           rejection => {

@@ -43,10 +43,11 @@ const statusToEnumMap = new Map<string, MedicationAdministrationStatus>([
  * stores only the information we're interested in seeing.
  */
 export class MedicationAdministration extends ResultClassWithTimestamp {
+  static readonly MED_RESOURCE_TYPE = 'Medication';
+
   readonly wasNotGiven: boolean;
   readonly dosage: Dosage;
   readonly containedMedications: ContainedMedication[] = [];
-  static readonly MED_RESOURCE_TYPE = 'Medication';
   readonly effectiveDateTime: DateTime;
   readonly rxNormCode: RxNormCode;
   readonly medicationOrderId: string;

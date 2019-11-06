@@ -39,7 +39,7 @@ export class ResourceCodeManager {
   private static displayGroupMapping:
       Promise<Map<DisplayGrouping, AxisGroup[]>>;
 
-  constructor(private sanitizer: DomSanitizer) {};
+  constructor(private sanitizer: DomSanitizer) {}
 
   /**
    * Determines ResourceCodeGroup type from the displayGrouping passed in.

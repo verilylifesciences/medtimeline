@@ -11,6 +11,7 @@ import {ConceptFileConfiguration} from '../conceptmappings/concept-file-configur
 import {ResourceCodeCreator} from '../conceptmappings/resource-code-creator';
 import {ResourceCode} from '../conceptmappings/resource-codes/resource-code-group';
 import {RxNormCode} from '../conceptmappings/resource-codes/rx-norm';
+// tslint:disable-next-line:max-line-length
 import {AnnotatedAdministration, MedicationAdministration, MedicationAdministrationSet, MedicationAdministrationStatus} from '../fhir-resources/medication-administration';
 import {makeMedicationAdministration} from '../utils/test_utils';
 

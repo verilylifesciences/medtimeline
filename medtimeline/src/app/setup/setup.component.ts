@@ -157,7 +157,7 @@ export class SetupComponent implements OnDestroy {
    * @param available whether there is any data for the AxisGroup
    */
   setAxisGroupStatus(axisGroup: AxisGroup, available: boolean) {
-    axisGroup.dataAvailable = available
+    axisGroup.dataAvailable = available;
     if (!available) {
       this.checkedConcepts[axisGroup.label] = false;
     }
