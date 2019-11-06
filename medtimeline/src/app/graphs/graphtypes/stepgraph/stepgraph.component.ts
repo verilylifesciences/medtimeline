@@ -109,7 +109,8 @@ export class StepGraphComponent extends
     this.chartOptions.scales.yAxes[0].beforeTickToLabelConversion = (scale) => {
       scale.ticks = this.adjustTickLabels(scale.ticks);
       // based on the number of ticks, update the height of the graph
-      const height = Math.max(125, (scale.ticks.length) * 35);
+      const height =
+          Math.max(GraphComponent.MIN_AXIS_HEIGHT, (scale.ticks.length) * 35);
       scale.chart.canvas.parentNode.style.height = height + 'px';
     };
   }

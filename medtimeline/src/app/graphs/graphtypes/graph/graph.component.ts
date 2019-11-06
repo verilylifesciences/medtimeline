@@ -50,6 +50,8 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   static readonly Y_AXIS_ID = 'y-axis-0';
   static readonly X_AXIS_ID = 'x-axis-0';
 
+  static readonly MIN_AXIS_HEIGHT = 90;
+
   /**
    * The entire interval represented by the current date range. This Interval
    * goes from the beginning of the first day of the date range, to the end of
@@ -349,6 +351,8 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
     // Add left-padding so that the y-axes are aligned with one another.
     this.chartOptions.scales.yAxes[0]['afterSetDimensions'] = function(axes) {
       axes.paddingLeft = GraphComponent.Y_AXIS_LEFT_PADDING;
+      axes.chart.canvas.parentNode.style.height =
+          GraphComponent.MIN_AXIS_HEIGHT + 'px';
     };
 
     const self = this;

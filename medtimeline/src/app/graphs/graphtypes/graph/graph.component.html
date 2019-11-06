@@ -1,7 +1,7 @@
 <!-- This top level div expands to fill the card. If we remove it, then the inner div
 infinitely expands as the canvas tries to take up more and more space.-->
 <div>
-  <div style="position: relative; height:90px; max-width: 95%;">
+  <div style="position: relative; max-width: 95%;">
     <canvas baseChart [datasets]="chartData" [options]="chartOptions" [plugins]="chartPlugins"
       [chartType]="chartTypeString" [id]="chartDivId"></canvas>
   </div>

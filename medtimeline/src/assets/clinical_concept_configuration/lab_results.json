@@ -415,42 +415,42 @@
         "codeString": "31091-2",
         "displayName": "Gentamicin, Peak/Post Q24H",
         "groupNames": [
-            "Gentamicin Monitoring"
+            "Gentamicin"
         ]
     },
     {
         "codeString": "3663-2",
         "displayName": "Gentamicin, Peak/Post Q8H",
         "groupNames": [
-            "Gentamicin Monitoring"
+            "Gentamicin"
         ]
     },
     {
         "codeString": "31092-0",
         "displayName": "Gentamicin, Trough/Pre Q24H",
         "groupNames": [
-            "Gentamicin Monitoring"
+            "Gentamicin"
         ]
     },
     {
         "codeString": "3665-7",
         "displayName": "Gentamicin, Trough/Pre Q8H",
         "groupNames": [
-            "Gentamicin Monitoring"
+            "Gentamicin"
         ]
     },
     {
         "codeString": "20578-1",
         "displayName": "Vancomycin Level, Random",
         "groupNames": [
-            "Vancomycin Monitoring"
+            "Vancomycin"
         ]
     },
     {
         "codeString": "4092-3",
         "displayName": "Vancomycin Level, Trough/Pre",
         "groupNames": [
-            "Vancomycin Monitoring"
+            "Vancomycin"
         ]
     }
 ]

@@ -135,12 +135,6 @@
         "displayGroupOnSameAxis": false
     },
     {
-      "groupName": "Gentamicin Administrations",
-      "graphType": "SCATTER",
-      "displayGroupOnSameAxis": false,
-      "parentGroupName": "Gentamicin"
-    },
-    {
         "groupName": "Imipenem",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
@@ -234,16 +228,11 @@
         "groupName": "Tobramycin",
         "graphType": "SCATTER",
         "displayGroupOnSameAxis": false
-    },{
-      "groupName": "Vancomycin",
-      "graphType": "SCATTER",
-      "displayGroupOnSameAxis": false
     },
     {
-        "groupName": "Vancomycin Administrations",
+        "groupName": "Vancomycin",
         "graphType": "SCATTER",
-        "displayGroupOnSameAxis": false,
-        "parentGroupName": "Vancomycin"
+        "displayGroupOnSameAxis": false
     },
     {
       "groupName": "Vancomycin Monitoring Reference",
