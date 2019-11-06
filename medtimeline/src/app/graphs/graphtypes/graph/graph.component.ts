@@ -39,6 +39,9 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
    * The amount of padding to add to the left of the graph. This goes hand in
    * hand with how we choose to wrap the labels in the rendered chart, so if
    * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
+   * Additionally, significant changes in this value might break the e2e test
+   * for customizable timeline since it could cause the click registered to
+   * be outside of the graph area.
    */
   private static readonly Y_AXIS_LEFT_PADDING = 155;
 
@@ -50,6 +53,13 @@ export abstract class GraphComponent<T extends GraphData> implements OnInit,
   static readonly Y_AXIS_ID = 'y-axis-0';
   static readonly X_AXIS_ID = 'x-axis-0';
 
+  /**
+   * The minimum height for a graph.
+   *
+   * Significant changes in this value might break the e2e test
+   * for customizable timeline since it could cause the click registered to
+   * be outside of the graph area.
+   */
   static readonly MIN_AXIS_HEIGHT = 90;
 
   /**

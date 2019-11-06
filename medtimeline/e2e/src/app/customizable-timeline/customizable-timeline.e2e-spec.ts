@@ -26,7 +26,12 @@ describe('Customizable Timeline', () => {
     const timeline = customTimeline.getGraph();
     const editIcon = customTimeline.getEditIcon();
     await editIcon.click();
-    await index.clickOnElement(timeline, 150, 100);
+    // We need to click inside the plotted graph space for it to register.
+    // Any time the constants GraphComponent.Y_AXIS_LEFT_PADDING and
+    // GraphComponent.MIN_AXIS_HEIGHT change, this might also need to be
+    // adjusted. We can't directly reference them here because it's disallowed
+    // to reference production code from e2e test code.
+    await index.clickOnElement(timeline, 175, 45);
     await customTimeline.waitForDialog();
   });
 
