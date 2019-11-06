@@ -29,6 +29,10 @@
         "displayGroupOnSameAxis": {
             "type": "boolean",
             "description": "Whether the concepts in this group should be displayed on the same axis, or each on their individual axis in the same card."
+        },
+        "parentGroupName": {
+          "type": "string",
+          "description": "The name of the parent group that this group should be displayed with. This helps in the case that you want to show multiple resource groups with different graph configurations such as Medication administrations and Medication monitoring."
         }
     }
 }

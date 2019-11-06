@@ -9,33 +9,6 @@
     }
   },
   {
-    "codeString": "8867-4",
-    "displayName": "Heart Rate",
-    "showByDefault": true,
-    "displayBounds": {
-      "lower": 20,
-      "upper": 300
-    }
-  },
-  {
-    "codeString": "9279-1",
-    "displayName": "Respiratory Rate",
-    "showByDefault": true,
-    "displayBounds": {
-      "lower": 6,
-      "upper": 100
-    }
-  },
-  {
-    "codeString": "59408-5",
-    "displayName": "Oxygen Saturation (SpO2)",
-    "showByDefault": true,
-    "displayBounds": {
-      "lower": 5,
-      "upper": 100
-    }
-  },
-  {
     "codeString": "8462-4",
     "displayName": "Diastolic Blood Pressure",
     "showByDefault": true,

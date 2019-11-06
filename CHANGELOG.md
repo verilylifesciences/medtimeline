@@ -6,6 +6,31 @@ original submission: MedTimeLine v1.0.1.0, commit number 3f17565ee6549a97b9be164
 
 ## Versions
 
+### 2.1.0.0
+
+* Correct all linter errors.
+* Fix e2e tests for customizable timeline.
+* Reduce Min height for step graphs to match other graphs
+* Put medication monitoring on the same axis
+* Fix E2E Tests
+* Small bug fix in line breaks for long axis labels
+* Tighten up vertical space by giving less margin within the chart.
+* Save vertical space by tightening spacing between cards.
+* Adjust left padding for y axis since the wrapping changed slightly.
+* Save vertical space by making slightly smaller graphs and condensing down the tick labels.
+* A couple small bugfixes.
+* Dynamically adjust height of step graphs
+* Add coverage for resource-code-creator.
+* Add test concept configurations.
+* Fix dependency injection for unit tests. Add basic test for resource-code-creator.
+* Filter out cancelled Encounters
+* Fix notgiven query param
+* Update Gifs for timeline actions
+* Update Gifs for custom timeline and annotations
+* Updated gifs for tutorial for setup screen and datepicker
+* Fix setup screen display in IE
+* Extract out dependencies on environment.ts from resource-code-creator.
+
 ### 2.0.0.0alpha3
 
 This is an alpha release and should not be used in production. Notably, end to end tests are

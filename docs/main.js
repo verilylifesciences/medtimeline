@@ -453,30 +453,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cardtypes/customizable-timeline/customizable-timeline.component */ "./src/app/cardtypes/customizable-timeline/customizable-timeline.component.ts");
 /* harmony import */ var _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cardtypes/multigraphcard/multigraphcard.component */ "./src/app/cardtypes/multigraphcard/multigraphcard.component.ts");
 /* harmony import */ var _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./cardtypes/textboxcard/textboxcard.component */ "./src/app/cardtypes/textboxcard/textboxcard.component.ts");
-/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
-/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
-/* harmony import */ var _data_selector_menu_data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./data-selector-menu/data-selector-element/data-selector-element.component */ "./src/app/data-selector-menu/data-selector-element/data-selector-element.component.ts");
-/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
-/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
-/* harmony import */ var _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/confirm-save/confirm-save.component */ "./src/app/dialogs/confirm-save/confirm-save.component.ts");
-/* harmony import */ var _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/delete-dialog/delete-dialog.component */ "./src/app/dialogs/delete-dialog/delete-dialog.component.ts");
-/* harmony import */ var _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/help-dialog/help-dialog.component */ "./src/app/dialogs/help-dialog/help-dialog.component.ts");
-/* harmony import */ var _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/ifu-dialog/ifu-dialog.component */ "./src/app/dialogs/ifu-dialog/ifu-dialog.component.ts");
-/* harmony import */ var _fhir_server_fhir_http_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./fhir-server/fhir-http.service */ "./src/app/fhir-server/fhir-http.service.ts");
-/* harmony import */ var _fhir_server_fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./fhir-server/fhir-launch/fhir-launch.component */ "./src/app/fhir-server/fhir-launch/fhir-launch.component.ts");
-/* harmony import */ var _fhir_server_fhir_service__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./fhir-server/fhir.service */ "./src/app/fhir-server/fhir.service.ts");
-/* harmony import */ var _fhir_server_mock_fhir_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./fhir-server/mock-fhir.service */ "./src/app/fhir-server/mock-fhir.service.ts");
-/* harmony import */ var _fhir_server_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./fhir-server/smart-on-fhir-client */ "./src/app/fhir-server/smart-on-fhir-client.ts");
-/* harmony import */ var _graphs_graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./graphs/graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphs/graphtypes/customizable-graph/customizable-graph.component.ts");
-/* harmony import */ var _graphs_graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./graphs/graphtypes/diagnostic-graph/diagnostic-graph.component */ "./src/app/graphs/graphtypes/diagnostic-graph/diagnostic-graph.component.ts");
-/* harmony import */ var _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./graphs/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphs/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
-/* harmony import */ var _graphs_graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./graphs/graphtypes/linegraph/linegraph.component */ "./src/app/graphs/graphtypes/linegraph/linegraph.component.ts");
-/* harmony import */ var _graphs_graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./graphs/graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphs/graphtypes/microbio-graph/microbio-graph.component.ts");
-/* harmony import */ var _graphs_graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./graphs/graphtypes/scatterplot/scatterplot.component */ "./src/app/graphs/graphtypes/scatterplot/scatterplot.component.ts");
-/* harmony import */ var _graphs_graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./graphs/graphtypes/stepgraph/stepgraph.component */ "./src/app/graphs/graphtypes/stepgraph/stepgraph.component.ts");
-/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
-/* harmony import */ var _time_navigation_timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./time-navigation/timeline-controller/timeline-controller.component */ "./src/app/time-navigation/timeline-controller/timeline-controller.component.ts");
-/* harmony import */ var _time_navigation_timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./time-navigation/timeline-toolbar/timeline-toolbar.component */ "./src/app/time-navigation/timeline-toolbar/timeline-toolbar.component.ts");
+/* harmony import */ var _conceptmappings_concept_file_configuration__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./conceptmappings/concept-file-configuration */ "./src/app/conceptmappings/concept-file-configuration.ts");
+/* harmony import */ var _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./conceptmappings/resource-code-creator */ "./src/app/conceptmappings/resource-code-creator.ts");
+/* harmony import */ var _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./conceptmappings/resource-code-manager */ "./src/app/conceptmappings/resource-code-manager.ts");
+/* harmony import */ var _data_selector_menu_data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./data-selector-menu/data-selector-element/data-selector-element.component */ "./src/app/data-selector-menu/data-selector-element/data-selector-element.component.ts");
+/* harmony import */ var _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./data-selector-menu/data-selector-menu.component */ "./src/app/data-selector-menu/data-selector-menu.component.ts");
+/* harmony import */ var _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./debugger/debugger.component */ "./src/app/debugger/debugger.component.ts");
+/* harmony import */ var _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/confirm-save/confirm-save.component */ "./src/app/dialogs/confirm-save/confirm-save.component.ts");
+/* harmony import */ var _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/delete-dialog/delete-dialog.component */ "./src/app/dialogs/delete-dialog/delete-dialog.component.ts");
+/* harmony import */ var _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/help-dialog/help-dialog.component */ "./src/app/dialogs/help-dialog/help-dialog.component.ts");
+/* harmony import */ var _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/ifu-dialog/ifu-dialog.component */ "./src/app/dialogs/ifu-dialog/ifu-dialog.component.ts");
+/* harmony import */ var _fhir_server_fhir_http_service__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./fhir-server/fhir-http.service */ "./src/app/fhir-server/fhir-http.service.ts");
+/* harmony import */ var _fhir_server_fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./fhir-server/fhir-launch/fhir-launch.component */ "./src/app/fhir-server/fhir-launch/fhir-launch.component.ts");
+/* harmony import */ var _fhir_server_fhir_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./fhir-server/fhir.service */ "./src/app/fhir-server/fhir.service.ts");
+/* harmony import */ var _fhir_server_mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./fhir-server/mock-fhir.service */ "./src/app/fhir-server/mock-fhir.service.ts");
+/* harmony import */ var _fhir_server_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./fhir-server/smart-on-fhir-client */ "./src/app/fhir-server/smart-on-fhir-client.ts");
+/* harmony import */ var _graphs_graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./graphs/graphtypes/customizable-graph/customizable-graph.component */ "./src/app/graphs/graphtypes/customizable-graph/customizable-graph.component.ts");
+/* harmony import */ var _graphs_graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./graphs/graphtypes/diagnostic-graph/diagnostic-graph.component */ "./src/app/graphs/graphtypes/diagnostic-graph/diagnostic-graph.component.ts");
+/* harmony import */ var _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./graphs/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component */ "./src/app/graphs/graphtypes/diagnostic-graph/diagnostic-graph.dialog.component.ts");
+/* harmony import */ var _graphs_graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./graphs/graphtypes/linegraph/linegraph.component */ "./src/app/graphs/graphtypes/linegraph/linegraph.component.ts");
+/* harmony import */ var _graphs_graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./graphs/graphtypes/microbio-graph/microbio-graph.component */ "./src/app/graphs/graphtypes/microbio-graph/microbio-graph.component.ts");
+/* harmony import */ var _graphs_graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./graphs/graphtypes/scatterplot/scatterplot.component */ "./src/app/graphs/graphtypes/scatterplot/scatterplot.component.ts");
+/* harmony import */ var _graphs_graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./graphs/graphtypes/stepgraph/stepgraph.component */ "./src/app/graphs/graphtypes/stepgraph/stepgraph.component.ts");
+/* harmony import */ var _setup_setup_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./setup/setup.component */ "./src/app/setup/setup.component.ts");
+/* harmony import */ var _time_navigation_timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./time-navigation/timeline-controller/timeline-controller.component */ "./src/app/time-navigation/timeline-controller/timeline-controller.component.ts");
+/* harmony import */ var _time_navigation_timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./time-navigation/timeline-toolbar/timeline-toolbar.component */ "./src/app/time-navigation/timeline-toolbar/timeline-toolbar.component.ts");
 // Copyright 2018 Verily Life Sciences Inc.
 //
 // Use of this source code is governed by a BSD-style
@@ -538,6 +539,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -545,30 +547,30 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"],
-                _fhir_server_fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_35__["FhirLaunchComponent"],
+                _fhir_server_fhir_launch_fhir_launch_component__WEBPACK_IMPORTED_MODULE_36__["FhirLaunchComponent"],
                 _cardcontainer_cardcontainer_component__WEBPACK_IMPORTED_MODULE_19__["CardcontainerComponent"],
                 _cardtypes_textboxcard_textboxcard_component__WEBPACK_IMPORTED_MODULE_24__["TextboxcardComponent"],
-                _graphs_graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_42__["LineGraphComponent"],
-                _graphs_graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_44__["ScatterplotComponent"],
-                _graphs_graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_45__["StepGraphComponent"],
+                _graphs_graphtypes_linegraph_linegraph_component__WEBPACK_IMPORTED_MODULE_43__["LineGraphComponent"],
+                _graphs_graphtypes_scatterplot_scatterplot_component__WEBPACK_IMPORTED_MODULE_45__["ScatterplotComponent"],
+                _graphs_graphtypes_stepgraph_stepgraph_component__WEBPACK_IMPORTED_MODULE_46__["StepGraphComponent"],
                 _cardtypes_multigraphcard_multigraphcard_component__WEBPACK_IMPORTED_MODULE_23__["MultiGraphCardComponent"],
-                _time_navigation_timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_47__["TimelineControllerComponent"],
+                _time_navigation_timeline_controller_timeline_controller_component__WEBPACK_IMPORTED_MODULE_48__["TimelineControllerComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_component__WEBPACK_IMPORTED_MODULE_22__["CustomizableTimelineComponent"],
-                _graphs_graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_39__["CustomizableGraphComponent"],
+                _graphs_graphtypes_customizable_graph_customizable_graph_component__WEBPACK_IMPORTED_MODULE_40__["CustomizableGraphComponent"],
                 _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"],
-                _graphs_graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_43__["MicrobioGraphComponent"],
-                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_40__["DiagnosticGraphComponent"],
-                _time_navigation_timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_48__["TimelineToolbarComponent"],
-                _data_selector_menu_data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_27__["DataSelectorElementComponent"],
-                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorMenuComponent"],
-                _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_32__["HelpDialogComponent"],
+                _graphs_graphtypes_microbio_graph_microbio_graph_component__WEBPACK_IMPORTED_MODULE_44__["MicrobioGraphComponent"],
+                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_component__WEBPACK_IMPORTED_MODULE_41__["DiagnosticGraphComponent"],
+                _time_navigation_timeline_toolbar_timeline_toolbar_component__WEBPACK_IMPORTED_MODULE_49__["TimelineToolbarComponent"],
+                _data_selector_menu_data_selector_element_data_selector_element_component__WEBPACK_IMPORTED_MODULE_28__["DataSelectorElementComponent"],
+                _data_selector_menu_data_selector_menu_component__WEBPACK_IMPORTED_MODULE_29__["DataSelectorMenuComponent"],
+                _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_33__["HelpDialogComponent"],
                 _cardtypes_card_card_component__WEBPACK_IMPORTED_MODULE_20__["CardComponent"],
-                _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__["DeleteDialogComponent"],
-                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_29__["DebuggerComponent"],
-                _setup_setup_component__WEBPACK_IMPORTED_MODULE_46__["SetupComponent"],
-                _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmSaveComponent"],
-                _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_33__["IfuDialogComponent"],
-                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_41__["DiagnosticGraphDialogComponent"],
+                _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_32__["DeleteDialogComponent"],
+                _debugger_debugger_component__WEBPACK_IMPORTED_MODULE_30__["DebuggerComponent"],
+                _setup_setup_component__WEBPACK_IMPORTED_MODULE_47__["SetupComponent"],
+                _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_31__["ConfirmSaveComponent"],
+                _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_34__["IfuDialogComponent"],
+                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_42__["DiagnosticGraphDialogComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
@@ -605,23 +607,24 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatExpansionModule"],
             ],
             providers: [
-                _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_25__["ResourceCodeCreator"],
-                _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_26__["ResourceCodeManager"],
+                _conceptmappings_resource_code_creator__WEBPACK_IMPORTED_MODULE_26__["ResourceCodeCreator"], _conceptmappings_resource_code_manager__WEBPACK_IMPORTED_MODULE_27__["ResourceCodeManager"],
                 // This sets up a provider for the smart on fhir client defined by
                 // assets/fhir-client.min.js (defined as symbol `FHIR`) so that it can be
                 // injected into the service that uses it to allow for easier testing.
-                { provide: _fhir_server_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_38__["SMART_ON_FHIR_CLIENT"], useValue: FHIR },
-                {
-                    provide: _fhir_server_fhir_service__WEBPACK_IMPORTED_MODULE_36__["FhirService"],
-                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _fhir_server_mock_fhir_service__WEBPACK_IMPORTED_MODULE_37__["MockFhirService"] : _fhir_server_fhir_http_service__WEBPACK_IMPORTED_MODULE_34__["FhirHttpService"]
+                { provide: _fhir_server_smart_on_fhir_client__WEBPACK_IMPORTED_MODULE_39__["SMART_ON_FHIR_CLIENT"], useValue: FHIR }, {
+                    provide: _fhir_server_fhir_service__WEBPACK_IMPORTED_MODULE_37__["FhirService"],
+                    useClass: _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].useMockServer ? _fhir_server_mock_fhir_service__WEBPACK_IMPORTED_MODULE_38__["MockFhirService"] : _fhir_server_fhir_http_service__WEBPACK_IMPORTED_MODULE_35__["FhirHttpService"]
                 },
-                { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] },
+                { provide: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS_TOKEN"], useValue: src_constants__WEBPACK_IMPORTED_MODULE_15__["UI_CONSTANTS"] }, {
+                    provide: _conceptmappings_concept_file_configuration__WEBPACK_IMPORTED_MODULE_25__["ConceptFileConfiguration"],
+                    useValue: new _conceptmappings_concept_file_configuration__WEBPACK_IMPORTED_MODULE_25__["ConceptFileConfiguration"](_environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].conceptsFolder, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].vitalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].vitalConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].labConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].labGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].radiologyConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].radiologyGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antibioticConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antibioticGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antiviralConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antiviralGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antifungalConceptsFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].antifungalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].microbioGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].microbioConceptsFile)
+                }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
             entryComponents: [
-                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_32__["HelpDialogComponent"],
-                _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_31__["DeleteDialogComponent"], _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmSaveComponent"], _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_33__["IfuDialogComponent"],
-                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_41__["DiagnosticGraphDialogComponent"]
+                _cardtypes_customizable_timeline_customizable_timeline_dialog_customizable_timeline_dialog_component__WEBPACK_IMPORTED_MODULE_21__["CustomizableTimelineDialogComponent"], _dialogs_help_dialog_help_dialog_component__WEBPACK_IMPORTED_MODULE_33__["HelpDialogComponent"],
+                _dialogs_delete_dialog_delete_dialog_component__WEBPACK_IMPORTED_MODULE_32__["DeleteDialogComponent"], _dialogs_confirm_save_confirm_save_component__WEBPACK_IMPORTED_MODULE_31__["ConfirmSaveComponent"], _dialogs_ifu_dialog_ifu_dialog_component__WEBPACK_IMPORTED_MODULE_34__["IfuDialogComponent"],
+                _graphs_graphtypes_diagnostic_graph_diagnostic_graph_dialog_component__WEBPACK_IMPORTED_MODULE_42__["DiagnosticGraphDialogComponent"]
             ]
         })
     ], AppModule);
@@ -639,7 +642,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  padding: 15px;\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0VBQ3hDLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLGFBQWE7RUFDYixXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixzQkFBc0IsRUFDTSxhQUFhO0VBQ3pDLGdEQUFnRDtFQUNoRCwyQkFBMkIsRUFBRSxlQUFlO0VBQzVDLHlCQUF5QixFQUFFLFdBQVc7S0FDbkMsc0JBQXNCLEVBQUUsWUFBWTtNQUNuQyxxQkFBcUIsRUFBRSwyQkFBMkI7VUFDOUMsaUJBQWlCLEVBQUUscUJBQXFCO0FBQ2xEOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG9CQUFvQjtFQUNwQixZQUFZO0VBQ1osc0JBQXNCLEVBQ00sYUFBYTtBQUMzQzs7QUFFQTtFQUNFLFlBQVk7RUFDWixnQkFBZ0IsRUFBRSxhQUFhO0FBQ2pDOztBQUVBO0VBQ0Usb0JBQW9CLEVBQUUsYUFBYTtBQUNyQzs7QUFFQTtHQUNHLGdDQUFnQztFQUNqQyw4REFBOEQ7RUFDOUQsWUFBWTtBQUNkOztBQUVBO0VBQ0UsZ0VBQWdFO0VBQ2hFLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLG9CQUFvQixHQUFHLGFBQWE7QUFDdEM7O0FBRUE7RUFDRSxtQkFBbUI7RUFFbkIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckM7O0FBRUE7RUFDRSxtQkFBbUI7RUFFbkIsYUFBYTtFQUNiLG9CQUFvQixFQUFFLGFBQWE7QUFDckMiLCJmaWxlIjoic3JjL2FwcC9jYXJkY29udGFpbmVyL2NhcmRjb250YWluZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkQ29udGFpbmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIwMjAyMDsgLyogR1JFWV85MDAgKi9cbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG4gIHBhZGRpbmc6IDE1cHg7XG4gIHdpZHRoOiAxMDAlO1xuICBtaW4taGVpZ2h0OiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xuICAvKiBEaXNhYmxlIHNlbGVjdGluZy9oaWdobGlnaHRpbmcgb24gdGhlIHBhZ2UuICovXG4gIC13ZWJraXQtdG91Y2gtY2FsbG91dDogbm9uZTsgLyogaU9TIFNhZmFyaSAqL1xuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOyAvKiBTYWZhcmkgKi9cbiAgICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTsgLyogRmlyZWZveCAqL1xuICAgICAgLW1zLXVzZXItc2VsZWN0OiBub25lOyAvKiBJbnRlcm5ldCBFeHBsb3Jlci9FZGdlICovXG4gICAgICAgICAgdXNlci1zZWxlY3Q6IG5vbmU7IC8qIENocm9tZSBhbmQgT3BlcmEgKi9cbn1cblxuLmRyYWdnYWJsZSB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94O1xuICBoZWlnaHQ6IDEwMCU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogY29sdW1uOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uZmxleFNwYWNlciB7XG4gIGZsZXg6IDEgMSAwJTtcbiAgLW1zLWZsZXg6IDEgMSAwJTsgLyogRm9yIElFMTAgKi9cbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbGJhciwgLm1hdC10b29sYmFyIGgxLCAubWF0LXRvb2xiYXIgaDIsIC5tYXQtdG9vbGJhciBoMywgLm1hdC10b29sYmFyIGg0LCAubWF0LXRvb2xiYXIgaDUsIC5tYXQtdG9vbGJhciBoNiwgLm1hdC10b29sYmFyLXJvdywgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbn1cblxuLm1hdC10b29sYmFyIHtcbiAgIC8qIERlZXAgUHVycGxlIDgwMCB0byBQaW5rIDkwMCAqL1xuICBiYWNrZ3JvdW5kLWltYWdlOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICM0NTI3QTAgLCAjODcwRDRFKTtcbiAgY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgLmd1LXVuc2VsZWN0YWJsZSBhcHAtZGF0YS1zZWxlY3Rvci1tZW51IHtcbiAgLyogSGlkZSB0aGUgZGF0YSBzZWxlY3RvciBtZW51cyB3aGlsZSBhIGNhcmQgaXMgYmVpbmcgZHJhZ2dlZC4gKi9cbiAgb3BhY2l0eTogMCAhaW1wb3J0YW50O1xufVxuXG4ubWFrZUd1dHRlcnMge1xuICBwYWRkaW5nLXJpZ2h0OiA1MHB4O1xuICBwYWRkaW5nLWxlZnQ6IDUwcHg7XG59XG5cbjo6bmctZGVlcCAubWF0LXRvb2xiYXItc2luZ2xlLXJvdyB7XG4gIHdoaXRlLXNwYWNlOiB1bnNldCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLnRpbWVsaW5lVG9vbGJhck1haW4ge1xuICBmbG9hdDogcmlnaHQ7XG4gIG1hcmdpbi1yaWdodDogMTVweDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7ICAvKiBGb3IgSUUxMCAqL1xufVxuXG46Om5nLWRlZXAgYXBwLWNhcmQge1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdztcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG59XG5cbjo6bmctZGVlcCBhcHAtZGF0YS1zZWxlY3Rvci1tZW51IHtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xufVxuIl19 */"
+module.exports = ".cardContainer {\n  background-color: #202020; /* GREY_900 */\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  width: 100%;\n  min-height: 100%;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n  /* Disable selecting/highlighting on the page. */\n  -webkit-touch-callout: none; /* iOS Safari */\n  -webkit-user-select: none; /* Safari */\n     -moz-user-select: none; /* Firefox */\n      -ms-user-select: none; /* Internet Explorer/Edge */\n          user-select: none; /* Chrome and Opera */\n}\n\n.draggable {\n  display: flex;\n  display: -ms-flexbox;\n  height: 100%;\n  flex-direction: column; /* For IE10 */\n}\n\n.flexSpacer {\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n::ng-deep .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6, .mat-toolbar-row, .mat-toolbar-single-row {\n  display: -ms-flexbox; /* For IE10 */\n}\n\n.mat-toolbar {\n   /* Deep Purple 800 to Pink 900 */\n  background-image: linear-gradient(to right, #4527A0 , #870D4E);\n  color: white;\n}\n\n::ng-deep .gu-unselectable app-data-selector-menu {\n  /* Hide the data selector menus while a card is being dragged. */\n  opacity: 0 !important;\n}\n\n.makeGutters {\n  padding-right: 50px;\n  padding-left: 50px;\n}\n\n::ng-deep .mat-toolbar-single-row {\n  white-space: unset !important;\n}\n\n::ng-deep .timelineToolbarMain {\n  float: right;\n  margin-right: 15px;\n  display: -ms-flexbox;  /* For IE10 */\n}\n\n::ng-deep app-card {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n::ng-deep app-data-selector-menu {\n  flex-direction: row;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZGNvbnRhaW5lci9jYXJkY29udGFpbmVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0VBQ3hDLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLHNCQUFzQixFQUNNLGFBQWE7RUFDekMsZ0RBQWdEO0VBQ2hELDJCQUEyQixFQUFFLGVBQWU7RUFDNUMseUJBQXlCLEVBQUUsV0FBVztLQUNuQyxzQkFBc0IsRUFBRSxZQUFZO01BQ25DLHFCQUFxQixFQUFFLDJCQUEyQjtVQUM5QyxpQkFBaUIsRUFBRSxxQkFBcUI7QUFDbEQ7O0FBRUE7RUFDRSxhQUFhO0VBQ2Isb0JBQW9CO0VBQ3BCLFlBQVk7RUFDWixzQkFBc0IsRUFDTSxhQUFhO0FBQzNDOztBQUVBO0VBQ0UsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxvQkFBb0IsRUFBRSxhQUFhO0FBQ3JDOztBQUVBO0dBQ0csZ0NBQWdDO0VBQ2pDLDhEQUE4RDtFQUM5RCxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxnRUFBZ0U7RUFDaEUscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsb0JBQW9CLEdBQUcsYUFBYTtBQUN0Qzs7QUFFQTtFQUNFLG1CQUFtQjtFQUVuQixhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtBQUNyQzs7QUFFQTtFQUNFLG1CQUFtQjtFQUVuQixhQUFhO0VBQ2Isb0JBQW9CLEVBQUUsYUFBYTtBQUNyQyIsImZpbGUiOiJzcmMvYXBwL2NhcmRjb250YWluZXIvY2FyZGNvbnRhaW5lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhcmRDb250YWluZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjAyMDIwOyAvKiBHUkVZXzkwMCAqL1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgd2lkdGg6IDEwMCU7XG4gIG1pbi1oZWlnaHQ6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IC8qIEZvciBJRTEwICovXG4gIC8qIERpc2FibGUgc2VsZWN0aW5nL2hpZ2hsaWdodGluZyBvbiB0aGUgcGFnZS4gKi9cbiAgLXdlYmtpdC10b3VjaC1jYWxsb3V0OiBub25lOyAvKiBpT1MgU2FmYXJpICovXG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIFNhZmFyaSAqL1xuICAgICAtbW96LXVzZXItc2VsZWN0OiBub25lOyAvKiBGaXJlZm94ICovXG4gICAgICAtbXMtdXNlci1zZWxlY3Q6IG5vbmU7IC8qIEludGVybmV0IEV4cGxvcmVyL0VkZ2UgKi9cbiAgICAgICAgICB1c2VyLXNlbGVjdDogbm9uZTsgLyogQ2hyb21lIGFuZCBPcGVyYSAqL1xufVxuXG4uZHJhZ2dhYmxlIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG4gIGhlaWdodDogMTAwJTtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IC8qIEZvciBJRTEwICovXG59XG5cbi5mbGV4U3BhY2VyIHtcbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLCAubWF0LXRvb2xiYXIgaDEsIC5tYXQtdG9vbGJhciBoMiwgLm1hdC10b29sYmFyIGgzLCAubWF0LXRvb2xiYXIgaDQsIC5tYXQtdG9vbGJhciBoNSwgLm1hdC10b29sYmFyIGg2LCAubWF0LXRvb2xiYXItcm93LCAubWF0LXRvb2xiYXItc2luZ2xlLXJvdyB7XG4gIGRpc3BsYXk6IC1tcy1mbGV4Ym94OyAvKiBGb3IgSUUxMCAqL1xufVxuXG4ubWF0LXRvb2xiYXIge1xuICAgLyogRGVlcCBQdXJwbGUgODAwIHRvIFBpbmsgOTAwICovXG4gIGJhY2tncm91bmQtaW1hZ2U6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgIzQ1MjdBMCAsICM4NzBENEUpO1xuICBjb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCAuZ3UtdW5zZWxlY3RhYmxlIGFwcC1kYXRhLXNlbGVjdG9yLW1lbnUge1xuICAvKiBIaWRlIHRoZSBkYXRhIHNlbGVjdG9yIG1lbnVzIHdoaWxlIGEgY2FyZCBpcyBiZWluZyBkcmFnZ2VkLiAqL1xuICBvcGFjaXR5OiAwICFpbXBvcnRhbnQ7XG59XG5cbi5tYWtlR3V0dGVycyB7XG4gIHBhZGRpbmctcmlnaHQ6IDUwcHg7XG4gIHBhZGRpbmctbGVmdDogNTBweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbGJhci1zaW5nbGUtcm93IHtcbiAgd2hpdGUtc3BhY2U6IHVuc2V0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAudGltZWxpbmVUb29sYmFyTWFpbiB7XG4gIGZsb2F0OiByaWdodDtcbiAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgIC8qIEZvciBJRTEwICovXG59XG5cbjo6bmctZGVlcCBhcHAtY2FyZCB7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIC1tcy1mbGV4LWRpcmVjdGlvbjogcm93O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbn1cblxuOjpuZy1kZWVwIGFwcC1kYXRhLXNlbGVjdG9yLW1lbnUge1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAtbXMtZmxleC1kaXJlY3Rpb246IHJvdztcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7IC8qIEZvciBJRTEwICovXG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1898,6 +1901,58 @@ var ANNOTATION_CONFIGURATION = [
 
 /***/ }),
 
+/***/ "./src/app/conceptmappings/concept-file-configuration.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/conceptmappings/concept-file-configuration.ts ***!
+  \***************************************************************/
+/*! exports provided: ConceptFileConfiguration */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConceptFileConfiguration", function() { return ConceptFileConfiguration; });
+/* harmony import */ var _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resource-codes/display-grouping */ "./src/app/conceptmappings/resource-codes/display-grouping.ts");
+
+/**
+ * Holds information for where the JSON files defining groupings and individual
+ * clinical concepts are.
+ */
+var ConceptFileConfiguration = /** @class */ (function () {
+    function ConceptFileConfiguration(conceptsFolder, vitalGroupFile, vitalConceptsFile, labConceptsFile, labGroupFile, radiologyConceptsFile, radiologyGroupFile, antibioticConceptsFile, antibioticGroupFile, antiviralConceptsFile, antiviralGroupFile, antifungalConceptsFile, antifungalGroupFile, microbioGroupFile, microbioConceptsFile) {
+        if (conceptsFolder === void 0) { conceptsFolder = 'clinical_concept_configuration'; }
+        if (vitalGroupFile === void 0) { vitalGroupFile = 'vital_sign_groups.json'; }
+        if (vitalConceptsFile === void 0) { vitalConceptsFile = 'vital_signs.json'; }
+        if (labConceptsFile === void 0) { labConceptsFile = 'lab_results.json'; }
+        if (labGroupFile === void 0) { labGroupFile = 'lab_groups.json'; }
+        if (radiologyConceptsFile === void 0) { radiologyConceptsFile = 'radiology_results.json'; }
+        if (radiologyGroupFile === void 0) { radiologyGroupFile = 'radiology_groups.json'; }
+        if (antibioticConceptsFile === void 0) { antibioticConceptsFile = 'medications_antibiotics.json'; }
+        if (antibioticGroupFile === void 0) { antibioticGroupFile = 'medication_groups_antibiotics.json'; }
+        if (antiviralConceptsFile === void 0) { antiviralConceptsFile = 'medications_antivirals.json'; }
+        if (antiviralGroupFile === void 0) { antiviralGroupFile = 'medication_groups_antivirals.json'; }
+        if (antifungalConceptsFile === void 0) { antifungalConceptsFile = 'medications_antifungals.json'; }
+        if (antifungalGroupFile === void 0) { antifungalGroupFile = 'medication_groups_antifungals.json'; }
+        if (microbioGroupFile === void 0) { microbioGroupFile = 'microbio_groups.json'; }
+        if (microbioConceptsFile === void 0) { microbioConceptsFile = 'microbio_results.json'; }
+        this.conceptsFolder = conceptsFolder;
+        this.fileMap = new Map([
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["vitalSign"], [vitalGroupFile, vitalConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["labResult"], [labGroupFile, labConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["radiology"], [radiologyGroupFile, radiologyConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["antibiotics"], [antibioticGroupFile, antibioticConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["antivirals"], [antiviralGroupFile, antiviralConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["antifungals"], [antifungalGroupFile, antifungalConceptsFile]],
+            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_0__["microbio"], [microbioGroupFile, microbioConceptsFile]]
+        ]);
+        this.assetPath = './assets/' + this.conceptsFolder;
+    }
+    return ConceptFileConfiguration;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/conceptmappings/resource-code-creator.ts":
 /*!**********************************************************!*\
   !*** ./src/app/conceptmappings/resource-code-creator.ts ***!
@@ -1911,8 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceCodeCreator", function() { return ResourceCodeCreator; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../graphs/graphtypes/graph/graph.component */ "./src/app/graphs/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../graphs/graphtypes/graph/graph.component */ "./src/app/graphs/graphtypes/graph/graph.component.ts");
+/* harmony import */ var _concept_file_configuration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./concept-file-configuration */ "./src/app/conceptmappings/concept-file-configuration.ts");
 /* harmony import */ var _resource_codes_bch_microbio_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resource-codes/bch-microbio-code */ "./src/app/conceptmappings/resource-codes/bch-microbio-code.ts");
 /* harmony import */ var _resource_codes_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./resource-codes/diagnostic-report-code */ "./src/app/conceptmappings/resource-codes/diagnostic-report-code.ts");
 /* harmony import */ var _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./resource-codes/display-grouping */ "./src/app/conceptmappings/resource-codes/display-grouping.ts");
@@ -1944,11 +1999,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * Holds basic configuration information for clinical concept groups.
  */
 var GroupConfiguration = /** @class */ (function () {
-    function GroupConfiguration(groupName, chartType, showOnSameAxis, displayGrouping) {
+    function GroupConfiguration(groupName, chartType, showOnSameAxis, displayGrouping, parentGroupName) {
         this.groupName = groupName;
         this.chartType = chartType;
         this.showOnSameAxis = showOnSameAxis;
         this.displayGrouping = displayGrouping;
+        this.parentGroupName = parentGroupName;
     }
     return GroupConfiguration;
 }());
@@ -1959,50 +2015,44 @@ var GroupConfiguration = /** @class */ (function () {
  * corresponding groups.
  */
 var ResourceCodeCreator = /** @class */ (function () {
-    function ResourceCodeCreator(http) {
+    function ResourceCodeCreator(http, conceptFileConfiguration) {
         var _this = this;
         this.http = http;
-        /**
-         * Map from DisplayGrouping to a tuple of file names that describe the groups
-         * and concepts that belong to that grouping.
-         * First file is the Group json file. Second file is the Concept json file.
-         * These files should be located within the directory of the assetPath.
-         */
-        this.fileMap = new Map([
-            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["vitalSign"], [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].vitalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].vitalConceptsFile]],
-            [_resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["labResult"], [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].labGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].labConceptsFile]],
-            [
-                _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["radiology"],
-                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].radiologyGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].radiologyConceptsFile]
-            ],
-            [
-                _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["antibiotics"],
-                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antibioticGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antibioticConceptsFile]
-            ],
-            [
-                _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["antivirals"],
-                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antiviralGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antiviralConceptsFile]
-            ],
-            [
-                _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["antifungals"],
-                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antifungalGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].antifungalConceptsFile]
-            ],
-            [
-                _resource_codes_display_grouping__WEBPACK_IMPORTED_MODULE_6__["microbio"],
-                [_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].microbioGroupFile, _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].microbioConceptsFile]
-            ]
-        ]);
+        this.conceptFileConfiguration = conceptFileConfiguration;
+        this.loadJsonForAllGroups = Promise.all(Array.from(this.conceptFileConfiguration.fileMap).map(function (entry) {
+            var displayGroup = entry[0];
+            var groupFile = entry[1][0];
+            return _this.http
+                .get(_this.conceptFileConfiguration.assetPath + '/' + groupFile)
+                .toPromise()
+                .then(function (groups) {
+                // Without explicit typing here, the TS compiler complains.
+                var returned = [displayGroup, groups];
+                return returned;
+            });
+        }));
+        this.loadJsonForAllConcepts = Promise.all(Array.from(this.conceptFileConfiguration.fileMap).map(function (entry) {
+            var displayGroup = entry[0];
+            var conceptsFile = entry[1][1];
+            return _this.http
+                .get(_this.conceptFileConfiguration.assetPath + '/' +
+                conceptsFile)
+                .toPromise()
+                .then(function (clinicalConcepts) {
+                // Without explicit typing here, the TS compiler complains.
+                var returned = [displayGroup, clinicalConcepts];
+                return returned;
+            });
+        }));
         /**
          * Loads in configuration for all the display groupings, including the
          * grouping name, the chart type for the grouping, whether it's displayed
          * by default
          */
-        this.loadAllGroups = Promise
-            .all(Array.from(this.fileMap).map(function (entry) {
-            var displayGroup = entry[0];
-            var groupFile = entry[1][0];
-            return _this.loadDisplayGroupsFromFile(ResourceCodeCreator_1.assetPath + '/' + groupFile, displayGroup);
-        }))
+        this.loadAllGroups = this.loadJsonForAllGroups
+            .then(function (groupsList) {
+            return groupsList.map(function (group) { return _this.createGroupConfigurations(group[0], group[1]); });
+        })
             // Return one flattened map for all the display groups regardless of
             // their file source.
             .then(function (allMaps) {
@@ -2010,12 +2060,10 @@ var ResourceCodeCreator = /** @class */ (function () {
                 .reduce(function (acc, val) { return acc.concat(val); }));
         });
         this.loadAllConcepts = this.loadAllGroups.then(function (groupMap) {
-            return Promise
-                .all(Array.from(_this.fileMap).map(function (entry) {
-                var displayGroup = entry[0];
-                var conceptsFile = entry[1][1];
-                return _this.createConceptsFromFile(ResourceCodeCreator_1.assetPath + '/' + conceptsFile, displayGroup);
-            }))
+            return _this.loadJsonForAllConcepts
+                .then(function (conceptsList) {
+                return conceptsList.map(function (concept) { return _this.createConcepts(concept[0], concept[1]); });
+            })
                 .then(function (conceptsFromFile) {
                 // Reduce into one flattened map, allowing for mixing across
                 // concept groups.
@@ -2044,7 +2092,7 @@ var ResourceCodeCreator = /** @class */ (function () {
                     // group and that the group should be configured according
                     // to its attributes.
                     if (!groupConfiguration) {
-                        groupConfiguration = new GroupConfiguration(groupName, _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].LINE, true, concepts[0].displayGrouping);
+                        groupConfiguration = new GroupConfiguration(groupName, _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].LINE, true, concepts[0].displayGrouping);
                     }
                     groupConfigurationToResourceCodes.set(groupConfiguration, concepts);
                 });
@@ -2084,61 +2132,56 @@ var ResourceCodeCreator = /** @class */ (function () {
      * configuration. Returns a map of listed display groupings to their
      * corresponding clinical concepts.
      */
-    ResourceCodeCreator.prototype.createConceptsFromFile = function (filePath, displayGrouping) {
-        var _this = this;
+    ResourceCodeCreator.prototype.createConcepts = function (displayGrouping, json) {
         var groupToConcept = new Map();
-        return this.http.get(filePath).toPromise().then(function (clinicalConcepts) {
-            for (var _i = 0, clinicalConcepts_1 = clinicalConcepts; _i < clinicalConcepts_1.length; _i++) {
-                var concept = clinicalConcepts_1[_i];
-                var code = _this.createResourceCode(displayGrouping, concept);
-                // Concepts with innerComponentOnly=true are "components" of other
-                // concepts. (See
-                // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
-                // for more information.) In order for us to display these inner
-                // components, the Resource Code needs to be created, but we do not
-                // explicitly add them to a Resource Group.
-                if (concept.innerComponentOnly) {
-                    continue;
-                }
-                // If the concept has no higher level grouping, then use its display
-                // name as the proxy for its grouping.
-                if (!concept.groupNames) {
-                    concept.groupNames = [concept.displayName];
-                }
-                for (var _a = 0, _b = concept.groupNames; _a < _b.length; _a++) {
-                    var groupName = _b[_a];
-                    var concepts = groupToConcept.get(groupName) || [];
-                    concepts.push(code);
-                    groupToConcept.set(groupName, concepts);
-                }
+        for (var _i = 0, json_1 = json; _i < json_1.length; _i++) {
+            var concept = json_1[_i];
+            var code = this.createResourceCode(displayGrouping, concept);
+            // Concepts with innerComponentOnly=true are "components" of other
+            // concepts. (See
+            // http://hl7.org/fhir/DSTU2/observation-definitions.html#Observation.component
+            // for more information.) In order for us to display these inner
+            // components, the Resource Code needs to be created, but we do not
+            // explicitly add them to a Resource Group.
+            if (concept.innerComponentOnly) {
+                continue;
             }
-            return groupToConcept;
-        });
+            // If the concept has no higher level grouping, then use its display
+            // name as the proxy for its grouping.
+            if (!concept.groupNames) {
+                concept.groupNames = [concept.displayName];
+            }
+            for (var _a = 0, _b = concept.groupNames; _a < _b.length; _a++) {
+                var groupName = _b[_a];
+                var concepts = groupToConcept.get(groupName) || [];
+                concepts.push(code);
+                groupToConcept.set(groupName, concepts);
+            }
+        }
+        return groupToConcept;
     };
     /**
      * Reads in a JSON file for display group configurations and maps
      * display group names to simple chart configuration attributes.
      */
-    ResourceCodeCreator.prototype.loadDisplayGroupsFromFile = function (filePath, displayGrouping) {
-        return this.http.get(filePath).toPromise().then(function (groups) {
-            return groups.map(function (group) {
-                return [group.groupName,
-                    new GroupConfiguration(group.groupName, ResourceCodeCreator_1.stringToChartType[group.graphType], group.displayGroupOnSameAxis, displayGrouping)];
-            });
+    ResourceCodeCreator.prototype.createGroupConfigurations = function (displayGrouping, json) {
+        return json.map(function (group) {
+            return [group.groupName,
+                new GroupConfiguration(group.groupName, ResourceCodeCreator_1.stringToChartType[group.graphType], group.displayGroupOnSameAxis, displayGrouping, group.parentGroupName)];
         });
     };
     var ResourceCodeCreator_1;
-    ResourceCodeCreator.assetPath = './assets/' + _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].conceptsFolder;
     ResourceCodeCreator.stringToChartType = {
-        'SCATTER': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].SCATTER,
-        'STEP': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].STEP,
-        'MICROBIO': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].MICROBIO,
-        'DIAGNOSTIC': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].DIAGNOSTIC,
-        'LINE': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["ChartType"].LINE
+        'SCATTER': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].SCATTER,
+        'STEP': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].STEP,
+        'MICROBIO': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].MICROBIO,
+        'DIAGNOSTIC': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].DIAGNOSTIC,
+        'LINE': _graphs_graphtypes_graph_graph_component__WEBPACK_IMPORTED_MODULE_2__["ChartType"].LINE
     };
     ResourceCodeCreator = ResourceCodeCreator_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"],
+            _concept_file_configuration__WEBPACK_IMPORTED_MODULE_3__["ConceptFileConfiguration"]])
     ], ResourceCodeCreator);
     return ResourceCodeCreator;
 }());
@@ -2206,7 +2249,6 @@ var ResourceCodeManager = /** @class */ (function () {
         this.sanitizer = sanitizer;
     }
     ResourceCodeManager_1 = ResourceCodeManager;
-    ;
     /**
      * Determines ResourceCodeGroup type from the displayGrouping passed in.
      *
@@ -2258,23 +2300,53 @@ var ResourceCodeManager = /** @class */ (function () {
      * @param resourceGroupMap Mapping from Axis Group label to the list of
      *     ResourceCodeGroups that should be included in the axis group.
      * @param fhirService FhirService to create Axes with.
+     * @param resourceCodeCreator ResourceCodeCreator to get the group
+     *     configurations
      * @returns List of AxisGroups
      */
-    ResourceCodeManager.prototype.createAxisGroups = function (resourceGroupMap, fhirService) {
+    ResourceCodeManager.prototype.createAxisGroups = function (resourceGroupMap, fhirService, resourceCodeCreator) {
         var _this = this;
-        var axisGroups = new Array();
-        resourceGroupMap.forEach(function (resourceGroupList, groupName) {
-            // some resources are creating only for the purpose of annotations. These
-            // have an undefined chartType. We filter these resource groups out
-            // because they should not be included in AxisGroups.
-            var axes = resourceGroupList
-                .filter(function (resourceGroup) { return resourceGroup.chartType !== undefined; })
-                .map(function (resourceGroup) { return new _graphs_graphtypes_axis__WEBPACK_IMPORTED_MODULE_2__["Axis"](fhirService, _this.sanitizer, resourceGroup, resourceGroup.label); });
-            if (axes.length > 0) {
-                axisGroups.push(new _graphs_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_3__["AxisGroup"](axes, groupName));
-            }
+        return resourceCodeCreator.loadAllGroups.then(function (groupConfigurationMapping) {
+            // mapping of Axis group name to the list of axes in that group. Axes
+            // may come from different resource Groups in the case of medications so
+            // we need to keep track of the mapping and create the axis group after
+            // creating all of the axes.
+            var axisGroupMapping = new Map();
+            resourceGroupMap.forEach(function (resourceGroupList, groupName) {
+                var _a;
+                // some resources are creating only for the purpose of annotations.
+                // These have an undefined chartType. We filter these resource groups
+                // out because they should not be included in AxisGroups.
+                var axes = resourceGroupList
+                    .filter(function (resourceGroup) { return resourceGroup.chartType !== undefined; })
+                    .map(function (resourceGroup) { return new _graphs_graphtypes_axis__WEBPACK_IMPORTED_MODULE_2__["Axis"](fhirService, _this.sanitizer, resourceGroup, resourceGroup.label); });
+                if (axes.length > 0) {
+                    var axisGroupName = groupName;
+                    var groupConfig = groupConfigurationMapping.get(groupName);
+                    // if a Resource Group has a parent group (such as Medication
+                    // Administrations and Medication Monitoring), we want the Axis Group
+                    // name to be the parent group's name.
+                    if (groupConfig && groupConfig.parentGroupName) {
+                        axisGroupName = groupConfig.parentGroupName;
+                    }
+                    if (!axisGroupMapping.has(axisGroupName)) {
+                        axisGroupMapping.set(axisGroupName, new Array());
+                    }
+                    (_a = axisGroupMapping.get(axisGroupName)).push.apply(_a, axes);
+                }
+            });
+            var axisGroups = new Array();
+            axisGroupMapping.forEach(function (axisList, axisGroupName) {
+                // if the group is in the group configuration mapping, we use that
+                // display group. Otherwise we leave the display group to be inferred
+                // during AxisGroup creation.
+                var displayGroup = groupConfigurationMapping.has(axisGroupName) ?
+                    groupConfigurationMapping.get(axisGroupName).displayGrouping :
+                    undefined;
+                axisGroups.push(new _graphs_graphtypes_axis_group__WEBPACK_IMPORTED_MODULE_3__["AxisGroup"](axisList, axisGroupName, displayGroup));
+            });
+            return axisGroups;
         });
-        return axisGroups;
     };
     /**
      * Creates a mapping of group names to a list of ResourceCodeGroups.
@@ -2334,18 +2406,21 @@ var ResourceCodeManager = /** @class */ (function () {
                 this.getResourceCodeGroups(fhirService, resourceCodeCreator)
                     .then(function (resourceGroupMap) {
                     _this.annotateResourceGroups(resourceGroupMap);
-                    var axisGroups = _this.createAxisGroups(resourceGroupMap, fhirService);
-                    var mapping = new Map();
-                    for (var _i = 0, axisGroups_1 = axisGroups; _i < axisGroups_1.length; _i++) {
-                        var group = axisGroups_1[_i];
-                        if (mapping.has(group.displayGroup)) {
-                            mapping.get(group.displayGroup).push(group);
+                    return _this
+                        .createAxisGroups(resourceGroupMap, fhirService, resourceCodeCreator)
+                        .then(function (axisGroups) {
+                        var mapping = new Map();
+                        for (var _i = 0, axisGroups_1 = axisGroups; _i < axisGroups_1.length; _i++) {
+                            var group = axisGroups_1[_i];
+                            if (mapping.has(group.displayGroup)) {
+                                mapping.get(group.displayGroup).push(group);
+                            }
+                            else {
+                                mapping.set(group.displayGroup, [group]);
+                            }
                         }
-                        else {
-                            mapping.set(group.displayGroup, [group]);
-                        }
-                    }
-                    return mapping;
+                        return mapping;
+                    });
                 });
         }
         return Promise.resolve(ResourceCodeManager_1.displayGroupMapping);
@@ -2366,13 +2441,13 @@ var ResourceCodeManager = /** @class */ (function () {
 /*!*********************************************************************!*\
   !*** ./src/app/conceptmappings/resource-codes/bch-microbio-code.ts ***!
   \*********************************************************************/
-/*! exports provided: BCHMicrobioCode, BCHMicrobioCodeGroup */
+/*! exports provided: BCHMicrobioCodeGroup, BCHMicrobioCode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCode", function() { return BCHMicrobioCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCodeGroup", function() { return BCHMicrobioCodeGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BCHMicrobioCode", function() { return BCHMicrobioCode; });
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _fhir_resources_annotated_annotated_microbio_report__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../fhir-resources/annotated/annotated-microbio-report */ "./src/app/fhir-resources/annotated/annotated-microbio-report.ts");
 /* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/conceptmappings/resource-codes/resource-code-group.ts");
@@ -2395,26 +2470,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
 })();
 
 
-
-/**
- * Holds BCHMicrobioCode codes. BCH provides a custom mapping for their
- * microbiology data since retrieving it is not yet supported in the Cerner
- * FHIR API implementation.
- */
-var BCHMicrobioCode = /** @class */ (function (_super) {
-    __extends(BCHMicrobioCode, _super);
-    function BCHMicrobioCode() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    BCHMicrobioCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
-        // This is not an elegant way of implementing this function but since it's
-        // a non-standard API server we aren't going to put much effort into
-        // developing it further at this point.
-        return fhirService.microbioReportsPresentWithCodes(new BCHMicrobioCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
-    };
-    BCHMicrobioCode.CODING_STRING = 'http://cerner.com/bch_mapping/';
-    return BCHMicrobioCode;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["ResourceCode"]));
 
 /**
  * Represents one or more LOINC codes that should be displayed together. In the
@@ -2453,6 +2508,26 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
     return BCHMicrobioCodeGroup;
 }(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["AbstractResourceCodeGroup"]));
 
+/**
+ * Holds BCHMicrobioCode codes. BCH provides a custom mapping for their
+ * microbiology data since retrieving it is not yet supported in the Cerner
+ * FHIR API implementation.
+ */
+var BCHMicrobioCode = /** @class */ (function (_super) {
+    __extends(BCHMicrobioCode, _super);
+    function BCHMicrobioCode() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    BCHMicrobioCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
+        // This is not an elegant way of implementing this function but since it's
+        // a non-standard API server we aren't going to put much effort into
+        // developing it further at this point.
+        return fhirService.microbioReportsPresentWithCodes(new BCHMicrobioCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+    };
+    BCHMicrobioCode.CODING_STRING = 'http://cerner.com/bch_mapping/';
+    return BCHMicrobioCode;
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_2__["ResourceCode"]));
+
 
 
 /***/ }),
@@ -2461,13 +2536,13 @@ var BCHMicrobioCodeGroup = /** @class */ (function (_super) {
 /*!**************************************************************************!*\
   !*** ./src/app/conceptmappings/resource-codes/diagnostic-report-code.ts ***!
   \**************************************************************************/
-/*! exports provided: DiagnosticReportCode, DiagnosticReportCodeGroup */
+/*! exports provided: DiagnosticReportCodeGroup, DiagnosticReportCode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCode", function() { return DiagnosticReportCode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCodeGroup", function() { return DiagnosticReportCodeGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticReportCode", function() { return DiagnosticReportCode; });
 /* harmony import */ var src_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/constants */ "./src/constants.ts");
 /* harmony import */ var _resource_code_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resource-code-group */ "./src/app/conceptmappings/resource-codes/resource-code-group.ts");
 // Copyright 2018 Verily Life Sciences Inc.
@@ -2488,25 +2563,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
     };
 })();
 
-
-/**
- * Holds DiagnosticReport codes, which are technically LOINC codes. This is
- * not grouped with LOINC codes because Observations and DiagnosticReports
- * are inherently different in the Fhir and Cerner implementations.
- */
-var DiagnosticReportCode = /** @class */ (function (_super) {
-    __extends(DiagnosticReportCode, _super);
-    function DiagnosticReportCode() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    // CODING_STRING could also equal http://loinc.org
-    DiagnosticReportCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
-        // Currently utilizing code that is very similar to BCHMicrobioCode
-        return fhirService.diagnosticReportsPresentWithCodes(new DiagnosticReportCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
-    };
-    DiagnosticReportCode.CODING_STRING = 'http://hl7.org/fhir/dstu2/valueset-report-codes.html';
-    return DiagnosticReportCode;
-}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
 
 /**
  * Represents one or more DiagnosticReport codes that should be displayed
@@ -2537,6 +2593,25 @@ var DiagnosticReportCodeGroup = /** @class */ (function (_super) {
     };
     return DiagnosticReportCodeGroup;
 }(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["AbstractResourceCodeGroup"]));
+
+/**
+ * Holds DiagnosticReport codes, which are technically LOINC codes. This is
+ * not grouped with LOINC codes because Observations and DiagnosticReports
+ * are inherently different in the Fhir and Cerner implementations.
+ */
+var DiagnosticReportCode = /** @class */ (function (_super) {
+    __extends(DiagnosticReportCode, _super);
+    function DiagnosticReportCode() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    // CODING_STRING could also equal http://loinc.org
+    DiagnosticReportCode.prototype.dataAvailableInAppTimeScope = function (fhirService) {
+        // Currently utilizing code that is very similar to BCHMicrobioCode
+        return fhirService.diagnosticReportsPresentWithCodes(new DiagnosticReportCodeGroup(fhirService, this.label, [this], undefined, undefined), src_constants__WEBPACK_IMPORTED_MODULE_0__["APP_TIMESPAN"]);
+    };
+    DiagnosticReportCode.CODING_STRING = 'http://hl7.org/fhir/dstu2/valueset-report-codes.html';
+    return DiagnosticReportCode;
+}(_resource_code_group__WEBPACK_IMPORTED_MODULE_1__["ResourceCode"]));
 
 
 
@@ -3318,7 +3393,7 @@ var DataSelectorElementComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-14px;\n  margin-top:-14px;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1tZW51L2RhdGEtc2VsZWN0b3ItbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixhQUFhO0VBQ2Isd0JBQXdCO0VBQ3hCOzRDQUMwQztFQUMxQyxtQkFBbUI7RUFDbkIsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFtQixFQUNNLGFBQWE7RUFDdEMscUJBQXFCO0VBQ3JCLDBCQUEwQixHQUFHLDhDQUE4QztFQUMzRSwyQkFBMkI7RUFDM0Isb0JBQW9CLEdBQUcsK0NBQStDO0VBQ3RFLG1CQUFtQjtFQUNuQixzQkFBc0IsR0FBRyw0Q0FBNEM7RUFDckUsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsc0RBQXNEO0VBQ3RELDhCQUE4QjtFQUM5QixxQkFBcUI7RUFDckIsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxVQUFVO0FBQ1o7O0FBRUE7RUFDRSw0QkFBNEI7RUFDNUIsNkJBQTZCO0VBQzdCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHdCQUF3QjtFQUN4QixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSw0QkFBNEI7QUFDOUI7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCLEVBQUUsOERBQThEO0FBQ2xGOztBQUVBO0VBQ0Usc0NBQThCO0VBQTlCLG1DQUE4QjtFQUE5Qiw4QkFBOEI7RUFDOUIsNEJBQTRCO0VBQzVCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxvQ0FBb0M7QUFDdEMiLCJmaWxlIjoic3JjL2FwcC9kYXRhLXNlbGVjdG9yLW1lbnUvZGF0YS1zZWxlY3Rvci1tZW51LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYWRkQ2FyZElubGluZSB7XG4gIGNvbG9yOiByZ2IoMjQ4LCAyNDgsIDI0OCk7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgb3BhY2l0eTogMC4xNTtcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjNzO1xuICAvKiBOZWVkZWQgc28gdGhhdCB0aGVyZSdzIG5vdCBlbm91Z2ggc3BhY2UgYmV0d2VlbiB0aGUgY2FyZHMgdG8gaG9sZCB0aGUgaWNvbixcbiAganVzdCBlbm91Z2ggdG8gaG9sZCB0aGUgbGluZSBwbGFjZWhvbGRlci4qL1xuICBtYXJnaW4tYm90dG9tOi0xNHB4O1xuICBtYXJnaW4tdG9wOi0xNHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7IC8qIEZvciBJRTEwICovXG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgLW1zLWZsZXgtbGluZS1wYWNrOiBjZW50ZXI7ICAvKiBBbGlnbiBjb250ZW50OiBjZW50ZXIgY29udmVyc2lvbiBmb3IgSUUxMCAqL1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gIC1tcy1mbGV4LXBhY2s6IHN0YXJ0OyAgLyogSnVzdGlmeSBjb250ZW50OiBzdGFydCBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7ICAvKiBBbGlnbiBpdGVtczogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG5zcGFuIHtcbiAgYm9yZGVyOiAycHggZGFzaGVkIHJnYigyNDgsIDI0OCwgMjQ4KTtcbiAgLyogT25seSBvdXRsaW5lIHRoZSBib3R0b20gaW5zdGVhZCBvZiBhbGwgZm91ciBzaWRlcy4qL1xuICBib3JkZXItc3R5bGU6IG5vbmUgbm9uZSBkb3R0ZWQ7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uYWRkQ2FyZElubGluZTpob3ZlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5jb25jZXB0U2VsZWN0b3Ige1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICBwYWRkaW5nLXJpZ2h0OiAwcHggIWltcG9ydGFudDtcbiAgbWluLXdpZHRoOiAyMDBweDtcbn1cblxuLm1haW5Db25jZXB0U2VsZWN0b3Ige1xuICBib3JkZXItbGVmdC1zdHlsZTogc29saWQ7XG4gIGJvcmRlci1sZWZ0LXdpZHRoOiA1cHg7XG59XG5cbjo6bmctZGVlcCAubWF0LW1lbnUtaXRlbSAge1xuICBsaW5lLWhlaWdodDogMjBweCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtYXV0b2NvbXBsZXRlLXBhbmVsIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQge1xuICBtYXJnaW4tdG9wOiAtOHB4OyAvKiBTdHlsaW5nIGZvciBhdXRvY29tcGxldGUgbWVudSBpdGVtcyBuZWVkcyB0byBiZSBkaWZmZXJlbnQuKi9cbn1cblxuOjpuZy1kZWVwIC5tYXQtb3B0aW9uIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudCAhaW1wb3J0YW50O1xuICBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50O1xuICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDtcbn1cblxuLmNvbmNlcHRGb3JtIHtcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuOjpuZy1kZWVwIC5hdXRvTWVudS5tYXQtbWVudS1wYW5lbCB7XG4gIG1pbi13aWR0aDogMzAwcHg7XG59XG5cbi5jb25jZXB0Rm9ybUZpZWxkIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmJ1dHRvbiB7XG4gIGZvbnQtZmFtaWx5OiAnV29yayBTYW5zJywgc2Fucy1zZXJpZjtcbn0iXX0= */"
+module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inline-block;\n  opacity: 0.15;\n  transition: opacity 0.3s;\n  /* Needed so that there's not enough space between the cards to hold the icon,\n  just enough to hold the line placeholder.*/\n  margin-bottom:-17px;\n  margin-top:-17px;\n  display: flex;\n  display: -ms-flexbox; /* For IE10 */\n  flex-direction: row; /* For IE10 */\n  align-content: center;\n  -ms-flex-line-pack: center;  /* Align content: center conversion for IE10 */\n  justify-content: flex-start;\n  -ms-flex-pack: start;  /* Justify content: start conversion for IE10 */\n  align-items: center;\n  -ms-flex-align: center;  /* Align items: center conversion for IE10 */\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\nspan {\n  border: 2px dashed rgb(248, 248, 248);\n  /* Only outline the bottom instead of all four sides.*/\n  border-style: none none dotted;\n  display: inline-block;\n  flex: 1 1 0%;\n  -ms-flex: 1 1 0%; /* For IE10 */\n}\n\n.addCardInline:hover {\n  opacity: 1;\n}\n\n.conceptSelector {\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n  min-width: 200px;\n}\n\n.mainConceptSelector {\n  border-left-style: solid;\n  border-left-width: 5px;\n}\n\n::ng-deep .mat-menu-item  {\n  line-height: 20px !important;\n}\n\n::ng-deep .mat-list-item-content {\n  margin-top: 8px;\n}\n\n::ng-deep .mat-autocomplete-panel .mat-list-item-content {\n  margin-top: -8px; /* Styling for autocomplete menu items needs to be different.*/\n}\n\n::ng-deep .mat-option {\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  overflow: visible !important;\n  padding: 0px !important;\n}\n\n.conceptForm {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n::ng-deep .autoMenu.mat-menu-panel {\n  min-width: 300px;\n}\n\n.conceptFormField {\n  width: 100%;\n}\n\nbutton {\n  font-family: 'Work Sans', sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF0YS1zZWxlY3Rvci1tZW51L2RhdGEtc2VsZWN0b3ItbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixhQUFhO0VBQ2Isd0JBQXdCO0VBQ3hCOzRDQUMwQztFQUMxQyxtQkFBbUI7RUFDbkIsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixvQkFBb0IsRUFBRSxhQUFhO0VBQ25DLG1CQUFtQixFQUNNLGFBQWE7RUFDdEMscUJBQXFCO0VBQ3JCLDBCQUEwQixHQUFHLDhDQUE4QztFQUMzRSwyQkFBMkI7RUFDM0Isb0JBQW9CLEdBQUcsK0NBQStDO0VBQ3RFLG1CQUFtQjtFQUNuQixzQkFBc0IsR0FBRyw0Q0FBNEM7RUFDckUsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsc0RBQXNEO0VBQ3RELDhCQUE4QjtFQUM5QixxQkFBcUI7RUFDckIsWUFBWTtFQUNaLGdCQUFnQixFQUFFLGFBQWE7QUFDakM7O0FBRUE7RUFDRSxVQUFVO0FBQ1o7O0FBRUE7RUFDRSw0QkFBNEI7RUFDNUIsNkJBQTZCO0VBQzdCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHdCQUF3QjtFQUN4QixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSw0QkFBNEI7QUFDOUI7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCLEVBQUUsOERBQThEO0FBQ2xGOztBQUVBO0VBQ0Usc0NBQThCO0VBQTlCLG1DQUE4QjtFQUE5Qiw4QkFBOEI7RUFDOUIsNEJBQTRCO0VBQzVCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxvQ0FBb0M7QUFDdEMiLCJmaWxlIjoic3JjL2FwcC9kYXRhLXNlbGVjdG9yLW1lbnUvZGF0YS1zZWxlY3Rvci1tZW51LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYWRkQ2FyZElubGluZSB7XG4gIGNvbG9yOiByZ2IoMjQ4LCAyNDgsIDI0OCk7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgb3BhY2l0eTogMC4xNTtcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjNzO1xuICAvKiBOZWVkZWQgc28gdGhhdCB0aGVyZSdzIG5vdCBlbm91Z2ggc3BhY2UgYmV0d2VlbiB0aGUgY2FyZHMgdG8gaG9sZCB0aGUgaWNvbixcbiAganVzdCBlbm91Z2ggdG8gaG9sZCB0aGUgbGluZSBwbGFjZWhvbGRlci4qL1xuICBtYXJnaW4tYm90dG9tOi0xN3B4O1xuICBtYXJnaW4tdG9wOi0xN3B4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDsgLyogRm9yIElFMTAgKi9cbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgLW1zLWZsZXgtZGlyZWN0aW9uOiByb3c7IC8qIEZvciBJRTEwICovXG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgLW1zLWZsZXgtbGluZS1wYWNrOiBjZW50ZXI7ICAvKiBBbGlnbiBjb250ZW50OiBjZW50ZXIgY29udmVyc2lvbiBmb3IgSUUxMCAqL1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gIC1tcy1mbGV4LXBhY2s6IHN0YXJ0OyAgLyogSnVzdGlmeSBjb250ZW50OiBzdGFydCBjb252ZXJzaW9uIGZvciBJRTEwICovXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7ICAvKiBBbGlnbiBpdGVtczogY2VudGVyIGNvbnZlcnNpb24gZm9yIElFMTAgKi9cbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG5zcGFuIHtcbiAgYm9yZGVyOiAycHggZGFzaGVkIHJnYigyNDgsIDI0OCwgMjQ4KTtcbiAgLyogT25seSBvdXRsaW5lIHRoZSBib3R0b20gaW5zdGVhZCBvZiBhbGwgZm91ciBzaWRlcy4qL1xuICBib3JkZXItc3R5bGU6IG5vbmUgbm9uZSBkb3R0ZWQ7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgZmxleDogMSAxIDAlO1xuICAtbXMtZmxleDogMSAxIDAlOyAvKiBGb3IgSUUxMCAqL1xufVxuXG4uYWRkQ2FyZElubGluZTpob3ZlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5jb25jZXB0U2VsZWN0b3Ige1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICBwYWRkaW5nLXJpZ2h0OiAwcHggIWltcG9ydGFudDtcbiAgbWluLXdpZHRoOiAyMDBweDtcbn1cblxuLm1haW5Db25jZXB0U2VsZWN0b3Ige1xuICBib3JkZXItbGVmdC1zdHlsZTogc29saWQ7XG4gIGJvcmRlci1sZWZ0LXdpZHRoOiA1cHg7XG59XG5cbjo6bmctZGVlcCAubWF0LW1lbnUtaXRlbSAge1xuICBsaW5lLWhlaWdodDogMjBweCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XG4gIG1hcmdpbi10b3A6IDhweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtYXV0b2NvbXBsZXRlLXBhbmVsIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQge1xuICBtYXJnaW4tdG9wOiAtOHB4OyAvKiBTdHlsaW5nIGZvciBhdXRvY29tcGxldGUgbWVudSBpdGVtcyBuZWVkcyB0byBiZSBkaWZmZXJlbnQuKi9cbn1cblxuOjpuZy1kZWVwIC5tYXQtb3B0aW9uIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudCAhaW1wb3J0YW50O1xuICBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50O1xuICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDtcbn1cblxuLmNvbmNlcHRGb3JtIHtcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuOjpuZy1kZWVwIC5hdXRvTWVudS5tYXQtbWVudS1wYW5lbCB7XG4gIG1pbi13aWR0aDogMzAwcHg7XG59XG5cbi5jb25jZXB0Rm9ybUZpZWxkIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmJ1dHRvbiB7XG4gIGZvbnQtZmFtaWx5OiAnV29yayBTYW5zJywgc2Fucy1zZXJpZjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -3329,7 +3404,7 @@ module.exports = ".addCardInline {\n  color: rgb(248, 248, 248);\n  display: inl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"{{uiConstants.ADD_CARD_HERE}}\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>comment</mat-icon>\n      <span>{{uiConstants.ADD_ANNOTATION}}</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>{{uiConstants.ADD_CUSTOM_TIMELINE}}</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>{{uiConstants.ADD_CHART}}</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      {{uiConstants.SEARCH_FOR_A_CONCEPT}}\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [axisGroup]=\"concept\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let axisGroup of entry[1]\" (click)=\"addConceptCard(axisGroup.label)\" class=\"conceptSelector\"\n            mat-menu-item>\n            <app-data-selector-element [axisGroup]=\"axisGroup\">\n            </app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n</mat-menu>"
+module.exports = "<div fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"addCardInline\">\n  <button mat-icon-button [matMenuTriggerFor]=\"masterMenu\" matTooltip=\"{{uiConstants.ADD_CARD_HERE}}\">\n    <mat-icon class=\"toolbarButton\">add_circle</mat-icon>\n  </button>\n  <span fxFlex>\n  </span>\n</div>\n<mat-menu #masterMenu=\"matMenu\" [overlapTrigger]=\"false\">\n  <ng-template matMenuContent>\n    <button mat-menu-item (click)=\"textbox()\">\n      <mat-icon>comment</mat-icon>\n      <span>{{uiConstants.ADD_ANNOTATION}}</span>\n    </button>\n    <button mat-menu-item (click)=\"customTimeline()\">\n      <mat-icon>show_chart</mat-icon>\n      <span>{{uiConstants.ADD_CUSTOM_TIMELINE}}</span>\n    </button>\n    <mat-divider></mat-divider>\n    <button mat-menu-item [matMenuTriggerFor]=\"conceptSelectorMenu\">\n      <mat-icon>add_to_photos</mat-icon>\n      <span>{{uiConstants.ADD_CHART}}</span>\n    </button>\n  </ng-template>\n</mat-menu>\n<mat-menu #conceptSelectorMenu=\"matMenu\" [style.padding]=\"0\">\n  <div aria-label=\"Concept Selector Menu\">\n  <ng-template matMenuContent>\n    <button mat-menu-item [matMenuTriggerFor]=\"menu\">\n      {{uiConstants.SEARCH_FOR_A_CONCEPT}}\n    </button>\n    <mat-divider></mat-divider>\n    <mat-menu #menu=\"matMenu\" (closed)=\"autocompleteTrigger.closePanel()\" class=\"autoMenu\">\n      <!-- Autocomplete search bar -->\n      <form class=\"conceptForm\">\n        <mat-form-field class=\"conceptFormField\">\n          <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [matAutocomplete]=\"auto\"\n            [formControl]=\"conceptCtrl\" (click)=\"$event.stopPropagation()\">\n          <!-- $event.stopPropagation is to not close main menu when clicking inside the input field -->\n          <mat-icon matPrefix>search</mat-icon>\n          <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)=\"selectOption($event)\">\n            <mat-option *ngFor=\"let concept of filteredConcepts | async\" [value]=\"concept.label\">\n              <app-data-selector-element [axisGroup]=\"concept\"></app-data-selector-element>\n              <mat-divider></mat-divider>\n            </mat-option>\n          </mat-autocomplete>\n        </mat-form-field>\n      </form>\n    </mat-menu>\n    <ng-container *ngFor=\"let entry of displayGroupings\">\n      <button mat-menu-item [matMenuTriggerFor]=\"subConceptSelectorMenu\" class=\"mainConceptSelector\"\n        [style.border-left-color]=\"entry[0].fill.hsl().string()\">\n        {{entry[0].label}}\n      </button>\n      <mat-divider></mat-divider>\n      <mat-menu #subConceptSelectorMenu=\"matMenu\">\n        <div [attr.aria-label]=\"entry[0].label + ' Menu'\">\n        <ng-template matMenuContent>\n          <button *ngFor=\"let axisGroup of entry[1]\" (click)=\"addConceptCard(axisGroup.label)\" class=\"conceptSelector\"\n            mat-menu-item>\n            <app-data-selector-element [axisGroup]=\"axisGroup\">\n            </app-data-selector-element>\n            <mat-divider></mat-divider>\n          </button>\n        </ng-template>\n      </div>\n      </mat-menu>\n    </ng-container>\n  </ng-template>\n  </div>\n</mat-menu>\n"
 
 /***/ }),
 
@@ -5810,8 +5885,8 @@ function fetchAllFromFhir(smartApi, queryParams) {
     return smartApi.patient.api.search(queryParams)
         .then(function (response) {
         return getNextSearchResultsPage(smartApi, response, results)
-            .then(function (results) {
-            return results.filter(function (result) { return !!result; });
+            .then(function (res) {
+            return res.filter(function (result) { return !!result; });
         });
     }, function (rejection) {
         throw rejection;
@@ -6006,7 +6081,7 @@ var MedicationCache = /** @class */ (function (_super) {
                         LESS_OR_EQUAL + dateRange.end.toISODate()
                     ]
                 },
-                notgiven: false,
+                notgiven: 'false',
                 status: 'in-progress,completed,on-hold',
                 // Despite documentation, this is the number of results per page,
                 // not the total number of results.
@@ -6117,7 +6192,12 @@ var EncounterCache = /** @class */ (function () {
         }
         return Promise.resolve(cachePromise)
             .then(function (results) {
-            return results.map(function (result) { return new _fhir_resources_encounter__WEBPACK_IMPORTED_MODULE_4__["Encounter"](result.json, result.requestId); });
+            return results
+                .filter(function (result) {
+                var status = result.json.status;
+                return status !== 'cancelled' && status !== 'planned';
+            })
+                .map(function (result) { return new _fhir_resources_encounter__WEBPACK_IMPORTED_MODULE_4__["Encounter"](result.json, result.requestId); });
         }, function (rejection) {
             throw rejection;
         });
@@ -6413,7 +6493,7 @@ var FhirHttpService = /** @class */ (function (_super) {
     FhirHttpService.prototype.getMicrobioReports = function (codeGroup, dateRange) {
         var _this = this;
         if (!_fhir_config__WEBPACK_IMPORTED_MODULE_13__["microbiology"]) {
-            console.debug('No microbiology parameters available in the configuration.');
+            console.warn('No microbiology parameters available in the configuration.');
             return Promise.resolve([]);
         }
         return Promise.all([this.smartApiPromise, this.loadAllCodes])
@@ -8408,11 +8488,11 @@ var AxisGroup = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Axis", function() { return Axis; });
-/* harmony import */ var _fhir_resources_medication_order__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../fhir-resources/medication-order */ "./src/app/fhir-resources/medication-order.ts");
-/* harmony import */ var _conceptmappings_resource_codes_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/bch-microbio-code */ "./src/app/conceptmappings/resource-codes/bch-microbio-code.ts");
-/* harmony import */ var _conceptmappings_resource_codes_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/diagnostic-report-code */ "./src/app/conceptmappings/resource-codes/diagnostic-report-code.ts");
-/* harmony import */ var _conceptmappings_resource_codes_loinc_code__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/loinc-code */ "./src/app/conceptmappings/resource-codes/loinc-code.ts");
-/* harmony import */ var _conceptmappings_resource_codes_rx_norm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/rx-norm */ "./src/app/conceptmappings/resource-codes/rx-norm.ts");
+/* harmony import */ var _conceptmappings_resource_codes_bch_microbio_code__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/bch-microbio-code */ "./src/app/conceptmappings/resource-codes/bch-microbio-code.ts");
+/* harmony import */ var _conceptmappings_resource_codes_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/diagnostic-report-code */ "./src/app/conceptmappings/resource-codes/diagnostic-report-code.ts");
+/* harmony import */ var _conceptmappings_resource_codes_loinc_code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/loinc-code */ "./src/app/conceptmappings/resource-codes/loinc-code.ts");
+/* harmony import */ var _conceptmappings_resource_codes_rx_norm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../conceptmappings/resource-codes/rx-norm */ "./src/app/conceptmappings/resource-codes/rx-norm.ts");
+/* harmony import */ var _fhir_resources_medication_order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../fhir-resources/medication-order */ "./src/app/fhir-resources/medication-order.ts");
 /* harmony import */ var _graphdatatypes_diagnosticgraphdata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../graphdatatypes/diagnosticgraphdata */ "./src/app/graphs/graphdatatypes/diagnosticgraphdata.ts");
 /* harmony import */ var _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphdatatypes/linegraphdata */ "./src/app/graphs/graphdatatypes/linegraphdata.ts");
 /* harmony import */ var _graphdatatypes_microbiographdata__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../graphdatatypes/microbiographdata */ "./src/app/graphs/graphdatatypes/microbiographdata.ts");
@@ -8469,22 +8549,19 @@ var Axis = /** @class */ (function () {
         this.showTicks = true;
         // The encounters for the date range.
         this.encounters = [];
-        /**
-         * Returns whether there is data available for this axis within the
-         * application's time scope.
-         */
+        /** Whether there is data available for this axis in the app time scope. */
         this.axisDataAvailable = true;
         this.chartType = resourceGroup.chartType;
         this.displayConcept = resourceGroup.displayGrouping;
         this.label = label;
         var resourceCodeList = this.resourceGroup.resourceCodes;
         // Check that all elements of the resourceCodeList are of the same type.
-        this.allLoinc = resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_loinc_code__WEBPACK_IMPORTED_MODULE_3__["LOINCCode"]; });
-        this.allRx = resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_rx_norm__WEBPACK_IMPORTED_MODULE_4__["RxNormCode"]; });
+        this.allLoinc = resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_loinc_code__WEBPACK_IMPORTED_MODULE_2__["LOINCCode"]; });
+        this.allRx = resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_rx_norm__WEBPACK_IMPORTED_MODULE_3__["RxNormCode"]; });
         this.allBCHMicrobio =
-            resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_bch_microbio_code__WEBPACK_IMPORTED_MODULE_1__["BCHMicrobioCode"]; });
+            resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_bch_microbio_code__WEBPACK_IMPORTED_MODULE_0__["BCHMicrobioCode"]; });
         this.allDiagnosticReport =
-            resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_2__["DiagnosticReportCode"]; });
+            resourceCodeList.every(function (code) { return code instanceof _conceptmappings_resource_codes_diagnostic_report_code__WEBPACK_IMPORTED_MODULE_1__["DiagnosticReportCode"]; });
         if (!this.allLoinc && !this.allRx && !this.allBCHMicrobio &&
             !this.allDiagnosticReport) {
             throw Error('All resource codes must be of the same type.');
@@ -8516,6 +8593,10 @@ var Axis = /** @class */ (function () {
             return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].emptyData();
         });
     };
+    /**
+     * Returns whether there is data available for this axis within the
+     * application's time scope.
+     */
     Axis.prototype.axisDataAvailableInAppTimeScope = function () {
         var _this = this;
         return this.resourceGroup.dataAvailableInAppTimeScope().then(function (res) {
@@ -8624,7 +8705,7 @@ var Axis = /** @class */ (function () {
             return [].concat.apply([], rxNs.map(function (rx) { return rx.orders.resourceList; }));
         })
             .then(function (orders) {
-            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].fromMedicationOrderSet(new _fhir_resources_medication_order__WEBPACK_IMPORTED_MODULE_0__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
+            return _graphdatatypes_linegraphdata__WEBPACK_IMPORTED_MODULE_6__["LineGraphData"].fromMedicationOrderSet(new _fhir_resources_medication_order__WEBPACK_IMPORTED_MODULE_4__["MedicationOrderSet"](orders), dateRange, _this.sanitizer, _this.encounters);
         });
     };
     /**
@@ -9384,7 +9465,7 @@ module.exports = "::ng-deep canvas {\n  -moz-user-select: none;\n  -webkit-user-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- This top level div expands to fill the card. If we remove it, then the inner div\ninfinitely expands as the canvas tries to take up more and more space.-->\n<div>\n  <div style=\"position: relative; height:125px; max-width: 95%;\">\n    <canvas baseChart [datasets]=\"chartData\" [options]=\"chartOptions\" [plugins]=\"chartPlugins\"\n      [chartType]=\"chartTypeString\" [id]=\"chartDivId\" height=\"125\" width=\"500\"></canvas>\n  </div>\n</div>\n"
+module.exports = "<!-- This top level div expands to fill the card. If we remove it, then the inner div\ninfinitely expands as the canvas tries to take up more and more space.-->\n<div>\n  <div style=\"position: relative; max-width: 95%;\">\n    <canvas baseChart [datasets]=\"chartData\" [options]=\"chartOptions\" [plugins]=\"chartPlugins\"\n      [chartType]=\"chartTypeString\" [id]=\"chartDivId\"></canvas>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -9459,8 +9540,6 @@ var GraphComponent = /** @class */ (function () {
         var _this = this;
         this.sanitizer = sanitizer;
         this.uiConstants = uiConstants;
-        /** The base chart height to use when rendering. */
-        this.BASE_CHART_HEIGHT_PX = 150;
         /** Whether data is available for this graph for the current date range. */
         this.dataPointsInDateRange = false;
         /** Plugins for chart.js. */
@@ -9479,7 +9558,7 @@ var GraphComponent = /** @class */ (function () {
         this.chartOptions = {
             // Draw straight lines between points instead of curves.
             elements: { line: { tension: 0 } },
-            layout: { padding: { top: 15 } },
+            layout: { padding: { top: 5 } },
             // We make our own legend so we don't show the built-in one.
             legend: { display: false },
             scales: { xAxes: [this.generateXAxis()], yAxes: [this.generateYAxis()] },
@@ -9699,6 +9778,8 @@ var GraphComponent = /** @class */ (function () {
         // Add left-padding so that the y-axes are aligned with one another.
         this.chartOptions.scales.yAxes[0]['afterSetDimensions'] = function (axes) {
             axes.paddingLeft = GraphComponent.Y_AXIS_LEFT_PADDING;
+            axes.chart.canvas.parentNode.style.height =
+                GraphComponent.MIN_AXIS_HEIGHT + 'px';
         };
         var self = this;
         this.chartOptions.animation.onComplete = function (chart) {
@@ -9841,7 +9922,9 @@ var GraphComponent = /** @class */ (function () {
             ticks: {
                 // Only show as many tick labels will fit neatly on the axis.
                 autoSkip: true,
-                display: true
+                display: true,
+                fontSize: 12,
+                padding: -10,
             },
             scaleLabel: { fontFamily: 'Work Sans' }
         };
@@ -9876,14 +9959,25 @@ var GraphComponent = /** @class */ (function () {
      * The amount of padding to add to the left of the graph. This goes hand in
      * hand with how we choose to wrap the labels in the rendered chart, so if
      * Y_AXIS_TICK_MAX changes, this probably needs to change, too.
+     * Additionally, significant changes in this value might break the e2e test
+     * for customizable timeline since it could cause the click registered to
+     * be outside of the graph area.
      */
-    GraphComponent.Y_AXIS_LEFT_PADDING = 125;
+    GraphComponent.Y_AXIS_LEFT_PADDING = 155;
     /** Line weights for emphasized and non-emphasized line graphs. */
     GraphComponent.THICK_LINE = 3;
     GraphComponent.THIN_LINE = 1;
     /** Constants for x and y axis names. */
     GraphComponent.Y_AXIS_ID = 'y-axis-0';
     GraphComponent.X_AXIS_ID = 'x-axis-0';
+    /**
+     * The minimum height for a graph.
+     *
+     * Significant changes in this value might break the e2e test
+     * for customizable timeline since it could cause the click registered to
+     * be outside of the graph area.
+     */
+    GraphComponent.MIN_AXIS_HEIGHT = 90;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
@@ -10546,7 +10640,7 @@ var ScatterplotComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- This top level div expands to fill the card. If we remove it, then the inner div\ninfinitely expands as the canvas tries to take up more and more space.-->\n<div>\n  <div [ngStyle]=\"{'position': 'relative', 'height': '300px', 'max-width': '95%'}\">\n    <canvas baseChart [datasets]=\"chartData\" [options]=\"chartOptions\" [plugins]=\"chartPlugins\"\n      [chartType]=\"chartTypeString\" [id]=\"chartDivId\" height=\"300\" width=\"500\"></canvas>\n  </div>\n</div>\n"
+module.exports = "<!-- This top level div expands to fill the card. If we remove it, then the inner div\ninfinitely expands as the canvas tries to take up more and more space.-->\n<div>\n  <div [ngStyle]=\"{'position': 'relative', 'max-width': '95%'}\">\n    <canvas baseChart [datasets]=\"chartData\" [options]=\"chartOptions\" [plugins]=\"chartPlugins\"\n      [chartType]=\"chartTypeString\" [id]=\"chartDivId\" width=\"500\"></canvas>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -10635,7 +10729,9 @@ var StepGraphComponent = /** @class */ (function (_super) {
                 // we add the temp line to the list of results and restart the temp
                 // string with the word.
                 if ((temp + word).length > _this.Y_AXIS_TICK_MAX_LENGTH) {
-                    resultLabel.push(temp);
+                    if (temp.length > 0) {
+                        resultLabel.push(temp);
+                    }
                     temp = word;
                 }
                 else {
@@ -10675,7 +10771,8 @@ var StepGraphComponent = /** @class */ (function (_super) {
         }
         // Show the labels alphabetically along the y-axis.
         var allLabels = Array.from(allLabelsSet).sort();
-        // Add blank labels to the top and bottom of the graph to add some padding.
+        // Add blank labels to the top and bottom of the graph to add some
+        // padding.
         allLabels.push('\t');
         allLabels.unshift('\t');
         this.chartOptions.scales.yAxes[0]['labels'] = allLabels;
@@ -10684,6 +10781,9 @@ var StepGraphComponent = /** @class */ (function (_super) {
         // mapping from data points to the axis still works without adjustment.
         this.chartOptions.scales.yAxes[0].beforeTickToLabelConversion = function (scale) {
             scale.ticks = _this.adjustTickLabels(scale.ticks);
+            // based on the number of ticks, update the height of the graph
+            var height = Math.max(_graph_graph_component__WEBPACK_IMPORTED_MODULE_3__["GraphComponent"].MIN_AXIS_HEIGHT, (scale.ticks.length) * 35);
+            scale.chart.canvas.parentNode.style.height = height + 'px';
         };
     };
     StepGraphComponent.prototype.adjustGeneratedChartConfiguration = function () { };
@@ -11547,7 +11647,7 @@ var SetupDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\n.search-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.category-group-tile {\n  padding-bottom: 10px;\n}\n\n.category-label {\n  line-height: 28px;\n  margin: 0px;\n  padding: 0px;\n  padding-left: 15px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-figure {\n  align-items: flex-start !important;\n  justify-content: left !important;\n}\n\n::ng-deep .mat-checkbox-label {\n  line-height: 28px !important;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.encounters-error {\n  width: 50%;\n  margin-bottom: 16px;\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQ0FBa0M7RUFDbEMsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsNEJBQTRCO0FBQzlCOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLHlCQUF5QixFQUFFLGFBQWE7QUFDMUM7O0FBRUE7RUFDRSxnQ0FBZ0M7Q0FDakMsOERBQThEO0NBQzlELFlBQVk7QUFDYjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFDQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixtQkFBbUI7RUFDbkIscUJBQXFCO0VBQ3JCLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL3NldHVwL3NldHVwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJidXR0b24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5cbmgzIHtcbiAgcGFkZGluZzogNXB4O1xuICBtYXJnaW46IDEwcHg7XG59XG5cbmgxLCBoMiB7XG4gIGZvbnQtZmFtaWx5OiAnTW9udHNlcnJhdCcsIHNhbnMtc2VyaWY7XG59XG5cbi5zZWFyY2gtaWNvbiB7XG4gIHBhZGRpbmctdG9wOiAyMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xufVxuXG4uYWN0aW9ucyB7XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICBwYWRkaW5nOiAyMHB4O1xufVxuXG4uY2F0ZWdvcnkge1xuICBwYWRkaW5nLWxlZnQ6IDEwcHg7XG59XG5cbi5jYXRlZ29yeS1ncm91cC10aWxlIHtcbiAgcGFkZGluZy1ib3R0b206IDEwcHg7XG59XG5cbi5jYXRlZ29yeS1sYWJlbCB7XG4gIGxpbmUtaGVpZ2h0OiAyOHB4O1xuICBtYXJnaW46IDBweDtcbiAgcGFkZGluZzogMHB4O1xuICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG59XG5cbi5tYWluU2V0dXAge1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZy10b3A6IDIwcHg7XG4gIHBhZGRpbmctbGVmdDogNDBweDtcbiAgY29sb3I6IHdoaXRlO1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbi5jb25jZXB0T3B0aW9ucyB7XG4gIHBhZGRpbmctbGVmdDogMjVweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtZmlndXJlIHtcbiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQgIWltcG9ydGFudDtcbiAganVzdGlmeS1jb250ZW50OiBsZWZ0ICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCAubWF0LWNoZWNrYm94LWxhYmVsIHtcbiAgbGluZS1oZWlnaHQ6IDI4cHggIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbGJhci1yb3csIC5tYXQtdG9vbGJhci1zaW5nbGUtcm93IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG59XG5cbi5kZWZhdWx0QmFja2dyb3VuZENvbG9yIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIwMjAyMDsgLyogR3JleSA5MDAgKi9cbn1cblxuLmFjY2VudEJhY2tncm91bmRDb2xvciB7XG4gIC8qIERlZXAgUHVycGxlIDgwMCB0byBQaW5rIDkwMCAqL1xuIGJhY2tncm91bmQtaW1hZ2U6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgIzQ1MjdBMCAsICM4NzBENEUpO1xuIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwICBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLXdyYXBwZXIge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1jaGVja2JveC1mcmFtZSB7XG4gIGJvcmRlci1jb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1yYWRpby1vdXRlci1jaXJjbGUge1xuICBib3JkZXItY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtY2hlY2tib3gtZGlzYWJsZWQgLm1hdC1jaGVja2JveC1sYWJlbCB7XG4gIGNvbG9yOiBncmF5O1xufVxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtZW1wdHkubWF0LWZvcm0tZmllbGQtbGFiZWwge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLWxhYmVsIHtcbiAgY29sb3I6d2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtdW5kZXJsaW5lIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQubWF0LWZvY3VzZWQgLm1hdC1mb3JtLWZpZWxkLXJpcHBsZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1mb3JtLWZpZWxkLXVuZGVybGluZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG59XG5cbmFwcC1zZXR1cCAubWF0LWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgY29sb3I6IHdoaXRlO1xufVxuXG4uZW5jb3VudGVycy1lcnJvciB7XG4gIHdpZHRoOiA1MCU7XG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XG4gIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcbiAgd29yZC1icmVhazogYnJlYWstYWxsO1xufVxuIl19 */"
+module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n  margin: 10px;\n}\n\nh1, h2 {\n  font-family: 'Montserrat', sans-serif;\n}\n\n.search-icon {\n  padding-top: 20px;\n  vertical-align: bottom;\n}\n\n.actions {\n  margin-left: auto;\n  padding: 20px;\n}\n\n.category {\n  padding-left: 10px;\n}\n\n.category-group-tile {\n  padding-bottom: 10px;\n}\n\n.category-label {\n  line-height: 28px;\n  margin: 0px;\n  padding: 0px;\n  padding-left: 15px;\n}\n\n.mainSetup {\n  width: 100%;\n  padding-top: 20px;\n  padding-left: 40px;\n  color: white;\n  height: 100%;\n}\n\n.conceptOptions {\n  padding-left: 25px;\n}\n\n::ng-deep .mat-figure {\n  align-items: flex-start !important;\n  justify-content: left !important;\n  display: -ms-grid;\n}\n\n::ng-deep .mat-checkbox-label {\n  line-height: 28px !important;\n}\n\n::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {\n  display: flex;\n  display: -ms-flexbox;\n}\n\n.defaultBackgroundColor {\n  background-color: #202020; /* Grey 900 */\n}\n\n.accentBackgroundColor {\n  /* Deep Purple 800 to Pink 900 */\n background-image: linear-gradient(to right, #4527A0 , #870D4E);\n color: white;\n}\n\n::ng-deep  app-setup .mat-form-field-wrapper {\n  color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-frame {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-radio-outer-circle {\n  border-color: white;\n}\n\n::ng-deep app-setup .mat-checkbox-disabled .mat-checkbox-label {\n  color: gray;\n}\n\n::ng-deep app-setup .mat-form-field-empty.mat-form-field-label {\n  color: white;\n}\n\n::ng-deep app-setup .mat-form-field-label {\n  color:white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field.mat-focused .mat-form-field-ripple {\n  background-color: white !important;\n}\n\n::ng-deep app-setup .mat-form-field-underline {\n  background-color: white !important;\n}\n\napp-setup .mat-input-placeholder {\n  color: white;\n}\n\n.encounters-error {\n  width: 50%;\n  margin-bottom: 16px;\n  white-space: pre-wrap;\n  word-break: break-all;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V0dXAvc2V0dXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQ0FBa0M7RUFDbEMsZ0NBQWdDO0VBQ2hDLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLGFBQWE7RUFDYixvQkFBb0I7QUFDdEI7O0FBRUE7RUFDRSx5QkFBeUIsRUFBRSxhQUFhO0FBQzFDOztBQUVBO0VBQ0UsZ0NBQWdDO0NBQ2pDLDhEQUE4RDtDQUM5RCxZQUFZO0FBQ2I7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBQ0E7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxrQ0FBa0M7QUFDcEM7O0FBRUE7RUFDRSxrQ0FBa0M7QUFDcEM7O0FBRUE7RUFDRSxrQ0FBa0M7QUFDcEM7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxVQUFVO0VBQ1YsbUJBQW1CO0VBQ25CLHFCQUFxQjtFQUNyQixxQkFBcUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC9zZXR1cC9zZXR1cC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYnV0dG9uIHtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuXG5oMyB7XG4gIHBhZGRpbmc6IDVweDtcbiAgbWFyZ2luOiAxMHB4O1xufVxuXG5oMSwgaDIge1xuICBmb250LWZhbWlseTogJ01vbnRzZXJyYXQnLCBzYW5zLXNlcmlmO1xufVxuXG4uc2VhcmNoLWljb24ge1xuICBwYWRkaW5nLXRvcDogMjBweDtcbiAgdmVydGljYWwtYWxpZ246IGJvdHRvbTtcbn1cblxuLmFjdGlvbnMge1xuICBtYXJnaW4tbGVmdDogYXV0bztcbiAgcGFkZGluZzogMjBweDtcbn1cblxuLmNhdGVnb3J5IHtcbiAgcGFkZGluZy1sZWZ0OiAxMHB4O1xufVxuXG4uY2F0ZWdvcnktZ3JvdXAtdGlsZSB7XG4gIHBhZGRpbmctYm90dG9tOiAxMHB4O1xufVxuXG4uY2F0ZWdvcnktbGFiZWwge1xuICBsaW5lLWhlaWdodDogMjhweDtcbiAgbWFyZ2luOiAwcHg7XG4gIHBhZGRpbmc6IDBweDtcbiAgcGFkZGluZy1sZWZ0OiAxNXB4O1xufVxuXG4ubWFpblNldHVwIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmctdG9wOiAyMHB4O1xuICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuXG4uY29uY2VwdE9wdGlvbnMge1xuICBwYWRkaW5nLWxlZnQ6IDI1cHg7XG59XG5cbjo6bmctZGVlcCAubWF0LWZpZ3VyZSB7XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0ICFpbXBvcnRhbnQ7XG4gIGp1c3RpZnktY29udGVudDogbGVmdCAhaW1wb3J0YW50O1xuICBkaXNwbGF5OiAtbXMtZ3JpZDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtY2hlY2tib3gtbGFiZWwge1xuICBsaW5lLWhlaWdodDogMjhweCAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLm1hdC10b29sYmFyLXJvdywgLm1hdC10b29sYmFyLXNpbmdsZS1yb3cge1xuICBkaXNwbGF5OiBmbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbn1cblxuLmRlZmF1bHRCYWNrZ3JvdW5kQ29sb3Ige1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjAyMDIwOyAvKiBHcmV5IDkwMCAqL1xufVxuXG4uYWNjZW50QmFja2dyb3VuZENvbG9yIHtcbiAgLyogRGVlcCBQdXJwbGUgODAwIHRvIFBpbmsgOTAwICovXG4gYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNDUyN0EwICwgIzg3MEQ0RSk7XG4gY29sb3I6IHdoaXRlO1xufVxuXG46Om5nLWRlZXAgIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtd3JhcHBlciB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWNoZWNrYm94LWZyYW1lIHtcbiAgYm9yZGVyLWNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LXJhZGlvLW91dGVyLWNpcmNsZSB7XG4gIGJvcmRlci1jb2xvcjogd2hpdGU7XG59XG5cbjo6bmctZGVlcCBhcHAtc2V0dXAgLm1hdC1jaGVja2JveC1kaXNhYmxlZCAubWF0LWNoZWNrYm94LWxhYmVsIHtcbiAgY29sb3I6IGdyYXk7XG59XG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC1lbXB0eS5tYXQtZm9ybS1maWVsZC1sYWJlbCB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtbGFiZWwge1xuICBjb2xvcjp3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC11bmRlcmxpbmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgYXBwLXNldHVwIC5tYXQtZm9ybS1maWVsZC5tYXQtZm9jdXNlZCAubWF0LWZvcm0tZmllbGQtcmlwcGxlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIGFwcC1zZXR1cCAubWF0LWZvcm0tZmllbGQtdW5kZXJsaW5lIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbn1cblxuYXBwLXNldHVwIC5tYXQtaW5wdXQtcGxhY2Vob2xkZXIge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5lbmNvdW50ZXJzLWVycm9yIHtcbiAgd2lkdGg6IDUwJTtcbiAgbWFyZ2luLWJvdHRvbTogMTZweDtcbiAgd2hpdGUtc3BhY2U6IHByZS13cmFwO1xuICB3b3JkLWJyZWFrOiBicmVhay1hbGw7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -11558,7 +11658,7 @@ module.exports = "button {\n  margin-right: 10px;\n}\n\nh3 {\n  padding: 5px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"setupDataService.encountersError\" class=\"encounters-error\">\n      <mat-expansion-panel-header>\n        <mat-icon>error</mat-icon>Error loading patient encounters.\n      </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div *ngFor=\"let item of staticTimeOptions\">\n        <mat-radio-button [value]=\"item[0]\">\n          {{item[1]}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div>\n      <!--rowHeight is 28px since that is what the line height is for the content. -->\n      <mat-grid-list cols=\"2\" rowHeight=\"28px\" gutterSize=\"0px\">\n        <!--rowspan is set to the number of concepts in the grouping + 2 (the category header row and a blank row for spacing) -->\n        <mat-grid-tile class=\"category-group-tile\" *ngFor=\"let entry of displayGroupingOptions | async\"\n          [rowspan]=\"(2 +entry[1].length)\">\n          <div>\n            <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n              <h3 class=\"category-label\">{{entry[0].label}}</h3>\n            </div>\n            <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n              <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n                [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n                {{element.label}} <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n                <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n              </mat-checkbox>\n            </div>\n          </div>\n        </mat-grid-tile>\n      </mat-grid-list>\n    </div>\n    <div *ngIf=\"displayGroupingOptions && (displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>"
+module.exports = "<mat-toolbar class=\"accentBackgroundColor\">\n  <h1 style=\"color: white;\">{{uiConstants.INITIAL_CONFIGURATION_HEADER}}&nbsp;&nbsp;</h1>\n  <img src=\"assets/images/logo.png\" style=\"height:40px\">\n  <div class=\"actions\">\n    <button mat-raised-button (click)=\"onContinue()\" cdkFocusInitial id=\"continue\">\n      {{uiConstants.CONTINUE}}\n    </button>\n  </div>\n</mat-toolbar>\n<div *ngIf=\"useDebugger\">\n  <app-debugger></app-debugger>\n</div>\n<div class=\"defaultBackgroundColor mainSetup\">\n  <div>\n    <h2>{{uiConstants.WHICH_ENCOUNTER_FIRST}}</h2>\n    <mat-expansion-panel *ngIf=\"setupDataService.encountersError\" class=\"encounters-error\">\n      <mat-expansion-panel-header>\n        <mat-icon>error</mat-icon>Error loading patient encounters.\n      </mat-expansion-panel-header>Technical details:<br>{{setupDataService.encountersError.message}}\n    </mat-expansion-panel>\n    <mat-radio-group>\n      <div *ngFor=\"let encounter of encounters\">\n        <mat-radio-button [value]=\"encounter.period\">\n          {{encounter.period.toFormat('MM/dd/yyyy')}} {{uiConstants.ENCOUNTER}}\n        </mat-radio-button>\n      </div>\n      <div *ngFor=\"let item of staticTimeOptions\">\n        <mat-radio-button [value]=\"item[0]\" [checked]=\"item[2]\">\n          {{item[1]}}\n        </mat-radio-button>\n      </div>\n    </mat-radio-group>\n  </div>\n  <div class=\"checkboxActions\">\n    <h2>{{uiConstants.WHICH_CONCEPTS_FIRST}}</h2>\n    <button mat-raised-button (click)=\"selectAll()\" id=\"continue\">\n      {{uiConstants.SELECT_ALL}}\n    </button>\n    <button mat-raised-button (click)=\"clearAll()\" id=\"continue\">\n      {{uiConstants.CLEAR_SELECTION}}\n    </button>\n  </div>\n  <form class=\"conceptForm\">\n    <mat-form-field class=\"conceptFormField\">\n      <input matInput placeholder=\"{{uiConstants.SEARCH_FOR_A_CONCEPT}}\" [formControl]=\"conceptCtrl\">\n      <mat-icon matPrefix class=\"search-icon\">search</mat-icon>\n    </mat-form-field>\n    <div>\n      <!--rowHeight is 28px since that is what the line height is for the content. -->\n      <mat-grid-list cols=\"2\" rowHeight=\"28px\" gutterSize=\"0px\">\n        <!--rowspan is set to the number of concepts in the grouping + 2 (the category header row and a blank row for spacing) -->\n        <mat-grid-tile class=\"category-group-tile\" *ngFor=\"let entry of displayGroupingOptions | async\"\n          [rowspan]=\"(2 +entry[1].length)\">\n          <div>\n            <div [style.color]=\"entry[0].fill.hsl().string()\" class=\"category\">\n              <h3 class=\"category-label\">{{entry[0].label}}</h3>\n            </div>\n            <div *ngFor=\"let element of entry[1].sort(sortResources)\" class=\"conceptOptions\">\n              <mat-checkbox [(ngModel)]=\"checkedConcepts[element.label]\" [ngModelOptions]=\"{standalone: true}\"\n                [disabled]=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">\n                {{element.label}} <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.DATA_UNAVAILABLE\">{{uiConstants.NO_DATA_PAST_SIX_MOS}}</span>\n                <span class=\"grayout\"\n                  *ngIf=\"codeGroupAvailable.get(element.label) === statusConsts.LOADING\">{{uiConstants.CHECKING_DATA_AVAILABILITY}}</span>\n              </mat-checkbox>\n            </div>\n          </div>\n        </mat-grid-tile>\n      </mat-grid-list>\n    </div>\n    <div *ngIf=\"displayGroupingOptions && (displayGroupingOptions | async).length === 0\" class=\"noResults\">\n      {{uiConstants.NO_RESULTS}}\n    </div>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -11674,11 +11774,11 @@ var SetupComponent = /** @class */ (function () {
                 return Array.from(displayGroups.entries());
             });
         this.staticTimeOptions = [
-            [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS],
-            [this.lastMonth, uiConstants.LAST_MONTH],
-            [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS],
-            [this.lastThreeDays, uiConstants.LAST_THREE_DAYS],
-            [this.lastOneDay, uiConstants.LAST_ONE_DAY]
+            [this.lastThreeMonths, uiConstants.LAST_THREE_MONTHS, false],
+            [this.lastMonth, uiConstants.LAST_MONTH, false],
+            [this.lastSevenDays, uiConstants.LAST_SEVEN_DAYS, true],
+            [this.lastThreeDays, uiConstants.LAST_THREE_DAYS, false],
+            [this.lastOneDay, uiConstants.LAST_ONE_DAY, false]
         ];
         this.setupInterface();
     }
@@ -12523,7 +12623,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.0.0.0alpha3',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.1.0.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
