@@ -15,7 +15,7 @@ export class Encounter {
   readonly period: Interval;
   readonly requestId: string;
 
-  constructor(private json: any, requestId: string) {
+  constructor(json: any, requestId: string) {
     this.encounterId = json.id;
     this.requestId = requestId;
 
@@ -25,19 +25,8 @@ export class Encounter {
           json);
     }
 
-    if (!json.period.start) {
-      throw new ResultError(
-          new Set([this.requestId]), 'An encounter must have a start date.',
-          json);
-    }
-    const startTime = DateTime.fromISO(json.period.start).toLocal();
-
-    let endTime = json.period.end ?
-        DateTime.fromISO(json.period.end).toLocal() :
-        undefined;
-    if (endTime === undefined || (endTime > DateTime.local())) {
-      endTime = DateTime.local();
-    }
+    const startTime = Encounter.getStartTime(json, this.requestId);
+    const endTime = Encounter.getEndTime(json, requestId);
 
     if (endTime < startTime) {
       throw new ResultError(
@@ -49,5 +38,25 @@ export class Encounter {
           new Set([this.requestId]), 'The start time is in the future.', json);
     }
     this.period = Interval.fromDateTimes(startTime, endTime);
+  }
+
+  /* Extracts the start time from JSON representing an Encounter. */
+  static getStartTime(json: any, requestId?: string): DateTime {
+    if (!json.period.start) {
+      throw new ResultError(
+          new Set([requestId]), 'An encounter must have a start date.', json);
+    }
+    return DateTime.fromISO(json.period.start).toLocal();
+  }
+
+  /* Extracts the end time from JSON representing an Encounter. */
+  static getEndTime(json: any, requestId?: string): DateTime {
+    let endTime = json.period.end ?
+        DateTime.fromISO(json.period.end).toLocal() :
+        undefined;
+    if (endTime === undefined || (endTime > DateTime.local())) {
+      endTime = DateTime.local();
+    }
+    return endTime;
   }
 }

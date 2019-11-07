@@ -1,3 +1,8 @@
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 import {HttpClientModule} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
 import {DateTime, Interval} from 'luxon';

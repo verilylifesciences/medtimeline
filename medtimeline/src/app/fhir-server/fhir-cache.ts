@@ -1,3 +1,8 @@
+// Copyright 2019 Verily Life Sciences Inc.
+//
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 import {DateTime, Interval} from 'luxon';
 
 import {APP_TIMESPAN, FhirResourceType} from '../../constants';
@@ -368,7 +373,9 @@ export class ObservationCache extends FhirCache<Observation> {
             GREATER_OR_EQUAL + dateRange.start.toISODate(),
             LESS_OR_EQUAL + dateRange.end.toISODate()
           ]
-        }
+        },
+        // 100 is the maximum page size allowed by Cerner for observations.
+        _count: 100
       }
     };
   }
@@ -418,7 +425,20 @@ export class EncounterCache {
               return results
                   .filter(result => {
                     const status = result.json.status;
-                    return status !== 'cancelled' && status !== 'planned';
+                    // Lots of encounters have errors where start times come
+                    // after end times. To reduce those errors surfacing, we
+                    // pre-parse start and end times, as well as statuses, and
+                    // only return those encounters that are in the application
+                    // timespan and aren't cancelled or in the future.
+                    const startTime = Encounter.getStartTime(result.json);
+                    const endTime = Encounter.getEndTime(result.json);
+
+                    const inTimeSpan =
+                        (startTime && APP_TIMESPAN.contains(startTime)) ||
+                        (endTime && APP_TIMESPAN.contains(endTime));
+
+                    return status !== 'cancelled' && status !== 'planned' &&
+                        inTimeSpan;
                   })
                   .map(result => new Encounter(result.json, result.requestId));
             },
