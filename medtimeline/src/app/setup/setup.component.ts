@@ -125,7 +125,7 @@ export class SetupComponent implements OnDestroy {
   }
 
   constructor(
-      private router: Router, private setupDataService: SetupDataService,
+      private router: Router, readonly setupDataService: SetupDataService,
       private fhirService: FhirService,
       @Inject(UI_CONSTANTS_TOKEN) readonly uiConstants: any) {
     this.allConcepts =

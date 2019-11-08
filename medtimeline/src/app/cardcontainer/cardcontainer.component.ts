@@ -94,7 +94,7 @@ export class CardcontainerComponent {
 
   constructor(
       dragulaService: DragulaService,
-      private setupDataService: SetupDataService,
+      readonly setupDataService: SetupDataService,
       private snackBar: MatSnackBar,
       private deleteDialog: MatDialog,
       private saveDialog: MatDialog,

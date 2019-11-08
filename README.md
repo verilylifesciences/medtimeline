@@ -154,6 +154,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+If you get a Javascript out of memory or stack overflow error when building in prod, please run this command instead
+to allocate more memory for the build:
+
+```
+node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod
+```
+
+Additionally, when building in prod, make sure that the browsers you are targeting are represented in
+the `browserslist` file. Otherwise, necessary polyfills might get pruned out by the optimization.
+
 ### Running tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
