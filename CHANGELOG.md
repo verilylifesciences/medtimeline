@@ -6,6 +6,11 @@ original submission: MedTimeLine v1.0.1.0, commit number 3f17565ee6549a97b9be164
 
 ## Versions
 
+### 2.2.0.0
+* Fix IE setup screen style (attempt 2)
+* Tweak a few configurations for an optimized build suitable for IE10/11.
+* Pre-parse encounters and discard those that don't fall within the app timespan.
+
 ### 2.1.0.0
 
 * Correct all linter errors.
