@@ -57,7 +57,7 @@ export let UI_CONSTANTS_TOKEN = new InjectionToken('UiConstantsToken');
 export const UI_CONSTANTS = {
   SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
   LOINC_VERIFIED_STRING:
-      'These BCH data mappings were verified 2019-04-30. v.2.2.0.0',
+      'These BCH data mappings were verified 2019-04-30. v.2.2.1.0',
   // Tooltip for adding a card inline
   ADD_TIMELINE_HERE: 'Add timeline here',
   // Dialog for adding an event to the custom timeline

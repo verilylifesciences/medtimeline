@@ -12647,7 +12647,7 @@ var UI_CONSTANTS_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
  */
 var UI_CONSTANTS = {
     SYNTH_DATA: 'This is synthesized data used only for demo purposes.',
-    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.2.0.0',
+    LOINC_VERIFIED_STRING: 'These BCH data mappings were verified 2019-04-30. v.2.2.1.0',
     // Tooltip for adding a card inline
     ADD_TIMELINE_HERE: 'Add timeline here',
     // Dialog for adding an event to the custom timeline
