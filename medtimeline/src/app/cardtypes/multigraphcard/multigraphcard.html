@@ -15,7 +15,8 @@
       <mat-spinner *ngIf="!axis.alreadyResolvedData && !axis.errorMessage" [diameter]="30"></mat-spinner>
       <mat-expansion-panel *ngIf="axis.errorMessage" class="card-error">
         <mat-expansion-panel-header>
-          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}
+          <mat-icon>error</mat-icon>Error loading data for: {{axis.label}}. Please check the PowerChart for correct
+          information.
         </mat-expansion-panel-header>Technical details:<br>{{axis.errorMessage}}
       </mat-expansion-panel>
       <ng-container *ngIf="axis.dataResolved() && !axis.errorMessage && axis.axisDataAvailable"
