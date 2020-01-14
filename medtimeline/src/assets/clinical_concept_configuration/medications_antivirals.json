@@ -17,11 +17,27 @@
     },
     {
         "groupNames": [
+            "Acyclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "Acyclovir",
+        "codeString": "281"
+    },
+    {
+        "groupNames": [
             "Foscarnet",
             "Antivirals Summary"
         ],
         "displayName": "Foscarnet",
         "codeString": "33562"
+    },
+    {
+        "groupNames": [
+            "Foscarnet",
+            "Antivirals Summary"
+        ],
+        "displayName": "Foscarnet sodium",
+        "codeString": "57529"
     },
     {
         "groupNames": [
@@ -41,11 +57,27 @@
     },
     {
         "groupNames": [
+            "Ganciclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "Ganciclovir",
+        "codeString": "4678"
+    },
+    {
+        "groupNames": [
             "Oseltamivir",
             "Antivirals Summary"
         ],
         "displayName": "Oseltamivir 75 MG Oral Capsule",
         "codeString": "312122"
+    },
+    {
+        "groupNames": [
+            "Oseltamivir",
+            "Antivirals Summary"
+        ],
+        "displayName": "Oseltamivir",
+        "codeString": "260101"
     },
     {
         "groupNames": [
@@ -57,10 +89,26 @@
     },
     {
         "groupNames": [
+            "Valacyclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "valacyclovir",
+        "codeString": "73645"
+    },
+    {
+        "groupNames": [
             "Valganciclovir",
             "Antivirals Summary"
         ],
         "displayName": "valganciclovir 450 MG Oral Tablet",
         "codeString": "313566"
+    },
+    {
+        "groupNames": [
+            "Valganciclovir",
+            "Antivirals Summary"
+        ],
+        "displayName": "valganciclovir",
+        "codeString": "275891"
     }
 ]

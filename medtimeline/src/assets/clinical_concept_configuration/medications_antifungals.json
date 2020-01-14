@@ -28,6 +28,14 @@
             "Flucytosine",
             "Antifungals Summary"
         ],
+        "displayName": "Flucytosine",
+        "codeString": "4451"
+    },
+    {
+        "groupNames": [
+            "Flucytosine",
+            "Antifungals Summary"
+        ],
         "displayName": "Flucytosine 250 MG Oral Capsule",
         "codeString": "197702"
     },
@@ -41,11 +49,35 @@
     },
     {
         "groupNames": [
+            "Liposomal",
+            "Antifungals Summary"
+        ],
+        "displayName": "amphotericin B liposomal",
+        "codeString": "236594"
+    },
+    {
+        "groupNames": [
+            "Micafungin",
+            "Antifungals Summary"
+        ],
+        "displayName": "MICAFUNGIN",
+        "codeString": "325887"
+    },
+    {
+        "groupNames": [
             "Micafungin",
             "Antifungals Summary"
         ],
         "displayName": "MICAFUNGIN SODIUM 10 MG/ML Injectable Solution",
         "codeString": "861379"
+    },
+    {
+        "groupNames": [
+            "Micafungin",
+            "Antifungals Summary"
+        ],
+        "displayName": "Micafungin sodium",
+        "codeString": "487070"
     },
     {
         "groupNames": [
@@ -65,6 +97,14 @@
     },
     {
         "groupNames": [
+            "Posaconazole",
+            "Antifungals Summary"
+        ],
+        "displayName": "posaconazole",
+        "codeString": "282446"
+    },
+    {
+        "groupNames": [
             "Voriconazole",
             "Antifungals Summary"
         ],
@@ -78,5 +118,13 @@
         ],
         "displayName": "voriconazole 50 MG Oral Tablet",
         "codeString": "349435"
+    },
+    {
+        "groupNames": [
+            "Voriconazole",
+            "Antifungals Summary"
+        ],
+        "displayName": "voriconazole",
+        "codeString": "121243"
     }
 ]
