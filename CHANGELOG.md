@@ -6,6 +6,11 @@ original submission: MedTimeLine v1.0.1.0, commit number 3f17565ee6549a97b9be164
 
 ## Versions
 
+### 2.3.0.0
+* Update error message.
+* Update antiviral and antifungal generic RxNorm codes
+* Add generic antibiotics to configurations.
+
 ### 2.2.1.0
 * Turn off optimization for the prod build. It breaks Cerner deployment.
 
