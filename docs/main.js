@@ -7114,7 +7114,7 @@ var MockFhirService = /** @class */ (function (_super) {
     MockFhirService.prototype.getEncountersForPatient = function (dateRange) {
         var _this = this;
         return this.loadAllData.then(function (x) { return _this.encounters.filter(function (encounter) { return dateRange.intersection(encounter.period) !== null &&
-            encounter.period.start >= luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().minus({ years: 1 }); }); });
+            encounter.period.start >= luxon__WEBPACK_IMPORTED_MODULE_2__["DateTime"].utc().minus({ years: 5 }); }); });
     };
     /**
      * Prints the current HTML of the graphs rendered to the console.
@@ -12882,7 +12882,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /usr/local/google/home/hmulholland/Code/bch/medtimeline/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /usr/local/google/home/hmulholland/Code/medtimeline-github2/medtimeline/medtimeline/src/main.ts */"./src/main.ts");
 
 
 /***/ })
