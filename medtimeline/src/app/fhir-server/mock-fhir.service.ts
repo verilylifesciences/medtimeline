@@ -228,7 +228,7 @@ export class MockFhirService extends FhirService {
     return this.loadAllData.then(
         x => this.encounters.filter(
             encounter => dateRange.intersection(encounter.period) !== null &&
-                encounter.period.start >= DateTime.utc().minus({years: 1})));
+                encounter.period.start >= DateTime.utc().minus({years: 5})));
   }
 
   /**
