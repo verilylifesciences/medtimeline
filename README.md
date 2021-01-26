@@ -1,6 +1,6 @@
 # MedTimeLine
 
-[See the online demo here!](https://verilylifesciences.github.io/medtimeline/)
+[See the online demo here!](https://verilylifesciences.github.io/medtimeline/setup)
 This demo was automatically built using ./build_demo.sh
 
 ## About MedTimeLine
